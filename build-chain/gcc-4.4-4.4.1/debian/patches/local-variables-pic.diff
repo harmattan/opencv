@@ -1,0 +1,74 @@
+diff -ur gcc-4.4.orig/gcc/cfglayout.c gcc-4.4/gcc/cfglayout.c
+--- a/src/gcc/cfglayout.c	2009-10-12 18:21:10.000000000 +0000
++++ b/src/gcc/cfglayout.c	2010-05-21 07:51:02.000000000 +0000
+@@ -240,7 +240,7 @@
+ /* Hold current location information and last location information, so the
+    datastructures are built lazily only when some instructions in given
+    place are needed.  */
+-location_t curr_location, last_location;
++static location_t curr_location, last_location;
+ static tree curr_block, last_block;
+ static int curr_rtl_loc = -1;
+ 
+@@ -292,11 +292,16 @@
+      time locators are not initialized.  */
+   if (curr_rtl_loc == -1)
+     return;
+-  if (location == last_location)
+-    return;
+   curr_location = location;
+ }
+ 
++/* Get current location. */
++location_t
++get_curr_insn_source_location (void)
++{
++  return curr_location;
++}
++
+ /* Set current scope block. */
+ void
+ set_curr_insn_block (tree b)
+diff -ur gcc-4.4.orig/gcc/config/arm/arm.c gcc-4.4/gcc/config/arm/arm.c
+--- a/src/gcc/config/arm/arm.c	2009-10-14 18:55:23.000000000 +0000
++++ b/src/gcc/config/arm/arm.c	2010-05-21 08:07:30.000000000 +0000
+@@ -4735,13 +4735,28 @@
+ 	     process.  */
+ 	  if (current_ir_type () != IR_GIMPLE)
+ 	    {
++	      /* We want the PIC register loading instructions to have
++		 the same line number info as the function
++		 prologue. */
++	      location_t saved_curr_loc = get_curr_insn_source_location ();
++	      /* Eventually, all FEs should explicitly set function_start_locus.  */
++	      if (cfun->function_start_locus == UNKNOWN_LOCATION)
++		set_curr_insn_source_location
++		  (DECL_SOURCE_LOCATION (current_function_decl));
++	      else
++		set_curr_insn_source_location (cfun->function_start_locus);
++
+ 	      crtl->uses_pic_offset_table = 1;
++
+ 	      start_sequence ();
+ 
+ 	      arm_load_pic_register (0UL);
+ 
+ 	      seq = get_insns ();
+ 	      end_sequence ();
++
++	      set_curr_insn_source_location (saved_curr_loc);
++
+ 	      emit_insn_after (seq, entry_of_function ());
+ 	    }
+ 	}
+diff -ur gcc-4.4.orig/gcc/rtl.h gcc-4.4/gcc/rtl.h
+--- a/src/gcc/rtl.h	2009-10-12 18:21:10.000000000 +0000
++++ b/src/gcc/rtl.h	2010-05-21 07:51:14.000000000 +0000
+@@ -2352,6 +2352,7 @@
+ extern void insn_locators_free (void);
+ extern void insn_locators_finalize (void);
+ extern void set_curr_insn_source_location (location_t);
++extern location_t get_curr_insn_source_location (void);
+ extern void set_curr_insn_block (tree);
+ extern int curr_insn_locator (void);
+ extern bool optimize_insn_for_size_p (void);

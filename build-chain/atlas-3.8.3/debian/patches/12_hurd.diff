@@ -1,0 +1,52 @@
+diff -u atlas-3.8.3.orig/CONFIG/src/probe_comp.c atlas-3.8.3/CONFIG/src/probe_comp.c
+--- atlas-3.8.3.orig/CONFIG/src/probe_comp.c	2010-02-25 01:10:09.000000000 +0100
++++ atlas-3.8.3/CONFIG/src/probe_comp.c	2010-03-10 13:21:04.000000000 +0100
+@@ -221,13 +224,16 @@
+    }
+    return(0);
+ }
+-void NamesToBitField(int MACH, char *str, int *bits)
++
++
++
++
++void NamesToBitField(int MACH2, char *str, int *bits) {
+ /*
+  * Takes a list of machine (MACH=1) or OS (MACH=0) names and translates them
+  * to their enumerated type numbers, and sets the appropriate bit in the
+  * bits field
+  */
+-{
+    char name[128];
+    int i=0;
+    while(*str)
+@@ -240,14 +246,14 @@
+             i = 0;
+          else
+          {
+-            if (MACH)
++            if (MACH2)
+                i = MachNameToInt(name);
+             else
+                i = OSNameToInt(name);
+             if (!i)
+             {
+                fprintf(stderr, "Nonsensical %s name in list: %s\n",
+-                       MACH ? "machine" : "OS", str);
++                       MACH2 ? "machine" : "OS", str);
+                exit(1);
+             }
+          }
+diff -u atlas-3.8.3.orig/CONFIG/src/probe_OS.c atlas-3.8.3/CONFIG/src/probe_OS.c
+--- atlas-3.8.3.orig/CONFIG/src/probe_OS.c	2009-02-18 19:47:37.000000000 +0100
++++ atlas-3.8.3/CONFIG/src/probe_OS.c	2010-03-10 13:21:05.000000000 +0100
+@@ -14,7 +14,7 @@
+    ierr = CmndOneLine(targ, ln2, ln);
+    if (ierr == 0)
+    {
+-      if(strstr(ln, "Linux")) OS = OSLinux;
++      if(strstr(ln, "Linux") || strstr(ln, "GNU")) OS = OSLinux;
+       else if(strstr(ln, "FreeBSD")) OS = OSFreeBSD;
+       else if (strstr(ln, "Darwin")) OS = OSOSX;
+       else if(strstr(ln, "SunOS"))
+

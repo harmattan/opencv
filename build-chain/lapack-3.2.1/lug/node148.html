@@ -1,0 +1,1014 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LAPACK Working Notes</TITLE>
+<META NAME="description" CONTENT="LAPACK Working Notes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node146.html">
+<LINK REL="up" HREF="node5.html">
+<LINK REL="next" HREF="node149.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6294"
+ HREF="node149.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6288"
+ HREF="node5.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6284"
+ HREF="node147.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6290"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6292"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6295"
+ HREF="node149.html">Specifications of Routines</A>
+<B> Up:</B> <A NAME="tex2html6289"
+ HREF="node5.html">Guide</A>
+<B> Previous:</B> <A NAME="tex2html6285"
+ HREF="node147.html">Notes</A>
+ &nbsp <B>  <A NAME="tex2html6291"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6293"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION031200000000000000000"></A><A NAME="chapqreflawn"></A>
+<BR>
+LAPACK Working Notes
+</H1>
+
+<P>
+Most of these working notes are available from <EM>netlib</EM>, where they
+can be obtained in postscript or pdf form.
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/lapack/lawns/</TT>
+<BR>
+<TT>http://www.netlib.org/lapack/lawnspdf/</TT>
+
+</BLOCKQUOTE>
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>J.&nbsp;D<SMALL>U </SMALL>C<SMALL>ROZ, </SMALL>A. G<SMALL>REENBAUM,
+</SMALL>S. H<SMALL>AMMARLING, AND </SMALL>D. S<SMALL>ORENSEN</SMALL>,
+<EM>Prospectus for the Development of a Linear Algebra Library
+for High-Performance Computers</EM>,
+ANL, MCS-TM-97, September 1987.
+<P>
+<DT>2.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>D. S<SMALL>ORENSEN</SMALL>,
+<EM>Block Reduction of Matrices to Condensed Forms for Eigenvalue
+Computations</EM>,
+ANL, MCS-TM-99, September 1987.
+
+<P>
+<DT>3.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>W. K<SMALL>AHAN</SMALL>,
+<EM>Computing Small Singular Values of Bidiagonal Matrices with
+Guaranteed High Relative Accuracy</EM>,
+ANL, MCS-TM-110, February 1988.
+
+<P>
+<DT>4.
+<DD>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>J. D<SMALL>U </SMALL>C<SMALL>ROZ, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>D. S<SMALL>ORENSEN</SMALL>,
+<EM>Guidelines for the Design of Symmetric Eigenroutines, SVD, and
+Iterative Refinement and Condition Estimation for Linear Systems</EM>,
+ANL, MCS-TM-111, March 1988.
+
+<P>
+<DT>5.
+<DD>C. B<SMALL>ISCHOF, </SMALL>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>J. D<SMALL>U </SMALL>C<SMALL>ROZ,
+</SMALL>A. G<SMALL>REENBAUM, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>D. S<SMALL>ORENSEN</SMALL>,
+<EM>Provisional Contents</EM>,
+ANL, MCS-TM-38, September 1988.
+
+<P>
+<DT>6.
+<DD>O. B<SMALL>REWER, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, AND </SMALL>D. S<SMALL>ORENSEN</SMALL>,
+<EM>Tools to Aid in the Analysis of Memory Access Patterns for FORTRAN
+Programs</EM>,
+ANL, MCS-TM-120, June 1988.
+
+<P>
+<DT>7.
+<DD>J. B<SMALL>ARLOW AND </SMALL>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>Computing Accurate Eigensystems of Scaled Diagonally Dominant Matrices</EM>,
+ANL, MCS-TM-126, December 1988.
+
+<P>
+<DT>8.
+<DD>Z. B<SMALL>AI AND </SMALL>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>On a Block Implementation of Hessenberg Multishift QR Iteration</EM>,
+ANL, MCS-TM-127, January 1989.
+
+<P>
+<DT>9.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>A. M<SMALL>C</SMALL>K<SMALL>ENNEY</SMALL>, 
+<EM>A Test Matrix Generation Suite</EM>,
+ANL, MCS-P69-0389, March 1989.
+
+<P>
+<DT>10.
+<DD>E. A<SMALL>NDERSON AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Installing and Testing the Initial Release of LAPACK -
+Unix and Non-Unix Versions</EM>,
+ANL, MCS-TM-130, May 1989.
+
+<P>
+<DT>11.
+<DD>P. D<SMALL>EIFT, </SMALL>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>L.-C. L<SMALL>I, AND </SMALL>C. T<SMALL>OMEI</SMALL>,
+<EM>The Bidiagonal Singular Value Decomposition and Hamiltonian
+Mechanics</EM>,
+ANL, MCS-TM-133, August 1989.
+
+<P>
+<DT>12.
+<DD>P. M<SMALL>AYES AND </SMALL>G. R<SMALL>ADICATI</SMALL>,
+<EM>Banded Cholesky Factorization Using Level 3 BLAS</EM>,
+ANL, MCS-TM-134, August 1989.
+
+<P>
+<DT>13.
+<DD>Z. B<SMALL>AI, </SMALL>J.&nbsp;W. D<SMALL>EMMEL, AND </SMALL>A. M<SMALL>C</SMALL>K<SMALL>ENNEY</SMALL>,
+<EM>On the Conditioning of the Nonsymmetric Eigenproblem:
+Theory and Software</EM>,
+UT, CS-89-86, October 1989.
+
+<P>
+<DT>14.
+<DD>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>On Floating-Point Errors in Cholesky</EM>,
+UT, CS-89-87, October 1989.
+
+<P>
+<DT>15.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>K. V<SMALL>ESELI&#180;C</SMALL>,
+<EM>Jacobi's Method is More Accurate than QR</EM>,
+UT, CS-89-88, October 1989.
+
+<P>
+<DT>16.
+<DD>E. A<SMALL>NDERSON AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Results from the Initial Release of LAPACK</EM>,
+UT, CS-89-89, November 1989.
+
+<P>
+<DT>17.
+<DD>A. G<SMALL>REENBAUM AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Experiments with QR/QL Methods for the Symmetric Tridiagonal
+Eigenproblem</EM>,
+UT, CS-89-92, November 1989.
+
+<P>
+<DT>18.
+<DD>E. A<SMALL>NDERSON AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Implementation Guide for LAPACK</EM>,
+UT, CS-90-101, April 1990.
+
+<P>
+<DT>19.
+<DD>E. A<SMALL>NDERSON AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Evaluating Block Algorithm Variants in LAPACK</EM>,
+UT, CS-90-103, April 1990.
+
+<P>
+<DT>20.
+<DD>E. A<SMALL>NDERSON, </SMALL>Z. B<SMALL>AI, </SMALL>C. B<SMALL>ISCHOF, </SMALL>J.&nbsp;W. D<SMALL>EMMEL,
+</SMALL>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>J. D<SMALL>U </SMALL>C<SMALL>ROZ, </SMALL>A. G<SMALL>REENBAUM, </SMALL>S. H<SMALL>AMMARLING, </SMALL>A. M<SMALL>C</SMALL>K<SMALL>ENNEY,
+AND </SMALL>D. S<SMALL>ORENSEN</SMALL>,
+<EM>LAPACK: A Portable Linear Algebra Library for High-Performance
+Computers</EM>,
+UT, CS-90-105, May 1990.
+
+<P>
+<DT>21.
+<DD>J. D<SMALL>U </SMALL>C<SMALL>ROZ, </SMALL>P. M<SMALL>AYES, AND </SMALL>G. R<SMALL>ADICATI</SMALL>,
+<EM>Factorizations of Band Matrices Using Level 3 BLAS</EM>,
+UT, CS-90-109, July 1990.
+
+<P>
+<DT>22.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>N.&nbsp;J. H<SMALL>IGHAM</SMALL>,
+<EM>Stability of Block Algorithms with Fast Level 3 BLAS</EM>,
+UT, CS-90-110, July 1990.
+
+<P>
+<DT>23.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>N.&nbsp;J. H<SMALL>IGHAM</SMALL>,
+<EM>Improved Error Bounds for Underdetermined System Solvers</EM>,
+UT, CS-90-113, August 1990.
+
+<P>
+<DT>24.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA AND </SMALL>S. O<SMALL>STROUCHOV</SMALL>,
+<EM>LAPACK Block Factorization Algorithms on the Intel iPSC/860</EM>, 
+UT, CS-90-115, October, 1990.
+
+<P>
+<DT>25.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>J.&nbsp;H. W<SMALL>ILKINSON</SMALL>,
+<EM>Numerical Considerations in Computing Invariant Subspaces</EM>,
+UT, CS-90-117, October, 1990.
+
+<P>
+<DT>26.
+<DD>E. A<SMALL>NDERSON, </SMALL>C. B<SMALL>ISCHOF, </SMALL>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA,
+</SMALL>J. D<SMALL>U </SMALL>C<SMALL>ROZ, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>W. K<SMALL>AHAN</SMALL>,
+<EM>Prospectus for an Extension to LAPACK:  A Portable Linear Algebra
+Library for High-Performance Computers</EM>,
+UT, CS-90-118, November 1990.
+
+<P>
+<DT>27.
+<DD>J. D<SMALL>U </SMALL>C<SMALL>ROZ AND </SMALL>N.&nbsp;J. H<SMALL>IGHAM</SMALL>,
+<EM>Stability of Methods for Matrix Inversion</EM>,
+UT, CS-90-119, October, 1990.
+
+<P>
+<DT>28.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>P. M<SMALL>AYES, AND </SMALL>G. R<SMALL>ADICATI</SMALL>,
+<EM>The IBM RISC System/6000 and Linear Algebra Operations</EM>,
+UT, CS-90-122, December 1990.
+
+<P>
+<DT>29.
+<DD>R. <SMALL>VAN DE </SMALL>G<SMALL>EIJN</SMALL>,
+<EM>On Global Combine Operations</EM>,
+UT, CS-91-129, April 1991.
+
+<P>
+<DT>30.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA AND </SMALL>R. <SMALL>VAN DE </SMALL>G<SMALL>EIJN</SMALL>,
+<EM>Reduction to Condensed Form for the Eigenvalue Problem on
+Distributed Memory Architectures</EM>,
+UT, CS-91-130, April 1991.
+
+<P>
+<DT>31.
+<DD>E. A<SMALL>NDERSON, </SMALL>Z. B<SMALL>AI, AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Generalized QR Factorization and its Applications</EM>,
+UT, CS-91-131, April 1991.
+
+<P>
+<DT>32.
+<DD>C. B<SMALL>ISCHOF AND </SMALL>P. T<SMALL>ANG</SMALL>,
+<EM>Generalized Incremental Condition Estimation</EM>,
+UT, CS-91-132, May 1991.
+
+<P>
+<DT>33.
+<DD>C. B<SMALL>ISCHOF AND </SMALL>P. T<SMALL>ANG</SMALL>,
+<EM>Robust Incremental Condition Estimation</EM>,
+UT, CS-91-133, May 1991.
+
+<P>
+<DT>34.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Workshop on the BLACS</EM>,
+UT, CS-91-134, May 1991.
+
+<P>
+<DT>35.
+<DD>E. A<SMALL>NDERSON, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, AND </SMALL>S. O<SMALL>STROUCHOV</SMALL>,
+<EM>Implementation guide for LAPACK</EM>,
+UT, CS-91-138, August 1991. (<EM>replaced by Working Note 41</EM>)
+
+<P>
+<DT>36.
+<DD>E. A<SMALL>NDERSON</SMALL>, <EM>Robust Triangular Solves for 
+Use in Condition Estimation</EM>, UT, CS-91-142, August 1991.
+
+<P>
+<DT>37.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA AND </SMALL>R. <SMALL>VAN DE </SMALL>G<SMALL>EIJN</SMALL>,
+<EM>Two Dimensional Basic Linear Algebra Communication
+Subprograms</EM>, UT, CS-91-138, October 1991.
+
+<P>
+<DT>38.
+<DD>Z. B<SMALL>AI AND </SMALL>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>On a Direct Algorithm for Computing Invariant Subspaces with
+Specified Eigenvalues</EM>, UT, CS-91-139, November 1991.
+
+<P>
+<DT>39.
+<DD>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, AND </SMALL>W. K<SMALL>AHAN</SMALL>,
+<EM>On Designing Portable High Performance Numerical Libraries</EM>,
+UT, CS-91-141, July 1991.
+
+<P>
+<DT>40.
+<DD>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>N.&nbsp;J. H<SMALL>IGHAM, AND </SMALL>R. S<SMALL>CHREIBER</SMALL>,
+<EM>Block LU Factorization</EM>,
+UT, CS-92-149, February 1992.
+
+<P>
+<DT>41.
+<DD>L. S. B<SMALL>LACKFORD AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Installation Guide for LAPACK</EM>,
+UT, CS-92-151, February 1992.
+
+<P>
+<DT>42.
+<DD>N.&nbsp;J. H<SMALL>IGHAM</SMALL>, <EM>Perturbation Theory and Backward Error
+for <B><I>AX</I>-<I>XB</I>=<I>C</I></B></EM>, UT, CS-92-153, April, 1992.
+
+<P>
+<DT>43.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>R. <SMALL>VAN DE </SMALL>G<SMALL>EIJN, AND </SMALL>D.&nbsp;W. W<SMALL>ALKER</SMALL>,
+<EM>A Look at Scalable Dense Linear Algebra Libraries</EM>,
+UT, CS-92-155, April, 1992.
+
+<P>
+<DT>44.
+<DD>E. A<SMALL>NDERSON AND </SMALL>J.&nbsp;J. D<SMALL>ONGARRA</SMALL>,
+<EM>Performance of LAPACK:  A Portable Library of Numerical Linear 
+Algebra Routines</EM>, UT, CS-92-156, May 1992.
+
+<P>
+<DT>45.
+<DD>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>The Inherent Inaccuracy of Implicit Tridiagonal QR</EM>,
+UT, CS-92-162, May 1992.
+
+<P>
+<DT>46.
+<DD>Z. B<SMALL>AI AND </SMALL>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>Computing the Generalized Singular Value Decomposition</EM>,
+UT, CS-92-163, May 1992.
+
+<P>
+<DT>47.
+<DD>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>Open Problems in Numerical Linear Algebra</EM>,
+UT, CS-92-164, May 1992.
+
+<P>
+<DT>48.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>W. G<SMALL>RAGG</SMALL>,
+<EM>On Computing Accurate Singular Values and Eigenvalues of Matrices
+with Acyclic Graphs</EM>,
+UT, CS-92-166, May 1992.
+
+<P>
+<DT>49.
+<DD>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>A Specification for Floating Point Parallel Prefix</EM>,
+UT, CS-92-167, May 1992.
+
+<P>
+<DT>50.
+<DD>V. E<SMALL>IJKHOUT</SMALL>,
+<EM>Distributed Sparse Data Structures for Linear Algebra Operations</EM>,
+UT, CS-92-169, May 1992.
+
+<P>
+<DT>51.
+<DD>V. E<SMALL>IJKHOUT</SMALL>,
+<EM>Qualitative Properties of the Conjugate Gradient and Lanczos Methods
+in a Matrix Framework</EM>,
+UT, CS-92-170, May 1992.
+
+<P>
+<DT>52.
+<DD>M.&nbsp;T. H<SMALL>EATH AND </SMALL>P. R<SMALL>AGHAVAN</SMALL>,
+<EM>A Cartesian Parallel Nested Dissection Algorithm</EM>,
+UT, CS-92-178, June 1992.
+
+<P>
+<DT>53.
+<DD>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>Trading Off Parallelism and Numerical Stability</EM>,
+UT, CS-92-179, June 1992.
+
+<P>
+<DT>54.
+<DD>Z. B<SMALL>AI AND </SMALL>J.&nbsp;W. D<SMALL>EMMEL</SMALL>,
+<EM>On Swapping Diagonal Blocks in Real Schur Form</EM>,
+UT, CS-92-182, October 1992.
+
+<P>
+<DT>55.
+<DD>J. C<SMALL>HOI, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>R. P<SMALL>OZO, AND </SMALL>D.&nbsp;W. W<SMALL>ALKER</SMALL>,
+<EM>ScaLAPACK: A Scalable Linear Algebra for Distributed Memory
+Concurrent Computers</EM>,
+UT, CS-92-181, November 1992.
+
+<P>
+<DT>56.
+<DD>E.&nbsp;F. D'A<SMALL>ZEVEDO, </SMALL>V.&nbsp;L. E<SMALL>IJKHOUT AND </SMALL>C.&nbsp;H. R<SMALL>OMINE</SMALL>,
+<EM>Reducing Communication Costs in the Conjugate Gradient Algorithm
+on Distributed Memory Multiprocessors</EM>,
+UT, CS-93-185, January 1993.
+
+<P>
+<DT>57.
+<DD>J. C<SMALL>HOI, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, AND </SMALL>D.&nbsp;W. W<SMALL>ALKER</SMALL>,
+<EM>PUMMA: Parallel Universal Matrix Multiplication Algorithms on
+Distributed Memory Concurrent Computers</EM>,
+UT, CS-93-187, May 1993.
+
+<P>
+<DT>58.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA AND </SMALL>D.&nbsp;W. W<SMALL>ALKER</SMALL>,
+<EM>The Design of Linear Algebra Libraries for High Performance Computer</EM>,
+UT, CS-93-188, June 1993.
+
+<P>
+<DT>59.
+<DD>J.&nbsp;W. D<SMALL>EMMEL AND </SMALL>X. L<SMALL>I</SMALL>,
+<EM>Faster Numerical Algorithms via Exception Handling</EM>,
+UT, CS-93-192, March 1993.
+
+<P>
+<DT>60.
+<DD>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>M.&nbsp;T. H<SMALL>EATH, AND </SMALL>H.&nbsp;A. <SMALL>VAN DER </SMALL>V<SMALL>ORST</SMALL>,
+<EM>Parallel Numerical Linear Algebra</EM>,
+UT, CS-93-192, March 1993.
+
+<P>
+<DT>61.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>R. P<SMALL>OZO, AND </SMALL>D.&nbsp;W. W<SMALL>ALKER</SMALL>,
+<EM>An Object Oriented Design for High Performance Linear Algebra on
+Distributed Memory Architectures</EM>,
+UT, CS-93-200, August 1993.
+
+<P>
+<DT>62.
+<DD>M.&nbsp;T. H<SMALL>EATH AND </SMALL>P. R<SMALL>AGHAVAN</SMALL>,
+<EM>Distributed Solution of Sparse Linear Systems</EM>,
+UT, CS-93-201, August 1993.
+
+<P>
+<DT>63.
+<DD>M.&nbsp;T. H<SMALL>EATH AND </SMALL>P. R<SMALL>AGHAVAN</SMALL>,
+<EM>Line and Plane Separators</EM>,
+UT, CS-93-202, August 1993.
+
+<P>
+<DT>64.
+<DD>P. R<SMALL>AGHAVAN</SMALL>,
+<EM>Distributed Sparse Gaussian Elimination and Orthogonal Factorization</EM>,
+UT, CS-93-203, August 1993.
+
+<P>
+<DT>65.
+<DD>J. C<SMALL>HOI, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, AND </SMALL>D.&nbsp;W. W<SMALL>ALKER</SMALL>,
+<EM>Parallel Matrix Transpose Algorithms on Distributed Memory
+Concurrent Computers</EM>,
+UT, CS-93-215, November, 1993.
+
+<P>
+<DT>66.
+<DD>V.&nbsp;L. E<SMALL>IJKHOUT</SMALL>,
+<EM>A Characterization of Polynomial Iterative Methods</EM>,
+UT, CS-93-216, November, 1993.
+
+<P>
+<DT>67.
+<DD>F. D<SMALL>ESPREZ, </SMALL>J. D<SMALL>ONGARRA, AND </SMALL>B. T<SMALL>OURANCHEAU</SMALL>,
+<EM>Performance Complexity of <B><I>LU</I></B> Factorization with Efficient
+Pipelining and Overlap on a Multiprocessor</EM>, 
+UT, CS-93-218, December, 1993.
+
+<P>
+<DT>68.
+<DD>M<SMALL>ICHAEL </SMALL>W. B<SMALL>ERRY, </SMALL>J<SMALL>ACK </SMALL>J. D<SMALL>ONGARRA AND </SMALL>Y<SMALL>OUNGBAE </SMALL>K<SMALL>IM</SMALL>,
+<EM>A Highly Parallel Algorithm for the Reduction of a Nonsymmetric
+Matrix to Block Upper-Hessenberg Form</EM>,
+UT, CS-94-221, January, 1994.
+
+<P>
+<DT>69.
+<DD>J. R<SMALL>UTTER</SMALL>,
+<EM>A Serial Implementation of Cuppen's Divide and Conquer
+Algorithm for the Symmetric Eigenvalue Problem</EM>,
+UT, CS-94-225, March, 1994.
+
+<P>
+<DT>70.
+<DD>J.&nbsp;W. D<SMALL>EMMEL, </SMALL>I<SMALL>NDERJIT </SMALL>D<SMALL>HILLON, AND </SMALL>H<SMALL>UAN </SMALL>R<SMALL>EN</SMALL>,
+<EM>On the Correctness of Parallel Bisection in Floating Point</EM>,
+UT, CS-94-228, April, 1994.
+
+<P>
+<DT>71.
+<DD>J. D<SMALL>ONGARRA AND </SMALL>M. K<SMALL>OLATIS</SMALL>, 
+<EM>IBM RS/6000-550 &amp; -590 Performance for Selected Routines in ESSL</EM>,
+UT, CS-94-231, April, 1994.
+
+<P>
+<DT>72.
+<DD>R. L<SMALL>EHOUCQ</SMALL>,
+<EM>The Computation of Elementary Unitary Matrices</EM>,
+UT, CS-94-233, May, 1994.
+
+<P>
+<DT>73.
+<DD>R. C<SMALL>LINT </SMALL>W<SMALL>HALEY</SMALL>,
+<EM>Basic Linear Algebra Communication Subprograms:  Analysis and
+Implementation Across Multiple Parallel Architectures</EM>,
+UT, CS-94-234, May, 1994.
+
+<P>
+<DT>74.
+<DD>J. D<SMALL>ONGARRA, </SMALL>A. L<SMALL>UMSDAINE, </SMALL>X. N<SMALL>IU, </SMALL>R.  P<SMALL>OZO, AND </SMALL>K.
+R<SMALL>EMINGTON</SMALL>,
+<EM>A Sparse Matrix Library in C++ for High Performance Architectures</EM>,
+UT, CS-94-236, July, 1994.
+
+<P>
+<DT>75.
+<DD>B. K&#229;<SMALL>GSTR&#168;OM AND </SMALL>P. P<SMALL>OROMAA</SMALL>,
+<EM>Computing Eigenspaces with Specified Eigenvalues of a Regular
+Matrix Pair (A,B) and Condition Estimation:  Theory, Algorithms and
+Software</EM>,
+UT, CS-94-237, July, 1994.
+
+<P>
+<DT>76.
+<DD>R. B<SMALL>ARRETT, </SMALL>M. B<SMALL>ERRY, </SMALL>J. D<SMALL>ONGARRA, </SMALL>V. E<SMALL>IJKHOUT, AND </SMALL>C.
+R<SMALL>OMINE</SMALL>, <EM>Algorithic Bombardment for the Iterative Solution of
+Linear Systems:  A Poly-Iterative Approach</EM>,
+UT, CS-94-239, August, 1994.
+
+<P>
+<DT>77.
+<DD>V. E<SMALL>IJKHOUT AND </SMALL>R. P<SMALL>OZO</SMALL>,
+<EM>Basic Concepts for Distributed Sparse Linear Algebra Operations</EM>,
+UT, CS-94-240, August, 1994.
+
+<P>
+<DT>78.
+<DD>V. E<SMALL>IJKHOUT</SMALL>,
+<EM>Computational variants of the CGS and BiCGstab methods</EM>,
+UT, CS-94-241, August, 1994.
+
+<P>
+<DT>79.
+<DD>G. H<SMALL>ENRY AND </SMALL>R. <SMALL>VAN DE </SMALL>G<SMALL>EIJN</SMALL>,
+<EM>Parallelizing the QR Algorithm for the Unsymmetric Algebraic
+Eigenvalue Problem: Myths and Reality</EM>,
+UT, CS-94-244, August, 1994.
+
+<P>
+<DT>80.
+<DD>J. C<SMALL>HOI, </SMALL>J.&nbsp;J. D<SMALL>ONGARRA, </SMALL>S. O<SMALL>STROUCHOV, </SMALL>A. P. P<SMALL>ETITET,
+</SMALL>D.&nbsp;W. W<SMALL>ALKER, AND </SMALL>R.&nbsp;C. W<SMALL>HALEY</SMALL>,
+<EM>The Design and Implementation of the ScaLAPACK LU, QR, and
+Cholesky Factorization Routines</EM>,
+UT, CS-94-246, September, 1994.
+
+<P>
+<DT>81.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA AND </SMALL>L. S. B<SMALL>LACKFORD</SMALL>,
+<EM>Quick Installation Guide for LAPACK on Unix Systems</EM>,
+UT, CS-94-249, September, 1994.
+
+<P>
+<DT>82.
+<DD>J.&nbsp;J. D<SMALL>ONGARRA AND </SMALL>M. K<SMALL>OLATIS</SMALL>,
+<EM>Call Conversion Interface (CCI) for LAPACK/ESSL</EM>,
+UT, CS-94-250, August, 1994.
+
+<P>
+<DT>83.
+<DD>R.&nbsp;C. L<SMALL>I</SMALL>, <EM>Relative Perturbation Bounds for the
+Unitary Polar Factor</EM>, UT, CS-94-251, September, 1994.
+
+<P>
+<DT>84.
+<DD>R.&nbsp;C. L<SMALL>I</SMALL>, <EM>Relative Perturbation Theory:  (I)
+Eigenvalue Variations</EM>, UT, CS-94-252, September, 1994.
+
+<P>
+<DT>85.
+<DD>R.&nbsp;C. L<SMALL>I</SMALL>, <EM>Relative Perturbation Theory:  (II)
+Eigenspace Variations</EM>, UT, CS-94-253, September, 1994.
+
+<P>
+<DT>86.
+<DD>J. D<SMALL>EMMEL AND </SMALL>K. S<SMALL>TANLEY</SMALL>,
+<EM>The Performance of Finding Eigenvalues and Eigenvectors of
+Dense Symmetric Matrices on Distributed Memory Computers</EM>,
+UT, CS-94-254, September, 1994.
+
+<P>
+<DT>87.
+<DD>B. K&#229;<SMALL>GSTR&#168;OM AND </SMALL>P. P<SMALL>OROMAA</SMALL>,
+<EM>Computing Eigenspaces with Specified Eigenvalues of a
+ Regular Matrix Pair (A,B) and Condition Estimation:  Theory,
+ Algorithms and Software</EM>,
+UT, CS-94-255, September, 1994.
+
+<P>
+<DT>88.
+<DD>M<SMALL>ING </SMALL>G<SMALL>U, </SMALL>J<SMALL>AMES </SMALL>D<SMALL>EMMEL, AND </SMALL>I<SMALL>NDERJIT </SMALL>D<SMALL>HILLON</SMALL>,
+<EM>Efficient Computation of the Singular Value Decomposition
+with Applications to Least Squares Problems</EM>,
+UT, CS-94-257, October, 1994.
+
+<P>
+<DT>89.
+<DD>R<SMALL>EN-</SMALL>C<SMALL>ANG </SMALL>L<SMALL>I</SMALL>,
+<EM>Solving Secular Equations Stably and Efficiently</EM>,
+UT, CS-94-260, November, 1994.
+
+<P>
+<DT>90.
+<DD>J. S. P<SMALL>LANK, </SMALL>Y. K<SMALL>IM, AND </SMALL>J. J. D<SMALL>ONGARRA</SMALL>,
+<EM>Algorithm-Based Diskless Checkpointing for Fault Tolerant
+Matrix Operations</EM>,
+UT, CS-94-268, December, 1994.
+
+<P>
+<DT>91.
+<DD>Z. B<SMALL>AI, </SMALL>J. D<SMALL>EMMEL, </SMALL>J. D<SMALL>ONGARRA, </SMALL>A. P<SMALL>ETITET, </SMALL>H. R<SMALL>OBINSON, AND
+</SMALL>K. S<SMALL>TANLEY</SMALL>,
+<EM>The Spectral Decomposition of Nonsymmetric Matrices
+on Distributed Memory Computers</EM>,
+UT, CS-95-273, January, 1995.
+
+<P>
+<DT>92.
+<DD>J. C<SMALL>HOI, </SMALL>J. D<SMALL>ONGARRA, AND </SMALL>D. W<SMALL>ALKER</SMALL>,
+<EM>The Design of a Parallel Dense Linear Algebra Software
+Library:  Reduction to Hessenberg, Tridiagonal, and Bidiagonal Form</EM>,
+UT, CS-95-275, February, 1995.
+
+<P>
+<DT>93.
+<DD>J. C<SMALL>HOI, </SMALL>J. D<SMALL>EMMEL, </SMALL>I. D<SMALL>HILLON, </SMALL>J. D<SMALL>ONGARRA, </SMALL>S. O<SMALL>STROUCHOV,
+</SMALL>A. P<SMALL>ETITET, </SMALL>K. S<SMALL>TANLEY, </SMALL>D. W<SMALL>ALKER, AND </SMALL>R. C. W<SMALL>HALEY</SMALL>,
+<EM>Installation Guide for ScaLAPACK</EM>,
+UT, CS-95-280, March, 1995.
+
+<P>
+<DT>94.
+<DD>J. D<SMALL>ONGARRA AND </SMALL>R. C. W<SMALL>HALEY</SMALL>,
+<EM>A User's Guide to the BLACS v1.0</EM>,
+UT, CS-95-281, March 1995.
+
+<P>
+<DT>95.
+<DD>J. C<SMALL>HOI, </SMALL>J. D<SMALL>EMMEL, </SMALL>I. D<SMALL>HILLON, </SMALL>J. D<SMALL>ONGARRA, </SMALL>S. O<SMALL>STROUCHOV,
+</SMALL>A. P<SMALL>ETITET, </SMALL>K. S<SMALL>TANLEY, </SMALL>D. W<SMALL>ALKER, AND </SMALL>R. C. W<SMALL>HALEY</SMALL>,
+<EM>ScaLAPACK: A Portable Linear Algebra Library for Distributed Memory
+Computers - Design Issues and Performance</EM>,
+UT, CS-95-283, March, 1995.
+
+<P>
+<DT>96.
+<DD>R. A. <SMALL>VAN DE </SMALL>G<SMALL>EIJN AND </SMALL>J. W<SMALL>ATTS</SMALL>,
+<EM>SUMMA:  Scalable Universal Matrix Multiplication Algorithm</EM>,
+UT, CS-95-286, April, 1995.
+
+<P>
+<DT>97.
+<DD>S. C<SMALL>HAKRABARTI, </SMALL>J. D<SMALL>EMMEL, AND </SMALL>D. Y<SMALL>ELICK</SMALL>,
+<EM>Modeling the Benefits of Mixed Data and Task Parallelism</EM>,
+UT, CS-95-289, May, 1995.
+
+<P>
+<DT>98.
+<DD>J. D<SMALL>ONGARRA, </SMALL>R. P<SMALL>OZO, AND </SMALL>D. W<SMALL>ALKER</SMALL>,
+<EM>LAPACK++ V. 1.0:  High Performance Linear Algebra Users' Guide</EM>,
+UT, CS-95-290, May, 1995.
+
+<P>
+<DT>99.
+<DD>J. D<SMALL>ONGARRA, </SMALL>V. E<SMALL>IJKHOUT, AND </SMALL>A. K<SMALL>ALHAN</SMALL>,
+<EM>Reverse Communication Interface for Linear Algebra
+Templates for Iterative Methods</EM>,
+UT, CS-95-291, May, 1995.
+
+<P>
+<DT>100.
+<DD>J. C<SMALL>HOI, </SMALL>J. D<SMALL>ONGARRA, </SMALL>S. O<SMALL>STROUCHOV, </SMALL>A. P<SMALL>ETITET, </SMALL>D. W<SMALL>ALKER,
+AND </SMALL>R. C. W<SMALL>HALEY</SMALL>,
+<EM>A Proposal for a Set of Parallel Basic Linear Algebra Subprograms</EM>,
+UT, CS-95-292, May, 1995.
+
+<P>
+<DT>101.
+<DD>J. J. D<SMALL>ONGARRA, </SMALL>J. D<SMALL>U </SMALL>C<SMALL>ROZ, </SMALL>S. H<SMALL>AMMARLING, </SMALL>J.
+W<SMALL>ASNIEWSKI, AND </SMALL>A. Z<SMALL>EMLA</SMALL>,
+<EM>A Proposal for a Fortran 90 Interface for LAPACK</EM>,
+UT, CS-95-295, July, 1995.
+
+<P>
+<DT>102.
+<DD>J. D<SMALL>ONGARRA, </SMALL>A. L<SMALL>UMSDAINE, </SMALL>R. P<SMALL>OZO, AND </SMALL>K. R<SMALL>EMINGTON</SMALL>,
+<EM>IML++ v. 1.2:  Iterative Methods Library Reference Guide</EM>,
+UT, CS-95-303, August, 1995.
+
+<P>
+<DT>103.
+<DD>J. W. D<SMALL>EMMEL, </SMALL>S. C. E<SMALL>ISENSTAT, </SMALL>J. R. G<SMALL>ILBERT, </SMALL>X. S.
+L<SMALL>I, AND </SMALL>J. W. H. L<SMALL>IU</SMALL>,
+<EM>A Supernodal Approach to Sparse Partial Pivoting</EM>,
+UT, CS-95-304, September, 1995.
+
+<P>
+<DT>104.
+<DD>N. J. H<SMALL>IGHAM</SMALL>,
+<EM>Iterative Refinement and LAPACK</EM>,
+UT, CS-95-308, October, 1995.
+
+<P>
+<DT>105.
+<DD>N. J. H<SMALL>IGHAM</SMALL>,
+<EM>Stability of the Diagonal Pivoting Method with Partial Pivoting</EM>,
+UT, CS-95-309, October, 1995.
+
+<P>
+<DT>106.
+<DD>Z. B<SMALL>AI, </SMALL>D. D<SMALL>AY, </SMALL>J. D<SMALL>EMMEL, </SMALL>J. D<SMALL>ONGARRA, </SMALL>M. G<SMALL>U, </SMALL>A.
+R<SMALL>UHE, AND </SMALL>H. <SMALL>VAN DER </SMALL>V<SMALL>ORST</SMALL>,
+<EM>Templates for Linear Algebra Problems</EM>,
+UT, CS-95-311, October, 1995.
+
+<P>
+<DT>107.
+<DD>B. K&#229;<SMALL>GSTR&#168;OM, </SMALL>P. L<SMALL>ING, AND </SMALL>C. V<SMALL>AN </SMALL>L<SMALL>OAN</SMALL>,
+<EM>GEMM-Based Level 3 BLAS:  High-Performance Model
+Implementations and Performance Evaluation Benchmark</EM>,
+UT, CS-95-315, November, 1995.
+
+<P>
+<DT>108.
+<DD>B. K&#229;<SMALL>GSTR&#168;OM, </SMALL>P. L<SMALL>ING, AND </SMALL>C. V<SMALL>AN </SMALL>L<SMALL>OAN</SMALL>,
+<EM>GEMM-Based Level 3 BLAS:  Installation, Tuning and
+Use of the Model Implementations and the Performance
+Evaluation Benchmark</EM>,
+UT, CS-95-316, November, 1995.
+
+<P>
+<DT>109.
+<DD>J. D<SMALL>ONGARRA, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>S. O<SMALL>STROUCHOV</SMALL>,
+<EM>BLAS Technical Workshop</EM>, UT, CS-95-317, November, 1995.
+
+<P>
+<DT>110.
+<DD>J. J. D<SMALL>ONGARRA, </SMALL>S. H<SMALL>AMMARLING, AND </SMALL>D. W. W<SMALL>ALKER</SMALL>,
+<EM>Key Concepts For Parallel Out-Of-Core LU Factorization</EM>,
+UT, CS-96-324, April, 1996.
+
+<P>
+<DT>111.
+<DD>J. B<SMALL>ILMES, </SMALL>K. A<SMALL>SANOVIC, </SMALL>J. D<SMALL>EMMEL, </SMALL>D. L<SMALL>AM, AND
+</SMALL>C.-W. C<SMALL>HIN</SMALL>,<EM>Optimizing Matrix Multiply using PHiPAC:  a Portable,
+High-Performance, ANSI C Coding Methodology</EM>,
+UT, CS-96-326, May, 1996.
+
+<P>
+<DT>112.
+<DD>L.&nbsp;S.&nbsp;B<SMALL>LACKFORD, </SMALL>A.&nbsp;C<SMALL>LEARY, </SMALL>J.&nbsp;D<SMALL>EMMEL, </SMALL>I.&nbsp;D<SMALL>HILLON,
+</SMALL>J.&nbsp;D<SMALL>ONGARRA, </SMALL>S. &nbsp;H<SMALL>AMMARLING, </SMALL>A.&nbsp;P<SMALL>ETITET, </SMALL>H.&nbsp;R<SMALL>EN, </SMALL>K.&nbsp;S<SMALL>TANLEY,
+</SMALL>R.&nbsp;C.&nbsp;W<SMALL>HALEY</SMALL>, <EM>Practical Experience in the Dangers of Heterogeneous
+Computing</EM>, UT, CS-96-330, July, 1996.
+
+<P>
+<DT>113.
+<DD>G.&nbsp;Q<SMALL>UINTANA-</SMALL>O<SMALL>RT&#180;I</SMALL>, E.&nbsp;S.&nbsp;Q<SMALL>UINTANA-</SMALL>O<SMALL>RT&#180;I</SMALL>,
+A.&nbsp;P<SMALL>ETITET</SMALL>, <EM>Block-Partitioned Algorithms for Solving the
+Linear Least Squares Problem</EM>, UT, CS-96-333, July, 1996.
+
+<P>
+<DT>114.
+<DD>G.&nbsp;Q<SMALL>UINTANA-</SMALL>O<SMALL>RT&#180;I</SMALL>, X.&nbsp;S<SMALL>UN, </SMALL>C.&nbsp;H.&nbsp;B<SMALL>ISCHOF</SMALL>,
+<EM>A BLAS-3 Version of the QR Factorization with Column Pivoting</EM>,
+UT, CS-96-334, August, 1996.
+ 
+<DT>115.
+<DD>H.&nbsp;R<SMALL>EN</SMALL>, <EM>On the Error Analysis and Implementation
+of Some Eigenvalue Decomposition and Singular Value Decomposition Algorithms</EM>,
+UT, CS-96-336, September, 1996.
+ 
+<DT>116.
+<DD>M.&nbsp;S<SMALL>IDANI AND </SMALL>B.&nbsp;H<SMALL>ARROD</SMALL>, <EM>Parallel Matrix Distributions:
+Have we been doing it all right?</EM>, UT, CS-96-340, November 1996.
+ 
+<DT>117.
+<DD>L.&nbsp;S.&nbsp;B<SMALL>LACKFORD, </SMALL>J.&nbsp;D<SMALL>ONGARRA, </SMALL>J.&nbsp;D<SMALL>U&nbsp;</SMALL>C<SMALL>ROZ, </SMALL>S.&nbsp;H<SMALL>AMMARLING,
+</SMALL>J.&nbsp;W<SMALL>ASNIEWSKI</SMALL>, <EM>A Fortran&nbsp;90 Interface for LAPACK:  LAPACK90,
+version 1.0</EM>, UT, CS-96-341, November 1996.
+ 
+<DT>118.
+<DD>J.&nbsp;J.&nbsp;D<SMALL>ONGARRA AND </SMALL>E.&nbsp;F.&nbsp;D'A<SMALL>ZEVEDO</SMALL>, <EM>The Design and
+Implementation of the Parallel Out-of-core ScaLAPACK LU, QR, and Cholesky
+Factorization Routines</EM>, UT, CS-97-347, January 1997.
+ 
+<DT>119.
+<DD>J. D<SMALL>EMMEL, </SMALL>M. G<SMALL>U, </SMALL>S. E<SMALL>ISENSTAT, </SMALL>I. S<SMALL>LAPNICAR, </SMALL>K. V<SMALL>ESELIC,
+AND </SMALL>Z. D<SMALL>RMAC</SMALL>, <EM>Computing the Singular Value Decomposition with High
+Relative Accuracy</EM>, UT, CS-97-348, February 1997.
+ 
+<DT>120.
+<DD>F. D<SMALL>ESPREZ, </SMALL>J. D<SMALL>ONGARRA, </SMALL>A. P<SMALL>ETITET, </SMALL>C. R<SMALL>ANDRIAMARO,
+AND </SMALL>Y. R<SMALL>OBERT</SMALL>, <EM>Scheduling Block-Cyclic Array Redistribution</EM>,
+UT, CS-97-349, February 1997.
+ 
+<DT>121.
+<DD>G. H<SMALL>ENRY, </SMALL>D. W<SMALL>ATKINS, AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>A Parallel Implementation of the Nonsymmetric QR Algorithm
+for Distributed Memory Architectures</EM>,
+UT, CS-97-352, March 1997.
+
+<P>
+<DT>122.
+<DD>M. A<SMALL>HUES AND </SMALL>F. T<SMALL>ISSEUR</SMALL>,
+<EM>A New Deflation Criterion for the QR Algorithm</EM>,
+UT, CS-97-353, March 1997.
+ 
+<DT>123.
+<DD>Z. B<SMALL>AI, </SMALL>D. D<SMALL>AY, </SMALL>J. D<SMALL>EMMEL AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>A Test Matrix Collection for Non-Hermitian Eigenvalue Problems</EM>,
+UT, CS-97-355, March 1997.
+
+<P>
+<DT>124.
+<DD>J. D<SMALL>EMMEL, </SMALL>J. G<SMALL>ILBERT, AND </SMALL>X. L<SMALL>I</SMALL>,
+<EM>An Asynchronous Parallel Supernodal Algorithm for
+Sparse Gaussian Elimination</EM>,
+UT, CS-97-357, April 1997.
+ 
+<DT>125.
+<DD>A. C<SMALL>LEARY AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>Implementation in ScaLAPACK of Divide-and-Conquer Algorithms
+for Banded and Tridiagonal Linear Systems</EM>,
+UT, CS-97-358, April 1997.
+ 
+<DT>126.
+<DD>E. A<SMALL>NDERSON AND </SMALL>M. F<SMALL>AHEY</SMALL>,
+<EM>Performance Improvements to LAPACK for the Cray Scientific Library</EM>,
+UT, CS-97-359, April 1997.
+
+<P>
+<DT>127.
+<DD>X. L<SMALL>I</SMALL>,
+<EM>Sparse Gaussian Elimination on High Performance Computers</EM>,
+UT, CS-97-368, June 1997.
+
+<P>
+<DT>128.
+<DD>A. P<SMALL>ETITET</SMALL>,
+<EM>Algorithmic Redistribution Methods for Block Cyclic Decompositions</EM>,
+UT, CS-97-371, July 1997.
+ 
+<DT>129.
+<DD>J. C<SMALL>HOI</SMALL>,
+<EM>A New Parallel Matrix Multiplication Algorithm on
+Distributed-Memory Concurrent Computers</EM>,
+UT, CS-97-369, September 1997.
+ 
+<DT>130.
+<DD>J. D<SMALL>EMMEL</SMALL>,
+<EM>Accurate SVDs of Structured Matrices</EM>,
+UT, CS-97-375, October 1997.
+ 
+<DT>131.
+<DD>R. W<SMALL>HALEY AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>Automatically Tuned Linear Algebra Software</EM>,
+UT, CS-97-366, December 1997.
+
+<P>
+<DT>132.
+<DD>F. T<SMALL>ISSEUR AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>Parallelizing the Divide and Conquer Algorithm for the Symmetric
+Tridiagonal Eigenvalue Problem on Distributed Memory Architectures</EM>,
+UT, CS-98-382, March 1998.
+ 
+<DT>133.
+<DD>A. P<SMALL>ETITET AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>Algorithmic Redistribution Methods for Block Cyclic Distributions</EM>,
+UT, CS-98-383, March 1998.
+ 
+<DT>134.
+<DD>J.&nbsp;W<SMALL>ASNIEWSKI AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>High Performance Linear Algebra Package - LAPACK90</EM>,
+UT, CS-98-384, April 1998.
+
+<P>
+<DT>135.
+<DD>E. D'A<SMALL>ZEVEDO AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,  
+<EM>Packed Storage Extensions for ScaLAPACK</EM>,
+UT, CS-98-385, April 1998.
+ 
+<DT>136.
+<DD>L. S. B<SMALL>LACKFORD AND </SMALL>R. C. W<SMALL>HALEY</SMALL>,
+<EM>ScaLAPACK Evaluation and Performance at the DoD MSRCs</EM>,
+UT, CS-98-388, April 1998.
+
+<P>
+<DT>137.
+<DD>L. S. B<SMALL>LACKFORD, </SMALL>J. J. D<SMALL>ONGARRA, </SMALL>C. A P<SMALL>APADOPOULOS,
+AND </SMALL>R. C W<SMALL>HALEY</SMALL>, 
+<EM>Installation Guide and Design of the HPF 1.1 interface to
+ScaLAPACK, SLHPF</EM>,
+UT, CS-98-396, August 1998.
+
+<P>
+<DT>138.
+<DD>J. J. D<SMALL>ONGARRA, </SMALL>W. O<SMALL>WCZARZ, </SMALL>J. W<SMALL>A, AND </SMALL>P. Y<SMALL>ALAMOV</SMALL>,
+<EM>Testing Software for LAPACK90</EM>, UT, CS-98-401, September 1998.
+
+<P>
+<DT>139.
+<DD>A. P<SMALL>ETITET, </SMALL>H. C<SMALL>ASANOVA, </SMALL>J. D<SMALL>ONGARRA, </SMALL>Y. R<SMALL>OBERT, AND
+</SMALL>R. C. W<SMALL>HALEY</SMALL>,
+<EM>A Numerical Linear Algebra Problem Solving Environment
+Designer's Perspective</EM>, UT, CS-98-405, October 1998.
+
+<P>
+<DT>140.
+<DD>H. C<SMALL>ASANOVA AND </SMALL>J. D<SMALL>ONGARRA</SMALL>,
+<EM>NetSolve version 1.2:  Design and Implementation</EM>,
+UT, CS-98-406, November 1998.
+
+<P>
+<DT>141.
+<DD>V. E<SMALL>IJKHOUT</SMALL>,
+<EM>Overview of Iterative Linear System Solver Packages</EM>,
+UT, CS-98-411, December 1998.
+
+<P>
+<DT>142.
+<DD>P. A<SMALL>RBENZ, </SMALL>A. C<SMALL>LEARY, </SMALL>J. D<SMALL>ONGARRA, AND </SMALL>M. H<SMALL>EGLAND</SMALL>,
+<EM>A Comparison of Parallel Solvers for Diagonally Dominant
+and General Narrow-Banded Linear Systems</EM>, UT, CS-99-414, February 1999.
+
+<P>
+<DT>143.
+<DD>P. A<SMALL>RBENZ, </SMALL>A. C<SMALL>LEARY, </SMALL>J. D<SMALL>ONGARRA, AND </SMALL>M. H<SMALL>EGLAND</SMALL>,
+<EM>A Comparison of Parallel Solvers for Diagonally Dominant
+and General Narrow-Banded Linear Systems II</EM>, UT, CS-99-415, May 1999.
+
+<P>
+</DL>
+
+<P>
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6294"
+ HREF="node149.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6288"
+ HREF="node5.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6284"
+ HREF="node147.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6290"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6292"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6295"
+ HREF="node149.html">Specifications of Routines</A>
+<B> Up:</B> <A NAME="tex2html6289"
+ HREF="node5.html">Guide</A>
+<B> Previous:</B> <A NAME="tex2html6285"
+ HREF="node147.html">Notes</A>
+ &nbsp <B>  <A NAME="tex2html6291"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6293"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

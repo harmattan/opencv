@@ -1,0 +1,15 @@
+.TH DH_NUMPY 1 "2010-07-27" "Numpy"
+.SH NAME
+dh_numpy \- adds to python:Depends the Numpy versioned depends
+.SH SYNOPSYS
+\fBdh_numpy\fR [\fIdebhelper\ options\fR]
+.SH DESCRIPTION
+dh_numpy adds information about the correct versioned depends on python-numpy to python:Depends substvar.
+.PP
+This is needed because some Python extensions require strict versioned depends on python-numpy, and using this helper script is the easiest way to get them.
+.PP
+The helper script uses the information stored in /usr/share/python/dist/python-numpy to generate the Depends information; that file is also used by dh_python2 (and from dh_pysupport when implemented) to generate the same set of Depends. This script allows you to not use dh_python2 if you don't want to.
+.SH "SEE ALSO"
+\fIdebhelper\fR(7)
+.PP
+This program is not a part of debhelper (and it's provided by python-numpy).

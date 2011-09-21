@@ -1,0 +1,585 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for Linear Equation Solving</TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for Linear Equation Solving">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node80.html">
+<LINK REL="up" HREF="node80.html">
+<LINK REL="next" HREF="node82.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5326"
+ HREF="node82.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5320"
+ HREF="node80.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5316"
+ HREF="node80.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5322"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5324"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5327"
+ HREF="node82.html">Error Bounds for Linear</A>
+<B> Up:</B> <A NAME="tex2html5321"
+ HREF="node80.html">Error Bounds for Linear</A>
+<B> Previous:</B> <A NAME="tex2html5317"
+ HREF="node80.html">Error Bounds for Linear</A>
+ &nbsp <B>  <A NAME="tex2html5323"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5325"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03441000000000000000"></A><A NAME="secbackgroundAx_b"></A>
+<BR>
+Further Details:  Error Bounds for Linear Equation Solving
+</H2>
+
+<P>
+The conventional error analysis of linear
+equation<A NAME="10591"></A> solving goes as follows.
+Let <B><I>Ax</I>=<I>b</I></B> be the system to be solved. Let <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+be the solution
+computed by LAPACK (or LINPACK) using any of their linear equation solvers.
+Let <B><I>r</I></B> be
+the residual 
+<!-- MATH
+ $r = b - A \hat{x}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img409.gif"
+ ALT="$r = b - A \hat{x}$">.
+In the absence of rounding error <B><I>r</I></B>
+would be zero and <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+would equal <B><I>x</I></B>; with rounding error one can
+only say the following:
+
+<P>
+<BLOCKQUOTE>
+The normwise backward error of the computed solution <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">,
+<A NAME="10597"></A>
+<A NAME="10598"></A>
+with respect to the infinity norm,
+is the pair <B><I>E</I>,<I>f</I></B> which minimizes
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\max \left( \frac{\| E \|_{\infty}}{\| A \|_{\infty}} ,
+            \frac{\| f \|_{\infty}}{\| b \|_{\infty}} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="159" HEIGHT="48" BORDER="0"
+ SRC="img410.gif"
+ ALT="\begin{displaymath}
+\max \left( \frac{\Vert E \Vert _{\infty}}{\Vert A \Vert _{\...
+...frac{\Vert f \Vert _{\infty}}{\Vert b \Vert _{\infty}} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+subject to the constraint 
+<!-- MATH
+ $(A+E) \hat{x} = b+f$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img379.gif"
+ ALT="$(A+E)\hat{x}=b+f$">.
+The minimal value of
+
+<!-- MATH
+ $\max \left( \frac{\| E \|_{\infty}}{\| A \|_{\infty}} ,
+\frac{\| f \|_{\infty}}{\| b \|_{\infty}} \right)$
+ -->
+<IMG
+ WIDTH="145" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img411.gif"
+ ALT="$\max \left( \frac{\Vert E \Vert _{\infty}}{\Vert A \Vert _{\infty}} ,
+\frac{\Vert f \Vert _{\infty}}{\Vert b \Vert _{\infty}} \right)$">
+is given by
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\omega_{\infty}=
+\frac{\| r \|_{\infty}}{\| A \|_{\infty}\cdot \| \hat{x} \|_{\infty}+ \| b \|_{\infty}} \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="220" HEIGHT="48" BORDER="0"
+ SRC="img412.gif"
+ ALT="\begin{displaymath}
+\omega_{\infty}=
+\frac{\Vert r \Vert _{\infty}}{\Vert A \Ver...
+...t \Vert \hat{x} \Vert _{\infty}+ \Vert b \Vert _{\infty}} \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+One can show that the computed solution <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+satisfies 
+<!-- MATH
+ $\omega_{\infty}\leq p(n) \cdot \epsilon$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img413.gif"
+ ALT="$\omega_{\infty}\leq p(n) \cdot \epsilon$">,
+where <B><I>p</I>(<I>n</I>)</B> is a modestly growing function of <B><I>n</I></B>.
+The corresponding condition number is
+
+<!-- MATH
+ $\kappa_{\infty}(A) \equiv \|A\|_{\infty}\cdot \|A^{-1}\|_{\infty}$
+ -->
+<IMG
+ WIDTH="199" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img414.gif"
+ ALT="$\kappa_{\infty}(A) \equiv \Vert A\Vert _{\infty}\cdot \Vert A^{-1}\Vert _{\infty}$">.
+<A NAME="10612"></A>
+The error <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img415.gif"
+ ALT="$x-\hat{x}$">
+is bounded by
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\|x- \hat{x} \|_{\infty}}{\| x \|_{\infty}}
+\mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}2 \cdot \omega_{\infty}\cdot \kappa_{\infty}(A) = {\tt ERRBD} \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="286" HEIGHT="48" BORDER="0"
+ SRC="img416.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert x- \hat{x} \Vert _{\infty}}{\Vert x \Vert _{\inf...
+...dot \omega_{\infty}\cdot \kappa_{\infty}(A) = {\tt ERRBD} \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+In the first code fragment in the last section, 
+<!-- MATH
+ $2 \cdot \omega_{\infty}$
+ -->
+<IMG
+ WIDTH="51" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img417.gif"
+ ALT="$2 \cdot \omega_{\infty}$">,
+which is 
+<!-- MATH
+ $4.504 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img418.gif"
+ ALT="$4.504 \cdot 10^{-8}$">
+in the numerical example,
+is approximated by 
+<!-- MATH
+ $\epsilon  = 2^{-24} = 5.960 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="179" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img419.gif"
+ ALT="$\epsilon = 2^{-24} = 5.960 \cdot 10^{-8}$">.
+Approximations<A NAME="10621"></A>
+of  
+<!-- MATH
+ $\kappa_{\infty}(A)$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img388.gif"
+ ALT="$\kappa_{\infty}(A)$">
+-- or, strictly speaking, its reciprocal <TT>RCOND</TT> --
+are returned by computational routines
+xyyCON (subsection&nbsp;<A HREF="node38.html#subseccomplineq">2.4.1</A>) or driver routines
+xyySVX (subsection&nbsp;<A HREF="node26.html#subsecdrivelineq">2.3.1</A>). The code fragment
+makes sure <TT>RCOND</TT> is at least <IMG
+ WIDTH="30" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img420.gif"
+ ALT="$\epsilon =$">
+<TT>EPSMCH</TT> to
+avoid overflow in computing
+<TT>ERRBD</TT>.<A NAME="10628"></A><A NAME="10629"></A>
+This limits
+<TT>ERRBD</TT> to a maximum of 1, which is no loss of generality since
+a relative error of 1 or more indicates the same thing:
+<A NAME="10631"></A><A NAME="10632"></A>
+a complete loss of accuracy. <A NAME="10633"></A>
+Note that the
+value of <TT>RCOND</TT> returned by xyySVX may apply to a linear
+system obtained from <B><I>Ax</I>=<I>b</I></B> by <EM>equilibration</EM>, i.e.
+scaling the rows and columns of <B><I>A</I></B> in order to make the
+condition number smaller. This is the case in the second
+code fragment in the last section, where the program
+chose to scale the rows by the factors returned in
+
+<!-- MATH
+ ${\tt R} = (5.882 \cdot 10^{-5}, .125, .1 )$
+ -->
+<IMG
+ WIDTH="198" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img421.gif"
+ ALT="${\tt R} = (5.882 \cdot 10^{-5}, .125, .1 )$">
+and scale the columns by the factors returned in
+
+<!-- MATH
+ ${\tt C} = (3.333, 1.063, 1. )$
+ -->
+<IMG
+ WIDTH="159" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img422.gif"
+ ALT="${\tt C} = (3.333, 1.063, 1. )$">,
+resulting in 
+<!-- MATH
+ ${\tt RCOND} = 3.454 \cdot 10^{-3}$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img423.gif"
+ ALT="${\tt RCOND} = 3.454 \cdot 10^{-3}$">.
+
+</BLOCKQUOTE>
+
+<P>
+As stated in section&nbsp;<A HREF="node79.html#seccomponentwise">4.3.2</A>,
+this approach does not respect the presence
+of zero or tiny entries in <B><I>A</I></B>. In contrast,
+the LAPACK computational routines
+xyyRFS (subsection&nbsp;<A HREF="node38.html#subseccomplineq">2.4.1</A>) or driver routines xyySVX
+(subsection&nbsp;<A HREF="node26.html#subsecdrivelineq">2.3.1</A>) will (except in rare cases)
+compute a solution <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+with the following properties:
+
+<P>
+<BLOCKQUOTE>
+The componentwise backward error
+of the computed solution <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is the pair <B><I>E</I>,<I>f</I></B> which minimizes
+<A NAME="10648"></A>
+<A NAME="10649"></A>
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\max_{i,j,k} \left( \frac{| e_{ij} |}{|a_{ij}|} ,
+            \frac{| f_{k} |}{|b_{k}|} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="129" HEIGHT="54" BORDER="0"
+ SRC="img424.gif"
+ ALT="\begin{displaymath}
+\max_{i,j,k} \left( \frac{\vert e_{ij} \vert}{\vert a_{ij}\vert} ,
+\frac{\vert f_{k} \vert}{\vert b_{k}\vert} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+(where we interpret <B>0/0</B> as 0)
+subject to the constraint 
+<!-- MATH
+ $(A+E) \hat{x} = b+f$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img379.gif"
+ ALT="$(A+E)\hat{x}=b+f$">.
+The minimal value of 
+<!-- MATH
+ $\max_{i,j,k} \left( \frac{| e_{ij} |}{|a_{ij}|} ,
+\frac{| f_{k} |}{|b_{k}|} \right)$
+ -->
+<IMG
+ WIDTH="146" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img425.gif"
+ ALT="$\max_{i,j,k} \left( \frac{\vert e_{ij} \vert}{\vert a_{ij}\vert} ,
+\frac{\vert f_{k} \vert}{\vert b_{k}\vert} \right)$">
+is given by
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\omega_{c}= \max_i \frac{|r_i|}{ (|A| \cdot |\hat{x} | + |b|)_i} \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="201" HEIGHT="48" BORDER="0"
+ SRC="img426.gif"
+ ALT="\begin{displaymath}
+\omega_{c}= \max_i \frac{\vert r_i\vert}{ (\vert A\vert \cdot \vert\hat{x} \vert + \vert b\vert)_i} \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+One can show that for most problems the <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+computed by xyySVX
+satisfies 
+<!-- MATH
+ $\omega_{c}\leq p(n) \cdot \epsilon$
+ -->
+<IMG
+ WIDTH="98" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img427.gif"
+ ALT="$\omega_{c}\leq p(n) \cdot \epsilon$">,
+where <B><I>p</I>(<I>n</I>)</B> is a modestly growing function of <B><I>n</I></B>.
+In other words, <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is the exact solution of the
+perturbed problem 
+<!-- MATH
+ $(A+ E ) \hat{x} = b + f$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img379.gif"
+ ALT="$(A+E)\hat{x}=b+f$">
+where <B><I>E</I></B> and <B><I>f</I></B> are small relative perturbations in each entry of <B><I>A</I></B> and
+<B><I>b</I></B>, respectively.
+The corresponding condition number is
+
+<!-- MATH
+ $\kappa_{c}(A,b,\hat{x}) \equiv {\| \, |A^{-1}| ( |A| \cdot | \hat{x} | + |b| )
+\, \|_{\infty}}/{\| \hat{x} \|_{\infty}}$
+ -->
+<IMG
+ WIDTH="340" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img428.gif"
+ ALT="$\kappa_{c}(A,b,\hat{x}) \equiv {\Vert \, \vert A^{-1}\vert ( \vert A\vert \cdot...
+...t{x} \vert + \vert b\vert )
+\, \Vert _{\infty}}/{\Vert \hat{x} \Vert _{\infty}}$">.
+<A NAME="10670"></A>
+The error <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img415.gif"
+ ALT="$x-\hat{x}$">
+is bounded by
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\| x- \hat{x} \|_{\infty}}{\| \hat{x} \|_{\infty}}
+\leq \omega_{c}\cdot \kappa_{c}(A,b,\hat{x})  .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="208" HEIGHT="48" BORDER="0"
+ SRC="img429.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert x- \hat{x} \Vert _{\infty}}{\Vert \hat{x} \Vert _{\infty}}
+\leq \omega_{c}\cdot \kappa_{c}(A,b,\hat{x}) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<P>
+<BLOCKQUOTE>The routines xyyRFS and xyySVX return
+<A NAME="10675"></A>
+<A NAME="10676"></A>
+<IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img430.gif"
+ ALT="$\omega_{c}$">,
+which is called <TT>BERR</TT><A NAME="10678"></A>
+(for Backward ERRor),
+and a bound on the the actual error
+
+<!-- MATH
+ $\|x - \hat{x}\|_{\infty}/ \| \hat{x} \|_{\infty}$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img431.gif"
+ ALT="$\Vert x - \hat{x}\Vert _{\infty}/ \Vert \hat{x} \Vert _{\infty}$">,
+called <TT>FERR</TT>
+<A NAME="10682"></A>
+(for Forward ERRor), as
+in the second code fragment in the last section.
+<TT>FERR</TT> is actually calculated by the following formula, which can
+be smaller than the bound 
+<!-- MATH
+ $\omega_{c}\cdot \kappa_{c}(A,b,\hat{x})$
+ -->
+<IMG
+ WIDTH="111" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img432.gif"
+ ALT="$\omega_{c}\cdot \kappa_{c}(A,b,\hat{x})$">
+given above:
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\| x- \hat{x} \|_{\infty}}{\| \hat{x} \|_{\infty}} \leq {\tt FERR} =
+\frac{\| \, |A^{-1}| ( |\hat{r}| + n \epsilon (|A| \cdot |\hat{x}| + |b|) )
+\|_{\infty}} {\| \hat{x} \|_{\infty}}  \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="428" HEIGHT="49" BORDER="0"
+ SRC="img433.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert x- \hat{x} \Vert _{\infty}}{\Vert \hat{x} \Vert ...
+...rt) )
+\Vert _{\infty}} {\Vert \hat{x} \Vert _{\infty}} \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+Here, <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img434.gif"
+ ALT="$\hat{r}$">
+is the computed value of the residual <IMG
+ WIDTH="56" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img435.gif"
+ ALT="$b-A \hat{x}$">,
+and
+the norm in the numerator is estimated using the same estimation
+subroutine used for <TT>RCOND</TT>.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>The value of
+<TT>BERR</TT> for the example in the last section is 
+<!-- MATH
+ $4.6 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img436.gif"
+ ALT="$4.6 \cdot 10^{-8}$">.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>Even in the rare cases where xyyRFS fails to make
+<TT>BERR</TT> close to its minimum <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">,
+the error bound <TT>FERR</TT>
+may remain small. See [<A
+ HREF="node151.html#ariolidemmelduff">6</A>]
+for details.
+
+</BLOCKQUOTE>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5326"
+ HREF="node82.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5320"
+ HREF="node80.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5316"
+ HREF="node80.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5322"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5324"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5327"
+ HREF="node82.html">Error Bounds for Linear</A>
+<B> Up:</B> <A NAME="tex2html5321"
+ HREF="node80.html">Error Bounds for Linear</A>
+<B> Previous:</B> <A NAME="tex2html5317"
+ HREF="node80.html">Error Bounds for Linear</A>
+ &nbsp <B>  <A NAME="tex2html5323"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5325"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

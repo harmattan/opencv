@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for the Symmetric Eigenproblem </TITLE>
+<META NAME="description" CONTENT="Error Bounds for the Symmetric Eigenproblem ">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node91.html">
+<LINK REL="previous" HREF="node84.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node90.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5437"
+ HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5431"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5425"
+ HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5433"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5435"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5438"
+ HREF="node90.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5432"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5426"
+ HREF="node88.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5434"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5436"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03470000000000000000"></A><A NAME="secsym"></A>
+<BR>
+Error Bounds for the Symmetric Eigenproblem 
+</H1>
+
+<P>
+The eigendecomposition<A NAME="11157"></A> of
+an <B><I>n</I></B>-by-<B><I>n</I></B> real symmetric matrix is the
+factorization 
+<!-- MATH
+ $A=Z \Lambda Z^T$
+ -->
+<IMG
+ WIDTH="90" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img148.gif"
+ ALT="$A=Z \Lambda Z^T$">
+(
+<!-- MATH
+ $A= Z \Lambda Z^H$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img520.gif"
+ ALT="$A= Z \Lambda Z^H$">
+in the complex Hermitian
+case), where <B><I>Z</I></B> is orthogonal (unitary) and
+
+<!-- MATH
+ $\Lambda = {\mbox {\rm diag}}( \lambda_1 , \ldots , \lambda_n )$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img521.gif"
+ ALT="$\Lambda = {\mbox {\rm diag}}( \lambda_1 , \ldots , \lambda_n )$">
+is real and diagonal,
+with 
+<!-- MATH
+ $\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n$
+ -->
+<IMG
+ WIDTH="149" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img522.gif"
+ ALT="$\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n$">.
+The <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+are the <B>eigenvalues</B><A NAME="11159"></A> of <B><I>A</I></B> and the columns <B><I>z</I><SUB><I>i</I></SUB></B> of
+<B><I>Z</I></B> are the <B>eigenvectors</B><A NAME="11161"></A>. This is also often written
+
+<!-- MATH
+ $A z_i = \lambda_i z_i$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img524.gif"
+ ALT="$A z_i = \lambda_i z_i$">.
+The eigendecomposition of a symmetric matrix is
+computed
+by the driver routines
+xSYEV, xSYEVX, xSYEVD, xSYEVR,
+xSBEV, xSBEVX, xSBEVD,
+xSPEV, xSPEVX, xSPEVD,
+xSTEV, xSTEVX, xSTEVD and xSTEVR.
+The complex counterparts of these routines, which compute the
+eigendecomposition of complex Hermitian matrices, are
+the driver routines
+xHEEV, xHEEVX, xHEEVD, xHEEVR,
+xHBEV, xHBEVX, xHBEVD,
+xHPEV, xHPEVX, and xHPEVD
+(see subsection&nbsp;<A HREF="node29.html#subsecdriveeig">2.3.4</A>).
+<A NAME="11163"></A><A NAME="11164"></A>
+<A NAME="11165"></A><A NAME="11166"></A>
+<A NAME="11167"></A><A NAME="11168"></A>
+<A NAME="11169"></A><A NAME="11170"></A>
+<A NAME="11171"></A><A NAME="11172"></A>
+<A NAME="11173"></A><A NAME="11174"></A>
+<A NAME="11175"></A><A NAME="11176"></A>
+<A NAME="11177"></A><A NAME="11178"></A>
+<A NAME="11179"></A><A NAME="11180"></A>
+<A NAME="11181"></A><A NAME="11182"></A>
+<A NAME="11183"></A><A NAME="11184"></A>
+<A NAME="11185"></A><A NAME="11186"></A>
+<A NAME="11187"></A><A NAME="11188"></A>
+<A NAME="11189"></A><A NAME="11190"></A>
+<A NAME="11191"></A><A NAME="11192"></A>
+<A NAME="11193"></A><A NAME="11194"></A>
+<A NAME="11195"></A><A NAME="11196"></A>
+<A NAME="11197"></A><A NAME="11198"></A>
+<A NAME="11199"></A><A NAME="11200"></A>
+<A NAME="11201"></A><A NAME="11202"></A>
+<A NAME="11203"></A><A NAME="11204"></A>
+<A NAME="11205"></A><A NAME="11206"></A>
+<A NAME="11207"></A><A NAME="11208"></A>
+<A NAME="11209"></A><A NAME="11210"></A>
+
+<P>
+The approximate error
+bounds<A NAME="footfnm 0"><SUP>4.10</SUP></A><A NAME="11212"></A>
+<A NAME="11213"></A>
+<A NAME="11214"></A>
+for the computed eigenvalues
+
+<!-- MATH
+ $\hat{\lambda}_1 \leq \cdots \leq \hat{\lambda}_n$
+ -->
+<IMG
+ WIDTH="108" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img525.gif"
+ ALT="$\hat{\lambda}_1 \leq \cdots \leq \hat{\lambda}_n$">
+are
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\lambda}_i - \lambda_i | \leq {\tt EERRBD} \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="153" HEIGHT="31" BORDER="0"
+ SRC="img526.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\lambda}_i - \lambda_i \vert \leq {\tt EERRBD} \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The approximate error bounds for the computed eigenvectors
+<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img527.gif"
+ ALT="$\hat{z}_i$">,
+which bound the acute angles
+between the computed eigenvectors and true
+eigenvectors <B><I>z</I><SUB><I>i</I></SUB></B>, are:
+<A NAME="11220"></A>
+<A NAME="11221"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{z}_i , z_i ) \leq {\tt ZERRBD} (i) \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="164" HEIGHT="31" BORDER="0"
+ SRC="img528.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{z}_i , z_i ) \leq {\tt ZERRBD} (i) \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+These bounds can be computed by the following code fragment:
+
+<P>
+ 
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Compute eigenvalues and eigenvectors of A
+*     The eigenvalues are returned in W
+*     The eigenvector matrix Z overwrites A
+      CALL SSYEV( 'V', UPLO, N, A, LDA, W, WORK, LWORK, INFO )
+      IF( INFO.GT.0 ) THEN
+         PRINT *,'SSYEV did not converge'
+      ELSE IF ( N.GT.0 ) THEN
+*        Compute the norm of A
+         ANORM = MAX( ABS( W(1) ), ABS( W(N) ) )
+         EERRBD = EPSMCH * ANORM
+*        Compute reciprocal condition numbers for eigenvectors
+         CALL SDISNA( 'Eigenvectors', N, N, W, RCONDZ, INFO )
+         DO 10 I = 1, N
+            ZERRBD( I ) = EPSMCH * ( ANORM / RCONDZ( I ) )
+10       CONTINUE
+      ENDIF
+</PRE>
+
+<P>
+For example<A NAME="footfnm 0"><SUP>4.11</SUP></A>,
+if 
+<!-- MATH
+ ${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="259" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img397.gif"
+ ALT="${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$">
+and
+
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{ccc} 1 & 2 & 3 \\2 & 4 & 5 \\3 & 5 & 6 \end{array} \right) \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="150" HEIGHT="73" BORDER="0"
+ SRC="img529.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{ccc} 1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 5 \\ 3 &amp; 5 &amp; 6 \end{array} \right) \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then the eigenvalues, approximate error bounds, and true errors are
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">i</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$"></TD>
+<TD ALIGN="CENTER"><TT> EERRBD</TT></TD>
+<TD ALIGN="CENTER">true 
+<!-- MATH
+ $| \hat{\lambda}_i - \lambda_i |$
+ -->
+<IMG
+ WIDTH="67" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img531.gif"
+ ALT="$\vert \hat{\lambda}_i - \lambda_i \vert$"></TD>
+<TD ALIGN="CENTER"><TT> ZERRBD</TT>(i)</TD>
+<TD ALIGN="CENTER">true 
+<!-- MATH
+ $\theta ( \hat{z}_i , z_i )$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img532.gif"
+ ALT="$\theta ( \hat{z}_i , z_i )$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><B>-.5157</B></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.7 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img533.gif"
+ ALT="$6.7 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.6 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img534.gif"
+ ALT="$1.6 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $9.8 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img535.gif"
+ ALT="$9.8 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.2 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img500.gif"
+ ALT="$1.2\cdot10^{-7}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER"><B>.1709</B></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.7 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img533.gif"
+ ALT="$6.7 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $3.2 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img536.gif"
+ ALT="$3.2 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $9.8 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img535.gif"
+ ALT="$9.8 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $7.0 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img537.gif"
+ ALT="$7.0 \cdot 10^{-8}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">3</TD>
+<TD ALIGN="CENTER"><B>11.34</B></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.7 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img533.gif"
+ ALT="$6.7 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.8 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img538.gif"
+ ALT="$2.8 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.1 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img539.gif"
+ ALT="$6.1 \cdot 10^{-8}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $9.7 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img540.gif"
+ ALT="$9.7 \cdot 10^{-8}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5439"
+ HREF="node90.html">Further Details:  Error Bounds for the Symmetric Eigenproblem </A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5437"
+ HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5431"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5425"
+ HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5433"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5435"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5438"
+ HREF="node90.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5432"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5426"
+ HREF="node88.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5434"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5436"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

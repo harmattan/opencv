@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" != "upgrade" ]
+then
+    update-alternatives --remove libblas.so.3gf \
+	/usr/lib/atlas-2.0/atlas/libblas.so.3gf
+
+    update-alternatives --remove liblapack.so.3gf \
+        /usr/lib/atlas-2.0/atlas/liblapack.so.3gf
+fi
+
+#DEBHELPER#
+
+exit 0

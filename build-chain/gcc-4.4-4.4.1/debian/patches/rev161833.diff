@@ -1,0 +1,93 @@
+diff -Nur gcc-4.4-old/gcc/config/arm/arm-protos.h gcc-4.4/gcc/config/arm/arm-protos.h
+--- a/src/gcc/config/arm/arm-protos.h	2010-10-05 06:31:20.000000000 +0000
++++ b/src/gcc/config/arm/arm-protos.h	2010-10-05 06:40:51.000000000 +0000
+@@ -133,6 +133,7 @@
+ extern const char *output_move_quad (rtx *);
+ extern const char *output_move_vfp (rtx *operands);
+ extern const char *output_move_neon (rtx *operands);
++extern int arm_attr_length_move_neon (rtx);
+ extern const char *output_add_immediate (rtx *);
+ extern const char *arithmetic_instr (rtx, int);
+ extern void output_ascii_pseudo_op (FILE *, const unsigned char *, int);
+diff -Nur gcc-4.4-old/gcc/config/arm/arm.c gcc-4.4/gcc/config/arm/arm.c
+--- a/src/gcc/config/arm/arm.c	2010-10-05 06:31:20.000000000 +0000
++++ b/src/gcc/config/arm/arm.c	2010-10-05 06:40:56.000000000 +0000
+@@ -12284,6 +12284,56 @@
+   return "";
+ }
+ 
++/* Compute and return the length of neon_mov<mode>, where <mode> is
++   one of VSTRUCT modes: EI, OI, CI or XI.  */
++int
++arm_attr_length_move_neon (rtx insn)
++{
++  rtx reg, mem, addr;
++  int load;
++  enum machine_mode mode;
++
++  extract_insn_cached (insn);
++
++  if (REG_P (recog_data.operand[0]) && REG_P (recog_data.operand[1]))
++    {
++      mode = GET_MODE (recog_data.operand[0]);
++      switch (mode)
++	{
++	case EImode:
++	case OImode:
++	  return 8;
++	case CImode:
++	  return 12;
++	case XImode:
++	  return 16;
++	default:
++	  gcc_unreachable ();
++	}
++    }
++
++  load = REG_P (recog_data.operand[0]);
++  reg = recog_data.operand[!load];
++  mem = recog_data.operand[load];
++
++  gcc_assert (MEM_P (mem));
++
++  mode = GET_MODE (reg);
++  addr = XEXP (mem, 0);
++
++  /* Strip off const from addresses like (const (plus (...))).  */
++  if (GET_CODE (addr) == CONST && GET_CODE (XEXP (addr, 0)) == PLUS)
++    addr = XEXP (addr, 0);
++
++  if (GET_CODE (addr) == LABEL_REF || GET_CODE (addr) == PLUS)
++    {
++      int insns = HARD_REGNO_NREGS (REGNO (reg), mode) / 2;
++      return insns * 4;
++    }
++  else
++    return 4;
++}
++
+ /* Output an ADD r, s, #n where n may be too big for one instruction.
+    If adding zero to one register, output nothing.  */
+ const char *
+diff -Nur gcc-4.4-old/gcc/config/arm/neon.md gcc-4.4/gcc/config/arm/neon.md
+--- a/src/gcc/config/arm/neon.md	2010-10-05 06:31:20.000000000 +0000
++++ b/src/gcc/config/arm/neon.md	2010-10-05 06:41:00.000000000 +0000
+@@ -186,9 +186,6 @@
+ ;; Opaque structure types wider than TImode.
+ (define_mode_iterator VSTRUCT [EI OI CI XI])
+ 
+-;; Number of instructions needed to load/store struct elements. FIXME!
+-(define_mode_attr V_slen [(EI "2") (OI "2") (CI "3") (XI "4")])
+-
+ ;; Opaque structure types used in table lookups (except vtbl1/vtbx1).
+ (define_mode_iterator VTAB [TI EI OI])
+ 
+@@ -588,7 +585,7 @@
+     }
+ }
+   [(set_attr "neon_type" "neon_int_1,neon_stm_2,neon_ldm_2")
+-   (set_attr "length" "<V_slen>,<V_slen>,<V_slen>")])
++   (set (attr "length") (symbol_ref "arm_attr_length_move_neon (insn)"))])
+ 
+ (define_split
+   [(set (match_operand:EI 0 "s_register_operand" "")

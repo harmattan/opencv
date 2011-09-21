@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Representation of Orthogonal or Unitary Matrices</TITLE>
+<META NAME="description" CONTENT="Representation of Orthogonal or Unitary Matrices">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node121.html">
+<LINK REL="up" HREF="node109.html">
+<LINK REL="next" HREF="node129.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6013"
+ HREF="node129.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6007"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6003"
+ HREF="node127.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6009"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6011"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6014"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<B> Up:</B> <A NAME="tex2html6008"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Previous:</B> <A NAME="tex2html6004"
+ HREF="node127.html">Real Diagonal Elements of</A>
+ &nbsp <B>  <A NAME="tex2html6010"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6012"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03540000000000000000"></A><A NAME="secorthog"></A>
+<BR>
+Representation of Orthogonal or Unitary Matrices
+</H1>
+
+<P>
+A real orthogonal or complex unitary matrix (usually denoted <B><I>Q</I></B>) is often 
+represented<A NAME="19987"></A> in
+LAPACK as a product of <B>elementary reflectors</B> -- also referred to as
+<A NAME="19989"></A>
+<A NAME="19990"></A>
+<B>elementary Householder matrices</B> (usually denoted <B><I>H</I><SUB><I>i</I></SUB></B>). For example,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Q = H_{1} H_{2} \ldots H_{k}.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="133" HEIGHT="30" BORDER="0"
+ SRC="img938.gif"
+ ALT="\begin{displaymath}Q = H_{1} H_{2} \ldots H_{k}. \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Most users need not be aware
+of the details, because LAPACK routines are provided to work with this
+representation:
+
+<P>
+
+<UL><LI>routines whose names begin SORG- (real) or CUNG- (complex) can generate
+all or part of <B><I>Q</I></B> explicitly;
+
+<P>
+
+<LI>routines whose name begin SORM- (real) or CUNM- (complex) can multiply
+a given matrix by <B><I>Q</I></B> or <B><I>Q</I><SUP><I>H</I></SUP></B> without forming <B><I>Q</I></B> explicitly.
+
+<P>
+
+</UL>
+
+<P>
+The following further details may occasionally be useful.
+
+<P>
+An elementary reflector (or elementary Householder matrix) <B><I>H</I></B> of order
+<B><I>n</I></B> is a
+unitary matrix<A NAME="19999"></A> of the form
+<A NAME="20000"></A>
+<A NAME="20001"></A>
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+H = I - \tau v v^{H}
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="Hdef"></A><IMG
+ WIDTH="109" HEIGHT="28" BORDER="0"
+ SRC="img939.gif"
+ ALT="\begin{displaymath}
+H = I - \tau v v^{H}
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(5.1)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img220.gif"
+ ALT="$\tau$">
+is a scalar, and <B><I>v</I></B> is an <B><I>n</I></B>-vector, with
+
+<!-- MATH
+ $| \tau | ^2   || v || _2 ^2 = 2 \rm {Re}(\tau$
+ -->
+<IMG
+ WIDTH="136" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img940.gif"
+ ALT="$\vert \tau \vert ^2 \vert\vert v \vert\vert _2 ^2 = 2 \rm {Re}(\tau$">);  <B><I>v</I></B> is often referred to
+as the <B>Householder vector</B><A NAME="20008"></A> .
+Often <B><I>v</I></B> has several leading or trailing zero elements, but for the
+purpose of this discussion assume that <B><I>H</I></B> has no such special structure.
+
+<P>
+There is some redundancy in the representation (<A HREF="node128.html#Hdef">5.1</A>), which can be 
+removed in
+various ways. The representation used in LAPACK (which differs from
+those used in LINPACK or EISPACK) sets <B><I>v</I><SUB>1</SUB> = 1</B>; hence <B><I>v</I><SUB>1</SUB></B> need not
+be stored. In real arithmetic, 
+<!-- MATH
+ $1 \leq \tau \leq 2$
+ -->
+<IMG
+ WIDTH="78" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img941.gif"
+ ALT="$1 \leq \tau \leq 2$">,
+except that
+<IMG
+ WIDTH="46" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img942.gif"
+ ALT="$\tau = 0$">
+implies <B><I>H</I> = <I>I</I></B>.
+
+<P>
+In complex arithmetic<A NAME="20010"></A>, <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img220.gif"
+ ALT="$\tau$">
+may be 
+complex, and satisfies
+
+<!-- MATH
+ $1 \leq \rm {Re}(\tau) \leq 2$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img943.gif"
+ ALT="$1 \leq \rm {Re}(\tau) \leq 2$">
+and 
+<!-- MATH
+ $| \tau - 1 | \leq 1$
+ -->
+<IMG
+ WIDTH="86" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img944.gif"
+ ALT="$\vert \tau - 1 \vert \leq 1$">.
+Thus a complex <B><I>H</I></B> is
+not Hermitian (as it is in other representations), but it is unitary,
+which is the important property. The advantage of allowing <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img220.gif"
+ ALT="$\tau$">
+to be
+complex is that, given an arbitrary complex vector <B><I>x</I></B>, <B><I>H</I></B> can be computed
+so that <BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+H^H x = \beta (1, 0, \ldots , 0)^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="168" HEIGHT="31" BORDER="0"
+ SRC="img945.gif"
+ ALT="\begin{displaymath}H^H x = \beta (1, 0, \ldots , 0)^T \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+with <I>real</I> <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">.
+This is useful, for example,
+when reducing a complex Hermitian matrix to real symmetric tridiagonal form<A NAME="20013"></A>,
+or a complex rectangular matrix to real bidiagonal form<A NAME="20014"></A>.
+
+<P>
+For further details, see Lehoucq&nbsp;[<A
+ HREF="node151.html#lawn72">79</A>].
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6013"
+ HREF="node129.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6007"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6003"
+ HREF="node127.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6009"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6011"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6014"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<B> Up:</B> <A NAME="tex2html6008"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Previous:</B> <A NAME="tex2html6004"
+ HREF="node127.html">Real Diagonal Elements of</A>
+ &nbsp <B>  <A NAME="tex2html6010"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6012"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

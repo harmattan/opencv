@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details:
+Error Bounds for Linear Equality Constrained Least Squares Problems</TITLE>
+<META NAME="description" CONTENT="Further Details:
+Error Bounds for Linear Equality Constrained Least Squares Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node85.html">
+<LINK REL="up" HREF="node85.html">
+<LINK REL="next" HREF="node87.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5398"
+ HREF="node87.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5392"
+ HREF="node85.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5388"
+ HREF="node85.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5394"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5396"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5399"
+ HREF="node87.html">General Linear Model Problem</A>
+<B> Up:</B> <A NAME="tex2html5393"
+ HREF="node85.html">Linear Equality Constrained Least</A>
+<B> Previous:</B> <A NAME="tex2html5389"
+ HREF="node85.html">Linear Equality Constrained Least</A>
+ &nbsp <B>  <A NAME="tex2html5395"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5397"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03461100000000000000"></A>
+<A NAME="sec_lseglm_lsedetails"></A>
+<BR>
+Further Details:
+Error Bounds for Linear Equality Constrained Least Squares Problems
+</H3>
+
+<P>
+In this subsection, we will summarize the available error bound.
+The reader may also refer to [<A
+ HREF="node151.html#lawn31">2</A>,<A
+ HREF="node151.html#baifahey97">13</A>,<A
+ HREF="node151.html#coxhigham">18</A>,<A
+ HREF="node151.html#elden">50</A>] for
+further details.  
+<BR>
+
+<P>
+Let <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img467.gif"
+ ALT="$\widehat {x}$">
+be the solution computed by the driver xGGLSE (see subsection
+<A HREF="node84.html#sec_lseglm_drivers">4.6</A>).  It is normwise
+stable in a mixed forward/backward sense [<A
+ HREF="node151.html#coxhigham">18</A>,<A
+ HREF="node151.html#baifahey97">13</A>].
+Specifically, 
+<!-- MATH
+ $\widehat {x} = \bar {x} + \Delta \bar {x}$
+ -->
+<IMG
+ WIDTH="93" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img475.gif"
+ ALT="$\widehat {x} = \bar {x} + \Delta \bar {x}$">,
+where <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img476.gif"
+ ALT="$\bar {x}$">
+solves
+
+<!-- MATH
+ $\min\{\| b + \Delta b - (A + \Delta A)x \|_2: \; (B + \Delta B)x = d \}$
+ -->
+<IMG
+ WIDTH="373" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img477.gif"
+ ALT="$\min\{\Vert b + \Delta b - (A + \Delta A)x \Vert _2: \; (B + \Delta B)x = d \} $">,
+and
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="234" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img478.gif"
+ ALT="$\textstyle \parbox{2in}{
+\begin{eqnarray*}
+\Vert \Delta \bar {x} \Vert _2 &amp; \...
+... \Delta A \Vert _F &amp; \leq &amp; q(m,n,p)\epsilon\Vert A\Vert _F,
+\end{eqnarray*} }$">&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG
+ WIDTH="234" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img479.gif"
+ ALT="$\textstyle \parbox{2in}{
+\begin{eqnarray*}
+\Vert \Delta b \Vert _2 &amp; \leq &amp; q...
+...t \Delta B \Vert _F &amp; \leq &amp; q(m,n,p)\epsilon\Vert B\Vert _F,
+\end{eqnarray*}}$">
+</DIV>
+<B><I>q</I>(<I>m</I>,<I>n</I>,<I>p</I>)</B> is a modestly growing function of <B><I>m</I></B>, <B><I>n</I></B>, and <B><I>p</I></B>.
+We take <B><I>q</I>(<I>m</I>,<I>n</I>,<I>p</I>) = 1</B> in the code fragment above.
+Let <IMG
+ WIDTH="27" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img480.gif"
+ ALT="$X^{\dagger}$">
+denote the Moore-Penrose pseudo-inverse of <B><I>X</I></B>.
+Let 
+<!-- MATH
+ $\kappa_B(A) =  \| A \|_F  \| (AP)^\dagger \|_2$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img481.gif"
+ ALT="$\kappa_B(A) = \Vert A \Vert _F \Vert (AP)^\dagger \Vert _2 $">( = <TT>CNDAB</TT> above) and
+    
+<!-- MATH
+ $\kappa_A(B) =  \| B \|_F  \| B^\dagger_A \|_2$
+ -->
+<IMG
+ WIDTH="168" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
+ SRC="img482.gif"
+ ALT="$\kappa_A(B) = \Vert B \Vert _F \Vert B^\dagger_A \Vert _2 $">( = <TT>CNDBA</TT> above)
+where 
+<!-- MATH
+ $P = I - B^\dagger B$
+ -->
+<IMG
+ WIDTH="107" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img483.gif"
+ ALT="$P = I - B^\dagger B$">
+and 
+<!-- MATH
+ $B^\dagger_A = (I - (AP)^\dagger A)B^\dagger$
+ -->
+<IMG
+ WIDTH="177" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
+ SRC="img484.gif"
+ ALT="$B^\dagger_A = (I - (AP)^\dagger A)B^\dagger$">.
+When 
+<!-- MATH
+ $q(m,n,p)\epsilon$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img485.gif"
+ ALT="$q(m,n,p)\epsilon$">
+is small, the error <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img415.gif"
+ ALT="$x-\hat{x}$">
+is bounded by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{ \| x-\hat{x} \| }{ \| x \| } \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}q(m,n,p)\epsilon\left\{
+      \kappa_A(B) +
+      \kappa_B(A)\left(\frac{ \| b \|_2 }{ \| A \|_F  \| x \|_2 } + 1 \right) +
+      \kappa^2_B(A)\left( \frac{ \| B \|_F }{ \| A \|_F } \| AB^\dagger_A \|_2  +
+                     1\right)\frac{ \| r \|_2 }{ \| A \|_F  \| x \|_2 } \right\}.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="777" HEIGHT="72" BORDER="0"
+ SRC="img486.gif"
+ ALT="\begin{displaymath}
+% latex2html id marker 15239\frac{ \Vert x-\hat{x} \Vert ...
+...rt r \Vert _2 }{ \Vert A \Vert _F \Vert x \Vert _2 } \right\}.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR>
+<BR>
+
+<P>
+When <B><I>B</I> = 0</B> and <B><I>d</I> = 0</B>, we essentially recover error bounds for the
+linear least squares (LS) problem:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{ \| x-\widehat {x} \|_2 }{ \| x \|_2 } \leq q(m,n)\epsilon
+      \left\{\kappa(A)\left(
+          \frac{ \| b \|_2 }{ \| A \|_F  \| x \|_2 } + 1 +
+          \kappa(A)\frac{ \| r \|_2 }{ \| A \|_F  \| x \|_2 } \right) \right\},
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="500" HEIGHT="48" BORDER="0"
+ SRC="img487.gif"
+ ALT="\begin{displaymath}
+\frac{ \Vert x-\widehat {x} \Vert _2 }{ \Vert x \Vert _2 } ...
+...rt _2 }{ \Vert A \Vert _F \Vert x \Vert _2 } \right) \right\},
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where 
+<!-- MATH
+ $\kappa(A) =  \| A \|_F  \| A^\dagger \|_2$
+ -->
+<IMG
+ WIDTH="151" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img488.gif"
+ ALT="$\kappa(A) = \Vert A \Vert _F \Vert A^\dagger \Vert _2 $">.
+Note that
+the error in the standard least squares problem provided in section 4.5.1 is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{ \| x-\widehat {x} \|_2 }{ \| x \|_2 } \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}p(n)\epsilon
+      \left\{\frac{2\kappa(A)}{\cos(\theta)} + \tan(\theta)\kappa^2(A)\right\}
+      =  p(n)\epsilon \left\{\frac{2\kappa(A) \| b \|_2 }{ \| Ax \|_2 } +
+                  \kappa^2(A)\frac{ \| r \|_2 }{ \| Ax \|_2 }\right\}\\
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="555" HEIGHT="112" BORDER="0"
+ SRC="img489.gif"
+ ALT="\begin{displaymath}
+% latex2html id marker 13969\frac{ \Vert x-\widehat {x} \...
+...^2(A)\frac{ \Vert r \Vert _2 }{ \Vert Ax \Vert _2 }\right\}\\
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+since 
+<!-- MATH
+ $\sin(\theta) = \frac{ \| A\widehat {x}-b \|_2 }{ \| b \|_2 }$
+ -->
+<IMG
+ WIDTH="129" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+ SRC="img490.gif"
+ ALT="$\sin(\theta) = \frac{ \Vert A\widehat {x}-b \Vert _2 }{ \Vert b \Vert _2 }$">.
+If one assumes
+that 
+<!-- MATH
+ $q(m,n) = p(n) = 1$
+ -->
+<B><I>q</I>(<I>m</I>,<I>n</I>) = <I>p</I>(<I>n</I>) = 1</B>, then the bounds are essentially the same. 
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5398"
+ HREF="node87.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5392"
+ HREF="node85.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5388"
+ HREF="node85.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5394"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5396"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5399"
+ HREF="node87.html">General Linear Model Problem</A>
+<B> Up:</B> <A NAME="tex2html5393"
+ HREF="node85.html">Linear Equality Constrained Least</A>
+<B> Previous:</B> <A NAME="tex2html5389"
+ HREF="node85.html">Linear Equality Constrained Least</A>
+ &nbsp <B>  <A NAME="tex2html5395"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5397"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,42 @@
+
+Checklist and howto for ffmpeg upstream upgrades:
+
+Needed packages:
+
+  apt-get install devscripts git-buildpackage pristine-tar
+
+Stage in a tmp directory:
+
+  mkdir /tmp/f ; cd /tmp/f
+  git clone git://git.debian.org/git/pkg-multimedia/ffmpeg-debian.git
+  cd ffmpeg-debian
+  branches="master.unstripped pristine-tar upstream upstream.unstripped"
+  for b in $branches; do git checkout -b $b origin/$b ; done
+
+Prepare the environment:
+
+  SVNDATE=`date +%Y%m%d`
+  git checkout master
+
+Fetch and commit the new upstream version:
+
+  debian/rules get-orig-source SVN_VERSION=${SVNDATE}
+  git-import-orig \
+	    --no-dch \
+            --upstream-tag=upstream/0.5+svn${SVNDATE} \
+            --upstream-version=0.5+svn${SVNDATE} \
+            ../ffmpeg_0.5+svn${SVNDATE}.orig.tar.gz
+
+Check and note the svn revision numbers from
+ffmpeg/{libswscale,}.svnrevision in debian/changelog
+
+  git diff upstream^ Changelog libavcodec/allcodecs.c libavformat/allformats.c
+
+Document new formats additions in debian/changelog
+
+Build, test, and compare against the the version already in the archive:
+  - headers in the -dev packages with 
+  - soname in the libraries
+  - formats.txt in the libavcodecs package
+
+Finialize debian/changelog, package should be upload ready now

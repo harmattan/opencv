@@ -1,0 +1,1623 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LAPACK Benchmark</TITLE>
+<META NAME="description" CONTENT="LAPACK Benchmark">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node67.html">
+<LINK REL="up" HREF="node60.html">
+<LINK REL="next" HREF="node72.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5153"
+ HREF="node72.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5147"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5143"
+ HREF="node70.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5149"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5151"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5154"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Up:</B> <A NAME="tex2html5148"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5144"
+ HREF="node70.html">Eigenvalue Problems</A>
+ &nbsp <B>  <A NAME="tex2html5150"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5152"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03350000000000000000">
+LAPACK Benchmark</A>
+</H1>
+
+<P>
+This section contains performance numbers for selected LAPACK driver
+routines.
+These routines provide complete solutions for the most common problems of
+numerical
+linear algebra, and are the routines users are most likely to call:
+
+<P>
+
+<UL><LI>Solve an <B><I>n</I></B>-by-<B><I>n</I></B> system of linear equations with 1 right hand side
+using DGESV.
+<A NAME="8029"></A>
+side
+
+<LI>Find only the eigenvalues of an <B><I>n</I></B>-by-<B><I>n</I></B> nonsymmetric matrix using
+DGEEV.
+<A NAME="8030"></A>
+
+<LI>Find the eigenvalues and right eigenvectors of an <B><I>n</I></B>-by-<B><I>n</I></B>
+nonsymmetric matrix using
+<BR>
+DGEEV.
+DSYEVD.
+matrix using DSYEVD.
+
+<LI>Find only the singular values of an <B><I>n</I></B>-by-<B><I>n</I></B> matrix using DGESDD.
+<A NAME="8031"></A>
+
+<LI>Find the singular values and right and left singular vectors of an
+<B><I>n</I></B>-by-<B><I>n</I></B> matrix using 
+<BR>
+DGESVD.
+<A NAME="8032"></A>
+
+<LI>Find the singular values and right and left singular vectors of an
+<B><I>n</I></B>-by-<B><I>n</I></B> matrix using 
+<BR>
+DGESDD.
+
+</UL>
+
+<P>
+We only present data on DGESDD for singular values only, and not DGESVD,
+because
+both use the same algorithm. We include both DGESVD and DGESDD for computing
+all the singular values and singular vectors to illustrate the speedup of
+the new algorithm DGESDD over its predecessor DGESVD:
+For 1000-by-1000 matrices DGESDD is between 6 and 7 times faster than
+DGESVD on most machines.
+
+<P>
+The above drivers are timed on a variety of computers. In addition, we
+present
+data on fewer machines to compare the performance of
+the five different routines for solving linear least squares problems,
+and several different
+routines for the symmetric eigenvalue problem. Again, the purpose is to
+illustrate the performance improvements in LAPACK 3.0.
+
+<P>
+Data is provided for PCs, shared memory parallel
+computers, and high performance workstations. All timings were obtained by
+using the machine-specific optimized BLAS available on each machine.  For
+machines running the Linux operating system, the ATLAS[<A
+ HREF="node151.html#atlas_sc98">102</A>] BLAS
+were used.
+In all cases the data consisted
+of 64-bit floating point numbers (double precision).
+For each machine and each driver, a small problem
+(<B><I>N</I>=100</B> with <B><I>LDA</I>=101</B>) and a large problem (<B><I>N</I>=1000</B> with <B><I>LDA</I>=1001</B>) were
+run.  Block sizes NB = 1, 16, 32 and 64 were
+tried, with data only for the fastest run reported in the tables below.
+For DGEEV, <B><I>ILO</I>=1</B> and
+<B><I>IHI</I>=<I>N</I></B>.  The test matrices were generated with randomly distributed
+entries.
+All run times are reported in seconds, and block size is denoted by
+<B><I>nb</I></B>.  The value of <B><I>nb</I></B> was chosen to make <B><I>N</I>=1000</B> optimal.  It is not
+necessarily the best choice for <B><I>N</I>=100</B>.  See Section&nbsp;<A HREF="node131.html#secilaenv">6.2</A>
+for details.
+
+<P>
+The performance data is reported using three or four statistics. First, the
+run-time in seconds is given. The second statistic measures
+how well our performance compares to the speed of the BLAS, specifically
+DGEMM.  This ``equivalent matrix multiplies'' statistic is calculated as
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ $\frac{\rm run-time(LAPACK~Driver~on~an~{\it n}-by-{\it n}~matrix)}{\rm run-time(DGEMM~used~to~multiply~two~{\it n}-by-{\it n}~matrices)}$
+ -->
+<IMG
+ WIDTH="378" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img252.gif"
+ ALT="$\frac{\rm run-time(LAPACK~Driver~on~an~{\it n}-by-{\it n}~matrix)}{\rm run-time(DGEMM~used~to~multiply~two~{\it n}-by-{\it n}~matrices)}$">
+</DIV>
+and labeled as 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$">
+in the tables.
+The performance information for the BLAS routines 
+<BR>
+DGEMV (TRANS='N')
+and DGEMM (TRANSA='N', TRANSB='N') is provided in Table&nbsp;<A HREF="node71.html#emmtable">3.12</A>,
+along with the clock speed for each machine in
+Tables&nbsp;<A HREF="node67.html#tab:node1">3.2</A>, <A HREF="node67.html#tab:node2">3.3</A>, <A HREF="node67.html#tab:node3">3.4</A>, <A HREF="node67.html#tab:node4">3.5</A>,
+and <A HREF="node67.html#tab:node5">3.6</A>.
+The third statistic is the true megaflop rating. For
+the eigenvalue and singular value drivers, a fourth ``synthetic megaflop''
+statistic is also presented. We provide this statistic because the number
+of floating point operations needed to find eigenvalues and singular values
+depends on the input data, unlike linear equation solving or linear least
+squares solving with DGELS, and on the algorithm.
+The synthetic megaflop rating is defined
+to be a ``standard'' number of flops required to solve the problem, divided
+by the run-time in microseconds.  This ``standard'' number of flops is taken
+to be the average for a standard algorithm over a variety of problems, as
+given in Table&nbsp;<A HREF="node71.html#standardflopcount">3.13</A>. In all cases we ignore terms of
+<B><I>O</I>(<I>N</I><SUP>2</SUP>)</B>.
+The flop count in this table for the nonsymmetric eigenvalue problem
+assumes the unblocked algorithm is used, and that two QR sweeps are needed
+to deflate each eigenvalue [<A
+ HREF="node151.html#GVL2">55</A>]. The flop count for the symmetric
+eigenproblem
+and SVD assumes that all the work done on the tridiagonal and bidiagonal
+matrices
+is <B><I>O</I>(<I>N</I><SUP>2</SUP>)</B>, as is the case with xSTEGR and will be the case with the SVD
+in the future.
+<A NAME="8052"></A><A NAME="8053"></A><A NAME="8054"></A><A NAME="8055"></A>
+
+<P>
+We also include several figures comparing the speed of
+several routines for the symmetric eigenvalue problem
+and
+several least squares drivers
+to highlight the
+performance improvements in LAPACK 3.0.
+
+<P>
+First consider Figure&nbsp;<A HREF="node71.html#fig:STEVcomparison">3.1</A>,
+which compares the performance of three routines,
+DSTEQR, DSTEDC and DSTEGR, for computing all the
+eigenvalues and eigenvectors of
+a symmetric tridiagonal matrix.
+The times are shown on a Compaq AlphaServer DS-20 for
+matrix dimensions from 100 to 1000.
+The symmetric tridiagonal matrix was
+obtained by taking a random dense symmetric matrix and reducing it to
+tridiagonal
+form (the performance can vary depending on the distribution of the
+eigenvalues
+of the matrix, but the data shown here is typical).
+DSTEQR (used in driver DSYEV) was the only algorithm available in LAPACK
+1.0,
+DSTEDC (used in driver DSYEVD) was introduced in LAPACK 2.0, and
+DSTEGR (used in driver DSYEVR) was introduced in LAPACK 3.0.
+As can be seen, for large matrices DSTEGR is about 14 times faster than
+DSTEDC and
+nearly 50 times faster than DSTEQR.
+<A NAME="8057"></A><A NAME="8058"></A><A NAME="8059"></A>
+<A NAME="8060"></A><A NAME="8061"></A><A NAME="8062"></A>
+
+<P>
+Next consider Figure&nbsp;<A HREF="node71.html#fig:SYEVcomparison">3.2</A>,
+which compares the performance of four driver routines,
+DSYEV, DSYEVX, DSYEVD and DSYEVR, for computing all
+the eigenvalues and eigenvectors of a dense symmetric matrix.
+The times are shown on an IBM Power 3 for
+matrix dimensions from 100 to 2000.
+The symmetric matrix was chosen randomly.
+The cost of these drivers is essentially the cost of phases 1 and
+3 (reduction to tridiagonal form and backtransformation) plus
+the cost of phase 2 (the symmetric tridiagonal eigenproblem) discussed
+in the last paragraph. Since the cost of phases 1 and 3 is large,
+performance differences in phase 2 are no longer as visible.
+We note that if we had chosen a test matrix with a large cluster
+of nearby eigenvalues, then the cost of DSYEVX would have been
+much larger, without significantly affecting the timings
+of the other drivers.  DSYEVR is the driver of choice.
+<A NAME="8064"></A><A NAME="8065"></A><A NAME="8066"></A><A NAME="8067"></A>
+
+<P>
+Finally consider Figure&nbsp;<A HREF="node71.html#fig:GELScomparison">3.3</A>,
+which compares the performance of five drivers for the
+linear least squares problem,
+DGELS, DGELSY, DGELSX, DGELSD and DGELSS, which are shown in
+order of decreasing speed.
+DGELS is the fastest. DGELSY and DGELSX use QR with pivoting, and
+so handle rank-deficient problems more reliably than DGELS
+but can be more expensive.
+DGELSD and DGELSS use the SVD, and so are the most reliable
+(and expensive) ways to solve rank deficient least squares problems.
+DGELS, DGELSX and DGELSS were in LAPACK 1.0, and DGELSY and
+DGELSD were introduced in LAPACK 3.0.
+The times are shown on a Compaq AlphaServer DS-20 for
+squares matrices with dimensions from 100 to 1000, and for one
+right-hand-side.
+The matrices were chosen at random (which means they are full rank).
+First consider DGELSY, which
+is meant to replace DGELSX. We can see that the speed of DGELSY is
+nearly indistinguishable from the fastest routine DGELS,
+whereas DGELSX is over 2.5 times slower for large matrices.
+Next consider DGELSD, which is meant to replace DGELSS.
+It is 3 to 5 times slower than the fastest routine, DGELS,
+whereas its predecessor DGELSS was 7 to 34 times slower.
+Thus both DGELSD and DGELSY are significantly faster than
+their predecessors.
+<A NAME="8069"></A><A NAME="8070"></A><A NAME="8071"></A><A NAME="8072"></A><A NAME="8073"></A>
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="fig:STEVcomparison"></A><A NAME="8077"></A>
+<TABLE>
+<CAPTION><STRONG>Figure 3.1:</STRONG>
+Timings of routines for computing all eigenvalues and eigenvectors
+of a symmetric tridiagonal matrix.
+The upper graph shows times in seconds on a Compaq AlphaServer DS-20.
+The lower graph shows times relative to the fastest routine DSTEGR, which
+appears as a horizontal line at 1.</CAPTION>
+<TR><TD><IMG
+ WIDTH="511" HEIGHT="827" BORDER="0"
+ SRC="img254.gif"
+ ALT="\begin{figure}
+\centerline{\psfig{file=SEPtbw.eps,width=4.5in}}\centerline{\psfig{file=SEPrbw.eps,width=4.5in}}\end{figure}"></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="fig:SYEVcomparison"></A><A NAME="8083"></A>
+<TABLE>
+<CAPTION><STRONG>Figure 3.2:</STRONG>
+Timings of driver routines for computing all eigenvalues and
+eigenvectors
+of a dense symmetric matrix.
+The upper graph shows times in seconds on an IBM Power3.
+The lower graph shows times relative to the fastest routine DSYEVR, which
+appears as a horizontal line at 1.</CAPTION>
+<TR><TD><IMG
+ WIDTH="512" HEIGHT="843" BORDER="0"
+ SRC="img255.gif"
+ ALT="\begin{figure}
+\centerline{\psfig{file=SEPDtbw.eps,width=4.5in}}\centerline{\psfig{file=SEPDrbw.eps,width=4.5in}}\end{figure}"></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="fig:GELScomparison"></A><A NAME="8089"></A>
+<TABLE>
+<CAPTION><STRONG>Figure 3.3:</STRONG>
+Timings of driver routines for the least squares problem.
+The upper graph shows times in seconds on a Compaq AlphaServer DS-20.
+The lower graph shows times relative to the fastest routine DGELS, which
+appears as a horizontal line at 1.</CAPTION>
+<TR><TD><IMG
+ WIDTH="511" HEIGHT="827" BORDER="0"
+ SRC="img256.gif"
+ ALT="\begin{figure}
+\centerline{\psfig{file=LLStbw.eps,width=4.5in}}\centerline{\psfig{file=LLSrbw.eps,width=4.5in}}\end{figure}"></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="emmtable"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8093"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.12:</STRONG>
+Execution time and Megaflop rates for DGEMV and DGEMM</CAPTION>
+<TR><TD></TD>
+<TD ALIGN="CENTER" COLSPAN=4>DGEMV</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=4>DGEMM</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1">  
+</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=8>Values of <B><I>n</I>=<I>m</I>=<I>k</I></B></FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1">  
+</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=2><B>100</B></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=2><B>1000</B></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=2><B>100</B></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=2><B>1000</B></FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Time</FONT><FONT SIZE="-1"> </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Time</FONT><FONT SIZE="-1"> </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Time</FONT><FONT SIZE="-1"> </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Time</FONT><FONT SIZE="-1"> </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> </FONT><FONT SIZE="-1"> Mflops</FONT><FONT SIZE="-1"> </FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+Dec Alpha Miata    </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0151 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 66 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 27.778 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 36 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0018 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 543  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1.712 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 584
+</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+Compaq AlphaServer DS-20 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0027 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 376</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">  8.929 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 112</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0019 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 522  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2.000 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">
+500 </FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+IBM Power 3          </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0032 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 304 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2.857 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 350</FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0018 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 567 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1.385 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 722
+</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+IBM PowerPC          </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0435 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 23 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 40.000 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 25 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0063 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 160 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 4.717 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 212
+</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+Intel Pentium II     </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0075 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 134 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 16.969 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 59 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0031 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 320 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 3.003 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 333
+</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+Intel Pentium III    </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0071 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 141 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 14.925 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 67 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0030 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 333  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2.500 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">
+400 </FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+SGI O2K (1 proc)     </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0046 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 216 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 4.762  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 210 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">.0018 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 563  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 1.801 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">
+555 </FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+SGI O2K (4 proc)     </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 5.000 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 0.2  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 2.375 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 421 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0250 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 40 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 0.517 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">
+1936 </FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+Sun Ultra 2 (1 proc) </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0081 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 124 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 17.544  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 57 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0033 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 302  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 3.484 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">
+287 </FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT SIZE="-1"> 
+Sun Enterprise 450 (1 proc) </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0037 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 267 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 11.628  </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 86 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> .0021 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 474 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1">
+1.898 </FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> 527 </FONT></TD>
+</TR>
+</TABLE></DIV>
+</DIV>
+<BR>
+
+<P>
+megaflop
+SSYEV/DSYEV.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="standardflopcount"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8134"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.13:</STRONG>
+``Standard'' floating point operation counts for LAPACK drivers
+for <B><I>n</I></B>-by-<B><I>n</I></B> matrices</CAPTION>
+<TR><TD ALIGN="LEFT">Driver</TD>
+<TD ALIGN="LEFT">Options</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Operation</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Count</TD>
+</TR>
+<TR><TD ALIGN="LEFT">xGESV</TD>
+<TD ALIGN="LEFT">1 right hand side</TD>
+<TD ALIGN="RIGHT"><IMG
+ WIDTH="63" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img257.gif"
+ ALT="$ .67
+\cdot N^3$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">xGEEV</TD>
+<TD ALIGN="LEFT">eigenvalues only</TD>
+<TD ALIGN="RIGHT">
+<!-- MATH
+ $10.00
+\cdot N^3$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img258.gif"
+ ALT="$10.00
+\cdot N^3$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">xGEEV</TD>
+<TD ALIGN="LEFT">eigenvalues and right eigenvectors</TD>
+<TD ALIGN="RIGHT">
+<!-- MATH
+ $26.33
+\cdot N^3$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img259.gif"
+ ALT="$26.33
+\cdot N^3$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">xGES{VD,DD}</TD>
+<TD ALIGN="LEFT">singular values only</TD>
+<TD ALIGN="RIGHT">
+<!-- MATH
+ $2.67
+\cdot N^3$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img260.gif"
+ ALT="$2.67
+\cdot N^3$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">xGES{VD,DD}</TD>
+<TD ALIGN="LEFT">singular values and left and right singular vectors</TD>
+<TD ALIGN="RIGHT">
+<!-- MATH
+ $6.67
+\cdot N^3$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img261.gif"
+ ALT="$6.67
+\cdot N^3$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabludriver"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8149"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.14:</STRONG>
+Performance of DGESV for <B><I>n</I></B>-by-<B><I>n</I></B> matrices</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> No. of</FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=6>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> proc.</FONT></TD>
+<TD ALIGN="CENTER"><B><I>nb</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=3>100</TD>
+<TD ALIGN="CENTER" COLSPAN=3>1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="RIGHT"><FONT SIZE="-1"> Mflops</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.004</TD>
+<TD ALIGN="RIGHT">2.2</TD>
+<TD ALIGN="RIGHT">164</TD>
+<TD ALIGN="RIGHT">1.903</TD>
+<TD ALIGN="RIGHT">1.11</TD>
+<TD ALIGN="RIGHT">351</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AlphaServer DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.002</TD>
+<TD ALIGN="RIGHT">1.05</TD>
+<TD ALIGN="RIGHT">349</TD>
+<TD ALIGN="RIGHT">1.510</TD>
+<TD ALIGN="RIGHT">0.76</TD>
+<TD ALIGN="RIGHT">443</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">.003</TD>
+<TD ALIGN="RIGHT">1.67</TD>
+<TD ALIGN="RIGHT">245</TD>
+<TD ALIGN="RIGHT">1.210</TD>
+<TD ALIGN="RIGHT">0.87</TD>
+<TD ALIGN="RIGHT">552</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.006</TD>
+<TD ALIGN="RIGHT">1.94</TD>
+<TD ALIGN="RIGHT">123</TD>
+<TD ALIGN="RIGHT">2.730</TD>
+<TD ALIGN="RIGHT">0.91</TD>
+<TD ALIGN="RIGHT">245</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.005</TD>
+<TD ALIGN="RIGHT">1.67</TD>
+<TD ALIGN="RIGHT">136</TD>
+<TD ALIGN="RIGHT">2.270</TD>
+<TD ALIGN="RIGHT">0.91</TD>
+<TD ALIGN="RIGHT">294</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.003</TD>
+<TD ALIGN="RIGHT">1.67</TD>
+<TD ALIGN="RIGHT">227</TD>
+<TD ALIGN="RIGHT">1.454</TD>
+<TD ALIGN="RIGHT">0.81</TD>
+<TD ALIGN="RIGHT">460</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.004</TD>
+<TD ALIGN="RIGHT">0.16</TD>
+<TD ALIGN="RIGHT">178</TD>
+<TD ALIGN="RIGHT">1.204</TD>
+<TD ALIGN="RIGHT">2.33</TD>
+<TD ALIGN="RIGHT">555</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.008</TD>
+<TD ALIGN="RIGHT">2.42</TD>
+<TD ALIGN="RIGHT">81</TD>
+<TD ALIGN="RIGHT">5.460</TD>
+<TD ALIGN="RIGHT">1.57</TD>
+<TD ALIGN="RIGHT">122</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.006</TD>
+<TD ALIGN="RIGHT">2.86</TD>
+<TD ALIGN="RIGHT">114</TD>
+<TD ALIGN="RIGHT">3.698</TD>
+<TD ALIGN="RIGHT">1.95</TD>
+<TD ALIGN="RIGHT">181</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabnepdriver1"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8187"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.15:</STRONG>
+Performance of DGEEV, eigenvalues only</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> No. of</FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=8>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> proc.</FONT></TD>
+<TD ALIGN="CENTER"><B><I>nb</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=4>100</TD>
+<TD ALIGN="CENTER" COLSPAN=4>1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.157</TD>
+<TD ALIGN="RIGHT">87.22</TD>
+<TD ALIGN="RIGHT">70</TD>
+<TD ALIGN="RIGHT">64</TD>
+<TD ALIGN="RIGHT">116.480</TD>
+<TD ALIGN="RIGHT">68.04</TD>
+<TD ALIGN="RIGHT">81</TD>
+<TD ALIGN="RIGHT">86</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AS DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.044</TD>
+<TD ALIGN="RIGHT">23.16</TD>
+<TD ALIGN="RIGHT">423</TD>
+<TD ALIGN="RIGHT">228</TD>
+<TD ALIGN="RIGHT">52.932</TD>
+<TD ALIGN="RIGHT">26.47</TD>
+<TD ALIGN="RIGHT">177</TD>
+<TD ALIGN="RIGHT">189</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">.060</TD>
+<TD ALIGN="RIGHT">33.33</TD>
+<TD ALIGN="RIGHT">183</TD>
+<TD ALIGN="RIGHT">167</TD>
+<TD ALIGN="RIGHT">91.210</TD>
+<TD ALIGN="RIGHT">65.86</TD>
+<TD ALIGN="RIGHT">103</TD>
+<TD ALIGN="RIGHT">110</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.100</TD>
+<TD ALIGN="RIGHT">32.26</TD>
+<TD ALIGN="RIGHT">110</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">107.940</TD>
+<TD ALIGN="RIGHT">35.94</TD>
+<TD ALIGN="RIGHT">87</TD>
+<TD ALIGN="RIGHT">93</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.080</TD>
+<TD ALIGN="RIGHT">26.67</TD>
+<TD ALIGN="RIGHT">137</TD>
+<TD ALIGN="RIGHT">133</TD>
+<TD ALIGN="RIGHT">91.230</TD>
+<TD ALIGN="RIGHT">36.49</TD>
+<TD ALIGN="RIGHT">103</TD>
+<TD ALIGN="RIGHT">110</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.074</TD>
+<TD ALIGN="RIGHT">41.11</TD>
+<TD ALIGN="RIGHT">148</TD>
+<TD ALIGN="RIGHT">135</TD>
+<TD ALIGN="RIGHT">54.852</TD>
+<TD ALIGN="RIGHT">30.46</TD>
+<TD ALIGN="RIGHT">172</TD>
+<TD ALIGN="RIGHT">182</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.093</TD>
+<TD ALIGN="RIGHT">3.72</TD>
+<TD ALIGN="RIGHT">117</TD>
+<TD ALIGN="RIGHT">107</TD>
+<TD ALIGN="RIGHT">42.627</TD>
+<TD ALIGN="RIGHT">82.45</TD>
+<TD ALIGN="RIGHT">222</TD>
+<TD ALIGN="RIGHT">235</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.258</TD>
+<TD ALIGN="RIGHT">78.18</TD>
+<TD ALIGN="RIGHT">43</TD>
+<TD ALIGN="RIGHT">38</TD>
+<TD ALIGN="RIGHT">246.151</TD>
+<TD ALIGN="RIGHT">70.65</TD>
+<TD ALIGN="RIGHT">38</TD>
+<TD ALIGN="RIGHT">41</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.178</TD>
+<TD ALIGN="RIGHT">84.76</TD>
+<TD ALIGN="RIGHT">62</TD>
+<TD ALIGN="RIGHT">56</TD>
+<TD ALIGN="RIGHT">163.141</TD>
+<TD ALIGN="RIGHT">85.95</TD>
+<TD ALIGN="RIGHT">57</TD>
+<TD ALIGN="RIGHT">61</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabnepdriver2"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8247"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.16:</STRONG>
+Performance of DGEEV, eigenvalues and right eigenvectors</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> No. of</FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=8>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> proc.</FONT></TD>
+<TD ALIGN="CENTER"><B><I>nb</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=4>100</TD>
+<TD ALIGN="CENTER" COLSPAN=4>1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.308</TD>
+<TD ALIGN="RIGHT">171.11</TD>
+<TD ALIGN="RIGHT">86</TD>
+<TD ALIGN="RIGHT">86</TD>
+<TD ALIGN="RIGHT">325.650</TD>
+<TD ALIGN="RIGHT">190.22</TD>
+<TD ALIGN="RIGHT">73</TD>
+<TD ALIGN="RIGHT">81</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AS DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.092</TD>
+<TD ALIGN="RIGHT">48.42</TD>
+<TD ALIGN="RIGHT">290</TD>
+<TD ALIGN="RIGHT">287</TD>
+<TD ALIGN="RIGHT">159.409</TD>
+<TD ALIGN="RIGHT">79.70</TD>
+<TD ALIGN="RIGHT">149</TD>
+<TD ALIGN="RIGHT">165</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">.130</TD>
+<TD ALIGN="RIGHT">72.22</TD>
+<TD ALIGN="RIGHT">204</TD>
+<TD ALIGN="RIGHT">203</TD>
+<TD ALIGN="RIGHT">230.650</TD>
+<TD ALIGN="RIGHT">166.53</TD>
+<TD ALIGN="RIGHT">103</TD>
+<TD ALIGN="RIGHT">114</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.200</TD>
+<TD ALIGN="RIGHT">64.52</TD>
+<TD ALIGN="RIGHT">133</TD>
+<TD ALIGN="RIGHT">132</TD>
+<TD ALIGN="RIGHT">284.020</TD>
+<TD ALIGN="RIGHT">94.58</TD>
+<TD ALIGN="RIGHT">84</TD>
+<TD ALIGN="RIGHT">93</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.170</TD>
+<TD ALIGN="RIGHT">56.67</TD>
+<TD ALIGN="RIGHT">156</TD>
+<TD ALIGN="RIGHT">155</TD>
+<TD ALIGN="RIGHT">239.070</TD>
+<TD ALIGN="RIGHT">95.63</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">110</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.117</TD>
+<TD ALIGN="RIGHT">65.00</TD>
+<TD ALIGN="RIGHT">228</TD>
+<TD ALIGN="RIGHT">226</TD>
+<TD ALIGN="RIGHT">197.455</TD>
+<TD ALIGN="RIGHT">109.64</TD>
+<TD ALIGN="RIGHT">121</TD>
+<TD ALIGN="RIGHT">133</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.159</TD>
+<TD ALIGN="RIGHT">6.36</TD>
+<TD ALIGN="RIGHT">167</TD>
+<TD ALIGN="RIGHT">166</TD>
+<TD ALIGN="RIGHT">146.975</TD>
+<TD ALIGN="RIGHT">284.28</TD>
+<TD ALIGN="RIGHT">164</TD>
+<TD ALIGN="RIGHT">179</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.460</TD>
+<TD ALIGN="RIGHT">139.39</TD>
+<TD ALIGN="RIGHT">58</TD>
+<TD ALIGN="RIGHT">58</TD>
+<TD ALIGN="RIGHT">601.732</TD>
+<TD ALIGN="RIGHT">172.71</TD>
+<TD ALIGN="RIGHT">39</TD>
+<TD ALIGN="RIGHT">44</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.311</TD>
+<TD ALIGN="RIGHT">148.10</TD>
+<TD ALIGN="RIGHT">85</TD>
+<TD ALIGN="RIGHT">85</TD>
+<TD ALIGN="RIGHT">418.011</TD>
+<TD ALIGN="RIGHT">220.24</TD>
+<TD ALIGN="RIGHT">57</TD>
+<TD ALIGN="RIGHT">63</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+ 
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabsvddriver3"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8367"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.17:</STRONG>
+Performance of DGESDD, singular values only</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> No. of</FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=8>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> proc.</FONT></TD>
+<TD ALIGN="CENTER"><B><I>nb</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=4>100</TD>
+<TD ALIGN="CENTER" COLSPAN=4>1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.043</TD>
+<TD ALIGN="RIGHT">23.89</TD>
+<TD ALIGN="RIGHT">61</TD>
+<TD ALIGN="RIGHT">61</TD>
+<TD ALIGN="RIGHT">36.581</TD>
+<TD ALIGN="RIGHT">21.37</TD>
+<TD ALIGN="RIGHT">73</TD>
+<TD ALIGN="RIGHT">73</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AS DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.011</TD>
+<TD ALIGN="RIGHT">5.79</TD>
+<TD ALIGN="RIGHT">236</TD>
+<TD ALIGN="RIGHT">236</TD>
+<TD ALIGN="RIGHT">11.789</TD>
+<TD ALIGN="RIGHT">5.89</TD>
+<TD ALIGN="RIGHT">226</TD>
+<TD ALIGN="RIGHT">226</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">.020</TD>
+<TD ALIGN="RIGHT">11.11</TD>
+<TD ALIGN="RIGHT">133</TD>
+<TD ALIGN="RIGHT">133</TD>
+<TD ALIGN="RIGHT">8.090</TD>
+<TD ALIGN="RIGHT">5.84</TD>
+<TD ALIGN="RIGHT">330</TD>
+<TD ALIGN="RIGHT">330</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.040</TD>
+<TD ALIGN="RIGHT">12.90</TD>
+<TD ALIGN="RIGHT">67</TD>
+<TD ALIGN="RIGHT">67</TD>
+<TD ALIGN="RIGHT">29.120</TD>
+<TD ALIGN="RIGHT">9.70</TD>
+<TD ALIGN="RIGHT">92</TD>
+<TD ALIGN="RIGHT">92</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.030</TD>
+<TD ALIGN="RIGHT">10.00</TD>
+<TD ALIGN="RIGHT">89</TD>
+<TD ALIGN="RIGHT">89</TD>
+<TD ALIGN="RIGHT">25.830</TD>
+<TD ALIGN="RIGHT">10.33</TD>
+<TD ALIGN="RIGHT">103</TD>
+<TD ALIGN="RIGHT">103</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.024</TD>
+<TD ALIGN="RIGHT">13.33</TD>
+<TD ALIGN="RIGHT">113</TD>
+<TD ALIGN="RIGHT">113</TD>
+<TD ALIGN="RIGHT">12.407</TD>
+<TD ALIGN="RIGHT">6.89</TD>
+<TD ALIGN="RIGHT">215</TD>
+<TD ALIGN="RIGHT">215</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.058</TD>
+<TD ALIGN="RIGHT">2.32</TD>
+<TD ALIGN="RIGHT">46</TD>
+<TD ALIGN="RIGHT">46</TD>
+<TD ALIGN="RIGHT">4.926</TD>
+<TD ALIGN="RIGHT">9.53</TD>
+<TD ALIGN="RIGHT">541</TD>
+<TD ALIGN="RIGHT">541</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.088</TD>
+<TD ALIGN="RIGHT">26.67</TD>
+<TD ALIGN="RIGHT">30</TD>
+<TD ALIGN="RIGHT">30</TD>
+<TD ALIGN="RIGHT">60.478</TD>
+<TD ALIGN="RIGHT">17.36</TD>
+<TD ALIGN="RIGHT">44</TD>
+<TD ALIGN="RIGHT">44</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.060</TD>
+<TD ALIGN="RIGHT">28.57</TD>
+<TD ALIGN="RIGHT">92</TD>
+<TD ALIGN="RIGHT">45</TD>
+<TD ALIGN="RIGHT">47.813</TD>
+<TD ALIGN="RIGHT">25.19</TD>
+<TD ALIGN="RIGHT">56</TD>
+<TD ALIGN="RIGHT">56</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabsvddriver2"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8427"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.18:</STRONG>
+Performance of DGESVD, singular values and left and right singular
+vectors</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> No. of</FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=8>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> proc.</FONT></TD>
+<TD ALIGN="CENTER"><B><I>nb</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=4>100</TD>
+<TD ALIGN="CENTER" COLSPAN=4>1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.222</TD>
+<TD ALIGN="RIGHT">123.33</TD>
+<TD ALIGN="RIGHT">77</TD>
+<TD ALIGN="RIGHT">30</TD>
+<TD ALIGN="RIGHT">320.985</TD>
+<TD ALIGN="RIGHT">187.49</TD>
+<TD ALIGN="RIGHT">48</TD>
+<TD ALIGN="RIGHT">21</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AS DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.053</TD>
+<TD ALIGN="RIGHT">27.89</TD>
+<TD ALIGN="RIGHT">326</TD>
+<TD ALIGN="RIGHT">126</TD>
+<TD ALIGN="RIGHT">142.843</TD>
+<TD ALIGN="RIGHT">71.42</TD>
+<TD ALIGN="RIGHT">107</TD>
+<TD ALIGN="RIGHT">47</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">.070</TD>
+<TD ALIGN="RIGHT">38.89</TD>
+<TD ALIGN="RIGHT">245</TD>
+<TD ALIGN="RIGHT">95</TD>
+<TD ALIGN="RIGHT">251.940</TD>
+<TD ALIGN="RIGHT">181.91</TD>
+<TD ALIGN="RIGHT">61</TD>
+<TD ALIGN="RIGHT">26</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.150</TD>
+<TD ALIGN="RIGHT">48.39</TD>
+<TD ALIGN="RIGHT">114</TD>
+<TD ALIGN="RIGHT">44</TD>
+<TD ALIGN="RIGHT">282.550</TD>
+<TD ALIGN="RIGHT">94.09</TD>
+<TD ALIGN="RIGHT">54</TD>
+<TD ALIGN="RIGHT">24</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.120</TD>
+<TD ALIGN="RIGHT">40.00</TD>
+<TD ALIGN="RIGHT">142</TD>
+<TD ALIGN="RIGHT">56</TD>
+<TD ALIGN="RIGHT">244.690</TD>
+<TD ALIGN="RIGHT">97.88</TD>
+<TD ALIGN="RIGHT">62</TD>
+<TD ALIGN="RIGHT">27</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.074</TD>
+<TD ALIGN="RIGHT">41.11</TD>
+<TD ALIGN="RIGHT">232</TD>
+<TD ALIGN="RIGHT">90</TD>
+<TD ALIGN="RIGHT">176.134</TD>
+<TD ALIGN="RIGHT">97.80</TD>
+<TD ALIGN="RIGHT">87</TD>
+<TD ALIGN="RIGHT">38</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.145</TD>
+<TD ALIGN="RIGHT">5.80</TD>
+<TD ALIGN="RIGHT">118</TD>
+<TD ALIGN="RIGHT">46</TD>
+<TD ALIGN="RIGHT">198.656</TD>
+<TD ALIGN="RIGHT">384.25</TD>
+<TD ALIGN="RIGHT">77</TD>
+<TD ALIGN="RIGHT">34</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.277</TD>
+<TD ALIGN="RIGHT">83.94</TD>
+<TD ALIGN="RIGHT">62</TD>
+<TD ALIGN="RIGHT">24</TD>
+<TD ALIGN="RIGHT">570.290</TD>
+<TD ALIGN="RIGHT">163.69</TD>
+<TD ALIGN="RIGHT">27</TD>
+<TD ALIGN="RIGHT">12</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.181</TD>
+<TD ALIGN="RIGHT">86.19</TD>
+<TD ALIGN="RIGHT">95</TD>
+<TD ALIGN="RIGHT">37</TD>
+<TD ALIGN="RIGHT">402.456</TD>
+<TD ALIGN="RIGHT">212.04</TD>
+<TD ALIGN="RIGHT">38</TD>
+<TD ALIGN="RIGHT">17</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabsvddriver4"></A>
+<DIV ALIGN="CENTER">
+<A NAME="8487"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.19:</STRONG>
+Performance of DGESDD, singular values and left and right singular
+vectors</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> No. of</FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=8>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><FONT SIZE="-1"> proc.</FONT></TD>
+<TD ALIGN="CENTER"><B><I>nb</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=4>100</TD>
+<TD ALIGN="CENTER" COLSPAN=4>1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> True</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Synth</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Time</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> 
+<!-- MATH
+ $\frac{\rm Time}{\rm T(MM)}$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img253.gif"
+ ALT="$\frac{\rm Time}{\rm T(MM)}$"></FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+<TD ALIGN="CENTER" COLSPAN=1><FONT SIZE="-1"> Mflops</FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.055</TD>
+<TD ALIGN="RIGHT">30.56</TD>
+<TD ALIGN="RIGHT">123</TD>
+<TD ALIGN="RIGHT">121</TD>
+<TD ALIGN="RIGHT">47.206</TD>
+<TD ALIGN="RIGHT">27.57</TD>
+<TD ALIGN="RIGHT">141</TD>
+<TD ALIGN="RIGHT">141</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AS DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">.021</TD>
+<TD ALIGN="RIGHT">11.05</TD>
+<TD ALIGN="RIGHT">310</TD>
+<TD ALIGN="RIGHT">318</TD>
+<TD ALIGN="RIGHT">20.658</TD>
+<TD ALIGN="RIGHT">10.33</TD>
+<TD ALIGN="RIGHT">323</TD>
+<TD ALIGN="RIGHT">323</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">.025</TD>
+<TD ALIGN="RIGHT">13.89</TD>
+<TD ALIGN="RIGHT">268</TD>
+<TD ALIGN="RIGHT">267</TD>
+<TD ALIGN="RIGHT">15.230</TD>
+<TD ALIGN="RIGHT">11.00</TD>
+<TD ALIGN="RIGHT">438</TD>
+<TD ALIGN="RIGHT">438</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.060</TD>
+<TD ALIGN="RIGHT">19.35</TD>
+<TD ALIGN="RIGHT">112</TD>
+<TD ALIGN="RIGHT">111</TD>
+<TD ALIGN="RIGHT">44.270</TD>
+<TD ALIGN="RIGHT">14.74</TD>
+<TD ALIGN="RIGHT">151</TD>
+<TD ALIGN="RIGHT">151</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">.050</TD>
+<TD ALIGN="RIGHT">16.67</TD>
+<TD ALIGN="RIGHT">134</TD>
+<TD ALIGN="RIGHT">133</TD>
+<TD ALIGN="RIGHT">38.930</TD>
+<TD ALIGN="RIGHT">15.57</TD>
+<TD ALIGN="RIGHT">171</TD>
+<TD ALIGN="RIGHT">171</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.035</TD>
+<TD ALIGN="RIGHT">19.44</TD>
+<TD ALIGN="RIGHT">189</TD>
+<TD ALIGN="RIGHT">191</TD>
+<TD ALIGN="RIGHT">24.985</TD>
+<TD ALIGN="RIGHT">13.87</TD>
+<TD ALIGN="RIGHT">267</TD>
+<TD ALIGN="RIGHT">267</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.091</TD>
+<TD ALIGN="RIGHT">3.64</TD>
+<TD ALIGN="RIGHT">73</TD>
+<TD ALIGN="RIGHT">73</TD>
+<TD ALIGN="RIGHT">8.779</TD>
+<TD ALIGN="RIGHT">16.89</TD>
+<TD ALIGN="RIGHT">759</TD>
+<TD ALIGN="RIGHT">760</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.149</TD>
+<TD ALIGN="RIGHT">45.15</TD>
+<TD ALIGN="RIGHT">45</TD>
+<TD ALIGN="RIGHT">45</TD>
+<TD ALIGN="RIGHT">93.417</TD>
+<TD ALIGN="RIGHT">26.81</TD>
+<TD ALIGN="RIGHT">72</TD>
+<TD ALIGN="RIGHT">71</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">.102</TD>
+<TD ALIGN="RIGHT">48.57</TD>
+<TD ALIGN="RIGHT">66</TD>
+<TD ALIGN="RIGHT">65</TD>
+<TD ALIGN="RIGHT">70.597</TD>
+<TD ALIGN="RIGHT">37.20</TD>
+<TD ALIGN="RIGHT">94</TD>
+<TD ALIGN="RIGHT">94</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5153"
+ HREF="node72.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5147"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5143"
+ HREF="node70.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5149"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5151"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5154"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Up:</B> <A NAME="tex2html5148"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5144"
+ HREF="node70.html">Eigenvalue Problems</A>
+ &nbsp <B>  <A NAME="tex2html5150"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5152"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

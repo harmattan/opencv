@@ -1,0 +1,67 @@
+
+2009-12-10  Julian Brown  <julian@codesourcery.com>
+            Ramana Radhakrishnan  <ramana.radhakrishnan@arm.com>
+
+        PR target/40887
+
+        * config/arm/arm.c (output_call_mem): Remove armv5 support.
+        * config/arm/arm.md (*call_mem): Disable for armv5. Add note.
+        (*call_value_mem): Likewise.
+
+
+	PR target/40887
+
+	* target/gcc.arm/pr40887.c: New test.
+
+Index: gcc/config/arm/arm.md
+===================================================================
+--- a/src/gcc/config/arm/arm.md	(revision 155401)
++++ b/src/gcc/config/arm/arm.md	(working copy)
+@@ -8453,12 +8453,17 @@
+    (set_attr "type" "call")]
+ )
+ 
++
++;; Note: not used for armv5+ because the sequence used (ldr pc, ...) is not
++;; considered a function call by the branch predictor of some cores (PR40887).
++;; Falls back to blx rN (*call_reg_armv5).
++
+ (define_insn "*call_mem"
+   [(call (mem:SI (match_operand:SI 0 "call_memory_operand" "m"))
+ 	 (match_operand 1 "" ""))
+    (use (match_operand 2 "" ""))
+    (clobber (reg:SI LR_REGNUM))]
+-  "TARGET_ARM"
++  "TARGET_ARM && !arm_arch5"
+   "*
+   return output_call_mem (operands);
+   "
+@@ -8560,13 +8565,15 @@
+    (set_attr "type" "call")]
+ )
+ 
++;; Note: see *call_mem
++
+ (define_insn "*call_value_mem"
+   [(set (match_operand 0 "" "")
+ 	(call (mem:SI (match_operand:SI 1 "call_memory_operand" "m"))
+ 	      (match_operand 2 "" "")))
+    (use (match_operand 3 "" ""))
+    (clobber (reg:SI LR_REGNUM))]
+-  "TARGET_ARM && (!CONSTANT_ADDRESS_P (XEXP (operands[1], 0)))"
++  "TARGET_ARM && (!CONSTANT_ADDRESS_P (XEXP (operands[1], 0))) && !arm_arch5"
+   "*
+   return output_call_mem (&operands[1]);
+   "
+--- /dev/null	2009-12-11 10:59:39.294209612 +0000
++++ b/src/gcc/testsuite/gcc.target/arm/pr40887.c	2009-12-22 17:38:04.000000000 +0000
+@@ -0,0 +1,9 @@
++/* { dg-options "-O2 -march=armv5te" }  */
++/* { dg-final { scan-assembler "blx" } } */
++
++int (*indirect_func)();
++
++int indirect_call()
++{
++    return indirect_func();
++}

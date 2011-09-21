@@ -1,0 +1,76 @@
+diff -Naur gcc-4.3-4.3.3/src/libstdc++-v3/include/bits/basic_string.h gcc-4.3-4.3.3.new/src/libstdc++-v3/include/bits/basic_string.h
+--- gcc-4.3-4.3.3/src/libstdc++-v3/include/bits/basic_string.h	2009-05-21 00:39:16.000000000 +0300
++++ gcc-4.3-4.3.3.new/src/libstdc++-v3/include/bits/basic_string.h	2010-07-15 16:15:43.132236821 +0300
+@@ -202,12 +202,17 @@
+ 
+ 	void
+ 	_M_set_length_and_sharable(size_type __n)
+-	{ 
+-	  this->_M_set_sharable();  // One reference.
+-	  this->_M_length = __n;
+-	  traits_type::assign(this->_M_refdata()[__n], _S_terminal);
+-	  // grrr. (per 21.3.4)
+-	  // You cannot leave those LWG people alone for a second.
++	{
++#ifndef _GLIBCXX_FULLY_DYNAMIC_STRING
++	  if (__builtin_expect(this != &_S_empty_rep(), false))
++#endif
++	    {
++	      this->_M_set_sharable();  // One reference.
++	      this->_M_length = __n;
++	      traits_type::assign(this->_M_refdata()[__n], _S_terminal);
++	      // grrr. (per 21.3.4)
++	      // You cannot leave those LWG people alone for a second.
++	    }
+ 	}
+ 
+ 	_CharT*
+@@ -1164,16 +1169,8 @@
+        *  The value of the string doesn't change if an error is thrown.
+       */
+       iterator
+-      erase(iterator __first, iterator __last)
+-      {
+-	_GLIBCXX_DEBUG_PEDASSERT(__first >= _M_ibegin() && __first <= __last
+-				 && __last <= _M_iend());
+-        const size_type __pos = __first - _M_ibegin();
+-	_M_mutate(__pos, __last - __first, size_type(0));
+-	_M_rep()->_M_set_leaked();
+-	return iterator(_M_data() + __pos);
+-      }
+-
++      erase(iterator __first, iterator __last);
++ 
+       /**
+        *  @brief  Replace characters with value from another string.
+        *  @param pos  Index of first character to replace.
+diff -Naur gcc-4.3-4.3.3/src/libstdc++-v3/include/bits/basic_string.tcc gcc-4.3-4.3.3.new/src/libstdc++-v3/include/bits/basic_string.tcc
+--- gcc-4.3-4.3.3/src/libstdc++-v3/include/bits/basic_string.tcc	2009-05-21 00:39:16.000000000 +0300
++++ gcc-4.3-4.3.3.new/src/libstdc++-v3/include/bits/basic_string.tcc	2010-07-15 16:15:43.132236821 +0300
+@@ -384,6 +384,26 @@
+      }
+ 
+    template<typename _CharT, typename _Traits, typename _Alloc>
++     typename basic_string<_CharT, _Traits, _Alloc>::iterator
++     basic_string<_CharT, _Traits, _Alloc>::
++     erase(iterator __first, iterator __last)
++     {
++       _GLIBCXX_DEBUG_PEDASSERT(__first >= _M_ibegin() && __first <= __last
++				&& __last <= _M_iend());
++
++       const size_type __size = __last - __first;
++       if (__size)
++	 {
++	   const size_type __pos = __first - _M_ibegin();
++	   _M_mutate(__pos, __size, size_type(0));
++	   _M_rep()->_M_set_leaked();
++	   return iterator(_M_data() + __pos);
++	 }
++       else
++	 return __first;
++     }
++
++   template<typename _CharT, typename _Traits, typename _Alloc>
+      basic_string<_CharT, _Traits, _Alloc>&
+      basic_string<_CharT, _Traits, _Alloc>::
+      replace(size_type __pos, size_type __n1, const _CharT* __s,

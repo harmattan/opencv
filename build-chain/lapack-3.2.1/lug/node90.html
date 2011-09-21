@@ -1,0 +1,582 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for the Symmetric Eigenproblem </TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for the Symmetric Eigenproblem ">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node89.html">
+<LINK REL="up" HREF="node89.html">
+<LINK REL="next" HREF="node91.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5450"
+ HREF="node91.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5444"
+ HREF="node89.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5440"
+ HREF="node89.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5446"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5448"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5451"
+ HREF="node91.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5445"
+ HREF="node89.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5441"
+ HREF="node89.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5447"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5449"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03471000000000000000"></A><A NAME="secDetailsym"></A>
+<BR>
+Further Details:  Error Bounds for the Symmetric Eigenproblem 
+</H2>
+
+<P>
+The usual error analysis of the
+symmetric<A NAME="11258"></A>
+eigenproblem (using any LAPACK
+routine in subsection&nbsp;<A HREF="node29.html#subsecdriveeig">2.3.4</A>
+or any EISPACK routine) is as follows [<A
+ HREF="node151.html#parlett">85</A>]:
+
+<P>
+<BLOCKQUOTE>
+The computed eigendecomposition 
+<!-- MATH
+ $\hat{Z} \hat{\Lambda} \hat{Z}^T$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img541.gif"
+ ALT="$\hat{Z} \hat{\Lambda} \hat{Z}^T$">
+is nearly
+the exact
+eigendecomposition of <B><I>A</I>+<I>E</I></B>, i.e.,
+
+<!-- MATH
+ $A+E = (\hat{Z}+ \delta \hat{Z}) \hat{\Lambda} (\hat{Z}+ \delta \hat{Z})^T$
+ -->
+<IMG
+ WIDTH="238" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img542.gif"
+ ALT="$A+E = (\hat{Z}+ \delta \hat{Z}) \hat{\Lambda} (\hat{Z}+ \delta \hat{Z})^T$">
+is a true eigendecomposition so that 
+<!-- MATH
+ $\hat{Z}+ \delta \hat{Z}$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img543.gif"
+ ALT="$\hat{Z}+ \delta \hat{Z}$">
+is
+orthogonal,
+where 
+<!-- MATH
+ $\|E\|_2 / \|A\|_2 \leq p(n) \epsilon$
+ -->
+<IMG
+ WIDTH="153" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img544.gif"
+ ALT="$\Vert E\Vert _2 / \Vert A\Vert _2 \leq p(n) \epsilon$">
+and
+
+<!-- MATH
+ $\| \delta \hat{Z} \|_2 \leq p(n) \epsilon$
+ -->
+<IMG
+ WIDTH="114" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img545.gif"
+ ALT="$\Vert \delta \hat{Z} \Vert _2 \leq p(n) \epsilon$">.
+Here <B><I>p</I>(<I>n</I>)</B> is a modestly growing
+function of <B><I>n</I></B>. We take <B><I>p</I>(<I>n</I>)=1</B> in the above code fragment.
+Each computed eigenvalue 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+differs from a
+true <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+by at most
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\lambda}_i - \lambda_i |  \leq p(n) \cdot \epsilon \cdot \|A\|_2
+= {\tt EERRBD} \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="275" HEIGHT="31" BORDER="0"
+ SRC="img546.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\lambda}_i - \lambda_i \vert \leq p(n) \cdot \epsilon \cdot \Vert A\Vert _2
+= {\tt EERRBD} \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+Thus large eigenvalues (those near 
+<!-- MATH
+ $\max_i | \lambda_i | = \|A\|_2$
+ -->
+<IMG
+ WIDTH="132" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img547.gif"
+ ALT="$\max_i \vert \lambda_i \vert = \Vert A\Vert _2$">)
+are computed to high relative accuracy <A NAME="11274"></A> and small ones may not be.
+<A NAME="11275"></A>
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>There are two questions to ask about the computed eigenvectors:
+``Are they orthogonal?'' and ``How much do they differ from the
+true eigenvectors?''
+The answer to the first question is that except for eigenvectors
+computed by computational routine xSTEIN (which is called by drivers
+with names ending in -EVX when only a subset of the eigenvalues and
+eigenvectors are requested),
+the computed eigenvectors
+are always nearly orthogonal to working precision, independent of
+how much they differ from the true eigenvectors. In other words
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|\hat{z}_i^T \hat{z}_j | = O( \epsilon )
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="99" HEIGHT="32" BORDER="0"
+ SRC="img548.gif"
+ ALT="\begin{displaymath}
+\vert\hat{z}_i^T \hat{z}_j \vert = O( \epsilon )
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+for <IMG
+ WIDTH="42" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img549.gif"
+ ALT="$i \neq j$">.
+xSTEIN almost
+always returns orthogonal eigenvectors, but can occasionally fail when
+eigenvalues are tightly clustered.
+<A NAME="11278"></A><A NAME="11279"></A><A NAME="11280"></A><A NAME="11281"></A>
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>Here is the answer to the second question about eigenvectors.
+The angular difference between the computed unit eigenvector
+<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img527.gif"
+ ALT="$\hat{z}_i$">
+and a true unit eigenvector <B><I>z</I><SUB><I>i</I></SUB></B> satisfies the approximate bound
+<A NAME="11282"></A>
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{z}_i , z_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\frac{p(n) \epsilon \|A\|_2}{{\rm gap}_i}
+= {\tt ZERRBD}(i)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="257" HEIGHT="48" BORDER="0"
+ SRC="img550.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{z}_i , z_i ) \mathrel{\raisebox{-.75ex}{$\math...
+...{p(n) \epsilon \Vert A\Vert _2}{{\rm gap}_i}
+= {\tt ZERRBD}(i)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+if <IMG
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img455.gif"
+ ALT="$p(n) \epsilon$">
+is small enough.
+Here 
+<!-- MATH
+ ${\rm gap}_i = \min_{j \neq i} | \lambda_i - \lambda_j |$
+ -->
+<IMG
+ WIDTH="178" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img551.gif"
+ ALT="${\rm gap}_i = \min_{j \neq i} \vert \lambda_i - \lambda_j \vert$">
+is the
+<B>absolute gap</B><A NAME="11288"></A><A NAME="11289"></A>
+between <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+and the nearest other eigenvalue.  Thus, if <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+is close to other eigenvalues, its corresponding eigenvector <B><I>z</I><SUB><I>i</I></SUB></B>
+may be inaccurate.
+The gaps may be easily computed from the array of computed eigenvalues
+using subroutine <TT>SDISNA</TT><A NAME="11291"></A><A NAME="11292"></A>.
+The gaps computed by <TT>SDISNA</TT> are ensured not to be so small as
+to cause overflow when used as divisors.
+<A NAME="11294"></A>
+<A NAME="11295"></A>
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>Let 
+<!-- MATH
+ ${\hat{\cal S}}$
+ -->
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+be the invariant subspace spanned by a collection of eigenvectors
+
+<!-- MATH
+ $\{\hat{z}_i \, , \, i \in {\cal I}\}$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img552.gif"
+ ALT="$\{\hat{z}_i \, , \, i \in {\cal I}\}$">,
+where <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+is a subset of the
+integers from 1 to <B><I>n</I></B>. Let <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+be the corresponding true subspace. Then
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( {\hat{\cal S}}, {\cal S}) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\frac{p(n) \epsilon \|A\|_2}
+{{\rm gap}_{\cal I}}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="157" HEIGHT="48" BORDER="0"
+ SRC="img554.gif"
+ ALT="\begin{displaymath}
+\theta ( {\hat{\cal S}}, {\cal S}) \mathrel{\raisebox{-.75ex...
+...&lt;}$}}\frac{p(n) \epsilon \Vert A\Vert _2}
+{{\rm gap}_{\cal I}}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+<A NAME="11300"></A>
+where
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+{\rm gap}_{\cal I} = \min_{i \in {\cal I} \atop j \not\in {\cal I}}
+| \lambda_i - \lambda_j |
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="153" HEIGHT="50" BORDER="0"
+ SRC="img555.gif"
+ ALT="\begin{displaymath}
+{\rm gap}_{\cal I} = \min_{i \in {\cal I} \atop j \not\in {\cal I}}
+\vert \lambda_i - \lambda_j \vert
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+is the absolute gap between the eigenvalues in <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+and the nearest
+other eigenvalue. Thus, a cluster<A NAME="11304"></A> of
+close eigenvalues which is
+far away from any other eigenvalue may have a well determined
+invariant subspace 
+<!-- MATH
+ ${\hat{\cal S}}$
+ -->
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+even if its individual eigenvectors are
+ill-conditioned<A NAME="tex2html2204"
+ HREF="footnode.html#foot13239"><SUP>4.3</SUP></A>.
+
+</BLOCKQUOTE>
+
+<P>
+In the special case of a real symmetric tridiagonal matrix <B><I>T</I></B>, the eigenvalues
+and eigenvectors can be computed much more accurately. xSYEV (and the other
+symmetric eigenproblem drivers) computes the eigenvalues and eigenvectors of
+a dense symmetric matrix by first reducing it to tridiagonal form<A NAME="11307"></A> <B><I>T</I></B>, and then
+finding the eigenvalues and eigenvectors of <B><I>T</I></B>.
+Reduction of a dense matrix to tridiagonal form<A NAME="11308"></A> <B><I>T</I></B> can introduce
+additional errors, so the following bounds for the tridiagonal case do not
+apply to the dense case.
+
+<P>
+<BLOCKQUOTE>
+The eigenvalues of <B><I>T</I></B> may be computed with small componentwise relative
+backward error
+<A NAME="11310"></A>
+<A NAME="11311"></A>
+(<IMG
+ WIDTH="39" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img250.gif"
+ ALT="$O(\epsilon)$">)
+by using subroutine xSTEBZ (subsection
+<A NAME="11312"></A><A NAME="11313"></A>
+<A HREF="node48.html#subseccompsep">2.4.4</A>)
+<A NAME="11315"></A><A NAME="11316"></A>
+or driver xSTEVX (subsection <A HREF="node29.html#subsecdriveeig">2.3.4</A>). If <B><I>T</I></B> is also positive definite,
+they may also be computed at least as accurately by
+xPTEQR<A NAME="11318"></A><A NAME="11319"></A><A NAME="11320"></A><A NAME="11321"></A>
+or
+xSTEGR<A NAME="11322"></A><A NAME="11323"></A><A NAME="11324"></A><A NAME="11325"></A>
+(subsection <A HREF="node48.html#subseccompsep">2.4.4</A>).
+To compute error bounds
+for the computed eigenvalues 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+we must make some assumptions
+about <B><I>T</I></B>. The bounds discussed here are from [<A
+ HREF="node151.html#barlowdemmel">14</A>].
+Suppose <B><I>T</I></B> is positive definite, and
+write <B><I>T</I>=<I>DHD</I></B> where 
+<!-- MATH
+ $D = {\mbox {\rm diag}}( t_{11}^{1/2} , \ldots , t_{nn}^{1/2})$
+ -->
+<IMG
+ WIDTH="182" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img556.gif"
+ ALT="$D = {\mbox {\rm diag}}( t_{11}^{1/2} , \ldots , t_{nn}^{1/2})$">
+and <B><I>h</I><SUB><I>ii</I></SUB>= 1</B>.
+Then the computed eigenvalues
+
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+can differ from true eigenvalues <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+by
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\lambda}_i - \lambda_i | \leq p(n) \cdot \epsilon \cdot \kappa_2(H)
+\cdot \lambda_i
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="224" HEIGHT="31" BORDER="0"
+ SRC="img557.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\lambda}_i - \lambda_i \vert \leq p(n) \cdot \epsilon \cdot \kappa_2(H)
+\cdot \lambda_i
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+where <B><I>p</I>(<I>n</I>)</B> is a modestly growing function of <B><I>n</I></B>.
+Thus if <IMG
+ WIDTH="52" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img558.gif"
+ ALT="$\kappa_2 (H)$">
+is moderate, each eigenvalue will be computed
+to high relative accuracy, <A NAME="11333"></A> no matter how tiny it is.
+The eigenvectors <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img527.gif"
+ ALT="$\hat{z}_i$">
+computed by xPTEQR
+can differ from true eigenvectors <B><I>z</I><SUB><I>i</I></SUB></B> by
+at most about
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{z}_i , z_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\frac{p(n) \cdot \epsilon \cdot \kappa_2 (H)}
+{{\rm relgap}_i}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="194" HEIGHT="48" BORDER="0"
+ SRC="img559.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{z}_i , z_i ) \mathrel{\raisebox{-.75ex}{$\math...
+...\frac{p(n) \cdot \epsilon \cdot \kappa_2 (H)}
+{{\rm relgap}_i}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+if <IMG
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img455.gif"
+ ALT="$p(n) \epsilon$">
+is small enough, where
+
+<!-- MATH
+ ${\rm relgap}_i = \min_{j \neq i} | \lambda_i - \lambda_j |/ ( \lambda_i + \lambda_j )$
+ -->
+<IMG
+ WIDTH="274" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img560.gif"
+ ALT="${\rm relgap}_i = \min_{j \neq i} \vert \lambda_i - \lambda_j \vert/ ( \lambda_i + \lambda_j )$">
+is the <B>relative gap</B> between <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+and the nearest other eigenvalue.
+<A NAME="11338"></A><A NAME="11339"></A>
+Since the relative gap may be much larger than the absolute gap, this
+error bound may be much smaller than the previous one.
+Independent of the difference between the computed and true eigenvectors,
+the computed eigenvectors are orthogonal to nearly full precision,
+i.e. 
+<!-- MATH
+ $| \hat{z}_i^T \hat{z}_j | = O( \epsilon )$
+ -->
+<IMG
+ WIDTH="106" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img561.gif"
+ ALT="$\vert \hat{z}_i^T \hat{z}_j \vert = O( \epsilon )$">
+for <IMG
+ WIDTH="42" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img549.gif"
+ ALT="$i \neq j$">.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE><IMG
+ WIDTH="52" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img558.gif"
+ ALT="$\kappa_2 (H)$">
+could be computed by applying
+xPTCON (subsection <A HREF="node38.html#subseccomplineq">2.4.1</A>) to <B><I>H</I></B>.
+<A NAME="11343"></A><A NAME="11344"></A><A NAME="11345"></A><A NAME="11346"></A>
+The relative gaps are easily computed from the
+array of computed eigenvalues.
+</BLOCKQUOTE>
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5450"
+ HREF="node91.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5444"
+ HREF="node89.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5440"
+ HREF="node89.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5446"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5448"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5451"
+ HREF="node91.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5445"
+ HREF="node89.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5441"
+ HREF="node89.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5447"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5449"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

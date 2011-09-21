@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Orthogonal Factorizations and Linear Least Squares Problems</TITLE>
+<META NAME="description" CONTENT="Orthogonal Factorizations and Linear Least Squares Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node45.html">
+<LINK REL="previous" HREF="node38.html">
+<LINK REL="up" HREF="node37.html">
+<LINK REL="next" HREF="node40.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4691"
+ HREF="node40.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4685"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4679"
+ HREF="node38.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4687"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4689"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4692"
+ HREF="node40.html">QR Factorization</A>
+<B> Up:</B> <A NAME="tex2html4686"
+ HREF="node37.html">Computational Routines</A>
+<B> Previous:</B> <A NAME="tex2html4680"
+ HREF="node38.html">Linear Equations</A>
+ &nbsp <B>  <A NAME="tex2html4688"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4690"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03242000000000000000"></A>
+<A NAME="subseccomporthog"></A>
+<BR>
+Orthogonal Factorizations and Linear Least Squares Problems
+</H2>
+
+<P>
+LAPACK provides a number of routines for factorizing a general
+rectangular <I>m</I>-by-<I>n</I> matrix <I>A</I>,
+as the product of an <B>orthogonal</B> matrix (<B>unitary</B> if complex)
+and a <B>triangular</B> (or possibly trapezoidal) matrix.
+
+<P>
+A real matrix <I>Q</I> is <B>orthogonal</B> if <I>Q</I><SUP><I>T</I></SUP> <I>Q</I> = <I>I</I>;
+a complex matrix <I>Q</I> is <B>unitary</B> if <I>Q</I><SUP><I>H</I></SUP> <I>Q</I> = <I>I</I>.
+Orthogonal or unitary matrices have the important property that they leave the
+two-norm of a vector invariant:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\|x||_2 = \|Qx\|_2, \quad \mbox{if $Q$\  is orthogonal or unitary.}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="351" HEIGHT="31" BORDER="0"
+ SRC="img101.gif"
+ ALT="\begin{displaymath}
+\Vert x\vert\vert _2 = \Vert Qx\Vert _2, \quad \mbox{if $Q$\ is orthogonal or unitary.}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+As a result, they help to maintain numerical stability because they do not
+<A NAME="2563"></A>
+amplify rounding errors.
+
+<P>
+Orthogonal factorizations<A NAME="2564"></A> are used in
+the solution of linear least squares problems<A NAME="2565"></A>.
+They may also be used to perform preliminary
+steps in the solution of eigenvalue or
+singular value problems.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html4693"
+ HREF="node40.html"><I>QR</I> Factorization</A>
+<LI><A NAME="tex2html4694"
+ HREF="node41.html"><B><I>LQ</I></B> Factorization</A>
+<LI><A NAME="tex2html4695"
+ HREF="node42.html"><B><I>QR</I></B> Factorization with Column Pivoting</A>
+<LI><A NAME="tex2html4696"
+ HREF="node43.html">Complete Orthogonal Factorization</A>
+<LI><A NAME="tex2html4697"
+ HREF="node44.html">Other Factorizations</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

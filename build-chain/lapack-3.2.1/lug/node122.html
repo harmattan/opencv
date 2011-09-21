@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Conventional Storage</TITLE>
+<META NAME="description" CONTENT="Conventional Storage">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node123.html">
+<LINK REL="previous" HREF="node121.html">
+<LINK REL="up" HREF="node121.html">
+<LINK REL="next" HREF="node123.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5933"
+ HREF="node123.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5927"
+ HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5921"
+ HREF="node121.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5929"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5931"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5934"
+ HREF="node123.html">Packed Storage</A>
+<B> Up:</B> <A NAME="tex2html5928"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Previous:</B> <A NAME="tex2html5922"
+ HREF="node121.html">Matrix Storage Schemes</A>
+ &nbsp <B>  <A NAME="tex2html5930"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5932"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03531000000000000000"></A><A NAME="subsecconventional"></A>
+<BR>
+Conventional Storage
+</H2>
+
+<P>
+The default scheme for storing matrices<A NAME="19617"></A>
+is the obvious one described in subsection&nbsp;<A HREF="node116.html#subsecarrayargs">5.1.6</A>:
+a matrix <B><I>A</I></B> is stored in a two-dimensional array A, with
+matrix element <B><I>a</I><SUB><I>ij</I></SUB></B> stored in array element A(<B><I>i</I>,<I>j</I></B>).
+
+<P>
+If a matrix is <B>triangular</B><A NAME="19621"></A>
+(upper or lower, as specified by
+the argument UPLO), only the elements of the relevant triangle
+are accessed. The remaining elements of the array need not be set.
+Such elements are indicated by <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img914.gif"
+ ALT="$\ast$">
+in the examples below.
+For example, when <B><I>n</I> = 4</B>:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">UPLO</TD>
+<TD ALIGN="CENTER">Triangular matrix <B><I>A</I></B></TD>
+<TD ALIGN="CENTER">Storage in array A</TD>
+</TR>
+<TR><TD ALIGN="CENTER">`U'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{cccc}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+       & a_{22} & a_{23} & a_{24} \\
+       &        & a_{33} & a_{34} \\
+       &        &        & a_{44}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img918.gif"
+ ALT="$
+\left( \begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+&amp; a_{22} &amp; a_{23} &amp; a_{24} \\
+&amp; &amp; a_{33} &amp; a_{34} \\
+&amp; &amp; &amp; a_{44}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{cccc}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+ \ast  & a_{22} & a_{23} & a_{24} \\
+ \ast  &  \ast  & a_{33} & a_{34} \\
+ \ast  &  \ast  &  \ast  & a_{44}
+\end{array}$
+ -->
+<IMG
+ WIDTH="162" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img919.gif"
+ ALT="$
+\begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+\ast &amp; a_{22} &amp; a_{...
+...\\
+\ast &amp; \ast &amp; a_{33} &amp; a_{34} \\
+\ast &amp; \ast &amp; \ast &amp; a_{44}
+\end{array}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">`L'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{cccc}
+a_{11} &        &        &       \\
+a_{21} & a_{22} &        &       \\
+a_{31} & a_{32} & a_{33} &       \\
+a_{41} & a_{42} & a_{43} & a_{44}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img920.gif"
+ ALT="$
+\left( \begin{array}{cccc}
+a_{11} &amp; &amp; &amp; \\
+a_{21} &amp; a_{22} &amp; &amp; \\
+a_{31} &amp; a_{32} &amp; a_{33} &amp; \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{cccc}
+a_{11} &  \ast  &  \ast  &  \ast  \\
+a_{21} & a_{22} &  \ast  &  \ast  \\
+a_{31} & a_{32} & a_{33} &  \ast  \\
+a_{41} & a_{42} & a_{43} & a_{44}
+\end{array}$
+ -->
+<IMG
+ WIDTH="162" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img921.gif"
+ ALT="$
+\begin{array}{cccc}
+a_{11} &amp; \ast &amp; \ast &amp; \ast \\
+a_{21} &amp; a_{22} &amp; \ast &amp; \...
+...{31} &amp; a_{32} &amp; a_{33} &amp; \ast \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44}
+\end{array}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+Similarly, if the matrix is upper Hessenberg, elements below the
+first subdiagonal need not be set.
+
+<P>
+Routines that handle <B>symmetric</B><A NAME="19680"></A> 
+or <B>Hermitian</B><A NAME="19682"></A> matrices
+allow for either the upper or lower triangle of the matrix 
+(as specified by UPLO) to
+be stored in the corresponding elements of the array; the remaining
+elements of the array need not be set.
+For example, when <B><I>n</I> = 4</B>:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">UPLO</TD>
+<TD ALIGN="CENTER">Hermitian matrix <B><I>A</I></B></TD>
+<TD ALIGN="CENTER">Storage in array A</TD>
+</TR>
+<TR><TD ALIGN="CENTER">`U'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{cccc}
+a_{11}       & a_{12}       & a_{13}       & a_{14} \\
+\bar{a}_{12} & a_{22}       & a_{23}       & a_{24} \\
+\bar{a}_{13} & \bar{a}_{23} & a_{33}       & a_{34} \\
+\bar{a}_{14} & \bar{a}_{24} & \bar{a}_{34} & a_{44}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img922.gif"
+ ALT="$
+\left( \begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+\bar{a}_{12} ...
+...4} \\
+\bar{a}_{14} &amp; \bar{a}_{24} &amp; \bar{a}_{34} &amp; a_{44}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{cccc}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+ \ast  & a_{22} & a_{23} & a_{24} \\
+ \ast  &  \ast  & a_{33} & a_{34} \\
+ \ast  &  \ast  &  \ast  & a_{44}
+\end{array}$
+ -->
+<IMG
+ WIDTH="162" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img919.gif"
+ ALT="$
+\begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+\ast &amp; a_{22} &amp; a_{...
+...\\
+\ast &amp; \ast &amp; a_{33} &amp; a_{34} \\
+\ast &amp; \ast &amp; \ast &amp; a_{44}
+\end{array}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">`L'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{cccc}
+a_{11} & \bar{a}_{21} & \bar{a}_{31} & \bar{a}_{41} \\
+a_{21} & a_{22}       & \bar{a}_{32} & \bar{a}_{42} \\
+a_{31} & a_{32}       & a_{33}       & \bar{a}_{43} \\
+a_{41} & a_{42}       & a_{43}       & a_{44}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img923.gif"
+ ALT="$
+\left( \begin{array}{cccc}
+a_{11} &amp; \bar{a}_{21} &amp; \bar{a}_{31} &amp; \bar{a}_{41}...
+..._{33} &amp; \bar{a}_{43} \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{cccc}
+a_{11} &  \ast  &  \ast  &  \ast  \\
+a_{21} & a_{22} &  \ast  &  \ast  \\
+a_{31} & a_{32} & a_{33} &  \ast  \\
+a_{41} & a_{42} & a_{43} & a_{44}
+\end{array}$
+ -->
+<IMG
+ WIDTH="162" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img921.gif"
+ ALT="$
+\begin{array}{cccc}
+a_{11} &amp; \ast &amp; \ast &amp; \ast \\
+a_{21} &amp; a_{22} &amp; \ast &amp; \...
+...{31} &amp; a_{32} &amp; a_{33} &amp; \ast \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44}
+\end{array}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5933"
+ HREF="node123.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5927"
+ HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5921"
+ HREF="node121.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5929"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5931"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5934"
+ HREF="node123.html">Packed Storage</A>
+<B> Up:</B> <A NAME="tex2html5928"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Previous:</B> <A NAME="tex2html5922"
+ HREF="node121.html">Matrix Storage Schemes</A>
+ &nbsp <B>  <A NAME="tex2html5930"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5932"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

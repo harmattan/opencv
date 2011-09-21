@@ -1,0 +1,28 @@
+From: Peter De Wachter <pdewacht@gmail.com>
+To: Debian Bug Tracking System <505714@bugs.debian.org>
+Subject: libimlib2-dev: another imlib2 xpm buffer overflow
+Date: Wed, 19 Nov 2008 21:39:50 +0100
+
+Package: libimlib2-dev
+Version: 1.4.0-1.1
+Tags: security
+Followup-For: Bug #505714
+
+This is another buffer overflow in the XPM loader. (The xpm attached
+to this bug report is a 32x32 image according to the header, but
+contains 33x32 pixels.)
+
+Index: b/src/modules/loaders/loader_xpm.c
+===================================================================
+--- a/src/modules/loaders/loader_xpm.c	2009-01-12 12:31:08.481611316 -0500
++++ b/src/modules/loaders/loader_xpm.c	2009-01-12 12:31:14.735736554 -0500
+@@ -253,8 +253,8 @@
+                                  return 0;
+                               }
+                             ptr = im->data;
+-                            end = ptr + (sizeof(DATA32) * w * h);
+                             pixels = w * h;
++                            end = ptr + pixels;
+                          }
+                        else
+                          {

@@ -1,0 +1,15 @@
+# DP: Proposed patch to fix wrong-code on powerpc (Alan Modra)
+
+Index: gcc/config/rs6000/rs6000.c
+===================================================================
+--- a/src/gcc/config/rs6000/rs6000.c	(revision 152088)
++++ b/src/gcc/config/rs6000/rs6000.c	(working copy)
+@@ -16148,7 +16148,7 @@
+   int using_store_multiple;
+   int using_static_chain_p = (cfun->static_chain_decl != NULL_TREE
+                               && df_regs_ever_live_p (STATIC_CHAIN_REGNUM)
+-                              && !call_used_regs[STATIC_CHAIN_REGNUM]);
++                              && call_used_regs[STATIC_CHAIN_REGNUM]);
+   HOST_WIDE_INT sp_offset = 0;
+ 
+   if (TARGET_FIX_AND_CONTINUE)

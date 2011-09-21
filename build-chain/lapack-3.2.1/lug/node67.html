@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Examples of Block Algorithms in LAPACK</TITLE>
+<META NAME="description" CONTENT="Examples of Block Algorithms in LAPACK">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node71.html">
+<LINK REL="previous" HREF="node66.html">
+<LINK REL="up" HREF="node60.html">
+<LINK REL="next" HREF="node68.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5098"
+ HREF="node68.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5092"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5086"
+ HREF="node66.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5094"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5096"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5099"
+ HREF="node68.html">Factorizations for Solving Linear</A>
+<B> Up:</B> <A NAME="tex2html5093"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5087"
+ HREF="node66.html">Block Algorithms and their</A>
+ &nbsp <B>  <A NAME="tex2html5095"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5097"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03340000000000000000"></A><A NAME="secblock"></A>
+<BR>
+Examples of Block Algorithms in LAPACK
+</H1>
+
+<P>
+Having discussed in detail the derivation of one particular block algorithm,
+we now describe examples of the performance that has been achieved with
+a variety of block algorithms.
+Tables&nbsp;<A HREF="node67.html#tab:node1">3.2</A>, <A HREF="node67.html#tab:node2">3.3</A>, <A HREF="node67.html#tab:node3">3.4</A>, <A HREF="node67.html#tab:node4">3.5</A>,
+and <A HREF="node67.html#tab:node5">3.6</A> describe the hardware and software
+characteristics of the machines.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+ <A NAME="tab:node1"></A> <DIV ALIGN="CENTER">
+  <A NAME="7753"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.2:</STRONG>
+Characteristics of the Compaq/Digital computers timed</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">Compaq AlphaServer DS-20</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Model</TD>
+<TD ALIGN="CENTER">LX164</TD>
+<TD ALIGN="CENTER">DS-20 (21264)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processor</TD>
+<TD ALIGN="CENTER">EV56</TD>
+<TD ALIGN="CENTER">EV6</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Clock speed (MHz)</TD>
+<TD ALIGN="CENTER">533</TD>
+<TD ALIGN="CENTER">500</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processors per node</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Operating system</TD>
+<TD ALIGN="CENTER">Linux 2.2.7</TD>
+<TD ALIGN="CENTER">OSF1 V4.0 1091</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BLAS</TD>
+<TD ALIGN="CENTER">ATLAS (version 1.0)</TD>
+<TD ALIGN="CENTER">DXML (version 3.5)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran compiler</TD>
+<TD ALIGN="CENTER">g77 (egcs 2.91.60)</TD>
+<TD ALIGN="CENTER">f77 (version 5.2)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran flags</TD>
+<TD ALIGN="CENTER">-funroll-all-loops -fno-f2c -O3</TD>
+<TD ALIGN="CENTER">-O4 -fpe1</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Precision</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+ <A NAME="tab:node2"></A> <DIV ALIGN="CENTER">
+  <A NAME="7762"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.3:</STRONG>
+Characteristics of the IBM computers timed</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">IBM Power 3</TD>
+<TD ALIGN="CENTER">IBM PowerPC</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Model</TD>
+<TD ALIGN="CENTER">Winterhawk</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processor</TD>
+<TD ALIGN="CENTER">630</TD>
+<TD ALIGN="CENTER">604e</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Clock speed (MHz)</TD>
+<TD ALIGN="CENTER">200</TD>
+<TD ALIGN="CENTER">190</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processors per node</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Operating system</TD>
+<TD ALIGN="CENTER">AIX 4.3</TD>
+<TD ALIGN="CENTER">Linux 2.2.7</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BLAS</TD>
+<TD ALIGN="CENTER">ESSL (3.1.1.0)</TD>
+<TD ALIGN="CENTER">ATLAS (version 1.0)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran compiler</TD>
+<TD ALIGN="CENTER">xlf (6.1.0.0)</TD>
+<TD ALIGN="CENTER">g77 (egcs 2.91.66)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran flags</TD>
+<TD ALIGN="CENTER">-O4 -qmaxmem=-1</TD>
+<TD ALIGN="CENTER">-funroll-all-loops -fno-f2c -O3</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Precision</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+<BR>
+<DIV ALIGN="CENTER">
+
+ <A NAME="tab:node3"></A> <DIV ALIGN="CENTER">
+  <A NAME="7771"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.4:</STRONG>
+Characteristics of the Intel computers timed</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">Intel Pentium II</TD>
+<TD ALIGN="CENTER">Intel Pentium III</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Model</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processor</TD>
+<TD ALIGN="CENTER">Pentium II</TD>
+<TD ALIGN="CENTER">Pentium III</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Clock speed (MHz)</TD>
+<TD ALIGN="CENTER">450</TD>
+<TD ALIGN="CENTER">550</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processors per node</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Operating system</TD>
+<TD ALIGN="CENTER">Linux 2.2.7</TD>
+<TD ALIGN="CENTER">Linux 2.2.5-15</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BLAS</TD>
+<TD ALIGN="CENTER">ATLAS (version 1.0)</TD>
+<TD ALIGN="CENTER">ATLAS (version 1.0)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran compiler</TD>
+<TD ALIGN="CENTER">g77 (egcs 2.91.60)</TD>
+<TD ALIGN="CENTER">g77 (egcs 2.91.66)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran flags</TD>
+<TD ALIGN="CENTER">-funroll-all-loops -fno-f2c -O3</TD>
+<TD ALIGN="CENTER">-funroll-all-loops -fno-f2c -O3</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Precision</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+ <A NAME="tab:node4"></A> <DIV ALIGN="CENTER">
+  <A NAME="7780"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.5:</STRONG>
+Characteristics of the SGI computer timed</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">SGI Origin 2000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Model</TD>
+<TD ALIGN="CENTER">IP27</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processor</TD>
+<TD ALIGN="CENTER">MIPS R12000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Clock speed (MHz)</TD>
+<TD ALIGN="CENTER">300</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processors per node</TD>
+<TD ALIGN="CENTER">64</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Operating system</TD>
+<TD ALIGN="CENTER">IRIX 6.5</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BLAS</TD>
+<TD ALIGN="CENTER">SGI BLAS</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran compiler</TD>
+<TD ALIGN="CENTER">f77 (7.2.1.2m)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran flags</TD>
+<TD ALIGN="CENTER">-O3 -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Precision</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+ <A NAME="tab:node5"></A> <DIV ALIGN="CENTER">
+  <A NAME="7789"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.6:</STRONG>
+Characteristics of the Sun computers timed</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">Sun Enterprise 450</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Model</TD>
+<TD ALIGN="CENTER">Ultra 2 Model 2200</TD>
+<TD ALIGN="CENTER">Model 1300</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processor</TD>
+<TD ALIGN="CENTER">Sun UltraSPARC</TD>
+<TD ALIGN="CENTER">Sun UltraSPARC-II</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Clock speed (MHz)</TD>
+<TD ALIGN="CENTER">200</TD>
+<TD ALIGN="CENTER">300</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Processors per node</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Operating system</TD>
+<TD ALIGN="CENTER">SunOS 5.5.1</TD>
+<TD ALIGN="CENTER">SunOS 5.5.7</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BLAS</TD>
+<TD ALIGN="CENTER">Sun Performance Library</TD>
+<TD ALIGN="CENTER">Sun Performance Library</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran compiler</TD>
+<TD ALIGN="CENTER">f77 (SC5.0)</TD>
+<TD ALIGN="CENTER">f77 (SC5.0)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Fortran flags</TD>
+<TD ALIGN="CENTER">-f -dalign -native -xO5 -xarch=v8plusa</TD>
+<TD ALIGN="CENTER">-f -dalign -native -xO5 -xarch=v8plusa</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Precision</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+<TD ALIGN="CENTER">double (64-bit)</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+See Gallivan <I>et al.</I>&nbsp;[<A
+ HREF="node151.html#gallivanetal">52</A>] and Dongarra <I>et
+al.</I>&nbsp;[<A
+ HREF="node151.html#dongarraetal2">43</A>]
+for an alternative survey of
+algorithms for dense linear<A NAME="7801"></A> algebra
+on high-performance computers.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5100"
+ HREF="node68.html">Factorizations for Solving Linear Equations</A>
+<LI><A NAME="tex2html5101"
+ HREF="node69.html"><B><I>QR</I></B> Factorization</A>
+<LI><A NAME="tex2html5102"
+ HREF="node70.html">Eigenvalue Problems</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5098"
+ HREF="node68.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5092"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5086"
+ HREF="node66.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5094"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5096"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5099"
+ HREF="node68.html">Factorizations for Solving Linear</A>
+<B> Up:</B> <A NAME="tex2html5093"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5087"
+ HREF="node66.html">Block Algorithms and their</A>
+ &nbsp <B>  <A NAME="tex2html5095"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5097"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

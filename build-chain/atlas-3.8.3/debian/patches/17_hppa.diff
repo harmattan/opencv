@@ -1,0 +1,41 @@
+diff -ur atlas-3.8.3.orig/CONFIG//include/atlconf.h atlas-3.8.3/CONFIG//include/atlconf.h
+--- atlas-3.8.3.orig/CONFIG//include/atlconf.h	2010-04-08 15:40:16.000000000 +0000
++++ atlas-3.8.3/CONFIG//include/atlconf.h	2010-04-08 14:34:46.000000000 +0000
+@@ -49,6 +49,13 @@
+ #define MachIsS390(mach_) \
+    ( 0 )
+ #endif
++#ifdef __hppa__
++#define MachIsHPPA(mach_) \
++   ( __hppa__ )
++#else
++#define MachIsHPPA(mach_) \
++   ( 0 )
++#endif
+ 
+ static char *f2c_namestr[5] = {"UNKNOWN","Add_", "Add__", "NoChange", "UpCase"};
+ static char *f2c_intstr[5] =
+diff -ur atlas-3.8.3.orig/CONFIG//src/probe_comp.c atlas-3.8.3/CONFIG//src/probe_comp.c
+--- atlas-3.8.3.orig/CONFIG//src/probe_comp.c	2010-04-08 15:40:17.000000000 +0000
++++ atlas-3.8.3/CONFIG//src/probe_comp.c	2010-04-08 14:38:01.000000000 +0000
+@@ -512,6 +512,8 @@
+       return(sp);
+    if (MachIsS390(arch))
+       return(sp);
++   if (MachIsHPPA(arch))
++     return(sp);
+    if (MachIsMIPS(arch))
+       return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))
+diff -ur atlas-3.8.3.orig/CONFIG//src/SpewMakeInc.c atlas-3.8.3/CONFIG//src/SpewMakeInc.c
+--- atlas-3.8.3.orig/CONFIG//src/SpewMakeInc.c	2010-04-08 15:40:18.000000000 +0000
++++ atlas-3.8.3/CONFIG//src/SpewMakeInc.c	2010-04-08 14:38:43.000000000 +0000
+@@ -342,6 +342,8 @@
+       return(sp);
+    if (MachIsS390(arch))
+       return(sp);
++   if (MachIsHPPA(arch))
++     return(sp);
+    if (MachIsMIPS(arch))
+       return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))

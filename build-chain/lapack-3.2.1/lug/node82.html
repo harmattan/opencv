@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for Linear Least Squares Problems</TITLE>
+<META NAME="description" CONTENT="Error Bounds for Linear Least Squares Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node84.html">
+<LINK REL="previous" HREF="node80.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node83.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5340"
+ HREF="node83.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5334"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5328"
+ HREF="node81.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5336"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5338"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5341"
+ HREF="node83.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5335"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5329"
+ HREF="node81.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5337"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5339"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03450000000000000000"></A><A NAME="seclsq"></A>
+<BR>
+Error Bounds for Linear Least Squares Problems
+</H1>
+
+<P>
+ 
+<P>
+The linear least squares problem is to find <B><I>x</I></B> that minimizes
+<IMG
+ WIDTH="81" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img437.gif"
+ ALT="$\Vert Ax-b \Vert _2$">.
+We discuss error bounds for the most common case where <B><I>A</I></B> is <B><I>m</I></B>-by-<B><I>n</I></B>
+with <B><I>m</I> &gt; <I>n</I></B>, and <B><I>A</I></B> has full rank<A NAME="10758"></A>;
+this is called an <EM>overdetermined least squares problem</EM>
+<A NAME="10760"></A>
+(the following code fragments deal with <B><I>m</I>=<I>n</I></B> as well).
+
+<P>
+Let <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+be the solution computed by one of the driver routines
+xGELS, xGELSX, xGELSY, xGELSS, or xGELSD (see section <A HREF="node27.html#subsecdrivellsq">2.3.2</A>).
+An approximate error
+bound<A NAME="footfnm 0"><SUP>4.10</SUP></A><A NAME="10764"></A><A NAME="10765"></A><A NAME="10766"></A><A NAME="10767"></A>
+<A NAME="10768"></A><A NAME="10769"></A><A NAME="10770"></A><A NAME="10771"></A>
+<A NAME="10772"></A><A NAME="10773"></A><A NAME="10774"></A><A NAME="10775"></A>
+<A NAME="10776"></A><A NAME="10777"></A><A NAME="10778"></A><A NAME="10779"></A>
+<A NAME="10780"></A><A NAME="10781"></A><A NAME="10782"></A><A NAME="10783"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\| \hat{x} - x \|_2}{\| x \|_2} \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}{\tt ERRBD}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="137" HEIGHT="48" BORDER="0"
+ SRC="img438.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert \hat{x} - x \Vert _2}{\Vert x \Vert _2} \mathrel...
+...box{-.75ex}{$\mathop{\sim}\limits^{\textstyle &lt;}$}}{\tt ERRBD}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+may be  computed in one of the following ways, depending on which type
+of driver routine is used:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>Suppose the simple driver SGELS is used:
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Get the 2-norm of the right hand side B
+      BNORM = SNRM2( M, B, 1 )
+*     Solve the least squares problem; the solution X overwrites B
+      CALL SGELS( 'N', M, N, 1, A, LDA, B, LDB, WORK, LWORK, INFO )
+      IF ( MIN(M,N) .GT. 0 ) THEN
+*        Get the 2-norm of the residual A*X-B
+         RNORM = SNRM2( M-N, B( N+1 ), 1 )
+*        Get the reciprocal condition number RCOND of A
+         CALL STRCON('I', 'U', 'N', N, A, LDA, RCOND, WORK, IWORK, INFO)
+         RCOND = MAX( RCOND, EPSMCH )
+         IF ( BNORM .GT. 0.0 ) THEN
+            SINT = RNORM / BNORM
+         ELSE
+            SINT = 0.0
+         ENDIF
+         COST = MAX( SQRT( (1.0E0 - SINT)*(1.0E0 + SINT) ), EPSMCH )
+         TANT = SINT / COST
+         ERRBD = EPSMCH*( 2.0E0/(RCOND*COST) + TANT / RCOND**2 )
+      ENDIF
+</PRE>
+<A NAME="10790"></A>
+
+<P>
+For example<A NAME="footfnm 0"><SUP>4.11</SUP></A>,
+if 
+<!-- MATH
+ ${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="259" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img397.gif"
+ ALT="${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$">,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{ccc} 4 & 3 & 5 \\2 & 5 & 8 \\3 & 6 & 10 \\4 & 5 & 11 \end{array} \right) 
+\; {\rm and} \;
+b = \left( \begin{array}{c} 100.1 \\.1 \\.01 \\.01 \end{array} \right) \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="313" HEIGHT="93" BORDER="0"
+ SRC="img439.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{ccc} 4 &amp; 3 &amp; 5 \\ 2 &amp; 5 &amp; 8 \\ 3 &amp; ...
+...n{array}{c} 100.1 \\ .1 \\ .01 \\ .01 \end{array} \right) \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then, to 4 decimal places,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = \hat{x} = \left( \begin{array}{c} 38.49 \\21.59 \\-23.88 \end{array} \right) \; \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="180" HEIGHT="73" BORDER="0"
+ SRC="img440.gif"
+ ALT="\begin{displaymath}
+x = \hat{x} = \left( \begin{array}{c} 38.49 \\ 21.59 \\ -23.88 \end{array} \right) \; \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<!-- MATH
+ ${\tt BNORM} = 100.1$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img441.gif"
+ ALT="${\tt BNORM} = 100.1$">,
+
+<!-- MATH
+ ${\tt RNORM} = 8.843$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img442.gif"
+ ALT="${\tt RNORM} = 8.843$">,
+
+<!-- MATH
+ ${\tt RCOND} = 4.712 \cdot 10^{-2}$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img443.gif"
+ ALT="${\tt RCOND} = 4.712 \cdot 10^{-2}$">,
+
+<!-- MATH
+ ${\tt ERRBD} = 4.9 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img444.gif"
+ ALT="${\tt ERRBD} = 4.9 \cdot 10^{-6}$">,
+and the true error
+is 
+<!-- MATH
+ $4.6 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img445.gif"
+ ALT="$4.6 \cdot 10^{-7}$">.
+
+<P>
+<DT>2.
+<DD>Suppose the expert driver SGELSX or SGELSY is used.
+<A NAME="10807"></A>
+<A NAME="10808"></A>
+This routine has an input argument <TT>RCND</TT>,
+which is used to determine the rank of the input matrix (briefly,
+<A NAME="10810"></A>
+the matrix is considered not to have full rank if its condition
+number exceeds <TT>1/RCND</TT>).
+<A NAME="10812"></A>
+The code fragment below only computes error bounds
+if the matrix has been determined to have full rank.
+When the matrix does not have full rank,
+computing and interpreting error bounds is more complicated, and
+the reader is referred to the next section.
+
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Get the 2-norm of the right hand side B
+      BNORM = SNRM2( M, B, 1 )
+*     Solve the least squares problem; the solution X overwrites B
+      RCND = 0
+      CALL SGELSX( M, N, 1, A, LDA, B, LDB, JPVT, RCND, RANK, WORK,
+     $             INFO )
+      IF ( RANK.LT.N ) THEN
+         PRINT *,'Matrix less than full rank'
+      ELSE IF ( MIN( M,N ) .GT. 0 ) THEN
+*        Get the 2-norm of the residual A*X-B
+         RNORM = SNRM2( M-N, B( N+1 ), 1 )
+*        Get the reciprocal condition number RCOND of A
+         CALL STRCON('I', 'U', 'N', N, A, LDA, RCOND, WORK, IWORK, INFO)
+         RCOND = MAX( RCOND, EPSMCH )
+         IF ( BNORM .GT. 0.0 ) THEN
+            SINT = RNORM / BNORM
+         ELSE
+            SINT = 0.0
+         ENDIF
+         COST = MAX( SQRT( (1.0E0 - SINT)*(1.0E0 + SINT) ), EPSMCH )
+         TANT = SINT / COST
+         ERRBD = EPSMCH*( 2.0E0/(RCOND*COST) + TANT / RCOND**2 )
+      END IF
+</PRE>
+The numerical results of this code fragment on the above <B><I>A</I></B> and <B><I>b</I></B> are
+the same as for the first code fragment.
+
+<P>
+<DT>3.
+<DD>Suppose the other type of expert driver SGELSS or SGELSD is
+used<A NAME="10815"></A><A NAME="10816"></A>.
+This routine also has an input argument <TT>RCND</TT>, which is used to
+determine the rank of the matrix <B><I>A</I></B>. The same code fragment can be used
+to compute error bounds as for SGELSX or SGELSY,
+except that the call to SGELSX must
+be replaced by:
+
+<P>
+<PRE>
+      CALL SGELSD( M, N, 1, A, LDA, B, LDB, S, RCND, RANK, WORK, LWORK,
+     $             IWORK, INFO )
+</PRE>
+
+<P>
+and the call to STRCON must be replaced by:
+
+<P>
+<PRE>
+         RCOND = S( N ) / S( 1 )
+</PRE>
+<A NAME="10822"></A>
+
+<P>
+Applied to the same <B><I>A</I></B> and <B><I>b</I></B> as above, the computed <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is
+nearly the same,
+
+<!-- MATH
+ ${\tt RCOND} = 5.428 \cdot 10^{-2}$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img446.gif"
+ ALT="${\tt RCOND} = 5.428 \cdot 10^{-2}$">,
+
+<!-- MATH
+ ${\tt ERRBD} = 4.0 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img447.gif"
+ ALT="${\tt ERRBD} = 4.0 \cdot 10^{-6}$">,
+and the true error is
+
+<!-- MATH
+ $6.6 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img448.gif"
+ ALT="$6.6 \cdot 10^{-7}$">.
+
+<P>
+</DL>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5342"
+ HREF="node83.html">Further Details:  Error Bounds for Linear Least Squares
+Problems</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5340"
+ HREF="node83.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5334"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5328"
+ HREF="node81.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5336"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5338"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5341"
+ HREF="node83.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5335"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5329"
+ HREF="node81.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5337"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5339"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,43 @@
+#! /bin/sh -e
+## 10_pack_real_char3.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: sizeof(real_char3) must equal 3 because 24bit support relies on it.
+## DP: As gcc on ARM pads to 4 bytes by default, we need to define the type
+## DP: as packed. Had better be a accompanied by a configure check, though.
+
+if [ $# -lt 1 ]; then
+    echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch} ${2:+-d $2}"
+
+case "$1" in
+    -patch) patch -p1 ${patch_opts} < $0;;
+    -unpatch) patch -R -p1 ${patch_opts} < $0;;
+    *)
+        echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+        exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/kobras/src/debian/audiofile/libaudiofile/modules.h audiofile/libaudiofile/modules.h
+--- /home/kobras/src/debian/audiofile/libaudiofile/modules.h	2003-09-28 16:17:10.000000000 +0200
++++ audiofile/libaudiofile/modules.h	2004-03-14 01:41:06.000000000 +0100
+@@ -48,7 +48,11 @@
+ typedef int32_t schar3;
+ typedef int32_t schar4;
+ 
+-typedef struct real_char3 { uchar1 c0; uchar1 c1; uchar1 c2; } real_char3;
++typedef struct real_char3 { uchar1 c0; uchar1 c1; uchar1 c2; } 
++#ifdef __GNUC__
++	__attribute__((__packed__))
++#endif
++	real_char3;
+ typedef union char3u
+ {
+ 	struct { schar4 i; } schar4;

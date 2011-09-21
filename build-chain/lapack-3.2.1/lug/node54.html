@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized Symmetric Definite Eigenproblems</TITLE>
+<META NAME="description" CONTENT="Generalized Symmetric Definite Eigenproblems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node55.html">
+<LINK REL="previous" HREF="node53.html">
+<LINK REL="up" HREF="node37.html">
+<LINK REL="next" HREF="node55.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4905"
+ HREF="node55.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4899"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4893"
+ HREF="node53.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4901"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4903"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4906"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Up:</B> <A NAME="tex2html4900"
+ HREF="node37.html">Computational Routines</A>
+<B> Previous:</B> <A NAME="tex2html4894"
+ HREF="node53.html">Singular Value Decomposition</A>
+ &nbsp <B>  <A NAME="tex2html4902"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4904"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03247000000000000000"></A>
+<A NAME="3530"></A>
+<BR>
+Generalized Symmetric Definite Eigenproblems
+</H2>
+
+<P>
+This section is concerned with the solution of the generalized eigenvalue
+problems <IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.gif"
+ ALT="$A z = \lambda B z$">,
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img40.gif"
+ ALT="$A B z = \lambda z$">,
+and <IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img41.gif"
+ ALT="$B A z = \lambda z$">,
+where
+<B><I>A</I></B> and <B><I>B</I></B> are real symmetric or complex Hermitian and <B><I>B</I></B> is positive definite.
+Each of these problems can be reduced to a standard symmetric
+eigenvalue problem, using a Cholesky factorization of <B><I>B</I></B> as either
+<B><I>B</I>=<I>LL</I><SUP><I>T</I></SUP></B> or <B><I>B</I>=<I>U</I><SUP><I>T</I></SUP><I>U</I></B> (<B><I>LL</I><SUP><I>H</I></SUP></B> or <B><I>U</I><SUP><I>H</I></SUP><I>U</I></B> in the Hermitian case).
+In the case 
+<!-- MATH
+ $Ax = \lambda Bz$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img171.gif"
+ ALT="$Ax = \lambda Bz$">,
+if <B><I>A</I></B> and <B><I>B</I></B> are banded then this may also
+be exploited to get a faster algorithm.
+
+<P>
+With <B><I>B</I> = <I>LL</I><SUP><I>T</I></SUP></B>, we have
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Az=\lambda Bz \quad \Rightarrow \quad (L ^{-1}AL ^{-T})(L^Tz)= \lambda(L^Tz).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="357" HEIGHT="31" BORDER="0"
+ SRC="img172.gif"
+ ALT="\begin{displaymath}
+Az=\lambda Bz \quad \Rightarrow \quad (L ^{-1}AL ^{-T})(L^Tz)= \lambda(L^Tz).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Hence the eigenvalues of <IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.gif"
+ ALT="$A z = \lambda B z$">
+are those of <IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img173.gif"
+ ALT="$Cy=\lambda y$">,
+where <B><I>C</I></B> is the symmetric matrix 
+<!-- MATH
+ $C = L^{-1} A L^{-T}$
+ -->
+<B><I>C</I> = <I>L</I><SUP>-1</SUP> <I>A L</I><SUP>-<I>T</I></SUP></B> and <B><I>y</I> = <I>L</I><SUP><I>T</I></SUP> <I>z</I></B>.
+In the complex case <B><I>C</I></B> is Hermitian with 
+<!-- MATH
+ $C = L^{-1} A L^{-H}$
+ -->
+<B><I>C</I> = <I>L</I><SUP>-1</SUP> <I>A L</I><SUP>-<I>H</I></SUP></B> and <B><I>y</I> =
+<I>L</I><SUP><I>H</I></SUP> <I>z</I></B>.
+
+<P>
+Table&nbsp;<A HREF="node54.html#tabgst">2.13</A> summarizes how each of the three types of problem
+may be reduced to standard form <IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img173.gif"
+ ALT="$Cy=\lambda y$">,
+and how the eigenvectors <B><I>z</I></B>
+of the original problem may be recovered from the eigenvectors <B><I>y</I></B> of the
+reduced problem. The table applies to real problems; for complex problems,
+transposed matrices must be replaced by conjugate-transposes.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabgst"></A>
+<DIV ALIGN="CENTER">
+<A NAME="3539"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.13:</STRONG>
+Reduction of generalized symmetric definite eigenproblems to standard
+problems</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">Type of</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Factorization</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Reduction</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Recovery of</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">problem</TD>
+<TD ALIGN="CENTER" COLSPAN=1>of <B><I>B</I></B></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1>eigenvectors</TD>
+</TR>
+<TR><TD ALIGN="LEFT">1.</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $Az = \lambda Bz$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.gif"
+ ALT="$A z = \lambda B z$"></TD>
+<TD ALIGN="LEFT"><B><I>B</I> = <I>LL</I><SUP><I>T</I></SUP></B></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $C = L^{-1} A L^{-T}$
+ -->
+<B><I>C</I> = <I>L</I><SUP>-1</SUP> <I>A L</I><SUP>-<I>T</I></SUP></B></TD>
+<TD ALIGN="LEFT"><B><I>z</I> = <I>L</I><SUP>-<I>T</I></SUP> <I>y</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT"><B><I>B</I> = <I>U</I><SUP><I>T</I></SUP><I>U</I></B></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $C = U^{-T} A U^{-1}$
+ -->
+<B><I>C</I> = <I>U</I><SUP>-<I>T</I></SUP> <I>A U</I><SUP>-1</SUP></B></TD>
+<TD ALIGN="LEFT"><B><I>z</I> = <I>U</I><SUP>-1</SUP> <I>y</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">2.</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $ABz = \lambda z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img40.gif"
+ ALT="$A B z = \lambda z$"></TD>
+<TD ALIGN="LEFT"><B><I>B</I> = <I>LL</I><SUP><I>T</I></SUP></B></TD>
+<TD ALIGN="LEFT"><B><I>C</I> = <I>L</I><SUP><I>T</I></SUP> <I>A L</I></B></TD>
+<TD ALIGN="LEFT"><B><I>z</I> = <I>L</I><SUP>-<I>T</I></SUP> <I>y</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT"><B><I>B</I> = <I>U</I><SUP><I>T</I></SUP><I>U</I></B></TD>
+<TD ALIGN="LEFT"><B><I>C</I> = <I>U A U</I><SUP><I>T</I></SUP></B></TD>
+<TD ALIGN="LEFT"><B><I>z</I> = <I>U</I><SUP>-1</SUP> <I>y</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">3.</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $BAz = \lambda z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img41.gif"
+ ALT="$B A z = \lambda z$"></TD>
+<TD ALIGN="LEFT"><B><I>B</I> = <I>LL</I><SUP><I>T</I></SUP></B></TD>
+<TD ALIGN="LEFT"><B><I>C</I> = <I>L</I><SUP><I>T</I></SUP> <I>A L</I></B></TD>
+<TD ALIGN="LEFT"><B><I>z</I> = <I>L y</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT"><B><I>B</I> = <I>U</I><SUP><I>T</I></SUP><I>U</I></B></TD>
+<TD ALIGN="LEFT"><B><I>C</I> = <I>U A U</I><SUP><I>T</I></SUP></B></TD>
+<TD ALIGN="LEFT"><B><I>z</I> = <I>U</I><SUP><I>T</I></SUP> <I>y</I></B></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+Given <B><I>A</I></B> and a Cholesky factorization of <B><I>B</I></B>,
+the routines xyyGST overwrite <B><I>A</I></B>
+with the matrix <B><I>C</I></B> of the corresponding standard problem
+
+<!-- MATH
+ $Cy = \lambda y$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img173.gif"
+ ALT="$Cy=\lambda y$">
+(see Table <A HREF="node54.html#tabcompgeig">2.14</A>).
+This may then be solved using the routines described in
+subsection&nbsp;<A HREF="node48.html#subseccompsep">2.4.4</A>.
+No special routines are needed
+to recover the eigenvectors <B><I>z</I></B> of the generalized problem from
+the eigenvectors <B><I>y</I></B> of the standard problem, because these
+computations are simple applications of Level 2 or Level 3 BLAS.
+
+<P>
+If the problem is 
+<!-- MATH
+ $A z = \lambda B z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.gif"
+ ALT="$A z = \lambda B z$">
+and the matrices <B><I>A</I></B> and <B><I>B</I></B> are banded,
+the matrix <B><I>C</I></B> as defined above is, in general, full.
+We can reduce the problem to a banded standard problem by modifying the
+definition of <B><I>C</I></B> thus:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+C = X^T A X, \quad \mbox{ where } X = U^{-1} Q \quad \mbox{ or } \quad L^{-T} Q,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="369" HEIGHT="30" BORDER="0"
+ SRC="img174.gif"
+ ALT="\begin{displaymath}
+C = X^T A X, \quad \mbox{ where } X = U^{-1} Q \quad \mbox{ or } \quad L^{-T} Q,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>Q</I></B> is an orthogonal matrix chosen to ensure that <B><I>C</I></B> has bandwidth
+no greater than that of <B><I>A</I></B>.
+<B><I>Q</I></B> is determined as a product of Givens rotations.
+<A NAME="3576"></A>
+This is known as Crawford's algorithm<A NAME="3577"></A>
+<A NAME="3578"></A>
+(see Crawford&nbsp;[<A
+ HREF="node151.html#crawford">19</A>]).
+If <B><I>X</I></B> is required, it must be formed explicitly by the reduction routine.
+
+<P>
+A further refinement is possible when <B><I>A</I></B> and <B><I>B</I></B> are banded, which halves
+the amount of work required to form <B><I>C</I></B> (see Wilkinson&nbsp;[<A
+ HREF="node151.html#wilkinsona">104</A>]).
+Instead of the standard Cholesky factorization of <B><I>B</I></B> as <B><I>U</I><SUP><I>T</I></SUP> <I>U</I></B> or <B><I>L L</I><SUP><I>T</I></SUP></B>,
+we use a ``split Cholesky'' factorization <B><I>B</I> = <I>S</I><SUP><I>T</I></SUP> <I>S</I></B>
+<A NAME="3581"></A>
+<A NAME="3582"></A>
+(<B><I>S</I><SUP><I>H</I></SUP> <I>S</I></B> if <B><I>B</I></B> is complex), where:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+S = \left( \begin{array}{cc}
+U_{11} &   \\
+M_{21} & L_{22} \\
+\end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="144" HEIGHT="54" BORDER="0"
+ SRC="img175.gif"
+ ALT="\begin{displaymath}
+S = \left( \begin{array}{cc}
+U_{11} &amp; \\
+M_{21} &amp; L_{22} \\
+\end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+with <B><I>U</I><SUB>11</SUB></B> upper triangular and <B><I>L</I><SUB>22</SUB></B> lower triangular of
+order approximately <B><I>n</I>/2</B>;
+<B><I>S</I></B> has the same bandwidth as <B><I>B</I></B>. After <B><I>B</I></B> has been factorized in this way
+by the routine
+xPBSTF<A NAME="3591"></A><A NAME="3592"></A><A NAME="3593"></A><A NAME="3594"></A>,
+the reduction of the banded generalized
+problem 
+<!-- MATH
+ $A z = \lambda B z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.gif"
+ ALT="$A z = \lambda B z$">
+to a banded standard problem 
+<!-- MATH
+ $C y = \lambda y$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img173.gif"
+ ALT="$Cy=\lambda y$">
+is performed by the routine xSBGST<A NAME="3595"></A><A NAME="3596"></A>
+(or xHBGST<A NAME="3597"></A><A NAME="3598"></A> for complex matrices).
+This routine implements a vectorizable form of the algorithm, suggested by
+Kaufman&nbsp;[<A
+ HREF="node151.html#vbandr">77</A>].
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabcompgeig"></A>
+<DIV ALIGN="CENTER">
+<A NAME="3601"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.14:</STRONG>
+Computational routines for the generalized symmetric definite eigenproblem</CAPTION>
+<TR><TD ALIGN="LEFT">Type of matrix</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and storage scheme</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">reduction</TD>
+<TD ALIGN="LEFT">SSYGST<A NAME="3613"></A></TD>
+<TD ALIGN="LEFT">CHEGST<A NAME="3614"></A></TD>
+<TD ALIGN="LEFT">DSYGST<A NAME="3615"></A></TD>
+<TD ALIGN="LEFT">ZHEGST<A NAME="3616"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">reduction</TD>
+<TD ALIGN="LEFT">SSPGST<A NAME="3617"></A></TD>
+<TD ALIGN="LEFT">CHPGST<A NAME="3618"></A></TD>
+<TD ALIGN="LEFT">DSPGST<A NAME="3619"></A></TD>
+<TD ALIGN="LEFT">ZHPGST<A NAME="3620"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">split Cholesky</TD>
+<TD ALIGN="LEFT">SPBSTF<A NAME="3621"></A></TD>
+<TD ALIGN="LEFT">CPBSTF<A NAME="3622"></A></TD>
+<TD ALIGN="LEFT">DPBSTF<A NAME="3623"></A></TD>
+<TD ALIGN="LEFT">ZPBSTF<A NAME="3624"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">banded</TD>
+<TD ALIGN="LEFT">factorization</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">reduction</TD>
+<TD ALIGN="LEFT">SSBGST<A NAME="3625"></A></TD>
+<TD ALIGN="LEFT">DSBGST<A NAME="3626"></A></TD>
+<TD ALIGN="LEFT">CHBGST<A NAME="3627"></A></TD>
+<TD ALIGN="LEFT">ZHBGST<A NAME="3628"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4905"
+ HREF="node55.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4899"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4893"
+ HREF="node53.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4901"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4903"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4906"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Up:</B> <A NAME="tex2html4900"
+ HREF="node37.html">Computational Routines</A>
+<B> Previous:</B> <A NAME="tex2html4894"
+ HREF="node53.html">Singular Value Decomposition</A>
+ &nbsp <B>  <A NAME="tex2html4902"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4904"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

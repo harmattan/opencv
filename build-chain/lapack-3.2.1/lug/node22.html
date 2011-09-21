@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Levels of Routines</TITLE>
+<META NAME="description" CONTENT="Levels of Routines">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node23.html">
+<LINK REL="previous" HREF="node21.html">
+<LINK REL="up" HREF="node21.html">
+<LINK REL="next" HREF="node23.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4424"
+ HREF="node23.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4418"
+ HREF="node21.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4412"
+ HREF="node21.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4420"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4422"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4425"
+ HREF="node23.html">Data Types and Precision</A>
+<B> Up:</B> <A NAME="tex2html4419"
+ HREF="node21.html">Structure of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html4413"
+ HREF="node21.html">Structure of LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html4421"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4423"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03221000000000000000"></A><A NAME="subseclevels"></A>
+<BR>
+Levels of Routines
+</H2>
+
+<P>
+The subroutines in LAPACK are classified as follows:
+
+<P>
+
+<UL><LI><B>driver</B> routines<A NAME="1170"></A>, each of which solves a complete problem,
+for example solving a system of linear equations, or computing the
+eigenvalues of a real symmetric matrix.
+Users are recommended to use a driver routine if there is one that
+meets their requirements. They are listed in Section&nbsp;<A HREF="node25.html#secdrivers">2.3</A>.
+
+<P>
+
+<LI><B>computational</B> routines<A NAME="1173"></A>, each of which performs a distinct
+computational task, for example an <I>LU</I> factorization,
+or the reduction of a real symmetric matrix to tridiagonal form.
+Each driver routine calls a
+sequence of computational routines. Users (especially software developers)
+may need to call
+computational routines directly to perform tasks, or sequences of tasks,
+that cannot conveniently
+be performed by the driver routines. They are listed in
+Section&nbsp;<A HREF="node37.html#seccomp">2.4</A>.
+
+<P>
+
+<LI><B>auxiliary</B> routines<A NAME="1176"></A>, which in turn can be classified as follows:
+
+<P>
+
+<UL><LI>routines that perform subtasks of block algorithms -- in particular,
+routines that implement unblocked versions of the algorithms;
+
+<P>
+
+<LI>routines that perform some commonly required low-level
+computations, for example scaling a matrix, computing a matrix-norm,
+or generating an elementary Householder matrix; some of
+these may be of interest to numerical analysts or software developers and
+could be considered for future additions to the BLAS;
+
+<P>
+
+<LI>a few extensions to the BLAS, such as routines for applying complex plane
+rotations, or matrix-vector operations involving complex symmetric
+matrices (the BLAS themselves are not strictly speaking part of LAPACK).
+
+<P>
+
+</UL>
+
+<P>
+
+</UL>
+
+<P>
+Both driver routines and computational routines are fully described in
+this Users' Guide, but not the auxiliary routines.
+A list of the auxiliary routines, with brief descriptions
+of their functions, is given in Appendix&nbsp;<A HREF="node143.html#chapauxil">B</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4424"
+ HREF="node23.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4418"
+ HREF="node21.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4412"
+ HREF="node21.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4420"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4422"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4425"
+ HREF="node23.html">Data Types and Precision</A>
+<B> Up:</B> <A NAME="tex2html4419"
+ HREF="node21.html">Structure of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html4413"
+ HREF="node21.html">Structure of LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html4421"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4423"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

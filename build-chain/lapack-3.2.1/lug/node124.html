@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Band Storage</TITLE>
+<META NAME="description" CONTENT="Band Storage">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node125.html">
+<LINK REL="previous" HREF="node123.html">
+<LINK REL="up" HREF="node121.html">
+<LINK REL="next" HREF="node125.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5961"
+ HREF="node125.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5955"
+ HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5949"
+ HREF="node123.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5957"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5959"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5962"
+ HREF="node125.html">Tridiagonal and Bidiagonal Matrices</A>
+<B> Up:</B> <A NAME="tex2html5956"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Previous:</B> <A NAME="tex2html5950"
+ HREF="node123.html">Packed Storage</A>
+ &nbsp <B>  <A NAME="tex2html5958"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5960"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03533000000000000000"></A><A NAME="subsecband"></A>
+<BR>
+Band Storage
+</H2>
+
+<P>
+An <B><I>m</I></B>-by-<B><I>n</I></B> band matrix<A NAME="19825"></A> with <B><I>kl</I></B> subdiagonals
+and <B><I>ku</I></B> superdiagonals may be
+stored compactly in a two-dimensional array with <B><I>kl</I>+<I>ku</I>+1</B> rows and <B><I>n</I></B> columns.
+Columns of the matrix are stored in corresponding columns of the
+array, and diagonals of the matrix are stored in rows of the array.
+This storage scheme should be used in practice only if 
+<!-- MATH
+ $kl, ku \ll \min(m,n)$
+ -->
+<IMG
+ WIDTH="150" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img928.gif"
+ ALT="$kl, ku \ll \min(m,n)$">,
+although LAPACK routines work correctly for all values of <B><I>kl</I></B> and <B><I>ku</I></B>.
+In LAPACK, arrays that hold matrices in band storage have names
+ending in `B'.
+
+<P>
+To be precise, <B><I>a</I><SUB><I>ij</I></SUB></B> is stored in AB(<B><I>ku</I>+1+<I>i</I>-<I>j</I>,<I>j</I></B>) for
+
+<!-- MATH
+ $\max(1,j-ku) \leq i \leq \min(m,j+kl)$
+ -->
+<IMG
+ WIDTH="279" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img929.gif"
+ ALT="$\max(1,j-ku) \leq i \leq \min(m,j+kl)$">.
+For example, when <B><I>m</I> = <I>n</I> = 5</B>, <B><I>kl</I> = 2</B> and <B><I>ku</I> = 1</B>:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Band matrix <B><I>A</I></B></TD>
+<TD ALIGN="CENTER">Band storage in array AB</TD>
+</TR>
+<TR><TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{ccccc}
+a_{11} & a_{12} &        &        &        \\
+a_{21} & a_{22} & a_{23} &        &        \\
+a_{31} & a_{32} & a_{33} & a_{34} &        \\
+       & a_{42} & a_{43} & a_{44} & a_{45} \\
+       &        & a_{53} & a_{54} & a_{55} 
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="229" HEIGHT="125" ALIGN="MIDDLE" BORDER="0"
+ SRC="img930.gif"
+ ALT="$
+\left( \begin{array}{ccccc}
+a_{11} &amp; a_{12} &amp; &amp; &amp; \\
+a_{21} &amp; a_{22} &amp; a_{23}...
+..._{43} &amp; a_{44} &amp; a_{45} \\
+&amp; &amp; a_{53} &amp; a_{54} &amp; a_{55}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{ccccc}
+ \ast  & a_{12} & a_{23} & a_{34} & a_{45} \\
+a_{11} & a_{22} & a_{33} & a_{44} & a_{55} \\
+a_{21} & a_{32} & a_{43} & a_{54} &  \ast  \\
+a_{31} & a_{42} & a_{53} &  \ast  &  \ast 
+\end{array}$
+ -->
+<IMG
+ WIDTH="202" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img931.gif"
+ ALT="$
+\begin{array}{ccccc}
+\ast &amp; a_{12} &amp; a_{23} &amp; a_{34} &amp; a_{45} \\
+a_{11} &amp; a_...
+... a_{43} &amp; a_{54} &amp; \ast \\
+a_{31} &amp; a_{42} &amp; a_{53} &amp; \ast &amp; \ast
+\end{array}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+The elements marked <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img914.gif"
+ ALT="$\ast$">
+in the upper left and lower right
+corners of the array AB need not be set, and are not referenced by
+LAPACK routines.
+
+<P>
+<B>Note:</B> when a band matrix is supplied for <B><I>LU</I></B> factorization,
+space<A NAME="19871"></A> must be allowed to store an 
+additional <B><I>kl</I></B> superdiagonals,
+generated by fill-in as a result of row interchanges.
+This means that the matrix is stored according to the above scheme,
+but with <B><I>kl</I> + <I>ku</I></B> superdiagonals.
+
+<P>
+Triangular band matrices are stored in the same format, with either
+<B><I>kl</I> = 0</B> if upper triangular, or <B><I>ku</I> = 0</B> if
+lower triangular.
+
+<P>
+For symmetric or Hermitian band matrices with <B><I>kd</I></B> subdiagonals or 
+superdiagonals, only the upper or lower triangle (as specified by
+UPLO) need be stored:
+
+<P>
+
+<UL><LI>if UPLO = `U', <B><I>a</I><SUB><I>ij</I></SUB></B> is stored in AB(<B><I>kd</I>+1+<I>i</I>-<I>j</I>,<I>j</I></B>) for 
+
+<!-- MATH
+ $\max(1,j-kd) \leq i \leq j$
+ -->
+<IMG
+ WIDTH="176" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img932.gif"
+ ALT="$\max(1,j-kd) \leq i \leq j$">;
+
+<P>
+
+<LI>if UPLO = `L', <B><I>a</I><SUB><I>ij</I></SUB></B> is stored in AB(<B>1+<I>i</I>-<I>j</I>,<I>j</I></B>) for 
+
+<!-- MATH
+ $j \leq i \leq \min(n,j+kd)$
+ -->
+<IMG
+ WIDTH="174" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img933.gif"
+ ALT="$j \leq i \leq \min(n,j+kd)$">.
+
+<P>
+
+</UL>
+
+<P>
+For example, when <B><I>n</I> = 5</B> and <B><I>kd</I> = 2</B>:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">UPLO</TD>
+<TD ALIGN="CENTER">Hermitian band matrix <B><I>A</I></B></TD>
+<TD ALIGN="CENTER">Band storage in array AB</TD>
+</TR>
+<TR><TD ALIGN="CENTER">`U'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{ccccc}
+a_{11}       & a_{12}       & a_{13}       &              &        \\
+\bar{a}_{12} & a_{22}       & a_{23}       & a_{24}       &        \\
+\bar{a}_{13} & \bar{a}_{23} & a_{33}       & a_{34}       & a_{35} \\
+             & \bar{a}_{24} & \bar{a}_{34} & a_{44}       & a_{45} \\
+             &              & \bar{a}_{35} & \bar{a}_{45} & a_{55}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="229" HEIGHT="125" ALIGN="MIDDLE" BORDER="0"
+ SRC="img934.gif"
+ ALT="$
+\left( \begin{array}{ccccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; &amp; \\
+\bar{a}_{12} &amp; a_...
+...44} &amp; a_{45} \\
+&amp; &amp; \bar{a}_{35} &amp; \bar{a}_{45} &amp; a_{55}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{ccccc}
+ \ast  &  \ast  & a_{13} & a_{24} & a_{35} \\
+ \ast  & a_{12} & a_{23} & a_{34} & a_{45} \\
+a_{11} & a_{22} & a_{33} & a_{44} & a_{55}
+\end{array}$
+ -->
+<IMG
+ WIDTH="202" HEIGHT="81" ALIGN="MIDDLE" BORDER="0"
+ SRC="img935.gif"
+ ALT="$
+\begin{array}{ccccc}
+\ast &amp; \ast &amp; a_{13} &amp; a_{24} &amp; a_{35} \\
+\ast &amp; a_{12...
+...3} &amp; a_{34} &amp; a_{45} \\
+a_{11} &amp; a_{22} &amp; a_{33} &amp; a_{44} &amp; a_{55}
+\end{array}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">`L'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{ccccc}
+a_{11} & \bar{a}_{21} & \bar{a}_{31} &              &              \\
+a_{21} & a_{22}       & \bar{a}_{32} & \bar{a}_{42} &              \\
+a_{31} & a_{32}       & a_{33}       & \bar{a}_{43} & \bar{a}_{53} \\
+       & a_{42}       & a_{43}       & a_{44}       & \bar{a}_{54} \\
+       &              & a_{53}       & a_{54}       & a_{55}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="229" HEIGHT="125" ALIGN="MIDDLE" BORDER="0"
+ SRC="img936.gif"
+ ALT="$
+\left( \begin{array}{ccccc}
+a_{11} &amp; \bar{a}_{21} &amp; \bar{a}_{31} &amp; &amp; \\
+a_{21...
+... &amp; a_{44} &amp; \bar{a}_{54} \\
+&amp; &amp; a_{53} &amp; a_{54} &amp; a_{55}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{ccccc}
+a_{11} & a_{22} & a_{33} & a_{44} & a_{55} \\
+a_{21} & a_{32} & a_{43} & a_{54} &  \ast  \\
+a_{31} & a_{42} & a_{53} &  \ast  &  \ast 
+\end{array}$
+ -->
+<IMG
+ WIDTH="202" HEIGHT="81" ALIGN="MIDDLE" BORDER="0"
+ SRC="img937.gif"
+ ALT="$
+\begin{array}{ccccc}
+a_{11} &amp; a_{22} &amp; a_{33} &amp; a_{44} &amp; a_{55} \\
+a_{21} &amp; a...
+... a_{43} &amp; a_{54} &amp; \ast \\
+a_{31} &amp; a_{42} &amp; a_{53} &amp; \ast &amp; \ast
+\end{array}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+EISPACK<A NAME="19969"></A> routines use a different storage scheme for band matrices,
+in which rows of the matrix are stored in corresponding rows of the
+array, and diagonals of the matrix are stored in columns of the array
+(see Appendix&nbsp;<A HREF="node146.html#chaplineis">D</A>).
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5961"
+ HREF="node125.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5955"
+ HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5949"
+ HREF="node123.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5957"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5959"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5962"
+ HREF="node125.html">Tridiagonal and Bidiagonal Matrices</A>
+<B> Up:</B> <A NAME="tex2html5956"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Previous:</B> <A NAME="tex2html5950"
+ HREF="node123.html">Packed Storage</A>
+ &nbsp <B>  <A NAME="tex2html5958"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5960"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

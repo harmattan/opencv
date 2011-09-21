@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for the Generalized Symmetric Definite
+Eigenproblem</TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for the Generalized Symmetric Definite
+Eigenproblem">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node98.html">
+<LINK REL="up" HREF="node98.html">
+<LINK REL="next" HREF="node100.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5577"
+ HREF="node100.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5571"
+ HREF="node98.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5567"
+ HREF="node98.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5573"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5575"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5578"
+ HREF="node100.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5572"
+ HREF="node98.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5568"
+ HREF="node98.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5574"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5576"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION034101000000000000000"></A><A NAME="secGSEPFurtherDetails"></A>
+<BR>
+Further Details:  Error Bounds for the Generalized Symmetric Definite
+Eigenproblem
+</H2>
+
+<P>
+The error analysis of the driver routines for the generalized symmetric definite
+eigenproblem goes as follows.
+In all cases
+
+<!-- MATH
+ ${\rm gap}_i = \min_{j \neq i} | \lambda_i - \lambda_j |$
+ -->
+<IMG
+ WIDTH="178" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img551.gif"
+ ALT="${\rm gap}_i = \min_{j \neq i} \vert \lambda_i - \lambda_j \vert$">
+is
+the <B>absolute gap</B><A NAME="11967"></A><A NAME="11968"></A>
+between <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+and the nearest other eigenvalue.
+<A NAME="11969"></A>
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD><IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">.
+The computed eigenvalues 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+can differ
+from true eigenvalues <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+by at most about
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|\hat{\lambda}_i - \lambda_i | \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}p(n) \epsilon
+\cdot ( \|B^{-1}\|_2 \|A\|_2  + \kappa_2 (B) \cdot | \hat{\lambda}_i | )
+ = {\tt EERRBD}(i) \; .
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="457" HEIGHT="32" BORDER="0"
+ SRC="img700.gif"
+ ALT="\begin{displaymath}
+\vert\hat{\lambda}_i - \lambda_i \vert \mathrel{\raisebox{-....
+...B) \cdot \vert \hat{\lambda}_i \vert )
+= {\tt EERRBD}(i) \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<A NAME="11976"></A>
+<A NAME="11977"></A>
+The angular difference between the computed eigenvector
+<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img527.gif"
+ ALT="$\hat{z}_i$">
+and a true eigenvector <B><I>z</I><SUB><I>i</I></SUB></B> is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{z_i} , z_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}
+p(n) \epsilon
+\frac{\|B^{-1} \|_2 \|A\|_2 ( \kappa_2 (B) )^{1/2}
++ \kappa_2 (B) | \hat{\lambda}_i |}
+{ {\rm gap}_i } = {\tt ZERRBD}(i) \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="497" HEIGHT="51" BORDER="0"
+ SRC="img701.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{z_i} , z_i ) \mathrel{\raisebox{-.75ex}{$\math...
+... \hat{\lambda}_i \vert}
+{ {\rm gap}_i } = {\tt ZERRBD}(i) \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<DT>2.
+<DD><IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img383.gif"
+ ALT="$AB- \lambda I$">
+or 
+<!-- MATH
+ $BA - \lambda I$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img384.gif"
+ ALT="$BA- \lambda I$">.
+The computed eigenvalues 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+can differ
+from true eigenvalues <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+by at most about
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|\hat{\lambda}_i - \lambda_i | \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}p(n) \epsilon \cdot
+( \|B\|_2 \|A\|_2 + \kappa_2 (B) \cdot | \hat{\lambda}_i | )
+= {\tt EERRBD}(i) \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="457" HEIGHT="32" BORDER="0"
+ SRC="img700.gif"
+ ALT="\begin{displaymath}
+\vert\hat{\lambda}_i - \lambda_i \vert \mathrel{\raisebox{-....
+...B) \cdot \vert \hat{\lambda}_i \vert )
+= {\tt EERRBD}(i) \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<A NAME="11989"></A>
+<A NAME="11990"></A>
+
+<P>
+The angular difference between the computed eigenvector
+<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img527.gif"
+ ALT="$\hat{z}_i$">
+and a true eigenvector <B><I>z</I><SUB><I>i</I></SUB></B> is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{z_i} ,  z_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}
+p(n) \epsilon \left(
+\frac{\|B\|_2 \|A\|_2 ( \kappa_2 (B) )^{1/2}}
+{ {\rm gap}_i }
++ \kappa_2 (B) \right) = {\tt ZERRBD}(i) \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="482" HEIGHT="54" BORDER="0"
+ SRC="img702.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{z_i} , z_i ) \mathrel{\raisebox{-.75ex}{$\math...
+...
+{ {\rm gap}_i }
++ \kappa_2 (B) \right) = {\tt ZERRBD}(i) \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+</DL>
+
+<P>
+The code fragments above replace <B><I>p</I>(<I>n</I>)</B> by 1, and makes sure
+neither <TT>RCONDB</TT> nor <TT>RCONDZ</TT> is so small as to cause
+overflow when used as divisors in the expressions for error bounds.
+
+<P>
+These error bounds are large when <B><I>B</I></B> is ill-conditioned with respect to
+inversion (<IMG
+ WIDTH="50" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img703.gif"
+ ALT="$\kappa_2 (B)$">
+is large). It is often the case that the eigenvalues
+and eigenvectors are much better conditioned than indicated here.
+We mention three ways to get tighter bounds.
+The first way is effective when the diagonal entries of <B><I>B</I></B> differ
+widely in magnitude<A NAME="tex2html2412"
+ HREF="footnode.html#foot13257"><SUP>4.1</SUP></A>:
+<DL COMPACT>
+<DT>1.
+<DD><IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">.
+Let 
+<!-- MATH
+ $D = {\mbox {\rm diag}}(b_{11}^{-1/2} , \ldots , b_{nn}^{-1/2})$
+ -->
+<IMG
+ WIDTH="205" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img704.gif"
+ ALT="$D = {\mbox {\rm diag}}(b_{11}^{-1/2} , \ldots , b_{nn}^{-1/2})$">
+be a diagonal matrix.
+Then replace <B><I>B</I></B> by <B><I>DBD</I></B> and <B><I>A</I></B> by <B><I>DAD</I></B> in the above bounds.
+<DT>2.
+<DD><IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img383.gif"
+ ALT="$AB- \lambda I$">
+or 
+<!-- MATH
+ $BA - \lambda I$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img384.gif"
+ ALT="$BA- \lambda I$">.
+Let 
+<!-- MATH
+ $D = {\mbox {\rm diag}}(b_{11}^{-1/2} , \ldots , b_{nn}^{-1/2})$
+ -->
+<IMG
+ WIDTH="205" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img704.gif"
+ ALT="$D = {\mbox {\rm diag}}(b_{11}^{-1/2} , \ldots , b_{nn}^{-1/2})$">
+be a diagonal matrix.
+Then replace <B><I>B</I></B> by <B><I>DBD</I></B> and <B><I>A</I></B> by <B><I>D</I><SUP>-1</SUP><I>AD</I><SUP>-1</SUP></B> in the above bounds.
+</DL>
+
+<P>
+The second way to get tighter bounds does not actually supply guaranteed
+bounds, but its estimates are often better in practice.
+It is not guaranteed because it assumes the algorithm is backward stable,
+which is not necessarily true when <B><I>B</I></B> is ill-conditioned.
+<A NAME="12012"></A>
+<A NAME="12013"></A>
+It estimates the <B>chordal distance</B> between a
+true eigenvalue <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+and a computed eigenvalue 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">:
+<A NAME="12016"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\chi ( \hat{\lambda}_i , \lambda_i ) =
+\frac{| \hat{\lambda}_i - \lambda_i |}
+{\sqrt{1 + \hat{\lambda}_i^2} \cdot \sqrt{1 +  \lambda_i^2} }
+.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="234" HEIGHT="64" BORDER="0"
+ SRC="img705.gif"
+ ALT="\begin{displaymath}
+\chi ( \hat{\lambda}_i , \lambda_i ) =
+\frac{\vert \hat{\lam...
+...
+{\sqrt{1 + \hat{\lambda}_i^2} \cdot \sqrt{1 + \lambda_i^2} }
+.\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+To interpret this measure we write 
+<!-- MATH
+ $\lambda_i = \tan \theta$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img706.gif"
+ ALT="$\lambda_i = \tan \theta$">
+and 
+<!-- MATH
+ $\hat{\lambda}_i = \tan \hat{\theta}$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img707.gif"
+ ALT="$\hat{\lambda}_i = \tan \hat{\theta}$">.
+Then
+
+<!-- MATH
+ $\chi ( \hat{\lambda}_i , \lambda_i ) = | \sin ( \hat{\theta} - \theta ) |$
+ -->
+<IMG
+ WIDTH="177" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img708.gif"
+ ALT="$\chi ( \hat{\lambda}_i , \lambda_i ) = \vert \sin ( \hat{\theta} - \theta ) \vert$">.
+In other words, if 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+represents the one-dimensional subspace
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+consisting of the line through the origin with slope 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">,
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+represents the analogous subspace <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">,
+then
+
+<!-- MATH
+ $\chi ( \hat{\lambda}_i , \lambda_i )$
+ -->
+<IMG
+ WIDTH="68" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img709.gif"
+ ALT="$\chi ( \hat{\lambda}_i , \lambda_i )$">
+is the sine of the acute angle 
+<!-- MATH
+ $\theta ( \hat{\cal S} , {\cal S} )$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img357.gif"
+ ALT="$\theta (\hat{\cal S}, {\cal S})$">
+between these
+subspaces.
+<A NAME="12031"></A>
+<A NAME="12032"></A>
+Thus <IMG
+ WIDTH="15" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img710.gif"
+ ALT="$\chi$">
+is bounded by one, and is small when both arguments are
+large<A NAME="tex2html2413"
+ HREF="footnode.html#foot13260"><SUP>4.2</SUP></A>.
+It applies only to the first problem, <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">:
+
+<P>
+<BLOCKQUOTE>
+Suppose a computed eigenvalue 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+of <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">
+is
+the exact eigenvalue of a perturbed problem 
+<!-- MATH
+ $(A+E) - \lambda (B+F)$
+ -->
+<IMG
+ WIDTH="160" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img711.gif"
+ ALT="$(A+E) - \lambda (B+F)$">.
+Let <B><I>x</I><SUB><I>i</I></SUB></B> be the unit eigenvector (<B>|x<SUB><I>i</I></SUB>|<SUB>2</SUB>=1</B>) for the exact
+eigenvalue <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">.
+Then if <B>|E|</B> is small compared to
+<B>|A|</B>, and if <B>|F|</B> is small compared to <B>|B|</B>, we have
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\chi ( \hat{\lambda}_i , \lambda_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}
+\frac{\|E\| + \|F\|}{\sqrt{(x_i^H Ax_i )^2 + (x_i^H Bx_i )^2}} \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="287" HEIGHT="59" BORDER="0"
+ SRC="img712.gif"
+ ALT="\begin{displaymath}
+\chi ( \hat{\lambda}_i , \lambda_i ) \mathrel{\raisebox{-.75...
+...Vert F\Vert}{\sqrt{(x_i^H Ax_i )^2 + (x_i^H Bx_i )^2}} \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+Thus 
+<!-- MATH
+ $1/{\sqrt{(x_i^H Ax_i )^2 + (x_i^H Bx_i )^2}}$
+ -->
+<IMG
+ WIDTH="205" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img713.gif"
+ ALT="$1/{\sqrt{(x_i^H Ax_i )^2 + (x_i^H Bx_i )^2}}$">
+is a condition number for
+eigenvalue <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">.
+<A NAME="12040"></A>
+
+</BLOCKQUOTE>
+
+<P>
+The third way applies only to the first problem <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">,
+and only
+when <B><I>A</I></B> is positive definite. We use a different algorithm:
+<DL COMPACT>
+<DT>1.
+<DD>Compute the Cholesky factorization of <B><I>A</I> = <I>U</I><SUP><I>T</I></SUP><SUB><I>A</I></SUB> <I>U</I><SUB><I>A</I></SUB></B>, using xPOTRF.
+<DT>2.
+<DD>Compute the Cholesky factorization of <B><I>B</I> = <I>U</I><SUP><I>T</I></SUP><SUB><I>B</I></SUB> <I>U</I><SUB><I>B</I></SUB></B>, using xPOTRF.
+<DT>3.
+<DD>Compute the generalized singular value decomposition of the pair
+<B><I>U</I><SUB><I>A</I></SUB></B>, <B><I>U</I><SUB><I>B</I></SUB></B> using xTGSJA. The squares of the generalized singular
+<A NAME="12043"></A><A NAME="12044"></A><A NAME="12045"></A><A NAME="12046"></A>
+values are the desired eigenvalues.
+</DL>
+See sections&nbsp;<A HREF="node36.html#sectionGSVDdriver">2.3.5.3</A> and &nbsp;<A HREF="node59.html#sectionGSVDcomputational">2.4.9</A>
+for a discussion of the generalized singular
+value decomposition, and section&nbsp;<A HREF="node106.html#secGSVDbound">4.12</A> for a discussion of
+the relevant error bound. This approach can give a tighter error bound
+than the above bounds when <B><I>B</I></B> is ill conditioned but <B><I>A</I>+<I>B</I></B> is
+well-conditioned.
+
+<P>
+Other yet more refined algorithms and error bounds are discussed in
+[<A
+ HREF="node151.html#barlowdemmel">14</A>,<A
+ HREF="node151.html#stewartsun90">95</A>,<A
+ HREF="node151.html#wilkinson1">103</A>].
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5577"
+ HREF="node100.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5571"
+ HREF="node98.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5567"
+ HREF="node98.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5573"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5575"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5578"
+ HREF="node100.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5572"
+ HREF="node98.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5568"
+ HREF="node98.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5574"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5576"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

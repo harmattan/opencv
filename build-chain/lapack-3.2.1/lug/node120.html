@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Determining the Block Size for Block Algorithms</TITLE>
+<META NAME="description" CONTENT="Determining the Block Size for Block Algorithms">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node121.html">
+<LINK REL="previous" HREF="node110.html">
+<LINK REL="up" HREF="node109.html">
+<LINK REL="next" HREF="node121.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5899"
+ HREF="node121.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5893"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5887"
+ HREF="node119.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5895"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5897"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5900"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Up:</B> <A NAME="tex2html5894"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Previous:</B> <A NAME="tex2html5888"
+ HREF="node119.html">Error Handling and the</A>
+ &nbsp <B>  <A NAME="tex2html5896"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5898"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03520000000000000000"></A><A NAME="secblocksize"></A>
+<BR>
+Determining the Block Size for Block Algorithms
+</H1>
+
+<P>
+LAPACK routines that implement block algorithms need to determine
+what block size<A NAME="19578"></A> to use.
+The intention behind the design of LAPACK is that the choice of block size
+should be hidden from users as much as possible, but at the same time
+easily accessible to installers of the package 
+when tuning LAPACK for a particular machine.
+
+<P>
+LAPACK routines call an auxiliary enquiry function ILAENV<A NAME="19579"></A>, which returns
+the optimal block size to be used, as well as other parameters.
+The version of ILAENV<A NAME="19580"></A> supplied with the 
+package contains
+default values that led to good behavior over a reasonable
+number of our test machines, but to achieve optimal 
+performance, it may be beneficial to 
+tune ILAENV<A NAME="19581"></A> for your
+particular machine environment.
+Ideally a distinct implementation of ILAENV is needed for each
+machine environment (see also Chapter&nbsp;<A HREF="node129.html#chapinstall">6</A>).
+The optimal block size may also depend on the routine, the combination of
+option arguments (if any), and the problem dimensions. 
+
+<P>
+If ILAENV<A NAME="19583"></A> returns a block size
+of 1, then the routine performs the unblocked algorithm, calling Level 2 BLAS,
+and makes no calls to Level 3 BLAS.
+
+<P>
+Some LAPACK routines require a work array whose size is proportional to
+the block size (see subsection&nbsp;<A HREF="node117.html#subsecworkspace">5.1.7</A>). The actual length
+of the work array is supplied as an argument LWORK. The description of
+the arguments WORK and LWORK typically goes as follows:
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV><TABLE  WIDTH="634">
+<TR><TD>
+
+ 
+<DT>WORK   
+
+<DL COMPACT><DD>(workspace) REAL array, dimension (LWORK) 
+<BR>
+On exit, if INFO = 0, then WORK(1) returns the optimal LWORK.
+
+<P>
+<DT>LWORK  
+<DD>(input) INTEGER 
+<BR>
+The dimension of the array WORK.  LWORK <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+max(1,N). 
+<BR>
+For optimal performance LWORK <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+N*NB,
+        where NB is the optimal block size returned by ILAENV.
+
+</DL>
+</TD></TR>
+</TABLE>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+The routine determines the block size to be used by the following steps:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>the optimal block size is determined by calling ILAENV;
+<P>
+<DT>2.
+<DD>if the value of LWORK indicates that enough workspace has been
+supplied, the routine uses the optimal block size;
+
+<P>
+<DT>3.
+<DD>otherwise, the routine determines the largest block size that
+can be used with the supplied amount of workspace;
+
+<P>
+<DT>4.
+<DD>if this new block size does not fall below a
+threshold value (also returned by ILAENV), the routine uses the new
+value;
+
+<P>
+<DT>5.
+<DD>otherwise, the routine uses the unblocked algorithm.
+</DL>
+
+<P>
+The minimum value of LWORK that would be needed to use
+the optimal block size, is returned in WORK(1).
+
+<P>
+Thus, the routine uses the largest block size allowed by the amount
+of workspace supplied, as long as this is likely to
+give better performance than the unblocked algorithm.
+WORK(1) is not always a simple formula in terms of N and NB.
+
+<P>
+The specification of LWORK gives the minimum value for the
+routine to return correct results. If the supplied value is less than
+the minimum -- indicating that there is insufficient workspace to perform
+the unblocked algorithm -- the value of LWORK is regarded as an illegal value,
+and is treated like any other illegal argument value
+(see subsection&nbsp;<A HREF="node119.html#subsecinfo">5.1.9</A>).
+
+<P>
+If in doubt about how much workspace to supply, users should supply a generous
+amount (assume a block size of 64, say), 
+and then examine the value of WORK(1) on exit.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5899"
+ HREF="node121.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5893"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5887"
+ HREF="node119.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5895"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5897"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5900"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Up:</B> <A NAME="tex2html5894"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Previous:</B> <A NAME="tex2html5888"
+ HREF="node119.html">Error Handling and the</A>
+ &nbsp <B>  <A NAME="tex2html5896"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5898"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

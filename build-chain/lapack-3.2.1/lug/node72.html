@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Accuracy and Stability</TITLE>
+<META NAME="description" CONTENT="Accuracy and Stability">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node109.html">
+<LINK REL="previous" HREF="node60.html">
+<LINK REL="up" HREF="node5.html">
+<LINK REL="next" HREF="node73.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5167"
+ HREF="node73.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5161"
+ HREF="node5.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5155"
+ HREF="node71.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5163"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5165"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5168"
+ HREF="node73.html">Sources of Error in</A>
+<B> Up:</B> <A NAME="tex2html5162"
+ HREF="node5.html">Guide</A>
+<B> Previous:</B> <A NAME="tex2html5156"
+ HREF="node71.html">LAPACK Benchmark</A>
+ &nbsp <B>  <A NAME="tex2html5164"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5166"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03400000000000000000"></A><A NAME="chapaccstab"></A>
+<BR>
+Accuracy and Stability
+</H1>
+
+<P>
+
+<P>
+
+<P>
+
+<P>
+In addition to providing faster routines than previously available,
+LAPACK provides more comprehensive and better<A NAME="9688"></A>
+error<A NAME="9689"></A> bounds<A NAME="9690"></A>.
+Our goal is to provide error bounds for most quantities computed by LAPACK.
+
+<P>
+In this chapter we explain our overall approach to obtaining error bounds,
+and provide enough information to use the software.
+The comments at the beginning of the individual routines should be consulted
+for more details.
+It is beyond the scope of this chapter to justify all the bounds
+we present. Instead, we give references to the literature.
+For example, standard material on error analysis can be found
+in [<A
+ HREF="node151.html#demmelMA221">25</A>,<A
+ HREF="node151.html#GVL2">55</A>,<A
+ HREF="node151.html#higham96">67</A>,<A
+ HREF="node151.html#stewartsun90">95</A>].
+
+<P>
+In order to make this chapter easy to read, we have labeled sections
+not essential for a first reading as <B>Further Details</B>. The sections
+not labeled as <B>Further Details</B> should provide all the information
+needed to understand and use the main error bounds computed by
+LAPACK.  The <B>Further Details</B> sections provide mathematical background,
+references, and tighter but more expensive error bounds, and may be read later.
+
+<P>
+In section&nbsp;<A HREF="node73.html#secroundoff">4.1</A>
+we discuss the sources of numerical error, in particular roundoff
+error.
+Section&nbsp;<A HREF="node75.html#secnormnotation">4.2</A> discusses how to measure errors,
+as well as some standard notation.
+Section&nbsp;<A HREF="node77.html#secwhereerrorboundscomefrom">4.3</A> discusses further details
+of how error bounds are derived.
+Sections&nbsp;<A HREF="node80.html#secAx_b">4.4</A> through <A HREF="node106.html#secGSVDbound">4.12</A> present error bounds
+for linear equations, linear least squares problems,
+generalized linear least squares problems,
+the symmetric eigenproblem,
+the nonsymmetric eigenproblem,
+the singular value decomposition,
+the generalized symmetric definite eigenproblem,
+the generalized nonsymmetric eigenproblem
+and the
+generalized (or quotient) singular value decomposition respectively.
+Section&nbsp;<A HREF="node108.html#secfastblas">4.13</A> discusses the impact of fast
+Level 3 BLAS<A NAME="9701"></A> on
+the accuracy<A NAME="9702"></A> of LAPACK routines.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5169"
+ HREF="node73.html">Sources of Error in Numerical Calculations</A>
+<UL>
+<LI><A NAME="tex2html5170"
+ HREF="node74.html">Further Details:  Floating Point Arithmetic</A>
+</UL>
+<LI><A NAME="tex2html5171"
+ HREF="node75.html">How to Measure Errors</A>
+<UL>
+<LI><A NAME="tex2html5172"
+ HREF="node76.html">Further Details:  How to Measure Errors</A>
+</UL>
+<LI><A NAME="tex2html5173"
+ HREF="node77.html">Further Details:  How Error Bounds Are Derived</A>
+<UL>
+<LI><A NAME="tex2html5174"
+ HREF="node78.html">Standard Error Analysis</A>
+<LI><A NAME="tex2html5175"
+ HREF="node79.html">Improved Error Bounds</A>
+</UL>
+<LI><A NAME="tex2html5176"
+ HREF="node80.html">Error Bounds for Linear Equation Solving</A>
+<UL>
+<LI><A NAME="tex2html5177"
+ HREF="node81.html">Further Details:  Error Bounds for Linear Equation Solving</A>
+</UL>
+<LI><A NAME="tex2html5178"
+ HREF="node82.html">Error Bounds for Linear Least Squares Problems</A>
+<UL>
+<LI><A NAME="tex2html5179"
+ HREF="node83.html">Further Details:  Error Bounds for Linear Least Squares
+Problems</A>
+</UL>
+<LI><A NAME="tex2html5180"
+ HREF="node84.html">Error Bounds for Generalized Least Squares Problems</A>
+<UL>
+<LI><A NAME="tex2html5181"
+ HREF="node85.html">Linear Equality Constrained Least Squares Problem</A>
+<UL>
+<LI><A NAME="tex2html5182"
+ HREF="node86.html">Further Details:
+Error Bounds for Linear Equality Constrained Least Squares Problems</A>
+</UL>
+<LI><A NAME="tex2html5183"
+ HREF="node87.html">General Linear Model Problem</A>
+<UL>
+<LI><A NAME="tex2html5184"
+ HREF="node88.html">Further Details:  Error Bounds for General Linear Model Problems</A>
+</UL>
+</UL>
+<LI><A NAME="tex2html5185"
+ HREF="node89.html">Error Bounds for the Symmetric Eigenproblem </A>
+<UL>
+<LI><A NAME="tex2html5186"
+ HREF="node90.html">Further Details:  Error Bounds for the Symmetric Eigenproblem </A>
+</UL>
+<LI><A NAME="tex2html5187"
+ HREF="node91.html">Error Bounds for the Nonsymmetric Eigenproblem </A>
+<UL>
+<LI><A NAME="tex2html5188"
+ HREF="node92.html">Further Details:  Error Bounds for the Nonsymmetric Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html5189"
+ HREF="node93.html">Overview</A>
+<LI><A NAME="tex2html5190"
+ HREF="node94.html">Balancing and Conditioning</A>
+<LI><A NAME="tex2html5191"
+ HREF="node95.html">Computing <B><I>s</I></B> and <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$"></A>
+</UL>
+</UL>
+<LI><A NAME="tex2html5192"
+ HREF="node96.html">Error Bounds for the Singular Value Decomposition</A>
+<UL>
+<LI><A NAME="tex2html5193"
+ HREF="node97.html">Further Details:  Error Bounds for the Singular Value Decomposition</A>
+</UL>
+<LI><A NAME="tex2html5194"
+ HREF="node98.html">Error Bounds for the Generalized Symmetric Definite
+Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html5195"
+ HREF="node99.html">Further Details:  Error Bounds for the Generalized Symmetric Definite
+Eigenproblem</A>
+</UL>
+<LI><A NAME="tex2html5196"
+ HREF="node100.html">Error Bounds for the Generalized Nonsymmetric Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html5197"
+ HREF="node101.html">Further Details: Error Bounds for the Generalized
+Nonsymmetric Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html5198"
+ HREF="node102.html">Overview</A>
+<LI><A NAME="tex2html5199"
+ HREF="node103.html">Balancing and Conditioning</A>
+<LI><A NAME="tex2html5200"
+ HREF="node104.html">Computing <B><I>s</I><SUB><I>i</I></SUB></B>, <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">,
+<IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">
+and
+<IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">,
+<IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$"></A>
+<LI><A NAME="tex2html5201"
+ HREF="node105.html">Singular Eigenproblems</A>
+</UL>
+</UL>
+<LI><A NAME="tex2html5202"
+ HREF="node106.html">Error Bounds for the Generalized Singular Value Decomposition</A>
+<UL>
+<LI><A NAME="tex2html5203"
+ HREF="node107.html">Further Details:  Error Bounds for the Generalized Singular Value Decomposition</A>
+</UL>
+<LI><A NAME="tex2html5204"
+ HREF="node108.html">Error Bounds for Fast Level 3 BLAS</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5167"
+ HREF="node73.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5161"
+ HREF="node5.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5155"
+ HREF="node71.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5163"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5165"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5168"
+ HREF="node73.html">Sources of Error in</A>
+<B> Up:</B> <A NAME="tex2html5162"
+ HREF="node5.html">Guide</A>
+<B> Previous:</B> <A NAME="tex2html5156"
+ HREF="node71.html">LAPACK Benchmark</A>
+ &nbsp <B>  <A NAME="tex2html5164"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5166"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,92 @@
+.\" audiofile-config - script to get information about libaudiofile
+.\" Copyright (c) 1999  Roland Rosenfeld <roland@debian.org>
+.\"               
+.\" This manual page is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc.,59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+.\"
+.\" This manual page is written especially for Debian Linux.
+.\"
+.TH AUDIOFILE-CONFIG 1 "June 1999" "Debian Project" "Debian GNU/Linux"
+.SH NAME
+audiofile-config \- script to get information about libaudiofile
+.SH SYNOPSIS
+.B audiofile-config 
+.BI [--prefix[= DIR ]]
+.BI [--exec-prefix[= DIR ]]
+.B [--version]
+.B [--cflags]
+.B [--libs]
+.SH DESCRIPTION
+.B audiofile-config
+is a tool that is used to configure to determine the compiler and
+linker flags that should be used to compile and link programs that use
+.BR libaudiofile .
+.IR Note :
+.B audiofile-config
+is provided for compatibility with legacy software only.  Current
+projects should use
+.B pkg-config
+instead!
+.SH OPTIONS
+.TP
+.B --version
+Print the currently installed version of 
+.B libaudiofile
+on the standard output.
+.TP
+.B --libs
+Print the linker flags that are necessary to link a program with
+.BR libaudiofile .
+.TP
+.B --cflags
+Print the compiler flags that are necessary to compile a program with 
+.BR libaudiofile .
+.TP
+.BI  --prefix= PREFIX
+If specified, use 
+.I PREFIX
+instead of the installation prefix that 
+.B libaudiofile
+was built with when computing the output for the 
+.B --cflags
+and
+.B --libs
+options. This option is also used for the exec prefix if
+.B --exec-prefix
+was not specified. This option must be specified before any
+.B --libs
+or 
+.B --cflags
+options.
+.TP
+.BI --exec-prefix= PREFIX
+If specified, use 
+.I PREFIX
+instead of the installation exec prefix that libaudiofile was built
+with when computing the output for the 
+.B --cflags
+and 
+.B --libs
+options. This option must be specified before any
+.B --libs
+or
+.B --cflags
+options.
+.SH "SEE ALSO"
+.IR pkg-config (1).
+.SH AUTHOR
+.B audiofile-config was written by Michael Pruett <michael@68k.org>.
+.PP
+This manual page was created by Roland Rosenfeld <roland@spinnaker.de>
+for the Debian GNU/Linux system (but may be used by others).

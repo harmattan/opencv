@@ -1,0 +1,9 @@
+Document: liblapack-doc.faq
+Title: Lapack FAQ
+Author: J. Dongarra, et. al.
+Abstract: Frequently Asked Questions about Lapack
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/liblapack-doc/faq.html
+Files: /usr/share/doc/liblapack-doc/faq.html

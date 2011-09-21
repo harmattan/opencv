@@ -1,0 +1,73 @@
+#! /usr/bin/make -f
+
+include /usr/share/dpatch/dpatch.make
+
+.PHONY: build clean binary binary-indep binary-arch
+
+DEB_HOST_GNU_TYPE=$(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE=$(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+ifneq ($(DEB_HOST_GNU_TYPE),$(DEB_BUILD_GNU_TYPE))
+CROSS=CC=$(DEB_HOST_GNU_TYPE)-gcc
+else
+CROSS=
+endif
+
+ifneq (,$(filter arm%,$(DEB_HOST_ARCH)))
+MULTYPE=''
+else
+MULTYPE='-DUSE_FLOAT_MUL'
+endif
+
+build: build-stamp
+build-stamp: patch-stamp
+	dh_testdir
+	$(MAKE) $(CROSS) CCFLAGS='-c -g -O2 -fPIC -Wall -D_GNU_SOURCE -D_REENTRANT -DNeedFunctionPrototypes=1 -DWAV49' MULHACK=$(MULTYPE) all
+	touch build-stamp
+
+clean: unpatch
+	dh_testdir
+	$(MAKE) clean
+	rm -f lib/*
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	mkdir -p debian/tmp/usr/lib debian/tmp/usr/bin
+	$(MAKE) $(CROSS) INSTALL_ROOT=debian/tmp/usr GSM_INSTALL_INC=debian/libgsm1-dev/usr/include/gsm GSM_INSTALL_MAN=debian/libgsm1-dev/usr/share/man/man3 TOAST_INSTALL_MAN=debian/libgsm-tools/usr/share/man/man1 install
+	ln -s gsm/gsm.h debian/libgsm1-dev/usr/include/gsm.h
+	cp inc/*.h debian/libgsm1-dev/usr/include/gsm
+	mv lib/*so debian/libgsm1-dev/usr/lib
+	mv lib/*so.* debian/libgsm1/usr/lib
+	ln -s toast.1 debian/libgsm-tools/usr/share/man/man1/tcat.1
+	ln -s toast.1 debian/libgsm-tools/usr/share/man/man1/untoast.1
+	ln -s gsm.3 debian/libgsm1-dev/usr/share/man/man3/gsm_create.3
+	ln -s gsm.3 debian/libgsm1-dev/usr/share/man/man3/gsm_destroy.3
+	ln -s gsm.3 debian/libgsm1-dev/usr/share/man/man3/gsm_decode.3
+	ln -s gsm.3 debian/libgsm1-dev/usr/share/man/man3/gsm_encode.3
+	ln -s gsm_explode.3 debian/libgsm1-dev/usr/share/man/man3/gsm_implode.3
+
+	dh_install
+
+binary:	binary-indep binary-arch
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installmime
+	dh_installdocs -plibgsm1 -plibgsm-tools
+	dh_installchangelogs -plibgsm1 -plibgsm-tools -A ChangeLog
+	ln -sf libgsm1 debian/libgsm1-dev/usr/share/doc/libgsm1-dev
+	ln -sf libgsm1 debian/libgsm1-dbg/usr/share/doc/libgsm1-dbg
+	dh_strip --dbg-package=libgsm1-dbg
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs -V
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb

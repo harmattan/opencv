@@ -1,0 +1,128 @@
+#! /bin/sh -e
+## 10_warning_fixes.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add misc includes in regression tests to fix compiler warnings.
+
+if [ $# -lt 1 ]; then
+    echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch} ${2:+-d $2}"
+
+case "$1" in
+    -patch) patch -p1 ${patch_opts} < $0;;
+    -unpatch) patch -R -p1 ${patch_opts} < $0;;
+    *)
+        echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+        exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -urNad /home/kobras/src/debian/audiofile/test/error.c audiofile/test/error.c
+--- /home/kobras/src/debian/audiofile/test/error.c	2003-09-28 16:17:11.000000000 +0200
++++ audiofile/test/error.c	2004-03-11 12:00:30.000000000 +0100
+@@ -25,6 +25,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
+ #include <audiofile.h>
+ 
+ int expectedError;
+diff -urNad /home/kobras/src/debian/audiofile/test/pipe.c audiofile/test/pipe.c
+--- /home/kobras/src/debian/audiofile/test/pipe.c	2003-09-28 16:17:11.000000000 +0200
++++ audiofile/test/pipe.c	2004-03-11 12:07:49.000000000 +0100
+@@ -37,6 +37,7 @@
+ #include <audiofile.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
+ 
+ #define SAMPLE_COUNT 12
+ #define FRAME_COUNT 6
+diff -urNad /home/kobras/src/debian/audiofile/test/printmarkers.c audiofile/test/printmarkers.c
+--- /home/kobras/src/debian/audiofile/test/printmarkers.c	2003-09-06 11:20:36.000000000 +0200
++++ audiofile/test/printmarkers.c	2004-03-11 12:09:11.000000000 +0100
+@@ -31,6 +31,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <math.h>
+ #include <assert.h>
+ #include <audiofile.h>
+ 
+diff -urNad /home/kobras/src/debian/audiofile/test/seek.c audiofile/test/seek.c
+--- /home/kobras/src/debian/audiofile/test/seek.c	2004-03-09 12:49:52.000000000 +0100
++++ audiofile/test/seek.c	2004-03-11 12:09:32.000000000 +0100
+@@ -32,6 +32,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ #include <audiofile.h>
+ 
+diff -urNad /home/kobras/src/debian/audiofile/test/sixteen-to-eight.c audiofile/test/sixteen-to-eight.c
+--- /home/kobras/src/debian/audiofile/test/sixteen-to-eight.c	2003-09-28 16:17:11.000000000 +0200
++++ audiofile/test/sixteen-to-eight.c	2004-03-11 12:06:36.000000000 +0100
+@@ -36,6 +36,8 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
+ #include <audiofile.h>
+ 
+ #define TEST_FILE "/tmp/test.wave"
+diff -urNad /home/kobras/src/debian/audiofile/test/testchannelmatrix.c audiofile/test/testchannelmatrix.c
+--- /home/kobras/src/debian/audiofile/test/testchannelmatrix.c	2003-09-06 11:02:12.000000000 +0200
++++ audiofile/test/testchannelmatrix.c	2004-03-11 12:08:44.000000000 +0100
+@@ -32,6 +32,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <unistd.h>
+ #include <sys/types.h>
+ #include <audiofile.h>
+ 
+diff -urNad /home/kobras/src/debian/audiofile/test/testmarkers.c audiofile/test/testmarkers.c
+--- /home/kobras/src/debian/audiofile/test/testmarkers.c	2003-09-11 12:16:56.000000000 +0200
++++ audiofile/test/testmarkers.c	2004-03-11 12:08:18.000000000 +0100
+@@ -25,6 +25,8 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
+ #include <assert.h>
+ #include <audiofile.h>
+ 
+diff -urNad /home/kobras/src/debian/audiofile/test/twentyfour.c audiofile/test/twentyfour.c
+--- /home/kobras/src/debian/audiofile/test/twentyfour.c	2003-09-28 16:17:11.000000000 +0200
++++ audiofile/test/twentyfour.c	2004-03-11 12:07:03.000000000 +0100
+@@ -37,6 +37,8 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
+ #include <audiofile.h>
+ #include <assert.h>
+ 
+diff -urNad /home/kobras/src/debian/audiofile/test/twentyfour2.c audiofile/test/twentyfour2.c
+--- /home/kobras/src/debian/audiofile/test/twentyfour2.c	2004-03-06 07:39:23.000000000 +0100
++++ audiofile/test/twentyfour2.c	2004-03-11 12:07:31.000000000 +0100
+@@ -37,6 +37,8 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
+ 
+ #ifdef HAVE_INTTYPES_H
+ #include <inttypes.h>

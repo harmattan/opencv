@@ -1,0 +1,36 @@
+Index: b/Makefile.am
+===================================================================
+--- a/Makefile.am	2009-01-12 12:31:14.689611419 -0500
++++ b/Makefile.am	2009-01-12 12:31:37.708611250 -0500
+@@ -12,18 +12,7 @@
+              Doxyfile \
+ 	     README.in README \
+ 	     imlib2.pc.in \
+-	     imlib2.spec.in imlib2.spec \
+-	     debian/changelog \
+-	     debian/changelog.in \
+-	     debian/control \
+-	     debian/copyright \
+-	     debian/imlib2-config.1 \
+-	     debian/imlib2-demo.install \
+-	     debian/imlib2-test.install \
+-	     debian/libimlib2-dev.doc-base \
+-	     debian/libimlib2-dev.install \
+-	     debian/libimlib2.install \
+-	     debian/rules
++	     imlib2.spec.in imlib2.spec
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = imlib2.pc
+Index: b/configure.ac
+===================================================================
+--- a/configure.ac	2009-01-12 12:31:14.690611610 -0500
++++ b/configure.ac	2009-01-12 12:31:14.697611686 -0500
+@@ -527,7 +527,6 @@
+ imlib2-config
+ README
+ imlib2.spec
+-debian/changelog
+ ],[
+ chmod +x imlib2-config
+ ])

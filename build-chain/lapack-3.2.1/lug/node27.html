@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Linear Least Squares (LLS) Problems</TITLE>
+<META NAME="description" CONTENT="Linear Least Squares (LLS) Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node28.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" HREF="node25.html">
+<LINK REL="next" HREF="node28.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4503"
+ HREF="node28.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4497"
+ HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4491"
+ HREF="node26.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4499"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4501"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4504"
+ HREF="node28.html">Generalized Linear Least Squares</A>
+<B> Up:</B> <A NAME="tex2html4498"
+ HREF="node25.html">Driver Routines</A>
+<B> Previous:</B> <A NAME="tex2html4492"
+ HREF="node26.html">Linear Equations</A>
+ &nbsp <B>  <A NAME="tex2html4500"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4502"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03232000000000000000"></A><A NAME="subsecdrivellsq"></A><A NAME="1331"></A>
+<BR>
+Linear Least Squares (LLS) Problems
+</H2>
+
+<P>
+The <B>linear least squares problem</B><A NAME="1333"></A> is:
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\mathop{\mbox{minimize }}_{x} \| b - A x {\|}_2
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="llsq"></A><IMG
+ WIDTH="153" HEIGHT="38" BORDER="0"
+ SRC="img9.gif"
+ ALT="\begin{displaymath}
+\mathop{\mbox{minimize }}_{x} \Vert b - A x {\Vert}_2
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.1)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <I>A</I> is an <I>m</I>-by-<I>n</I> matrix, <I>b</I> is a given <I>m</I> element vector
+and <I>x</I> is the <I>n</I> element solution vector.
+
+<P>
+In the most usual case <IMG
+ WIDTH="53" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.gif"
+ ALT="$m \ge n$">
+and 
+<!-- MATH
+ $\mbox{rank}(A) = n$
+ -->
+<IMG
+ WIDTH="99" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.gif"
+ ALT="$\mbox{rank}(A) = n$">,
+and in this case the
+solution to problem (<A HREF="node27.html#llsq">2.1</A>) is unique,
+and the problem is also
+referred to as finding a <B>least squares solution</B> to an
+<B>overdetermined</B><A NAME="1344"></A> system of linear equations.
+
+<P>
+When <I>m</I> &lt; <I>n</I> and 
+<!-- MATH
+ $\mbox{rank}(A) = m$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.gif"
+ ALT="$\mbox{rank}(A) = m$">,
+there are an infinite number
+ of solutions <I>x</I>
+which exactly satisfy <I>b</I>-<I>Ax</I>=0. In this case it is often useful to find
+the unique solution <I>x</I> which minimizes |x|<SUB>2</SUB>,
+and the problem
+is referred to as finding a <B>minimum norm solution</B><A NAME="1347"></A> to an
+<B>underdetermined</B><A NAME="1349"></A> system of linear equations.
+
+<P>
+The driver routine xGELS<A NAME="1350"></A>
+solves problem (<A HREF="node27.html#llsq">2.1</A>) on the assumption that
+
+<!-- MATH
+ $\mbox{rank}(A) = \min(m,n)$
+ -->
+<IMG
+ WIDTH="165" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.gif"
+ ALT="$\mbox{rank}(A) = \min(m,n)$">
+-- in other words, <I>A</I> has <B>full rank</B> --
+finding a least squares solution of an overdetermined<A NAME="1354"></A> system
+when <I>m</I> &gt; <I>n</I>, and a minimum norm solution of an underdetermined<A NAME="1355"></A> system
+when <I>m</I> &lt; <I>n</I>.
+xGELS<A NAME="1356"></A><A NAME="1357"></A><A NAME="1358"></A><A NAME="1359"></A> uses a <I>QR</I> or <I>LQ</I> factorization of <I>A</I>, and also allows <I>A</I> to be
+replaced by <I>A</I><SUP><I>T</I></SUP> in the statement of the problem (or by <I>A</I><SUP><I>H</I></SUP> if <I>A</I> is
+complex).
+
+<P>
+In the general case when we may have
+
+<!-- MATH
+ $\mbox{rank}(A) < \min(m,n)$
+ -->
+<IMG
+ WIDTH="165" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img14.gif"
+ ALT="$\mbox{rank}(A) &lt; \min(m,n)$">
+-- in other words,
+<I>A</I> may be <B>rank-deficient</B> --
+we seek the <B>minimum norm least squares</B> solution<A NAME="1363"></A> <I>x</I>
+which minimizes both |x|<SUB>2</SUB> and 
+<!-- MATH
+ $\|b - Ax{\|}_2$
+ -->
+<IMG
+ WIDTH="81" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.gif"
+ ALT="$\Vert b - Ax{\Vert}_2$">.
+
+<P>
+The driver routines
+xGELSX<A NAME="1365"></A><A NAME="1366"></A><A NAME="1367"></A><A NAME="1368"></A>,
+xGELSY<A NAME="1369"></A><A NAME="1370"></A><A NAME="1371"></A><A NAME="1372"></A>,
+xGELSS<A NAME="1373"></A><A NAME="1374"></A><A NAME="1375"></A><A NAME="1376"></A>,
+and xGELSD<A NAME="1377"></A><A NAME="1378"></A><A NAME="1379"></A><A NAME="1380"></A>,<A NAME="1381"></A><A NAME="1382"></A>
+solve this general formulation of problem&nbsp;<A HREF="node27.html#llsq">2.1</A>,
+allowing for the possibility that <I>A</I> is rank-deficient;
+xGELSX<A NAME="1384"></A><A NAME="1385"></A><A NAME="1386"></A><A NAME="1387"></A> and
+xGELSY<A NAME="1388"></A><A NAME="1389"></A><A NAME="1390"></A><A NAME="1391"></A> use a
+<B>complete orthogonal factorization</B> of <I>A</I>,
+while xGELSS<A NAME="1393"></A><A NAME="1394"></A><A NAME="1395"></A><A NAME="1396"></A> uses
+the <B>singular value decomposition</B> of <I>A</I>,
+and xGELSD<A NAME="1398"></A><A NAME="1399"></A><A NAME="1400"></A><A NAME="1401"></A> uses
+the <B>singular value decomposition</B> of <I>A</I> with an algorithm based on
+divide and conquer<A NAME="1403"></A>.
+
+<P>
+The subroutine xGELSY is a faster version of xGELSX, but requires more
+workspace since it calls blocked algorithms to perform the complete
+orthogonal factorization.  xGELSX has been retained for compatibility
+with Release 2.0 of LAPACK, but we omit references to this routine
+in the remainder of this users' guide.
+
+<P>
+The subroutine xGELSD is significantly faster than its older counterpart xGELSS,
+especially for large problems, but may require somewhat more workspace depending
+on the matrix dimensions.
+
+<P>
+The LLS<A NAME="1404"></A> driver routines are listed in Table&nbsp;<A HREF="node27.html#tabdrivellsq">2.3</A>.
+
+<P>
+All four routines allow several right hand side vectors <I>b</I> and corresponding
+solutions <I>x</I> to be handled in a single call, storing these vectors as columns
+of matrices <I>B</I> and <I>X</I>, respectively.
+Note however that problem&nbsp;<A HREF="node27.html#llsq">2.1</A> is solved for
+each right hand side vector independently; this is <I>not</I> the same as
+finding a matrix <I>X</I> which minimizes 
+<!-- MATH
+ $\| B - A X \|_2$
+ -->
+<IMG
+ WIDTH="94" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img16.gif"
+ ALT="$\Vert B - A X \Vert _2$">.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabdrivellsq"></A>
+<DIV ALIGN="CENTER">
+<A NAME="1409"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.3:</STRONG>
+Driver routines for linear least squares problems</CAPTION>
+<TR><TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">solve LLS using <I>QR</I> or <I>LQ</I> factorization</TD>
+<TD ALIGN="LEFT">SGELS<A NAME="1421"></A></TD>
+<TD ALIGN="LEFT">CGELS<A NAME="1422"></A></TD>
+<TD ALIGN="LEFT">DGELS<A NAME="1423"></A></TD>
+<TD ALIGN="LEFT">ZGELS<A NAME="1424"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">solve LLS using complete orthogonal factorization</TD>
+<TD ALIGN="LEFT">SGELSY<A NAME="1425"></A></TD>
+<TD ALIGN="LEFT">CGELSY<A NAME="1426"></A></TD>
+<TD ALIGN="LEFT">DGELSY<A NAME="1427"></A></TD>
+<TD ALIGN="LEFT">ZGELSY<A NAME="1428"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">solve LLS using SVD</TD>
+<TD ALIGN="LEFT">SGELSS<A NAME="1429"></A></TD>
+<TD ALIGN="LEFT">CGELSS<A NAME="1430"></A></TD>
+<TD ALIGN="LEFT">DGELSS<A NAME="1431"></A></TD>
+<TD ALIGN="LEFT">ZGELSS<A NAME="1432"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">solve LLS using divide-and-conquer SVD</TD>
+<TD ALIGN="LEFT">SGELSD<A NAME="1433"></A></TD>
+<TD ALIGN="LEFT">CGELSD<A NAME="1434"></A></TD>
+<TD ALIGN="LEFT">DGELSD<A NAME="1435"></A></TD>
+<TD ALIGN="LEFT">ZGELSD<A NAME="1436"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4503"
+ HREF="node28.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4497"
+ HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4491"
+ HREF="node26.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4499"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4501"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4504"
+ HREF="node28.html">Generalized Linear Least Squares</A>
+<B> Up:</B> <A NAME="tex2html4498"
+ HREF="node25.html">Driver Routines</A>
+<B> Previous:</B> <A NAME="tex2html4492"
+ HREF="node26.html">Linear Equations</A>
+ &nbsp <B>  <A NAME="tex2html4500"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4502"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

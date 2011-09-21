@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized Linear Least Squares (LSE and GLM) Problems</TITLE>
+<META NAME="description" CONTENT="Generalized Linear Least Squares (LSE and GLM) Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node29.html">
+<LINK REL="previous" HREF="node27.html">
+<LINK REL="up" HREF="node25.html">
+<LINK REL="next" HREF="node29.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4517"
+ HREF="node29.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4511"
+ HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4505"
+ HREF="node27.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4513"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4515"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4518"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Up:</B> <A NAME="tex2html4512"
+ HREF="node25.html">Driver Routines</A>
+<B> Previous:</B> <A NAME="tex2html4506"
+ HREF="node27.html">Linear Least Squares (LLS)</A>
+ &nbsp <B>  <A NAME="tex2html4514"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4516"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03233000000000000000"></A><A NAME="subsecdrivegllsq"></A>
+<BR>
+Generalized Linear Least Squares (LSE and GLM) Problems
+</H2>
+
+<P>
+Driver routines are provided for two types of generalized linear least squares
+problems.<A NAME="1442"></A>
+<A NAME="1443"></A>
+<A NAME="1444"></A>
+
+<P>
+The first is
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\min _{x} \|c - Ax\|_2 \;\;\; \mbox{subject to} \;\;\; B x = d
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqnLSE"></A><IMG
+ WIDTH="270" HEIGHT="38" BORDER="0"
+ SRC="img17.gif"
+ ALT="\begin{displaymath}
+\min _{x} \Vert c - Ax\Vert _2 \;\;\; \mbox{subject to} \;\;\; B x = d
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.2)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <I>A</I> is an <I>m</I>-by-<I>n</I> matrix and <I>B</I> is a <I>p</I>-by-<I>n</I> matrix,
+<I>c</I> is a given <I>m</I>-vector, and <I>d</I> is a given <I>p</I>-vector,
+with 
+<!-- MATH
+ $p \leq n \leq m+p$
+ -->
+<IMG
+ WIDTH="116" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.gif"
+ ALT="$p \leq n \leq m+p$">.
+This is
+called a <B>linear equality-constrained least squares problem (LSE)</B>.
+The routine xGGLSE<A NAME="1451"></A><A NAME="1452"></A><A NAME="1453"></A>
+solves this problem using the generalized <I>RQ</I>
+(GRQ) factorization,<A NAME="1454"></A><A NAME="1455"></A> on the
+assumptions that <I>B</I> has full row rank <I>p</I> and
+the matrix 
+<!-- MATH
+ $\left( \begin{array}{c}
+                         A \\
+                         B
+                   \end{array} \right)$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.gif"
+ ALT="$ \left( \begin{array}{c}
+A \\
+B
+\end{array} \right) $">
+has full column rank <I>n</I>.
+Under these assumptions, the problem LSE<A NAME="1459"></A> has a unique solution.
+
+<P>
+The second generalized linear least squares problem is
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\min _{x} \|y\|_2 \;\;\; \mbox{subject to} \;\;\; d = A x + B y
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="glm3"></A><A NAME="eqnGLM"></A><IMG
+ WIDTH="271" HEIGHT="38" BORDER="0"
+ SRC="img20.gif"
+ ALT="\begin{displaymath}
+\min _{x} \Vert y\Vert _2 \;\;\; \mbox{subject to} \;\;\; d = A x + B y
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.3)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <I>A</I> is an <I>n</I>-by-<I>m</I> matrix, <I>B</I> is an <I>n</I>-by-<I>p</I> matrix,
+and <I>d</I> is a given <I>n</I>-vector,
+with 
+<!-- MATH
+ $m \leq n \leq m+p$
+ -->
+<IMG
+ WIDTH="122" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img21.gif"
+ ALT="$m \leq n \leq m+p$">.
+This is sometimes called a <B>general</B> (Gauss-Markov) <B>linear model problem (GLM)</B>.
+<A NAME="1468"></A>
+<A NAME="1469"></A><A NAME="1470"></A>
+When <I>B</I> = <I>I</I>, the problem reduces to an ordinary linear least squares problem.
+When <I>B</I> is square and nonsingular, the GLM problem is equivalent to the
+<B>weighted linear least squares problem</B>:<A NAME="1472"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\min_x \|B^{-1}(d-Ax) \|_2
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="154" HEIGHT="38" BORDER="0"
+ SRC="img22.gif"
+ ALT="\begin{displaymath}\min_x \Vert B^{-1}(d-Ax) \Vert _2 \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The routine xGGGLM<A NAME="1474"></A><A NAME="1475"></A><A NAME="1476"></A><A NAME="1477"></A>
+solves this problem using the generalized <I>QR</I> (GQR)
+factorization,<A NAME="1478"></A><A NAME="1479"></A> on the
+assumptions that <I>A</I> has full column rank <I>m</I>, and the
+matrix ( <I>A</I>, <I>B</I> ) has full row rank <I>n</I>. Under these assumptions, the
+problem is always consistent, and there are unique solutions <I>x</I> and <I>y</I>.
+The driver routines for generalized linear least squares problems are listed
+in Table&nbsp;<A HREF="node28.html#tabdrivegllsq">2.4</A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabdrivegllsq"></A>
+<DIV ALIGN="CENTER">
+<A NAME="1482"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.4:</STRONG>
+Driver routines for generalized linear least squares problems</CAPTION>
+<TR><TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">solve LSE problem using GRQ</TD>
+<TD ALIGN="LEFT">SGGLSE<A NAME="1494"></A></TD>
+<TD ALIGN="LEFT">CGGLSE<A NAME="1495"></A></TD>
+<TD ALIGN="LEFT">DGGLSE<A NAME="1496"></A></TD>
+<TD ALIGN="LEFT">ZGGLSE<A NAME="1497"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">solve GLM problem using GQR</TD>
+<TD ALIGN="LEFT">SGGGLM<A NAME="1498"></A></TD>
+<TD ALIGN="LEFT">CGGGLM<A NAME="1499"></A></TD>
+<TD ALIGN="LEFT">DGGGLM<A NAME="1500"></A></TD>
+<TD ALIGN="LEFT">ZGGGLM<A NAME="1501"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4517"
+ HREF="node29.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4511"
+ HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4505"
+ HREF="node27.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4513"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4515"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4518"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Up:</B> <A NAME="tex2html4512"
+ HREF="node25.html">Driver Routines</A>
+<B> Previous:</B> <A NAME="tex2html4506"
+ HREF="node27.html">Linear Least Squares (LLS)</A>
+ &nbsp <B>  <A NAME="tex2html4514"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4516"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

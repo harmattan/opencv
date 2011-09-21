@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Preface to the Second Edition</TITLE>
+<META NAME="description" CONTENT="Preface to the Second Edition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html3976"
+ HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html3970"
+ HREF="node2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html3966"
+ HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html3972"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html3974"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3977"
+ HREF="node5.html">Guide</A>
+<B> Up:</B> <A NAME="tex2html3971"
+ HREF="node2.html">List of Tables</A>
+<B> Previous:</B> <A NAME="tex2html3967"
+ HREF="node3.html">Preface to the Third</A>
+ &nbsp <B>  <A NAME="tex2html3973"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html3975"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION02200000000000000000"></A>
+<BR>
+Preface to the Second Edition
+</H1>
+
+<P>
+Since its initial public release in February 1992, LAPACK has expanded
+in both depth and breadth.  LAPACK is now available in both Fortran and C.
+The publication of this second edition of the
+Users' Guide coincides with the release of version 2.0
+of the LAPACK software.
+
+<P>
+This release of LAPACK introduces
+new routines and extends the functionality of 
+existing routines.  Prominent among the new routines are 
+driver and computational routines for 
+the generalized nonsymmetric eigenproblem, 
+generalized linear least squares problems, 
+the generalized singular value decomposition, 
+a generalized banded symmetric-definite eigenproblem,
+and divide-and-conquer methods for symmetric eigenproblems.  
+Additional computational routines include 
+the generalized QR and RQ factorizations and
+reduction of a band matrix to bidiagonal form.
+
+<P>
+Added functionality has been incorporated into the expert driver
+routines that involve equilibration (xGESVX, xGBSVX, xPOSVX, xPPSVX,
+and xPBSVX).  The option FACT = 'F' now permits the user to input a
+prefactored, pre-equilibrated matrix.  The expert drivers xGESVX and xGBSVX
+now return the reciprocal of the pivot growth from Gaussian
+elimination.  xBDSQR has been modified to compute singular values of
+bidiagonal matrices much more quickly than before, provided singular
+vectors are not also wanted.
+The least squares driver
+routines xGELS, xGELSS, and xGELSX now make available the residual 
+root-sum-squares for each right hand side.  
+
+<P>
+All LAPACK routines reflect the current version number with the
+date on the routine indicating when it was last modified.
+For more information on revisions to the LAPACK software or this Users'
+Guide please refer to the LAPACK <TT>release_notes</TT> file on netlib.
+Instructions for obtaining this file can be found in
+Chapter&nbsp;<A HREF="node6.html#chapessentials">1</A>.
+
+<P>
+On-line manpages (troff files) for LAPACK routines, as well as for most of 
+the BLAS routines, are available on netlib.  Refer to
+Section&nbsp;<A HREF="node15.html#documentation">1.9</A> for further details.
+
+<P>
+We hope that future releases of LAPACK will include routines for reordering
+eigenvalues in the generalized Schur factorization; 
+solving the generalized Sylvester
+equation; computing condition numbers for the generalized eigenproblem
+(for eigenvalues, eigenvectors, clusters of eigenvalues, and deflating
+subspaces);
+fast algorithms for the singular value decomposition based on 
+divide and conquer;
+high accuracy methods for symmetric eigenproblems and the SVD based
+on Jacobi's algorithm;
+updating and/or downdating for linear least squares problems; 
+computing singular values by bidiagonal
+bisection; and computing singular vectors by bidiagonal inverse iteration.
+
+<P>
+The following additions/modifications have been made to this second edition
+of the Users' Guide:
+
+<P>
+Chapter&nbsp;<A HREF="node6.html#chapessentials">1</A> (Essentials) 
+now includes information on accessing LAPACK via the World
+Wide Web.
+
+<P>
+Chapter&nbsp;<A HREF="node19.html#chapcontents">2</A> (Contents of LAPACK) has been expanded to discuss
+new routines.
+
+<P>
+Chapter&nbsp;<A HREF="node60.html#chapperformance">3</A> (Performance of LAPACK) has been updated
+with performance results from version 2.0 of LAPACK.  In addition,
+a new section entitled ``LAPACK Benchmark'' has been introduced to
+present timings for several driver routines.
+
+<P>
+Chapter&nbsp;<A HREF="node72.html#chapaccstab">4</A> (Accuracy and Stability) has been simplified and
+rewritten.
+Much of the theory and other details have been separated into
+``Further Details'' sections.  Example Fortran code segments are
+included to demonstrate the calculation of error bounds using LAPACK.
+
+<P>
+Appendices&nbsp;<A HREF="node141.html#chapcomp">A</A>, &nbsp;<A HREF="node143.html#chapauxil">B</A>, and &nbsp;<A HREF="node146.html#chaplineis">D</A> have
+been expanded to cover the new routines.
+
+<P>
+Appendix&nbsp;<A HREF="node148.html#chapqreflawn">E</A> (LAPACK Working Notes) lists a number of new
+Working Notes, written during the LAPACK&nbsp;2 and ScaLAPACK 
+projects (see below) and published by the University of Tennessee.
+The Bibliography has been updated to give
+the most recent published references.
+
+<P>
+The Specifications of Routines have been extended and updated to cover
+the new routines and revisions to existing routines.
+
+<P>
+The Bibliography and Index have been moved to the end of the book.
+The Index has been expanded into two indexes:  Index by Keyword and
+Index by Routine Name.  Occurrences of LAPACK, LINPACK, and EISPACK
+routine names have been cited in the latter index.
+
+<P>
+The original LAPACK project was funded by the NSF. Since its completion,
+two follow-up projects, LAPACK&nbsp;2 and ScaLAPACK, have been funded in the
+U.S. by the NSF and ARPA in 1990-1994 and 1991-1995, respectively.  
+In addition to making possible
+the additions and extensions in this release, these grants have 
+supported the following closely related activities.
+
+<P>
+A major effort is underway
+to implement LAPACK-type algorithms for distributed memory
+<A NAME="548"></A> machines.
+As a result of these efforts,
+several new software items are now available on netlib.  The new
+items that have been introduced are distributed memory versions of the
+core routines from LAPACK; a fully parallel package to solve a symmetric
+positive definite sparse linear system on a message passing
+multiprocessor using Cholesky factorization<A NAME="549"></A>; a package based on
+Arnoldi's method for solving large-scale nonsymmetric, symmetric, and
+generalized algebraic eigenvalue problems<A NAME="550"></A>; 
+and templates for sparse
+iterative methods for solving <I>Ax</I>=<I>b</I>.
+For more information on the
+availability of each of these packages, consult the <TT>scalapack</TT>
+and <TT>linalg</TT> indexes on netlib via <TT>netlib@www.netlib.org</TT>.
+
+<P>
+We have also explored the advantages of IEEE floating point arithmetic
+[<A
+ HREF="node151.html#ieee754">4</A>] 
+in implementing linear algebra routines. The accurate rounding properties
+and ``friendly'' exception handling capabilities of IEEE arithmetic
+permit us to write faster, more robust versions of several algorithms in
+LAPACK. Since all machines do not yet implement IEEE arithmetic, these
+algorithms are not currently part of the library [<A
+ HREF="node151.html#demmelli93">33</A>],
+although we expect them to be in the future.  For more information,
+please refer to Section &nbsp;<A HREF="node18.html#relsoftware">1.12</A>.
+
+<P>
+LAPACK has been translated from Fortran into C and, in addition,
+a subset of the LAPACK routines has been implemented in C++<A NAME="557"></A>.
+For more information on obtaining the C or C++ versions of LAPACK, consult 
+Section &nbsp;<A HREF="node18.html#relsoftware">1.12</A> or the 
+<TT>clapack</TT> or <TT>c++</TT> indexes on netlib via <TT>netlib@www.netlib.org</TT>. 
+
+<P>
+We deeply appreciate the careful scrutiny of those individuals who
+reported mistakes, typographical errors, or shortcomings in the first
+edition.
+
+<P>
+We acknowledge with gratitude the support which we have received from the
+following organizations and the help of individual members of their staff:
+Cray Research Inc.;
+NAG Ltd.
+
+<P>
+We would additionally like to thank the following people, who were not
+acknowledged in the first edition, for their contributions:
+
+<P>
+Fran&#231;oise Chatelin,
+Inderjit Dhillon,
+Stan Eisenstat,
+Vince Fernando,
+Ming Gu,
+Rencang Li,
+Xiaoye Li,
+George Ostrouchov,
+Antoine Petitet,
+Chris Puscasiu,
+Huan Ren,
+Jeff Rutter,
+Ken Stanley,
+Steve Timson,
+and Clint Whaley.
+
+<P>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<P>
+<IMG
+ WIDTH="566" HEIGHT="105" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.gif"
+ ALT="\fbox{\parbox{\textwidth}{
+As before, the royalties from the sales of this book ...
+...ualified individuals are
+encouraged to write directly to SIAM for guidelines. }}">
+
+<P>
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3976"
+ HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html3970"
+ HREF="node2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html3966"
+ HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html3972"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html3974"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3977"
+ HREF="node5.html">Guide</A>
+<B> Up:</B> <A NAME="tex2html3971"
+ HREF="node2.html">List of Tables</A>
+<B> Previous:</B> <A NAME="tex2html3967"
+ HREF="node3.html">Preface to the Third</A>
+ &nbsp <B>  <A NAME="tex2html3973"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html3975"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

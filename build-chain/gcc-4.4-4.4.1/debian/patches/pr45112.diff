@@ -1,0 +1,30 @@
+diff -Nur gcc-4.4-old/gcc/cp/decl.c gcc-4.4/gcc/cp/decl.c
+--- a/src/gcc/cp/decl.c	2010-10-04 14:38:43.000000000 +0000
++++ b/src/gcc/cp/decl.c	2010-10-04 14:42:32.000000000 +0000
+@@ -2068,6 +2068,10 @@
+       SET_DECL_INIT_PRIORITY (olddecl, DECL_INIT_PRIORITY (newdecl));
+       DECL_HAS_INIT_PRIORITY_P (olddecl) = 1;
+     }
++  /* Likewise for DECL_USER_ALIGN and DECL_PACKED.  */
++  DECL_USER_ALIGN (olddecl) = DECL_USER_ALIGN (newdecl);
++  if (TREE_CODE (newdecl) == FIELD_DECL)
++    DECL_PACKED (olddecl) = DECL_PACKED (newdecl);
+ 
+   /* The DECL_LANG_SPECIFIC information in OLDDECL will be replaced
+      with that from NEWDECL below.  */
+diff -Nur gcc-4.4-old/gcc/testsuite/g++.dg/pr45112.C gcc-4.4/gcc/testsuite/g++.dg/pr45112.C
+--- a/src/gcc/testsuite/g++.dg/pr45112.C	1970-01-01 00:00:00.000000000 +0000
++++ b/src/gcc/testsuite/g++.dg/pr45112.C	2010-10-04 14:32:39.000000000 +0000
+@@ -0,0 +1,12 @@
++/* { dg-do compile } */
++
++struct JSString
++{
++  unsigned char mLength;
++  static JSString unitStringTable[];
++};
++
++JSString JSString::unitStringTable[] __attribute__ ((aligned (8))) = { 1 };
++
++int bug [__alignof__ (JSString::unitStringTable) >= 8 ? 1 : -1];
++

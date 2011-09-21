@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_pkgconfig_privlibs.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Linking with libm is only required for static builds. Change
+## DP: pkgconfig file accordingly.
+
+@DPATCH@
+diff -urNad audiofile~/audiofile.pc.in audiofile/audiofile.pc.in
+--- audiofile~/audiofile.pc.in	2001-10-26 11:24:45.000000000 +0200
++++ audiofile/audiofile.pc.in	2007-06-18 22:16:41.000000000 +0200
+@@ -7,5 +7,6 @@
+ Description: audiofile
+ Requires:
+ Version: @VERSION@
+-Libs: -L${libdir} -laudiofile -lm
++Libs: -L${libdir} -laudiofile
++Libs.private: -lm
+ Cflags: -I${includedir}

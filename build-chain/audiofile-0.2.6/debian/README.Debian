@@ -1,0 +1,13 @@
+Notes about the audiofile Debian package
+----------------------------------------
+
+The Debian package provides extra man pages for audiofile-config, sfinfo, and
+sfconvert.  Furthermore, a patch has been added to prevent audiofile from
+looping endlessly on broken wave files whose header advertises too large a file
+size. 
+
+Enjoy!
+
+Daniel Kobras <kobras@debian.org>
+2003-09-28.
+

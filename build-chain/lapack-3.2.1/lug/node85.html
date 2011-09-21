@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Linear Equality Constrained Least Squares Problem</TITLE>
+<META NAME="description" CONTENT="Linear Equality Constrained Least Squares Problem">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node87.html">
+<LINK REL="previous" HREF="node84.html">
+<LINK REL="up" HREF="node84.html">
+<LINK REL="next" HREF="node86.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5385"
+ HREF="node86.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5379"
+ HREF="node84.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5373"
+ HREF="node84.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5381"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5383"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5386"
+ HREF="node86.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5380"
+ HREF="node84.html">Error Bounds for Generalized</A>
+<B> Previous:</B> <A NAME="tex2html5374"
+ HREF="node84.html">Error Bounds for Generalized</A>
+ &nbsp <B>  <A NAME="tex2html5382"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5384"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03461000000000000000">
+Linear Equality Constrained Least Squares Problem</A>
+</H2>
+
+<P>
+The linear equality constrained least squares (LSE) problem is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\min_x \| Ax - b \| \quad \mbox{subject to} \quad Bx = d
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="268" HEIGHT="38" BORDER="0"
+ SRC="img465.gif"
+ ALT="\begin{displaymath}\min_x \Vert Ax - b \Vert \quad \mbox{subject to} \quad Bx = d \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>A</I></B> is an <B><I>m</I></B>-by-<B><I>n</I></B> matrix, <B><I>B</I></B> is a <B><I>p</I></B>-by-<B><I>n</I></B> matrix,
+<B><I>b</I></B> is an <B><I>m</I></B> vector, and <B><I>d</I></B> is a <B><I>p</I></B> vector, with 
+<!-- MATH
+ $p \leq n \leq p+m$
+ -->
+<IMG
+ WIDTH="116" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img466.gif"
+ ALT="$p \leq n \leq p+m$">.
+<BR>
+
+<P>
+The LSE problem is solved by the driver routine xGGLSE
+(see section <A HREF="node84.html#sec_lseglm_drivers">4.6</A>).
+Let <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img467.gif"
+ ALT="$\widehat {x}$">
+be the value of <B><I>x</I></B> computed by xGGLSE.
+The approximate error bound
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="439" HEIGHT="130" BORDER="0"
+ SRC="img468.gif"
+ ALT="\begin{eqnarray*}
+% latex2html id marker 10929\frac{ \Vert x - \widehat {x} \...
+... ...">
+</DIV><P></P>
+<BR CLEAR="ALL">
+can be computed by the following code fragment
+
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Get the 2-norm of the right hand side C
+      CNORM = SNRM2( M, C, 1 )
+      print*,'CNORM = ',CNORM
+*     Solve the least squares problem with equality constraints
+      CALL SGGLSE( M, N, P, A, LDA, B, LDA, C, D, Xc, WORK, LWORK, IWORK, INFO )
+*     Get the Frobenius norm of A and B
+      ANORM = SLANTR( 'F', 'U', 'N', N, N, A, LDA, WORK )
+      BNORM = SLANTR( 'F', 'U', 'N', P, P, B( 1, N-P+1 ), LDA, WORK )
+      MN = MIN( M, N )
+      IF( N.EQ.P ) THEN
+         APPSNM = ZERO
+         RNORM = SLANTR( '1', 'U', 'N', N, N, B, LDB, WORK(P+MN+N+1) )
+         CALL STRCON( '1', 'U', 'N', N, B, LDB, RCOND, WORK( P+MN+N+1 ),
+     $                IWORK, INFO )
+         BAPSNM = ONE/ (RCOND * RNORM )
+      ELSE
+*        Estimate norm of (AP)^+
+         RNORM = SLANTR( '1', 'U', 'N', N-P, N-P, A, LDA, WORK(P+MN+1) )
+         CALL STRCON( '1', 'U', 'N', N-P, A, LDA, RCOND, WORK( P+MN+1 ),
+     $                IWORK, INFO )
+         APPSNM = ONE/ (RCOND * RNORM )
+*        Estimate norm of B^+_A
+         KASE = 0
+         CALL SLACON( P, WORK( P+MN+1 ), WORK( P+MN+N+1 ), IWORK, EST, KASE )
+   30    CONTINUE
+            CALL STRSV( 'Upper', 'No trans', 'Non unit', P, B( 1, N-P+1 ),
+     $                  LDB, WORK( P+MN+N+1 ), 1 )
+            CALL SGEMV( 'No trans', N-P, P, -ONE, A( 1, N-P+1 ), LDA,
+     $                  WORK( P+MN+N+1 ), 1, ZERO, WORK( P+MN+P+1 ), 1 )
+            CALL STRSV( 'Upper', 'No transpose', 'Non unit', N-P, A, LDA,
+     $                  WORK( P+MN+P+1 ), 1 )
+            DO I = 1, P
+               WORK( P+MN+I ) = WORK( P+MN+N+I )
+            END DO
+            CALL SLACON( N, WORK( P+MN+N+1 ), WORK( P+MN+1 ), IWORK, EST, KASE )
+*
+            IF( KASE.EQ.0 ) GOTO 40
+            DO I = 1, P
+               WORK( P+MN+N+I ) = WORK( MN+N+I )
+            END DO
+            CALL STRSV( 'Upper', 'Trans', 'Non unit', N-P, A, LDA,
+     $                  WORK( P+MN+1 ), 1 )
+            CALL SGEMV( 'Trans', N-P, P, -ONE, A( 1, N-P+1 ), LDA,
+     $                  WORK( P+MN+1 ), 1, ONE, WORK( P+MN+N+1 ), 1 )
+            CALL STRSV( 'Upper', 'Trans', 'Non unit', P, B( 1, N-P+1 ),
+     $                  LDB, WORK( P+MN+N+1 ), 1 )
+            CALL SLACON( P, WORK( P+MN+1 ), WORK( P+MN+N+1 ), IWORK, EST, KASE )
+*
+            IF( KASE.EQ.0 ) GOTO 40
+         GOTO 30
+   40    CONTINUE
+         BAPSNM = EST
+*
+      END IF
+*     Estimate norm of A*B^+_A
+      IF( P+M.EQ.N ) THEN
+         EST = ZERO
+      ELSE
+         R22RS = MIN( P, M-N+P )
+         KASE = 0
+         CALL SLACON( P, WORK( P+MN+P+1 ), WORK( P+MN+1 ), IWORK, EST, KASE )
+   50    CONTINUE
+            CALL STRSV( 'Upper', 'No trans', 'Non unit', P, B( 1, N-P+1 ),
+     $                  LDB, WORK( P+MN+1 ), 1 )
+            DO I = 1, R22RS
+               WORK( P+MN+P+I ) = WORK( P+MN+I )
+            END DO
+            CALL STRMV( 'Upper', 'No trans', 'Non unit', R22RS,
+     $                  A( N-P+1, N-P+1 ), LDA, WORK( P+MN+P+1 ), 1 )
+            IF( M.LT.N ) THEN
+               CALL SGEMV( 'No trans', R22RS, N-M, ONE, A( N-P+1, M+1 ), LDA,
+     $                     WORK( P+MN+R22RS+1 ), 1, ONE, WORK( P+MN+P+1 ), 1 )
+            END IF
+            CALL SLACON( R22RS, WORK( P+MN+1 ), WORK( P+MN+P+1 ), IWORK, EST,
+     $                   KASE  )
+*
+            IF( KASE.EQ.0 ) GOTO 60
+            DO I = 1, R22RS
+               WORK( P+MN+I ) = WORK( P+MN+P+I )
+            END DO
+            CALL STRMV( 'Upper', 'Trans', 'Non Unit', R22RS,
+     $                  A( N-P+1, N-P+1 ), LDA, WORK( P+MN+1 ), 1 )
+            IF( M.LT.N ) THEN
+               CALL SGEMV( 'Trans', R22RS, N-M, ONE, A( N-P+1, M+1 ), LDA,
+     $                     WORK( P+MN+P+1 ), 1, ZERO, WORK( P+MN+R22RS+1 ), 1 )
+            END IF
+            CALL STRSV( 'Upper', 'Trans', 'Non unit', P, B( 1, N-P+1 ), LDB,
+     $                  WORK( P+MN+1 ), 1 )
+            CALL SLACON( P, WORK( P+MN+P+1 ), WORK( P+MN+1 ), IWORK, EST, KASE )
+*
+            IF( KASE.EQ.0 ) GOTO 60
+            GOTO 50
+   60    CONTINUE
+      END IF
+      ABAPSN = EST
+*     Get the 2-norm of Xc
+      XNORM = SNRM2( N, Xc, 1 )
+      IF( APPSNM.EQ.0.0E0 ) THEN
+*        B is square and nonsingular
+         ERRBD = EPSMCH*BNORM*BAPSNM
+      ELSE
+*        Get the 2-norm of the residual A*Xc - C
+         RNORM = SNRM2( M-N+P, C( N-P+1 ), 1 )
+*        Get the 2-norm of Xc
+         XNORM = SNRM2( N, Xc, 1 )
+*        Get the condition numbers
+         CNDBA = BNORM*BAPSNM
+         CNDAB = ANORM*APPSNM
+*        Get the approximate error bound
+         ERRBD = EPSMCH*( (1.0E0 + CNORM/(ANORM*XNORM))*CNDAB +
+     $               RNORM/(ANORM*XNORM)*(1.0E0 + BNORM*ABAPSN/ANORM)*
+     $               (CNDAB*CNDAB) + 2.0E0*CNDBA )
+      END IF
+</PRE>
+
+<P>
+For example, if 
+<!-- MATH
+ ${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="259" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img397.gif"
+ ALT="${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$">,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{tabular}{rrrr}
+                  1 &  1 &  1 &  1 \\
+                  1 &  3 &  1 &  1 \\
+                  1 & -1 &  3 &  1 \\
+                  1 &  1 &  1 &  3 \\
+                  1 &  1 &  1 & -1
+               \end{tabular} \right),
+    b = \left( \begin{array}{r}
+                   2 \\
+                   1 \\
+                   6 \\
+                   3 \\
+                   1
+               \end{array} \right),
+    B = \left( \begin{tabular}{rrrr}
+                  1 &  1 &  1 & -1 \\
+                  1 & -1 &  1 &  1\\
+                  1 &  1 & -1 &  1
+               \end{tabular} \right)
+    \quad \mbox{and} \quad
+    d = \left( \begin{array}{r}
+                   1 \\
+                   3 \\
+                  -1
+               \end{array} \right),
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="656" HEIGHT="115" BORDER="0"
+ SRC="img469.gif"
+ ALT="\begin{displaymath}A = \left( \begin{tabular}{rrrr}
+1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 3 &amp; ...
+...left( \begin{array}{r}
+1 \\
+3 \\
+-1
+\end{array} \right),
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then (to 7 decimal places),
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\widehat {x} = \left( \begin{array}{r}
+                             0.5000000 \\
+                            -0.5000001 \\
+                             1.4999999 \\
+                             0.4999998
+                        \end{array} \right).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="172" HEIGHT="93" BORDER="0"
+ SRC="img470.gif"
+ ALT="\begin{displaymath}\widehat {x} = \left( \begin{array}{r}
+0.5000000 \\
+-0.5000001 \\
+1.4999999 \\
+0.4999998
+\end{array} \right).\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The computed error bound 
+<!-- MATH
+ ${\tt ERRBD} = 5.7\cdot10^{-7}$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img471.gif"
+ ALT="${\tt ERRBD} = 5.7\cdot10^{-7}$">,
+where 
+<!-- MATH
+ ${\tt CNDAB} = 2.09$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img472.gif"
+ ALT="${\tt CNDAB} = 2.09$">,
+
+<!-- MATH
+ ${\tt CNDBA} = 3.12$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img473.gif"
+ ALT="${\tt CNDBA} = 3.12$">.
+The true error 
+<!-- MATH
+ $= 1.2\cdot10^{-7}$
+ -->
+<IMG
+ WIDTH="93" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img474.gif"
+ ALT="$= 1.2\cdot10^{-7}$">.
+The exact solution is 
+<!-- MATH
+ $x = [0.5, -0.5, 1.5, 0.5]^T$
+ -->
+<B><I>x</I> = [0.5, -0.5, 1.5, 0.5]<SUP><I>T</I></SUP></B>.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5387"
+ HREF="node86.html">Further Details:
+Error Bounds for Linear Equality Constrained Least Squares Problems</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

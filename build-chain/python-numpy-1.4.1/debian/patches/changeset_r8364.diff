@@ -1,0 +1,10 @@
+Index: /trunk/numpy/core/src/multiarray/number.c
+===================================================================
+--- python-numpy-1.4.1.orig/numpy/core/src/multiarray/number.c (revision 7888)
++++ python-numpy-1.4.1.orig/numpy/core/src/multiarray/number.c (revision 8364)
+@@ -31,4 +31,5 @@
+             return -1;                                    \
+         }                                                 \
++        Py_INCREF(temp);                                  \
+         Py_XDECREF(n_ops.op);                             \
+         n_ops.op = temp;                                  \

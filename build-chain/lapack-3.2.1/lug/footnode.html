@@ -1,0 +1,1627 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Footnotes</TITLE>
+<META NAME="description" CONTENT="Footnotes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node152.html">
+<LINK REL="up" HREF="lapack_lug.html">
+</HEAD>
+<BODY >
+
+<DL>
+<DT><A NAME="foot3925">... defined</A><A NAME="foot3925"
+ HREF="node36.html#tex2html383"><SUP>2.1</SUP></A>
+<DD>If we tried
+to compute the trivial eigenvalues in the same way as the nontrivial
+ones, that is by taking ratios of the leading <I>n</I>-<I>r</I> diagonal entries
+of <I>X</I><SUP><I>T</I></SUP> <I>A</I><SUP><I>T</I></SUP> <I>AX</I> and <I>X</I><SUP><I>T</I></SUP> <I>B</I><SUP><I>T</I></SUP> <I>B X</I>, we would get 0/0. For a detailed
+mathematical discussion of this decomposition, see the discussion of
+the Kronecker Canonical Form in [<A
+ HREF="node151.html#gantmacher">53</A>].
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot3940">...
+xTGSJA</A><A NAME="foot3940"
+ HREF="node59.html#tex2html1653"><SUP>2.2</SUP></A>
+<DD>
+If <B><I>m</I>-<I>k</I>-<I>l</I> &lt; 0</B>, we may add some zero rows to <B><I>A</I><SUB>23</SUB></B> to make
+it upper triangular.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot9747">... digit</A><A NAME="foot9747"
+ HREF="node74.html#tex2html1856"><SUP>4.1</SUP></A>
+<DD>This is the
+case on Cybers, Cray X-MP, Cray Y-MP, Cray&nbsp;2 and Cray C90.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13097">... xLAMCH</A><A NAME="foot13097"
+ HREF="node74.html#tex2html1857"><SUP>4.2</SUP></A>
+<DD>See subsection&nbsp;<A HREF="node24.html#subsecnaming">2.2.3</A> for explanation
+of the naming convention used for LAPACK routines.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot9755">...
+PCs</A><A NAME="foot9755"
+ HREF="node74.html#tex2html1858"><SUP>4.3</SUP></A>
+<DD>Important machines that do not implement the IEEE standard
+include the Cray XMP, Cray YMP, Cray 2, Cray C90, IBM 370 and DEC Vax.
+Some architectures have two (or more) modes, one that implements IEEE
+arithmetic, and another that is less accurate but faster.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot9804">... xSTEVR.</A><A NAME="foot9804"
+ HREF="node74.html#tex2html1860"><SUP>4.4</SUP></A>
+<DD>xSYEVR and the
+         other drivers call ILAENV to
+         check if IEEE arithmetic is available, and uses another algorithm if it is not.
+         If LAPACK is installed by following the directions in Chapter&nbsp;6, then
+         ILAENV will return the correct information about the availability of
+         IEEE arithmetic. If xSYEVR or the other drivers are used without this
+         installation procedure,
+         then the default is for ILAENV to say the IEEE arithmetic is available,
+         since this is most common and faster.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot10322">....</A><A NAME="foot10322"
+ HREF="node78.html#tex2html2014"><SUP>4.5</SUP></A>
+<DD>
+Sometimes our algorithms satisfy only 
+<!-- MATH
+ ${\rm alg}(z)=f(z+ \delta) + \eta$
+ -->
+<IMG
+ WIDTH="166" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img369.gif"
+ ALT="${\rm alg}(z)=f(z+ \delta) + \eta$">
+where both
+<IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+and <IMG
+ WIDTH="14" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img370.gif"
+ ALT="$\eta$">
+are small. This does not significantly change the following
+analysis.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot10323">... small</A><A NAME="foot10323"
+ HREF="node78.html#tex2html2015"><SUP>4.6</SUP></A>
+<DD>More generally,
+we only need Lipschitz continuity of <B><I>f</I></B>, and may use the Lipschitz
+constant in place of <B><I>f</I>'</B> in deriving error bounds.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot10349">... exist)</A><A NAME="foot10349"
+ HREF="node78.html#tex2html2016"><SUP>4.7</SUP></A>
+<DD>This is
+a different use of the term ill-posed than used in other contexts. For
+example, to be well-posed (not ill-posed) in the sense of Hadamard,
+it is sufficient for <B><I>f</I></B> to be continuous,
+whereas we require Lipschitz continuity.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13140">... described</A><A NAME="foot13140"
+ HREF="node78.html#tex2html2017"><SUP>4.8</SUP></A>
+<DD>There are some
+caveats to this statement. When computing the inverse of a matrix,
+the backward error <B><I>E</I></B> is small taking the
+columns of the computed inverse one at
+a time, with a different <B><I>E</I></B> for each column [<A
+ HREF="node151.html#lapwn27">47</A>].
+The same is true when computing
+the eigenvectors of a nonsymmetric matrix.
+When computing the eigenvalues and eigenvectors
+of <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">,
+<IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img383.gif"
+ ALT="$AB- \lambda I$">
+or <IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img384.gif"
+ ALT="$BA- \lambda I$">,
+with <B><I>A</I></B> symmetric and <B><I>B</I></B> symmetric and positive definite
+(using xSYGV or xHEGV) then the method may not be backward normwise stable if
+<A NAME="10357"></A><A NAME="10358"></A><A NAME="10359"></A><A NAME="10360"></A>
+<B><I>B</I></B> has a large condition number 
+<!-- MATH
+ $\kappa_{\infty}(B)$
+ -->
+<IMG
+ WIDTH="56" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img385.gif"
+ ALT="$\kappa_{\infty}(B)$">,
+although it has useful error bounds in this case too
+(see section <A HREF="node98.html#secgendef">4.10</A>). Solving the Sylvester equation<A NAME="10362"></A>
+<B><I>AX</I>+<I>XB</I>=<I>C</I></B> for the matrix <B><I>X</I></B> may not be backward stable, although
+there are again useful error bounds for <B><I>X</I></B> [<A
+ HREF="node151.html#higham93">66</A>].
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13141">...
+error</A><A NAME="foot13141"
+ HREF="node79.html#tex2html2039"><SUP>4.9</SUP></A>
+<DD>For other algorithms, the answers (and computed error bounds)
+are as accurate as though the algorithms were componentwise relatively backward
+stable, even though they are not. These algorithms are called
+<EM> componentwise relatively forward stable</EM>.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13155">... bound</A><A NAME="foot13155"
+ HREF="node80.html#tex2html2046"><SUP>4.10</SUP></A>
+<DD>As discussed in
+section&nbsp;<A HREF="node75.html#secnormnotation">4.2</A>, this approximate error bound
+may underestimate the true error by a factor <B><I>p</I>(<I>n</I>)</B>
+which is a modestly growing function of the problem dimension <B><I>n</I></B>.
+Often <IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img395.gif"
+ ALT="$p(n) \leq 10n$">.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13159">... suppose</A><A NAME="foot13159"
+ HREF="node80.html#tex2html2047"><SUP>4.11</SUP></A>
+<DD>This and other numerical examples
+were computed in IEEE single precision arithmetic [<A
+ HREF="node151.html#ieee754">4</A>]
+on a DEC 5000/120 workstation.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">...
+bound<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteDEC5000">... example<SUP>4.11</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">...
+bounds<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteDEC5000">... example<SUP>4.11</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13239">...
+ill-conditioned</A><A NAME="foot13239"
+ HREF="node90.html#tex2html2204"><SUP>4.3</SUP></A>
+<DD>These bounds are special
+cases of those in section&nbsp;<A HREF="node91.html#secnonsym">4.8</A>.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">... bounds<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteDEC5000">... example<SUP>4.11</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13242">... eigenvalue.</A><A NAME="foot13242"
+ HREF="node93.html#tex2html2253"><SUP>4.1</SUP></A>
+<DD>Although such a one-to-one
+correspondence between computed and true eigenvalues exists, it is not as
+simple to describe as in the symmetric case. In the symmetric case the eigenvalues
+are real and simply sorting provides the one-to-one correspondence,
+so that 
+<!-- MATH
+ $\hat{\lambda}_1 \leq \cdots \leq \hat{\lambda}_n$
+ -->
+<IMG
+ WIDTH="108" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img525.gif"
+ ALT="$\hat{\lambda}_1 \leq \cdots \leq \hat{\lambda}_n$">
+and 
+<!-- MATH
+ $\lambda_1 \leq \cdots \leq \lambda_n$
+ -->
+<IMG
+ WIDTH="108" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img579.gif"
+ ALT="$\lambda_1 \leq \cdots \leq \lambda_n$">.
+With nonsymmetric matrices
+
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+is usually just the computed eigenvalue closest to
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">,
+but in very ill-conditioned problems this is not always true.
+In the most general case, the one-to-one correspondence may be described
+in the following nonconstructive way: Let <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+be the eigenvalues
+of <B><I>A</I></B> and 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+be the eigenvalues of <B><I>A</I>+<I>E</I></B>. Let
+<IMG
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img580.gif"
+ ALT="$\lambda_i(t)$">
+be the eigenvalues of <B><I>A</I>+<I>tE</I></B>, where <B><I>t</I></B> is a parameter,
+which is initially zero, so that we may set 
+<!-- MATH
+ $\lambda_i (0) = \lambda_i$
+ -->
+<IMG
+ WIDTH="81" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img581.gif"
+ ALT="$\lambda_i (0) = \lambda_i$">.
+As <B><I>t</I></B> increase from 0 to 1, <IMG
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img580.gif"
+ ALT="$\lambda_i(t)$">
+traces out a curve from
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+to 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">,
+providing the correspondence.
+Care must be taken when the curves intersect, and the correspondence
+may not be unique.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">...
+bounds<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteDEC5000">... example<SUP>4.11</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13254">...
+<!-- MATH
+ $\{\hat{v}_i \, , \, i \in {\cal I}\}$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img666.gif"
+ ALT="$\{\hat{v}_i \, , \, i \in {\cal I}\}$"></A><A NAME="foot13254"
+ HREF="node97.html#tex2html2331"><SUP>4.1</SUP></A>
+<DD>These bounds are special
+cases of those in sections&nbsp;<A HREF="node89.html#secsym">4.7</A> and <A HREF="node91.html#secnonsym">4.8</A>,
+since the singular values
+and vectors of <B><I>A</I></B> are simply related to the eigenvalues and eigenvectors of
+the Hermitian matrix 
+<!-- MATH
+ $\left( \begin{array}{cc} 0 & A^H \\A & 0 \end{array} \right)$
+ -->
+<IMG
+ WIDTH="100" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img667.gif"
+ ALT="$\left( \begin{array}{cc} 0 &amp; A^H \\ A &amp; 0 \end{array} \right) $">
+[<A
+ HREF="node151.html#GVL2">55</A>, p. 427].
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">... bounds<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteDEC5000">... example<SUP>4.11</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13257">... magnitude</A><A NAME="foot13257"
+ HREF="node99.html#tex2html2412"><SUP>4.1</SUP></A>
+<DD>This bound is guaranteed
+only if the Level 3 BLAS are implemented in a conventional way,
+not in a fast way as described in section <A HREF="node108.html#secfastblas">4.13</A>.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13260">...
+large</A><A NAME="foot13260"
+ HREF="node99.html#tex2html2413"><SUP>4.2</SUP></A>
+<DD>Another interpretation of chordal distance is as half the usual
+Euclidean distance between the projections of 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+and
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+on the Riemann sphere, i.e., half the length of the chord
+connecting the projections.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">... bounds<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot12096">... suppose</A><A NAME="foot12096"
+ HREF="node100.html#tex2html2431"><SUP>4.1</SUP></A>
+<DD>This numerical example is computed
+in IEEE single precision arithmetic on a SUN Sparcstation 10 workstation.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13385">...
+pair.</A><A NAME="foot13385"
+ HREF="node102.html#tex2html2442"><SUP>4.2</SUP></A>
+<DD>As for the nonsymmetric eigenvalue problem there is an
+one-to-one correspondence between computed and exact eigenvalue pairs,
+but the correspondence is not as simple to describe as in the generalized
+symmetric definite case. (Since the eigenvalues are real, sorting provides
+the one-to-one correspondence). For well-conditioned generalized eigenvalues
+
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+is usually the closest eigenvalue pair
+to 
+<!-- MATH
+ $({\alpha}_i, {\beta}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img725.gif"
+ ALT="$({\alpha}_i, {\beta}_i)$">
+in the chordal metric,
+but in ill-conditioned cases this is not always true. The (nonconstructive)
+correspondence between computed and exact
+eigenvalues described in footnote&nbsp;1 for the standard nonsymmetric eigenvalue problem is also applicable here.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot13386">... eigenvalues</A><A NAME="foot13386"
+ HREF="node102.html#tex2html2443"><SUP>4.3</SUP></A>
+<DD>In order to make
+the definition 
+<!-- MATH
+ $( {\alpha}_{\cal I}, {\beta}_{\cal I} )$
+ -->
+<IMG
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img763.gif"
+ ALT="$( {\alpha}_{\cal I}, {\beta}_{\cal I} )$">
+of the cluster average in chordal sense meaningful
+for all cases that can appear we have to make a normalization of the
+matrix pair in generalized Schur form.
+First, we make each nonzero <B><I>b</I><SUB><I>ii</I></SUB></B> nonnegative real
+by premultiplying by the appropriate complex number with unit absolute value.
+Secondly, if all <B><I>b</I><SUB><I>ii</I></SUB></B> in the cluster are zero, then
+we make all real parts of each nonzero <B><I>a</I><SUB><I>ii</I></SUB></B> nonnegative real.
+This means that if there is at least one finite eigenvalue in the
+cluster (i.e., at least one <B><I>b</I><SUB><I>ii</I></SUB></B> is nonzero in <B><I>B</I><SUB>11</SUB></B>), then
+
+<!-- MATH
+ ${\rm trace}(B_{11}) = \sum_{i \in {\cal I}} {\beta}_i$
+ -->
+<IMG
+ WIDTH="164" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img764.gif"
+ ALT="${\rm trace}(B_{11}) = \sum_{i \in {\cal I}} {\beta}_i$">
+is nonzero and
+the cluster average is finite.
+If all <B><I>b</I><SUB><I>ii</I></SUB></B> are zero and some <B><I>a</I><SUB><I>ii</I></SUB></B> is nonzero then
+
+<!-- MATH
+ ${\rm trace}(A_{11}) = \sum_{i \in {\cal I}} {\alpha}_i$
+ -->
+<IMG
+ WIDTH="165" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img765.gif"
+ ALT="${\rm trace}(A_{11}) = \sum_{i \in {\cal I}} {\alpha}_i$">
+is nonzero
+and the cluster average is infinity.
+Note the pencil is singular if one pair 
+<!-- MATH
+ $(a_{ii}, b_{ii}) = (0,0)$
+ -->
+<B>(<I>a</I><SUB><I>ii</I></SUB>, <I>b</I><SUB><I>ii</I></SUB>) = (0,0)</B>
+or close to singular if both <B><I>a</I><SUB><I>ii</I></SUB></B> and <B><I>b</I><SUB><I>ii</I></SUB></B> are tiny
+(see Section <A HREF="node105.html#sec_singular">4.11.1.4</A>).
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteapproxerrorbound">...
+bound<SUP>4.10</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="fnm\valuefootnoteDEC5000">... example<SUP>4.11</SUP></A>
+<DD>
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot19489">... output)</A><A NAME="foot19489"
+ HREF="node113.html#tex2html2527"><SUP>5.1</SUP></A>
+<DD>
+(Input or output) means that the argument may be either an input argument or
+an output argument, depending on the values of other arguments;
+for example, in the xyySVX driver routines, some arguments are used either
+as output arguments to return details of a factorization, or as input
+arguments to supply details of a previously computed factorization.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot19490">... (workspace/output)</A><A NAME="foot19490"
+ HREF="node113.html#tex2html2528"><SUP>5.2</SUP></A>
+<DD>
+(Workspace/output) means that the argument is used principally as a work
+array, but may also return some useful information (in its first 
+element)
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot20821">... DREAL.</A><A NAME="foot20821"
+ HREF="node130.html#tex2html2580"><SUP>6.1</SUP></A>
+<DD>Changing
+DBLE to DREAL must be selective, because instances of DBLE with an <EM> integer</EM>
+argument must <EM> not</EM> be changed. The compiler should flag any instances
+of DBLE with a COMPLEX*16 argument if it does not accept them.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+<DT><A NAME="foot21108">...
+matrix.</A><A NAME="foot21108"
+ HREF="node137.html#tex2html2713"><SUP>7.1</SUP></A>
+<DD>The requirement is stated ``LDA <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+max(1,N)'' 
+rather than simply
+``LDA <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+N'' because LDA must always be at least 1, even if N = 0, 
+to satisfy the 
+requirements of standard Fortran; on some systems,
+a zero or negative value of LDA would cause a run-time fault.
+<PRE>.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+</PRE>
+</DL><ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

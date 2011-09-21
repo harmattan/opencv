@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Common Errors in Calling LAPACK Routines</TITLE>
+<META NAME="description" CONTENT="Common Errors in Calling LAPACK Routines">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node136.html">
+<LINK REL="previous" HREF="node134.html">
+<LINK REL="up" HREF="node132.html">
+<LINK REL="next" HREF="node136.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6119"
+ HREF="node136.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6113"
+ HREF="node132.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6107"
+ HREF="node134.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6115"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6117"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6120"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+<B> Up:</B> <A NAME="tex2html6114"
+ HREF="node132.html">Troubleshooting</A>
+<B> Previous:</B> <A NAME="tex2html6108"
+ HREF="node134.html">Installation Debugging Hints</A>
+ &nbsp <B>  <A NAME="tex2html6116"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6118"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03730000000000000000"></A><A NAME="seccommonerrors"></A>
+<BR>
+Common Errors in Calling LAPACK Routines
+</H1>
+
+<P>
+As a first step, the user should always carefully read the leading
+comments of the LAPACK routine.  The leading comments give a detailed
+description of all input/output arguments and can be viewed in the source
+code, on the LAPACK webpage, or in this users' guide.
+
+<P>
+For the benefit of less experienced programmers, we list the most
+common programming errors in calling an LAPACK routine.
+These errors may cause the LAPACK routine to report a failure,
+as described in Section&nbsp;<A HREF="node136.html#secfailures"
+ NAME="21092">7.3</A>;
+they may cause an error to be reported by the system;
+or they may lead to wrong results -- see also
+Section&nbsp;<A HREF="node139.html#secwrongresults">7.4</A>.
+
+<P>
+
+<UL><LI>wrong number of arguments
+
+<LI>arguments in the wrong order
+
+<LI>an argument of the wrong type (especially real and complex 
+arguments of the wrong precision)
+
+<LI>wrong dimensions for an array argument
+
+<LI>insufficient space in a workspace argument
+
+<LI>failure to assign a value to an input argument
+
+</UL>
+
+<P>
+Some modern compilation systems, as well as
+software tools such as the portability checker in 
+Toolpack&nbsp;[<A
+ HREF="node151.html#Toolpack">88</A>], can check that arguments agree in number and type;
+and many compilation systems offer run-time detection
+of errors such as an array element out-of-bounds or use of an
+unassigned variable.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6119"
+ HREF="node136.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6113"
+ HREF="node132.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6107"
+ HREF="node134.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6115"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6117"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6120"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+<B> Up:</B> <A NAME="tex2html6114"
+ HREF="node132.html">Troubleshooting</A>
+<B> Previous:</B> <A NAME="tex2html6108"
+ HREF="node134.html">Installation Debugging Hints</A>
+ &nbsp <B>  <A NAME="tex2html6116"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6118"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

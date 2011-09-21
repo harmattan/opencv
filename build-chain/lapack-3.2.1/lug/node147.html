@@ -1,0 +1,1035 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Notes</TITLE>
+<META NAME="description" CONTENT="Notes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node146.html">
+<LINK REL="up" HREF="node146.html">
+<LINK REL="next" HREF="node148.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6282"
+ HREF="node148.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6276"
+ HREF="node146.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6272"
+ HREF="node146.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6278"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6280"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6283"
+ HREF="node148.html">LAPACK Working Notes</A>
+<B> Up:</B> <A NAME="tex2html6277"
+ HREF="node146.html">Converting from LINPACK or</A>
+<B> Previous:</B> <A NAME="tex2html6273"
+ HREF="node146.html">Converting from LINPACK or</A>
+ &nbsp <B>  <A NAME="tex2html6279"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6281"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION031110000000000000000">
+Notes</A>
+</H1>
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>The appendix consists mainly of indexes 
+giving the nearest LAPACK equivalents of LINPACK and EISPACK routines.
+These indexes should not be followed blindly or rigidly, 
+especially when two or more
+LINPACK or EISPACK routines are being used together: in many such cases
+one of the LAPACK driver routines may be a suitable replacement.
+<P>
+<DT>2.
+<DD>When two or more LAPACK routines are given in a single entry, these
+routines must be combined to achieve the equivalent function.
+
+<P>
+<DT>3.
+<DD>For LINPACK, an index is given for equivalents of the real LINPACK
+routines; these equivalences apply also to the corresponding complex routines.
+A separate table is included for equivalences of complex Hermitian routines.
+For EISPACK, an index is given for all real and complex routines,
+since there is no direct 1-to-1 correspondence between real and complex
+routines in EISPACK.
+
+<P>
+<DT>4.
+<DD>A few of the less commonly used routines in LINPACK and EISPACK have no
+equivalents in Release 1.0 of LAPACK; equivalents for some of these (but not 
+all) are planned for a future release.
+
+<P>
+<DT>5.
+<DD>For some EISPACK routines, there are LAPACK routines providing similar
+functionality, but using a significantly different method, or LAPACK routines
+which provide only part of the functionality; such routines are marked by
+a <IMG
+ WIDTH="12" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1009.gif"
+ ALT="$\dag $">.
+For example, the EISPACK routine ELMHES uses non-orthogonal
+transformations, whereas the nearest equivalent LAPACK routine, SGEHRD, uses
+orthogonal transformations.
+
+<P>
+<DT>6.
+<DD>In some cases the LAPACK equivalents require matrices to be stored
+in a different storage scheme. For example:
+
+<P>
+
+<UL><LI>EISPACK routines BANDR<A NAME="22126"></A>, BANDV<A NAME="22127"></A>,
+BQR<A NAME="22128"></A> and the driver routine RSB<A NAME="22129"></A>
+require the lower triangle of
+a symmetric band matrix to be stored in
+a different storage scheme to that used in LAPACK, which is illustrated in
+subsection&nbsp;<A HREF="node124.html#subsecband">5.3.3</A>. The corresponding storage scheme used by the 
+EISPACK routines is:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">symmetric band matrix <B><I>A</I></B></TD>
+<TD ALIGN="CENTER">EISPACK band storage</TD>
+</TR>
+<TR><TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{ccccc}
+a_{11} & a_{21} & a_{31} &              &              \\
+a_{21} & a_{22}       & a_{32} & a_{42} &              \\
+a_{31} & a_{32}       & a_{33}       & a_{43} & a_{53} \\
+       & a_{42}       & a_{43}       & a_{44}       & a_{54} \\
+       &              & a_{53}       & a_{54}       & a_{55}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="229" HEIGHT="125" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1010.gif"
+ ALT="$
+\left( \begin{array}{ccccc}
+a_{11} &amp; a_{21} &amp; a_{31} &amp; &amp; \\
+a_{21} &amp; a_{22} &amp;...
+...a_{43} &amp; a_{44} &amp; a_{54} \\
+&amp; &amp; a_{53} &amp; a_{54} &amp; a_{55}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\begin{array}{ccccc}
+ \ast  &  \ast  & a_{11} \\
+ \ast  & a_{21} & a_{22} \\
+a_{31} & a_{32} & a_{33} \\
+a_{42} & a_{43} & a_{44} \\
+a_{53} & a_{54} & a_{55} 
+\end{array}$
+ -->
+<IMG
+ WIDTH="123" HEIGHT="125" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1011.gif"
+ ALT="$
+\begin{array}{ccccc}
+\ast &amp; \ast &amp; a_{11} \\
+\ast &amp; a_{21} &amp; a_{22} \\
+a_{...
+...&amp; a_{33} \\
+a_{42} &amp; a_{43} &amp; a_{44} \\
+a_{53} &amp; a_{54} &amp; a_{55}
+\end{array}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<LI>EISPACK routines TRED1<A NAME="22173"></A>, TRED2<A NAME="22174"></A>,
+TRED3<A NAME="22175"></A>, HTRID3<A NAME="22176"></A>,
+HTRIDI<A NAME="22177"></A>, TQL1<A NAME="22178"></A>,
+TQL2<A NAME="22179"></A>, IMTQL1<A NAME="22180"></A>,
+IMTQL2<A NAME="22181"></A>, RATQR<A NAME="22182"></A>,
+TQLRAT<A NAME="22183"></A> and the driver routine RST<A NAME="22184"></A>
+store the off-diagonal elements of a symmetric tridiagonal
+matrix in elements <B>2:<I>n</I></B> of the array E, whereas LAPACK routines use
+elements <B>1:<I>n</I>-1</B>.
+
+<P>
+
+</UL>
+
+<P>
+<DT>7.
+<DD>The EISPACK and LINPACK routines for the singular value decomposition 
+return the matrix of right singular vectors, <B><I>V</I></B>, whereas the corresponding 
+LAPACK routines return the transposed matrix <B><I>V</I><SUP><I>T</I></SUP></B>.
+
+<P>
+<DT>8.
+<DD>In general, the argument lists of the
+LAPACK routines are different from those of 
+the corresponding EISPACK and LINPACK
+routines, and the workspace requirements are often different.
+
+<P>
+</DL>
+
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of LINPACK routines for real matrices</TD>
+</TR>
+<TR><TD ALIGN="LEFT">LINPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of LINPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SCHDC<A NAME="22198"></A><A NAME="22199"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization with diagonal pivoting option</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SCHDD<A NAME="22200"></A><A NAME="22201"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Rank-1 downdate of a Cholesky factorization or the triangular factor 
+of a <B><I>QR</I></B> factorization</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SCHEX<A NAME="22202"></A><A NAME="22203"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Modifies a Cholesky factorization under permutations of the original
+matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SCHUD<A NAME="22204"></A><A NAME="22205"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Rank-1 update of a Cholesky factorization or the triangular factor
+of a <B><I>QR</I></B> factorization</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBCO<A NAME="22206"></A><A NAME="22207"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SLANGB SGBTRF<A NAME="22208"></A><A NAME="22209"></A> SGBCON<A NAME="22210"></A><A NAME="22211"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331><B><I>LU</I></B> factorization and condition estimation of a general band 
+matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBDI<A NAME="22212"></A><A NAME="22213"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant of a general band matrix, after factorization by SGBCO<A NAME="22214"></A> or SGBFA<A NAME="22215"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBFA<A NAME="22216"></A><A NAME="22217"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SGBTRF<A NAME="22218"></A><A NAME="22219"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331><B><I>LU</I></B> factorization of a general band matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBSL<A NAME="22220"></A><A NAME="22221"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SGBTRS<A NAME="22222"></A><A NAME="22223"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a general band system of linear equations, after factorization 
+by SGBCO<A NAME="22224"></A> or SGBFA<A NAME="22225"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGECO<A NAME="22226"></A><A NAME="22227"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SLANGE SGETRF<A NAME="22228"></A><A NAME="22229"></A> SGECON<A NAME="22230"></A><A NAME="22231"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331><B><I>LU</I></B> factorization and condition estimation of a general matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEDI<A NAME="22232"></A><A NAME="22233"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SGETRI<A NAME="22234"></A><A NAME="22235"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant and inverse of a general matrix, after factorization by
+SGECO<A NAME="22236"></A> or SGEFA<A NAME="22237"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEFA<A NAME="22238"></A><A NAME="22239"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SGETRF<A NAME="22240"></A><A NAME="22241"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331><B><I>LU</I></B> factorization of a general matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGESL<A NAME="22242"></A><A NAME="22243"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SGETRS<A NAME="22244"></A><A NAME="22245"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a general system of linear equations, after factorization by
+SGECO<A NAME="22246"></A> or SGEFA<A NAME="22247"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGTSL<A NAME="22248"></A><A NAME="22249"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SGTSV<A NAME="22250"></A><A NAME="22251"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a general tridiagonal system of linear equations</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBCO<A NAME="22252"></A><A NAME="22253"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SLANSB SPBTRF<A NAME="22254"></A><A NAME="22255"></A> SPBCON<A NAME="22256"></A><A NAME="22257"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization and condition estimation
+of a symmetric positive definite band matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBDI<A NAME="22258"></A><A NAME="22259"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant of a symmetric positive definite band matrix, after
+factorization by SPBCO<A NAME="22260"></A> or SPBFA<A NAME="22261"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBFA<A NAME="22262"></A><A NAME="22263"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SPBTRF<A NAME="22264"></A><A NAME="22265"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization of a symmetric positive definite band matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBSL<A NAME="22266"></A><A NAME="22267"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SPBTRS<A NAME="22268"></A><A NAME="22269"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a symmetric positive definite band system of linear equations,
+after factorization by SPBCO<A NAME="22270"></A> or SPBFA<A NAME="22271"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOCO<A NAME="22272"></A><A NAME="22273"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SLANSY SPOTRF<A NAME="22274"></A><A NAME="22275"></A> SPOCON<A NAME="22276"></A><A NAME="22277"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization and condition estimation
+of a symmetric positive definite matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPODI<A NAME="22278"></A><A NAME="22279"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SPOTRI<A NAME="22280"></A><A NAME="22281"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant and inverse of a symmetric positive definite matrix, after
+factorization by SPOCO<A NAME="22282"></A> or SPOFA<A NAME="22283"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOFA<A NAME="22284"></A><A NAME="22285"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SPOTRF<A NAME="22286"></A><A NAME="22287"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization of a symmetric positive definite matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOSL<A NAME="22288"></A><A NAME="22289"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SPOTRS<A NAME="22290"></A><A NAME="22291"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a symmetric positive definite system of linear equations,
+after factorization by SPOCO<A NAME="22292"></A> or SPOFA<A NAME="22293"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPCO<A NAME="22294"></A><A NAME="22295"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=50>SLANSY SPPTRF<A NAME="22296"></A><A NAME="22297"></A> SPPCON<A NAME="22298"></A><A NAME="22299"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization and condition estimation
+of a symmetric positive definite matrix (packed storage)</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<TABLE  WIDTH="100%">
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of LINPACK routines for real matrices
+(continued)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">LINPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of LINPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPDI<A NAME="22316"></A><A NAME="22317"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SPPTRI<A NAME="22318"></A><A NAME="22319"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant and inverse of a symmetric positive definite matrix, after
+factorization by SPPCO<A NAME="22320"></A><A NAME="22321"></A> or SPPFA<A NAME="22322"></A> (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPFA<A NAME="22323"></A><A NAME="22324"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SPPTRF<A NAME="22325"></A><A NAME="22326"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Cholesky factorization of a symmetric positive definite matrix 
+(packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPSL<A NAME="22327"></A><A NAME="22328"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SPPTRS<A NAME="22329"></A><A NAME="22330"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a symmetric positive definite system of linear equations,
+after factorization by SPPCO<A NAME="22331"></A> or SPPFA<A NAME="22332"></A> (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTSL<A NAME="22333"></A><A NAME="22334"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SPTSV<A NAME="22335"></A><A NAME="22336"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a symmetric positive definite tridiagonal system of linear equations</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SQRDC<A NAME="22337"></A><A NAME="22338"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGEQPF<A NAME="22339"></A><A NAME="22340"></A> or SGEQRF<A NAME="22342"></A><A NAME="22343"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331><B><I>QR</I></B> factorization with optional column pivoting</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SQRSL<A NAME="22344"></A><A NAME="22345"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SORMQR<A NAME="22346"></A><A NAME="22347"></A> STRSV<A NAME="tex2html3354"
+HREF="#footmp22348"><SUP>1</SUP></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves linear least squares problems after factorization by SQRDC<A NAME="22349"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSICO<A NAME="22350"></A><A NAME="22351"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SLANSY SSYTRF<A NAME="22352"></A><A NAME="22353"></A> SSYCON<A NAME="22354"></A><A NAME="22355"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Symmetric indefinite factorization and condition estimation
+of a symmetric indefinite matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSIDI<A NAME="22356"></A><A NAME="22357"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSYTRI<A NAME="22358"></A><A NAME="22359"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant, inertia and inverse of a symmetric indefinite matrix, after
+factorization by SSICO<A NAME="22360"></A> or SSIFA<A NAME="22361"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSIFA<A NAME="22362"></A><A NAME="22363"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSYTRF<A NAME="22364"></A><A NAME="22365"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Symmetric indefinite factorization of a symmetric indefinite matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSISL<A NAME="22366"></A><A NAME="22367"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSYTRS<A NAME="22368"></A><A NAME="22369"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a symmetric indefinite system of linear equations,
+after factorization by SSICO<A NAME="22370"></A> or SSIFA<A NAME="22371"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPCO<A NAME="22372"></A><A NAME="22373"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SLANSP SSPTRF<A NAME="22374"></A><A NAME="22375"></A> SSPCON<A NAME="22376"></A><A NAME="22377"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Symmetric indefinite factorization and condition estimation
+of a symmetric indefinite matrix (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPDI<A NAME="22378"></A><A NAME="22379"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSPTRI<A NAME="22380"></A><A NAME="22381"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant, inertia and inverse of a symmetric indefinite matrix, after
+factorization by SSPCO<A NAME="22382"></A> or SSPFA<A NAME="22383"></A> (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPFA<A NAME="22384"></A><A NAME="22385"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSPTRF<A NAME="22386"></A><A NAME="22387"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Symmetric indefinite factorization of a symmetric indefinite matrix 
+(packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPSL<A NAME="22388"></A><A NAME="22389"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSPTRS<A NAME="22390"></A><A NAME="22391"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a symmetric indefinite system of linear equations,
+after factorization by SSPCO<A NAME="22392"></A> or SSPFA<A NAME="22393"></A> (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSVDC<A NAME="22394"></A><A NAME="22395"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGESVD<A NAME="22396"></A><A NAME="22397"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All or part of the singular value decomposition of a general matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRCO<A NAME="22398"></A><A NAME="22399"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>STRCON<A NAME="22400"></A><A NAME="22401"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Condition estimation of a triangular matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRDI<A NAME="22402"></A><A NAME="22403"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>STRTRI<A NAME="22404"></A><A NAME="22405"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Determinant and inverse of a triangular matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRSL<A NAME="22406"></A><A NAME="22407"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>STRTRS<A NAME="22408"></A><A NAME="22409"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves a triangular system of linear equations</TD>
+</TR>
+</TABLE>
+</DIV></TD></TR>
+</TABLE>
+
+<P>
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of LINPACK routines for complex Hermitian matrices</TD>
+</TR>
+<TR><TD ALIGN="LEFT">LINPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of LINPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHICO<A NAME="22425"></A><A NAME="22426"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHECON<A NAME="22427"></A><A NAME="22428"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Factors a complex Hermitian matrix by elimination with symmetric pivoting and
+estimates the condition number of the matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHIDI<A NAME="22429"></A><A NAME="22430"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHETRI<A NAME="22431"></A><A NAME="22432"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Computes the determinant, inertia and inverse of a complex Hermitian matrix
+using the factors from CHIFA<A NAME="22433"></A><A NAME="22434"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHIFA<A NAME="22435"></A><A NAME="22436"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHETRF<A NAME="22437"></A><A NAME="22438"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Factors a complex Hermitian matrix by elimination with symmetric pivoting</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHISL<A NAME="22439"></A><A NAME="22440"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHETRS<A NAME="22441"></A><A NAME="22442"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves the complex Hermitian system Ax=b using the factors computed by CHIFA<A NAME="22443"></A><A NAME="22444"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHPCO<A NAME="22445"></A><A NAME="22446"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHPCON<A NAME="22447"></A><A NAME="22448"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Factors a complex Hermitian matrix stored in packed form by elimination with
+symmetric pivoting and estimates the condition number of the matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHPDI<A NAME="22449"></A><A NAME="22450"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHPTRI<A NAME="22451"></A><A NAME="22452"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Computes the determinant, intertia and inverse of a complex Hermitian matrix
+using the factors from CHPFA<A NAME="22453"></A><A NAME="22454"></A>,
+where the matrix is stored in packed form</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHPFA<A NAME="22455"></A><A NAME="22456"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHPTRF<A NAME="22457"></A><A NAME="22458"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Factors a complex Hermitian matrix stored in packed form by elimination
+with symmetric pivoting</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CHPSL<A NAME="22459"></A><A NAME="22460"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHPTRS<A NAME="22461"></A><A NAME="22462"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Solves the complex Hermitian system Ax=b using the factors computed by
+CHPFA<A NAME="22463"></A><A NAME="22464"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of EISPACK routines</TD>
+</TR>
+<TR><TD ALIGN="LEFT">EISPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of EISPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BAKVEC<A NAME="22479"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors after transformation by FIGI<A NAME="22480"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">BALANC<A NAME="22481"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGEBAL<A NAME="22482"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Balance a real matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BALBAK<A NAME="22483"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGEBAK<A NAME="22484"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a real matrix after balancing by BALANC</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BANDR<A NAME="22485"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSBTRD<A NAME="22486"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a real symmetric band matrix to tridiagonal form</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BANDV<A NAME="22487"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSBEVX<A NAME="22488"></A> SGBSV<A NAME="22489"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Selected eigenvectors of a real band matrix by inverse iteration</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BISECT<A NAME="22490"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSTEBZ<A NAME="22491"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Eigenvalues in a specified interval of a real symmetric tridiagonal matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">BQR<A NAME="22492"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSBEVX<A NAME="22493"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Some eigenvalues of a real symmetric band matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CBABK2<A NAME="22494"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CGEBAK<A NAME="22495"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a complex matrix after balancing by CBAL<A NAME="22496"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">CBAL<A NAME="22497"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CGEBAL<A NAME="22498"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Balance a complex matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CG<A NAME="22499"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CGEEV<A NAME="22500"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a complex general matrix 
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CH<A NAME="22501"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHEEV<A NAME="22502"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a complex Hermitian matrix 
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">CINVIT<A NAME="22503"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHSEIN<A NAME="22504"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Selected eigenvectors of a complex upper Hessenberg matrix by inverse 
+iteration</TD>
+</TR>
+<TR><TD ALIGN="LEFT">COMBAK<A NAME="22505"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CUNMHR<A NAME="22506"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a complex matrix after reduction by COMHES<A NAME="22507"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">COMHES<A NAME="22508"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CGEHRD<A NAME="22509"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a complex matrix to upper Hessenberg form by a
+non-unitary transformation</TD>
+</TR>
+<TR><TD ALIGN="LEFT">COMLR<A NAME="22510"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHSEQR<A NAME="22511"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues of a complex upper Hessenberg matrix, by
+the <B><I>LR</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">COMLR2<A NAME="22512"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CUNGHR<A NAME="22513"></A> CHSEQR<A NAME="22514"></A> CTREVC<A NAME="22515"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues/vectors of a complex matrix 
+by the <B><I>LR</I></B> algorithm, after reduction by COMHES<A NAME="22516"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">COMQR<A NAME="22517"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHSEQR<A NAME="22518"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues of a complex upper Hessenberg matrix by the
+<B><I>QR</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">COMQR2<A NAME="22519"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CUNGHR<A NAME="22520"></A> CHSEQR<A NAME="22521"></A> CTREVC<A NAME="22522"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues/vectors of a complex matrix by the <B><I>QR</I></B> algorithm,
+after reduction by CORTH<A NAME="22523"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">CORTB<A NAME="22524"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CUNMHR<A NAME="22525"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a complex matrix, after reduction by CORTH<A NAME="22526"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">CORTH<A NAME="22527"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CGEHRD<A NAME="22528"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a complex matrix to upper Hessenberg form by a unitary transformation</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ELMBAK<A NAME="22529"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SORMHR<A NAME="22530"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a real matrix after reduction by ELMHES<A NAME="22531"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">ELMHES<A NAME="22532"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGEHRD<A NAME="22533"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a real matrix to upper Hessenberg form by a
+non-orthogonal transformation</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ELTRAN<A NAME="22534"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SORGHR<A NAME="22535"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Generate transformation matrix used by ELMHES<A NAME="22536"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<TABLE  WIDTH="100%">
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of EISPACK routines (continued)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">EISPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of EISPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">FIGI<A NAME="22553"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Transform a nonsymmetric tridiagonal matrix of special form to a symmetric
+matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">FIGI2<A NAME="22554"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>As FIGI, with generation of the transformation matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HQR<A NAME="22555"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SHSEQR<A NAME="22556"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues of a complex upper Hessenberg matrix by the
+<B><I>QR</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HQR2<A NAME="22557"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SHSEQR<A NAME="22558"></A> STREVC<A NAME="22559"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues/vectors of a real upper Hessenberg matrix by the <B><I>QR</I></B> 
+algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HTRIB3<A NAME="22560"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CUPMTR<A NAME="22561"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a complex Hermitian matrix after reduction
+by HTRID3<A NAME="22562"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">HTRIBK<A NAME="22563"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CUNMTR<A NAME="22564"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a complex Hermitian matrix after reduction
+by HTRIDI<A NAME="22565"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">HTRID3<A NAME="22566"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHPTRD<A NAME="22567"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a complex Hermitian matrix to tridiagonal form (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HTRIDI<A NAME="22568"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>CHETRD<A NAME="22569"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a complex Hermitian matrix to tridiagonal form</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IMTQL1<A NAME="22570"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSTEQR<A NAME="22571"></A> or SSTERF<A NAME="22572"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues of a symmetric tridiagonal matrix, by the 
+implicit <B><I>QL</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IMTQL2<A NAME="22573"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSTEQR<A NAME="22574"></A> or SSTEDC<A NAME="22576"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues/vectors of a symmetric tridiagonal matrix, by the implicit
+<B><I>QL</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IMTQLV<A NAME="22577"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSTEQR<A NAME="22578"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>As IMTQL1<A NAME="22579"></A>, preserving the input matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">INVIT<A NAME="22580"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SHSEIN<A NAME="22581"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Selected eigenvectors of a real upper Hessenberg matrix, by inverse 
+iteration</TD>
+</TR>
+<TR><TD ALIGN="LEFT">MINFIT<A NAME="22582"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGELSS<A NAME="22583"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Minimum norm solution of a linear least squares problem, using the singular
+value decomposition</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ORTBAK<A NAME="22584"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SORMHR<A NAME="22585"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a real matrix after reduction to upper 
+Hessenberg form by ORTHES<A NAME="22586"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">ORTHES<A NAME="22587"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGEHRD<A NAME="22588"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a real matrix to upper Hessenberg form by an orthogonal 
+transformation</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ORTRAN<A NAME="22589"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SORGHR<A NAME="22590"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Generate orthogonal transformation matrix used by ORTHES</TD>
+</TR>
+<TR><TD ALIGN="LEFT">QZHES<A NAME="22591"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SGGHRD<A NAME="22592"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a real generalized eigenproblem 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">
+to
+a form in which <B><I>A</I></B> is upper Hessenberg and <B><I>B</I></B> is upper triangular</TD>
+</TR>
+<TR><TD ALIGN="LEFT">QZIT<A NAME="22593"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SHGEQZ<A NAME="22594"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Generalized Schur factorization of a real generalized
+eigenproblem,</TD>
+</TR>
+<TR><TD ALIGN="LEFT">QZVAL<A NAME="22595"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>after reduction by QZHES<A NAME="22596"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">QZVEC<A NAME="22597"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>STGEVC<A NAME="22598"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvectors of a real generalized eigenproblem from generalized
+Schur factorization</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RATQR<A NAME="22599"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>SSTEBZ<A NAME="22600"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Extreme eigenvalues of a symmetric tridiagonal matrix using the rational QR 
+algorithm with Newton corrections</TD>
+</TR>
+<TR><TD ALIGN="LEFT">REBAK<A NAME="22601"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>STRSM<A NAME="tex2html3545"
+HREF="#footmp22602"><SUP>1</SUP></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a symmetric definite generalized eigenproblem
+
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">
+or 
+<!-- MATH
+ $A B x = \lambda x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">
+after reduction by REDUC<A NAME="22603"></A> or REDUC2<A NAME="22604"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">REBAKB<A NAME="22605"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=47>STRMM<A NAME="tex2html3546"
+HREF="#footmp22606"><SUP>2</SUP></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a symmetric definite generalized eigenproblem
+
+<!-- MATH
+ $B A x = \lambda x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">
+after reduction by REDUC2<A NAME="22607"></A></TD>
+</TR>
+</TABLE>
+</DIV></TD></TR>
+</TABLE>
+
+<P>
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of EISPACK routines (continued)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">EISPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of EISPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">REDUC<A NAME="22623"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYGST<A NAME="22624"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce the symmetric definite generalized eigenproblem 
+<!-- MATH
+ $Ax = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">
+to a standard symmetric eigenproblem</TD>
+</TR>
+<TR><TD ALIGN="LEFT">REDUC2<A NAME="22625"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYGST<A NAME="22626"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce the symmetric definite generalized eigenproblem 
+<!-- MATH
+ $A B x = \lambda x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">
+or 
+<!-- MATH
+ $B A x = \lambda x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">
+to a standard symmetric eigenproblem</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RG<A NAME="22627"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SGEEV<A NAME="22628"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real general matrix 
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RGG<A NAME="22629"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SGEGV<A NAME="22630"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors or a real generalized 
+eigenproblem (driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RS<A NAME="22631"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYEV<A NAME="22632"></A> or SSYEVD<A NAME="22633"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric matrix 
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RSB<A NAME="22634"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSBEV<A NAME="22635"></A> or SSBEVD<A NAME="22637"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric band matrix 
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RSG<A NAME="22638"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYGV<A NAME="22639"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric definite
+generalized eigenproblem 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RSGAB<A NAME="22640"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYGV<A NAME="22641"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric definite
+generalized eigenproblem 
+<!-- MATH
+ $A B x = \lambda x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RSGBA<A NAME="22642"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYGV<A NAME="22643"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric definite
+generalized eigenproblem 
+<!-- MATH
+ $B A x = \lambda x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RSM<A NAME="22644"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYEVX<A NAME="22645"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Selected eigenvalues and optionally eigenvectors of a real symmetric matrix 
+(driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RSP<A NAME="22646"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSPEV<A NAME="22647"></A> or SSPEVD<A NAME="22648"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric matrix
+(packed storage) (driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RST<A NAME="22649"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTEV<A NAME="22650"></A> or SSTEVD<A NAME="22651"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real symmetric tridiagonal
+matrix (driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">RT<A NAME="22652"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues and optionally eigenvectors of a real tridiagonal matrix 
+of special form (driver routine)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SVD<A NAME="22653"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SGESVD<A NAME="22654"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Singular value decomposition of a real matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TINVIT<A NAME="22655"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTEIN<A NAME="22656"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Selected eigenvectors of a symmetric tridiagonal matrix by inverse
+iteration</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TQL1<A NAME="22657"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTEQR<A NAME="22658"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag">
+<BR>
+or SSTERF<A NAME="22660"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues of a symmetric tridiagonal matrix by the explicit 
+<B><I>QL</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TQL2<A NAME="22661"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTEQR<A NAME="22662"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag">
+<BR>
+or SSTEDC<A NAME="22664"></A><IMG
+ WIDTH="8" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1012.gif"
+ ALT="\dag"></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues/vectors of a symmetric tridiagonal matrix by the explicit
+<B><I>QL</I></B> algorithm</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TQLRAT<A NAME="22665"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTERF<A NAME="22666"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>All eigenvalues of a symmetric tridiagonal matrix by a rational variant of
+the <B><I>QL</I></B> algorithm</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=3>LAPACK equivalents of EISPACK routines (continued)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">EISPACK</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>LAPACK</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Function of EISPACK routine</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TRBAK1<A NAME="22681"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SORMTR<A NAME="22682"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a real symmetric matrix after reduction by
+TRED1<A NAME="22683"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">TRBAK3<A NAME="22684"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SOPMTR<A NAME="22685"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Backtransform eigenvectors of a real symmetric matrix after reduction by
+TRED3<A NAME="22686"></A> (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TRED1<A NAME="22687"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYTRD<A NAME="22688"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a real symmetric matrix to tridiagonal form</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TRED2<A NAME="22689"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSYTRD<A NAME="22690"></A> SORGTR<A NAME="22691"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>As TRED1<A NAME="22692"></A>, but also generating the orthogonal transformation matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TRED3<A NAME="22693"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSPTRD<A NAME="22694"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Reduce a real symmetric matrix to tridiagonal form (packed storage)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TRIDIB<A NAME="22695"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTEBZ<A NAME="22696"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Eigenvalues between specified indices of a symmetric tridiagonal matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TSTURM<A NAME="22697"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=43>SSTEBZ<A NAME="22698"></A> SSTEIN<A NAME="22699"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=331>Eigenvalues in a specified interval of a symmetric tridiagonal matrix,
+and corresponding eigenvectors by inverse iteration</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6282"
+ HREF="node148.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6276"
+ HREF="node146.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6272"
+ HREF="node146.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6278"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6280"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6283"
+ HREF="node148.html">LAPACK Working Notes</A>
+<B> Up:</B> <A NAME="tex2html6277"
+ HREF="node146.html">Converting from LINPACK or</A>
+<B> Previous:</B> <A NAME="tex2html6273"
+ HREF="node146.html">Converting from LINPACK or</A>
+ &nbsp <B>  <A NAME="tex2html6279"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6281"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

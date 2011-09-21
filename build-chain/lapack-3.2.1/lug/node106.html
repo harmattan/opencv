@@ -1,0 +1,548 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for the Generalized Singular Value Decomposition</TITLE>
+<META NAME="description" CONTENT="Error Bounds for the Generalized Singular Value Decomposition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node108.html">
+<LINK REL="previous" HREF="node100.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node107.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5680"
+ HREF="node107.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5674"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5668"
+ HREF="node105.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5676"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5678"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5681"
+ HREF="node107.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5675"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5669"
+ HREF="node105.html">Singular Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html5677"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5679"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION034120000000000000000"></A>
+<A NAME="secGSVDbound"></A>
+<BR>
+Error Bounds for the Generalized Singular Value Decomposition
+</H1>
+
+<P>
+The generalized (or quotient) singular value decomposition
+of an <B><I>m</I></B>-by-<B><I>n</I></B> matrix
+<B><I>A</I></B> and a <B><I>p</I></B>-by-<B><I>n</I></B> matrix <B><I>B</I></B> is the pair of factorizations
+<A NAME="12895"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U \Sigma_1 [0,R] Q^T \; \; {\rm and} \; \;
+B = V \Sigma_2 [0,R] Q^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="316" HEIGHT="31" BORDER="0"
+ SRC="img865.gif"
+ ALT="\begin{displaymath}
+A = U \Sigma_1 [0,R] Q^T \; \; {\rm and} \; \;
+B = V \Sigma_2 [0,R] Q^T
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>U</I></B>, <B><I>V</I></B>, <B><I>Q</I></B>, <B><I>R</I></B>, <IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.gif"
+ ALT="$\Sigma_1$">
+and <IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.gif"
+ ALT="$\Sigma_2$">
+are defined
+as follows.
+
+<UL><LI><B><I>U</I></B> is <B><I>m</I></B>-by-<B><I>m</I></B>, <B><I>V</I></B> is <B><I>p</I></B>-by-<B><I>p</I></B>, <B><I>Q</I></B> is <B><I>n</I></B>-by-<B><I>n</I></B>,
+and all three matrices are orthogonal.  If <B><I>A</I></B> and
+<B><I>B</I></B> are complex, these matrices are unitary instead
+of orthogonal, and <B><I>Q</I><SUP><I>T</I></SUP></B> should be
+replaced by <B><I>Q</I><SUP><I>H</I></SUP></B> in the pair of factorizations.
+
+<LI><B><I>R</I></B> is <B><I>r</I></B>-by-<B><I>r</I></B>, upper triangular and nonsingular.
+<B>[0,<I>R</I>]</B> is <B><I>r</I></B>-by-<B><I>n</I></B>. The integer <B><I>r</I></B> is the rank of
+
+<!-- MATH
+ $\left( \begin{array}{c} A \\B \end{array} \right)$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.gif"
+ ALT="$ \left( \begin{array}{c}
+A \\
+B
+\end{array} \right) $">,
+and satisfies <IMG
+ WIDTH="46" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.gif"
+ ALT="$r \leq n$">.
+
+<LI><IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.gif"
+ ALT="$\Sigma_1$">
+is <B><I>m</I></B>-by-<B><I>r</I></B>,
+<IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.gif"
+ ALT="$\Sigma_2$">
+is <B><I>p</I></B>-by-<B><I>r</I></B>, both are real, nonnegative and diagonal,
+and 
+<!-- MATH
+ $\Sigma_1^T \Sigma_1 + \Sigma_2^T \Sigma_2 = I$
+ -->
+<IMG
+ WIDTH="145" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img69.gif"
+ ALT="$\Sigma_1^T \Sigma_1 + \Sigma_2^T \Sigma_2 = I$">.
+Write
+
+<!-- MATH
+ $\Sigma_1^T \Sigma_1 = {\rm diag} ( \alpha_1^2 , \ldots , \alpha_r^2 )$
+ -->
+<IMG
+ WIDTH="193" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img70.gif"
+ ALT="$\Sigma_1^T \Sigma_1 = {\rm diag} ( \alpha_1^2 , \ldots , \alpha_r^2 )$">
+and
+
+<!-- MATH
+ $\Sigma_2^T \Sigma_2 = {\rm diag} ( \beta_1^2 , \ldots , \beta_r^2 )$
+ -->
+<IMG
+ WIDTH="192" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img71.gif"
+ ALT="$\Sigma_2^T \Sigma_2 = {\rm diag} ( \beta_1^2 , \ldots , \beta_r^2 )$">,
+where <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+lie in the interval from 0 to 1.
+The ratios
+
+<!-- MATH
+ $\alpha_1 / \beta_1 , \ldots,,  \alpha_r / \beta_r$
+ -->
+<IMG
+ WIDTH="140" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img866.gif"
+ ALT="$\alpha_1 / \beta_1 , \ldots,, \alpha_r / \beta_r$">
+are called the <B>generalized singular values</B> of the pair <B><I>A</I></B>, <B><I>B</I></B>.
+If <IMG
+ WIDTH="52" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img75.gif"
+ ALT="$\beta_i = 0$">,
+then the generalized singular value
+
+<!-- MATH
+ $\alpha_i / \beta_i$
+ -->
+<IMG
+ WIDTH="45" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.gif"
+ ALT="$\alpha_i / \beta_i$">
+is <B>infinite</B>.
+For details on the structure of <IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.gif"
+ ALT="$\Sigma_1$">,
+<IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.gif"
+ ALT="$\Sigma_2$">
+and <B><I>R</I></B>, see
+section&nbsp;<A HREF="node36.html#sectionGSVDdriver">2.3.5.3</A>.
+
+</UL>
+
+<P>
+The generalized singular value decomposition is
+computed by driver routine xGGSVD (see section&nbsp;<A HREF="node36.html#sectionGSVDdriver">2.3.5.3</A>).
+<A NAME="12906"></A><A NAME="12907"></A><A NAME="12908"></A><A NAME="12909"></A>
+We will give error bounds for the generalized
+<A NAME="12910"></A>
+singular values in the
+common case where 
+<!-- MATH
+ $\left( \begin{array}{c} A \\B \end{array} \right)$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.gif"
+ ALT="$ \left( \begin{array}{c}
+A \\
+B
+\end{array} \right) $">
+has full
+rank <B><I>r</I>=<I>n</I></B>.
+Let 
+<!-- MATH
+ $\hat{\alpha}_i$
+ -->
+<IMG
+ WIDTH="21" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img867.gif"
+ ALT="$\hat{\alpha}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img868.gif"
+ ALT="$\hat{\beta}_i$">
+be the values of <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">,
+respectively,
+computed by xGGSVD.
+The approximate error
+bound<A NAME="footfnm 0"><SUP>4.10</SUP></A>for these values is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\alpha}_i - \alpha_i | +
+| \hat{\beta}_i - \beta_i |  \leq {\tt SERRBD} \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="237" HEIGHT="31" BORDER="0"
+ SRC="img869.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\alpha}_i - \alpha_i \vert +
+\vert \hat{\beta}_i - \beta_i \vert \leq {\tt SERRBD} \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Note that if <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+is close to zero, then a true
+generalized singular value
+
+<!-- MATH
+ $\alpha_i / \beta_i$
+ -->
+<IMG
+ WIDTH="45" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.gif"
+ ALT="$\alpha_i / \beta_i$">
+can differ greatly in magnitude from
+the computed generalized singular value
+
+<!-- MATH
+ $\hat{\alpha}_i / \hat{\beta}_i$
+ -->
+<IMG
+ WIDTH="45" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img870.gif"
+ ALT="$\hat{\alpha}_i / \hat{\beta}_i$">,
+even if <TT>SERRBD</TT> is
+close to its minimum <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">.
+<A NAME="12921"></A>
+
+<P>
+Here is another way to interpret <TT>SERRBD</TT>:
+if we think of <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+as representing the <EM>subspace</EM> <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+consisting of the straight line through the origin with slope
+
+<!-- MATH
+ $\alpha_i / \beta_i$
+ -->
+<IMG
+ WIDTH="45" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.gif"
+ ALT="$\alpha_i / \beta_i$">,
+and similarly 
+<!-- MATH
+ $\hat{\alpha}_i$
+ -->
+<IMG
+ WIDTH="21" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img867.gif"
+ ALT="$\hat{\alpha}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img868.gif"
+ ALT="$\hat{\beta}_i$">
+representing the subspace <IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">,
+then <IMG
+ WIDTH="59" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img871.gif"
+ ALT="${\tt SERRBD}$">
+bounds the acute angle between
+<IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+and <IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">.
+<A NAME="12929"></A>
+<A NAME="12930"></A>
+Note that any two
+lines through the origin with nearly vertical slopes
+(very large 
+<!-- MATH
+ $\alpha / \beta$
+ -->
+<IMG
+ WIDTH="35" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img872.gif"
+ ALT="$\alpha / \beta$">)
+are close together in angle.
+(This is related to the <EM>chordal distance</EM> in
+section&nbsp;<A HREF="node99.html#secGSEPFurtherDetails">4.10.1</A>.)
+
+<P>
+<TT>SERRBD</TT> can be computed by the following code fragment,
+which for simplicity assumes <IMG
+ WIDTH="53" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img105.gif"
+ ALT="$m \geq n$">.
+(The assumption <B><I>r</I>=<I>n</I></B> implies only that <IMG
+ WIDTH="84" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img873.gif"
+ ALT="$p+m \geq n$">.
+Error bounds can also be computed when 
+<!-- MATH
+ $p+m \geq n > m$
+ -->
+<IMG
+ WIDTH="122" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img874.gif"
+ ALT="$p+m \geq n &gt; m$">,
+with slightly more complicated code.)
+
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Compute generalized singular values of A and B
+      CALL SGGSVD( 'N', 'N', 'N', M, N, P, K, L, A, LDA, B,
+     $             LDB, ALPHA, BETA, U, LDU, V, LDV, Q, LDQ,
+     $             WORK, IWORK, INFO )
+*     Compute rank of [A',B']'
+      RANK = K+L
+      IF( INFO.GT.0 ) THEN
+         PRINT *,'SGGSVD did not converge'
+      ELSE IF( RANK.LT.N ) THEN
+         PRINT *,'[A**T,B**T]**T not full rank'
+      ELSE IF ( M .GE. N .AND. N .GT. 0 ) THEN
+*        Compute reciprocal condition number RCOND of R
+         CALL STRCON( 'I', 'U', 'N', N, A, LDA, RCOND, WORK, IWORK,
+     $                INFO )
+         RCOND = MAX( RCOND, EPSMCH )
+         SERRBD = EPSMCH / RCOND
+      END IF
+</PRE>
+<A NAME="12936"></A>
+
+<P>
+For example<A NAME="footfnm 0"><SUP>4.11</SUP></A>, if
+
+<!-- MATH
+ ${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="259" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img397.gif"
+ ALT="${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$">,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{ccc} 1 & 2 & 3 \\3 & 2 & 1 \\4 & 5 & 6 \\7 & 8 & 8 \end{array} \right) 
+\; \; {\rm and} \; \;
+B = \left( \begin{array}{ccc} -2 & -3 & 3 \\4 & 6 & 5 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="349" HEIGHT="93" BORDER="0"
+ SRC="img875.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{ccc} 1 &amp; 2 &amp; 3 \\ 3 &amp; 2 &amp; 1 \\ 4 &amp; ...
+...egin{array}{ccc} -2 &amp; -3 &amp; 3 \\ 4 &amp; 6 &amp; 5 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then, to 4 decimal places,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{c} \alpha_1 \\\alpha_2 \\\alpha_3 \end{array} \right) =
+\left( \begin{array}{c} \hat{\alpha}_1 \\\hat{\alpha}_2 \\\hat{\alpha}_3 \end{array} \right) =
+\left( \begin{array}{c} 1.000 \\.7960 \\7.993 \cdot 10^{-2} \end{array} \right) 
+\; \; {\rm and} \; \;
+\left( \begin{array}{c} \beta_1 \\\beta_2 \\\beta_3 \end{array} \right) =
+\left( \begin{array}{c} \hat{\beta}_1 \\\hat{\beta}_2 \\\hat{\beta}_3 \end{array} \right) =
+\left( \begin{array}{c} 0 \\.6053 \\.9968 \end{array} \right) ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="611" HEIGHT="76" BORDER="0"
+ SRC="img876.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{c} \alpha_1 \\ \alpha_2 \\ \alpha_3 \en...
+...ft( \begin{array}{c} 0 \\ .6053 \\ .9968 \end{array} \right) ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<!-- MATH
+ ${\tt SERRBD} = 1.4 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="153" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img877.gif"
+ ALT="${\tt SERRBD} = 1.4 \cdot 10^{-6}$">,
+and the true errors
+are <B>0</B>, 
+<!-- MATH
+ $4.3 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img408.gif"
+ ALT="$4.3 \cdot 10^{-7}$">
+and 
+<!-- MATH
+ $1.5 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img642.gif"
+ ALT="$1.5 \cdot 10^{-7}$">.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5682"
+ HREF="node107.html">Further Details:  Error Bounds for the Generalized Singular Value Decomposition</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5680"
+ HREF="node107.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5674"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5668"
+ HREF="node105.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5676"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5678"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5681"
+ HREF="node107.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5675"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5669"
+ HREF="node105.html">Singular Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html5677"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5679"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

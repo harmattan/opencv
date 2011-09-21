@@ -1,0 +1,2 @@
+usr/lib/lapack/*.so
+usr/lib/lapack/liblapack.a

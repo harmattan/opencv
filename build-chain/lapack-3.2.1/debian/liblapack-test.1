@@ -1,0 +1,69 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH LAPACK-TEST 1 "January 29, 2002" netlib "Linux Programmer's Manual"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+xeigtstc, xeigtstd, xeigtsts, xeigtstz, xlintstc, xlintstd, xlintsts,
+xlintstz
+xeigtimc, xeigtimd, xeigtims, xeigtimz, xlintimc, xlintimd, xlintims,
+xlintimz
+\- testing and timing programs for lapack
+.SH SYNOPSIS
+.B x{eig,lin}{tst,tim}{s,d,c,z} 
+.RI < " parameter file" 
+.SH DESCRIPTION
+This manual page documents briefly the lapack testing programs.
+This manual page was written for the Debian GNU/Linux distribution
+because the original programs do not have manual pages.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+.B lapack
+is a library of common linear algebra routines, which in turn makes
+use of the basic linear algebra primitives supplied by the 
+.B blas
+application programming interface.  In general, one cannot use the
+lapack library without a blas compatible library on the system.  
+.br
+The testing binaries (those with "tst" in the program name)
+check the integrity of the
+.B eigen
+and 
+.B linear equation
+routines ("eig" and "lin" stems in program name, respectively) 
+in each of four 
+.B precisions:
+single precision real, double precision real, single precision
+complex, and double precision complex (program suffixes "s","d","c",
+and "z" respectively).
+.br
+All of these programs take as input a parameter file which specifies
+the range of matrix sizes and types used in each test.  Sample input
+files can be found in /usr/share/doc/lapack-test/examples.
+.br
+On Debian systems, these programs are dynamically linked against both
+blas and lapack libraries.  This enables the user to test and compare
+alternate versions of these libraries, such as those provided by
+atlas, through the use of the LD_LIBRARY_PATH and LD_PRELOAD
+environment variables.  One can confirm the versions of the libraries
+being tested in a given environment with the aid of the ldd program.
+.SH OPTIONS
+These programs take no command line options.
+.\" .SH SEE ALSO
+.SH AUTHOR
+This manual page was written by Camm Maguire <camm@enhanced.com>,
+for the Debian GNU/Linux system (but may be used by others).

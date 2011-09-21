@@ -1,0 +1,53 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_au_length_unspecified.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: AU specifies a length of 0xffffffff as unspecified, so we need a bit
+## DP: more legwork to obtain the total number of frames. Code adapted from
+## DP: wave.c.
+
+@DPATCH@
+diff -urNad audiofile/libaudiofile/next.c /tmp/dpep.Qm7jhr/audiofile/libaudiofile/next.c
+--- audiofile/libaudiofile/next.c	2003-09-28 16:17:10.000000000 +0200
++++ /tmp/dpep.Qm7jhr/audiofile/libaudiofile/next.c	2004-11-27 22:43:46.000000000 +0100
+@@ -34,6 +34,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <math.h>
+ 
+ #ifdef HAVE_INTTYPES_H
+ #include <inttypes.h>
+@@ -172,7 +173,19 @@
+ 
+ 	track->f.sampleRate = sampleRate;
+ 	track->f.channelCount = channelCount;
+-	track->totalfframes = length / _af_format_frame_size(&track->f, AF_FALSE);
++
++	if (length != _AU_LENGTH_UNSPECIFIED) {
++		track->totalfframes =
++			length / _af_format_frame_size(&track->f, AF_FALSE);
++	} else {
++		double frame_size = track->f.channelCount;
++
++		if (track->f.compressionType != AF_COMPRESSION_G711_ULAW &&
++		    track->f.compressionType != AF_COMPRESSION_G711_ALAW)
++			frame_size = _af_format_frame_size(&track->f, AF_FALSE);
++
++		track->totalfframes = ceil(track->data_size / frame_size);
++	}	
+ 
+ #ifdef DEBUG
+ 	printf("_af_next_read_init\n");
+diff -urNad audiofile/libaudiofile/next.h /tmp/dpep.Qm7jhr/audiofile/libaudiofile/next.h
+--- audiofile/libaudiofile/next.h	2001-03-13 16:42:28.000000000 +0100
++++ /tmp/dpep.Qm7jhr/audiofile/libaudiofile/next.h	2004-11-27 22:43:30.000000000 +0100
+@@ -63,6 +63,8 @@
+ 	_AU_FORMAT_DELTA_MULAW_8 = 29
+ };
+ 
++#define _AU_LENGTH_UNSPECIFIED	(~(u_int32_t) 0)
++
+ #define _AF_NEXT_NUM_COMPTYPES 2
+ 
+ bool _af_next_recognize (AFvirtualfile *fh);

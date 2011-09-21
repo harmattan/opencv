@@ -1,0 +1,772 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Eigenvalue Problems</TITLE>
+<META NAME="description" CONTENT="Eigenvalue Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node69.html">
+<LINK REL="up" HREF="node67.html">
+<LINK REL="next" HREF="node71.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5141"
+ HREF="node71.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5135"
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5131"
+ HREF="node69.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5137"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5139"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5142"
+ HREF="node71.html">LAPACK Benchmark</A>
+<B> Up:</B> <A NAME="tex2html5136"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Previous:</B> <A NAME="tex2html5132"
+ HREF="node69.html">QR Factorization</A>
+ &nbsp <B>  <A NAME="tex2html5138"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5140"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03343000000000000000"></A><A NAME="subsecblockeig"></A>
+<BR>
+Eigenvalue Problems
+</H2>
+
+<P>
+Eigenvalue<A NAME="7878"></A> problems have also
+provided a fertile ground for the development of higher performance
+algorithms. These algorithms generally all consist of three phases:
+(1) reduction of the original dense matrix to a condensed form
+by orthogonal transformations,
+(2) solution of condensed form, and
+(3) optional backtransformation of the solution of the condensed form
+to the solution of the original matrix.
+In addition to block versions of algorithms for phases 1 and 3,
+a number of entirely new algorithms for phase 2 have recently
+been discovered.
+In particular,
+Version&nbsp;3.0 of LAPACK includes new block algorithms for the singular
+value decomposition (SVD) and SVD-based least squares solver,
+as well as a prototype of a new algorithm
+xSTEGR[<A
+ HREF="node151.html#holygrail">35</A>,<A
+ HREF="node151.html#parlettmarques99">87</A>,<A
+ HREF="node151.html#parlettdhillon99a">86</A>,<A
+ HREF="node151.html#dhillonparlett99b">36</A>],
+<A NAME="7880"></A><A NAME="7881"></A><A NAME="7882"></A><A NAME="7883"></A>
+which may be the ultimate solution for the symmetric eigenproblem
+and SVD on both parallel and serial machines.
+
+<P>
+The first step in solving many types of eigenvalue problems is to reduce
+the original matrix to a condensed form by orthogonal
+transformations<A NAME="7884"></A>.
+<A NAME="7885"></A>
+In the reduction to condensed forms, the unblocked algorithms all use
+elementary
+Householder matrices and have good vector performance.
+Block forms of these algorithms have been developed [<A
+ HREF="node151.html#lapwn2">46</A>],
+but all require additional operations, and a significant proportion of the
+work
+must still be performed by Level 2 BLAS, so there is less possibility of
+compensating for the extra operations.
+
+<P>
+The algorithms concerned are:
+
+<P>
+
+<UL><LI>reduction of a symmetric matrix to tridiagonal form<A NAME="7888"></A> to solve a
+symmetric eigenvalue problem: LAPACK routine xSYTRD
+<A NAME="7889"></A><A NAME="7890"></A><A NAME="7891"></A><A NAME="7892"></A>
+applies a symmetric block
+update of the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A \leftarrow A - U X^T - X U^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="176" HEIGHT="28" BORDER="0"
+ SRC="img224.gif"
+ ALT="\begin{displaymath}A \leftarrow A - U X^T - X U^T\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+using the Level 3
+BLAS routine xSYR2K;
+Level 3 BLAS account for at most half the work.
+
+<P>
+
+<LI>reduction of a rectangular matrix to bidiagonal form<A NAME="7893"></A> to compute
+a singular value decomposition: LAPACK routine xGEBRD
+<A NAME="7894"></A><A NAME="7895"></A><A NAME="7896"></A><A NAME="7897"></A>
+applies a block update
+of the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A \leftarrow A - U X^T - Y V^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="174" HEIGHT="28" BORDER="0"
+ SRC="img225.gif"
+ ALT="\begin{displaymath}A \leftarrow A - U X^T - Y V^T\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+using two calls to the
+Level 3 BLAS routine xGEMM; Level 3 BLAS account for at most half the
+work.
+
+<P>
+
+<LI>reduction of a nonsymmetric matrix to Hessenberg form<A NAME="7898"></A><A NAME="7899"></A> to solve a
+nonsymmetric eigenvalue problem: LAPACK routine xGEHRD
+<A NAME="7900"></A><A NAME="7901"></A><A NAME="7902"></A><A NAME="7903"></A>
+applies a block update
+of the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A \leftarrow (I - V T^T V^T)(A - X V^T).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="238" HEIGHT="31" BORDER="0"
+ SRC="img226.gif"
+ ALT="\begin{displaymath}A \leftarrow (I - V T^T V^T)(A - X V^T).\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Level 3 BLAS
+account for at most three-quarters of the work.
+
+<P>
+
+</UL>
+
+<P>
+Note that only in the reduction to Hessenberg form<A NAME="7905"></A> is it possible to
+use the block Householder representation described in
+subsection&nbsp;<A HREF="node69.html#subsecblockqr">3.4.2</A>.
+Extra work must be performed to compute the <B><I>n</I></B>-by-<B><I>b</I></B> matrices <B><I>X</I></B> and <B><I>Y</I></B>
+that are required for the block updates (<B><I>b</I></B> is the block size)
+-- and extra workspace is needed to
+store them.
+
+<P>
+Nevertheless, the performance gains can be worthwhile on some machines
+for large enough matrices,
+for example, on an IBM Power&nbsp;3, as shown in Table&nbsp;<A HREF="node70.html#tabred">3.11</A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabred"></A>
+<DIV ALIGN="CENTER">
+</DIV>
+<P>
+<DIV ALIGN="CENTER">(all matrices are square of order <B><I>n</I></B>)
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><A NAME="7909"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.11:</STRONG>
+Speed in megaflops of reductions to condensed forms on an
+IBM Power&nbsp;3</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">Block</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">size</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">DSYTRD<A NAME="7919"></A></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="RIGHT">356</TD>
+<TD ALIGN="RIGHT">418</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">192</TD>
+<TD ALIGN="RIGHT">499</TD>
+</TR>
+<TR><TD ALIGN="LEFT">DGEBRD<A NAME="7920"></A></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="RIGHT">269</TD>
+<TD ALIGN="RIGHT">241</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">179</TD>
+<TD ALIGN="RIGHT">342</TD>
+</TR>
+<TR><TD ALIGN="LEFT">DGEHRD<A NAME="7921"></A></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="RIGHT">277</TD>
+<TD ALIGN="RIGHT">250</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">277</TD>
+<TD ALIGN="RIGHT">471</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+Following the reduction of a dense (or band) symmetric matrix to tridiagonal
+form <B><I>T</I></B>,
+we must compute the eigenvalues and (optionally) eigenvectors of <B><I>T</I></B>.
+Computing the eigenvalues of <B><I>T</I></B> alone (using LAPACK routine
+xSTERF<A NAME="7925"></A><A NAME="7926"></A>) requires
+<B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> flops, whereas the reduction routine
+xSYTRD<A NAME="7927"></A><A NAME="7928"></A> does 
+<!-- MATH
+ $\frac{4}{3}n^3 + O(n^2)$
+ -->
+<IMG
+ WIDTH="100" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img227.gif"
+ ALT="$\frac{4}{3}n^3 + O(n^2)$">
+flops. So eventually the cost of finding eigenvalues
+alone becomes small compared to the cost of reduction. However, xSTERF
+does only scalar floating point operations, without scope for the BLAS,
+so <B><I>n</I></B> may have to be large before xSYTRD is slower than xSTERF.
+
+<P>
+Version 2.0 of LAPACK introduced a new algorithm,
+xSTEDC<A NAME="7931"></A><A NAME="7932"></A><A NAME="7933"></A><A NAME="7934"></A>,
+for finding all eigenvalues and
+eigenvectors of <B><I>T</I></B>. The new algorithm can exploit Level 2 and 3 BLAS,
+whereas
+the previous algorithm,
+xSTEQR<A NAME="7935"></A><A NAME="7936"></A><A NAME="7937"></A><A NAME="7938"></A>,
+could not. Furthermore, xSTEDC usually does
+many
+fewer flops than xSTEQR, so the speedup is compounded. Briefly, xSTEDC works
+as follows
+(for details, see [<A
+ HREF="node151.html#gueisenstat">57</A>,<A
+ HREF="node151.html#rutter">89</A>]). The tridiagonal matrix <B><I>T</I></B> is
+written as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T = \left( \begin{array}{cc} T_1 & 0 \\0 & T_2 \end{array} \right) + H
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="165" HEIGHT="54" BORDER="0"
+ SRC="img228.gif"
+ ALT="\begin{displaymath}
+T = \left( \begin{array}{cc} T_1 &amp; 0 \\ 0 &amp; T_2 \end{array} \right) + H
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>T</I><SUB>1</SUB></B> and <B><I>T</I><SUB>2</SUB></B> are tridiagonal, and <B><I>H</I></B> is a very simple rank-one
+matrix.
+Then the eigenvalues and eigenvectors of <B><I>T</I><SUB>1</SUB></B> and <B><I>T</I><SUB>2</SUB></B> are found by
+applying
+the algorithm recursively; this yields 
+<!-- MATH
+ $T_1 = Q_1 \Lambda_1 Q_1^T$
+ -->
+<IMG
+ WIDTH="111" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img229.gif"
+ ALT="$T_1 = Q_1 \Lambda_1 Q_1^T$">
+and
+
+<!-- MATH
+ $T_2 = Q_2 \Lambda_2 Q_2^T$
+ -->
+<IMG
+ WIDTH="111" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img230.gif"
+ ALT="$T_2 = Q_2 \Lambda_2 Q_2^T$">,
+where <IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img231.gif"
+ ALT="$\Lambda_i$">
+is a diagonal matrix of
+eigenvalues,
+and the columns of <B><I>Q</I><SUB><I>i</I></SUB></B> are orthonormal eigenvectors. Thus
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T = \left( \begin{array}{cc} Q_1 \Lambda_1 Q_1^T & 0 \\0 &  Q_2 \Lambda_2 Q_2^T \end{array} \right) + H
+=
+\left( \begin{array}{cc} Q_1 & 0 \\0 & Q_2 \end{array} \right) \cdot
+\left( \left( \begin{array}{cc} \Lambda_1 & 0 \\0 & \Lambda_2 \end{array} \right) + H' \right) \cdot
+\left( \begin{array}{cc} Q_1^T & 0 \\0 & Q_2^T \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="650" HEIGHT="54" BORDER="0"
+ SRC="img232.gif"
+ ALT="\begin{displaymath}
+T = \left( \begin{array}{cc} Q_1 \Lambda_1 Q_1^T &amp; 0 \\ 0 &amp; ...
+... \begin{array}{cc} Q_1^T &amp; 0 \\ 0 &amp; Q_2^T \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>H</I>'</B> is again a simple rank-one matrix. The eigenvalues and
+eigenvectors
+of 
+<!-- MATH
+ $\left( \begin{array}{cc} \Lambda_1 & 0 \\0 & \Lambda_2 \end{array} \right) + H'$
+ -->
+<IMG
+ WIDTH="142" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img233.gif"
+ ALT="$\left( \begin{array}{cc} \Lambda_1 &amp; 0 \\ 0 &amp; \Lambda_2 \end{array} \right) + H'$">
+may be found
+using <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> scalar operations, yielding
+
+<!-- MATH
+ $\left( \begin{array}{cc} \Lambda_1 & 0 \\0 & \Lambda_2 \end{array} \right) + H' =
+\hat{Q} \Lambda \hat{Q}^T \; .$
+ -->
+<IMG
+ WIDTH="226" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img234.gif"
+ ALT="$
+\left( \begin{array}{cc} \Lambda_1 &amp; 0 \\ 0 &amp; \Lambda_2 \end{array} \right) + H' =
+\hat{Q} \Lambda \hat{Q}^T \; .
+$">
+Substituting this into the last displayed expression yields
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T =
+\left( \begin{array}{cc} Q_1 & 0 \\0 & Q_2 \end{array} \right) 
+\left( \hat{Q} {\Lambda} \hat{Q}^T \right) \left( \begin{array}{cc} Q_1^T & 0 \\0 & Q_2^T
+\end{array} \right) =
+\left( \left( \begin{array}{cc} Q_1 & 0 \\0 & Q_2 \end{array} \right) \hat{Q} \right)
+{\Lambda}
+\left( \hat{Q}^T \left( \begin{array}{cc} Q_1^T & 0 \\0 & Q_2^T \end{array} \right) \right) =
+Q \Lambda Q^T \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="739" HEIGHT="54" BORDER="0"
+ SRC="img235.gif"
+ ALT="\begin{displaymath}
+T =
+\left( \begin{array}{cc} Q_1 &amp; 0 \\ 0 &amp; Q_2 \end{array} ...
+... \\ 0 &amp; Q_2^T \end{array} \right) \right) =
+Q \Lambda Q^T \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where the diagonals of <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\Lambda$">
+are the desired eigenvalues of <B><I>T</I></B>, and the
+columns
+of 
+<!-- MATH
+ $Q = \left( \begin{array}{cc} Q_1 & 0 \\0 & Q_2 \end{array} \right) \hat{Q}$
+ -->
+<IMG
+ WIDTH="158" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img236.gif"
+ ALT="$Q = \left( \begin{array}{cc} Q_1 &amp; 0 \\ 0 &amp; Q_2 \end{array} \right) \hat{Q}$">
+are the eigenvectors.
+Almost all the work is done in the two matrix multiplies of <B><I>Q</I><SUB>1</SUB></B> and <B><I>Q</I><SUB>2</SUB></B>
+times
+<IMG
+ WIDTH="18" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img237.gif"
+ ALT="$\hat{Q}$">,
+which is done using the Level 3 BLAS.
+
+<P>
+The same recursive algorithm has been developed for the singular value
+decomposition
+of the bidiagonal matrix resulting from reducing a dense matrix with
+xGEBRD.
+<A NAME="7962"></A><A NAME="7963"></A><A NAME="7964"></A><A NAME="7965"></A>
+The SVD driver using this algorithm is called xGESDD.
+<A NAME="7966"></A><A NAME="7967"></A><A NAME="7968"></A><A NAME="7969"></A>
+This recursive algorithm is also used for the SVD-based linear least
+squares solver xGELSD;
+<A NAME="7970"></A><A NAME="7971"></A><A NAME="7972"></A><A NAME="7973"></A>
+see Figure&nbsp;<A HREF="node71.html#fig:GELScomparison">3.3</A> to see how
+much faster DGELSD is than its older routine DGELSS.
+SBDSQR<A NAME="7975"></A><A NAME="7976"></A><A NAME="7977"></A><A NAME="7978"></A>,
+Comparison timings of DGESVD<A NAME="7979"></A> and DGESDD<A NAME="7980"></A> can
+be found in
+Tables&nbsp;<A HREF="node71.html#tabsvddriver2">3.18</A> and <A HREF="node71.html#tabsvddriver4">3.19</A>.
+
+<P>
+Version 3.0 of LAPACK introduced another new algorithm, xSTEGR,
+<A NAME="7983"></A><A NAME="7984"></A><A NAME="7985"></A><A NAME="7986"></A>
+for finding all the eigenvalues and eigenvectors of a symmetric
+tridiagonal matrix.
+It is usually even faster
+than xSTEDC
+<A NAME="7987"></A><A NAME="7988"></A><A NAME="7989"></A><A NAME="7990"></A>
+above, and we expect it to ultimately replace all
+other LAPACK algorithm for the symmetric eigenvalue problem
+and SVD. Here is a rough description of how it works; for
+details see
+[<A
+ HREF="node151.html#holygrail">35</A>,<A
+ HREF="node151.html#parlettmarques99">87</A>,<A
+ HREF="node151.html#parlettdhillon99a">86</A>,<A
+ HREF="node151.html#dhillonparlett99b">36</A>].
+
+<P>
+It is easiest to think of xSTEGR as a variation on xSTEIN,
+<A NAME="7992"></A><A NAME="7993"></A><A NAME="7994"></A><A NAME="7995"></A>
+inverse iteration.
+If all the eigenvalues were well separated, xSTEIN would
+run in <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> time.
+But it is difficult for xSTEIN to compute accurate eigenvectors
+belonging to close eigenvalues, those that have four or
+more decimals in common with their neighbors. Indeed, xSTEIN
+slows down because it reorthogonalizes the corresponding eigenvectors.
+xSTEGR escapes this difficulty by exploiting the invariance of
+eigenvectors under translation.
+
+<P>
+For each cluster <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img238.gif"
+ ALT="$\cal C$">
+of close eigenvalues the algorithm chooses
+a shift <B><I>s</I></B> at one end of <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img238.gif"
+ ALT="$\cal C$">,
+or just outside, with the property
+that <B><I>T</I> - <I>sI</I></B> permits triangular factorization 
+<!-- MATH
+ $LDL^T = T - sI$
+ -->
+<B><I>LDL</I><SUP><I>T</I></SUP> = <I>T</I> - <I>sI</I></B>
+such that the small shifted eigenvalues
+(<IMG
+ WIDTH="44" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img239.gif"
+ ALT="$\lambda - s$">
+for 
+<!-- MATH
+ $\lambda \in {\cal C}$
+ -->
+<IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img240.gif"
+ ALT="$\lambda \in {\cal C}$">)
+are determined to high relative accuracy by the
+entries in <B><I>L</I></B> and <B><I>D</I></B>.  Note that the small shifted eigenvalues
+will have fewer digits in common than those in <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img238.gif"
+ ALT="$\cal C$">.
+The algorithm
+computes these small shifted eigenvalues to high relative
+accuracy, either by xLASQ2
+or by refining earlier approximations
+using bisection.  This means that each computed <IMG
+ WIDTH="15" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img241.gif"
+ ALT="$\hat{\lambda}$">
+approximating a <IMG
+ WIDTH="44" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img239.gif"
+ ALT="$\lambda - s$">
+has error bounded by 
+<!-- MATH
+ $O( \varepsilon )
+|\hat{\lambda}|$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img242.gif"
+ ALT="$O( \varepsilon )
+\vert\hat{\lambda}\vert$">.
+
+<P>
+The next task is to compute an eigenvector for <IMG
+ WIDTH="44" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img239.gif"
+ ALT="$\lambda - s$">.
+For each
+<IMG
+ WIDTH="15" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img241.gif"
+ ALT="$\hat{\lambda}$">
+the algorithm computes, with care, an optimal
+<EM>twisted factorization</EM>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="264" HEIGHT="58" BORDER="0"
+ SRC="img243.gif"
+ ALT="\begin{eqnarray*}
+LDL^T - \hat{\lambda} I &amp;=&amp; N_r \Delta_r N_r^T \\
+\Delta_r &amp;=&amp; {\rm diag}(\delta_1,\delta_2, ...
+,\delta_n)
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+obtained by implementing triangular factorization both from top
+down and bottom up and joining them at a well chosen index <B><I>r</I></B>.
+An approximate eigenvector <B><I>z</I></B> is obtained by solving <B><I>N</I><SUB><I>r</I></SUB><SUP><I>T</I></SUP> <I>z</I> = <I>e</I><SUB><I>r</I></SUB></B>
+where <B><I>e</I><SUB><I>r</I></SUB></B> is column <B><I>r</I></B> of <B><I>I</I></B>.  It turns out that
+
+<!-- MATH
+ $N_r \Delta_r N_r^T = e_r \delta_r$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img244.gif"
+ ALT="$N_r \Delta_r N_r^T = e_r \delta_r$">
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\| LDL^T - \hat{\lambda} I \| =
+     | {\rm error\ in\ } \hat{\lambda}| / \|u\|_{\infty} + ...
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="297" HEIGHT="31" BORDER="0"
+ SRC="img245.gif"
+ ALT="\begin{displaymath}
+\Vert LDL^T - \hat{\lambda} I \Vert =
+\vert {\rm error\ in\ } \hat{\lambda}\vert / \Vert u\Vert _{\infty} + ...
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where ... indicates smaller terms and 
+<!-- MATH
+ $Tu = \lambda u$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img246.gif"
+ ALT="$Tu = \lambda u$">,
+<B><I>u</I><SUP><I>T</I></SUP><I>u</I> = 1</B>.
+&gt;From the basic gap theorem [<A
+ HREF="node151.html#parlett">85</A>]
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|\sin \theta(u,z)| <= O(\epsilon)
+) |\hat{\lambda}| / (\|u\|_{\infty}
+|\hat{\lambda} - \hat{\mu}| ) + ...
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="333" HEIGHT="31" BORDER="0"
+ SRC="img247.gif"
+ ALT="\begin{displaymath}
+\vert\sin \theta(u,z)\vert &lt;= O(\epsilon)
+) \vert\hat{\lamb...
+...t u\Vert _{\infty}
+\vert\hat{\lambda} - \hat{\mu}\vert ) + ...
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img248.gif"
+ ALT="$\hat{\mu}$">
+is <IMG
+ WIDTH="15" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img241.gif"
+ ALT="$\hat{\lambda}$">'s neighbor in the shifted spectrum.
+Given
+this nice bound the algorithm computes <B><I>z</I></B> for all <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+such that the
+relative gap 
+<!-- MATH
+ $|\lambda - \mu|/|\lambda - s| > 10^{-3}$
+ -->
+<IMG
+ WIDTH="173" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img249.gif"
+ ALT="$\vert\lambda - \mu\vert/\vert\lambda - s\vert &gt; 10^{-3}$">.
+These <B><I>z</I></B>'s have an
+error
+that is <IMG
+ WIDTH="39" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img250.gif"
+ ALT="$O(\epsilon)$">.
+
+<P>
+The procedure described above is repeated for any eigenvalues that
+remain without eigenvectors.  It can be shown that all the computed
+<B><I>z</I></B>'s are very close to eigenvectors of small relative perturbations of
+one global Cholesky factorization <B><I>GG</I><SUP><I>T</I></SUP></B> of a translate <IMG
+ WIDTH="58" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img251.gif"
+ ALT="$T - \sigma I$">
+of <B><I>T</I></B>.  A key
+component of the algorithm is the use of recently discovered
+differential qd algorithms to ensure that the twisted factorizations
+described above are computed without ever forming the indicated
+matrix products such as <B><I>LDL</I><SUP><I>T</I></SUP></B> [<A
+ HREF="node151.html#fernandoparlett">51</A>].
+
+<P>
+For computing the eigenvalues and eigenvectors of a Hessenberg
+matrix--or rather for computing its Schur factorization-- yet another
+flavor of block algorithm has been developed: a <B>multishift</B>
+<B><I>QR</I></B> iteration<A NAME="8019"></A>
+[<A
+ HREF="node151.html#baidemmel">9</A>]. Whereas the traditional EISPACK routine
+HQR<A NAME="8021"></A> uses a double shift (and the corresponding complex
+routine COMQR<A NAME="8022"></A>
+uses a single shift), the multishift algorithm uses block shifts of
+higher order. It has been found that often the total number of operations
+<EM>decreases</EM> as the order of shift is increased until a minimum
+is reached typically between 4 and 8; for higher orders the number of
+operations increases quite rapidly. On many machines
+the speed of applying the shift
+increases steadily with the order, and the optimum order of shift is
+typically in the range 8-16. Note however that the performance can be
+very sensitive to the choice of the order of shift; it also depends on
+the numerical properties of the matrix. Dubrulle&nbsp;[<A
+ HREF="node151.html#dubrulle">49</A>] has
+studied the practical performance of the algorithm, while Watkins and
+Elsner&nbsp;[<A
+ HREF="node151.html#watkinselsner">101</A>] discuss its theoretical asymptotic convergence
+rate.
+
+<P>
+Finally, we note that research into block algorithms for symmetric and
+nonsymmetric eigenproblems continues
+[<A
+ HREF="node151.html#baidemmel92a">11</A>,<A
+ HREF="node151.html#hussledermantsaozhang93">68</A>],
+and future versions of LAPACK will be updated to contain the best algorithms
+available.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5141"
+ HREF="node71.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5135"
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5131"
+ HREF="node69.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5137"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5139"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5142"
+ HREF="node71.html">LAPACK Benchmark</A>
+<B> Up:</B> <A NAME="tex2html5136"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Previous:</B> <A NAME="tex2html5132"
+ HREF="node69.html">QR Factorization</A>
+ &nbsp <B>  <A NAME="tex2html5138"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5140"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

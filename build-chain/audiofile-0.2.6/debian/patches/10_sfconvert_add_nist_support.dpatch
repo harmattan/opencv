@@ -1,0 +1,32 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_sfconvert_add_nist_support.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add support for converting to the NIST SPHERE file format.
+## DP: Pulled from upstream BK repo (cset 1.163).
+## DP: Remove Changelog entry to avoid clashes.
+
+@DPATCH@
+# This is a BitKeeper generated diff -Nru style patch.
+#
+# ChangeSet
+#   2004/07/21 03:19:21-05:00 michael@andromeda.68k.org 
+#   sfconvert.c:
+#     Add support for converting to the NIST SPHERE file format.
+# 
+# sfcommands/sfconvert.c
+#   2004/07/21 03:18:56-05:00 michael@andromeda.68k.org +2 -0
+#   Add support for converting to the NIST SPHERE file format.
+# 
+diff -Nru a/sfcommands/sfconvert.c b/sfcommands/sfconvert.c
+--- a/sfcommands/sfconvert.c	2004-11-27 12:52:23 -08:00
++++ b/sfcommands/sfconvert.c	2004-11-27 12:52:23 -08:00
+@@ -98,6 +98,8 @@
+ 				outFileFormat = AF_FILE_NEXTSND;
+ 			else if (!strcmp(argv[i+1], "bics"))
+ 				outFileFormat = AF_FILE_BICSF;
++			else if (!strcmp(argv[i+1], "nist"))
++				outFileFormat = AF_FILE_NIST_SPHERE;
+ 			else
+ 			{
+ 				fprintf(stderr, "sfconvert: Unknown format %s.\n", argv[i+1]);

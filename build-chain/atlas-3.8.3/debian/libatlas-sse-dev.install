@@ -1,0 +1,5 @@
+debian/tmp/usr/lib/atlas-sse/*.so
+debian/tmp/usr/lib/atlas-sse/*.a
+debian/tmp/usr/lib/atlas-sse/atlas/*.so
+debian/tmp/usr/lib/atlas-sse/atlas/*.a
+

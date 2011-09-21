@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Eigenvalues, Eigenvectors and Generalized Schur Decomposition</TITLE>
+<META NAME="description" CONTENT="Eigenvalues, Eigenvectors and Generalized Schur Decomposition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node57.html">
+<LINK REL="previous" HREF="node55.html">
+<LINK REL="up" HREF="node55.html">
+<LINK REL="next" HREF="node57.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4936"
+ HREF="node57.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4930"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4924"
+ HREF="node55.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4932"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4934"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4937"
+ HREF="node57.html">Balancing</A>
+<B> Up:</B> <A NAME="tex2html4931"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4925"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html4933"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4935"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03248100000000000000">
+Eigenvalues, Eigenvectors and Generalized Schur Decomposition</A>
+</H3>
+
+<P>
+Let <B><I>A</I></B> and <B><I>B</I></B> be <B><I>n</I></B>-by-<B><I>n</I></B> matrices.
+<A NAME="3635"></A>
+A scalar <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+is called
+a <B>generalized eigenvalue</B> <A NAME="3637"></A>
+and a non-zero column vector <B><I>x</I></B> the
+corresponding <B>right generalized eigenvector</B>
+<A NAME="3639"></A> of the pair <B>(<I>A</I>,<I>B</I>)</B>,
+if 
+<!-- MATH
+ $Ax = \lambda Bx$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">.
+A non-zero column vector <B><I>y</I></B> satisfying 
+<!-- MATH
+ $y^H A = \lambda y^H B$
+ -->
+<IMG
+ WIDTH="109" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img177.gif"
+ ALT="$y^H A = \lambda y^H B$">
+is called the
+<B>left generalized eigenvector</B> <A NAME="3641"></A>
+corresponding to <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">.
+(For
+simplicity, we will usually omit the word ``generalized'' when no
+confusion is likely to arise.)  If <B><I>B</I></B> is singular, we can have the
+<B>infinite eigenvalue</B> <A NAME="3643"></A>
+
+<!-- MATH
+ $\lambda = \infty$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img178.gif"
+ ALT="$\lambda = \infty$">,
+by which we mean
+<B><I>Bx</I> = 0</B>.  Note that if <B><I>A</I></B> is non-singular, then the equivalent
+problem <IMG
+ WIDTH="85" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img179.gif"
+ ALT="$\mu Ax = Bx$">
+is perfectly well-defined, and the infinite
+eigenvalue corresponds to <IMG
+ WIDTH="47" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img180.gif"
+ ALT="$\mu = 0$">.
+The generalized symmetric definite eigenproblem in section 2.3.7
+has only finite real eigenvalues. The generalized nonsymmetric
+eigenvalue problem can have real, complex or infinite eigenvalues.
+To deal with both finite (including zero) and infinite
+eigenvalues, the LAPACK routines return two values, <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">.
+If <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+is non-zero then 
+<!-- MATH
+ $\lambda = \alpha/\beta$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.gif"
+ ALT="$\lambda = \alpha/\beta$">
+is an eigenvalue.
+If <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+is zero then
+
+<!-- MATH
+ $\lambda = \infty$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img178.gif"
+ ALT="$\lambda = \infty$">
+is an eigenvalue of <B>(<I>A</I>, <I>B</I>)</B>.
+(Round off may change an exactly zero <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+to a small nonzero value,
+changing the eigenvalue 
+<!-- MATH
+ $\lambda = \infty$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img178.gif"
+ ALT="$\lambda = \infty$">
+to some very large value;
+see section&nbsp;<A HREF="node100.html#sec_GNEPErrorBounds">4.11</A> for details.)
+A basic task of these
+routines is to compute all <B><I>n</I></B> pairs 
+<!-- MATH
+ $(\alpha,\beta)$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img181.gif"
+ ALT="$(\alpha,\beta)$">
+and <B><I>x</I></B> and/or
+<B><I>y</I></B> for a given pair of matrices <B>(<I>A</I>,<I>B</I>)</B>.
+
+<P>
+If the determinant of <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">
+is identically
+zero for all values of <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">,
+the eigenvalue problem is called <B>singular</B>; otherwise it is <B>regular</B>.
+Singularity of <B>(<I>A</I>,<I>B</I>)</B> is signaled by some
+
+<!-- MATH
+ $\alpha = \beta = 0$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.gif"
+ ALT="$\alpha = \beta = 0$">
+(in the presence of roundoff, <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+may be very small).  In this case, the eigenvalue problem is very
+ill-conditioned, and in fact some of the other nonzero values of <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+may be indeterminate (see section <A HREF="node105.html#sec_singular">4.11.1.4</A> for further
+discussion)
+[<A
+ HREF="node151.html#stewart72">93</A>,<A
+ HREF="node151.html#wilkinson79">105</A>,<A
+ HREF="node151.html#demmelkagstrom87">29</A>,<A
+ HREF="node151.html#gantmacher">53</A>].
+
+<P>
+Another basic task is to compute the <B>generalized Schur decomposition</B>
+<A NAME="3650"></A>
+of the pair <B>(<I>A</I>,<I>B</I>)</B>.  If <B><I>A</I></B> and <B><I>B</I></B> are complex, then their generalized
+Schur decomposition is <B><I>A</I> = <I>QSZ</I><SUP><I>H</I></SUP></B> and <B><I>B</I> = <I>QTZ</I><SUP><I>H</I></SUP></B>, where <B><I>Q</I></B> and <B><I>Z</I></B> are
+unitary and <B><I>S</I></B> and <B><I>T</I></B> are upper triangular.  The LAPACK routines
+normalize <B><I>T</I></B> to have real non-negative diagonal entries. <A NAME="3651"></A>
+Note that in this
+form, the eigenvalues can be easily computed from the diagonals:
+
+<!-- MATH
+ $\lambda_i = s_{ii}/t_{ii}$
+ -->
+<IMG
+ WIDTH="86" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img182.gif"
+ ALT="$\lambda_i = s_{ii}/t_{ii}$">
+(if <IMG
+ WIDTH="53" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img183.gif"
+ ALT="$t_{ii} \neq 0$">)
+and
+
+<!-- MATH
+ $\lambda_i = \infty$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img184.gif"
+ ALT="$\lambda_i = \infty$">
+(if <B><I>t</I><SUB><I>ii</I></SUB> = 0</B>), and so the LAPACK
+routines return  
+<!-- MATH
+ $\alpha_i = s_{ii}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img185.gif"
+ ALT="$\alpha_i = s_{ii}$">
+and 
+<!-- MATH
+ $\beta_i = t_{ii}$
+ -->
+<IMG
+ WIDTH="59" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img186.gif"
+ ALT="$\beta_i = t_{ii}$">.
+
+<P>
+The generalized Schur form depends on the order of the eigenvalues on the
+diagonal of <B>(<I>S</I>,<I>T</I>)</B>. This order may optionally be chosen by the user.
+
+<P>
+If <B><I>A</I></B> and <B><I>B</I></B> are real, then their generalized Schur decomposition
+is <B><I>A</I> = <I>QSZ</I><SUP><I>T</I></SUP></B> and <B><I>B</I> = <I>QTZ</I><SUP><I>T</I></SUP></B>, where <B><I>Q</I></B> and <B><I>Z</I></B> are orthogonal,
+<B><I>S</I></B> is quasi-upper triangular with 1-by-1 and 2-by-2 blocks on the
+diagonal, and <B><I>T</I></B> is upper triangular with non-negative diagonal entries.
+The structure of a typical pair of <B>(<I>S</I>,<I>T</I>)</B> is illustrated below for <B><I>n</I>=6</B>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+S = \left( \begin{array}{cccccc}
+  \times  & \times  & \times  & \times  & \times  & \times   \\
+  0 & \times  & \times  & \times  & \times  & \times   \\
+  0 & \times  & \times  & \times  & \times  & \times   \\
+  0 & 0 & 0 & \times  & \times  & \times   \\
+  0 & 0 & 0 & 0 & \times  & \times   \\
+  0 & 0 & 0 & 0 & \times  & \times
+\end{array} \right), \quad\quad\quad
+T = \left( \begin{array}{cccccc}
+  \times  & \times  & \times  & \times  & \times  & \times   \\
+  0 & \times  & 0  & \times  & \times  & \times   \\
+  0 &  0      & \times  & \times  & \times  & \times   \\
+  0 & 0 & 0 & \times  & \times  & \times   \\
+  0 & 0 & 0 & 0 & \times  & 0        \\
+  0 & 0 & 0 & 0 & 0       & \times
+\end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="538" HEIGHT="137" BORDER="0"
+ SRC="img187.gif"
+ ALT="\begin{displaymath}
+S = \left( \begin{array}{cccccc}
+\times &amp; \times &amp; \times &amp;...
+...\times &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \times
+\end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The <B>1  x  1</B> diagonal blocks of <B>(<I>S</I>,<I>T</I>)</B>
+(those in the (1,1) and (4,4) positions)
+contain the real eigenvalues of <B>(<I>A</I>,<I>B</I>)</B> and
+the <B>2  x  2</B> diagonal blocks of <B>(<I>S</I>,<I>T</I>)</B>
+(those in the (2:3,2:3) and (5:6,5:6) positions)
+contain conjugate pairs of complex eigenvalues of <B>(<I>A</I>,<I>B</I>)</B>.
+The <B>2  x  2</B> diagonal blocks of <B><I>T</I></B> corresponding to 2-by-2
+blocks of <B><I>S</I></B> are made diagonal.
+This arrangement enables us to work entirely with real numbers, even when
+some of the eigenvalues of <B>(<I>A</I>,<I>B</I>)</B> are complex.
+Note that for real eigenvalues, as for all eigenvalues in the complex case,
+the <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+values corresponding to real eigenvalues may be
+easily computed from the diagonals of <B><I>S</I></B> and <B><I>T</I></B>.  The <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+values corresponding to complex eigenvalues
+of a 2-by-2 diagonal block of <B>(<I>S</I>,<I>T</I>)</B>
+are computed by first
+computing the complex conjugate eigenvalues <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+and <IMG
+ WIDTH="15" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img188.gif"
+ ALT="$\bar{\lambda}$">
+of the block,
+then computing the values of <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+and <IMG
+ WIDTH="37" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img189.gif"
+ ALT="$\beta_{i+1}$">
+that would
+result if the block were put into <EM>complex</EM> generalized
+Schur form, and finally multiplying to get
+
+<!-- MATH
+ $\alpha_i = \lambda \beta_i$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img190.gif"
+ ALT="$\alpha_i = \lambda \beta_i$">
+and 
+<!-- MATH
+ $\alpha_{i+1}=\bar{\lambda}\beta_{i+1}$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img191.gif"
+ ALT="$\alpha_{i+1}=\bar{\lambda}\beta_{i+1}$">.
+<BR>
+
+<P>
+The columns of <B><I>Q</I></B> and <B><I>Z</I></B> are called <B>generalized Schur vectors</B>
+<A NAME="3671"></A>
+and span pairs of <B>deflating subspaces</B> of <B><I>A</I></B> and <B><I>B</I></B> [<A
+ HREF="node151.html#stewart73">94</A>].
+<A NAME="3674"></A><A NAME="3675"></A>
+Deflating subspaces are a generalization of invariant subspaces: the first <B><I>k</I></B>
+columns of <B><I>Z</I></B> span a right deflating subspace mapped by both <B><I>A</I></B> and
+<B><I>B</I></B> into a left deflating subspace spanned by the first <B><I>k</I></B> columns of
+<B><I>Q</I></B>.  This pair of deflating subspaces corresponds to the first <B><I>k</I></B>
+eigenvalues appearing at the top left corner of <B><I>S</I></B> and <B><I>T</I></B> as explained
+in section <A HREF="node35.html#sec_gnep_driver">2.3.5.2</A>. 
+<BR>
+
+<P>
+The computations proceed in the following stages:
+<DL COMPACT>
+<DT>1.
+<DD>The pair <B>(<I>A</I>,<I>B</I>)</B> is reduced to <B>generalized upper Hessenberg form</B>.
+<A NAME="3679"></A>
+      If <B><I>A</I></B> and <B><I>B</I></B> are real, this decomposition is <B><I>A</I> = <I>UHV</I><SUP><I>T</I></SUP></B>
+      and <B><I>B</I> = <I>U R V</I><SUP><I>T</I></SUP></B> where <B><I>H</I></B> is upper Hessenberg (zero below the
+      first subdiagonal), <B><I>R</I></B> is upper triangular, and <B><I>U</I></B> and <B><I>V</I></B>
+      are orthogonal.  If <B><I>A</I></B> and <B><I>B</I></B> are complex, the decomposition is
+      <B><I>A</I> = <I>UHV</I><SUP><I>H</I></SUP></B> and <B><I>B</I> = <I>URV</I><SUP><I>H</I></SUP></B> with <B><I>U</I></B> and <B><I>V</I></B> unitary, and <B><I>H</I></B>
+      and <B><I>R</I></B> as before.  This decomposition is performed by the
+      subroutine xGGHRD,
+      <A NAME="3680"></A><A NAME="3681"></A><A NAME="3682"></A><A NAME="3683"></A>
+      which computes <B><I>H</I></B> and <B><I>R</I></B>, and optionally
+      <B><I>U</I></B> and/or <B><I>V</I></B>.  Note that in contrast to xGEHRD (for the standard
+      nonsymmetric eigenvalue problem), xGGHRD does not compute <B><I>U</I></B> and
+      <B><I>V</I></B> in a factored form.
+
+<P>
+<DT>2.
+<DD>The pair <B>(<I>H</I>,<I>R</I>)</B> is reduced to generalized Schur form
+      <A NAME="3684"></A>
+      <B><I>H</I> = <I>QSZ</I><SUP><I>T</I></SUP></B> and <B><I>R</I> = <I>QTZ</I><SUP><I>T</I></SUP></B> (for <B><I>H</I></B> and <B><I>R</I></B> real) or
+      <B><I>H</I> = <I>QSZ</I><SUP><I>H</I></SUP></B> and <B><I>R</I> = <I>QTZ</I><SUP><I>H</I></SUP></B> (for <B><I>H</I></B> and <B><I>R</I></B> complex)
+      by subroutine xHGEQZ.
+      <A NAME="3685"></A>
+      <A NAME="3686"></A><A NAME="3687"></A><A NAME="3688"></A><A NAME="3689"></A>
+      The values <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+are also
+      computed, where 
+<!-- MATH
+ $\lambda_i = \alpha_i / \beta_i$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img192.gif"
+ ALT="$\lambda_i = \alpha_i / \beta_i$">
+are the
+      eigenvalues. The matrices <B><I>Z</I></B> and <B><I>Q</I></B> are optionally computed.
+
+<P>
+<DT>3.
+<DD>The left and/or right eigenvectors of the pair <B>(<I>S</I>,<I>T</I>)</B> are
+      computed by xTGEVC.
+      <A NAME="3690"></A><A NAME="3691"></A>
+      One may optionally transform the right
+      eigenvectors of <B>(<I>S</I>,<I>T</I>)</B> to the right eigenvectors of <B>(<I>A</I>,<I>B</I>)</B>
+      (or of <B>(<I>H</I>,<I>R</I>)</B>) by passing <B>(<I>UQ</I>,<I>VZ</I>)</B> (or <B>(<I>Q</I>,<I>Z</I>)</B>) to xTGEVC.
+      <A NAME="3692"></A><A NAME="3693"></A><A NAME="3694"></A><A NAME="3695"></A>
+
+<P>
+</DL>
+
+<P>
+Other subsidiary tasks may be performed before or after
+those described.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4936"
+ HREF="node57.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4930"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4924"
+ HREF="node55.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4932"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4934"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4937"
+ HREF="node57.html">Balancing</A>
+<B> Up:</B> <A NAME="tex2html4931"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4925"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html4933"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4935"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

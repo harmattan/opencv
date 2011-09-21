@@ -1,0 +1,42 @@
+OpenCV for Meego/Harmattan 1.2
+==============================
+
+Sadly there are not a lot of packages yet available for this platform, so in
+order to build OpenCV I have had to fill out the build chain somewhat. Hence,
+this repository includes a lot of packages which are needed for OpenCV but
+unfortunately not yet available from a "standard" source.
+
+Packages included
+-----------------
+
+Notes:
+1. Unless otherwise mentioned, package sources have been taken from Debian
+Squeeze.
+2. Generally I have maintained the release number, appending "harmattan1" to
+make it clear that the build is for this platform. The exception to this rule
+was gcc, which would have required other more intrusive changes to append this
+string.
+
+OpenCV 2.3.1 - from Debian Experimental
+Atlas 3.8.3
+Blas 1.2
+Lapack 3.2.1
+Python-numpy 1.4.1
+Cpufrequtils 007
+Gcc 4.4
+Gcc-defaults 1.92
+Audiofile 0.2.6
+Dirac 1.0.2
+Faad2 2.7
+Ffmpeg 0.5.4
+Imlib2 1.4.2
+Libgsm 1.0.13
+Openjpeg 1.3
+Yasm 0.8.0
+
+Unnecessary extensions which would have complicated the build chain have been
+disabled where possible.
+
+External packages required
+--------------------------
+

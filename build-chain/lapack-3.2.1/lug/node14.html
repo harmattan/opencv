@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Installation of LAPACK</TITLE>
+<META NAME="description" CONTENT="Installation of LAPACK">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node13.html">
+<LINK REL="up" HREF="node6.html">
+<LINK REL="next" HREF="node15.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4271"
+ HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4265"
+ HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4259"
+ HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4267"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4269"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4272"
+ HREF="node15.html">Documentation for LAPACK</A>
+<B> Up:</B> <A NAME="tex2html4266"
+ HREF="node6.html">Essentials</A>
+<B> Previous:</B> <A NAME="tex2html4260"
+ HREF="node13.html">Commercial Use of LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html4268"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4270"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03180000000000000000"></A><A NAME="830"></A>
+<BR>
+Installation of LAPACK
+</H1>
+
+<P>
+To ease the installation process, prebuilt LAPACK libraries
+are available on <EM>netlib</EM> for a variety of architectures.
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/lapack/archives/</TT>
+
+</BLOCKQUOTE>
+Included with each prebuilt library archive is the make include
+file <TT>make.inc</TT> detailing the compiler options, and so on, used
+to compile the library.
+If a prebuilt library is not available for the specific architecture,
+the user will need to download the source code from <EM>netlib</EM>
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/lapack/lapack.tgz</TT> 
+<BR>
+<TT>http://www.netlib.org/lapack/lapack-pc.zip</TT>
+
+</BLOCKQUOTE>
+and build the library as instructed in the LAPACK Installation
+Guide&nbsp;[<A
+ HREF="node151.html#lawn41">3</A>,<A
+ HREF="node151.html#lawn81">37</A>].  Note that separate distribution tar/zip files
+are provided for Unix/Linux and Windows 98/NT installations.
+Sample <TT>make.inc</TT> files for various
+architectures are included in the distribution tar/zip file and will
+require only limited modifications to customize for a specific
+architecture.
+
+<P>
+Machine-specific installation hints are contained in the <TT>release_notes</TT>
+file on <EM>netlib</EM>.
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/lapack/release_notes</TT>
+
+</BLOCKQUOTE>
+
+<P>
+A comprehensive test suite<A NAME="848"></A><A NAME="849"></A> for the BLAS is provided in the LAPACK distribution and on
+<EM>netlib</EM>, and it is highly recommended that this test suite, as well
+as the LAPACK test suite, be run to ensure proper installation of the package.
+
+<P>
+Two installations guides are available for LAPACK.
+A Quick Installation Guide (LAPACK Working Note 81)&nbsp;[<A
+ HREF="node151.html#lawn81">37</A>] is
+distributed with the complete package.  This Quick Installation Guide
+provides installation instructions for Unix/Linux systems.  A comprehensive
+Installation Guide&nbsp;[<A
+ HREF="node151.html#lawn41">3</A>] (LAPACK Working Note 41), which contains
+descriptions of the testing and timings programs, as well as detailed non-Unix
+installation instructions, is also available.
+See also Chapter&nbsp;<A HREF="node129.html#chapinstall">6</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4271"
+ HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4265"
+ HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4259"
+ HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4267"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4269"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4272"
+ HREF="node15.html">Documentation for LAPACK</A>
+<B> Up:</B> <A NAME="tex2html4266"
+ HREF="node6.html">Essentials</A>
+<B> Previous:</B> <A NAME="tex2html4260"
+ HREF="node13.html">Commercial Use of LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html4268"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4270"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

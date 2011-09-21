@@ -1,0 +1,20 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 21_exports_vpath_fixup.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Propagate Makefile.am changes in 20_exports_vpath_fix to
+## DP: Makefile.in.
+
+@DPATCH@
+diff -urNad audiofile~/libaudiofile/Makefile.in audiofile/libaudiofile/Makefile.in
+--- audiofile~/libaudiofile/Makefile.in	2007-06-18 22:06:20.000000000 +0200
++++ audiofile/libaudiofile/Makefile.in	2007-06-18 22:06:42.000000000 +0200
+@@ -173,7 +173,7 @@
+ libaudiofile_la_LIBADD = modules/libmodules.la
+ 
+ libaudiofile_la_LDFLAGS = -version-info 0:2:0 -no-undefined \
+-	-export-symbols audiofile.exports
++	-export-symbols $(srcdir)/audiofile.exports
+ 
+ 
+ include_HEADERS = audiofile.h aupvlist.h af_vfs.h

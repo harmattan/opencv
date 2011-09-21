@@ -1,0 +1,293 @@
+diff -Naur a/src/gcc/Makefile.in b/src/gcc/Makefile.in
+--- a/src/gcc/Makefile.in	2011-01-26 18:51:06.335550000 +0200
++++ b/src/gcc/Makefile.in	2011-01-26 18:51:31.036945205 +0200
+@@ -3908,15 +3908,13 @@
+ 
+ doc/%.info: %.texi
+ 	if [ x$(BUILD_INFO) = xinfo ]; then \
+-		$(MAKEINFO) $(MAKEINFOFLAGS) -I . -I $(gcc_docdir) \
+-			-I $(gcc_docdir)/include -o $@ $<; \
++		touch $@; \
+ 	fi
+ 
+ # Duplicate entry to handle renaming of gccinstall.info
+ doc/gccinstall.info: $(TEXI_GCCINSTALL_FILES)
+ 	if [ x$(BUILD_INFO) = xinfo ]; then \
+-		$(MAKEINFO) $(MAKEINFOFLAGS) -I $(gcc_docdir) \
+-			-I $(gcc_docdir)/include -o $@ $<; \
++		touch $@; \
+ 	fi
+ 
+ doc/cpp.dvi: $(TEXI_CPP_FILES)
+@@ -3938,11 +3936,11 @@
+       doc/cppinternals.dvi lang.dvi
+ 
+ doc/%.dvi: %.texi
+-	$(TEXI2DVI) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
++	touch $@
+ 
+ # Duplicate entry to handle renaming of gccinstall.dvi
+ doc/gccinstall.dvi: $(TEXI_GCCINSTALL_FILES)
+-	$(TEXI2DVI) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
++	touch $@
+ 
+ PDFFILES = doc/gcc.pdf doc/gccint.pdf doc/gccinstall.pdf doc/cpp.pdf \
+            doc/cppinternals.pdf
+@@ -3950,11 +3948,11 @@
+ pdf:: $(PDFFILES) lang.pdf
+ 
+ doc/%.pdf: %.texi
+-	$(TEXI2PDF) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
++	touch $@
+ 
+ # Duplicate entry to handle renaming of gccinstall.pdf
+ doc/gccinstall.pdf: $(TEXI_GCCINSTALL_FILES)
+-	$(TEXI2PDF) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
++	touch $@
+ 
+ # List the directories or single hmtl files which are installed by
+ # install-html. The lang.html file triggers language fragments to build
+@@ -3973,7 +3971,7 @@
+ $(build_htmldir)/%/index.html: %.texi
+ 	$(mkinstalldirs) $(@D)
+ 	rm -f $(@D)/*
+-	$(TEXI2HTML) -I $(abs_docdir) -I $(abs_docdir)/include -o $(@D) $<
++	touch $(@D)
+ 
+ # Duplicate entry to handle renaming of gccinstall
+ $(build_htmldir)/gccinstall/index.html: $(TEXI_GCCINSTALL_FILES)
+@@ -4006,7 +4004,7 @@
+ 
+ %.pod: %.texi
+ 	$(STAMP) $@
+-	-$(TEXI2POD) -DBUGURL="$(BUGURL_TEXI)" $< > $@
++	touch $@
+ 
+ .INTERMEDIATE: cpp.pod gcc.pod gfdl.pod fsf-funding.pod
+ cpp.pod: cpp.texi cppenv.texi cppopts.texi
+@@ -4016,16 +4014,19 @@
+ 
+ gcc.pod: invoke.texi cppenv.texi cppopts.texi
+ 	$(STAMP) $@
+-	-$(TEXI2POD) $< > $@
++	touch $@
++
+ gfdl.pod: fdl.texi
+ 	$(STAMP) $@
+-	-$(TEXI2POD) $< > $@
++	touch $@
++
+ fsf-funding.pod: funding.texi
+ 	$(STAMP) $@
+-	-$(TEXI2POD) $< > $@
++	touch $@
++
+ gpl.pod: gpl_v3.texi
+ 	$(STAMP) $@
+-	-$(TEXI2POD) $< > $@
++	touch $@
+ 
+ #
+ # Deletion of files made during compilation.
+@@ -4255,7 +4256,6 @@
+ 	@list='$(PDFFILES)'; for p in $$list; do \
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  f=$(pdf__strip_dir) \
+-	  echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(pdfdir)/gcc/$$f'"; \
+ 	  $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(pdfdir)/gcc/$$f"; \
+ 	done
+ 
+@@ -4271,10 +4271,8 @@
+ 	    echo " $(mkinstalldirs) '$(DESTDIR)$(htmldir)/$$f'"; \
+ 	    $(mkinstalldirs) "$(DESTDIR)$(htmldir)/$$f" || exit 1; \
+ 	    echo " $(INSTALL_DATA) '$$d$$p'/* '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p"/* "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  else \
+ 	    echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  fi; \
+ 	done
+ 
+diff -Naur a/src/gcc/fortran/Make-lang.in b/src/gcc/fortran/Make-lang.in
+--- a/src/gcc/fortran/Make-lang.in	2011-01-26 18:51:06.325549000 +0200
++++ b/src/gcc/fortran/Make-lang.in	2011-01-26 18:51:31.036945205 +0200
+@@ -133,10 +133,8 @@
+ 	    echo " $(mkinstalldirs) '$(DESTDIR)$(htmldir)/$$f'"; \
+ 	    $(mkinstalldirs) "$(DESTDIR)$(htmldir)/$$f" || exit 1; \
+ 	    echo " $(INSTALL_DATA) '$$d$$p'/* '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p"/* "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  else \
+ 	    echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  fi; \
+ 	done
+ 
+@@ -151,7 +149,6 @@
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  f=$(pdf__strip_dir) \
+ 	  echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(pdfdir)/gcc/$$f'"; \
+-	  $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(pdfdir)/gcc/$$f"; \
+ 	done
+ 
+ F95_MANFILES = doc/gfortran.1
+@@ -196,18 +193,17 @@
+ 	$(TEXI2DVI) -I $(srcdir)/fortran -I $(abs_docdir)/include -o $@ $<
+ 
+ doc/gfortran.pdf: $(GFORTRAN_TEXI)
+-	$(TEXI2PDF) -I $(srcdir)/fortran -I $(abs_docdir)/include -o $@ $<
++	touch $@
+ 
+ $(build_htmldir)/gfortran/index.html: $(GFORTRAN_TEXI)
+ 	$(mkinstalldirs) $(@D)
+ 	rm -f $(@D)/*
+-	$(TEXI2HTML) -I $(gcc_docdir)/include -I $(srcdir)/fortran -o $(@D) $<
++	touch $(@D)
+ 
+ .INTERMEDIATE: gfortran.pod
+ 
+ gfortran.pod: $(GFORTRAN_TEXI)
+-	-$(TEXI2POD) -DBUGURL="$(BUGURL_TEXI)" \
+-	  < $(srcdir)/fortran/invoke.texi > $@
++	touch $@
+ 
+ # GFORTRAN internals documentation.
+ GFC_INTERNALS_TEXI = \
+@@ -227,7 +223,7 @@
+ 	$(TEXI2DVI) -I $(srcdir)/fortran -I $(abs_docdir)/include -o $@ $<
+ 
+ doc/gfc-internals.pdf: $(GFC_INTERNALS_TEXI)
+-	$(TEXI2PDF) -I $(srcdir)/fortran -I $(abs_docdir)/include -o $@ $<
++	touch $@
+ 
+ # Create or recreate the gfortran private include file directory.
+ install-finclude-dir: installdirs
+diff -Naur a/src/libgomp/Makefile.am b/src/libgomp/Makefile.am
+--- a/src/libgomp/Makefile.am	2009-10-12 21:15:40.000000000 +0300
++++ b/src/libgomp/Makefile.am	2011-01-26 18:51:31.036945205 +0200
+@@ -132,7 +132,7 @@
+ libgomp.info: $(STAMP_BUILD_INFO)
+ 
+ stamp-build-info: libgomp.texi
+-	$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) -o libgomp.info $(srcdir)/libgomp.texi
++	@touch libgomp.info
+ 	@touch $@
+ 
+ 
+diff -Naur a/src/libgomp/Makefile.in b/src/libgomp/Makefile.in
+--- a/src/libgomp/Makefile.in	2009-10-12 21:15:40.000000000 +0300
++++ b/src/libgomp/Makefile.in	2011-01-26 18:54:50.378201805 +0200
+@@ -522,29 +522,17 @@
+ maintainer-clean-multi:
+ 	$(MULTICLEAN) $(AM_MAKEFLAGS) DO=maintainer-clean multi-clean # $(MAKE)
+ 
+-libgomp.dvi: libgomp.texi  
++libgomp.dvi: libgomp.texi
+ 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
+ 	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir)' \
+ 	$(TEXI2DVI) -o $@ `test -f 'libgomp.texi' || echo '$(srcdir)/'`libgomp.texi
+ 
+-libgomp.pdf: libgomp.texi  
+-	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
+-	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir)' \
+-	$(TEXI2PDF) -o $@ `test -f 'libgomp.texi' || echo '$(srcdir)/'`libgomp.texi
++libgomp.pdf: libgomp.texi
++	touch $@
++
++libgomp.html: libgomp.texi
++	echo skipping
+ 
+-libgomp.html: libgomp.texi  
+-	rm -rf $(@:.html=.htp)
+-	if $(MAKEINFOHTML) $(AM_MAKEINFOHTMLFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
+-	 -o $(@:.html=.htp) `test -f 'libgomp.texi' || echo '$(srcdir)/'`libgomp.texi; \
+-	then \
+-	  rm -rf $@; \
+-	  if test ! -d $(@:.html=.htp) && test -d $(@:.html=); then \
+-	    mv $(@:.html=) $@; else mv $(@:.html=.htp) $@; fi; \
+-	else \
+-	  if test ! -d $(@:.html=.htp) && test -d $(@:.html=); then \
+-	    rm -rf $(@:.html=); else rm -Rf $(@:.html=.htp) $@; fi; \
+-	  exit 1; \
+-	fi
+ .dvi.ps:
+ 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
+ 	$(DVIPS) -o $@ $<
+@@ -1010,7 +998,6 @@
+ 	    if test -f $$ifile; then \
+ 	      relfile=`echo "$$ifile" | sed 's|^.*/||'`; \
+ 	      echo " $(INSTALL_DATA) '$$ifile' '$(DESTDIR)$(infodir)/$$relfile'"; \
+-	      $(INSTALL_DATA) "$$ifile" "$(DESTDIR)$(infodir)/$$relfile"; \
+ 	    else : ; fi; \
+ 	  done; \
+ 	done
+@@ -1108,10 +1095,8 @@
+ 	    echo " $(mkinstalldirs) '$(DESTDIR)$(htmldir)/$$f'"; \
+ 	    $(mkinstalldirs) "$(DESTDIR)$(htmldir)/$$f" || exit 1; \
+ 	    echo " $(INSTALL_DATA) '$$d$$p'/* '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p"/* "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  else \
+ 	    echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  fi; \
+ 	done
+ 
+@@ -1122,7 +1107,6 @@
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  f=$(am__strip_dir) \
+ 	  echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(pdfdir)/$$f'"; \
+-	  $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(pdfdir)/$$f"; \
+ 	done
+ 
+ all-local: $(STAMP_GENINSRC)
+@@ -1134,7 +1118,7 @@
+ libgomp.info: $(STAMP_BUILD_INFO)
+ 
+ stamp-build-info: libgomp.texi
+-	$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) -o libgomp.info $(srcdir)/libgomp.texi
++	@touch libgomp.info
+ 	@touch $@
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+diff -Naur a/src/libiberty/Makefile.in b/src/libiberty/Makefile.in
+--- a/src/libiberty/Makefile.in	2009-10-12 21:22:38.000000000 +0300
++++ b/src/libiberty/Makefile.in	2011-01-26 18:51:31.046945765 +0200
+@@ -256,7 +256,6 @@
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  f=$(pdf__strip_dir) \
+ 	  echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(pdfdir)/$$f'"; \
+-	  $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(pdfdir)/$$f"; \
+ 	done
+ 
+ # html, install-html targets
+@@ -283,10 +282,8 @@
+ 	    echo " $(mkdir_p) '$(DESTDIR)$(htmldir)/$$f'"; \
+ 	    $(mkdir_p) "$(DESTDIR)$(htmldir)/$$f" || exit 1; \
+ 	    echo " $(INSTALL_DATA) '$$d$$p'/* '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p"/* "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  else \
+ 	    echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(htmldir)/$$f'"; \
+-	    $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(htmldir)/$$f"; \
+ 	  fi; \
+ 	done
+ 
+@@ -327,16 +324,16 @@
+ TEXIFILES = fnmatch.txh pexecute.txh
+ 
+ libiberty.info : $(srcdir)/libiberty.texi $(TEXISRC)
+-	$(MAKEINFO) -I$(srcdir) $(srcdir)/libiberty.texi
++	echo $(MAKEINFO) -I$(srcdir) $(srcdir)/libiberty.texi
+ 
+ libiberty.dvi : $(srcdir)/libiberty.texi $(TEXISRC)
+-	texi2dvi $(srcdir)/libiberty.texi
++	echo texi2dvi $(srcdir)/libiberty.texi
+ 
+ libiberty.pdf : $(srcdir)/libiberty.texi $(TEXISRC)
+-	texi2pdf $(srcdir)/libiberty.texi
++	echo texi2pdf $(srcdir)/libiberty.texi
+ 
+ libiberty.html : $(srcdir)/libiberty.texi $(TEXISRC)
+-	$(MAKEINFO) --no-split --html -I$(srcdir) -o $@ $<
++	touch $@
+ 
+ @MAINT@$(srcdir)/functions.texi : stamp-functions
+ @MAINT@	@true

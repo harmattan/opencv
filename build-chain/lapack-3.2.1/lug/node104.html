@@ -1,0 +1,1004 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Computing si, , and
+, </TITLE>
+<META NAME="description" CONTENT="Computing si, , and
+, ">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node105.html">
+<LINK REL="previous" HREF="node103.html">
+<LINK REL="up" HREF="node101.html">
+<LINK REL="next" HREF="node105.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5654"
+ HREF="node105.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5648"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5642"
+ HREF="node103.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5650"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5652"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5655"
+ HREF="node105.html">Singular Eigenproblems</A>
+<B> Up:</B> <A NAME="tex2html5649"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5643"
+ HREF="node103.html">Balancing and Conditioning</A>
+ &nbsp <B>  <A NAME="tex2html5651"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5653"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION034111300000000000000"></A><A NAME="GNEP33"></A>
+<BR>
+Computing <B><I>s</I><SUB><I>i</I></SUB></B>, <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">,
+<IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">
+and
+<IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">,
+<IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+</H3>
+
+<P>
+To explain <B><I>s</I><SUB><I>i</I></SUB></B>, <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">,
+<IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">,
+<IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+and <IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+in Table <A HREF="node102.html#asymp">4.7</A> and Table <A HREF="node102.html#global">4.8</A>,
+<A NAME="12561"></A>
+we need to introduce a condition number for an individual eigenvalue,
+block diagonalization of a matrix pair and
+the separation of two matrix pairs.
+<A NAME="12562"></A>
+
+<P>
+Let 
+<!-- MATH
+ $(\alpha_i, \beta_i) \neq (0, 0)$
+ -->
+<IMG
+ WIDTH="119" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img822.gif"
+ ALT="$(\alpha_i, \beta_i) \neq (0, 0)$">
+be a simple eigenvalue of <B>(<I>A</I>, <I>B</I>)</B> with
+left and right
+eigenvectors <B><I>y</I><SUB><I>i</I></SUB></B> and <B><I>x</I><SUB><I>i</I></SUB></B>, respectively.
+<B><I>s</I><SUB><I>i</I></SUB></B> is the reciprocal condition number for a
+simple eigenvalue of <B>(<I>A</I>, <I>B</I>)</B> [<A
+ HREF="node151.html#stewartsun90">95</A>]:
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+s_i = \frac{\sqrt{|y^H_iAx_i|^2 + |y^H_iBx_i|^2}}{\|x_i\|_2\|y_i\|_2}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.30"></A><IMG
+ WIDTH="218" HEIGHT="59" BORDER="0"
+ SRC="img823.gif"
+ ALT="\begin{displaymath}
+s_i = \frac{\sqrt{\vert y^H_iAx_i\vert^2 + \vert y^H_iBx_i\vert^2}}{\Vert x_i\Vert _2\Vert y_i\Vert _2}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.11)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+Notice that 
+<!-- MATH
+ $y^H_iAx_i / y^H_iBx_i$
+ -->
+<B><I>y</I><SUP><I>H</I></SUP><SUB><I>i</I></SUB><I>Ax</I><SUB><I>i</I></SUB> / <I>y</I><SUP><I>H</I></SUP><SUB><I>i</I></SUB><I>Bx</I><SUB><I>i</I></SUB></B> is equal to
+
+<!-- MATH
+ $\lambda_i = \alpha_i / \beta_i$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img192.gif"
+ ALT="$\lambda_i = \alpha_i / \beta_i$">.
+The condition number <B><I>s</I><SUB><I>i</I></SUB></B> in (<A HREF="node104.html#eq411.30">4.11</A>) is independent of
+the normalization of the eigenvectors.
+In the error bound of Table <A HREF="node102.html#asymp">4.7</A> for a simple eigenvalue and
+in (<A HREF="node102.html#eq411.29a">4.10</A>), <B><I>s</I><SUB><I>i</I></SUB></B>
+is returned as <TT>RCONDE(i)</TT> by xGGEVX (as <TT>S(i)</TT> by xTGSNA).
+
+<P>
+We assume that the matrix pair <B>(<I>A</I>, <I>B</I>)</B> is in the generalized Schur form.
+Consider a cluster of <B><I>m</I></B> eigenvalues, counting multiplicities.
+Moreover, assume the <B><I>n</I></B>-by-<B><I>n</I></B> matrix pair <B>(<I>A</I>, <I>B</I>)</B> is
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+(A, B) = \left(
+\left( \begin{array}{cc}  A_{11} & A_{12} \\0  & A_{22} \end{array} \right) ,
+\left( \begin{array}{cc}  B_{11} & B_{12} \\0  & B_{22} \end{array} \right) 
+\right) ,
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.31"></A><IMG
+ WIDTH="337" HEIGHT="54" BORDER="0"
+ SRC="img824.gif"
+ ALT="\begin{displaymath}
+(A, B) = \left(
+\left( \begin{array}{cc} A_{11} &amp; A_{12} \\ ...
+...} B_{11} &amp; B_{12} \\ 0 &amp; B_{22} \end{array} \right)
+\right) ,
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.12)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where the eigenvalues of the <B><I>m</I></B>-by-<B><I>m</I></B> matrix pair
+
+<!-- MATH
+ $(A_{11}, B_{11})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>, <I>B</I><SUB>11</SUB>)</B> are exactly those in which we are interested.
+In practice, if the eigenvalues on the (block) diagonal
+of <B>(<I>A</I>, <I>B</I>)</B> are not in the desired order,
+routine xTGEXC
+<A NAME="12584"></A><A NAME="12585"></A><A NAME="12586"></A><A NAME="12587"></A>
+can be used to put the
+desired ones in the upper left corner as shown [<A
+ HREF="node151.html#kagstromporomaa94a">73</A>].
+
+<P>
+An equivalence transformation that block-diagonalizes <B>(<I>A</I>, <I>B</I>)</B>
+can be expressed as
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\left( \begin{array}{cc}  I_m & -L \\0  & I_{n - m} \end{array} \right) 
+\left(
+\left( \begin{array}{cc}  A_{11} & A_{12} \\0  & A_{22} \end{array} \right) ,
+\left( \begin{array}{cc}  B_{11} & B_{12} \\0  & B_{22} \end{array} \right) 
+\right)
+\left( \begin{array}{cc}  I_m & R \\0  & I_{n - m} \end{array} \right) =
+\left(
+\left( \begin{array}{cc}  A_{11} & 0 \\0  & A_{22} \end{array} \right) ,
+\left( \begin{array}{cc}  B_{11} & 0 \\0  & B_{22} \end{array} \right) 
+\right).
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.32"></A><IMG
+ WIDTH="785" HEIGHT="54" BORDER="0"
+ SRC="img825.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{cc} I_m &amp; -L \\ 0 &amp; I_{n - m} \end{arra...
+...ay}{cc} B_{11} &amp; 0 \\ 0 &amp; B_{22} \end{array} \right)
+\right).
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.13)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+Solving for <B>(<I>L</I>,<I>R</I>)</B> in (<A HREF="node104.html#eq411.32">4.13</A>) is equivalent to solving
+the system of linear equations
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\begin{array}{c}
+A_{11}  R  - L   A_{22}  = - A_{12} \\
+B_{11}  R  - L   B_{22}  = - B_{12}
+\end{array}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.33"></A><IMG
+ WIDTH="178" HEIGHT="50" BORDER="0"
+ SRC="img826.gif"
+ ALT="\begin{displaymath}
+\begin{array}{c}
+A_{11} R - L A_{22} = - A_{12} \\
+B_{11} R - L B_{22} = - B_{12}
+\end{array}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.14)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+Equation (<A HREF="node104.html#eq411.33">4.14</A>) is called a <EM>generalized Sylvester equation</EM>
+<A NAME="12621"></A>
+[<A
+ HREF="node151.html#kagstrom94">71</A>,<A
+ HREF="node151.html#kagstromwestin89">75</A>]. Given the
+generalized Schur form (<A HREF="node104.html#eq411.31">4.12</A>), we solve equation (<A HREF="node104.html#eq411.33">4.14</A>) for
+<B><I>L</I></B> and <B><I>R</I></B> using the subroutine xTGSYL.
+<A NAME="12625"></A><A NAME="12626"></A><A NAME="12627"></A><A NAME="12628"></A>
+
+<P>
+<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">
+and <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">
+for the eigenvalues of 
+<!-- MATH
+ $(A_{11}, B_{11})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>, <I>B</I><SUB>11</SUB>)</B>
+are defined as
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+l_{\cal I} = \frac{1}{\sqrt{1 + \|L\|_F^2}}, \quad
+r_{\cal I} = \frac{1}{\sqrt{1 + \|R\|_F^2}}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.34"></A><IMG
+ WIDTH="289" HEIGHT="57" BORDER="0"
+ SRC="img827.gif"
+ ALT="\begin{displaymath}
+l_{\cal I} = \frac{1}{\sqrt{1 + \Vert L\Vert _F^2}}, \quad
+r_{\cal I} = \frac{1}{\sqrt{1 + \Vert R\Vert _F^2}}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.15)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+In the perturbation theory for the generalized eigenvalue problem,
+
+<!-- MATH
+ $p = l^{-1}_{\cal I}$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img828.gif"
+ ALT="$p = l^{-1}_{\cal I}$">
+and 
+<!-- MATH
+ $q = r^{-1}_{\cal I}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img829.gif"
+ ALT="$q = r^{-1}_{\cal I}$">
+play the same role as the norm
+of the spectral projector <B>|P|</B>
+does for the standard eigenvalue problem in section&nbsp;<A HREF="node95.html#secspec">4.8.1.3</A>.
+Indeed, if <B><I>B</I> = <I>I</I></B>, then <B><I>p</I> = <I>q</I></B> and <B><I>p</I></B> equals the norm of the
+projection onto an invariant subspace of <B><I>A</I></B>.
+For the generalized eigenvalue problem we need both a left and a right
+projection norm since the left and right deflating subspaces are (usually)
+different. In Table <A HREF="node102.html#global">4.8</A>,
+<B><I>l</I><SUB><I>i</I></SUB></B> and <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">
+denote the left projector norm corresponding
+to an individual
+eigenvalue pair 
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+and a
+cluster of eigenvalues
+defined by the subset <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">,
+respectively. Similar notation is used
+for <B><I>r</I><SUB><I>i</I></SUB></B> and <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">.
+The values of <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">
+and <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">
+are returned as <TT>RCONDE(1)</TT>
+and <TT>RCONDE(2)</TT> from xGGESX (as <TT>PL</TT> and <TT>PR</TT> from xTGSEN).
+<A NAME="12657"></A>
+
+<P>
+The <EM>separation</EM> of two matrix pairs 
+<!-- MATH
+ $(A_{11}, B_{11})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>, <I>B</I><SUB>11</SUB>)</B> and
+
+<!-- MATH
+ $(A_{22}, B_{22})$
+ -->
+<B>(<I>A</I><SUB>22</SUB>, <I>B</I><SUB>22</SUB>)</B>
+is defined as the smallest singular value of the linear map in (<A HREF="node104.html#eq411.33">4.14</A>)
+which takes <B>(<I>L</I>, <I>R</I>)</B> to 
+<!-- MATH
+ $(A_{11}  R  - L   A_{22}, B_{11}  R  - L  B_{22})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>  <I>R</I>  - <I>L   A</I><SUB>22</SUB>, <I>B</I><SUB>11</SUB>  <I>R</I>  - <I>L  B</I><SUB>22</SUB>)</B>
+[<A
+ HREF="node151.html#stewart73">94</A>]:
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\rm Dif}_u[(A_{11}, B_{11}),(A_{22}, B_{22})] =
+\inf_{\|(L,R)\|_F = 1} {\|(A_{11}  R  - L   A_{22},
+ B_{11}  R  - L  B_{22})\|_F} .
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.35"></A><IMG
+ WIDTH="560" HEIGHT="44" BORDER="0"
+ SRC="img830.gif"
+ ALT="\begin{displaymath}
+{\rm Dif}_u[(A_{11}, B_{11}),(A_{22}, B_{22})] =
+\inf_{\Vert...
+...} {\Vert(A_{11} R - L A_{22},
+B_{11} R - L B_{22})\Vert _F} .
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.16)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+<IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+is a generalization of the separation
+between two matrices (
+<!-- MATH
+ ${\rm sep}(A_{11}, A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+in (4.6))
+to two matrix pairs, and it
+measures the separation of their spectra in the following sense.
+If 
+<!-- MATH
+ $(A_{11}, B_{11})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>, <I>B</I><SUB>11</SUB>)</B> and 
+<!-- MATH
+ $(A_{22}, B_{22})$
+ -->
+<B>(<I>A</I><SUB>22</SUB>, <I>B</I><SUB>22</SUB>)</B> have a common eigenvalue,
+then <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+is zero, and it is
+small if there is a small perturbation of either 
+<!-- MATH
+ $(A_{11}, B_{11})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>, <I>B</I><SUB>11</SUB>)</B> or 
+<!-- MATH
+ $(A_{22},
+B_{22})$
+ -->
+<B>(<I>A</I><SUB>22</SUB>,
+<I>B</I><SUB>22</SUB>)</B> that makes them have a common eigenvalue.
+
+<P>
+Notice that 
+<!-- MATH
+ ${\rm Dif}_u[(A_{22}, B_{22}),(A_{11}, B_{11})]$
+ -->
+<IMG
+ WIDTH="208" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img831.gif"
+ ALT="${\rm Dif}_u[(A_{22}, B_{22}),(A_{11}, B_{11})]$">
+does not generally equal
+
+<!-- MATH
+ ${\rm Dif}_u[(A_{11}, B_{11}),(A_{22}, B_{22})]$
+ -->
+<IMG
+ WIDTH="208" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img832.gif"
+ ALT="${\rm Dif}_u[(A_{11}, B_{11}),(A_{22}, B_{22})]$">
+(unless <B><I>A</I><SUB><I>ii</I></SUB></B> and <B><I>B</I><SUB><I>ii</I></SUB></B>
+are symmetric for <B><I>i</I> = 1, 2</B>). Accordingly, the ordering of the arguments plays
+a role for the separation of two matrix pairs, while it does not for the
+separation of two matrices
+(
+<!-- MATH
+ ${\rm sep}(A_{11}, A_{22}) = {\rm sep}(A_{22}, A_{11})$
+ -->
+<IMG
+ WIDTH="228" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img833.gif"
+ ALT="${\rm sep}(A_{11}, A_{22}) = {\rm sep}(A_{22}, A_{11})$">).
+Therefore, we introduce the notation
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\rm Dif}_l[(A_{11}, B_{11}),(A_{22}, B_{22})] =
+{\rm Dif}_u[(A_{22}, B_{22}),(A_{11}, B_{11})] .
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.36"></A><IMG
+ WIDTH="430" HEIGHT="31" BORDER="0"
+ SRC="img834.gif"
+ ALT="\begin{displaymath}
+{\rm Dif}_l[(A_{11}, B_{11}),(A_{22}, B_{22})] =
+{\rm Dif}_u[(A_{22}, B_{22}),(A_{11}, B_{11})] .
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.17)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+An associated generalized Sylvester operator
+
+<!-- MATH
+ $(A_{22}  R  - L   A_{11}, B_{22} R  - L  B_{11})$
+ -->
+<B>(<I>A</I><SUB>22</SUB>  <I>R</I>  - <I>L   A</I><SUB>11</SUB>, <I>B</I><SUB>22</SUB> <I>R</I>  - <I>L  B</I><SUB>11</SUB>)</B>
+in the definition of <IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+is obtained from
+block-diagonalizing a regular matrix pair in <EM>lower</EM> block triangular
+form, just as the operator
+
+<!-- MATH
+ $(A_{11}  R  - L   A_{22}, B_{11}  R  - L B_{22})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>  <I>R</I>  - <I>L   A</I><SUB>22</SUB>, <I>B</I><SUB>11</SUB>  <I>R</I>  - <I>L B</I><SUB>22</SUB>)</B>
+in the definition of <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+arises from
+block-diagonalizing a regular matrix pair (<A HREF="node104.html#eq411.31">4.12</A>)
+in <EM>upper</EM> block triangular form.
+
+<P>
+In the error bounds of Tables <A HREF="node102.html#asymp">4.7</A> and <A HREF="node102.html#global">4.8</A>,
+
+<!-- MATH
+ ${\rm Dif}_l(i)$
+ -->
+<IMG
+ WIDTH="54" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img776.gif"
+ ALT="${\rm Dif}_l(i)$">
+and 
+<!-- MATH
+ ${\rm Dif}_l({\cal I})$
+ -->
+<IMG
+ WIDTH="59" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img778.gif"
+ ALT="${\rm Dif}_l({\cal I})$">
+denote 
+<!-- MATH
+ ${\rm Dif}_l[(A_{11},
+B_{11}),(A_{22}, B_{22})]$
+ -->
+<IMG
+ WIDTH="204" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img835.gif"
+ ALT="${\rm Dif}_l[(A_{11},
+B_{11}),(A_{22}, B_{22})]$">,
+where 
+<!-- MATH
+ $(A_{11}, B_{11})$
+ -->
+<B>(<I>A</I><SUB>11</SUB>, <I>B</I><SUB>11</SUB>)</B> corresponds
+to an individual eigenvalue pair 
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+and a cluster of eigenvalues
+defined by the subset <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">,
+respectively. Similar notation is used
+for 
+<!-- MATH
+ ${\rm Dif}_u(i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img836.gif"
+ ALT="${\rm Dif}_u(i)$">
+and 
+<!-- MATH
+ ${\rm Dif}_u({\cal I})$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img777.gif"
+ ALT="${\rm Dif}_u({\cal I})$">.
+xGGESX reports estimates of
+
+<!-- MATH
+ ${\rm Dif}_u({\cal I})$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img777.gif"
+ ALT="${\rm Dif}_u({\cal I})$">
+and 
+<!-- MATH
+ ${\rm Dif}_l({\cal I})$
+ -->
+<IMG
+ WIDTH="59" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img778.gif"
+ ALT="${\rm Dif}_l({\cal I})$">
+in <TT>RCONDV(1)</TT>
+and <TT>RCONDV(2)</TT> (<TT>DIF(1)</TT> and <TT>DIF(2)</TT> in xTGSEN), respectively.
+<A NAME="12761"></A>
+
+<P>
+From a matrix representation of (<A HREF="node104.html#eq411.33">4.14</A>) it is possible to formulate an
+exact expression of <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+as
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\rm Dif}_u[(A_{11}, B_{11}),(A_{22}, B_{22})]
+= \sigma_{\min} (Z_u)
+= {\rm Dif}_u,
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.37"></A><IMG
+ WIDTH="355" HEIGHT="31" BORDER="0"
+ SRC="img837.gif"
+ ALT="\begin{displaymath}
+{\rm Dif}_u[(A_{11}, B_{11}),(A_{22}, B_{22})]
+= \sigma_{\min} (Z_u)
+= {\rm Dif}_u,
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.18)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <B><I>Z</I><SUB><I>u</I></SUB></B> is the <B>2<I>m</I>(<I>n</I> - <I>m</I>)</B>-by-<B>2<I>m</I>(<I>n</I> - <I>m</I>)</B> matrix
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Z_u = \left( \begin{array}{cc} I_{n-m} \otimes A_{11} & -A_{22}^T \otimes I_{m} \\
+          I_{n-m} \otimes B_{11} & -B_{22}^T \otimes I_{m} \end{array} \right) ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="277" HEIGHT="54" BORDER="0"
+ SRC="img838.gif"
+ ALT="\begin{displaymath}
+Z_u = \left( \begin{array}{cc} I_{n-m} \otimes A_{11} &amp; -A_{...
+...\otimes B_{11} &amp; -B_{22}^T \otimes I_{m} \end{array} \right) ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img839.gif"
+ ALT="$\otimes$">
+is the Kronecker product. A method
+based directly on forming <B><I>Z</I><SUB><I>u</I></SUB></B> is generally impractical,
+since <B><I>Z</I><SUB><I>u</I></SUB></B> can be as large as 
+<!-- MATH
+ $n^2/2 \times n^2/2$
+ -->
+<B><I>n</I><SUP>2</SUP>/2  x  <I>n</I><SUP>2</SUP>/2</B>.
+Thus we would require as much as <B><I>O</I>(<I>n</I><SUP>4</SUP>)</B> extra workspace and <B><I>O</I>(<I>n</I><SUP>6</SUP>)</B>
+operations, much more than
+the estimation methods that we now describe.
+
+<P>
+We instead compute an estimate of <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+as the reciprocal value of an
+estimate of 
+<!-- MATH
+ ${\rm Dif}_u^{-1} = {\|Z_u^{-1}\|}_2 = 1 / \sigma_{\min} (Z_u)$
+ -->
+<IMG
+ WIDTH="235" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img840.gif"
+ ALT="${\rm Dif}_u^{-1} = {\Vert Z_u^{-1}\Vert}_2 = 1 / \sigma_{\min} (Z_u)$">,
+where <B><I>Z</I><SUB><I>u</I></SUB></B> is the matrix representation of the generalized Sylvester
+operator.  It is possible to estimate 
+<!-- MATH
+ ${\|Z_u^{-1}\|}_2$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img841.gif"
+ ALT="${\Vert Z_u^{-1}\Vert}_2$">
+by solving
+generalized Sylvester equations<A NAME="12787"></A>
+in triangular form.
+We provide both Frobenius norm and
+one norm <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+estimates [<A
+ HREF="node151.html#kagstromporomaa93a">74</A>].
+<A NAME="12790"></A>
+The one norm estimate makes the condition estimation uniform with the
+nonsymmetric eigenvalue problem. The Frobenius norm estimate
+offers a low cost and equally reliable estimator.
+The one norm estimate is a factor 3 to 10 times more
+expensive [<A
+ HREF="node151.html#kagstromporomaa93a">74</A>]. From
+the definition of <IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+(<A HREF="node104.html#eq411.36">4.17</A>) we see that
+<IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+estimates can be computed by using the algorithms for
+estimating <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">.
+
+<P>
+<B>Frobenius norm estimate</B>: From
+the <B><I>Z</I><SUB><I>u</I></SUB><I>x</I> = <I>b</I></B> representation of the
+generalized Sylvester equation (<A HREF="node104.html#eq411.33">4.14</A>) we get a
+lower bound on 
+<!-- MATH
+ ${\rm Dif}_u^{-1}$
+ -->
+<IMG
+ WIDTH="47" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img842.gif"
+ ALT="${\rm Dif}_u^{-1}$">:
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\|(L, R)\|}_F / {\|(C, F)\|}_F = {\|x\|}_2 / {\|b\|}_2 \leq {\|Z_u^{-1}\|}_2 .
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.37a"></A><IMG
+ WIDTH="341" HEIGHT="32" BORDER="0"
+ SRC="img843.gif"
+ ALT="\begin{displaymath}
+{\Vert(L, R)\Vert}_F / {\Vert(C, F)\Vert}_F = {\Vert x\Vert}_2 / {\Vert b\Vert}_2 \leq {\Vert Z_u^{-1}\Vert}_2 .
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.19)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+To get an improved estimate we try to choose right hand sides
+<B>(<I>C</I>, <I>F</I>)</B> such that
+the associated solution <B>(<I>L</I>, <I>R</I>)</B> has as large norm as possible, giving the
+<IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+estimator
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\tt DIF(1)} \equiv {\|(C, F)\|}_F / {\|(L, R)\|}_F  .
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.38"></A><IMG
+ WIDTH="238" HEIGHT="32" BORDER="0"
+ SRC="img844.gif"
+ ALT="\begin{displaymath}
+{\tt DIF(1)} \equiv {\Vert(C, F)\Vert}_F / {\Vert(L, R)\Vert}_F .
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.20)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+Methods for computing such <B>(<I>C</I>, <I>F</I>)</B> are described in
+[<A
+ HREF="node151.html#kagstromwestin89">75</A>,<A
+ HREF="node151.html#kagstromporomaa93a">74</A>].
+The work to compute <TT>DIF(1)</TT> is comparable to solve a generalized
+Sylvester equation, which costs only 
+<!-- MATH
+ $2m^2(n-m) + 2m(n-m)^2$
+ -->
+<B>2<I>m</I><SUP>2</SUP>(<I>n</I>-<I>m</I>) + 2<I>m</I>(<I>n</I>-<I>m</I>)<SUP>2</SUP></B>
+operations if the matrix pairs are in generalized Schur form.
+<TT>DIF(2)</TT> is the Frobenius norm <IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+estimate.
+
+<P>
+<B>One norm norm estimate</B>: From the relationship
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\frac{1}{\sqrt{2m(n-m)}} {\|Z_u^{-1}\|}_{1} \leq {\|Z_u^{-1}\|}_2 \leq \sqrt{2m(n-m)}
+{\|Z_u^{-1}\|}_{1},
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.39"></A><IMG
+ WIDTH="422" HEIGHT="47" BORDER="0"
+ SRC="img845.gif"
+ ALT="\begin{displaymath}
+\frac{1}{\sqrt{2m(n-m)}} {\Vert Z_u^{-1}\Vert}_{1} \leq {\Ve...
+..._u^{-1}\Vert}_2 \leq \sqrt{2m(n-m)}
+{\Vert Z_u^{-1}\Vert}_{1},
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.21)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+we know that 
+<!-- MATH
+ ${\|Z_u^{-1}\|}_{1}$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img846.gif"
+ ALT="${\Vert Z_u^{-1}\Vert}_{1}$">
+can never differ more than a factor 
+<!-- MATH
+ $\sqrt{2m(n -m)}$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img847.gif"
+ ALT="$\sqrt{2m(n -m)}$">
+from 
+<!-- MATH
+ ${\|Z_u^{-1}\|}_2$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img841.gif"
+ ALT="${\Vert Z_u^{-1}\Vert}_2$">.
+So it makes sense to compute an
+one norm estimate of <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">.
+xLACON implements a method for estimating the one norm of a square matrix,
+using reverse communication for evaluating matrix and vector products
+[<A
+ HREF="node151.html#hager84">59</A>,<A
+ HREF="node151.html#higham89">64</A>]. We apply this method to 
+<!-- MATH
+ ${\|Z_u^{-1}\|}_1$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img846.gif"
+ ALT="${\Vert Z_u^{-1}\Vert}_{1}$">
+by providing the solution vectors <B><I>x</I></B> and <B><I>y</I></B> of <B><I>Z</I><SUB><I>u</I></SUB><I>x</I> = <I>z</I></B> and
+a transposed system <B><I>Z</I><SUB><I>u</I></SUB><SUP><I>T</I></SUP><I>y</I> = <I>z</I></B>, where <B><I>z</I></B> is determined by xLACON.
+In each step only one of these generalized Sylvester equations is solved
+using blocked algorithms [<A
+ HREF="node151.html#kagstromporomaa93a">74</A>].
+xLACON returns <B><I>v</I></B> and <IMG
+ WIDTH="32" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img848.gif"
+ ALT="${\tt EST}$">
+such that <B><I>Z</I><SUB><I>u</I></SUB><SUP>-1</SUP><I>w</I> = <I>v</I></B> and 
+<!-- MATH
+ ${\tt EST}
+= {\|v\|}_{1}/ {\|w\|}_{1} \leq {\|Z_u^{-1}\|}_{1}$
+ -->
+<IMG
+ WIDTH="215" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img849.gif"
+ ALT="${\tt EST}
+= {\Vert v\Vert}_{1}/ {\Vert w\Vert}_{1} \leq {\Vert Z_u^{-1}\Vert}_{1}$">,
+resulting in the one-norm-based estimate
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\tt DIF(1)} \equiv 1 / {\tt EST} .
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.40"></A><IMG
+ WIDTH="122" HEIGHT="31" BORDER="0"
+ SRC="img850.gif"
+ ALT="\begin{displaymath}
+{\tt DIF(1)} \equiv 1 / {\tt EST} .
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.22)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+The cost for computing this bound is roughly equal to the number of steps
+in the reverse communication times the cost for one generalized
+Sylvester solve. <TT>DIF(2)</TT> is the one norm <IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">
+estimate.
+
+<P>
+The expert driver routines xGGEVX and xGGESX compute the Frobenius
+norm estimate (<A HREF="node104.html#eq411.38">4.20</A>).
+The routine xTGSNA also computes the Frobenius
+norm estimate (<A HREF="node104.html#eq411.38">4.20</A>) of <IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">
+and <IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$">.
+The routine xTGSEN optionally computes the Frobenius norm estimate
+(<A HREF="node104.html#eq411.38">4.20</A>) or the one norm estimate (<A HREF="node104.html#eq411.40">4.22</A>).
+The choice of estimate is controlled by the input parameter <TT>IJOB</TT>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5654"
+ HREF="node105.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5648"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5642"
+ HREF="node103.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5650"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5652"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5655"
+ HREF="node105.html">Singular Eigenproblems</A>
+<B> Up:</B> <A NAME="tex2html5649"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5643"
+ HREF="node103.html">Balancing and Conditioning</A>
+ &nbsp <B>  <A NAME="tex2html5651"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5653"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

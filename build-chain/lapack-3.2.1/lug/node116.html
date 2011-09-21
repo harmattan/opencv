@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Array Arguments</TITLE>
+<META NAME="description" CONTENT="Array Arguments">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node117.html">
+<LINK REL="previous" HREF="node115.html">
+<LINK REL="up" HREF="node110.html">
+<LINK REL="next" HREF="node117.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5845"
+ HREF="node117.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5839"
+ HREF="node110.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5833"
+ HREF="node115.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5841"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5843"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5846"
+ HREF="node117.html">Work Arrays</A>
+<B> Up:</B> <A NAME="tex2html5840"
+ HREF="node110.html">Design and Documentation of</A>
+<B> Previous:</B> <A NAME="tex2html5834"
+ HREF="node115.html">Problem Dimensions</A>
+ &nbsp <B>  <A NAME="tex2html5842"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5844"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03516000000000000000"></A><A NAME="subsecarrayargs"></A>
+<BR>
+Array Arguments
+</H2>
+
+<P>
+Each two-dimensional array argument<A NAME="19524"></A> is 
+immediately followed in the
+argument list by its leading dimension<A NAME="19525"></A>, whose 
+name has the form LD<B>&lt;</B>array-name<B>&gt;</B>. For example:
+<DIV ALIGN="CENTER">
+</DIV><TABLE  WIDTH="547">
+<TR><TD>
+
+ 
+<DT>A      
+
+<DL COMPACT><DD>(input/output) REAL/COMPLEX array, dimension (LDA,N) 
+<BR>
+               ...
+
+<P>
+<DT>LDA    
+<DD>(input) INTEGER 
+<BR>
+The leading dimension of the array A.  LDA <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+max(1,M).
+
+</DL>
+</TD></TR>
+</TABLE>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+It should be assumed, unless stated otherwise, that vectors and
+matrices are stored in one- and two-dimensional arrays in the
+conventional manner. That is, if an array X of dimension (N) holds
+a vector <B><I>x</I></B>, then X(i) holds <B><I>x</I><SUB><I>i</I></SUB></B> for 
+<!-- MATH
+ $i = 1, \ldots, n$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img915.gif"
+ ALT="$i = 1, \ldots, n$">.
+If a two-dimensional array A of dimension (LDA,N) holds an <B><I>m</I></B>-by-<B><I>n</I></B>
+matrix <B><I>A</I></B>, 
+then A(<B><I>i</I>,<I>j</I></B>) holds <B><I>a</I><SUB><I>ij</I></SUB></B> for 
+<!-- MATH
+ $i = 1, \ldots, m$
+ -->
+<IMG
+ WIDTH="96" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img916.gif"
+ ALT="$i = 1, \ldots, m$">
+and
+
+<!-- MATH
+ $j = 1, \ldots, n$
+ -->
+<IMG
+ WIDTH="94" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img917.gif"
+ ALT="$j = 1, \ldots, n$">
+(LDA must be at least <B><I>m</I></B>). 
+See Section&nbsp;<A HREF="node121.html#secstorage">5.3</A> for more about
+storage of matrices.
+
+<P>
+Note that<A NAME="19549"></A>
+array arguments are usually declared in the software as assumed-size arrays 
+(last dimension *), for example:
+<PRE>
+      REAL A( LDA, * )
+</PRE>
+although the documentation gives the dimensions as (LDA,N). The latter
+form is more informative since it specifies the required minimum value of 
+the last dimension. However
+an assumed-size array declaration has been used in the software,
+in order to overcome some
+limitations in the Fortran 77 standard. In particular it allows the
+routine to be called when the relevant dimension (N, in this case) is zero.
+However actual array dimensions in the calling program must be at
+least 1 (LDA in this example).
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5845"
+ HREF="node117.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5839"
+ HREF="node110.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5833"
+ HREF="node115.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5841"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5843"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5846"
+ HREF="node117.html">Work Arrays</A>
+<B> Up:</B> <A NAME="tex2html5840"
+ HREF="node110.html">Design and Documentation of</A>
+<B> Previous:</B> <A NAME="tex2html5834"
+ HREF="node115.html">Problem Dimensions</A>
+ &nbsp <B>  <A NAME="tex2html5842"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5844"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

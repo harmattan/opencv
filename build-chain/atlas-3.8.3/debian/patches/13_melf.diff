@@ -1,0 +1,22 @@
+Index: atlas-3.8.3/CONFIG/src/SpewMakeInc.c
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/src/SpewMakeInc.c	2010-02-13 20:04:57.000000000 +0100
++++ atlas-3.8.3/CONFIG/src/SpewMakeInc.c	2010-02-14 20:31:44.000000000 +0100
+@@ -660,10 +665,17 @@
+    fprintf(fpout, "   LDFLAGS =");
+    if (MachIsX86(mach))
+    {
++#ifdef __FreeBSD_kernel__
++      if (ptrbits == 32)
++         fprintf(fpout, " -melf_i386_fbsd");
++      else if (ptrbits == 64)
++         fprintf(fpout, " -melf_x86_64_fbsd");
++#else
+       if (ptrbits == 32)
+          fprintf(fpout, " -melf_i386");
+       else if (ptrbits == 64)
+          fprintf(fpout, " -melf_x86_64");
++#endif
+    }
+    fprintf(fpout, "\n   F77SYSLIB = %s\n", f77lib ? f77lib : "");
+    fprintf(fpout, "   BC = $(ICC)\n");

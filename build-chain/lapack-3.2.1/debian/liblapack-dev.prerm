@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" != "upgrade" ]
+then
+    update-alternatives --remove liblapack.so /usr/lib/liblapack/liblapack.so
+fi
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,16 @@
+Description: Remove string exceptions
+
+Index: python-numpy-1.4.1/numpy/f2py/capi_maps.py
+===================================================================
+--- python-numpy-1.4.1.orig/numpy/f2py/capi_maps.py	2010-06-30 18:04:02.420160466 +0200
++++ python-numpy-1.4.1/numpy/f2py/capi_maps.py	2010-06-30 18:04:23.320158823 +0200
+@@ -429,7 +429,8 @@
+                 else:
+                     v = eval(v,{},{})
+                     ret['init.r'],ret['init.i']=str(v.real),str(v.imag)
+-            except: raise 'sign2map: expected complex number `(r,i)\' but got `%s\' as initial value of %s.'%(init,`a`)
++            except:
++                raise ValueError('sign2map: expected complex number `(r,i)\' but got `%s\' as initial value of %r.' % (init, a))
+             if isarray(var):
+                 init='(capi_c.r=%s,capi_c.i=%s,capi_c)'%(ret['init.r'],ret['init.i'])
+         elif isstring(var):

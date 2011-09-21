@@ -1,0 +1,6 @@
+usr/lib/pkgconfig
+usr/include
+usr/lib/libdirac_encoder.so
+usr/lib/libdirac_encoder.{a,la}
+usr/lib/libdirac_decoder.so
+usr/lib/libdirac_decoder.{a,la}

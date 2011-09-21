@@ -1,0 +1,28 @@
+Information for Maintainers of packages depending on python-numpy
+-----------------------------------------------------------------
+
+With Numpy 1.4.1 upload in unstable, we had several packages failing
+to execute due to a change in 'dtype' format (some fields were added
+at the end of the data strucutre).
+
+After that, we decided to provide a reliable way to specify strict
+versioned depends on python-numpy by the packages depending on it, in
+order to avoid similar failures in future uploads.
+
+Currently you have two ways to do that:
+
+* dh_numpy, that will add python-numpy versioned depends (using pydist
+  file information, see below) to python:Depends substvar
+
+* dh_python2 and the pydist file shipped by python-numpy,
+  /usr/share/python/di st/python-numpy; you can read more out pydist
+  files at [1].
+
+[1] http://alioth.debian.org/scm/loggerhead/pkg-python/python-defaults-debian/annotate/head:/README.PyDist
+
+python-support will receive the same support for pydist as of
+dh_python2, but it's not already implemented at the time or
+writing. So, in case you don't want to use dh_python2, use dh_numpy
+helper script.
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 27 Jul 2010 23:28:11 +0200

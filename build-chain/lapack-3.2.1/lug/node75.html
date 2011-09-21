@@ -1,0 +1,948 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>How to Measure Errors</TITLE>
+<META NAME="description" CONTENT="How to Measure Errors">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node77.html">
+<LINK REL="previous" HREF="node73.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node76.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5244"
+ HREF="node76.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5238"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5232"
+ HREF="node74.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5240"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5242"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5245"
+ HREF="node76.html">Further Details: How to</A>
+<B> Up:</B> <A NAME="tex2html5239"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5233"
+ HREF="node74.html">Further Details: Floating Point</A>
+ &nbsp <B>  <A NAME="tex2html5241"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5243"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03420000000000000000"></A><A NAME="secnormnotation"></A>
+<BR>
+How to Measure Errors
+</H1>
+
+<P>
+<A NAME="9880"></A>
+LAPACK routines return four types of floating-point output arguments:
+
+<A NAME="9882"></A>
+
+<UL><LI><EM>Scalar</EM>, such as an eigenvalue of a matrix,
+<A NAME="9884"></A>
+
+<LI><EM>Vector</EM>, such as the solution <B><I>x</I></B> of a linear system <B><I>Ax</I>=<I>b</I></B>,
+<A NAME="9886"></A>
+
+<LI><EM>Matrix</EM>, such as a matrix inverse <B><I>A</I><SUP>-1</SUP></B>, and
+<A NAME="9889"></A>
+
+<LI><EM>Subspace</EM>, such as the space spanned by one or more eigenvectors of a matrix.
+
+</UL>
+This section provides measures for errors in these quantities, which we
+need in order to express error bounds.
+
+<P>
+<A NAME="9892"></A>
+First consider <EM>scalars</EM>. Let the scalar <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img282.gif"
+ ALT="$\hat{\alpha}$">
+be an approximation of
+the true answer <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">.
+We can measure the difference between <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img282.gif"
+ ALT="$\hat{\alpha}$">
+either by the <B>absolute error</B>
+
+<!-- MATH
+ $| \hat{\alpha} - \alpha |$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img283.gif"
+ ALT="$\vert \hat{\alpha} - \alpha \vert$">,
+or, if <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+is nonzero, by the <B>relative error</B>
+
+<!-- MATH
+ $| \hat{\alpha} - \alpha | / | \alpha |$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img284.gif"
+ ALT="$\vert \hat{\alpha} - \alpha \vert / \vert \alpha \vert$">.
+Alternatively, it is sometimes more convenient
+to use 
+<!-- MATH
+ $| \hat{\alpha} - \alpha | / | \hat{\alpha} |$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img285.gif"
+ ALT="$\vert \hat{\alpha} - \alpha \vert / \vert \hat{\alpha} \vert$">
+instead of the standard expression
+for relative error (see section&nbsp;<A HREF="node76.html#secbackgroundnormnotation">4.2.1</A>).
+If the relative error of <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img282.gif"
+ ALT="$\hat{\alpha}$">
+is, say <B>10<SUP>-5</SUP></B>, then we say that
+<IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img282.gif"
+ ALT="$\hat{\alpha}$">
+is <EM>accurate to 5 decimal digits</EM>.
+<A NAME="9907"></A><A NAME="9908"></A>
+<A NAME="9909"></A><A NAME="9910"></A>
+
+<P>
+<A NAME="9911"></A>
+In order to measure the error in <EM>vectors</EM>, we need to measure the <EM>size</EM>
+or <EM>norm</EM> of a vector <B><I>x</I></B><A NAME="9915"></A>. A popular norm
+is the magnitude of the largest component, 
+<!-- MATH
+ $\max_{1 \leq i \leq n} |x_i|$
+ -->
+<IMG
+ WIDTH="106" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img286.gif"
+ ALT="$\max_{1 \leq i \leq n} \vert x_i\vert$">,
+which we denote
+
+<!-- MATH
+ $\| x \|_{\infty}$
+ -->
+<IMG
+ WIDTH="46" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img287.gif"
+ ALT="$\Vert x \Vert _{\infty}$">.
+This is read <EM>the infinity norm of</EM> <B><I>x</I></B>.
+See Table&nbsp;<A HREF="node75.html#tabnorms">4.2</A> for a summary of norms.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="9922"></A>
+<A NAME="9923"></A>
+<A NAME="9924"></A>
+<A NAME="9925"></A>
+<A NAME="9926"></A>
+<A NAME="9927"></A>
+<A NAME="tabnorms"></A>
+<DIV ALIGN="CENTER">
+<A NAME="9921"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 4.2:</STRONG>
+Vector and matrix norms</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">Vector</TD>
+<TD ALIGN="LEFT">Matrix</TD>
+</TR>
+<TR><TD ALIGN="LEFT">one-norm</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|x\|_{1} = \sum_i |x_i|$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img288.gif"
+ ALT="$\Vert x\Vert _{1} = \sum_i \vert x_i\vert$"></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|A\|_{1} = \max_j \sum_i |a_{ij}|$
+ -->
+<IMG
+ WIDTH="164" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img289.gif"
+ ALT="$\Vert A\Vert _{1} = \max_j \sum_i \vert a_{ij}\vert$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">two-norm</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|x\|_2 = ( \sum_i |x_i|^2 )^{1/2}$
+ -->
+<IMG
+ WIDTH="155" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img290.gif"
+ ALT="$\Vert x\Vert _2 = ( \sum_i \vert x_i\vert^2 )^{1/2}$"></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|A\|_2 = \max_{x \neq 0} \|Ax\|_2 / \|x\|_2$
+ -->
+<IMG
+ WIDTH="219" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img291.gif"
+ ALT="$\Vert A\Vert _2 = \max_{x \neq 0} \Vert Ax\Vert _2 / \Vert x\Vert _2$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Frobenius norm</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|x\|_F = \|x\|_2$
+ -->
+<B>|x|<SUB><I>F</I></SUB> = |x|<SUB>2</SUB></B></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|A\|_F = ( \sum_{ij} |a_{ij}|^2 )^{1/2}$
+ -->
+<IMG
+ WIDTH="173" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img292.gif"
+ ALT="$\Vert A\Vert _F = ( \sum_{ij} \vert a_{ij}\vert^2 )^{1/2}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">infinity-norm</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|x\|_{\infty} = \max_i |x_i|$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img293.gif"
+ ALT="$\Vert x\Vert _{\infty} = \max_i \vert x_i\vert$"></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $\|A\|_{\infty} = \max_i \sum_j |a_{ij}|$
+ -->
+<IMG
+ WIDTH="170" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img294.gif"
+ ALT="$\Vert A\Vert _{\infty} = \max_i \sum_j \vert a_{ij}\vert$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+If <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is an approximation to the
+exact vector <B><I>x</I></B>, we will refer to 
+<!-- MATH
+ $\| \hat{x} - x \|_{p}$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img296.gif"
+ ALT="$\Vert \hat{x} - x \Vert _{p}$">
+as the
+absolute error in <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+(where <B><I>p</I></B> is one of the values in Table&nbsp;<A HREF="node75.html#tabnorms">4.2</A>),
+<A NAME="9951"></A><A NAME="9952"></A>
+<A NAME="9953"></A><A NAME="9954"></A>
+and refer to 
+<!-- MATH
+ $\| \hat{x} - x \|_{p} / \| x \|_{p}$
+ -->
+<IMG
+ WIDTH="114" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img297.gif"
+ ALT="$\Vert \hat{x} - x \Vert _{p} / \Vert x \Vert _{p}$">
+as the relative error
+in <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+(assuming 
+<!-- MATH
+ $\| x \|_{p} \neq 0$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img298.gif"
+ ALT="$\Vert x \Vert _{p} \neq 0$">). As with scalars,
+we will sometimes use 
+<!-- MATH
+ $\| \hat{x} - x \|_{p} / \| \hat{x} \|_{p}$
+ -->
+<IMG
+ WIDTH="114" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img299.gif"
+ ALT="$\Vert \hat{x} - x \Vert _{p} / \Vert \hat{x} \Vert _{p}$">
+for the relative error.
+As above, if the relative error of <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is, say <B>10<SUP>-5</SUP></B>, then we say
+that <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is accurate to 5 decimal digits.
+The following example illustrates these ideas:
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = \left( \begin{array}{c} 1 \\100 \\9 \end{array} \right) \; \; , \; \;
+\hat{x} = \left( \begin{array}{c} 1.1 \\99 \\11 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="228" HEIGHT="73" BORDER="0"
+ SRC="img300.gif"
+ ALT="\begin{displaymath}
+x = \left( \begin{array}{c} 1 \\ 100 \\ 9 \end{array} \right...
+...= \left( \begin{array}{c} 1.1 \\ 99 \\ 11 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="459" HEIGHT="143" BORDER="0"
+ SRC="img301.gif"
+ ALT="\begin{eqnarray*}
+\Vert \hat{x} - x \Vert _{\infty} = 2 \; , \; &amp; \displaystyle{...
+...{\Vert \hat{x} - x \Vert _{1}}{\Vert \hat{x} \Vert _{1}} = .0279
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+Thus, we would say that <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+approximates <B><I>x</I></B> to 2
+decimal digits.
+
+<P>
+<A NAME="10000"></A>
+Errors in <EM>matrices</EM> may also be measured with norms<A NAME="10002"></A>.
+The most obvious
+generalization of 
+<!-- MATH
+ $\|x\|_{\infty}$
+ -->
+<IMG
+ WIDTH="46" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img287.gif"
+ ALT="$\Vert x \Vert _{\infty}$">
+to matrices would appear to be
+
+<!-- MATH
+ $\| A \| = \max_{i,j} |a_{ij}|$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img302.gif"
+ ALT="$\Vert A \Vert = \max_{i,j} \vert a_{ij}\vert$">,
+but this does not have certain
+important mathematical properties that make deriving error bounds
+convenient (see section&nbsp;<A HREF="node76.html#secbackgroundnormnotation">4.2.1</A>).
+Instead, we will use
+
+<!-- MATH
+ $\| A \|_{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|$
+ -->
+<IMG
+ WIDTH="228" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img303.gif"
+ ALT="$\Vert A \Vert _{\infty} = \max_{1 \leq i \leq m} \sum_{j=1}^n \vert a_{ij}\vert$">,
+where <B><I>A</I></B> is an <B><I>m</I></B>-by-<B><I>n</I></B> matrix, or
+
+<!-- MATH
+ $\| A \|_{1} = \max_{1 \leq j \leq n} \sum_{i=1}^m |a_{ij}|$
+ -->
+<IMG
+ WIDTH="217" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img304.gif"
+ ALT="$\Vert A \Vert _{1} = \max_{1 \leq j \leq n} \sum_{i=1}^m \vert a_{ij}\vert$">;
+see Table&nbsp;<A HREF="node75.html#tabnorms">4.2</A> for other matrix norms.
+As before 
+<!-- MATH
+ $\| \hat{A} - A \|_{p}$
+ -->
+<IMG
+ WIDTH="77" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img305.gif"
+ ALT="$\Vert \hat{A} - A \Vert _{p}$">
+is the absolute
+error<A NAME="10018"></A><A NAME="10019"></A>
+in <IMG
+ WIDTH="17" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img306.gif"
+ ALT="$\hat{A}$">,
+
+<!-- MATH
+ $\| \hat{A} - A \|_{p} / \| A \|_{p}$
+ -->
+<IMG
+ WIDTH="124" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img307.gif"
+ ALT="$\Vert \hat{A} - A \Vert _{p} / \Vert A \Vert _{p}$">
+is the relative error<A NAME="10024"></A><A NAME="10025"></A>
+in <IMG
+ WIDTH="17" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img306.gif"
+ ALT="$\hat{A}$">,
+and a relative error in <IMG
+ WIDTH="17" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img306.gif"
+ ALT="$\hat{A}$">
+of
+<B>10<SUP>-5</SUP></B> means <IMG
+ WIDTH="17" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img306.gif"
+ ALT="$\hat{A}$">
+is accurate to 5 decimal digits.
+The following example illustrates these ideas:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{ccc} 1 & 2 & 3 \\4 & 5 & 6 \\7 & 8 & 10 \end{array} \right) \; \; , \; \;
+\hat{A} = \left( \begin{array}{ccc} .44 & 2.36 & 3.04 \\3.09 & 5.87 & 6.66 \\7.36 & 7.77 & 9.07 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="378" HEIGHT="73" BORDER="0"
+ SRC="img308.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{ccc} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; ...
+... 3.09 &amp; 5.87 &amp; 6.66 \\ 7.36 &amp; 7.77 &amp; 9.07 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="483" HEIGHT="214" BORDER="0"
+ SRC="img309.gif"
+ ALT="\begin{eqnarray*}
+\Vert \hat{A} - A \Vert _{\infty} = 2.44 \; , \; &amp; \displaysty...
+...{\Vert \hat{A} - A \Vert _{F}}{\Vert \hat{A} \Vert _{F}} = .1082
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+so <IMG
+ WIDTH="17" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img306.gif"
+ ALT="$\hat{A}$">
+is accurate to 1 decimal digit.
+
+<P>
+Here is some related notation we will use in our error bounds.
+The <B>condition number of a matrix</B> <B><I>A</I></B> is defined as
+<A NAME="10073"></A>
+
+<!-- MATH
+ $\kappa_p (A) \equiv \|A\|_p \cdot \|A^{-1}\|_p$
+ -->
+<IMG
+ WIDTH="179" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img310.gif"
+ ALT="$\kappa_p (A) \equiv \Vert A\Vert _p \cdot \Vert A^{-1}\Vert _p$">,
+where <B><I>A</I></B>
+is square and invertible, and <B><I>p</I></B> is <IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img311.gif"
+ ALT="$\infty$">
+or one of the other
+possibilities in Table&nbsp;<A HREF="node75.html#tabnorms">4.2</A>. The condition number
+measures how sensitive <B><I>A</I><SUP>-1</SUP></B> is to changes in <B><I>A</I></B>; the larger
+the condition number, the more sensitive is <B><I>A</I><SUP>-1</SUP></B>. For example,
+for the same <B><I>A</I></B> as in the last example,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A^{-1} \approx \left( \begin{array}{ccc} -.667 & -1.333 & 1 \\-.667 & 3.667 & -2 \\1 & -2 & 1 \end{array} \right) 
+\; \; {\rm and} \; \; \kappa_{\infty} (A) = 158.33 \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="436" HEIGHT="73" BORDER="0"
+ SRC="img312.gif"
+ ALT="\begin{displaymath}
+A^{-1} \approx \left( \begin{array}{ccc} -.667 &amp; -1.333 &amp; 1 ...
+...t)
+\; \; {\rm and} \; \; \kappa_{\infty} (A) = 158.33 \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+LAPACK
+error estimation routines typically compute a variable called
+<TT>RCOND</TT><A NAME="10083"></A>, which is the reciprocal of the condition number (or an
+approximation of the reciprocal). The reciprocal of the condition
+number is used instead of the condition number itself in order
+to avoid the possibility of overflow when the condition number is very large.
+<A NAME="10084"></A>
+<A NAME="10085"></A>
+Also, some of our error bounds will use the vector of absolute values
+of <B><I>x</I></B>, <B>|x|</B> (
+<!-- MATH
+ $|x|_i = |x_i |$
+ -->
+<B>|x|<SUB><I>i</I></SUB> = |x<SUB><I>i</I></SUB> |</B>), or similarly <B>|A|</B>
+(
+<!-- MATH
+ $|A|_{ij} = |a_{ij}|$
+ -->
+<B>|A|<SUB><I>ij</I></SUB> = |a<SUB><I>ij</I></SUB>|</B>).
+
+<P>
+<A NAME="10088"></A>
+Now we consider errors in <EM>subspaces</EM>. Subspaces are the
+outputs of routines that compute eigenvectors and invariant
+subspaces of matrices.  We need a careful definition
+of error in these cases for the following reason. The nonzero vector <B><I>x</I></B> is called a
+<EM>(right) eigenvector</EM> of the matrix <B><I>A</I></B> with <EM>eigenvalue</EM>
+<IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+if 
+<!-- MATH
+ $Ax = \lambda x$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img313.gif"
+ ALT="$Ax = \lambda x$">.
+From this definition, we see that
+<B>-<I>x</I></B>, <B>2<I>x</I></B>, or any other nonzero multiple <IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img314.gif"
+ ALT="$\beta x$">
+of <B><I>x</I></B> is also an
+eigenvector. In other words, eigenvectors are not unique. This
+means we cannot measure the difference between two supposed eigenvectors
+<IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+and <B><I>x</I></B> by computing 
+<!-- MATH
+ $\| \hat{x} - x \|_2$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img315.gif"
+ ALT="$\Vert \hat{x} - x \Vert _2$">,
+because this may
+be large while 
+<!-- MATH
+ $\| \hat{x} - \beta x \|_2$
+ -->
+<IMG
+ WIDTH="81" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img316.gif"
+ ALT="$\Vert \hat{x} - \beta x \Vert _2$">
+is small or even zero for
+some <IMG
+ WIDTH="47" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img317.gif"
+ ALT="$\beta \neq 1$">.
+This is true
+even if we normalize <B><I>x</I></B> so that <B>|x|<SUB>2</SUB> = 1</B>, since both
+<B><I>x</I></B> and <B>-<I>x</I></B> can be normalized simultaneously. So in order to define
+error in a useful way, we need to instead consider the set <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+of
+all scalar multiples 
+<!-- MATH
+ $\{ \beta x \; , \; \beta {\rm ~a~scalar} \}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img319.gif"
+ ALT="$\{ \beta x \; , \; \beta {\rm ~a~scalar} \}$">
+of
+<B><I>x</I></B>. The set <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+is
+called the <EM>subspace spanned by <B><I>x</I></B></EM>, and is uniquely determined
+by any nonzero member of <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">.
+We will measure the difference
+between two such sets by the <EM>acute angle</EM> between them.
+Suppose <IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+is spanned by <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img321.gif"
+ ALT="$\{ \hat x \}$">
+and
+<IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+is spanned by <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img322.gif"
+ ALT="$\{ x \}$">.
+Then the acute angle between
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+and <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+is defined as
+<A NAME="10100"></A>
+<A NAME="10101"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{\cal S}, {\cal S} ) =
+\theta ( \hat{x} , x ) \equiv \arccos
+\frac{| \hat{x}^T x |}{ \| \hat{x} \|_2 \cdot \| x \|_2 } \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="300" HEIGHT="50" BORDER="0"
+ SRC="img323.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{\cal S}, {\cal S} ) =
+\theta ( \hat{x} , x ) \...
+...vert}{ \Vert \hat{x} \Vert _2 \cdot \Vert x \Vert _2 } \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+One can show that 
+<!-- MATH
+ $\theta ( \hat{x} , x )$
+ -->
+<IMG
+ WIDTH="54" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img324.gif"
+ ALT="$\theta ( \hat{x} , x )$">
+does not change when either
+<IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+or <B><I>x</I></B> is multiplied by any nonzero scalar. For example, if
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = \left( \begin{array}{c} 1 \\100 \\9 \end{array} \right) \; \; {\rm and} \; \;
+\hat{x} = \left( \begin{array}{c} 1.1 \\99 \\11 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="249" HEIGHT="73" BORDER="0"
+ SRC="img325.gif"
+ ALT="\begin{displaymath}
+x = \left( \begin{array}{c} 1 \\ 100 \\ 9 \end{array} \right...
+...= \left( \begin{array}{c} 1.1 \\ 99 \\ 11 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+as above, then 
+<!-- MATH
+ $\theta ( \gamma \hat{x} , \beta x ) = .0209$
+ -->
+<IMG
+ WIDTH="138" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img326.gif"
+ ALT="$\theta ( \gamma \hat{x} , \beta x ) = .0209$">
+for any
+nonzero scalars <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+and <IMG
+ WIDTH="14" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img327.gif"
+ ALT="$\gamma$">.
+
+<P>
+Here is another way to interpret the angle <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img328.gif"
+ ALT="$\theta$">
+between <IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+and
+<IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">.
+<A NAME="10115"></A>
+<A NAME="10116"></A>
+Suppose <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is a unit vector (
+<!-- MATH
+ $\| \hat{x} \|_2 = 1$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img329.gif"
+ ALT="$\Vert \hat{x} \Vert _2 = 1$">).
+Then there is a scalar <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\| \hat{x} - \beta x \|_2 = \frac{\sqrt{2} \sin \theta}{\sqrt{1+ \cos \theta}} \approx \theta
+\; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="222" HEIGHT="50" BORDER="0"
+ SRC="img330.gif"
+ ALT="\begin{displaymath}
+\Vert \hat{x} - \beta x \Vert _2 = \frac{\sqrt{2} \sin \theta}{\sqrt{1+ \cos \theta}} \approx \theta
+\; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The approximation 
+<!-- MATH
+ $\approx \theta$
+ -->
+<IMG
+ WIDTH="31" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img331.gif"
+ ALT="$\approx \theta$">
+holds when <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img328.gif"
+ ALT="$\theta$">
+is much less than 1
+(less than .1 will do nicely).  If <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+is an approximate
+eigenvector with error bound 
+<!-- MATH
+ $\theta ( \hat{x} , x ) \leq \bar{\theta} \ll 1$
+ -->
+<IMG
+ WIDTH="122" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img332.gif"
+ ALT="$\theta ( \hat{x} , x ) \leq \bar{\theta} \ll 1$">,
+where <B><I>x</I></B> is a true eigenvector, there is another true eigenvector
+<IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img314.gif"
+ ALT="$\beta x$">
+satisfying 
+<!-- MATH
+ $\| \hat{x} - \beta x \|_2 \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\bar{\theta}$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img333.gif"
+ ALT="$\Vert \hat{x} - \beta x \Vert _2 \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle &lt;}$}}\bar{\theta}$">.
+For example, if
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\hat{x} = \left( \begin{array}{c} 1.1 \\99 \\11 \end{array} \right) \cdot (1.1^2 + 99^2 + 11^2)^{-1/2}
+\; {\rm so} \; \| \hat{x} \|_2 = 1
+\; \; {\rm and} \; \;
+x = \left( \begin{array}{c} 1 \\100 \\9 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="518" HEIGHT="73" BORDER="0"
+ SRC="img334.gif"
+ ALT="\begin{displaymath}
+\hat{x} = \left( \begin{array}{c} 1.1 \\ 99 \\ 11 \end{array...
+...x = \left( \begin{array}{c} 1 \\ 100 \\ 9 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then 
+<!-- MATH
+ $\| \hat{x} - \beta x \|_2 \approx .0209$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img335.gif"
+ ALT="$\Vert \hat{x} - \beta x \Vert _2 \approx .0209$">
+for 
+<!-- MATH
+ $\beta \approx .001$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img336.gif"
+ ALT="$\beta \approx .001$">.
+
+<P>
+Some LAPACK routines also return subspaces spanned by more than one
+vector, such as the invariant subspaces of matrices returned by xGEESX.
+<A NAME="10135"></A><A NAME="10136"></A><A NAME="10137"></A><A NAME="10138"></A>
+The notion of angle between subspaces also applies here;
+<A NAME="10139"></A>
+<A NAME="10140"></A>
+see section&nbsp;<A HREF="node76.html#secbackgroundnormnotation">4.2.1</A> for details.
+
+<P>
+Finally, many of our error bounds will contain a factor <B><I>p</I>(<I>n</I>)</B> (or <B><I>p</I>(<I>m</I>,<I>n</I>)</B>),
+which grows as a function of matrix dimension <B><I>n</I></B> (or dimensions <B><I>m</I></B> and <B><I>n</I></B>).
+It represents a potentially different function for each problem.
+In practice, the true errors usually grow just linearly; using
+<B><I>p</I>(<I>n</I>)=10<I>n</I></B> in the error bound formulas will often give a reasonable bound.
+Therefore, we will refer to <B><I>p</I>(<I>n</I>)</B> as a ``modestly growing'' function of <B><I>n</I></B>.
+However it can occasionally be much larger, see
+section&nbsp;<A HREF="node76.html#secbackgroundnormnotation">4.2.1</A>.
+<B>For simplicity, the error bounds computed by the code fragments
+in the following sections will use</B> <B><I>p</I>(<I>n</I>)=1</B>.
+<B>This means these computed error bounds may occasionally
+slightly underestimate the true error. For this reason we refer
+to these computed error bounds as ``approximate error bounds''.</B>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5246"
+ HREF="node76.html">Further Details:  How to Measure Errors</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5244"
+ HREF="node76.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5238"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5232"
+ HREF="node74.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5240"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5242"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5245"
+ HREF="node76.html">Further Details: How to</A>
+<B> Up:</B> <A NAME="tex2html5239"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5233"
+ HREF="node74.html">Further Details: Floating Point</A>
+ &nbsp <B>  <A NAME="tex2html5241"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5243"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

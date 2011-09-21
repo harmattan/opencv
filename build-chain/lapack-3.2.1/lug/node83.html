@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for Linear Least Squares
+Problems</TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for Linear Least Squares
+Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node82.html">
+<LINK REL="up" HREF="node82.html">
+<LINK REL="next" HREF="node84.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5353"
+ HREF="node84.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5347"
+ HREF="node82.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5343"
+ HREF="node82.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5349"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5351"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5354"
+ HREF="node84.html">Error Bounds for Generalized</A>
+<B> Up:</B> <A NAME="tex2html5348"
+ HREF="node82.html">Error Bounds for Linear</A>
+<B> Previous:</B> <A NAME="tex2html5344"
+ HREF="node82.html">Error Bounds for Linear</A>
+ &nbsp <B>  <A NAME="tex2html5350"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5352"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03451000000000000000"></A><A NAME="secbackgroundlsq"></A>
+<BR>
+Further Details:  Error Bounds for Linear Least Squares
+Problems
+</H2>
+
+<P>
+The conventional error analysis of linear least squares problems goes
+as follows<A NAME="10832"></A>.
+As above, let <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+be the solution to minimizing
+<IMG
+ WIDTH="81" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img437.gif"
+ ALT="$\Vert Ax-b \Vert _2$">
+computed by
+LAPACK using one of the least squares drivers
+xGELS, xGELSX, xGELSY, xGELSS or xGELSD
+(see subsection <A HREF="node27.html#subsecdrivellsq">2.3.2</A>).
+We discuss the most common case, where <B><I>A</I></B> is
+overdetermined<A NAME="10834"></A>
+(i.e., has more rows than columns) and has full rank
+[<A
+ HREF="node151.html#bjorck3">16</A>,<A
+ HREF="node151.html#demmelMA221">25</A>,<A
+ HREF="node151.html#GVL2">55</A>,<A
+ HREF="node151.html#higham96">67</A>]:
+<A NAME="10836"></A><A NAME="10837"></A><A NAME="10838"></A><A NAME="10839"></A>
+<A NAME="10840"></A><A NAME="10841"></A><A NAME="10842"></A><A NAME="10843"></A>
+<A NAME="10844"></A><A NAME="10845"></A><A NAME="10846"></A><A NAME="10847"></A>
+<A NAME="10848"></A><A NAME="10849"></A><A NAME="10850"></A><A NAME="10851"></A>
+<A NAME="10852"></A><A NAME="10853"></A><A NAME="10854"></A><A NAME="10855"></A>
+
+<P>
+<BLOCKQUOTE>
+The computed solution <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+has a small normwise backward error.
+In other words <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+minimizes 
+<!-- MATH
+ $\|(A+E) \hat{x}- (b+f)\|_2$
+ -->
+<IMG
+ WIDTH="175" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img449.gif"
+ ALT="$\Vert(A+E) \hat{x}- (b+f)\Vert _2$">,
+where
+<B><I>E</I></B> and <B><I>f</I></B> satisfy
+<A NAME="10857"></A>
+<A NAME="10858"></A>
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\max \left( \frac{\| E \|_2}{\| A \|_2} ,
+            \frac{\| f \|_2}{\| b \|_2} \right) \leq p(n) \epsilon
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="211" HEIGHT="48" BORDER="0"
+ SRC="img450.gif"
+ ALT="\begin{displaymath}
+\max \left( \frac{\Vert E \Vert _2}{\Vert A \Vert _2} ,
+\frac{\Vert f \Vert _2}{\Vert b \Vert _2} \right) \leq p(n) \epsilon
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+and <B><I>p</I>(<I>n</I>)</B> is a modestly growing function of <B><I>n</I></B>. We take <B><I>p</I>(<I>n</I>)=1</B> in
+the code fragments above.
+Let 
+<!-- MATH
+ $\kappa_2 (A) = \sigma_{\max} (A)/\sigma_{\min} (A)$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img451.gif"
+ ALT="$\kappa_2 (A) = \sigma_{\max} (A)/\sigma_{\min} (A)$">
+(approximated by
+1/<TT>RCOND</TT> in the above code fragments),
+
+<!-- MATH
+ $\rho = \|A \hat{x} -b\|_2$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img452.gif"
+ ALT="$\rho = \Vert A \hat{x} -b\Vert _2$">
+(= <TT>RNORM</TT> above), and 
+<!-- MATH
+ $\sin ( \theta ) = \rho / \|b\|_2$
+ -->
+<IMG
+ WIDTH="122" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img453.gif"
+ ALT="$\sin ( \theta ) = \rho / \Vert b\Vert _2$">
+(<TT>SINT = RNORM / BNORM</TT> above). Here, <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img328.gif"
+ ALT="$\theta$">
+is the acute angle between
+the vectors <IMG
+ WIDTH="27" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img454.gif"
+ ALT="$A \hat{x}$">
+and <B><I>b</I></B>.
+<A NAME="10870"></A>
+<A NAME="10871"></A>
+Then when <IMG
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img455.gif"
+ ALT="$p(n) \epsilon$">
+is small, the error <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img456.gif"
+ ALT="$\hat{x}- x$">
+is bounded by
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\|x-\hat{x}\|_2}{\|x\|_2} \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}p(n) \epsilon
+\left\{ \frac{2 \kappa_2 (A)}{\cos ( \theta )} + \tan ( \theta ) \kappa_2^2 (A)
+\right\},
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="334" HEIGHT="48" BORDER="0"
+ SRC="img457.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert x-\hat{x}\Vert _2}{\Vert x\Vert _2} \mathrel{\ra...
+...)}{\cos ( \theta )} + \tan ( \theta ) \kappa_2^2 (A)
+\right\},
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+where 
+<!-- MATH
+ $\cos ( \theta )$
+ -->
+<IMG
+ WIDTH="50" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img458.gif"
+ ALT="$\cos ( \theta ) $">
+= <TT>COST</TT> and 
+<!-- MATH
+ $\tan ( \theta )$
+ -->
+<IMG
+ WIDTH="52" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img459.gif"
+ ALT="$\tan ( \theta )$">
+= <TT>TANT</TT> in the code fragments
+above.
+
+</BLOCKQUOTE>
+
+<P>
+We avoid overflow by making sure <TT>RCOND</TT> and <TT>COST</TT> are both at least
+<IMG
+ WIDTH="30" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img420.gif"
+ ALT="$\epsilon =$">
+<TT>EPSMCH</TT>, and by handling the case of a zero <TT>B</TT> matrix
+separately (<TT>BNORM = 0</TT>).
+<A NAME="10884"></A>
+<A NAME="10885"></A>
+
+<P>
+
+<!-- MATH
+ $\kappa_2 (A) = \sigma_{\max} (A) / \sigma_{\min} (A)$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img451.gif"
+ ALT="$\kappa_2 (A) = \sigma_{\max} (A)/\sigma_{\min} (A)$">
+may be computed directly
+from the singular values of <B><I>A</I></B> returned by xGELSS or xGELSD (as in the code fragment)
+or by xGESVD or xGESDD. It may also be approximated by using xTRCON following calls to
+xGELS, xGELSX or xGELSY.  xTRCON estimates 
+<!-- MATH
+ $\kappa_{\infty}$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img460.gif"
+ ALT="$\kappa_{\infty}$">
+or <IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img461.gif"
+ ALT="$\kappa_1$">
+instead
+of <IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img462.gif"
+ ALT="$\kappa_2$">,
+but these can differ from <IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img462.gif"
+ ALT="$\kappa_2$">
+by at most a factor of <B><I>n</I></B>.
+<A NAME="10889"></A><A NAME="10890"></A><A NAME="10891"></A><A NAME="10892"></A>
+<A NAME="10893"></A><A NAME="10894"></A><A NAME="10895"></A><A NAME="10896"></A>
+<A NAME="10897"></A><A NAME="10898"></A><A NAME="10899"></A><A NAME="10900"></A>
+
+<P>
+If <B><I>A</I></B> is rank-deficient, xGELSS, xGELSD, xGELSY and xGELSX can be used to
+<B>regularize</B> the
+problem<A NAME="10902"></A><A NAME="10903"></A>
+by treating all singular values
+less than a user-specified threshold
+(
+<!-- MATH
+ ${\tt RCND} \cdot \sigma_{\max} (A)$
+ -->
+<IMG
+ WIDTH="116" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img463.gif"
+ ALT="${\tt RCND} \cdot \sigma_{\max} (A)$">)
+as
+exactly zero.  The number of singular values treated as nonzero is returned
+in <TT>RANK</TT>.  See [<A
+ HREF="node151.html#bjorck3">16</A>,<A
+ HREF="node151.html#GVL2">55</A>,<A
+ HREF="node151.html#higham96">67</A>]
+for error bounds in this case, as well as
+<A NAME="10908"></A>
+[<A
+ HREF="node151.html#demmelhigham1">28</A>] for the
+underdetermined<A NAME="10910"></A>
+<A NAME="10911"></A> case.
+The ability to deal with rank-deficient matrices is the principal attraction
+of these four drivers, which are more expensive than the simple driver xGELS.
+
+<P>
+The solution of the overdetermined,
+<A NAME="10912"></A>
+<A NAME="10913"></A>
+full-rank problem may also be
+characterized as the solution of the linear system of equations
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{cc} I & A \\A^T & 0 \end{array} \right) \left( \begin{array}{c} r \\x \end{array} \right) =
+\left( \begin{array}{c} b \\0 \end{array} \right) .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="225" HEIGHT="54" BORDER="0"
+ SRC="img464.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{cc} I &amp; A \\ A^T &amp; 0 \end{array} \right...
+...\right) =
+\left( \begin{array}{c} b \\ 0 \end{array} \right) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+By solving this linear system using xyyRFS or xyySVX (see section
+<A HREF="node80.html#secAx_b">4.4</A>) componentwise error bounds can also be obtained
+[<A
+ HREF="node151.html#arioliduffderijk">7</A>].
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5353"
+ HREF="node84.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5347"
+ HREF="node82.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5343"
+ HREF="node82.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5349"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5351"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5354"
+ HREF="node84.html">Error Bounds for Generalized</A>
+<B> Up:</B> <A NAME="tex2html5348"
+ HREF="node82.html">Error Bounds for Linear</A>
+<B> Previous:</B> <A NAME="tex2html5344"
+ HREF="node82.html">Error Bounds for Linear</A>
+ &nbsp <B>  <A NAME="tex2html5350"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5352"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

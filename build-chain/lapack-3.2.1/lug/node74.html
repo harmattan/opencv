@@ -1,0 +1,476 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Floating Point Arithmetic</TITLE>
+<META NAME="description" CONTENT="Further Details: Floating Point Arithmetic">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node73.html">
+<LINK REL="up" HREF="node73.html">
+<LINK REL="next" HREF="node75.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5230"
+ HREF="node75.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5224"
+ HREF="node73.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5220"
+ HREF="node73.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5226"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5228"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5231"
+ HREF="node75.html">How to Measure Errors</A>
+<B> Up:</B> <A NAME="tex2html5225"
+ HREF="node73.html">Sources of Error in</A>
+<B> Previous:</B> <A NAME="tex2html5221"
+ HREF="node73.html">Sources of Error in</A>
+ &nbsp <B>  <A NAME="tex2html5227"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5229"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03411000000000000000"></A><A NAME="secbackgroundfloatingpoint"></A>
+<BR>
+Further Details:  Floating Point Arithmetic
+</H2>
+
+<P>
+<A NAME="9732"></A>
+<A NAME="9733"></A>
+Roundoff error is bounded in terms of the <EM>machine precision</EM>
+<IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">,<A NAME="9735"></A><A NAME="9736"></A>
+which is the smallest value satisfying
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| fl(a \oplus b ) - (a \oplus b ) | \leq \epsilon \cdot | a \oplus b | \; \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="253" HEIGHT="31" BORDER="0"
+ SRC="img264.gif"
+ ALT="\begin{displaymath}
+\vert fl(a \oplus b ) - (a \oplus b ) \vert \leq \epsilon \cdot \vert a \oplus b \vert \; \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>a</I></B> and <B><I>b</I></B> are floating-point numbers<A NAME="9737"></A>,
+<IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img265.gif"
+ ALT="$\oplus$">
+is any one of the four operations <B>+</B>, <B>-</B>, <B> x </B> and <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img266.gif"
+ ALT="$\div$">,
+and 
+<!-- MATH
+ $fl(a \oplus b)$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img267.gif"
+ ALT="$fl(a \oplus b)$">
+is the floating-point result of <IMG
+ WIDTH="42" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img268.gif"
+ ALT="$a \oplus b$">.
+Machine epsilon, <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">,
+is the smallest value for which this inequality
+is true for all <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img265.gif"
+ ALT="$\oplus$">,
+and for all <B><I>a</I></B> and <B><I>b</I></B> such that
+<IMG
+ WIDTH="42" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img268.gif"
+ ALT="$a \oplus b$">
+is neither too large (magnitude exceeds the overflow
+threshold)<A NAME="9738"></A><A NAME="9739"></A>
+nor too small
+(is nonzero with magnitude less than the underflow threshold)<A NAME="9740"></A><A NAME="9741"></A>
+to be represented accurately in the machine.
+We also assume <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">
+bounds the relative error in unary<A NAME="9742"></A><A NAME="9743"></A>
+operations like square root:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| fl( \sqrt{a} ) - (\sqrt{a} ) | \leq \epsilon \cdot | \sqrt{a} | \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="205" HEIGHT="31" BORDER="0"
+ SRC="img269.gif"
+ ALT="\begin{displaymath}
+\vert fl( \sqrt{a} ) - (\sqrt{a} ) \vert \leq \epsilon \cdot \vert \sqrt{a} \vert \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+A precise characterization of <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">
+depends on the details of the
+machine arithmetic and sometimes even of the compiler.
+For example, if addition and
+subtraction are implemented without a guard digit<A NAME="tex2html1856"
+ HREF="footnode.html#foot9747"><SUP>4.1</SUP></A>we must redefine <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">
+to be the smallest number
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| fl(a \pm b ) - (a \pm b ) | \leq \epsilon \cdot ( |a| + |b| ).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="266" HEIGHT="31" BORDER="0"
+ SRC="img270.gif"
+ ALT="\begin{displaymath}
+\vert fl(a \pm b ) - (a \pm b ) \vert \leq \epsilon \cdot ( \vert a\vert + \vert b\vert ).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+In order to assure portability<A NAME="9748"></A>,
+machine parameters such as machine epsilon, the overflow threshold and
+underflow threshold are computed at runtime by the auxiliary<A NAME="9749"></A><A NAME="9750"></A><A NAME="9751"></A>
+routine xLAMCH<A NAME="tex2html1857"
+ HREF="footnode.html#foot13097"><SUP>4.2</SUP></A>. The alternative,
+keeping a fixed table of machine parameter values, would degrade portability
+because the table would have to be changed when moving from one machine,
+or even one compiler, to another.
+
+<P>
+Actually, most machines, but not yet all, do have the same machine
+parameters because they implement IEEE Standard Floating Point Arithmetic
+<A NAME="9753"></A>
+[<A
+ HREF="node151.html#ieee754">4</A>,<A
+ HREF="node151.html#ieee854">5</A>], which exactly specifies floating-point number
+representations and operations. For
+these machines, including all modern workstations and
+PCs<A NAME="tex2html1858"
+ HREF="footnode.html#foot9755"><SUP>4.3</SUP></A>,
+the values of these parameters are given in
+Table&nbsp;<A HREF="node74.html#tabIEEEvalues">4.1</A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabIEEEvalues"></A>
+<DIV ALIGN="CENTER">
+<A NAME="9758"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 4.1:</STRONG>
+Values of Machine Parameters in IEEE Floating Point Arithmetic</CAPTION>
+<TR><TD ALIGN="LEFT">Machine parameter</TD>
+<TD ALIGN="LEFT">Single Precision (32 bits)</TD>
+<TD ALIGN="LEFT">Double Precision (64 bits)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Machine epsilon <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">
+= xLAMCH('E')</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $2^{-24}   \approx 5.96 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="140" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img271.gif"
+ ALT="$2^{-24} \approx 5.96 \cdot 10^{-8}$"></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $2^{-53}   \approx 1.11 \cdot 10^{-16}$
+ -->
+<IMG
+ WIDTH="147" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img272.gif"
+ ALT="$2^{-53} \approx 1.11 \cdot 10^{-16}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Underflow threshold = xLAMCH('U')</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $2^{-126}  \approx 1.18 \cdot 10^{-38}$
+ -->
+<IMG
+ WIDTH="154" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img273.gif"
+ ALT="$2^{-126} \approx 1.18 \cdot 10^{-38}$"></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $2^{-1022} \approx 2.23 \cdot 10^{-308}$
+ -->
+<IMG
+ WIDTH="167" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img274.gif"
+ ALT="$2^{-1022} \approx 2.23 \cdot 10^{-308}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Overflow  threshold = xLAMCH('O')</TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $2^{128} (1-\epsilon) \approx 3.40 \cdot 10^{38}$
+ -->
+<IMG
+ WIDTH="183" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img275.gif"
+ ALT="$2^{128} (1-\epsilon) \approx 3.40 \cdot 10^{38}$"></TD>
+<TD ALIGN="LEFT">
+<!-- MATH
+ $2^{1024}(1-\epsilon) \approx 1.79 \cdot 10^{308}$
+ -->
+<IMG
+ WIDTH="197" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img276.gif"
+ ALT="$2^{1024}(1-\epsilon) \approx 1.79 \cdot 10^{308}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+As stated above, we will ignore overflow and underflow in discussing error
+bounds. References [<A
+ HREF="node151.html#demmel84">24</A>,<A
+ HREF="node151.html#higham96">67</A>] discuss extending error bounds
+to include
+underflow, and show that for many common computations, when underflow occurs it
+is less significant than roundoff. With some important exceptions described below,
+overflow usually means that a computation has failed so the error bounds do not apply.
+<A NAME="9779"></A>
+<A NAME="9780"></A>
+<A NAME="9781"></A>
+<A NAME="9782"></A>
+
+<P>
+ 
+<P>
+Therefore, most of our error bounds will simply be proportional to machine epsilon.
+This means, for example, that if the
+same problem in solved in double precision and single precision, the error bound
+in double precision will be smaller than the error bound in single precision
+by a factor
+of 
+<!-- MATH
+ $\epsilon_{\rm double} / \epsilon_{\rm single}$
+ -->
+<IMG
+ WIDTH="101" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img277.gif"
+ ALT="$\epsilon_{\rm double} / \epsilon_{\rm single}$">.
+In IEEE arithmetic, this
+ratio is 
+<!-- MATH
+ $2^{-53}/2^{-24} \approx 10^{-9}$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img278.gif"
+ ALT="$2^{-53}/2^{-24} \approx 10^{-9}$">,
+meaning that one expects the double precision answer to have approximately nine
+more decimal digits correct than the single precision answer.
+
+<P>
+LAPACK routines are generally insensitive to the details of rounding and
+exception handling, like their counterparts in LINPACK and EISPACK.
+One algorithm, xLASV2, <A NAME="9798"></A><A NAME="9799"></A>
+can return significantly more accurate results if addition and subtraction
+have a guard digit, but is still quite accurate if they do not
+(see the end of section <A HREF="node96.html#secsvd">4.9</A>).
+
+<P>
+However, several LAPACK routines do make assumptions about details of
+the floating point arithmetic. We list these routines here.
+
+<UL><LI>Infinity and NaN arithmetic. In IEEE arithmetic, there are specific rules
+for evaluating quantities like <B>1/0</B> and <B>0/0</B>. Overflowed quantities and
+division-by-zero (like <B>1/0</B>) result in a <IMG
+ WIDTH="35" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img279.gif"
+ ALT="$\pm \infty$">
+symbol, which continues
+to propagate through the computation using rules like <IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img280.gif"
+ ALT="$3/\infty = 0$">.
+In particular, there is no error message or termination of execution.
+Similarly, quantities like <B>0/0</B> and 
+<!-- MATH
+ $\infty / \infty$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img281.gif"
+ ALT="$\infty / \infty$">
+must be replaced by
+NaN (the ``Not a Number'' symbol) and propagated as well. See [<A
+ HREF="node151.html#ieee754">4</A>,<A
+ HREF="node151.html#ieee854">5</A>]
+for details. The following LAPACK routines, and the routines that call them,
+assume the presence of this infinity and NaN arithmetic for their correct functioning:
+
+<UL><LI>xSTEGR, which computes eigenvalues and eigenvectors of symmetric tridiagonal
+         matrices. It is called by the drivers for the symmetric and Hermitian
+         eigenproblems xSYEVR, xHEEVR and xSTEVR.<A NAME="tex2html1860"
+ HREF="footnode.html#foot9804"><SUP>4.4</SUP></A><A NAME="9805"></A><A NAME="9806"></A><A NAME="9807"></A><A NAME="9808"></A>
+<A NAME="9809"></A><A NAME="9810"></A><A NAME="9811"></A><A NAME="9812"></A>
+<A NAME="9813"></A><A NAME="9814"></A><A NAME="9815"></A><A NAME="9816"></A>
+<A NAME="9817"></A><A NAME="9818"></A>
+   
+</UL>
+
+<LI>Accuracy of add/subtract. If there is a <EM>guard digit</EM> in addition and
+   subtraction, or if there is no guard digit but addition and subtraction are
+   performed in the way they are on the Cray C90, Cray YMP, Cray XMP or Cray 2,
+   then we can guarantee that the following routines work correctly. (They could
+   theoretically fail on a hexadecimal or decimal machine without a guard digit,
+   but we know of no such machine.)
+
+<UL><LI>xSTEDC, which uses divide-and-conquer to find the eigenvalues and eigenvectors
+         of a symmetric tridiagonal matrix. It is called by all the drivers for
+         the symmetric, Hermitian, generalized symmetric definite and
+         generalized Hermitian definite eigenvalue drivers with names ending in -EVD
+         or -GVD.
+<A NAME="9822"></A><A NAME="9823"></A>
+<A NAME="9824"></A><A NAME="9825"></A>
+<A NAME="9826"></A><A NAME="9827"></A>
+<A NAME="9828"></A><A NAME="9829"></A>
+<A NAME="9830"></A><A NAME="9831"></A>
+<A NAME="9832"></A><A NAME="9833"></A>
+<A NAME="9834"></A><A NAME="9835"></A>
+<A NAME="9836"></A><A NAME="9837"></A>
+<A NAME="9838"></A><A NAME="9839"></A>
+<A NAME="9840"></A><A NAME="9841"></A>
+<A NAME="9842"></A><A NAME="9843"></A>
+<A NAME="9844"></A><A NAME="9845"></A>
+<A NAME="9846"></A><A NAME="9847"></A>
+<A NAME="9848"></A><A NAME="9849"></A>
+<A NAME="9850"></A><A NAME="9851"></A>
+
+<LI>xBDSDC, which uses divide-and-conquer to find the SVD
+         of a bidiagonal matrix. It is called by xGESDD.
+<A NAME="9852"></A><A NAME="9853"></A>
+<A NAME="9854"></A><A NAME="9855"></A><A NAME="9856"></A><A NAME="9857"></A>
+
+<LI>xLALSD, which uses divide-and-conquer to solve a bidiagonal least squares
+         problem with the SVD. It is called by xGELSD.
+<A NAME="9858"></A><A NAME="9859"></A>
+<A NAME="9860"></A><A NAME="9861"></A><A NAME="9862"></A><A NAME="9863"></A>
+   
+</UL>
+</UL>
+<A NAME="9866"></A>
+<A NAME="9867"></A>
+<A NAME="9868"></A>
+<A NAME="9869"></A>
+<A NAME="9870"></A>
+<A NAME="9871"></A>
+<A NAME="9872"></A>
+<A NAME="9873"></A>
+<A NAME="9874"></A>
+<A NAME="9875"></A>
+<A NAME="9876"></A>
+<A NAME="9877"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5230"
+ HREF="node75.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5224"
+ HREF="node73.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5220"
+ HREF="node73.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5226"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5228"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5231"
+ HREF="node75.html">How to Measure Errors</A>
+<B> Up:</B> <A NAME="tex2html5225"
+ HREF="node73.html">Sources of Error in</A>
+<B> Previous:</B> <A NAME="tex2html5221"
+ HREF="node73.html">Sources of Error in</A>
+ &nbsp <B>  <A NAME="tex2html5227"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5229"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

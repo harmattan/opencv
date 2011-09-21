@@ -1,0 +1,453 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Computing s and </TITLE>
+<META NAME="description" CONTENT="Computing s and ">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node94.html">
+<LINK REL="up" HREF="node92.html">
+<LINK REL="next" HREF="node96.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5523"
+ HREF="node96.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5517"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5513"
+ HREF="node94.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5519"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5521"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5524"
+ HREF="node96.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5518"
+ HREF="node92.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5514"
+ HREF="node94.html">Balancing and Conditioning</A>
+ &nbsp <B>  <A NAME="tex2html5520"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5522"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03481300000000000000"></A><A NAME="secspec"></A>
+<BR>
+Computing <B><I>s</I></B> and <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">
+</H3>
+
+<P>
+To explain <B><I>s</I></B> and <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$"><A NAME="11585"></A>, we need to
+introduce<A NAME="11586"></A>
+the <B>spectral projector</B> <B><I>P</I></B> [<A
+ HREF="node151.html#stewart73">94</A>,<A
+ HREF="node151.html#kato">76</A>], and the
+<B>separation of two matrices</B><A NAME="11590"></A>
+<B><I>A</I></B> and <B><I>B</I></B>, 
+<!-- MATH
+ ${\rm sep}(A,B)$
+ -->
+<IMG
+ WIDTH="77" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img616.gif"
+ ALT="${\rm sep}(A,B)$">
+[<A
+ HREF="node151.html#stewart73">94</A>,<A
+ HREF="node151.html#varah">98</A>].
+
+<P>
+We may assume the matrix <B><I>A</I></B> is in Schur form, because reducing it
+to this form does not change the values of <B><I>s</I></B> and <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">.
+Consider a cluster of <IMG
+ WIDTH="52" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img617.gif"
+ ALT="$m \geq 1$">
+eigenvalues, counting multiplicities.
+Further assume the <B><I>n</I></B>-by-<B><I>n</I></B> matrix <B><I>A</I></B> is
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+A  = \left( \begin{array}{cc} A_{11} & A_{12} \\0 & A_{22} \end{array} \right)
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq2.1"></A><IMG
+ WIDTH="145" HEIGHT="54" BORDER="0"
+ SRC="img618.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{cc} A_{11} &amp; A_{12} \\ 0 &amp; A_{22} \end{array} \right)
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.1)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where the eigenvalues of the <B><I>m</I></B>-by-<B><I>m</I></B> matrix
+<B><I>A</I><SUB>11</SUB></B> are exactly those in which we are
+interested. In practice, if the eigenvalues on the diagonal of <B><I>A</I></B>
+are in the wrong order, routine xTREXC
+<A NAME="11598"></A><A NAME="11599"></A><A NAME="11600"></A><A NAME="11601"></A>
+can be used to put the desired ones in the upper left corner
+as shown.
+
+<P>
+We define the <B>spectral projector</B>, or simply projector <B><I>P</I></B> belonging
+to the eigenvalues of <B><I>A</I><SUB>11</SUB></B> as
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+P = \left( \begin{array}{cc} I_m & R \\0 & 0 \end{array} \right)
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq2.2"></A><IMG
+ WIDTH="124" HEIGHT="54" BORDER="0"
+ SRC="img619.gif"
+ ALT="\begin{displaymath}
+P = \left( \begin{array}{cc} I_m &amp; R \\ 0 &amp; 0 \end{array} \right)
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.2)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <B><I>R</I></B> satisfies the system of linear equations
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+
+<!-- MATH
+ \begin{equation}
+A_{11}R - RA_{22} = A_{12}.
+\end{equation}
+ -->
+<A NAME="eq2.3"></A>
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+<B><I>A</I><SUB>11</SUB><I>R</I> - <I>RA</I><SUB>22</SUB> = <I>A</I><SUB>12</SUB>.
+</B>
+</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.3)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+Equation (<A HREF="node95.html#eq2.3">4.3</A>) is called a Sylvester equation<A NAME="11611"></A>.
+Given the Schur form (<A HREF="node95.html#eq2.1">4.1</A>), we solve equation
+(<A HREF="node95.html#eq2.3">4.3</A>) for <B><I>R</I></B> using the subroutine xTRSYL.
+<A NAME="11614"></A><A NAME="11615"></A><A NAME="11616"></A><A NAME="11617"></A>
+
+<P>
+We can now define <B><I>s</I></B> for the eigenvalues of <B><I>A</I><SUB>11</SUB></B>:
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+s = \frac{1}{\|P\|_2} = \frac{1}{\sqrt{1+\|R\|_2^2}}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="189" HEIGHT="57" BORDER="0"
+ SRC="img620.gif"
+ ALT="\begin{displaymath}
+s = \frac{1}{\Vert P\Vert _2} = \frac{1}{\sqrt{1+\Vert R\Vert _2^2}}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.4)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+In practice we do not use this expression since <B>|R|<SUB>2</SUB></B> is hard to
+compute. Instead we use the more easily computed underestimate
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\frac{1}{\sqrt{1+\|R\|_F^2}}
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="88" HEIGHT="57" BORDER="0"
+ SRC="img621.gif"
+ ALT="\begin{displaymath}
+\frac{1}{\sqrt{1+\Vert R\Vert _F^2}}
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.5)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+which can underestimate the true value of <B><I>s</I></B> by no more than a factor
+
+<!-- MATH
+ $\sqrt { \min ( m,n-m ) }$
+ -->
+<IMG
+ WIDTH="133" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img622.gif"
+ ALT="$\sqrt { \min ( m,n-m ) }$">.
+This underestimation makes our error bounds more conservative.
+This approximation of <B><I>s</I></B> is called <TT>RCONDE</TT> in xGEEVX and xGEESX.
+<A NAME="11627"></A>
+
+<P>
+The <B>separation</B> 
+<!-- MATH
+ ${\rm sep}(A_{11},A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+of the matrices <B><I>A</I><SUB>11</SUB></B> and
+<B><I>A</I><SUB>22</SUB></B> is defined as the smallest singular value of the linear
+map in (<A HREF="node95.html#eq2.3">4.3</A>) which takes <B><I>X</I></B> to 
+<!-- MATH
+ $A_{11}X - XA_{22}$
+ -->
+<B><I>A</I><SUB>11</SUB><I>X</I> - <I>XA</I><SUB>22</SUB></B>, i.e.,
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\rm sep}(A_{11},A_{22}) = \min_{X \neq 0} \frac{\|A_{11}X - XA_{22}\|_F}
+{\| X \|_F}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq2.4"></A><IMG
+ WIDTH="300" HEIGHT="48" BORDER="0"
+ SRC="img624.gif"
+ ALT="\begin{displaymath}
+{\rm sep}(A_{11},A_{22}) = \min_{X \neq 0} \frac{\Vert A_{11}X - XA_{22}\Vert _F}
+{\Vert X \Vert _F}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.6)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+This formulation lets us estimate 
+<!-- MATH
+ ${\rm sep}(A_{11},A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+using the condition estimator
+<A NAME="11645"></A>
+xLACON [<A
+ HREF="node151.html#hager84">59</A>,<A
+ HREF="node151.html#higham1">62</A>,<A
+ HREF="node151.html#nick2">63</A>], which estimates the norm of
+a linear operator <IMG
+ WIDTH="42" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img625.gif"
+ ALT="$\Vert T \Vert _1$">
+given the ability to compute <B><I>Tx</I></B> and
+<B><I>T</I><SUP><I>T</I></SUP><I>x</I></B> quickly for arbitrary <B><I>x</I></B>.
+In our case, multiplying an
+arbitrary vector by <B><I>T</I></B>
+means solving the Sylvester equation (<A HREF="node95.html#eq2.3">4.3</A>)<A NAME="11648"></A>
+with an arbitrary right hand side using xTRSYL, and multiplying by
+<B><I>T</I><SUP><I>T</I></SUP></B> means solving the same equation with <B><I>A</I><SUB>11</SUB></B> replaced by
+<B><I>A</I><SUB>11</SUB><SUP><I>T</I></SUP></B> and <B><I>A</I><SUB>22</SUB></B> replaced by <B><I>A</I><SUB>22</SUB><SUP><I>T</I></SUP></B>. Solving either equation
+costs at most <B><I>O</I>(<I>n</I><SUP>3</SUP>)</B> operations, or as few as <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> if <IMG
+ WIDTH="57" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img167.gif"
+ ALT="$m \ll n$">.
+Since the true value of <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">
+is <B>|T|<SUB>2</SUB></B> but we use <B>|T|<SUB>1</SUB></B>,
+our estimate of <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">
+may differ from the true value by as much as
+<IMG
+ WIDTH="96" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img626.gif"
+ ALT="$\sqrt{m(n-m)}$">.
+This approximation to <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">
+is called
+<TT>RCONDV</TT> by xGEEVX and xGEESX.
+<A NAME="11655"></A>
+
+<P>
+Another formulation which in principle permits an exact evaluation of
+
+<!-- MATH
+ ${\rm sep}( A_{11},A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+is
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\rm sep}(A_{11},A_{22}) = \sigma_{\min} ( I_{n-m} \otimes A_{11} -
+A_{22}^T \otimes I_m )
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq2.5"></A><IMG
+ WIDTH="347" HEIGHT="31" BORDER="0"
+ SRC="img627.gif"
+ ALT="\begin{displaymath}
+{\rm sep}(A_{11},A_{22}) = \sigma_{\min} ( I_{n-m} \otimes A_{11} -
+A_{22}^T \otimes I_m )
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.7)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where 
+<!-- MATH
+ $X \otimes Y \equiv [ x_{ij} Y]$
+ -->
+<IMG
+ WIDTH="124" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img628.gif"
+ ALT="$X \otimes Y \equiv [ x_{ij} Y]$">
+is the Kronecker product of <B><I>X</I></B> and <B><I>Y</I></B>.
+This method is
+generally impractical, however, because the matrix whose smallest singular
+value we need is <B><I>m</I>(<I>n</I>-<I>m</I>)</B> dimensional, which can be as large as
+<B><I>n</I><SUP>2</SUP>/4</B>. Thus we would require as much as <B><I>O</I>( <I>n</I><SUP>4</SUP> )</B> extra workspace and
+<B><I>O</I>(<I>n</I><SUP>6</SUP>)</B> operations, much more than the estimation method of the last
+paragraph.
+
+<P>
+The expression 
+<!-- MATH
+ ${\rm sep}( A_{11},A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+measures the ``separation'' of
+the spectra
+of <B><I>A</I><SUB>11</SUB></B> and <B><I>A</I><SUB>22</SUB></B> in the following sense. It is zero if and only if
+<B><I>A</I><SUB>11</SUB></B> and <B><I>A</I><SUB>22</SUB></B> have a common eigenvalue, and small if there is a small
+perturbation of either one that makes them have a common eigenvalue. If
+<B><I>A</I><SUB>11</SUB></B> and <B><I>A</I><SUB>22</SUB></B> are both Hermitian matrices, then 
+<!-- MATH
+ ${\rm sep}( A_{11},A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+is just the gap, or minimum distance between an eigenvalue of <B><I>A</I><SUB>11</SUB></B> and an
+eigenvalue of <B><I>A</I><SUB>22</SUB></B>. On the other hand, if <B><I>A</I><SUB>11</SUB></B> and <B><I>A</I><SUB>22</SUB></B> are
+non-Hermitian, 
+<!-- MATH
+ ${\rm sep}( A_{11},A_{22})$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img623.gif"
+ ALT="${\rm sep}(A_{11},A_{22})$">
+may be much smaller than
+this gap.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5523"
+ HREF="node96.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5517"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5513"
+ HREF="node94.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5519"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5521"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5524"
+ HREF="node96.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5518"
+ HREF="node92.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5514"
+ HREF="node94.html">Balancing and Conditioning</A>
+ &nbsp <B>  <A NAME="tex2html5520"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5522"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

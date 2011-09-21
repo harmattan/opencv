@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Data Movement</TITLE>
+<META NAME="description" CONTENT="Data Movement">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node64.html">
+<LINK REL="previous" HREF="node62.html">
+<LINK REL="up" HREF="node61.html">
+<LINK REL="next" HREF="node64.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5044"
+ HREF="node64.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5038"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5032"
+ HREF="node62.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5040"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5042"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5045"
+ HREF="node64.html">Parallelism</A>
+<B> Up:</B> <A NAME="tex2html5039"
+ HREF="node61.html">Factors that Affect Performance</A>
+<B> Previous:</B> <A NAME="tex2html5033"
+ HREF="node62.html">Vectorization</A>
+ &nbsp <B>  <A NAME="tex2html5041"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5043"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03312000000000000000"></A><A NAME="subsecdata"></A><A NAME="7595"></A>
+<BR>
+Data Movement
+</H2>
+
+<P>
+What often limits the actual performance of a vector--or scalar--
+floating-point unit is the rate of transfer of data between different levels
+of memory in the machine. Examples include: the transfer of vector operands
+in and out of vector registers<A NAME="7596"></A>, the transfer of
+scalar operands in and out of a
+high-speed scalar processor, the movement of data between main memory and a
+high-speed cache<A NAME="7597"></A> or local memory<A NAME="7598"></A>, and
+paging between
+actual memory and disk storage in a virtual memory system.
+
+<P>
+It is desirable to maximize the ratio of floating-point operations to memory
+references, and to re-use data as much as possible while it is stored in the
+higher levels of the memory hierarchy (for example, vector registers or
+high-speed cache).
+
+<P>
+A Fortran programmer has no explicit control over these types of data
+movement,
+although one can often influence them by imposing a suitable structure on an
+algorithm.
+
+<P>
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

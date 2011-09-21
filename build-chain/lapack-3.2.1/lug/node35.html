@@ -1,0 +1,529 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized Nonsymmetric Eigenproblems (GNEP)</TITLE>
+<META NAME="description" CONTENT="Generalized Nonsymmetric Eigenproblems (GNEP)">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node36.html">
+<LINK REL="previous" HREF="node34.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node36.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4617"
+ HREF="node36.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4611"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4605"
+ HREF="node34.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4613"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4615"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4618"
+ HREF="node36.html">Generalized Singular Value Decomposition</A>
+<B> Up:</B> <A NAME="tex2html4612"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4606"
+ HREF="node34.html">Generalized Symmetric Definite Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html4614"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4616"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03235200000000000000"></A>
+<A NAME="sec_gnep_driver"></A>
+<BR>
+Generalized Nonsymmetric Eigenproblems (GNEP)
+</H3>
+
+<P>
+<A NAME="1718"></A><A NAME="1719"></A>
+Given a matrix pair (<I>A</I>, <I>B</I>), where <I>A</I> and <I>B</I> are square <I>n</I>  x  <I>n</I>
+matrices, the <B>generalized nonsymmetric eigenvalue problem</B> is to find<A NAME="1721"></A><A NAME="1722"></A>
+the <B>eigenvalues</B> <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+<A NAME="1724"></A> and corresponding
+<B>eigenvectors</B> <A NAME="1726"></A>
+<IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.gif"
+ ALT="$x \not= 0$">
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A x = \lambda B x ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="84" HEIGHT="30" BORDER="0"
+ SRC="img44.gif"
+ ALT="\begin{displaymath}
+A x = \lambda B x ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<I>or</I> to find the eigenvalues <IMG
+ WIDTH="15" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.gif"
+ ALT="$\mu$">
+and corresponding eigenvectors
+<IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.gif"
+ ALT="$y \not= 0$">
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\mu A y = B y.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="83" HEIGHT="30" BORDER="0"
+ SRC="img47.gif"
+ ALT="\begin{displaymath}
+\mu A y = B y.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Note that these problems are equivalent with 
+<!-- MATH
+ $\mu = 1/\lambda$
+ -->
+<IMG
+ WIDTH="66" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.gif"
+ ALT="$\mu = 1/\lambda$">
+and <I>x</I>=<I>y</I>
+if neither <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+nor <IMG
+ WIDTH="15" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.gif"
+ ALT="$\mu$">
+is zero.  In order to deal with the case
+that <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+or <IMG
+ WIDTH="15" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.gif"
+ ALT="$\mu$">
+is zero, or nearly so, the LAPACK routines return
+two values, <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">,
+for each eigenvalue, such that
+
+<!-- MATH
+ $\lambda = \alpha/\beta$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.gif"
+ ALT="$\lambda = \alpha/\beta$">
+and 
+<!-- MATH
+ $\mu = \beta/\alpha$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img52.gif"
+ ALT="$\mu = \beta/\alpha$">.
+<BR>
+
+<P>
+More precisely, <I>x</I> and <I>y</I> are called <B>right eigenvectors</B>.
+<A NAME="1729"></A>
+Vectors <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.gif"
+ ALT="$u \not= 0$">
+or <IMG
+ WIDTH="45" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img54.gif"
+ ALT="$v \not= 0$">
+satisfying
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+u^H A = \lambda u^H B \quad\mbox{or}\quad \mu v^H A = v^H B
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="260" HEIGHT="30" BORDER="0"
+ SRC="img55.gif"
+ ALT="\begin{displaymath}
+u^H A = \lambda u^H B \quad\mbox{or}\quad \mu v^H A = v^H B
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+are called <B>left eigenvectors</B>.
+<A NAME="1732"></A>
+
+<P>
+Sometimes the following, equivalent notation is used to refer to the
+generalized eigenproblem for the pair (<I>A</I>,<I>B</I>): The object <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">,
+where <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+is an indeterminate, is called a <B>matrix pencil</B>, or
+just <B>pencil</B><A NAME="1735"></A>.
+So one can also refer to the generalized eigenvalues
+and eigenvectors of the pencil <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">.
+
+<P>
+If the determinant of <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">
+is identically
+zero for all values of <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">,
+the eigenvalue problem is called <B>singular</B>; otherwise it is <B>regular</B>.
+<A NAME="1738"></A>
+Singularity of (<I>A</I>,<I>B</I>) is signaled by some 
+<!-- MATH
+ $\alpha = \beta = 0$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.gif"
+ ALT="$\alpha = \beta = 0$">
+(in the presence of roundoff, <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+may be very small).
+In this case, the eigenvalue problem is very ill-conditioned,
+<A NAME="1739"></A>
+and in fact some of the other nonzero values of <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+may be indeterminate (see section <A HREF="node105.html#sec_singular">4.11.1.4</A> for further
+discussion) [<A
+ HREF="node151.html#stewart72">93</A>,<A
+ HREF="node151.html#wilkinson79">105</A>,<A
+ HREF="node151.html#demmelkagstrom87">29</A>].
+The current routines in LAPACK are intended only for regular matrix pencils.
+
+<P>
+The generalized nonsymmetric eigenvalue problem can be solved via the
+<B>generalized Schur decomposition</B>
+<A NAME="1743"></A>
+ of the matrix pair (<I>A</I>, <I>B</I>), defined in the <I>real case</I> as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q S Z^T, \quad B = Q T Z^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="198" HEIGHT="30" BORDER="0"
+ SRC="img58.gif"
+ ALT="\begin{displaymath}
+A = Q S Z^T, \quad B = Q T Z^T
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>Q</I> and <I>Z</I> are orthogonal matrices, <I>T</I> is upper triangular,
+and <I>S</I> is an upper quasi-triangular matrix with 1-by-1 and 2-by-2 diagonal
+blocks, the 2-by-2 blocks corresponding to complex conjugate pairs of eigenvalues
+of (<I>A</I>, <I>B</I>).  In the <I>complex case</I>, the generalized Schur decomposition is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q S Z^H, \quad B = Q T Z^H
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="202" HEIGHT="30" BORDER="0"
+ SRC="img59.gif"
+ ALT="\begin{displaymath}
+A = Q S Z^H, \quad B = Q T Z^H
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>Q</I> and <I>Z</I> are unitary and <I>S</I> and <I>T</I> are both upper triangular. 
+<BR>
+
+<P>
+The columns of <I>Q</I> and <I>Z</I> are called <B>left and right generalized Schur
+vectors</B>
+<A NAME="1747"></A><A NAME="1748"></A>
+and span pairs of <B>deflating subspaces</B> of <I>A</I> and <I>B</I>
+[<A
+ HREF="node151.html#stewart72">93</A>].
+<A NAME="1751"></A><A NAME="1752"></A>
+Deflating subspaces are a generalization of invariant subspaces:
+<A NAME="1753"></A><A NAME="1754"></A>
+For each <I>k</I> 
+<!-- MATH
+ $(1\leq k \leq n)$
+ -->
+<IMG
+ WIDTH="93" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.gif"
+ ALT="$(1 \leq k \leq n)$">,
+the first <I>k</I> columns of <I>Z</I> span a right
+deflating subspace mapped by both <I>A</I> and <I>B</I> into a left deflating subspace
+spanned by the first <I>k</I> columns of <I>Q</I>.
+
+<P>
+More formally, let 
+<!-- MATH
+ $Q = (Q_1,\,Q_2)$
+ -->
+<I>Q</I> = (<I>Q</I><SUB>1</SUB>, <I>Q</I><SUB>2</SUB>) and 
+<!-- MATH
+ $Z = (Z_1,\,Z_2)$
+ -->
+<I>Z</I> = (<I>Z</I><SUB>1</SUB>, <I>Z</I><SUB>2</SUB>) be a conformal
+partitioning with respect to the cluster of <I>k</I> eigenvalues in the
+(1,1)-block of (<I>S</I>, <I>T</I>), i.e. where <I>Q</I><SUB>1</SUB> and <I>Z</I><SUB>1</SUB> both have <I>k</I> columns,
+and <I>S</I><SUB>11</SUB> and <I>T</I><SUB>11</SUB> below are both <I>k</I>-by-<I>k</I>,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{c} Q^H_1 \\Q^H_2 \end{array} \right)
+            (A - \lambda B) \left( \,\, Z_1 \,\,\, Z_2 \,\, \right)
+            = S - \lambda T \equiv
+        \left( \begin{array}{cc} S_{11} & S_{12} \\
+                                     0  & S_{22} \end{array} \right)
+        - \lambda \left( \begin{array}{cc} T_{11} & T_{12} \\
+                                               0  & T_{22} \end{array} \right).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="551" HEIGHT="54" BORDER="0"
+ SRC="img60.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{c} Q^H_1 \\ Q^H_2 \end{array} \right)
+...
+...rray}{cc} T_{11} &amp; T_{12} \\
+0 &amp; T_{22} \end{array} \right).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Then subspaces 
+<!-- MATH
+ ${\cal{L}} = \mbox{span}(Q_1)$
+ -->
+<IMG
+ WIDTH="109" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img61.gif"
+ ALT="${\cal{L}} = \mbox{span}(Q_1)$">
+and 
+<!-- MATH
+ ${\cal{R}} = \mbox{span}(Z_1)$
+ -->
+<IMG
+ WIDTH="110" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.gif"
+ ALT="${\cal{R}} = \mbox{span}(Z_1)$">
+form a pair of (left and right) deflating subspaces associated with the
+cluster of 
+<!-- MATH
+ $(S_{11},T_{11})$
+ -->
+(<I>S</I><SUB>11</SUB>,<I>T</I><SUB>11</SUB>), satisfying 
+<!-- MATH
+ ${\cal{L}} = A{\cal{R}} + B{\cal{R}}$
+ -->
+<IMG
+ WIDTH="118" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img63.gif"
+ ALT="${\cal{L}} = A{\cal{R}} + B{\cal{R}}$">
+and 
+<!-- MATH
+ $\mbox{dim}(\cal{L}) = \mbox{dim}(\cal{R})$
+ -->
+<IMG
+ WIDTH="140" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img64.gif"
+ ALT="$\mbox{dim}(\cal{L}) = \mbox{dim}(\cal{R})$">
+[<A
+ HREF="node151.html#stewart73">94</A>,<A
+ HREF="node151.html#stewartsun90">95</A>].
+It is possible to order the generalized Schur form so that
+
+<!-- MATH
+ $(S_{11}, T_{11})$
+ -->
+(<I>S</I><SUB>11</SUB>, <I>T</I><SUB>11</SUB>) has any desired subset of <I>k</I> eigenvalues,
+taken from the set of <I>n</I> eigenvalues of (<I>S</I>,<I>T</I>).
+
+<P>
+<A NAME="1788"></A>
+As for the standard nonsymmetric eigenproblem,
+two pairs of drivers are provided,
+one pair focusing on the generalized Schur decomposition, and the other pair
+on the eigenvalues and eigenvectors as shown in Table <A HREF="node36.html#tabdrivegeig">2.6</A>:
+
+<P>
+
+<UL><LI>xGGES<A NAME="1791"></A><A NAME="1792"></A><A NAME="1793"></A><A NAME="1794"></A>:
+         a simple driver that computes all or part of the
+         generalized Schur decomposition of (<I>A</I>, <I>B</I>), with optional
+         ordering of the eigenvalues; <A NAME="1795"></A>
+
+<P>
+
+<LI>xGGESX<A NAME="1796"></A><A NAME="1797"></A><A NAME="1798"></A><A NAME="1799"></A>:
+         an expert driver that can additionally compute condition
+         numbers for the average of a selected subset of eigenvalues,
+         and for the corresponding pair of deflating subspaces;
+
+<P>
+
+<LI>xGGEV<A NAME="1800"></A><A NAME="1801"></A><A NAME="1802"></A><A NAME="1803"></A>:
+         a simple driver that computes all the generalized
+         eigenvalues of (<I>A</I>, <I>B</I>), and optionally the left or right
+         eigenvectors (or both);
+
+<P>
+
+<LI>xGGEVX<A NAME="1804"></A><A NAME="1805"></A><A NAME="1806"></A><A NAME="1807"></A>:
+         an expert driver that can additionally balance the
+         matrix pair to improve the conditioning of the eigenvalues and
+         eigenvectors, and compute condition numbers for the
+         eigenvalues and/or left and right eigenvectors (or both).
+
+<P>
+
+</UL>
+To save space in Table <A HREF="node36.html#tabdrivegeig">2.6</A>, the word ``generalized'' is
+omitted before Schur decomposition, eigenvalues/vectors and singular
+values/vectors.
+
+<P>
+The subroutines xGGES and xGGEV are improved versions of the drivers,
+xGEGS and xGEGV, respectively.  xGEGS and xGEGV have been retained for
+compatibility with Release 2.0 of LAPACK, but we omit references to these
+routines in the remainder of this users' guide.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4617"
+ HREF="node36.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4611"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4605"
+ HREF="node34.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4613"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4615"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4618"
+ HREF="node36.html">Generalized Singular Value Decomposition</A>
+<B> Up:</B> <A NAME="tex2html4612"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4606"
+ HREF="node34.html">Generalized Symmetric Definite Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html4614"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4616"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

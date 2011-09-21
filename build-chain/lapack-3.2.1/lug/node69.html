@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>QR Factorization</TITLE>
+<META NAME="description" CONTENT="QR Factorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node70.html">
+<LINK REL="previous" HREF="node68.html">
+<LINK REL="up" HREF="node67.html">
+<LINK REL="next" HREF="node70.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5129"
+ HREF="node70.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5123"
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5117"
+ HREF="node68.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5125"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5127"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5130"
+ HREF="node70.html">Eigenvalue Problems</A>
+<B> Up:</B> <A NAME="tex2html5124"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Previous:</B> <A NAME="tex2html5118"
+ HREF="node68.html">Factorizations for Solving Linear</A>
+ &nbsp <B>  <A NAME="tex2html5126"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5128"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03342000000000000000"></A><A NAME="subsecblockqr"></A>
+<BR>
+<B><I>QR</I></B> Factorization
+</H2>
+
+<P>
+The traditional algorithm for <B><I>QR</I></B>
+factorization<A NAME="7857"></A>  is based on the use of
+elementary Householder<A NAME="7858"></A>
+matrices of the general form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+H = I - \tau v v^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="107" HEIGHT="28" BORDER="0"
+ SRC="img219.gif"
+ ALT="\begin{displaymath}
+H = I - \tau v v^T
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>v</I></B> is a column vector and <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img220.gif"
+ ALT="$\tau$">
+is a scalar.
+This leads to an algorithm with very good vector performance, especially
+if coded to use Level 2 BLAS.
+
+<P>
+The key to developing a block form of this algorithm is to represent a
+product
+of <B><I>b</I></B> elementary Householder matrices of order <B><I>n</I></B> as a block
+form of a Householder matrix<A NAME="7859"></A>. This can be done in
+various ways.
+LAPACK uses the following form&nbsp;[<A
+ HREF="node151.html#Schreiber87a">90</A>]:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+H_1 H_2 \ldots H_b = I - V T V^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="196" HEIGHT="30" BORDER="0"
+ SRC="img221.gif"
+ ALT="\begin{displaymath}
+H_1 H_2 \ldots H_b = I - V T V^T
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>V</I></B> is an <B><I>n</I></B>-by-<B><I>b</I></B> matrix whose columns are the individual vectors
+
+<!-- MATH
+ $v_1, v_2, \ldots , v_b$
+ -->
+<IMG
+ WIDTH="98" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img222.gif"
+ ALT="$v_1, v_2, \ldots , v_b$">
+associated with the Householder matrices 
+<!-- MATH
+ $H_1, H_2,
+\ldots , H_b$
+ -->
+<IMG
+ WIDTH="116" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img223.gif"
+ ALT="$H_1, H_2,
+\ldots , H_b$">,
+and <B><I>T</I></B> is an upper triangular matrix of order <B><I>b</I></B>.
+Extra work is required to compute the elements of <B><I>T</I></B>, but once again this
+is compensated for by the greater speed of applying the block form.
+Table&nbsp;<A HREF="node69.html#tabqr">3.10</A>
+summarizes results obtained with the LAPACK routine DGEQRF<A NAME="7862"></A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabqr"></A>
+<DIV ALIGN="CENTER">
+<A NAME="7864"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.10:</STRONG>
+Speed in megaflops of DGEQRF for square matrices of order <B><I>n</I></B></CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">No. of</TD>
+<TD ALIGN="CENTER">Block</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">processors</TD>
+<TD ALIGN="CENTER">size</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">141</TD>
+<TD ALIGN="RIGHT">363</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AlphaServer DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">326</TD>
+<TD ALIGN="RIGHT">444</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">244</TD>
+<TD ALIGN="RIGHT">559</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM PowerPC</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">52</TD>
+<TD ALIGN="RIGHT">45</TD>
+<TD ALIGN="RIGHT">127</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">113</TD>
+<TD ALIGN="RIGHT">250</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">135</TD>
+<TD ALIGN="RIGHT">297</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">173</TD>
+<TD ALIGN="RIGHT">451</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">55</TD>
+<TD ALIGN="RIGHT">766</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">20</TD>
+<TD ALIGN="RIGHT">230</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">48</TD>
+<TD ALIGN="RIGHT">329</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5129"
+ HREF="node70.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5123"
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5117"
+ HREF="node68.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5125"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5127"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5130"
+ HREF="node70.html">Eigenvalue Problems</A>
+<B> Up:</B> <A NAME="tex2html5124"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Previous:</B> <A NAME="tex2html5118"
+ HREF="node68.html">Factorizations for Solving Linear</A>
+ &nbsp <B>  <A NAME="tex2html5126"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5128"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

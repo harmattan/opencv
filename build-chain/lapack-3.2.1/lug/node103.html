@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Balancing and Conditioning</TITLE>
+<META NAME="description" CONTENT="Balancing and Conditioning">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node104.html">
+<LINK REL="previous" HREF="node102.html">
+<LINK REL="up" HREF="node101.html">
+<LINK REL="next" HREF="node104.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5640"
+ HREF="node104.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5634"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5628"
+ HREF="node102.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5636"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5638"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5641"
+ HREF="node104.html">Computing s<SUB>i</SUB>, , and</A>
+<B> Up:</B> <A NAME="tex2html5635"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5629"
+ HREF="node102.html">Overview</A>
+ &nbsp <B>  <A NAME="tex2html5637"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5639"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION034111200000000000000"></A><A NAME="GENP32"></A>
+<BR>
+Balancing and Conditioning
+</H3>
+
+<P>
+As in the standard nonsymmetric eigenvalue problem (section <A HREF="node94.html#secbalance">4.8.1.2</A>),
+two preprocessing steps<A NAME="12491"></A>
+may be performed on the input matrix pair <B>(<I>A</I>, <I>B</I>)</B>.
+The first one is a <B>permutation</B>, reordering the rows and columns
+to attempt to make <B><I>A</I></B> and <B><I>B</I></B> block upper triangular, and
+therefore to reduce the order of the eigenvalue problems to be solved:
+we let 
+<!-- MATH
+ $(A',B') = P_1 (A, B) P_2$
+ -->
+<B>(<I>A</I>',<I>B</I>') = <I>P</I><SUB>1</SUB> (<I>A</I>, <I>B</I>) <I>P</I><SUB>2</SUB></B>, where <B><I>P</I><SUB>1</SUB></B> and <B><I>P</I><SUB>2</SUB></B> are
+permutation matrices.
+The second one is a <B>scaling</B><A NAME="12494"></A>
+by two-sided diagonal transformation <B><I>D</I><SUB>1</SUB></B>
+and <B><I>D</I><SUB>2</SUB></B> to make the elements of 
+<!-- MATH
+ $A''= D_1 A' D_2$
+ -->
+<B><I>A</I>''= <I>D</I><SUB>1</SUB> <I>A</I>' <I>D</I><SUB>2</SUB></B> and 
+<!-- MATH
+ $B'' = D_1 B' D_2$
+ -->
+<B><I>B</I>'' = <I>D</I><SUB>1</SUB> <I>B</I>' <I>D</I><SUB>2</SUB></B>
+have magnitudes as close to unity as possible, so as to reduce the effect
+of the roundoff error made by the later algorithm [<A
+ HREF="node151.html#ward81">100</A>].
+We refer to these two operations as <EM>balancing</EM>.
+
+<P>
+Balancing is performed by driver xGGEVX, which calls computational
+routine xGGBAL. The user may choose to optionally
+permute, scale, do both or do either;
+<A NAME="12497"></A><A NAME="12498"></A><A NAME="12499"></A><A NAME="12500"></A>
+this is specified by the input parameter
+<TT>BALANC</TT><A NAME="12502"></A> when xGGEVX is called.
+Permuting has no effect on the condition numbers<A NAME="12503"></A>
+or their interpretation as described in the previous subsections. Scaling does,
+however, change their interpretation, as we now describe.
+
+<P>
+The output parameters of xGGEVX -
+<TT>ILO</TT>(integer), <TT>IHI</TT>(integer),
+<TT>LSCALE</TT>(real array of length N),
+<TT>RSCALE</TT>(real array of length N),
+<TT>ABNRM</TT>(real) and
+<TT>BBNRM</TT>(real) -
+<A NAME="12510"></A>
+<A NAME="12511"></A>
+<A NAME="12512"></A>
+<A NAME="12513"></A>
+<A NAME="12514"></A>
+describe the result of balancing the matrix pair <B>(<I>A</I>, <I>B</I>)</B> to
+<B>(<I>A</I>'',<I>B</I>'')</B>, where N is the dimension of <B>(<I>A</I>,<I>B</I>)</B>.
+The matrix pair <B>(<I>A</I>'',<I>B</I>'')</B> has block upper triangular
+structure, with at most three blocks: from 1 to <TT>ILO</TT>-1,
+from <TT>ILO</TT> to <TT>IHI</TT>, and from <TT>IHI</TT>+1 to N (see section
+<A HREF="node55.html#sec_gnep_comp">2.4.8</A>). The first and last blocks are upper
+triangular, and so already in generalized Schur form. These blocks are not
+scaled; only the block from <TT>ILO</TT> to <TT>IHI</TT> is scaled.
+Details of the left permutations (<B><I>P</I><SUB>1</SUB></B>) and scaling (<B><I>D</I><SUB>1</SUB></B>)
+and the right permutations (<B><I>P</I><SUB>2</SUB></B>) and scaling (<B><I>D</I><SUB>2</SUB></B>)
+are described in <TT>LSCALE</TT> and <TT>RSCALE</TT>, respectively.
+(See the specification of xGGEVX or xGGBAL for more information).
+The one-norms of <B><I>A</I>''</B> and <B><I>B</I>''</B> are returned in
+<TT>ABNRM</TT> and <TT>BBNRM</TT>, respectively.
+
+<P>
+The condition numbers
+<A NAME="12526"></A>
+described in earlier subsections are computed
+for the balanced matrix pair <B>(<I>A</I>'',<I>B</I>'')</B> in xGGEVX,  and so
+some interpretation is needed to apply them to the eigenvalues
+and eigenvectors of the original matrix pair <B>(<I>A</I>, <I>B</I>)</B>.
+To use the bounds for eigenvalues in Tables <A HREF="node102.html#asymp">4.7</A> and <A HREF="node102.html#global">4.8</A>,
+we must replace <IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img773.gif"
+ ALT="$\Vert(E, F)\Vert _F$">
+by
+
+<!-- MATH
+ $O(\epsilon)\|(A'',B'')\|_F =
+O(\epsilon)\sqrt{ {\tt ABNRM}^2 + {\tt BBNRM}^2 }$
+ -->
+<IMG
+ WIDTH="332" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img814.gif"
+ ALT="$O(\epsilon)\Vert(A'',B'')\Vert _F =
+O(\epsilon)\sqrt{ {\tt ABNRM}^2 + {\tt BBNRM}^2 }$">.
+To use the bounds for eigenvectors, we also need to take
+into account that bounds on rotation of the right and left eigenvectors
+are for the right and left eigenvectors <B><I>x</I>''</B> and <B><I>y</I>''</B> of
+<B><I>A</I>''</B> and <B><I>B</I>''</B>, respectively, which are related to
+the right and left eigenvectors <B><I>x</I></B> and <B><I>y</I></B> by
+
+<!-- MATH
+ $x'' = D^{-1}_2 P^T_2 x$
+ -->
+<B><I>x</I>'' = <I>D</I><SUP>-1</SUP><SUB>2</SUB> <I>P</I><SUP><I>T</I></SUP><SUB>2</SUB> <I>x</I></B> and 
+<!-- MATH
+ $y'' = D^{-1}_1 P_1 y$
+ -->
+<B><I>y</I>'' = <I>D</I><SUP>-1</SUP><SUB>1</SUB> <I>P</I><SUB>1</SUB> <I>y</I></B>,
+or 
+<!-- MATH
+ $x = P_2 D_2 x''$
+ -->
+<B><I>x</I> = <I>P</I><SUB>2</SUB> <I>D</I><SUB>2</SUB> <I>x</I>''</B> and 
+<!-- MATH
+ $y = P^T_1 D_1 x''$
+ -->
+<B><I>y</I> = <I>P</I><SUP><I>T</I></SUP><SUB>1</SUB> <I>D</I><SUB>1</SUB> <I>x</I>''</B> respectively.
+Let <IMG
+ WIDTH="21" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img613.gif"
+ ALT="$\theta''$">
+be the bound on the rotation of <B><I>x</I>''</B>
+from Table <A HREF="node102.html#asymp">4.7</A> and Table <A HREF="node102.html#global">4.8</A> and
+let <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img328.gif"
+ ALT="$\theta$">
+be the desired bound on the rotation of <B><I>x</I></B>. Let
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\kappa(D_2)=\frac{ \max_{ {\tt ILO} \leq i \leq {\tt IHI} } {\tt RSCALE}(i) }
+                 { \min_{ {\tt ILO} \leq i \leq {\tt IHI} } {\tt RSCALE}(i) }
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="247" HEIGHT="48" BORDER="0"
+ SRC="img815.gif"
+ ALT="\begin{displaymath}
+\kappa(D_2)=\frac{ \max_{ {\tt ILO} \leq i \leq {\tt IHI} } ...
+...
+{ \min_{ {\tt ILO} \leq i \leq {\tt IHI} } {\tt RSCALE}(i) }
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+be the condition number of the right scaling <B><I>D</I><SUB>2</SUB></B> with respect
+to matrix inversion. Then
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\sin \theta \leq \kappa(D_2) \sin\theta''.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="150" HEIGHT="31" BORDER="0"
+ SRC="img816.gif"
+ ALT="\begin{displaymath}
+\sin \theta \leq \kappa(D_2) \sin\theta''.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Similarly, for the bound of the angles <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img817.gif"
+ ALT="$\phi$">
+and <IMG
+ WIDTH="23" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img818.gif"
+ ALT="$\phi''$">
+of the
+left eigenvectors <B><I>y</I>''</B> and <B><I>y</I></B>, we have
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\sin \phi \leq \kappa(D_1) \sin \phi'',
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="153" HEIGHT="31" BORDER="0"
+ SRC="img819.gif"
+ ALT="\begin{displaymath}
+\sin \phi \leq \kappa(D_1) \sin \phi'',
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="50" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img820.gif"
+ ALT="$\kappa(D_1)$">
+is the condition number of the left
+scaling <B><I>D</I><SUB>1</SUB></B> with respect to inversion,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\kappa(D_1)=\frac{ \max_{ {\tt ILO} \leq i \leq {\tt IHI} } {\tt LSCALE}(i) }
+                 { \min_{ {\tt ILO} \leq i \leq {\tt IHI} } {\tt LSCALE}(i) }.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="254" HEIGHT="48" BORDER="0"
+ SRC="img821.gif"
+ ALT="\begin{displaymath}
+\kappa(D_1)=\frac{ \max_{ {\tt ILO} \leq i \leq {\tt IHI} } ...
+... { \min_{ {\tt ILO} \leq i \leq {\tt IHI} } {\tt LSCALE}(i) }.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<A NAME="12547"></A>
+<A NAME="12548"></A>
+
+<P>
+The numerical example in section&nbsp;<A HREF="node100.html#sec_GNEPErrorBounds">4.11</A>
+does no scaling, just permutation.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5640"
+ HREF="node104.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5634"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5628"
+ HREF="node102.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5636"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5638"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5641"
+ HREF="node104.html">Computing s<SUB>i</SUB>, , and</A>
+<B> Up:</B> <A NAME="tex2html5635"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5629"
+ HREF="node102.html">Overview</A>
+ &nbsp <B>  <A NAME="tex2html5637"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5639"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

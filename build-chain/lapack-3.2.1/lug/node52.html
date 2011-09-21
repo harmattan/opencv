@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Invariant Subspaces and Condition Numbers</TITLE>
+<META NAME="description" CONTENT="Invariant Subspaces and Condition Numbers">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node51.html">
+<LINK REL="up" HREF="node49.html">
+<LINK REL="next" HREF="node53.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4877"
+ HREF="node53.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4871"
+ HREF="node49.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4867"
+ HREF="node51.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4873"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4875"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4878"
+ HREF="node53.html">Singular Value Decomposition</A>
+<B> Up:</B> <A NAME="tex2html4872"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4868"
+ HREF="node51.html">Balancing</A>
+ &nbsp <B>  <A NAME="tex2html4874"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4876"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03245300000000000000">
+Invariant Subspaces and Condition Numbers</A>
+</H3>
+
+<P>
+The Schur form<A NAME="3309"></A> depends on the order of the eigenvalues on the diagonal
+of <B><I>T</I></B> and this may optionally be chosen by the user. Suppose the user chooses
+that 
+<!-- MATH
+ $\lambda_1 , \ldots , \lambda_j$
+ -->
+<IMG
+ WIDTH="78" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img154.gif"
+ ALT="$\lambda_1 , \ldots , \lambda_j$">,
+
+<!-- MATH
+ $1 \leq j \leq n$
+ -->
+<IMG
+ WIDTH="78" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img155.gif"
+ ALT="$1 \leq j \leq n$">,
+appear in the upper left
+corner of <B><I>T</I></B>. Then the first <B><I>j</I></B> columns of <B><I>Z</I></B> span the <B>right invariant
+subspace</B> of <B><I>A</I></B> corresponding to 
+<!-- MATH
+ $\lambda_1 , \ldots , \lambda_j$
+ -->
+<IMG
+ WIDTH="78" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img154.gif"
+ ALT="$\lambda_1 , \ldots , \lambda_j$">.
+<A NAME="3311"></A><A NAME="3312"></A>
+
+<P>
+The following routines perform this re-ordering and also
+<A NAME="3313"></A>
+compute condition numbers for eigenvalues, eigenvectors,
+and invariant subspaces:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>xTREXC<A NAME="3315"></A><A NAME="3316"></A><A NAME="3317"></A><A NAME="3318"></A> will move an eigenvalue (or <B>2</B>-by-<B>2</B> block) on the diagonal of
+the Schur form<A NAME="3319"></A> from its original position to any other position. It may be used to
+choose the order in which eigenvalues appear in the Schur form.
+<DT>2.
+<DD>xTRSYL<A NAME="3320"></A><A NAME="3321"></A><A NAME="3322"></A><A NAME="3323"></A> solves
+the Sylvester matrix equation<A NAME="3324"></A> <IMG
+ WIDTH="122" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img156.gif"
+ ALT="$AX \pm XB=C$">
+for <B><I>X</I></B>, given
+matrices <B><I>A</I></B>, <B><I>B</I></B> and <B><I>C</I></B>, with <B><I>A</I></B> and <B><I>B</I></B> (quasi) triangular.
+It is used in the routines xTRSNA and xTRSEN, but it is also of independent
+interest.
+<DT>3.
+<DD>xTRSNA<A NAME="3325"></A><A NAME="3326"></A><A NAME="3327"></A><A NAME="3328"></A> computes the condition numbers of the eigenvalues and/or
+right eigenvectors of a matrix <B><I>T</I></B> in Schur form.
+<A NAME="3329"></A>
+These are the same as the condition<A NAME="3330"></A>
+numbers of the eigenvalues and right eigenvectors of the original matrix
+<B><I>A</I></B> from which <B><I>T</I></B> is derived. The user may compute these condition numbers
+for all eigenvalue/eigenvector pairs, or for any selected subset.
+For more details, see section&nbsp;<A HREF="node91.html#secnonsym">4.8</A> and [<A
+ HREF="node151.html#baidemmelmckenney">12</A>].
+<P>
+<DT>4.
+<DD>xTRSEN<A NAME="3333"></A><A NAME="3334"></A><A NAME="3335"></A><A NAME="3336"></A> moves
+<A NAME="3337"></A>
+a selected subset of the eigenvalues of a matrix <B><I>T</I></B>
+in Schur form to the upper left corner of <B><I>T</I></B>, and optionally computes
+the condition numbers<A NAME="3338"></A> of their average value and of their right
+invariant subspace. These are the same as the condition numbers of the
+average eigenvalue and right invariant subspace of the original matrix <B><I>A</I></B>
+from which <B><I>T</I></B> is derived.
+For more details, see section&nbsp;<A HREF="node91.html#secnonsym">4.8</A> and
+[<A
+ HREF="node151.html#baidemmelmckenney">12</A>]
+</DL>
+
+<P>
+See Table <A HREF="node52.html#tabcompeig2">2.11</A> for a complete list of the routines.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabcompeig2"></A>
+<DIV ALIGN="CENTER">
+<A NAME="3344"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.11:</STRONG>
+Computational routines for the nonsymmetric eigenproblem</CAPTION>
+<TR><TD ALIGN="LEFT">Type of matrix</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and storage scheme</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">general</TD>
+<TD ALIGN="LEFT">Hessenberg reduction</TD>
+<TD ALIGN="LEFT">SGEHRD<A NAME="3356"></A></TD>
+<TD ALIGN="LEFT">CGEHRD<A NAME="3357"></A></TD>
+<TD ALIGN="LEFT">DGEHRD<A NAME="3358"></A></TD>
+<TD ALIGN="LEFT">ZGEHRD<A NAME="3359"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">balancing</TD>
+<TD ALIGN="LEFT">SGEBAL<A NAME="3360"></A></TD>
+<TD ALIGN="LEFT">CGEBAL<A NAME="3361"></A></TD>
+<TD ALIGN="LEFT">DGEBAL<A NAME="3362"></A></TD>
+<TD ALIGN="LEFT">ZGEBAL<A NAME="3363"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">backtransforming</TD>
+<TD ALIGN="LEFT">SGEBAK<A NAME="3364"></A></TD>
+<TD ALIGN="LEFT">CGEBAK<A NAME="3365"></A></TD>
+<TD ALIGN="LEFT">DGEBAK<A NAME="3366"></A></TD>
+<TD ALIGN="LEFT">ZGEBAK<A NAME="3367"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">orthogonal/unitary</TD>
+<TD ALIGN="LEFT">generate matrix after</TD>
+<TD ALIGN="LEFT">SORGHR<A NAME="3368"></A></TD>
+<TD ALIGN="LEFT">CUNGHR<A NAME="3369"></A></TD>
+<TD ALIGN="LEFT">DORGHR<A NAME="3370"></A></TD>
+<TD ALIGN="LEFT">ZUNGHR<A NAME="3371"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">Hessenberg reduction</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">multiply matrix after</TD>
+<TD ALIGN="LEFT">SORMHR<A NAME="3372"></A></TD>
+<TD ALIGN="LEFT">CUNMHR<A NAME="3373"></A></TD>
+<TD ALIGN="LEFT">DORMHR<A NAME="3374"></A></TD>
+<TD ALIGN="LEFT">ZUNMHR<A NAME="3375"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">Hessenberg reduction</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Hessenberg</TD>
+<TD ALIGN="LEFT">Schur factorization</TD>
+<TD ALIGN="LEFT">SHSEQR<A NAME="3376"></A></TD>
+<TD ALIGN="LEFT">CHSEQR<A NAME="3377"></A></TD>
+<TD ALIGN="LEFT">DHSEQR<A NAME="3378"></A></TD>
+<TD ALIGN="LEFT">ZHSEQR<A NAME="3379"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">eigenvectors by</TD>
+<TD ALIGN="LEFT">SHSEIN<A NAME="3380"></A></TD>
+<TD ALIGN="LEFT">CHSEIN<A NAME="3381"></A></TD>
+<TD ALIGN="LEFT">DHSEIN<A NAME="3382"></A></TD>
+<TD ALIGN="LEFT">ZHSEIN<A NAME="3383"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">inverse iteration</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">(quasi)triangular</TD>
+<TD ALIGN="LEFT">eigenvectors</TD>
+<TD ALIGN="LEFT">STREVC<A NAME="3384"></A></TD>
+<TD ALIGN="LEFT">CTREVC<A NAME="3385"></A></TD>
+<TD ALIGN="LEFT">DTREVC<A NAME="3386"></A></TD>
+<TD ALIGN="LEFT">ZTREVC<A NAME="3387"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">reordering Schur</TD>
+<TD ALIGN="LEFT">STREXC<A NAME="3388"></A></TD>
+<TD ALIGN="LEFT">CTREXC<A NAME="3389"></A></TD>
+<TD ALIGN="LEFT">DTREXC<A NAME="3390"></A></TD>
+<TD ALIGN="LEFT">ZTREXC<A NAME="3391"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">factorization</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">Sylvester equation</TD>
+<TD ALIGN="LEFT">STRSYL<A NAME="3392"></A></TD>
+<TD ALIGN="LEFT">CTRSYL<A NAME="3393"></A></TD>
+<TD ALIGN="LEFT">DTRSYL<A NAME="3394"></A></TD>
+<TD ALIGN="LEFT">ZTRSYL<A NAME="3395"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">condition numbers of</TD>
+<TD ALIGN="LEFT">STRSNA<A NAME="3396"></A></TD>
+<TD ALIGN="LEFT">CTRSNA<A NAME="3397"></A></TD>
+<TD ALIGN="LEFT">DTRSNA<A NAME="3398"></A></TD>
+<TD ALIGN="LEFT">ZTRSNA<A NAME="3399"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">eigenvalues/vectors</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">condition numbers of</TD>
+<TD ALIGN="LEFT">STRSEN<A NAME="3400"></A></TD>
+<TD ALIGN="LEFT">CTRSEN<A NAME="3401"></A></TD>
+<TD ALIGN="LEFT">DTRSEN<A NAME="3402"></A></TD>
+<TD ALIGN="LEFT">ZTRSEN<A NAME="3403"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">eigenvalue cluster/</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invariant subspace</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4877"
+ HREF="node53.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4871"
+ HREF="node49.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4867"
+ HREF="node51.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4873"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4875"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4878"
+ HREF="node53.html">Singular Value Decomposition</A>
+<B> Up:</B> <A NAME="tex2html4872"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4868"
+ HREF="node51.html">Balancing</A>
+ &nbsp <B>  <A NAME="tex2html4874"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4876"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

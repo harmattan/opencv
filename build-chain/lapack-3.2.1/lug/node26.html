@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Linear Equations</TITLE>
+<META NAME="description" CONTENT="Linear Equations">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node27.html">
+<LINK REL="previous" HREF="node25.html">
+<LINK REL="up" HREF="node25.html">
+<LINK REL="next" HREF="node27.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4489"
+ HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4483"
+ HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4477"
+ HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4485"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4487"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4490"
+ HREF="node27.html">Linear Least Squares (LLS)</A>
+<B> Up:</B> <A NAME="tex2html4484"
+ HREF="node25.html">Driver Routines</A>
+<B> Previous:</B> <A NAME="tex2html4478"
+ HREF="node25.html">Driver Routines</A>
+ &nbsp <B>  <A NAME="tex2html4486"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4488"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03231000000000000000"></A><A NAME="subsecdrivelineq"></A>
+<BR>
+Linear Equations
+</H2>
+
+<P>
+Two types of driver routines are provided for solving systems of linear
+equations<A NAME="1220"></A>:
+
+<P>
+
+<UL><LI>a <B>simple</B> driver (name ending -SV)<A NAME="1223"></A>,
+which solves the system
+<I>AX</I> = <I>B</I> by
+factorizing <I>A</I> and overwriting <I>B</I> with the solution <I>X</I>;
+
+<P>
+
+<LI>an <B>expert</B> driver (name ending -SVX)<A NAME="1225"></A>,
+which can also perform the
+following functions (some of them optionally):
+
+<P>
+
+<UL><LI>solve <I>A</I><SUP><I>T</I></SUP> <I>X</I> = <I>B</I> or <I>A</I><SUP><I>H</I></SUP> <I>X</I> = <I>B</I> (unless <I>A</I> is symmetric or Hermitian);
+
+<P>
+
+<LI>estimate the condition number of <I>A</I>, check for
+near-singularity, and check for pivot growth;
+
+<P>
+
+<LI>refine the solution and compute forward and backward error bounds;
+
+<P>
+
+<LI>equilibrate<A NAME="1227"></A> the system if <I>A</I> is poorly scaled.
+
+<P>
+
+</UL>
+
+<P>
+The expert driver requires roughly twice as much storage as the simple
+driver in order to perform these extra functions.
+
+<P>
+
+</UL>
+
+<P>
+Both types of driver routines can handle multiple right hand sides
+(the columns of <I>B</I>).
+
+<P>
+Different driver routines are provided to take advantage of special
+properties or storage schemes of the matrix <I>A</I>, as shown in
+Table&nbsp;<A HREF="node26.html#tabdrivelineq">2.2</A>.
+
+<P>
+These driver routines cover all the functionality of the computational
+routines for linear systems<A NAME="1231"></A>, except matrix
+inversion<A NAME="1232"></A>. It is seldom
+necessary to compute the inverse of a matrix explicitly, and it is
+certainly not recommended as a means of solving linear systems.
+
+<P>
+
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabdrivelineq"></A>
+<DIV ALIGN="CENTER">
+<A NAME="1234"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.2:</STRONG>
+Driver routines for linear equations</CAPTION>
+<TR><TD ALIGN="LEFT">Type of matrix</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and storage scheme</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">general</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SGESV<A NAME="1246"></A></TD>
+<TD ALIGN="LEFT">CGESV<A NAME="1247"></A></TD>
+<TD ALIGN="LEFT">DGESV<A NAME="1248"></A></TD>
+<TD ALIGN="LEFT">ZGESV<A NAME="1249"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SGESVX<A NAME="1250"></A></TD>
+<TD ALIGN="LEFT">CGESVX<A NAME="1251"></A></TD>
+<TD ALIGN="LEFT">DGESVX<A NAME="1252"></A></TD>
+<TD ALIGN="LEFT">ZGESVX<A NAME="1253"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">general band</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SGBSV<A NAME="1254"></A></TD>
+<TD ALIGN="LEFT">CGBSV<A NAME="1255"></A></TD>
+<TD ALIGN="LEFT">DGBSV<A NAME="1256"></A></TD>
+<TD ALIGN="LEFT">ZGBSV<A NAME="1257"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SGBSVX<A NAME="1258"></A></TD>
+<TD ALIGN="LEFT">CGBSVX<A NAME="1259"></A></TD>
+<TD ALIGN="LEFT">DGBSVX<A NAME="1260"></A></TD>
+<TD ALIGN="LEFT">ZGBSVX<A NAME="1261"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">general tridiagonal</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SGTSV<A NAME="1262"></A></TD>
+<TD ALIGN="LEFT">CGTSV<A NAME="1263"></A></TD>
+<TD ALIGN="LEFT">DGTSV<A NAME="1264"></A></TD>
+<TD ALIGN="LEFT">ZGTSV<A NAME="1265"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SGTSVX<A NAME="1266"></A></TD>
+<TD ALIGN="LEFT">CGTSVX<A NAME="1267"></A></TD>
+<TD ALIGN="LEFT">DGTSVX<A NAME="1268"></A></TD>
+<TD ALIGN="LEFT">ZGTSVX<A NAME="1269"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SPOSV<A NAME="1270"></A></TD>
+<TD ALIGN="LEFT">CPOSV<A NAME="1271"></A></TD>
+<TD ALIGN="LEFT">DPOSV<A NAME="1272"></A></TD>
+<TD ALIGN="LEFT">ZPOSV<A NAME="1273"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SPOSVX<A NAME="1274"></A></TD>
+<TD ALIGN="LEFT">CPOSVX<A NAME="1275"></A></TD>
+<TD ALIGN="LEFT">DPOSVX<A NAME="1276"></A></TD>
+<TD ALIGN="LEFT">ZPOSVX<A NAME="1277"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SPPSV<A NAME="1278"></A></TD>
+<TD ALIGN="LEFT">CPPSV<A NAME="1279"></A></TD>
+<TD ALIGN="LEFT">DPPSV<A NAME="1280"></A></TD>
+<TD ALIGN="LEFT">ZPPSV<A NAME="1281"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite (packed storage)</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SPPSVX<A NAME="1282"></A></TD>
+<TD ALIGN="LEFT">CPPSVX<A NAME="1283"></A></TD>
+<TD ALIGN="LEFT">DPPSVX<A NAME="1284"></A></TD>
+<TD ALIGN="LEFT">ZPPSVX<A NAME="1285"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SPBSV<A NAME="1286"></A></TD>
+<TD ALIGN="LEFT">CPBSV<A NAME="1287"></A></TD>
+<TD ALIGN="LEFT">DPBSV<A NAME="1288"></A></TD>
+<TD ALIGN="LEFT">ZPBSV<A NAME="1289"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite band</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SPBSVX<A NAME="1290"></A></TD>
+<TD ALIGN="LEFT">CPBSVX<A NAME="1291"></A></TD>
+<TD ALIGN="LEFT">DPBSVX<A NAME="1292"></A></TD>
+<TD ALIGN="LEFT">ZPBSVX<A NAME="1293"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SPTSV<A NAME="1294"></A></TD>
+<TD ALIGN="LEFT">CPTSV<A NAME="1295"></A></TD>
+<TD ALIGN="LEFT">DPTSV<A NAME="1296"></A></TD>
+<TD ALIGN="LEFT">ZPTSV<A NAME="1297"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite tridiagonal</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SPTSVX<A NAME="1298"></A></TD>
+<TD ALIGN="LEFT">CPTSVX<A NAME="1299"></A></TD>
+<TD ALIGN="LEFT">DPTSVX<A NAME="1300"></A></TD>
+<TD ALIGN="LEFT">ZPTSVX<A NAME="1301"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SSYSV<A NAME="1302"></A></TD>
+<TD ALIGN="LEFT">CHESV<A NAME="1303"></A></TD>
+<TD ALIGN="LEFT">DSYSV<A NAME="1304"></A></TD>
+<TD ALIGN="LEFT">ZHESV<A NAME="1305"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">indefinite</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SSYSVX<A NAME="1306"></A></TD>
+<TD ALIGN="LEFT">CHESVX<A NAME="1307"></A></TD>
+<TD ALIGN="LEFT">DSYSVX<A NAME="1308"></A></TD>
+<TD ALIGN="LEFT">ZHESVX<A NAME="1309"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">complex symmetric</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYSV<A NAME="1310"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYSV<A NAME="1311"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYSVX<A NAME="1312"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYSVX<A NAME="1313"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SSPSV<A NAME="1314"></A></TD>
+<TD ALIGN="LEFT">CHPSV<A NAME="1315"></A></TD>
+<TD ALIGN="LEFT">DSPSV<A NAME="1316"></A></TD>
+<TD ALIGN="LEFT">ZHPSV<A NAME="1317"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">indefinite (packed storage)</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SSPSVX<A NAME="1318"></A></TD>
+<TD ALIGN="LEFT">CHPSVX<A NAME="1319"></A></TD>
+<TD ALIGN="LEFT">DSPSVX<A NAME="1320"></A></TD>
+<TD ALIGN="LEFT">ZHPSVX<A NAME="1321"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">complex symmetric</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPSV<A NAME="1322"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPSV<A NAME="1323"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPSVX<A NAME="1324"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPSVX<A NAME="1325"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4489"
+ HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4483"
+ HREF="node25.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4477"
+ HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4485"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4487"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4490"
+ HREF="node27.html">Linear Least Squares (LLS)</A>
+<B> Up:</B> <A NAME="tex2html4484"
+ HREF="node25.html">Driver Routines</A>
+<B> Previous:</B> <A NAME="tex2html4478"
+ HREF="node25.html">Driver Routines</A>
+ &nbsp <B>  <A NAME="tex2html4486"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4488"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

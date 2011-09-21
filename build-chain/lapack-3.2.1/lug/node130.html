@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Points to Note</TITLE>
+<META NAME="description" CONTENT="Points to Note">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node131.html">
+<LINK REL="previous" HREF="node129.html">
+<LINK REL="up" HREF="node129.html">
+<LINK REL="next" HREF="node131.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6043"
+ HREF="node131.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6037"
+ HREF="node129.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6031"
+ HREF="node129.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6039"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6041"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6044"
+ HREF="node131.html">Installing ILAENV</A>
+<B> Up:</B> <A NAME="tex2html6038"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<B> Previous:</B> <A NAME="tex2html6032"
+ HREF="node129.html">Installing LAPACK Routines</A>
+ &nbsp <B>  <A NAME="tex2html6040"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6042"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03610000000000000000"></A><A NAME="chapinstallsec1"></A>
+<BR>
+Points to Note
+</H1>
+
+<P>
+For anyone who obtains the complete LAPACK package from <EM>netlib</EM>
+(see Chapter&nbsp;<A HREF="node6.html#chapessentials">1</A>), a
+comprehensive installation<A NAME="20668"></A> 
+guide<A NAME="20669"></A> is provided. We recommend
+installation of the complete package as the most convenient and reliable
+way to make LAPACK available.
+
+<P>
+People who obtain copies of a few LAPACK routines from <EM>netlib</EM> need to be
+aware of the following points:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>Double precision complex routines (names beginning Z-)
+use a COMPLEX*16 data type. This is an extension to the Fortran 77
+standard, but is provided by many Fortran compilers on machines
+where double precision computation is usual.
+The following related extensions are also used:
+<P>
+
+<UL><LI>the intrinsic function DCONJG, with argument and result of type
+COMPLEX*16;
+
+<P>
+
+<LI>the intrinsic functions DBLE and DIMAG, with COMPLEX*16 argument
+and DOUBLE PRECISION result, returning the real and imaginary parts,
+respectively;
+
+<P>
+
+<LI>the intrinsic function DCMPLX, with DOUBLE PRECISION argument(s)
+and COMPLEX*16 result;
+
+<P>
+
+<LI>COMPLEX*16 constants, formed from a pair of double precision
+constants in parentheses.
+
+<P>
+
+</UL>
+
+<P>
+Some compilers provide DOUBLE COMPLEX as an alternative to COMPLEX*16,
+and an intrinsic function DREAL instead of DBLE to return the
+real part of a COMPLEX*16 argument.
+If the compiler does not accept the constructs used in LAPACK, the installer
+will have to modify the code: for example, globally change COMPLEX*16 to
+DOUBLE COMPLEX, or selectively change DBLE to DREAL.<A NAME="tex2html2580"
+ HREF="footnode.html#foot20821"><SUP>6.1</SUP></A>
+<P>
+<DT>2.
+<DD>For optimal performance, a small set of tuning parameters must be set
+for each machine, or even for each configuration of a given machine
+(for example, different parameters may be optimal for different numbers
+of processors).
+These values<A NAME="20676"></A>, such as the block size, minimum block size, crossover
+point below which an unblocked routine should be used, and others,
+are set by calls to an inquiry function ILAENV.
+The default version of ILAENV<A NAME="20677"></A> provided with LAPACK uses generic values
+which often give satisfactory performance, but
+users who are particularly interested in performance may wish to
+modify this subprogram or substitute their own version.
+Further details on setting ILAENV for a particular environment
+are provided in section&nbsp;<A HREF="node131.html#secilaenv">6.2</A>.
+
+<P>
+<DT>3.
+<DD>SLAMCH/DLAMCH<A NAME="20679"></A><A NAME="20680"></A><A NAME="20681"></A>
+determines properties of the 
+floating-point arithmetic at run-time, such as the machine epsilon,
+underflow threshold,
+overflow threshold, and related parameters. It works satisfactorily on
+all commercially important machines of which we are aware, but will necessarily
+be updated from time to time as new machines and compilers are produced.
+
+<P>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6043"
+ HREF="node131.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6037"
+ HREF="node129.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6031"
+ HREF="node129.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6039"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6041"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6044"
+ HREF="node131.html">Installing ILAENV</A>
+<B> Up:</B> <A NAME="tex2html6038"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<B> Previous:</B> <A NAME="tex2html6032"
+ HREF="node129.html">Installing LAPACK Routines</A>
+ &nbsp <B>  <A NAME="tex2html6040"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6042"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

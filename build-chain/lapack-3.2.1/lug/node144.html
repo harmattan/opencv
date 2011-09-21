@@ -1,0 +1,1524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Notes</TITLE>
+<META NAME="description" CONTENT="Notes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node143.html">
+<LINK REL="up" HREF="node143.html">
+<LINK REL="next" HREF="node145.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6241"
+ HREF="node145.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6235"
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6231"
+ HREF="node143.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6237"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6239"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6242"
+ HREF="node145.html">Quick Reference Guide to</A>
+<B> Up:</B> <A NAME="tex2html6236"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+<B> Previous:</B> <A NAME="tex2html6232"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+ &nbsp <B>  <A NAME="tex2html6238"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6240"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03910000000000000000">
+Notes</A>
+</H1>
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>This index<A NAME="21811"></A>  
+lists related pairs of real and complex routines together,
+in the same style as in Appendix A.
+<P>
+<DT>2.
+<DD>Routines are listed in alphanumeric order
+of the real (single precision) routine name (which always begins with S-).
+(See subsection&nbsp;<A HREF="node24.html#subsecnaming">2.2.3</A> for details of the LAPACK naming scheme.)
+
+<P>
+<DT>3.
+<DD>A few complex routines have no real equivalents, and they are listed
+first; routines listed in italics (for example, <I>CROT</I>), have real
+equivalents in the Level 1 or Level 2 BLAS.
+
+<P>
+<DT>4.
+<DD>Double precision routines are not listed here;
+they have names beginning with D- instead of
+S-, or Z- instead of C-. 
+The only exceptions to this simple rule are that 
+the double precision versions of ICMAX1, SCSUM1 and CSRSCL
+are named IZMAX1, DZSUM1 and ZDRSCL.
+
+<P>
+<DT>5.
+<DD>A few routines in the list have names that are independent of data type: 
+ILAENV, LSAME, LSAMEN and XERBLA.
+
+<P>
+<DT>6.
+<DD>This index gives only a brief description of the purpose of each
+routine. For a precise description consult the leading comments in the code,
+which have been written in the same style as for the driver and
+computational routines.
+
+<P>
+</DL>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CLACGV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Conjugates a complex vector.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CLACRM</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs a matrix multiplication <IMG
+ WIDTH="97" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img953.gif"
+ ALT="$C~=~A \ast B$">,
+where A is complex, B is
+real, and C is complex.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CLACRT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs the transformation 
+<!-- MATH
+ $\left( \begin{array}{cc} c & s \\-s & c \end{array} \right) \; \left( \begin{array}{c} x \\y \end{array} \right)$
+ -->
+<IMG
+ WIDTH="150" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img954.gif"
+ ALT="$\left( \begin{array}{cc} c &amp; s \\ -s &amp; c \end{array} \right) \; \left( \begin{array}{c} x \\ y \end{array} \right) $">,
+where <B><I>c</I></B>, <B><I>s</I></B>, <B><I>x</I></B>, and <B><I>y</I></B> are complex.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CLAESY</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and eigenvectors of a 2-by-2 complex symmetric matrix,
+and checks that the norm of the matrix of eigenvectors is larger than
+a threshold value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> CROT</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a plane rotation with real cosine and complex sine
+to a pair of complex vectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> CSPMV </I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the matrix-vector product 
+<!-- MATH
+ $y = \alpha Ax + \beta y$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img955.gif"
+ ALT="$y = \alpha Ax + \beta y$">,
+where <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+are complex scalars, 
+<B><I>x</I></B> and <B><I>y</I></B> are complex vectors and
+<B><I>A</I></B> is a complex symmetric matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> CSPR  </I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs the symmetric rank-1 update 
+<!-- MATH
+ $A = \alpha x x^T  + A$
+ -->
+<IMG
+ WIDTH="117" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img956.gif"
+ ALT="$A = \alpha x x^T + A$">,
+where <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+is a complex scalar, 
+<B><I>x</I></B> is a complex vector and 
+<B><I>A</I></B> is a complex symmetric matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> CSROT </I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a plane rotation with real cosine and sine
+to a pair of complex vectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> CSYMV </I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the matrix-vector product 
+<!-- MATH
+ $y = \alpha Ax + \beta y$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img955.gif"
+ ALT="$y = \alpha Ax + \beta y$">,
+where <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+are complex scalars, 
+<B><I>x</I></B> and <B><I>y</I></B> are complex vectors and
+<B><I>A</I></B> is a complex symmetric matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> CSYR </I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs the symmetric rank-1 update 
+<!-- MATH
+ $A = \alpha x x^T  + A$
+ -->
+<IMG
+ WIDTH="117" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img956.gif"
+ ALT="$A = \alpha x x^T + A$">,
+where <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+is a complex scalar, 
+<B><I>x</I></B> is a complex vector and 
+<B><I>A</I></B> is a complex symmetric matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> ICMAX1</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Finds the index of the element whose real part has maximum absolute value 
+(similar to the Level 1 BLAS ICAMAX,
+but using the absolute value of the real part).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ILAENV<A NAME="21834"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Environmental enquiry function which returns values for tuning
+algorithmic performance.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">LSAME<A NAME="21835"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Tests two characters for equality regardless of case.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">LSAMEN<A NAME="21836"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Tests two character strings for equality regardless of case.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I> SCSUM1</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Forms the 1-norm of a complex vector 
+(similar to the Level 1 BLAS SCASUM,
+but using the true absolute value).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBTF2</TD>
+<TD ALIGN="LEFT">CGBTF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization of a general band matrix,
+using partial pivoting with row interchanges 
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEBD2</TD>
+<TD ALIGN="LEFT">CGEBD2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a general rectangular matrix to  real bidiagonal form 
+by an orthogonal/unitary transformation
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEHD2</TD>
+<TD ALIGN="LEFT">CGEHD2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a general matrix to upper Hessenberg form 
+by an orthogonal/unitary similarity transformation
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGELQ2</TD>
+<TD ALIGN="LEFT">CGELQ2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LQ</I></B> factorization of a general rectangular matrix
+(unblocked algorithm).</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQL2</TD>
+<TD ALIGN="LEFT">CGEQL2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a <B><I>QL</I></B> factorization of a general rectangular matrix
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQR2</TD>
+<TD ALIGN="LEFT">CGEQR2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a <B><I>QR</I></B> factorization of a general rectangular matrix
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGERQ2</TD>
+<TD ALIGN="LEFT">CGERQ2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>RQ</I></B> factorization of a general rectangular matrix
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGESC2</TD>
+<TD ALIGN="LEFT">CGESC2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a system of linear equations 
+<!-- MATH
+ $A \ast X = scale \ast RHS$
+ -->
+<IMG
+ WIDTH="169" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img957.gif"
+ ALT="$A \ast X = scale \ast RHS$">
+using
+the <B><I>LU</I></B> factorization with complete pivoting computed by xGETC2.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETC2</TD>
+<TD ALIGN="LEFT">CGETC2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization with complete pivoting of the
+general <B><I>n</I></B>-by-<B><I>n</I></B> matrix A</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETF2</TD>
+<TD ALIGN="LEFT">CGETF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization of a general matrix,
+using partial pivoting with row interchanges
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGTTS2</TD>
+<TD ALIGN="LEFT">CGTTS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves one of the systems of equations <IMG
+ WIDTH="87" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img958.gif"
+ ALT="$A \ast X = B$">
+or  
+<!-- MATH
+ $A^H \ast X = B$
+ -->
+<IMG
+ WIDTH="100" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img959.gif"
+ ALT="$A^H \ast X = B$">,
+with a tridiagonal matrix A using the <B><I>LU</I></B> factorization computed
+by SGTTRF/CGTTRF.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLABAD</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the square root of the underflow and overflow thresholds
+if the exponent-range is very large.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLABRD</TD>
+<TD ALIGN="LEFT">CLABRD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces the first <B><I>nb</I></B> rows and columns of a general rectangular matrix <B><I>A</I></B>
+to real bidiagonal form by an orthogonal/unitary transformation,
+and returns auxiliary matrices 
+which are needed to apply the transformation to the unreduced part of <B><I>A</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLACON</TD>
+<TD ALIGN="LEFT">CLACON</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the 1-norm of a square matrix,
+using reverse communication for evaluating matrix-vector products.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLACPY</TD>
+<TD ALIGN="LEFT">CLACPY</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Copies all or part of one two-dimensional array to another.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLADIV</TD>
+<TD ALIGN="LEFT">CLADIV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs complex division in real arithmetic, 
+avoiding unnecessary overflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAE2</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues of a 2-by-2 symmetric matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAEBZ</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the number of eigenvalues of a real symmetric tridiagonal matrix 
+which are less than or equal to a given value,
+and performs other tasks required by the routine SSTEBZ<A NAME="21850"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED0</TD>
+<TD ALIGN="LEFT">CLAED0</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by xSTEDC.
+Computes all eigenvalues and corresponding eigenvectors of an
+unreduced symmetric tridiagonal matrix using the divide and conquer
+method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED1</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Computes the updated eigensystem of a diagonal
+matrix after modification by a rank-one symmetric matrix.
+Used when the original matrix is tridiagonal.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED2</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Merges eigenvalues and deflates secular equation.
+Used when the original matrix is tridiagonal.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED3</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Finds the roots of the secular equation and updates the eigenvectors.
+Used when the original matrix is tridiagonal.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED4</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Finds a single root of the secular equation.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED5</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Solves the 2-by-2 secular equation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED6</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Computes one Newton step in solution of secular equation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED7</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAED7</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Computes the updated eigensystem of a diagonal
+matrix after modification by a rank-one symmetric matrix.
+Used when the original matrix is dense.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED8</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAED8</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by xSTEDC.
+Merges eigenvalues and deflates secular equation.
+Used when the original matrix is dense.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAED9</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Finds the roots of the secular equation and updates the eigenvectors.
+Used when the original matrix is dense.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAEDA</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SSTEDC.
+Computes the Z vector determining the rank-one modification of the
+diagonal matrix.
+Used when the original matrix is dense.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAEIN</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAEIN</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a specified right or left eigenvector of an upper Hessenberg matrix
+by inverse iteration.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAEV2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAEV2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and eigenvectors of a 2-by-2 symmetric/Hermitian 
+matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAEXC</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Swaps adjacent diagonal blocks of a real upper quasi-triangular matrix 
+in Schur canonical form,
+by an orthogonal similarity transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAG2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues of a 2-by-2 generalized eigenvalue problem
+<IMG
+ WIDTH="94" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img960.gif"
+ ALT="$A~-~w\ast B$">,
+with scaling as necessary to avoid over-/underflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAGS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes 2-by-2 orthogonal matrices <B><I>U</I></B>, <B><I>V</I></B>, and <B><I>Q</I></B>, and applies
+them to matrices <B><I>A</I></B> and <B><I>B</I></B> such that the rows of the transformed
+<B><I>A</I></B> and <B><I>B</I></B> are parallel.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAGTF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization of a matrix 
+<!-- MATH
+ $(T - \lambda I)$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img961.gif"
+ ALT="$(T - \lambda I)$">,
+where <B><I>T</I></B> is a general tridiagonal matrix, and <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+a scalar,
+using partial pivoting with row interchanges.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAGTM</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAGTM</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs a matrix-matrix product of the form 
+<!-- MATH
+ $C = \alpha A B + \beta C$
+ -->
+<IMG
+ WIDTH="126" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img962.gif"
+ ALT="$C = \alpha A B + \beta C$">,
+where <B><I>A</I></B> is a tridiagonal matrix, 
+<B><I>B</I></B> and <B><I>C</I></B> are rectangular matrices, 
+and <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+are scalars, which may be 0, 1, or <B>-1</B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAGTS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves the system of equations 
+
+<!-- MATH
+ $(T - \lambda I) x = y$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img963.gif"
+ ALT="$(T - \lambda I) x = y$">
+or 
+<!-- MATH
+ $(T - \lambda I)^T x = y$
+ -->
+<IMG
+ WIDTH="124" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img964.gif"
+ ALT="$(T - \lambda I)^T x = y$">,
+where <B><I>T</I></B> is a general tridiagonal matrix and <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+a scalar,
+using the <B><I>LU</I></B> factorization computed by SLAGTF.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAGV2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Generalized Schur factorization of a real 2-by-2
+matrix pencil <B>(<I>A</I>,<I>B</I>)</B> where <B><I>B</I></B> is upper triangular.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAHQR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAHQR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and Schur factorization of an upper Hessenberg matrix, 
+using the double-shift/single-shift <B><I>QR</I></B> algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAHRD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAHRD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces the first <B><I>nb</I></B> columns of a general rectangular matrix <B><I>A</I></B>
+so that elements below the <B><I>k</I><SUP><I>th</I></SUP></B> subdiagonal are zero,
+by an orthogonal/unitary transformation,
+and returns auxiliary matrices 
+which are needed to apply the transformation to the unreduced part of <B><I>A</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAIC1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAIC1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies one step of incremental condition estimation.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLALN2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a 1-by-1 or 2-by-2 system of equations of the form  
+
+<!-- MATH
+ $(\gamma A - \lambda D ) x = \sigma b$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img965.gif"
+ ALT="$(\gamma A - \lambda D ) x = \sigma b$">
+or 
+<!-- MATH
+ $(\gamma A^T - \lambda D) x = \sigma b$
+ -->
+<IMG
+ WIDTH="149" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img966.gif"
+ ALT="$(\gamma A^T - \lambda D) x = \sigma b$">,
+where <B><I>D</I></B> is a diagonal matrix,
+<IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">,
+<B><I>b</I></B> and <B><I>x</I></B> may be complex, 
+and <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img967.gif"
+ ALT="$\sigma$">
+is a scale factor set to avoid overflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLALS0</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLALS0</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by xGELSD.
+Applies back the multiplying factors of either the left or the right
+singular vector matrix of a diagonal matrix appended by a row to
+the right hand side matrix <B><I>B</I></B> in solving the least squares problem
+using the divide and conquer SVD approach.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLALSA</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLALSA</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by xGELSD.
+An intermediate step in solving the least squares problem
+by computing the SVD of the coefficient matrix in compact form.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLALSD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLALSD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by xGELSD.
+Uses the singular value decomposition of <B><I>A</I></B> to solve the least
+squares problem of finding <B><I>X</I></B> to minimize the Euclidean norm of each
+column of <IMG
+ WIDTH="85" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img968.gif"
+ ALT="$A \ast X-B$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAMCH<A NAME="21878"></A><A NAME="21879"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Determines machine parameters for floating-point arithmetic.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAMRG</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Creates a permutation list which will merge the entries of
+two independently sorted sets into a single set which is sorted
+in ascending order.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANGB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANGB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a general band matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANGE</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANGE</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANGT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANGT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element, 
+of a general tridiagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANHS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANHS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of an upper Hessenberg matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANSB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANSB CLANHB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a real symmetric/complex symmetric/complex Hermitian band matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANSP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANSP CLANHP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a real symmetric/complex symmetric/complex Hermitian matrix
+in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANST</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANHT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a symmetric/Hermitian tridiagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANSY</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANSY CLANHE</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a real symmetric/complex symmetric/complex Hermitian matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANTB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANTB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a triangular band matrix.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANTP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANTP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a triangular matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANTR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLANTR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns the value of the 1-norm, Frobenius norm, infinity-norm,  
+or the largest absolute value of any element,
+of a triangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLANV2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Schur factorization of a real 2-by-2 nonsymmetric matrix 
+in Schur canonical form.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAPLL</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAPLL</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Measures the linear dependence of two vectors <B><I>X</I></B> and <B><I>Y</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAPMT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAPMT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs a forward or backward permutation of the columns of a matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAPY2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns 
+<!-- MATH
+ $\sqrt{x^2 + y^2}$
+ -->
+<IMG
+ WIDTH="76" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img969.gif"
+ ALT="$ \sqrt{x^2 + y^2}$">,
+avoiding unnecessary overflow or harmful underflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAPY3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns 
+<!-- MATH
+ $\sqrt{x^2 + y^2 + z^2}$
+ -->
+<IMG
+ WIDTH="114" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img970.gif"
+ ALT="$ \sqrt{x^2 + y^2 + z^2}$">,
+avoiding unnecessary overflow or harmful underflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQGB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQGB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Scales a general band matrix,
+using row and column scaling factors computed by SGBEQU<A NAME="21895"></A>/CGBEQU<A NAME="21896"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQGE</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQGE</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Scales a general rectangular matrix, 
+using row and column scaling factors computed by SGEEQU<A NAME="21897"></A>/CGEEQU<A NAME="21898"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQP2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQP2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a <B><I>QR</I></B> factorization with column pivoting of the block
+
+<!-- MATH
+ $A(OFFSET+1:M,1:N)$
+ -->
+<B><I>A</I>(<I>OFFSET</I>+1:<I>M</I>,1:<I>N</I>)</B>.  The block 
+<!-- MATH
+ $A(1:OFFSET,1:N)$
+ -->
+<B><I>A</I>(1:<I>OFFSET</I>,1:<I>N</I>)</B> is accordingly pivoted,
+but not factorized.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQPS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQPS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a step of <B><I>QR</I></B> factorization with column pivoting
+of a real <B><I>M</I></B>-by-<B><I>N</I></B> matrix <B><I>A</I></B> by using Level 3 Blas.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQSB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQSB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Scales a symmetric/Hermitian band matrix,
+using scaling factors computed by SPBEQU<A NAME="21899"></A>/CPBEQU<A NAME="21900"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQSP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQSP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Scales a symmetric/Hermitian matrix in packed storage,
+using scaling factors computed by SPPEQU<A NAME="21901"></A>/CPPEQU<A NAME="21902"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQSY</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAQSY</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Scales a symmetric/Hermitian matrix,
+using scaling factors computed by SPOEQU<A NAME="21903"></A>/CPOEQU<A NAME="21904"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAQTR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real quasi-triangular system of equations,
+or a complex quasi-triangular system of special form,
+in real arithmetic.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAR1V</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAR1V</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the (scaled) r<B><SUP><I>th</I></SUP></B> column of the inverse of
+the sumbmatrix in rows B1 through BN of the tridiagonal matrix
+
+<!-- MATH
+ $L D L^T - \sigma I$
+ -->
+<IMG
+ WIDTH="95" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img971.gif"
+ ALT="$L D L^T - \sigma I$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAR2V</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAR2V</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a vector of plane rotations with real cosines and real/complex sines
+from both sides to a sequence of 2-by-2 symmetric/Hermitian matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies an elementary reflector to a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARFB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARFB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a block reflector or its transpose/conjugate-transpose 
+to a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARFG</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARFG</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates an elementary reflector (Householder matrix).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARFT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARFT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Forms the triangular factor <B><I>T</I></B> of a block reflector 
+<!-- MATH
+ $H = I - V T V^H$
+ -->
+<B><I>H</I> = <I>I</I> - <I>V T V</I><SUP><I>H</I></SUP></B>.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARFX</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARFX</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies an elementary reflector to a general rectangular matrix,
+with loop unrolling when the reflector has order <IMG
+ WIDTH="40" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img972.gif"
+ ALT="$\leq 10$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARGV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARGV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates a vector of plane rotations with real cosines and real/complex 
+sines.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARNV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARNV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns a vector of random numbers from a uniform or normal distribution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARRB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Given the relatively robust representation(RRR) <B><I>L D L</I><SUP><I>T</I></SUP></B>, SLARRB
+does ``limited'' bisection to locate the eigenvalues of <B><I>L D L</I><SUP><I>T</I></SUP></B>,
+W(IFIRST) through W(ILAST), to more accuracy.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARRE</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Given the tridiagonal matrix <B><I>T</I></B>, SLARRE sets ``small'' off-diagonal
+elements to zero, and for each unreduced block <B><I>T</I><SUB><I>i</I></SUB></B>, it finds
+the numbers <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">,
+the base 
+<!-- MATH
+ $T_i - \sigma_i I~=~L_i D_i L_i^T$
+ -->
+<IMG
+ WIDTH="160" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img973.gif"
+ ALT="$T_i - \sigma_i I~=~L_i D_i L_i^T$">
+representations and the eigenvalues of each <B><I>L</I><SUB><I>i</I></SUB> <I>D</I><SUB><I>i</I></SUB> <I>L</I><SUB><I>i</I></SUB><SUP><I>T</I></SUP></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARRF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Finds a new relatively robust representation
+
+<!-- MATH
+ $L D L^T - \Sigma I~=~L(+) D(+) L(+)^T$
+ -->
+<IMG
+ WIDTH="262" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img974.gif"
+ ALT="$L D L^T - \Sigma I~=~L(+) D(+) L(+)^T$">
+such that at least one of the
+eigenvalues of 
+<!-- MATH
+ $L(+) D(+) L(+)^T$
+ -->
+<B><I>L</I>(+) <I>D</I>(+) <I>L</I>(+)<SUP><I>T</I></SUP></B> is relatively isolated.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARRV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARRV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvectors of the tridiagonal matrix
+<B><I>T</I>&nbsp;=&nbsp;L <I>D L</I><SUP><I>T</I></SUP></B> given <B><I>L</I></B>, <B><I>D</I></B> and the eigenvalues of <B><I>L D L</I><SUP><I>T</I></SUP></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARTG</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARTG</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates a plane rotation with real cosine and real/complex sine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARTV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARTV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a vector of plane rotations with real cosines and real/complex sines
+to the elements of a pair of vectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARUV</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Returns a vector of <B><I>n</I></B> random real numbers from a uniform (0,1) distribution 
+(<IMG
+ WIDTH="64" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img975.gif"
+ ALT="$n \leq 128$">).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARZ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARZ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies an elementary reflector (as returned by xTZRZF) to a general
+matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARZB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARZB</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a block reflector or its transpose/conjugate-transpose to a 
+general matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLARZT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLARZT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Forms the triangular factor <B><I>T</I></B> of a block reflector 
+<!-- MATH
+ $H = I - V T V^H$
+ -->
+<B><I>H</I> = <I>I</I> - <I>V T V</I><SUP><I>H</I></SUP></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the singular values of a 2-by-2 triangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASCL</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLASCL</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general rectangular matrix by a real scalar defined as
+
+<!-- MATH
+ $c_{to}/c_{from}$
+ -->
+<B><I>c</I><SUB><I>to</I></SUB>/<I>c</I><SUB><I>from</I></SUB></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD0</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes via a divide and conquer method the singular values
+of a real upper bidiagonal <B><I>n</I></B>-by-<B><I>m</I></B> matrix with diagonal <B><I>D</I></B> and offdiagonal
+<B><I>E</I></B>, where <B><I>M</I> = <I>N</I> + <I>SQRE</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes the SVD of an upper bidiagonal <B><I>N</I></B>-by-<B><I>M</I></B> matrix,
+where 
+<!-- MATH
+ $N = NL + NR + 1$
+ -->
+<B><I>N</I> = <I>NL</I> + <I>NR</I> + 1</B> and <B><I>M</I> = <I>N</I> + <I>SQRE</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Merges the two sets of singular values together into a
+single sorted set, and then it tries to deflate the size of the problem.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Finds all the square roots of the roots of the secular
+equation, as defined by the values in <B><I>D</I></B> and <B><I>Z</I></B>, and then
+updates the singular vectors by matrix multiplication.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD4</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes the square root of the I-th updated
+eigenvalue of a positive symmetric rank-one modification to
+a positive diagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD5</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes the square root of the I-th eigenvalue
+of a positive symmetric rank-one modification of a 2-by-2 diagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD6</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes the SVD of an updated upper bidiagonal matrix
+obtained by merging two smaller ones by appending a row.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD7</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Merges the two sets of singular values together into a
+single sorted set, and then it tries to deflate the size of the problem.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD8</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Finds the square roots of the roots of the secular
+equation, and stores, for each element in <B><I>D</I></B>, the distance to its two
+nearest poles (elements in <B><I>DSIGMA</I></B>).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASD9</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Finds the square roots of the roots of the secular
+equation, and stores, for each element in <B><I>D</I></B>, the distance to its two
+nearest poles (elements in <B><I>DSIGMA</I></B>).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASDA</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes the singular value decomposition (SVD) of a
+real upper bidiagonal <B><I>N</I></B>-by-<B><I>M</I></B> matrix with diagonal <B><I>D</I></B> and offdiagonal <B><I>E</I></B>,
+where <B><I>M</I> = <I>N</I> + <I>SQRE</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASDQ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Computes the singular value decomposition (SVD) of a real
+(upper or lower) bidiagonal matrix with diagonal <B><I>D</I></B> and
+offdiagonal <B><I>E</I></B>, accumulating the transformations if desired.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASDT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSDC.  Creates a tree of subproblems for bidiagonal divide and
+conquer.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASET</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLASET</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Initializes the off-diagonal elements of a matrix to <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and the diagonal elements to <IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASQ1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSQR.
+Computes the singular values of a real <B><I>n</I></B>-by-<B><I>n</I></B> bidiagonal
+matrix with diagonal D and offdiagonal E.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASQ2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSQR and SSTEGR.
+Computes all the eigenvalues of the symmetric positive
+definite tridiagonal matrix associated with the qd array Z to high
+relative accuracy.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASQ3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSQR.
+Checks for deflation, computes a shift (TAU) and calls dqds.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASQ4</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSQR.
+Computes an approximation TAU to the smallest eigenvalue
+using values of d from the previous transform.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASQ5</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSQR and SSTEGR.
+Computes one dqds transform in ping-pong form.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASQ6</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Used by SBDSQR and SSTEGR.
+computes one dqds transform in ping-pong form.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLASR</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Applies a sequence of plane rotations to a general rectangular
+matrix.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASRT</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Sorts numbers in increasing or decreasing order using Quick Sort,
+reverting to Insertion sort on arrays of size <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img976.gif"
+ ALT="$\leq$">
+20.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASSQ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLASSQ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Updates a sum of squares represented in scaled form.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASV2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the singular value decomposition of a 2-by-2 triangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASWP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLASWP</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Performs a sequence of row interchanges on a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASY2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves the Sylvester matrix equation 
+<!-- MATH
+ $A X \pm X B = \sigma C$
+ -->
+<IMG
+ WIDTH="132" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img977.gif"
+ ALT="$A X \pm X B = \sigma C$">
+where <B><I>A</I></B> and <B><I>B</I></B> are of order 1 or 2, 
+and may be transposed,
+and <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img967.gif"
+ ALT="$\sigma$">
+is a scale factor.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLASYF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLASYF CLAHEF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a partial factorization of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix,
+using the diagonal pivoting<A NAME="21947"></A> method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLATBS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLATBS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a triangular banded system of equations
+
+<!-- MATH
+ $A  x = \sigma b$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img978.gif"
+ ALT="$A x = \sigma b$">,
+
+<!-- MATH
+ $A^T  x = \sigma b$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img979.gif"
+ ALT="$A^T x = \sigma b$">,
+or  
+<!-- MATH
+ $A^H  x = \sigma b$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img980.gif"
+ ALT="$A^H x = \sigma b$">,
+where <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img967.gif"
+ ALT="$\sigma$">
+is a scale factor set to prevent overflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLATDF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLATDF</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Uses the <B><I>LU</I></B> factorization of the <B><I>n</I></B>-by-<B><I>n</I></B> matrix computed by
+SGETC2 and computes a contribution to the reciprocal Dif-estimate.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLATPS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLATPS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a triangular system of equations
+
+<!-- MATH
+ $A  x = \sigma b$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img978.gif"
+ ALT="$A x = \sigma b$">,
+
+<!-- MATH
+ $A^T  x = \sigma b$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img979.gif"
+ ALT="$A^T x = \sigma b$">,
+or  
+<!-- MATH
+ $A^H  x = \sigma b$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img980.gif"
+ ALT="$A^H x = \sigma b$">,
+where <B><I>A</I></B> is held in packed storage,
+and <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img967.gif"
+ ALT="$\sigma$">
+is a scale factor set to prevent overflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLATRD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLATRD</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces the first <B><I>nb</I></B> rows and columns of a symmetric/Hermitian matrix <B><I>A</I></B>
+to real tridiagonal form by an orthogonal/unitary similarity transformation,
+and returns auxiliary matrices
+which are needed to apply the transformation to the unreduced part of <B><I>A</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLATRS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLATRS</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a triangular system of equations
+
+<!-- MATH
+ $A  x = \sigma b$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img978.gif"
+ ALT="$A x = \sigma b$">,
+
+<!-- MATH
+ $A^T  x = \sigma b$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img979.gif"
+ ALT="$A^T x = \sigma b$">,
+or  
+<!-- MATH
+ $A^H  x = \sigma b$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img980.gif"
+ ALT="$A^H x = \sigma b$">,
+where <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img967.gif"
+ ALT="$\sigma$">
+is a scale factor set to prevent overflow.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLATRZ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLATRZ</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Factors an upper trapezoidal matrix by means of orthogonal/unitary
+transformations.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAUU2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAUU2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the product <B><I>U  U</I><SUP><I>H</I></SUP></B> or <B><I>L</I><SUP><I>H</I></SUP> <I>L</I></B>, 
+where <B><I>U</I></B> and <B><I>L</I></B> are upper or lower triangular matrices
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SLAUUM</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CLAUUM</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the product <B><I>U  U</I><SUP><I>H</I></SUP></B> or <B><I>L</I><SUP><I>H</I></SUP> <I>L</I></B>, 
+where <B><I>U</I></B> and <B><I>L</I></B> are upper or lower triangular matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORG2L</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNG2L</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from a <B><I>QL</I></B> factorization determined by SGEQLF<A NAME="21948"></A>/CGEQLF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORG2R</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNG2R</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from a <B><I>QR</I></B> factorization determined by SGEQRF<A NAME="21949"></A>/CGEQRF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGL2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNGL2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from an <B><I>LQ</I></B> factorization determined by SGELQF<A NAME="21950"></A>/CGELQF
+(unblocked algorithm).</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGR2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNGR2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from an <B><I>RQ</I></B> factorization determined by SGERQF<A NAME="21964"></A>/CGERQF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORM2L</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNM2L</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from a <B><I>QL</I></B> factorization determined by SGEQLF<A NAME="21965"></A>/CGEQLF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORM2R</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNM2R</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from a <B><I>QR</I></B> factorization determined by SGEQRF<A NAME="21966"></A>/CGEQRF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORML2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNML2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from an <B><I>LQ</I></B> factorization determined by SGELQF<A NAME="21967"></A>/CGELQF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMR2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNMR2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from an <B><I>RQ</I></B> factorization determined by SGERQF<A NAME="21968"></A>/CGERQF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMR3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CUNMR3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from an <B><I>RZ</I></B> factorization determined by STZRZF<A NAME="21969"></A>/CTZRZF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBTF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPBTF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Cholesky factorization of 
+a symmetric/Hermitian positive definite band matrix
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOTF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPOTF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Cholesky factorization of 
+a symmetric/Hermitian positive definite matrix
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTTS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPTTS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a tridiagonal system of the form
+<IMG
+ WIDTH="87" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img958.gif"
+ ALT="$A \ast X = B$">
+using the 
+<!-- MATH
+ $L \ast D \ast L^H$
+ -->
+<IMG
+ WIDTH="89" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img981.gif"
+ ALT="$L \ast D \ast L^H$">
+factorization of A computed by
+SPTTRF/CPTTRF.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SRSCL</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSRSCL</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a vector by the reciprocal of a real scalar.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYGS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHEGS2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian definite generalized eigenproblem 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">,
+to standard form, where <B><I>B</I></B> has been factorized by SPOTRF<A NAME="21970"></A>/CPOTRF
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTD2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHETD2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian matrix to 
+real symmetric tridiagonal form 
+by an orthogonal/unitary similarity transformation
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSYTF2 CHETF2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the factorization of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix,
+using the diagonal pivoting<A NAME="21971"></A> method
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGEX2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CTGEX2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Swaps adjacent diagonal blocks <B>(<I>A</I>11, <I>B</I>11)</B> and <B>(<I>A</I>22, <I>B</I>22)</B>
+of size 1-by-1 or 2-by-2 in an upper (quasi) triangular matrix pair
+<B>(<I>A</I>, <I>B</I>)</B> by an orthogonal/unitary equivalence transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGSY2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CTGSY2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves the generalized Sylvester equation (unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRTI2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CTRTI2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of a triangular matrix
+(unblocked algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">XERBLA<A NAME="21972"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Error handling routine called by LAPACK routines 
+if an input parameter has an invalid value.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6241"
+ HREF="node145.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6235"
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6231"
+ HREF="node143.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6237"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6239"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6242"
+ HREF="node145.html">Quick Reference Guide to</A>
+<B> Up:</B> <A NAME="tex2html6236"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+<B> Previous:</B> <A NAME="tex2html6232"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+ &nbsp <B>  <A NAME="tex2html6238"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6240"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,111 @@
+#!/usr/bin/make -f
+
+PYVERS=$(shell pyversions -vr debian/control)
+PYDEF=$(shell pyversions -dv)
+PYLIBPATH := $(shell python -c "from distutils.command.build import build ; from distutils.core import Distribution ; b = build(Distribution()) ; b.finalize_options() ; print b.build_platlib")
+
+unexport LDFLAGS
+export BLAS=/usr/lib/libblas/
+export LAPACK=/usr/lib/lapack/
+export ATLAS=/usr/lib/atlas-base/atlas/
+
+%:
+	dh $@;
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf `find -name build -type d`
+	rm -rf `find . -name "*.pyc" -type f`
+	rm -rf `find . -name "*.pyo" -type f`
+	rm -rf debian/tmp2
+
+override_dh_installman:
+	dh_installman numpy/f2py/f2py.1
+	# link manpage for versioned and dbg incarnations of f2py
+	for v in $(PYVERS); do \
+		dh_link /usr/share/man/man1/f2py.1.gz /usr/share/man/man1/f2py$$v.1.gz; \
+		dh_link -ppython-numpy-dbg /usr/share/man/man1/f2py.1.gz /usr/share/man/man1/f2py$$v-dbg.1.gz; \
+	done
+	dh_link -ppython-numpy-dbg /usr/share/man/man1/f2py.1.gz /usr/share/man/man1/f2py-dbg.1.gz;
+
+override_dh_install:
+	# add shebang information to f2py script
+	for v in $(PYVERS); do \
+		sed -i "1s,#!.*python[^ ]*\(.*\),#!/usr/bin/python$$v," debian/tmp/usr/bin/f2py$$v; \
+		cp -a debian/tmp/usr/bin/f2py$$v debian/tmp/usr/bin/f2py$$v-dbg ; \
+		sed -i "1s,#!.*python[^ ]*\(.*\),#!/usr/bin/python$$v-dbg," debian/tmp/usr/bin/f2py$$v-dbg; \
+	done
+	# install unversioned f2py script
+	dh_link usr/bin/f2py$(PYDEF) usr/bin/f2py
+	dh_link -ppython-numpy-dbg usr/bin/f2py$(PYDEF)-dbg usr/bin/f2py-dbg
+
+	# moving those scripts away until after pysupport has run, to not
+	# generate depends on pythonx.y
+	mkdir debian/tmp2
+	mv debian/tmp/usr/bin/* debian/tmp2
+
+	dh_install
+
+	# remove files installed from .install (that's due to the dir listed there)
+	find $(CURDIR)/debian/python-numpy/ -name "*_d.so" -delete
+
+	# create symlinks for .h files
+	for i in $(PYVERS); do \
+	[ -d $(CURDIR)/debian/python-numpy/usr/include/python$$i ] || \
+		mkdir -p $(CURDIR)/debian/python-numpy/usr/include/python$$i; \
+		dh_link usr/lib/pymodules/python$$i/numpy/core/include/numpy usr/include/python$$i/numpy; \
+	done
+	for i in $(PYVERS); do \
+	[ -d $(CURDIR)/debian/python-numpy/usr/include/python$${i}_d ] || \
+		mkdir -p $(CURDIR)/debian/python-numpy/usr/include/python$${i}_d; \
+		dh_link usr/lib/pymodules/python$$i/numpy/core/include/numpy usr/include/python$${i}_d/numpy; \
+	done
+
+	# share -dbg and normal package doc dirs
+	rm -rf debian/python-numpy-dbg/usr/share/doc/python-numpy-dbg
+	dh_link usr/share/doc/python-numpy usr/share/doc/python-numpy-dbg
+
+	# remove extra license in doc
+	rm -f debian/python-numpy-doc/usr/share/doc/python-numpy-doc/html/_sources/license.txt
+
+	# use system-wide jquery
+	rm -f debian/python-numpy-doc/usr/share/doc/python-numpy-doc/html/_static/jquery.js
+	dh_link -ppython-numpy-doc /usr/share/javascript/jquery/jquery.js /usr/share/doc/python-numpy-doc/html/_static/jquery.js
+
+	# create the pydist file
+	mkdir -p debian/python-numpy/usr/share/python/dist/
+	echo "numpy python-numpy (>= 1:1.4.1), python-numpy (<< 1:1.5)" > debian/python-numpy/usr/share/python/dist/python-numpy
+
+override_dh_compress:
+	dh_compress -X.js
+
+override_dh_strip:
+ifeq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
+	dh_strip -ppython-numpy --dbg-package=python-numpy-dbg
+endif
+
+
+override_dh_pysupport:
+	dh_pysupport
+
+	# copy back f2py* bin, in their ultimate location
+	mv debian/tmp2/f2py?.? debian/python-numpy/usr/bin/
+	mkdir -p debian/python-numpy-dbg/usr/bin/
+	mv debian/tmp2/f2py?.?-dbg debian/python-numpy-dbg/usr/bin/
+
+override_dh_shlibdeps:
+	dh_shlibdeps -X lapack_lite -X dotblas
+
+build: build-arch build-indep ;
+
+build-arch:
+	dh build
+
+
+build-indep: 
+	# build doc only for default python version
+	(export MPLCONFIGDIR=. ; make -C doc html PYTHONPATH=../$(PYLIBPATH))
+	rst2html numpy/f2py/docs/usersguide/index.txt > numpy/f2py/docs/usersguide/index.html
+
+update_intersphinx_mapping:
+	wget http://docs.python.org/dev/objects.inv -O debian/python.org_objects.inv

@@ -1,0 +1,113 @@
+Index: a/src/gcc/testsuite/gcc.target/i386/pr46865-1.c
+===================================================================
+--- a/src/gcc/testsuite/gcc.target/i386/pr46865-1.c	(revision 0)
++++ b/src/gcc/testsuite/gcc.target/i386/pr46865-1.c	(revision 168877)
+@@ -0,0 +1,31 @@
++/* PR rtl-optimization/46865 */
++/* { dg-do compile } */
++/* { dg-options "-O2" } */
++
++extern unsigned long f;
++
++#define m1(f)							\
++  if (f & 1)							\
++    asm volatile ("nop /* asmnop */\n");			\
++  else								\
++    asm volatile ("nop /* asmnop */\n");
++
++#define m2(f)							\
++  if (f & 1)							\
++    asm volatile ("nop /* asmnop */\n" : : "i" (6) : "cx");	\
++  else								\
++    asm volatile ("nop /* asmnop */\n" : : "i" (6) : "cx");
++
++void
++foo (void)
++{
++  m1 (f);
++}
++
++void
++bar (void)
++{
++  m2 (f);
++}
++
++/* { dg-final { scan-assembler-times "asmnop" 2 } } */
+Index: a/src/gcc/testsuite/gcc.target/i386/pr46865-2.c
+===================================================================
+--- a/src/gcc/testsuite/gcc.target/i386/pr46865-2.c	(revision 0)
++++ b/src/gcc/testsuite/gcc.target/i386/pr46865-2.c	(revision 168877)
+@@ -0,0 +1,32 @@
++/* PR rtl-optimization/46865 */
++/* { dg-do compile } */
++/* { dg-options "-O2 -save-temps" } */
++
++extern unsigned long f;
++
++#define m1(f)							\
++  if (f & 1)							\
++    asm volatile ("nop /* asmnop */\n");			\
++  else								\
++    asm volatile ("nop /* asmnop */\n");
++
++#define m2(f)							\
++  if (f & 1)							\
++    asm volatile ("nop /* asmnop */\n" : : "i" (6) : "cx");	\
++  else								\
++    asm volatile ("nop /* asmnop */\n" : : "i" (6) : "cx");
++
++void
++foo (void)
++{
++  m1 (f);
++}
++
++void
++bar (void)
++{
++  m2 (f);
++}
++
++/* { dg-final { scan-assembler-times "asmnop" 2 } } */
++/* { dg-final { cleanup-saved-temps } } */
+Index: a/src/gcc/jump.c
+===================================================================
+--- a/src/gcc/jump.c	(revision 168876)
++++ b/src/gcc/jump.c	(revision 168877)
+@@ -1670,7 +1670,13 @@
+ 
+ 	case 'i':
+ 	  if (XINT (x, i) != XINT (y, i))
+-	    return 0;
++	    {
++	      if (((code == ASM_OPERANDS && i == 5)
++		   || (code == ASM_INPUT && i == 1))
++		  && locator_eq (XINT (x, i), XINT (y, i)))
++		break;
++	      return 0;
++	    }
+ 	  break;
+ 
+ 	case 't':
+Index: a/src/gcc/rtl.c
+===================================================================
+--- a/src/gcc/rtl.c	(revision 168876)
++++ b/src/gcc/rtl.c	(revision 168877)
+@@ -405,7 +405,15 @@
+ 	case 'n':
+ 	case 'i':
+ 	  if (XINT (x, i) != XINT (y, i))
+-	    return 0;
++	    {
++#ifndef GENERATOR_FILE
++	      if (((code == ASM_OPERANDS && i == 5)
++		   || (code == ASM_INPUT && i == 1))
++		  && locator_eq (XINT (x, i), XINT (y, i)))
++		break;
++#endif
++	      return 0;
++	    }
+ 	  break;
+ 
+ 	case 'V':

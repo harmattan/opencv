@@ -1,0 +1,19 @@
+Index: atlas-3.8.3/CONFIG/include/atlconf.h
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/include/atlconf.h	2010-04-09 10:26:06.000000000 +0200
++++ atlas-3.8.3/CONFIG/include/atlconf.h	2010-04-09 11:08:21.000000000 +0200
+@@ -38,8 +38,13 @@
+    ( (mach_) >= IA64Itan && (mach_) <= IA64Itan2 )
+ #define MachIsUS(mach_) \
+    ( (mach_) >= SunUSI && (mach_) <= SunUSX )
++#ifdef __mips__
+ #define MachIsMIPS(mach_) \
+-   ( (mach_) >= MIPSR1xK && (mach_) <= MIPSICE9 )
++   ( ((mach_) >= MIPSR1xK && (mach_) <= MIPSICE9) || __mips__ )
++#else
++#define MachIsMIPS(mach_) \
++   ( ((mach_) >= MIPSR1xK && (mach_) <= MIPSICE9) )
++#endif
+ #define MachIsPPC(mach_) \
+    ( (mach_) >= PPCG4 && (mach_) <= PPCG5 )
+ #ifdef __s390__

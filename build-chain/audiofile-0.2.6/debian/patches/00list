@@ -1,0 +1,17 @@
+10_update_docs
+10_update_libtool
+10_export_vfs
+10_pack_real_char3
+10_incorrect_wav_size
+10_au_length_unspecified
+10_support_nonstandard_aiffc
+10_sfinfo_no_options
+10_sfconvert_add_nist_support
+10_warning_fixes
+10_m4_quoting_fix
+10_include_audiofile_in_af_vfs
+10_pkgconfig_privlibs
+10_float_size_calculation_fix
+20_exports_vpath_fix
+21_exports_vpath_fixup
+22_CVE-2008-5824

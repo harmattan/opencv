@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Standard Error Analysis</TITLE>
+<META NAME="description" CONTENT="Standard Error Analysis">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node79.html">
+<LINK REL="previous" HREF="node77.html">
+<LINK REL="up" HREF="node77.html">
+<LINK REL="next" HREF="node79.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5287"
+ HREF="node79.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5281"
+ HREF="node77.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5275"
+ HREF="node77.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5283"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5285"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5288"
+ HREF="node79.html">Improved Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5282"
+ HREF="node77.html">Further Details: How Error</A>
+<B> Previous:</B> <A NAME="tex2html5276"
+ HREF="node77.html">Further Details: How Error</A>
+ &nbsp <B>  <A NAME="tex2html5284"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5286"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03431000000000000000"></A><A NAME="secbackwarderror"></A>
+<BR>
+Standard Error Analysis
+</H2>
+
+<P>
+<A NAME="10315"></A>
+We illustrate standard error analysis with the simple example of
+evaluating the scalar function <B><I>y</I>=<I>f</I>(<I>z</I>)</B>. Let the output of the
+subroutine which implements <B><I>f</I>(<I>z</I>)</B> be denoted <IMG
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img364.gif"
+ ALT="${\rm alg}(z)$">;
+this includes
+the effects of roundoff. If 
+<!-- MATH
+ ${\rm alg}(z) = f(z+\delta)$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img365.gif"
+ ALT="${\rm alg}(z) = f(z+\delta)$">
+where <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+is small,
+then we say <IMG
+ WIDTH="27" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img367.gif"
+ ALT="${\rm alg}$">
+is a <B>backward stable</B>
+<A NAME="10317"></A>
+<A NAME="10318"></A>
+algorithm for <B><I>f</I></B>,
+or that the <B>backward error</B> <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+is small.
+<A NAME="10320"></A>
+<A NAME="10321"></A>
+In other words, <IMG
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img364.gif"
+ ALT="${\rm alg}(z)$">
+is the
+exact value of <B><I>f</I></B> at a slightly perturbed input <IMG
+ WIDTH="43" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img368.gif"
+ ALT="$z+\delta$">.<A NAME="tex2html2014"
+ HREF="footnode.html#foot10322"><SUP>4.5</SUP></A>
+<P>
+Suppose now that <B><I>f</I></B> is a smooth function, so that
+we may approximate it near <B><I>z</I></B> by a straight line:
+
+<!-- MATH
+ $f(z+\delta) \approx f(z) + f'(z) \cdot \delta$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img371.gif"
+ ALT="$f(z+\delta) \approx f(z) + f'(z) \cdot \delta$">.
+Then we have the simple error estimate
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+{\rm alg}(z)-f(z) = f(z+\delta) - f(z) \approx f'(z) \cdot \delta .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="323" HEIGHT="31" BORDER="0"
+ SRC="img372.gif"
+ ALT="\begin{displaymath}
+{\rm alg}(z)-f(z) = f(z+\delta) - f(z) \approx f'(z) \cdot \delta .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Thus, if <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+is small, and the derivative <B><I>f</I>'(<I>z</I>)</B> is
+moderate, the error 
+<!-- MATH
+ ${\rm alg}(z)-f(z)$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img373.gif"
+ ALT="${\rm alg}(z)-f(z)$">
+will be small<A NAME="tex2html2015"
+ HREF="footnode.html#foot10323"><SUP>4.6</SUP></A>.
+This is often written
+in the similar form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left| \frac{{\rm alg}(z)-f(z)}{f(z)} \right|
+\approx
+\left| \frac{f'(z) \cdot z}{f(z)} \right| \cdot
+\left| \frac{\delta}{z} \right| \equiv \kappa (f,z)
+\cdot \left| \frac{\delta}{z} \right|
+.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="360" HEIGHT="48" BORDER="0"
+ SRC="img374.gif"
+ ALT="\begin{displaymath}
+\left\vert \frac{{\rm alg}(z)-f(z)}{f(z)} \right\vert
+\appro...
+...iv \kappa (f,z)
+\cdot \left\vert \frac{\delta}{z} \right\vert
+.\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+This approximately bounds the <B>relative error</B>
+<A NAME="10333"></A><A NAME="10334"></A>
+
+<!-- MATH
+ $\left| \frac{{\rm alg}(z)-f(z)}{f(z)} \right|$
+ -->
+<IMG
+ WIDTH="90" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img375.gif"
+ ALT="$\left\vert \frac{{\rm alg}(z)-f(z)}{f(z)} \right\vert$">
+by the product of
+the <B>condition number of</B>
+<B><I>f</I></B> <B>at</B> <B><I>z</I></B>, <IMG
+ WIDTH="54" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img376.gif"
+ ALT="$\kappa (f,z)$">,
+and the
+<B>relative backward error</B> 
+<!-- MATH
+ $|\frac{\delta}{z}|$
+ -->
+<IMG
+ WIDTH="25" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img377.gif"
+ ALT="$\vert\frac{\delta}{z}\vert$">.
+<A NAME="10342"></A>
+<A NAME="10343"></A>
+Thus we get an error bound by multiplying a
+condition<A NAME="10344"></A> number and
+a backward error (or bounds for these quantities). We call a problem
+<B>ill-conditioned</B><A NAME="10346"></A> if its condition number is large,
+and <B>ill-posed</B><A NAME="10348"></A>
+if its condition number is infinite (or does not exist)<A NAME="tex2html2016"
+ HREF="footnode.html#foot10349"><SUP>4.7</SUP></A>.
+
+<P>
+If <B><I>f</I></B> and <B><I>z</I></B> are vector quantities, then <B><I>f</I>'(<I>z</I>)</B> is a matrix
+(the Jacobian). So instead of using absolute values as before,
+we now measure <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+by a vector norm <IMG
+ WIDTH="30" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img378.gif"
+ ALT="$\Vert \delta \Vert$">
+and <B><I>f</I>'(<I>z</I>)</B>
+by a matrix norm <B>|f'(<I>z</I>)|</B>. The conventional (and coarsest) error analysis
+uses a norm such as the infinity norm. We therefore call
+this <B>normwise backward stability</B>.
+<A NAME="10351"></A>
+<A NAME="10352"></A>
+For example, a normwise stable
+method for solving a system of linear equations <B><I>Ax</I>=<I>b</I></B> will
+produce a solution <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+satisfying 
+<!-- MATH
+ $(A+E)\hat{x}=b+f$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img379.gif"
+ ALT="$(A+E)\hat{x}=b+f$">
+where
+
+<!-- MATH
+ $\|E\|_{\infty}/ \|A\|_{\infty}$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img380.gif"
+ ALT="$\Vert E\Vert _{\infty}/ \Vert A\Vert _{\infty}$">
+and
+
+<!-- MATH
+ $\|f\|_{\infty}/ \|b\|_{\infty}$
+ -->
+<IMG
+ WIDTH="95" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img381.gif"
+ ALT="$\Vert f\Vert _{\infty}/ \Vert b\Vert _{\infty}$">
+are both small (close to machine epsilon).
+In this case the condition number is
+
+<!-- MATH
+ $\kappa_{\infty}(A) = \|A\|_{\infty}\cdot \|A^{-1}\|_{\infty}$
+ -->
+<IMG
+ WIDTH="199" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img382.gif"
+ ALT="$\kappa_{\infty}(A) = \Vert A\Vert _{\infty}\cdot \Vert A^{-1}\Vert _{\infty}$">
+(see section <A HREF="node80.html#secAx_b">4.4</A> below).
+<A NAME="10355"></A>
+
+<P>
+Almost all of the algorithms in LAPACK (as well as LINPACK and EISPACK)
+are stable in the sense just described<A NAME="tex2html2017"
+ HREF="footnode.html#foot13140"><SUP>4.8</SUP></A>:
+when applied to a matrix <B><I>A</I></B>
+they produce the exact result for a slightly different matrix <B><I>A</I>+<I>E</I></B>,
+where 
+<!-- MATH
+ $\|E\|_{\infty}/ \|A\|_{\infty}$
+ -->
+<IMG
+ WIDTH="104" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img380.gif"
+ ALT="$\Vert E\Vert _{\infty}/ \Vert A\Vert _{\infty}$">
+is of order <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">.
+In a certain sense, a user can hardly ask for more, provided the
+data is at all uncertain.
+
+<P>
+It is often possible to compute the norm <B>|E|</B> of the actual backward
+error by computing a residual <B><I>r</I></B>, such as <B><I>r</I>=<I>Ax</I>-<I>b</I></B> or 
+<!-- MATH
+ $r=Ax - \lambda x$
+ -->
+<IMG
+ WIDTH="100" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img386.gif"
+ ALT="$r=Ax - \lambda x$">,
+and suitably scaling its norm <B>|r|</B>. The expert driver routines for
+solving <B><I>Ax</I>=<I>b</I></B> do this, for example.
+For details see [<A
+ HREF="node151.html#GVL2">55</A>,<A
+ HREF="node151.html#higham96">67</A>,<A
+ HREF="node151.html#parlett">85</A>,<A
+ HREF="node151.html#stewartsun90">95</A>].
+
+<P>
+Condition numbers may be expensive to compute
+exactly.
+For example, it costs about 
+<!-- MATH
+ $\frac{2}{3} n^3$
+ -->
+<IMG
+ WIDTH="33" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img387.gif"
+ ALT="$\frac{2}{3} n^3$">
+operations to solve <B><I>Ax</I>=<I>b</I></B>
+for a general matrix <B><I>A</I></B>, and computing 
+<!-- MATH
+ $\kappa_{\infty}(A)$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img388.gif"
+ ALT="$\kappa_{\infty}(A)$">
+<EM>exactly</EM> costs
+an additional 
+<!-- MATH
+ $\frac{4}{3} n^3$
+ -->
+<IMG
+ WIDTH="33" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img389.gif"
+ ALT="$\frac{4}{3} n^3$">
+operations, or twice as much.
+But 
+<!-- MATH
+ $\kappa_{\infty}(A)$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img388.gif"
+ ALT="$\kappa_{\infty}(A)$">
+can be <EM>estimated</EM> in only <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B>
+operations beyond those 
+<!-- MATH
+ $\frac{2}{3} n^3$
+ -->
+<IMG
+ WIDTH="33" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img387.gif"
+ ALT="$\frac{2}{3} n^3$">
+necessary for solution,
+a tiny extra cost.  Therefore, most of LAPACK's condition numbers
+and error bounds are based on estimated condition
+numbers<A NAME="10373"></A>, using the method
+of&nbsp;[<A
+ HREF="node151.html#hager84">59</A>,<A
+ HREF="node151.html#higham1">62</A>,<A
+ HREF="node151.html#nick2">63</A>].
+The price one pays for using an estimated rather than an
+exact condition number is occasional
+(but very rare) underestimates of the true error; years of experience
+attest to the reliability of our estimators, although examples
+where they badly underestimate the error can be constructed [<A
+ HREF="node151.html#higham90">65</A>].
+Note that once a condition estimate is large enough,
+(usually 
+<!-- MATH
+ $O( 1/ \epsilon )$
+ -->
+<IMG
+ WIDTH="56" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img390.gif"
+ ALT="$O( 1/ \epsilon )$">), it confirms that the computed
+answer may be completely inaccurate, and so the exact magnitude
+of the condition estimate conveys little information.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5287"
+ HREF="node79.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5281"
+ HREF="node77.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5275"
+ HREF="node77.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5283"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5285"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5288"
+ HREF="node79.html">Improved Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5282"
+ HREF="node77.html">Further Details: How Error</A>
+<B> Previous:</B> <A NAME="tex2html5276"
+ HREF="node77.html">Further Details: How Error</A>
+ &nbsp <B>  <A NAME="tex2html5284"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5286"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

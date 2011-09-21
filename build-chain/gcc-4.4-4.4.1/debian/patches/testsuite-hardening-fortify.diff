@@ -1,0 +1,246 @@
+#! /bin/sh -e
+
+# All lines beginning with `# DPATCH:' are a description of the patch.
+# DP: Description: check more functions to avoid -D_FORTIFY_SOURCE=2 warnings.
+# DP: Author: Kees Cook <kees@ubuntu.com>
+# DP: Ubuntu: https://bugs.launchpad.net/bugs/344502
+
+dir=
+if [ $# -eq 3 -a "$2" = '-d' ]; then
+    pdir="-d $3"
+    dir="$3/"
+elif [ $# -ne 1 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+case "$1" in
+    -patch)
+        patch $pdir -f --no-backup-if-mismatch -p1 < $0
+        #cd ${dir}gcc && autoconf
+        ;;
+    -unpatch)
+        patch $pdir -f --no-backup-if-mismatch -R -p1 < $0
+        #rm ${dir}gcc/configure
+        ;;
+    *)
+        echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+        exit 1
+esac
+exit 0
+
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/basic_filebuf/setbuf/char/12875-2.cc b/src/libstdc++-v3/testsuite/27_io/basic_filebuf/setbuf/char/12875-2.cc
+--- a/src/libstdc++-v3/testsuite/27_io/basic_filebuf/setbuf/char/12875-2.cc	2007-03-14 04:37:55.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/basic_filebuf/setbuf/char/12875-2.cc	2009-03-20 00:46:37.000000000 -0700
+@@ -45,7 +45,7 @@ void test02()
+   
+   FILE* in = fopen(name, "r");
+   char str[256];
+-  fgets(str, 256, in);
++  VERIFY( fgets(str, 256, in) != NULL );
+   VERIFY( !strcmp(str, "Hello, world") );
+   fclose(in);
+ }
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/basic_filebuf/underflow/wchar_t/11544-2.cc b/src/libstdc++-v3/testsuite/27_io/basic_filebuf/underflow/wchar_t/11544-2.cc
+--- a/src/libstdc++-v3/testsuite/27_io/basic_filebuf/underflow/wchar_t/11544-2.cc	2005-08-16 19:28:44.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/basic_filebuf/underflow/wchar_t/11544-2.cc	2009-03-20 00:48:47.000000000 -0700
+@@ -162,7 +162,7 @@ void test02()
+   const char* name = "tmp_11544-2";
+   
+   FILE* f = fopen(name, "w");
+-  fwrite("aaaab", 1, 5, f);
++  VERIFY( fwrite("aaaab", 1, 5, f) == 5 );
+   fclose(f);
+   
+   wifstream in;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/ios_base/sync_with_stdio/1.cc b/src/libstdc++-v3/testsuite/27_io/ios_base/sync_with_stdio/1.cc
+--- a/src/libstdc++-v3/testsuite/27_io/ios_base/sync_with_stdio/1.cc	2007-02-23 14:12:49.000000000 -0800
++++ b/src/libstdc++-v3/testsuite/27_io/ios_base/sync_with_stdio/1.cc	2009-03-20 00:49:49.000000000 -0700
+@@ -42,7 +42,7 @@ void
+ test01()
+ {
+   std::ios_base::sync_with_stdio();
+-  std::freopen("ios_base_members_static-1.txt", "w", stderr);
++  VERIFY( std::freopen("ios_base_members_static-1.txt", "w", stderr) != NULL );
+  
+   for (int i = 0; i < 2; i++)
+     {
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-1.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-1.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-1.cc	2007-03-14 04:37:55.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-1.cc	2009-03-20 00:43:07.000000000 -0700
+@@ -27,7 +27,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   char c1;
+   char c2;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-2.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-2.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-2.cc	2007-03-14 04:37:55.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-2.cc	2009-03-20 00:43:19.000000000 -0700
+@@ -25,7 +25,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   char c1;
+   int c2;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-3.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-3.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-3.cc	2007-03-14 04:37:55.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-3.cc	2009-03-20 00:43:34.000000000 -0700
+@@ -24,7 +24,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   char buf[2];
+   VERIFY( std::cin.rdbuf()->sgetn(buf, 2) == 2 );
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-4.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-4.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-4.cc	2007-03-14 04:37:55.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-4.cc	2009-03-20 00:43:45.000000000 -0700
+@@ -25,7 +25,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   char buf[2];
+   VERIFY( std::cin.rdbuf()->sgetn(buf, 2) == 2 );
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-5.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-5.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/12048-5.cc	2007-03-14 04:37:55.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/12048-5.cc	2009-03-20 00:44:05.000000000 -0700
+@@ -34,7 +34,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   char c1;
+   int c2;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/9661-1.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/9661-1.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/9661-1.cc	2007-03-02 10:11:15.000000000 -0800
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/9661-1.cc	2009-03-20 00:51:47.000000000 -0700
+@@ -68,7 +68,7 @@ bool test01()
+       exit(0);
+     }
+ 
+-  freopen(name, "r", stdin);
++  VERIFY( freopen(name, "r", stdin) != NULL );
+   s1.wait();
+ 
+   int c1 = fgetc(stdin);
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/char/9.cc b/src/libstdc++-v3/testsuite/27_io/objects/char/9.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/char/9.cc	2007-08-17 10:24:22.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/char/9.cc	2009-03-20 00:56:29.000000000 -0700
+@@ -35,7 +35,7 @@ void test09()
+   fputs("abc\n", fout);
+   fclose(fout);
+ 
+-  freopen(name, "r", stdin);
++  VERIFY( freopen(name, "r", stdin) != NULL );
+  
+   // basic_streambuf::showmanyc returns 0.
+   VERIFY( 0 == std::cin.rdbuf()->in_avail() );
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-1.cc b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-1.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-1.cc	2005-08-16 19:28:44.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-1.cc	2009-03-20 00:44:32.000000000 -0700
+@@ -25,7 +25,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   wchar_t c1;
+   wchar_t c2;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-2.cc b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-2.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-2.cc	2005-08-16 19:28:44.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-2.cc	2009-03-20 00:44:44.000000000 -0700
+@@ -24,7 +24,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   wchar_t c1;
+   std::wint_t c2;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-3.cc b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-3.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-3.cc	2005-08-16 19:28:44.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-3.cc	2009-03-20 00:44:52.000000000 -0700
+@@ -26,7 +26,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   wchar_t buf[2];
+   VERIFY( std::wcin.rdbuf()->sgetn(buf, 2) == 2 );
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-4.cc b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-4.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-4.cc	2005-08-16 19:28:44.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-4.cc	2009-03-20 00:45:01.000000000 -0700
+@@ -24,7 +24,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   wchar_t buf[2];
+   VERIFY( std::wcin.rdbuf()->sgetn(buf, 2) == 2 );
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-5.cc b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-5.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-5.cc	2005-08-16 19:28:44.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/12048-5.cc	2009-03-20 00:45:11.000000000 -0700
+@@ -30,7 +30,7 @@
+ void
+ test01()
+ {
+-  std::freopen("cin_unget-1.txt", "r", stdin);
++  VERIFY( std::freopen("cin_unget-1.txt", "r", stdin) != NULL );
+ 
+   wchar_t c1;
+   std::wint_t c2;
+diff -uNrp a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/9661-1.cc b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/9661-1.cc
+--- a/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/9661-1.cc	2007-03-02 10:11:15.000000000 -0800
++++ b/src/libstdc++-v3/testsuite/27_io/objects/wchar_t/9661-1.cc	2009-03-20 00:52:06.000000000 -0700
+@@ -67,7 +67,7 @@ bool test01()
+       exit(0);
+     }
+ 
+-  freopen(name, "r", stdin);
++  VERIFY( freopen(name, "r", stdin) != NULL );
+   s1.wait();
+ 
+   wint_t c1 = fgetwc(stdin);
+diff -uNrp a/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/char/1.cc b/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/char/1.cc
+--- a/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/char/1.cc	2007-05-10 17:55:17.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/char/1.cc	2009-03-20 00:50:41.000000000 -0700
+@@ -34,7 +34,7 @@ void test01()
+   const char* name = "stdiobuf-1.txt";
+ 
+   FILE* fout = fopen(name, "w");
+-  fwrite(c_lit, 1, size, fout);
++  VERIFY( fwrite(c_lit, 1, size, fout) == size );
+   fclose(fout);
+ 
+   FILE* fin = fopen(name, "r");
+diff -uNrp a/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/wchar_t/1.cc b/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/wchar_t/1.cc
+--- a/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/wchar_t/1.cc	2007-05-10 17:55:17.000000000 -0700
++++ b/src/libstdc++-v3/testsuite/ext/stdio_sync_filebuf/wchar_t/1.cc	2009-03-20 00:50:58.000000000 -0700
+@@ -34,7 +34,7 @@ void test01()
+   const char* name = "stdiobuf-1.txt";
+ 
+   FILE* fout = fopen(name, "w");
+-  fwrite(c_lit, 1, size, fout);
++  VERIFY( fwrite(c_lit, 1, size, fout) == size );
+   fclose(fout);
+ 
+   FILE* fin = fopen(name, "r");

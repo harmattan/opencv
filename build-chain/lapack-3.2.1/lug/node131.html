@@ -1,0 +1,616 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Installing ILAENV</TITLE>
+<META NAME="description" CONTENT="Installing ILAENV">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node130.html">
+<LINK REL="up" HREF="node129.html">
+<LINK REL="next" HREF="node132.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6055"
+ HREF="node132.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6049"
+ HREF="node129.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6045"
+ HREF="node130.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6051"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6053"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6056"
+ HREF="node132.html">Troubleshooting</A>
+<B> Up:</B> <A NAME="tex2html6050"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<B> Previous:</B> <A NAME="tex2html6046"
+ HREF="node130.html">Points to Note</A>
+ &nbsp <B>  <A NAME="tex2html6052"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6054"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03620000000000000000"></A><A NAME="secilaenv"></A>
+<BR>
+Installing ILAENV
+</H1>
+
+<P>
+Machine-dependent<A NAME="20685"></A><A NAME="20686"></A>
+parameters<A NAME="20687"></A> such as the block size are set
+by calls to an inquiry function which may be set with different
+values on each machine.
+The declaration of the environment inquiry function is
+<PRE>
+INTEGER FUNCTION ILAENV( ISPEC, NAME, OPTS, N1, N2, N3, N4 )
+</PRE>
+where ISPEC, N1, N2, N3, and N4 are integer variables and
+NAME and OPTS are CHARACTER*(*).  NAME specifies the subroutine name:
+OPTS is a character string of options to the subroutine; and N1-N4 are
+the problem dimensions.
+ISPEC specifies the parameter to be returned; the following values are
+currently used in LAPACK:
+<PRE><TT>
+ISPEC = 1:		  NB, optimal block size 
+<BR>		 = 		 2:		  NBMIN, minimum block size for the block routine to be used 
+<BR>		 = 		 3:		  NX, crossover point (in a block routine, for N <B>&lt;</B> NX, an unblocked 
+<BR>
+routine should be used) 
+<BR>		 = 		 4:		  NS, number of shifts 
+<BR> = 		 6:		  NXSVD is the threshold point for which the <B><I>QR</I></B> 
+<BR>
+factorization is performed prior to reduction to 
+<BR>
+bidiagonal form.  If M <B>&gt;</B> NXSVD <IMG
+ WIDTH="9" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img946.gif"
+ ALT="$\cdot$">
+N, then a 
+<BR>		 		 		  <B><I>QR</I></B> factorization is performed. 
+<BR>
+<P>
+		 = 		 8:		  MAXB, crossover point for block multishift <B><I>QR</I></B> 
+<BR>		 = 		 9:		  SMLSIZ, maximum size of the subproblems at the 
+<BR>
+bottom of the computation tree in the divide-and-conquer 
+<BR>
+algorithm 
+<BR>		 = 		 10:		 NAN, IEEE NaN arithmetic can be trusted not to trap 
+<BR>		 = 		 11:		 INFINITY, infinity arithmetic can be trusted not to trap
+</TT></PRE>
+
+<P>
+The three block size parameters, NB, NBMIN, and NX, are used in many
+different<A NAME="20692"></A>
+subroutines (see Table&nbsp;<A HREF="node131.html#nbnx.tab">6.1</A>).
+NS and MAXB are used<A NAME="20694"></A>  in the 
+block multishift <B><I>QR</I></B> algorithm, xHSEQR.
+<A NAME="20695"></A><A NAME="20696"></A><A NAME="20697"></A><A NAME="20698"></A>
+NXSVD is used<A NAME="20699"></A> in the driver 
+routines xGELSS and xGESVD.
+<A NAME="20700"></A><A NAME="20701"></A><A NAME="20702"></A><A NAME="20703"></A>
+<A NAME="20704"></A><A NAME="20705"></A><A NAME="20706"></A><A NAME="20707"></A>
+SMLSIZ is used<A NAME="20708"></A> in the
+divide and conquer routines xBDSDC, xGELSD, xGESDD, and xSTEDC.
+<A NAME="20709"></A><A NAME="20710"></A><A NAME="20711"></A><A NAME="20712"></A>
+<A NAME="20713"></A><A NAME="20714"></A><A NAME="20715"></A><A NAME="20716"></A>
+<A NAME="20717"></A><A NAME="20718"></A><A NAME="20719"></A><A NAME="20720"></A>
+<A NAME="20721"></A><A NAME="20722"></A><A NAME="20723"></A><A NAME="20724"></A>
+The parameters NAN and INFINITY are used in the driver routines
+xSTEVR and xSYEVR/xCHEEVR to check for IEEE-754 compliance.  If
+compliance is detected, then these driver routines call xSTEGR.
+Otherwise, a slower algorithm is selected. 
+<A NAME="20725"></A><A NAME="20726"></A>
+<A NAME="20727"></A><A NAME="20728"></A><A NAME="20729"></A><A NAME="20730"></A>
+<A NAME="20731"></A><A NAME="20732"></A><A NAME="20733"></A><A NAME="20734"></A>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER"><A NAME="20794"></A>
+<TABLE>
+<CAPTION><STRONG>Table 6.1:</STRONG>
+Use of the block parameters NB, NBMIN, and NX in LAPACK</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"> 
+ 
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="CENTER">NB</TD>
+<TD ALIGN="CENTER">NBMIN</TD>
+<TD ALIGN="CENTER">NX</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBTRF<A NAME="20743"></A></TD>
+<TD ALIGN="LEFT">CGBTRF<A NAME="20744"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEBRD<A NAME="20745"></A></TD>
+<TD ALIGN="LEFT">CGEBRD<A NAME="20746"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEHRD<A NAME="20747"></A></TD>
+<TD ALIGN="LEFT">CGEHRD<A NAME="20748"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGELQF<A NAME="20749"></A></TD>
+<TD ALIGN="LEFT">CGELQF<A NAME="20750"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQLF<A NAME="20751"></A></TD>
+<TD ALIGN="LEFT">CGEQLF<A NAME="20752"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQRF<A NAME="20753"></A></TD>
+<TD ALIGN="LEFT">CGEQRF<A NAME="20754"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGERQF<A NAME="20755"></A></TD>
+<TD ALIGN="LEFT">CGERQF<A NAME="20756"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETRF<A NAME="20757"></A></TD>
+<TD ALIGN="LEFT">CGETRF<A NAME="20758"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETRI<A NAME="20759"></A></TD>
+<TD ALIGN="LEFT">CGETRI<A NAME="20760"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGLQ<A NAME="20761"></A></TD>
+<TD ALIGN="LEFT">CUNGLQ<A NAME="20762"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGQL<A NAME="20763"></A></TD>
+<TD ALIGN="LEFT">CUNGQL<A NAME="20764"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGQR<A NAME="20765"></A></TD>
+<TD ALIGN="LEFT">CUNGQR<A NAME="20766"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGRQ<A NAME="20767"></A></TD>
+<TD ALIGN="LEFT">CUNGRQ<A NAME="20768"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMLQ<A NAME="20769"></A></TD>
+<TD ALIGN="LEFT">CUNMLQ<A NAME="20770"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMQL<A NAME="20771"></A></TD>
+<TD ALIGN="LEFT">CUNMQL<A NAME="20772"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMQR<A NAME="20773"></A></TD>
+<TD ALIGN="LEFT">CUNMQR<A NAME="20774"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMRQ<A NAME="20775"></A></TD>
+<TD ALIGN="LEFT">CUNMRQ<A NAME="20776"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBTRF<A NAME="20777"></A></TD>
+<TD ALIGN="LEFT">CPBTRF<A NAME="20778"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOTRF<A NAME="20779"></A></TD>
+<TD ALIGN="LEFT">CPOTRF<A NAME="20780"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOTRI<A NAME="20781"></A></TD>
+<TD ALIGN="LEFT">CPOTRI<A NAME="20782"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTEBZ<A NAME="20783"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYGST<A NAME="20784"></A></TD>
+<TD ALIGN="LEFT">CHEGST<A NAME="20785"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTRD<A NAME="20786"></A></TD>
+<TD ALIGN="LEFT">CHETRD<A NAME="20787"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTRF<A NAME="20788"></A></TD>
+<TD ALIGN="LEFT">CHETRF<A NAME="20789"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYTRF<A NAME="20790"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRTRI<A NAME="20791"></A></TD>
+<TD ALIGN="LEFT">CTRTRI<A NAME="20792"></A></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img947.gif"
+ ALT="$\bullet$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+</TABLE>
+
+<A NAME="nbnx.tab"></A></DIV></TD></TR>
+</TABLE>
+</DIV>
+<BR>
+
+<P>
+The LAPACK testing and timing programs use a special version of ILAENV
+<A NAME="20797"></A>
+where the parameters are set via a COMMON block interface.
+This is convenient for experimenting with different values of, say,
+the block size in order to exercise different parts of the code
+and to compare the relative performance of different parameter values.
+
+<P>
+The LAPACK timing programs were designed to collect data for all of the
+routines in Table&nbsp;<A HREF="node131.html#nbnx.tab">6.1</A>.
+The range of problem sizes needed to determine the optimal block size
+or crossover point<A NAME="20799"></A> is machine-dependent, but the 
+input files
+provided with the LAPACK test and timing package can be used as a
+starting point.
+For subroutines that require a crossover point, it is best to start by
+finding the best block size<A NAME="20800"></A> with the crossover 
+point set to 0, and then
+to locate the point at which the performance of the unblocked algorithm
+is beaten by the block algorithm.
+The best crossover point<A NAME="20801"></A>
+will be somewhat smaller than the point
+where the curves for the unblocked and blocked methods cross.
+
+<P>
+For example, for SGEQRF<A NAME="20802"></A> on a single processor of a CRAY-2, 
+NB = 32 was observed to be a good block size<A NAME="20803"></A>, 
+and the performance of the block algorithm with this block size
+surpasses the unblocked algorithm for square matrices
+between <B><I>N</I> = 176</B> and <B><I>N</I> = 192</B>.
+Experiments with crossover points from 64 to 192 found that NX = 128
+was a good choice, although the results for NX from 3*NB to 5*NB
+are broadly similar.
+This means that matrices with <IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img948.gif"
+ ALT="$N \leq 128$">
+should use the unblocked
+algorithm, and for <B><I>N</I> &gt; 128</B> block updates should be used until the
+remaining submatrix has order less than 128.
+The performance of the unblocked (NB = 1) and blocked (NB = 32)
+algorithms for SGEQRF<A NAME="20804"></A> and for the blocked algorithm with a crossover
+point of 128 are compared in Figure&nbsp;<A HREF="node131.html#qrfx.fig">6.1</A>.
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="qrfx.fig"></A><A NAME="20808"></A>
+<TABLE>
+<CAPTION><STRONG>Figure 6.1:</STRONG>
+QR factorization on CRAY-2 (1 processor)</CAPTION>
+<TR><TD><IMG
+ WIDTH="447" HEIGHT="318" BORDER="0"
+ SRC="img949.gif"
+ ALT="\begin{figure}
+\centerline{\psfig{figure=qrcray.eps,height=3.0in,width=4.0in}}\end{figure}"></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+By experimenting with small values of the block size,
+it should be straightforward to choose NBMIN,
+the smallest block size that gives a performance improvement
+over the unblocked algorithm.
+Note that on some machines, the optimal block size may be 1
+(the unblocked algorithm gives the best performance);
+in this case, the choice of NBMIN is arbitrary.
+The prototype version of ILAENV<A NAME="20811"></A> sets NBMIN to 2, so that blocking
+is always done, even though this could lead to poor performance
+from a block routine if insufficient workspace is supplied
+(see chapter&nbsp;<A HREF="node132.html#troubleshooting">7</A>).
+
+<P>
+Complicating the determination of optimal parameters is the fact that
+the orthogonal factorization routines and SGEBRD<A NAME="20813"></A> accept non-square
+matrices as input. 
+The LAPACK timing program allows M and N to be varied independently.  
+We have found the optimal block size to be
+generally insensitive to the shape of the matrix,
+but the crossover point is more dependent on the matrix shape.
+For example, if <B><I>M</I> &gt;&gt; <I>N</I></B> in the <B><I>QR</I></B> factorization, block updates
+may always be faster than unblocked updates on the remaining submatrix,
+so one might set NX = NB if <IMG
+ WIDTH="71" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img950.gif"
+ ALT="$M \geq 2N$">.
+
+<P>
+Parameter values for the number of shifts, etc.
+used to tune the block multishift <B><I>QR</I></B> 
+algorithm<A NAME="20814"></A>
+can be varied from the input files to the eigenvalue timing program.
+In particular, the performance of xHSEQR is particularly sensitive to
+<A NAME="20815"></A><A NAME="20816"></A><A NAME="20817"></A><A NAME="20818"></A>
+the correct choice of block parameters.  Setting NS&nbsp;=&nbsp;2 will give
+essentially the same performance as EISPACK<A NAME="20819"></A>.
+Interested users should consult [<A
+ HREF="node151.html#lawn41">3</A>] for a description of
+the timing program input files.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6055"
+ HREF="node132.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6049"
+ HREF="node129.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6045"
+ HREF="node130.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6051"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6053"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6056"
+ HREF="node132.html">Troubleshooting</A>
+<B> Up:</B> <A NAME="tex2html6050"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<B> Previous:</B> <A NAME="tex2html6046"
+ HREF="node130.html">Points to Note</A>
+ &nbsp <B>  <A NAME="tex2html6052"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6054"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

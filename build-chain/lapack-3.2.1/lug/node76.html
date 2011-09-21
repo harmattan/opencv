@@ -1,0 +1,777 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: How to Measure Errors</TITLE>
+<META NAME="description" CONTENT="Further Details: How to Measure Errors">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node75.html">
+<LINK REL="up" HREF="node75.html">
+<LINK REL="next" HREF="node77.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5257"
+ HREF="node77.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5251"
+ HREF="node75.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5247"
+ HREF="node75.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5253"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5255"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5258"
+ HREF="node77.html">Further Details: How Error</A>
+<B> Up:</B> <A NAME="tex2html5252"
+ HREF="node75.html">How to Measure Errors</A>
+<B> Previous:</B> <A NAME="tex2html5248"
+ HREF="node75.html">How to Measure Errors</A>
+ &nbsp <B>  <A NAME="tex2html5254"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5256"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03421000000000000000"></A><A NAME="secbackgroundnormnotation"></A>
+<BR>
+Further Details:  How to Measure Errors
+</H2>
+
+<P>
+<A NAME="10147"></A><A NAME="10148"></A>
+The relative error 
+<!-- MATH
+ $| \hat{\alpha} - \alpha | / | \alpha |$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img284.gif"
+ ALT="$\vert \hat{\alpha} - \alpha \vert / \vert \alpha \vert$">
+in the approximation
+<IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img282.gif"
+ ALT="$\hat{\alpha}$">
+of the true solution <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+has a drawback: it often cannot
+be computed directly, because it depends on the unknown quantity
+<IMG
+ WIDTH="25" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img337.gif"
+ ALT="$\vert \alpha \vert$">.
+However, we can often instead estimate
+
+<!-- MATH
+ $| \hat{\alpha} - \alpha | / | \hat{\alpha} |$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img285.gif"
+ ALT="$\vert \hat{\alpha} - \alpha \vert / \vert \hat{\alpha} \vert$">,
+since <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img282.gif"
+ ALT="$\hat{\alpha}$">
+is
+known (it is the output of our algorithm). Fortunately, these two
+quantities are necessarily close together, provided either one is small,
+which is the only time they provide a useful bound anyway. For example,
+
+<!-- MATH
+ $| \hat{\alpha} - \alpha | / | \hat{\alpha} | \leq .1$
+ -->
+<IMG
+ WIDTH="124" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img338.gif"
+ ALT="$\vert \hat{\alpha} - \alpha \vert / \vert \hat{\alpha} \vert \leq .1$">
+implies
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+.9 \frac{| \hat{\alpha} - \alpha |}{| \hat{\alpha} |} \leq
+\frac{| \hat{\alpha} - \alpha |}{| {\alpha} |} \leq
+1.1 \frac{| \hat{\alpha} - \alpha |}{| \hat{\alpha} |} \; \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="267" HEIGHT="48" BORDER="0"
+ SRC="img339.gif"
+ ALT="\begin{displaymath}
+.9 \frac{\vert \hat{\alpha} - \alpha \vert}{\vert \hat{\alph...
+...\hat{\alpha} - \alpha \vert}{\vert \hat{\alpha} \vert} \; \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+so they can be used interchangeably.
+
+<P>
+Table&nbsp;<A HREF="node75.html#tabnorms">4.2</A> contains a variety of norms we will use to
+measure errors.
+These norms have the properties that
+
+<!-- MATH
+ $\|Ax\|_p \leq \|A\|_p \cdot \|x\|_p$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img340.gif"
+ ALT="$\Vert Ax\Vert _p \leq \Vert A\Vert _p \cdot \Vert x\Vert _p$">,
+and
+
+<!-- MATH
+ $\|AB\|_p \leq \|A\|_p \cdot \|B\|_p$
+ -->
+<IMG
+ WIDTH="170" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img341.gif"
+ ALT="$\Vert AB\Vert _p \leq \Vert A\Vert _p \cdot \Vert B\Vert _p$">,
+where <B><I>p</I></B> is one of
+<B>1</B>, <B>2</B>, <IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img311.gif"
+ ALT="$\infty$">,
+and <B><I>F</I></B>. These properties are useful for deriving
+error bounds.
+
+<P>
+An error bound that uses a given norm may be changed into an error bound
+that uses another norm. This is accomplished by multiplying the first
+error bound by an appropriate function of the problem dimension.
+Table&nbsp;<A HREF="node76.html#tableVectorNormFpq">4.3</A> gives the
+factors <B><I>f</I><SUB><I>pq</I></SUB>(<I>n</I>)</B> such that 
+<!-- MATH
+ $\| x \|_p \leq f_{pq}(n) \|x \|_q$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img342.gif"
+ ALT="$\Vert x \Vert _p \leq f_{pq}(n) \Vert x \Vert _q$">,
+where
+<B><I>n</I></B> is the dimension of <B><I>x</I></B>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tableVectorNormFpq"></A>
+<P>
+<DIV ALIGN="CENTER">
+Values of <B><I>f</I><SUB><I>pq</I></SUB>(<I>n</I>)</B> such that 
+<!-- MATH
+ $\| x \|_p \leq f_{pq}(n) \|x \|_q$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img342.gif"
+ ALT="$\Vert x \Vert _p \leq f_{pq}(n) \Vert x \Vert _q$">,
+where <B><I>x</I></B> is an <B><I>n</I></B>-vector
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><A NAME="10167"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 4.3:</STRONG>
+Bounding One Vector Norm in Terms of Another</CAPTION>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=3><B><I>q</I></B></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1>1</TD>
+<TD ALIGN="CENTER" COLSPAN=1>2</TD>
+<TD ALIGN="CENTER" COLSPAN=1><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img311.gif"
+ ALT="$\infty$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="29" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img343.gif"
+ ALT="$\sqrt{n}$"></TD>
+<TD ALIGN="CENTER"><B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><B><I>p</I></B></TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="29" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img343.gif"
+ ALT="$\sqrt{n}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img311.gif"
+ ALT="$\infty$"></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+Table&nbsp;<A HREF="node76.html#tableMatrixNormFpq">4.4</A> gives the
+factors <B><I>f</I><SUB><I>pq</I></SUB>(<I>m</I>,<I>n</I>)</B> such that 
+<!-- MATH
+ $\| A \|_p \leq f_{pq}(m,n) \| A \|_q$
+ -->
+<IMG
+ WIDTH="173" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img344.gif"
+ ALT="$\Vert A \Vert _p \leq f_{pq}(m,n) \Vert A \Vert _q$">,
+where
+<B><I>A</I></B> is <B><I>m</I></B>-by-<B><I>n</I></B>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tableMatrixNormFpq"></A>
+<P>
+<DIV ALIGN="CENTER">
+Values of <B><I>f</I><SUB><I>pq</I></SUB>(<I>m</I>,<I>n</I>)</B> such that 
+<!-- MATH
+ $\| A \|_p \leq f_{pq}(m,n) \| A \|_q$
+ -->
+<IMG
+ WIDTH="173" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img344.gif"
+ ALT="$\Vert A \Vert _p \leq f_{pq}(m,n) \Vert A \Vert _q$">,
+where <B><I>A</I></B> is <B><I>m</I></B>-by-<B><I>n</I></B>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><A NAME="10197"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 4.4:</STRONG>
+Bounding One Matrix Norm in Terms of Another</CAPTION>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=4><B><I>q</I></B></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER" COLSPAN=1>1</TD>
+<TD ALIGN="CENTER" COLSPAN=1>2</TD>
+<TD ALIGN="CENTER" COLSPAN=1><B><I>F</I></B></TD>
+<TD ALIGN="CENTER" COLSPAN=1><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img311.gif"
+ ALT="$\infty$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="34" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img345.gif"
+ ALT="$\sqrt{m}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="34" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img345.gif"
+ ALT="$\sqrt{m}$"></TD>
+<TD ALIGN="CENTER"><B><I>m</I></B></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><B><I>p</I></B></TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="29" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img343.gif"
+ ALT="$\sqrt{n}$"></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="34" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img345.gif"
+ ALT="$\sqrt{m}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER"><B><I>F</I></B></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="29" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img343.gif"
+ ALT="$\sqrt{n}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\sqrt{\min (m,n)}$
+ -->
+<IMG
+ WIDTH="96" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img346.gif"
+ ALT="$\sqrt{\min (m,n)}$"></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="34" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img345.gif"
+ ALT="$\sqrt{m}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img311.gif"
+ ALT="$\infty$"></TD>
+<TD ALIGN="CENTER"><B><I>n</I></B></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="29" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img343.gif"
+ ALT="$\sqrt{n}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="29" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img343.gif"
+ ALT="$\sqrt{n}$"></TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+The two-norm of <B><I>A</I></B>, <B>|A|<SUB>2</SUB></B>, is also called the <B>spectral
+norm</B> of <B><I>A</I></B>, and is equal to the <B>largest singular value</B>
+
+<!-- MATH
+ $\sigma_{\max}(A)$
+ -->
+<IMG
+ WIDTH="67" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img347.gif"
+ ALT="$\sigma_{\max}(A)$">
+of <B><I>A</I></B>.
+We shall also need to refer to the <B>smallest singular value</B>
+
+<!-- MATH
+ $\sigma_{\min}(A)$
+ -->
+<IMG
+ WIDTH="64" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img348.gif"
+ ALT="$\sigma_{\min}(A)$">
+of <B><I>A</I></B>; its value can be defined in a similar way to
+the definition of the two-norm in Table&nbsp;<A HREF="node75.html#tabnorms">4.2</A>, namely as
+
+<!-- MATH
+ $\min_{x \neq 0} \|Ax\|_2 / \|x\|_2$
+ -->
+<IMG
+ WIDTH="154" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img349.gif"
+ ALT="$\min_{x \neq 0} \Vert Ax\Vert _2 / \Vert x\Vert _2$">
+when <B><I>A</I></B>
+has at least as many rows as columns, and defined as
+
+<!-- MATH
+ $\min_{x \neq 0} \|A^Tx\|_2 / \|x\|_2$
+ -->
+<IMG
+ WIDTH="164" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img350.gif"
+ ALT="$\min_{x \neq 0} \Vert A^Tx\Vert _2 / \Vert x\Vert _2$">
+when <B><I>A</I></B> has more
+columns than rows.  The two-norm,
+Frobenius norm<A NAME="10242"></A><A NAME="10243"></A>,
+and singular values of a matrix do not change
+if the matrix is multiplied by a real orthogonal (or complex unitary) matrix.
+
+<P>
+Now we define <EM>subspaces</EM> spanned by more than one vector,
+and <EM>angles between subspaces</EM>.
+<A NAME="10246"></A>
+<A NAME="10247"></A>
+<A NAME="10248"></A>
+Given a set of <B><I>k</I></B>
+<B><I>n</I></B>-dimensional vectors 
+<!-- MATH
+ $\{ x_1 , ... , x_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img351.gif"
+ ALT="$\{ x_1 , ... , x_k \}$">,
+they determine
+a subspace <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+consisting of all their possible linear combinations
+
+<!-- MATH
+ $\{ \sum_{i=1}^k \beta_i x_i$
+ -->
+<IMG
+ WIDTH="86" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img352.gif"
+ ALT="$\{ \sum_{i=1}^k \beta_i x_i$">,
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+scalars <B>}</B>. We also
+say that 
+<!-- MATH
+ $\{ x_1 , ... , x_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img351.gif"
+ ALT="$\{ x_1 , ... , x_k \}$">
+<EM>spans</EM> <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">.
+The difficulty in measuring the difference between subspaces is that
+the sets of vectors spanning them are not unique.
+For example, <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img322.gif"
+ ALT="$\{ x \}$">,
+<IMG
+ WIDTH="45" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img353.gif"
+ ALT="$\{ -x \}$">
+and <IMG
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img354.gif"
+ ALT="$\{ 2x \}$">
+all determine the
+same subspace.
+This means we cannot simply compare the subspaces spanned by
+
+<!-- MATH
+ $\{ \hat{x}_1 , ... , \hat{x}_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img355.gif"
+ ALT="$\{ \hat{x}_1 , ... , \hat{x}_k \}$">
+and 
+<!-- MATH
+ $\{ x_1 , ... , x_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img351.gif"
+ ALT="$\{ x_1 , ... , x_k \}$">
+by
+comparing each <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">
+to <B><I>x</I><SUB><I>i</I></SUB></B>. Instead, we will measure the <EM>angle</EM>
+between the subspaces, which is independent of the spanning set
+of vectors. Suppose subspace <IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+is spanned by
+
+<!-- MATH
+ $\{ \hat{x}_1 , ... , \hat{x}_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img355.gif"
+ ALT="$\{ \hat{x}_1 , ... , \hat{x}_k \}$">
+and that subspace <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+is spanned by 
+<!-- MATH
+ $\{ x_1 , ... , x_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img351.gif"
+ ALT="$\{ x_1 , ... , x_k \}$">.
+If <B><I>k</I>=1</B>, we instead write more
+simply <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img321.gif"
+ ALT="$\{ \hat x \}$">
+and <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img322.gif"
+ ALT="$\{ x \}$">.
+When <B><I>k</I>=1</B>, we defined
+the angle 
+<!-- MATH
+ $\theta (\hat{\cal S}, {\cal S})$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img357.gif"
+ ALT="$\theta (\hat{\cal S}, {\cal S})$">
+between
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+and <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+as the acute angle
+between <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+and <B><I>x</I></B>.
+When <B><I>k</I>&gt;1</B>, we define the acute angle between <IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+and
+<IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+as the largest acute angle between any vector <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+in
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">,
+and the closest vector <B><I>x</I></B> in <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+to <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">:
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="230" HEIGHT="53" BORDER="0"
+ SRC="img358.gif"
+ ALT="\begin{eqnarray*}
+\theta (\hat{\cal S}, {\cal S}) &amp; \equiv &amp;
+\max_{\hat{x} \in {...
+...min_{x \in {\cal S} \atop x \neq 0}
+\theta ( \hat{x},x ) \; \; .
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+LAPACK routines which compute subspaces return
+vectors 
+<!-- MATH
+ $\{ \hat{x}_1 , ... , \hat{x}_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img355.gif"
+ ALT="$\{ \hat{x}_1 , ... , \hat{x}_k \}$">
+spanning a subspace
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+which are <EM>orthonormal</EM>. This means the
+<B><I>n</I></B>-by-<B><I>k</I></B> matrix 
+<!-- MATH
+ $\hat{X}=[\hat{x}_1 , ... , \hat{x}_k]$
+ -->
+<IMG
+ WIDTH="119" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img359.gif"
+ ALT="$\hat{X}=[\hat{x}_1 , ... , \hat{x}_k]$">
+satisfies 
+<!-- MATH
+ $\hat{X}^H \hat{X} = I$
+ -->
+<IMG
+ WIDTH="81" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img360.gif"
+ ALT="$\hat{X}^H \hat{X} = I$">.
+Suppose also that
+the vectors 
+<!-- MATH
+ $\{ x_1 , ... , x_k \}$
+ -->
+<IMG
+ WIDTH="88" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img351.gif"
+ ALT="$\{ x_1 , ... , x_k \}$">
+spanning <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+are orthonormal, so 
+<!-- MATH
+ $X = [ x_1 , ... , x_k ]$
+ -->
+<B><I>X</I> = [ <I>x</I><SUB>1</SUB> , ... , <I>x</I><SUB><I>k</I></SUB> ]</B> also
+satisfies <B><I>X</I><SUP><I>H</I></SUP><I>X</I> = <I>I</I></B>.
+Then there is a simple expression for the angle between
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+and <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">:
+<A NAME="10287"></A>
+<A NAME="10288"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{\cal S}, {\cal S} ) = \arccos \sigma_{\min} ( \hat{X}^H X ) \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="231" HEIGHT="31" BORDER="0"
+ SRC="img361.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{\cal S}, {\cal S} ) = \arccos \sigma_{\min} ( \hat{X}^H X ) \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+For example, if
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\hat{X} = \left( \begin{array}{cc} -.79996 & .60005 \\-.59997 & -.79990 \\-.01 & -.01 \end{array} \right) 
+\; \; {\rm and} \; \;
+X = \left( \begin{array}{cc} 1 & 0 \\0 & 1 \\0 & 0 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="385" HEIGHT="73" BORDER="0"
+ SRC="img362.gif"
+ ALT="\begin{displaymath}
+\hat{X} = \left( \begin{array}{cc} -.79996 &amp; .60005 \\ -.599...
+...\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; 1 \\ 0 &amp; 0 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then 
+<!-- MATH
+ $\theta ( \hat{\cal S}, {\cal S} ) = .01414$
+ -->
+<IMG
+ WIDTH="130" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img363.gif"
+ ALT="$\theta ( \hat{\cal S}, {\cal S} ) = .01414$">.
+
+<P>
+As stated above, all our bounds will contain a factor
+<B><I>p</I>(<I>n</I>)</B> (or <B><I>p</I>(<I>m</I>,<I>n</I>)</B>), which measure how roundoff errors can grow
+as a function of matrix dimension <B><I>n</I></B> (or <B><I>m</I></B> and <B><I>m</I></B>).
+In practice, the true error usually grows just linearly with <B><I>n</I></B>,
+but we can generally only prove much weaker bounds of the form <B><I>p</I>(<I>n</I>)=<I>O</I>(<I>n</I><SUP>3</SUP>)</B>.
+This is because we can not rule out the extremely unlikely possibility of rounding
+errors all adding together instead of canceling on average. Using
+<B><I>p</I>(<I>n</I>) = <I>O</I>(<I>n</I><SUP>3</SUP>)</B> would give very pessimistic and unrealistic bounds, especially
+for large <B><I>n</I></B>, so we content ourselves with describing <B><I>p</I>(<I>n</I>)</B> as a
+``modestly growing'' polynomial function of <B><I>n</I></B>. Using <B><I>p</I>(<I>n</I>)=10<I>n</I></B> in
+the error bound formulas will often give a reasonable bound.
+For detailed derivations of various
+<B><I>p</I>(<I>n</I>)</B>, see [<A
+ HREF="node151.html#GVL2">55</A>,<A
+ HREF="node151.html#higham96">67</A>,<A
+ HREF="node151.html#wilkinson1">103</A>].
+
+<P>
+There is also one situation where <B><I>p</I>(<I>n</I>)</B> can grow as large as <B>2<SUP><I>n</I>-1</SUP></B>:
+Gaussian elimination. This typically  occurs only on specially constructed
+matrices presented in numerical analysis courses [<A
+ HREF="node151.html#wilkinson1">103</A>, p. 212][<A
+ HREF="node151.html#higham96">67</A>].
+However, the expert drivers for solving linear systems, xGESVX and xGBSVX,<A NAME="10303"></A><A NAME="10304"></A><A NAME="10305"></A><A NAME="10306"></A><A NAME="10307"></A><A NAME="10308"></A><A NAME="10309"></A><A NAME="10310"></A>
+provide error bounds incorporating <B><I>p</I>(<I>n</I>)</B>, and so this rare possibility
+can be detected.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5257"
+ HREF="node77.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5251"
+ HREF="node75.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5247"
+ HREF="node75.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5253"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5255"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5258"
+ HREF="node77.html">Further Details: How Error</A>
+<B> Up:</B> <A NAME="tex2html5252"
+ HREF="node75.html">How to Measure Errors</A>
+<B> Previous:</B> <A NAME="tex2html5248"
+ HREF="node75.html">How to Measure Errors</A>
+ &nbsp <B>  <A NAME="tex2html5254"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5256"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

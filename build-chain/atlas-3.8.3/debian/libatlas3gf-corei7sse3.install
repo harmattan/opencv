@@ -1,0 +1,2 @@
+debian/tmp/usr/lib/atlas-corei7sse3/*.so.*
+debian/tmp/usr/lib/atlas-corei7sse3/atlas/*.so.*

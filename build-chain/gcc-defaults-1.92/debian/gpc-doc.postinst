@@ -1,0 +1,11 @@
+#! /bin/sh -e
+
+install-info --quiet \
+	--section "Development" "Development" \
+	--menuentry=gpc \
+	--description="The GNU Pascal Compiler" \
+	/usr/share/info/gpc.info.gz
+
+#DEBHELPER#
+
+exit 0

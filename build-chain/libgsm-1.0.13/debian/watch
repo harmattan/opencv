@@ -1,0 +1,2 @@
+version=2
+http://user.cs.tu-berlin.de/~jutta/gsm/ gsm-([\d+\.]+|\d+)(\.tar|\.tgz)(\.gz|\.bz2|)

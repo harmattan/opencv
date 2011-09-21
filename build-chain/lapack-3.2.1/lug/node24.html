@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Naming Scheme</TITLE>
+<META NAME="description" CONTENT="Naming Scheme">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node23.html">
+<LINK REL="up" HREF="node21.html">
+<LINK REL="next" HREF="node25.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4450"
+ HREF="node25.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4444"
+ HREF="node21.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4440"
+ HREF="node23.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4446"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4448"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4451"
+ HREF="node25.html">Driver Routines</A>
+<B> Up:</B> <A NAME="tex2html4445"
+ HREF="node21.html">Structure of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html4441"
+ HREF="node23.html">Data Types and Precision</A>
+ &nbsp <B>  <A NAME="tex2html4447"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4449"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03223000000000000000"></A><A NAME="subsecnaming"></A><A NAME="1190"></A>
+<BR>
+Naming Scheme
+</H2>
+
+<P>
+The name of each LAPACK routine is a coded specification of
+its function (within the very tight limits of standard Fortran 77
+6-character names).
+
+<P>
+All driver and computational routines<A NAME="1191"></A> have names
+of the form <B>XYYZZZ</B>, where for
+some driver routines the 6th character is blank.
+
+<P>
+The first letter, <B>X</B>, indicates the data type as follows:
+
+<P>
+<BLOCKQUOTE>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT">S</TD>
+<TD ALIGN="LEFT">REAL</TD>
+</TR>
+<TR><TD ALIGN="LEFT">D</TD>
+<TD ALIGN="LEFT">DOUBLE PRECISION</TD>
+</TR>
+<TR><TD ALIGN="LEFT">C</TD>
+<TD ALIGN="LEFT">COMPLEX</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Z</TD>
+<TD ALIGN="LEFT">COMPLEX*16  or DOUBLE COMPLEX</TD>
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+
+<P>
+When we wish to refer to an LAPACK routine generically, regardless
+of data type, we replace the first letter by ``x''. Thus xGESV refers
+to any or all of the routines SGESV, CGESV, DGESV and ZGESV.
+
+<P>
+The next two letters, <B>YY</B>, indicate the type of matrix (or
+of the most significant matrix).
+Most of these two-letter codes apply to both real and complex matrices;
+a few apply specifically to one or the other, as indicated in Table
+<A HREF="node24.html#tabtypes">2.1</A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabtypes"></A>
+<DIV ALIGN="CENTER">
+<A NAME="1202"></A>
+<TABLE CELLPADDING=3>
+<CAPTION><STRONG>Table 2.1:</STRONG>
+Matrix types in the LAPACK naming scheme</CAPTION>
+<TR><TD ALIGN="LEFT">BD</TD>
+<TD ALIGN="LEFT">bidiagonal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">DI</TD>
+<TD ALIGN="LEFT">diagonal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GB</TD>
+<TD ALIGN="LEFT">general band</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GE</TD>
+<TD ALIGN="LEFT">general (i.e., unsymmetric, in some cases rectangular)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GG</TD>
+<TD ALIGN="LEFT">general matrices, generalized problem (i.e., a pair of general matrices)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GT</TD>
+<TD ALIGN="LEFT">general tridiagonal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HB</TD>
+<TD ALIGN="LEFT">(complex) Hermitian band</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HE</TD>
+<TD ALIGN="LEFT">(complex) Hermitian</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HG</TD>
+<TD ALIGN="LEFT">upper Hessenberg matrix, generalized problem (i.e a Hessenberg and a</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">triangular matrix)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HP</TD>
+<TD ALIGN="LEFT">(complex) Hermitian, packed storage</TD>
+</TR>
+<TR><TD ALIGN="LEFT">HS</TD>
+<TD ALIGN="LEFT">upper Hessenberg</TD>
+</TR>
+<TR><TD ALIGN="LEFT">OP</TD>
+<TD ALIGN="LEFT">(real) orthogonal, packed storage</TD>
+</TR>
+<TR><TD ALIGN="LEFT">OR</TD>
+<TD ALIGN="LEFT">(real) orthogonal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PB</TD>
+<TD ALIGN="LEFT">symmetric or Hermitian positive definite band</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PO</TD>
+<TD ALIGN="LEFT">symmetric or Hermitian positive definite</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PP</TD>
+<TD ALIGN="LEFT">symmetric or Hermitian positive definite, packed storage</TD>
+</TR>
+<TR><TD ALIGN="LEFT">PT</TD>
+<TD ALIGN="LEFT">symmetric or Hermitian positive definite tridiagonal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SB</TD>
+<TD ALIGN="LEFT">(real) symmetric band</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SP</TD>
+<TD ALIGN="LEFT">symmetric, packed storage</TD>
+</TR>
+<TR><TD ALIGN="LEFT">ST</TD>
+<TD ALIGN="LEFT">(real) symmetric tridiagonal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SY</TD>
+<TD ALIGN="LEFT">symmetric</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TB</TD>
+<TD ALIGN="LEFT">triangular band</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TG</TD>
+<TD ALIGN="LEFT">triangular matrices, generalized problem (i.e., a pair of triangular matrices)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TP</TD>
+<TD ALIGN="LEFT">triangular, packed storage</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TR</TD>
+<TD ALIGN="LEFT">triangular (or in some cases quasi-triangular)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">TZ</TD>
+<TD ALIGN="LEFT">trapezoidal</TD>
+</TR>
+<TR><TD ALIGN="LEFT">UN</TD>
+<TD ALIGN="LEFT">(complex) unitary</TD>
+</TR>
+<TR><TD ALIGN="LEFT">UP</TD>
+<TD ALIGN="LEFT">(complex) unitary, packed storage</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+When we wish to refer to a class of routines that performs the
+same function on different types of matrices, we replace the first three
+letters by ``xyy''. Thus xyySVX refers to all the expert driver routines for
+systems of linear equations that are listed in Table&nbsp;<A HREF="node26.html#tabdrivelineq">2.2</A>.
+
+<P>
+The last three letters <B>ZZZ</B> indicate the computation performed.
+Their meanings will be explained in Section&nbsp;<A HREF="node37.html#seccomp">2.4</A>.
+For example, SGEBRD is a single precision routine that performs a
+bidiagonal reduction (BRD) of a real general matrix.
+
+<P>
+The names of auxiliary routines<A NAME="1213"></A> follow a
+similar scheme except that the
+2nd and 3rd characters YY are usually LA (for example, SLASCL
+or CLARFG). There are two kinds of exception.
+Auxiliary routines that implement an unblocked version of a block
+algorithm have similar names to the routines that perform
+the block algorithm, with the sixth character being ``2'' (for example,
+SGETF2 is the unblocked version of SGETRF).
+A few routines that may be
+regarded as extensions to the BLAS are named according to the BLAS
+naming schemes (for example, CROT, CSYR).
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4450"
+ HREF="node25.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4444"
+ HREF="node21.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4440"
+ HREF="node23.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4446"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4448"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4451"
+ HREF="node25.html">Driver Routines</A>
+<B> Up:</B> <A NAME="tex2html4445"
+ HREF="node21.html">Structure of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html4441"
+ HREF="node23.html">Data Types and Precision</A>
+ &nbsp <B>  <A NAME="tex2html4447"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4449"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

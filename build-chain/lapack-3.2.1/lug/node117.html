@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Work Arrays</TITLE>
+<META NAME="description" CONTENT="Work Arrays">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node118.html">
+<LINK REL="previous" HREF="node116.html">
+<LINK REL="up" HREF="node110.html">
+<LINK REL="next" HREF="node118.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5859"
+ HREF="node118.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5853"
+ HREF="node110.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5847"
+ HREF="node116.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5855"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5857"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5860"
+ HREF="node118.html">LWORK Query</A>
+<B> Up:</B> <A NAME="tex2html5854"
+ HREF="node110.html">Design and Documentation of</A>
+<B> Previous:</B> <A NAME="tex2html5848"
+ HREF="node116.html">Array Arguments</A>
+ &nbsp <B>  <A NAME="tex2html5856"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5858"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03517000000000000000"></A><A NAME="subsecworkspace"></A>
+<BR>
+Work Arrays
+</H2>
+
+<P>
+Many LAPACK routines require one or more work 
+arrays<A NAME="19554"></A> to be passed as
+arguments. The name of a work array is usually WORK -- sometimes
+IWORK, RWORK or BWORK to distinguish work arrays of
+integer, real or logical (Boolean) type.
+
+<P>
+Occasionally the first element of a work array is used to return some
+useful information: in such cases, the argument is described as
+(workspace/output) instead of simply (workspace).
+
+<P>
+A number of routines implementing block algorithms require workspace
+sufficient to hold one block of rows or columns of the matrix, 
+for example, workspace
+of size <B><I>n</I></B>-by-<B><I>nb</I></B>, where <B><I>nb</I></B> is the block size. 
+In such cases, the actual declared length of the work array
+must be passed as a separate argument LWORK<A NAME="19555"></A>, 
+which immediately follows WORK in the argument-list.
+
+<P>
+See Section&nbsp;<A HREF="node120.html#secblocksize">5.2</A> for further explanation.
+
+<P>
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,2600 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
+<title>F2PY Users Guide and Reference Manual</title>
+<meta name="author" content="Pearu Peterson" />
+<meta name="date" content="2005-04-02" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 6253 2010-03-02 00:24:53Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="f2py-users-guide-and-reference-manual">
+<h1 class="title">F2PY Users Guide and Reference Manual</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Pearu Peterson</td></tr>
+<tr><th class="docinfo-name">Contact:</th>
+<td><a class="first last reference external" href="mailto:pearu&#64;cens.ioc.ee">pearu&#64;cens.ioc.ee</a></td></tr>
+<tr class="field"><th class="docinfo-name">Web site:</th><td class="field-body"><a class="reference external" href="http://cens.ioc.ee/projects/f2py2e/">http://cens.ioc.ee/projects/f2py2e/</a></td>
+</tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>2005-04-02</td></tr>
+<tr><th class="docinfo-name">Revision:</th>
+<td>1.27</td></tr>
+</tbody>
+</table>
+<!-- -*- rest -*- -->
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#introduction" id="id20">1&nbsp;&nbsp;&nbsp;Introduction</a></li>
+<li><a class="reference internal" href="#three-ways-to-wrap-getting-started" id="id21">2&nbsp;&nbsp;&nbsp;Three ways to wrap - getting started</a><ul class="auto-toc">
+<li><a class="reference internal" href="#the-quick-way" id="id22">2.1&nbsp;&nbsp;&nbsp;The quick way</a></li>
+<li><a class="reference internal" href="#the-smart-way" id="id23">2.2&nbsp;&nbsp;&nbsp;The smart way</a></li>
+<li><a class="reference internal" href="#the-quick-and-smart-way" id="id24">2.3&nbsp;&nbsp;&nbsp;The quick and smart way</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#signature-file" id="id25">3&nbsp;&nbsp;&nbsp;Signature file</a><ul class="auto-toc">
+<li><a class="reference internal" href="#python-module-block" id="id26">3.1&nbsp;&nbsp;&nbsp;Python module block</a></li>
+<li><a class="reference internal" href="#fortran-c-routine-signatures" id="id27">3.2&nbsp;&nbsp;&nbsp;Fortran/C routine signatures</a><ul class="auto-toc">
+<li><a class="reference internal" href="#type-declarations" id="id28">3.2.1&nbsp;&nbsp;&nbsp;Type declarations</a></li>
+<li><a class="reference internal" href="#statements" id="id29">3.2.2&nbsp;&nbsp;&nbsp;Statements</a></li>
+<li><a class="reference internal" href="#attributes" id="id30">3.2.3&nbsp;&nbsp;&nbsp;Attributes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extensions" id="id31">3.3&nbsp;&nbsp;&nbsp;Extensions</a><ul class="auto-toc">
+<li><a class="reference internal" href="#f2py-directives" id="id32">3.3.1&nbsp;&nbsp;&nbsp;F2PY directives</a></li>
+<li><a class="reference internal" href="#c-expressions" id="id33">3.3.2&nbsp;&nbsp;&nbsp;C expressions</a></li>
+<li><a class="reference internal" href="#multi-line-blocks" id="id34">3.3.3&nbsp;&nbsp;&nbsp;Multi-line blocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-f2py-bindings-in-python" id="id35">4&nbsp;&nbsp;&nbsp;Using F2PY bindings in Python</a><ul class="auto-toc">
+<li><a class="reference internal" href="#scalar-arguments" id="id36">4.1&nbsp;&nbsp;&nbsp;Scalar arguments</a></li>
+<li><a class="reference internal" href="#string-arguments" id="id37">4.2&nbsp;&nbsp;&nbsp;String arguments</a></li>
+<li><a class="reference internal" href="#array-arguments" id="id38">4.3&nbsp;&nbsp;&nbsp;Array arguments</a></li>
+<li><a class="reference internal" href="#call-back-arguments" id="id39">4.4&nbsp;&nbsp;&nbsp;Call-back arguments</a><ul class="auto-toc">
+<li><a class="reference internal" href="#resolving-arguments-to-call-back-functions" id="id40">4.4.1&nbsp;&nbsp;&nbsp;Resolving arguments to call-back functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#common-blocks" id="id41">4.5&nbsp;&nbsp;&nbsp;Common blocks</a></li>
+<li><a class="reference internal" href="#fortran-90-module-data" id="id42">4.6&nbsp;&nbsp;&nbsp;Fortran 90 module data</a><ul class="auto-toc">
+<li><a class="reference internal" href="#allocatable-arrays" id="id43">4.6.1&nbsp;&nbsp;&nbsp;Allocatable arrays</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-f2py" id="id44">5&nbsp;&nbsp;&nbsp;Using F2PY</a><ul class="auto-toc">
+<li><a class="reference internal" href="#command-f2py" id="id45">5.1&nbsp;&nbsp;&nbsp;Command <tt class="docutils literal">f2py</tt></a></li>
+<li><a class="reference internal" href="#python-module-f2py2e" id="id46">5.2&nbsp;&nbsp;&nbsp;Python module <tt class="docutils literal">f2py2e</tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-numpy-distutils" id="id47">6&nbsp;&nbsp;&nbsp;Using <tt class="docutils literal">numpy_distutils</tt></a><ul class="auto-toc">
+<li><a class="reference internal" href="#numpy-distutils-0-2-2-and-up" id="id48">6.1&nbsp;&nbsp;&nbsp;<tt class="docutils literal">numpy_distutils</tt> 0.2.2 and up</a></li>
+<li><a class="reference internal" href="#numpy-distutils-pre-0-2-2" id="id49">6.2&nbsp;&nbsp;&nbsp;<tt class="docutils literal">numpy_distutils</tt> pre 0.2.2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extended-f2py-usages" id="id50">7&nbsp;&nbsp;&nbsp;Extended F2PY usages</a><ul class="auto-toc">
+<li><a class="reference internal" href="#adding-self-written-functions-to-f2py-generated-modules" id="id51">7.1&nbsp;&nbsp;&nbsp;Adding self-written functions to F2PY generated modules</a></li>
+<li><a class="reference internal" href="#modifying-the-dictionary-of-a-f2py-generated-module" id="id52">7.2&nbsp;&nbsp;&nbsp;Modifying the dictionary of a F2PY generated module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h1><a class="toc-backref" href="#id20">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
+<p>The purpose of the <a class="reference external" href="http://cens.ioc.ee/projects/f2py2e/">F2PY</a> --<em>Fortran to Python interface generator</em>--
+project is to provide a connection between Python and Fortran
+languages.  F2PY is a <a class="reference external" href="http://www.python.org/">Python</a> package (with a command line tool
+<tt class="docutils literal">f2py</tt> and a module <tt class="docutils literal">f2py2e</tt>) that facilitates creating/building
+Python C/API extension modules that make it possible</p>
+<ul class="simple">
+<li>to call Fortran 77/90/95 external subroutines and Fortran 90/95
+module subroutines as well as C functions;</li>
+<li>to access Fortran 77 <tt class="docutils literal">COMMON</tt> blocks and Fortran 90/95 module data,
+including allocatable arrays</li>
+</ul>
+<p>from Python. See <a class="reference external" href="http://cens.ioc.ee/projects/f2py2e/">F2PY</a> web site for more information and installation
+instructions.</p>
+</div>
+<div class="section" id="three-ways-to-wrap-getting-started">
+<h1><a class="toc-backref" href="#id21">2&nbsp;&nbsp;&nbsp;Three ways to wrap - getting started</a></h1>
+<p>Wrapping Fortran or C functions to Python using F2PY consists of the
+following steps:</p>
+<ul class="simple">
+<li>Creating the so-called signature file that contains descriptions of
+wrappers to Fortran or C functions, also called as signatures of the
+functions. In the case of Fortran routines, F2PY can create initial
+signature file by scanning Fortran source codes and
+catching all relevant information needed to create wrapper
+functions.</li>
+<li>Optionally, F2PY created signature files can be edited to optimize
+wrappers functions, make them &quot;smarter&quot; and more &quot;Pythonic&quot;.</li>
+<li>F2PY reads a signature file and writes a Python C/API module containing
+Fortran/C/Python bindings.</li>
+<li>F2PY compiles all sources and builds an extension module containing
+the wrappers. In building extension modules, F2PY uses
+<tt class="docutils literal">numpy_distutils</tt> that supports a number of Fortran 77/90/95
+compilers, including Gnu, Intel,
+Sun Fortre, SGI MIPSpro, Absoft, NAG, Compaq etc. compilers.</li>
+</ul>
+<p>Depending on a particular situation, these steps can be carried out
+either by just in one command or step-by-step, some steps can be
+ommited or combined with others.</p>
+<p>Below I'll describe three typical approaches of using F2PY.
+The following <a class="reference external" href="fib1.f">example Fortran 77 code</a> will be used for
+illustration:</p>
+<pre class="literal-block">
+C FILE: FIB1.F
+      SUBROUTINE FIB(A,N)
+C
+C     CALCULATE FIRST N FIBONACCI NUMBERS
+C
+      INTEGER N
+      REAL*8 A(N)
+      DO I=1,N
+         IF (I.EQ.1) THEN
+            A(I) = 0.0D0
+         ELSEIF (I.EQ.2) THEN
+            A(I) = 1.0D0
+         ELSE 
+            A(I) = A(I-1) + A(I-2)
+         ENDIF
+      ENDDO
+      END
+C END FILE FIB1.F
+
+</pre>
+<div class="section" id="the-quick-way">
+<h2><a class="toc-backref" href="#id22">2.1&nbsp;&nbsp;&nbsp;The quick way</a></h2>
+<p>The quickest way to wrap the Fortran subroutine <tt class="docutils literal">FIB</tt> to Python is
+to run</p>
+<pre class="literal-block">
+f2py -c fib1.f -m fib1
+</pre>
+<p>This command builds (see <tt class="docutils literal"><span class="pre">-c</span></tt> flag, execute <tt class="docutils literal">f2py</tt> without
+arguments to see the explanation of command line options) an extension
+module <tt class="docutils literal">fib1.so</tt> (see <tt class="docutils literal"><span class="pre">-m</span></tt> flag) to the current directory. Now, in
+Python the Fortran subroutine <tt class="docutils literal">FIB</tt> is accessible via <tt class="docutils literal">fib1.fib</tt>:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import Numeric
+&gt;&gt;&gt; import fib1
+&gt;&gt;&gt; print fib1.fib.__doc__
+fib - Function signature:
+  fib(a,[n])
+Required arguments:
+  a : input rank-1 array('d') with bounds (n)
+Optional arguments:
+  n := len(a) input int
+
+&gt;&gt;&gt; a=Numeric.zeros(8,'d')
+&gt;&gt;&gt; fib1.fib(a)
+&gt;&gt;&gt; print a
+[  0.   1.   1.   2.   3.   5.   8.  13.]
+</pre>
+<div class="topic">
+<p class="topic-title first">Comments</p>
+<ul>
+<li><p class="first">Note that F2PY found that the second argument <tt class="docutils literal">n</tt> is the
+dimension of the first array argument <tt class="docutils literal">a</tt>. Since by default all
+arguments are input-only arguments, F2PY concludes that <tt class="docutils literal">n</tt> can
+be optional with the default value <tt class="docutils literal">len(a)</tt>.</p>
+</li>
+<li><p class="first">One can use different values for optional <tt class="docutils literal">n</tt>:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; a1=Numeric.zeros(8,'d')
+&gt;&gt;&gt; fib1.fib(a1,6)
+&gt;&gt;&gt; print a1
+[ 0.  1.  1.  2.  3.  5.  0.  0.]
+</pre>
+<p>but an exception is raised when it is incompatible with the input
+array <tt class="docutils literal">a</tt>:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; fib1.fib(a,10)
+fib:n=10
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in ?
+fib.error: (len(a)&gt;=n) failed for 1st keyword n
+&gt;&gt;&gt;
+</pre>
+<p>This demonstrates one of the useful features in F2PY, that it,
+F2PY implements basic compatibility checks between related
+arguments in order to avoid any unexpected crashes.</p>
+</li>
+<li><p class="first">When a Numeric array, that is Fortran contiguous and has a typecode
+corresponding to presumed Fortran type, is used as an input array
+argument, then its C pointer is directly passed to Fortran.</p>
+<p>Otherwise F2PY makes a contiguous copy (with a proper typecode) of
+the input array and passes C pointer of the copy to Fortran
+subroutine. As a result, any possible changes to the (copy of)
+input array have no effect to the original argument, as
+demonstrated below:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; a=Numeric.ones(8,'i')
+&gt;&gt;&gt; fib1.fib(a)
+&gt;&gt;&gt; print a
+[1 1 1 1 1 1 1 1]
+</pre>
+<p>Clearly, this is not an expected behaviour. The fact that the
+above example worked with <tt class="docutils literal"><span class="pre">typecode='d'</span></tt> is considered
+accidental.</p>
+<p>F2PY provides <tt class="docutils literal">intent(inplace)</tt> attribute that would modify
+the attributes of an input array so that any changes made by
+Fortran routine will be effective also in input argument. For example,
+if one specifies <tt class="docutils literal">intent(inplace) a</tt> (see below, how), then
+the example above would read:</p>
+<blockquote>
+<pre class="doctest-block">
+&gt;&gt;&gt; a=Numeric.ones(8,'i')
+&gt;&gt;&gt; fib1.fib(a)
+&gt;&gt;&gt; print a
+[  0.   1.   1.   2.   3.   5.   8.  13.]
+</pre>
+</blockquote>
+<p>However, the recommended way to get changes made by Fortran
+subroutine back to python is to use <tt class="docutils literal">intent(out)</tt> attribute. It
+is more efficient and a cleaner solution.</p>
+</li>
+<li><p class="first">The usage of <tt class="docutils literal">fib1.fib</tt> in Python is very similar to using
+<tt class="docutils literal">FIB</tt> in Fortran. However, using <em>in situ</em> output arguments in
+Python indicates a poor style as there is no safety mechanism
+in Python with respect to wrong argument types. When using Fortran
+or C, compilers naturally discover any type mismatches during
+compile time but in Python the types must be checked in
+runtime. So, using <em>in situ</em> output arguments in Python may cause
+difficult to find bugs, not to mention that the codes will be less
+readable when all required type checks are implemented.</p>
+</li>
+</ul>
+<p>Though the demonstrated way of wrapping Fortran routines to Python
+is very straightforward, it has several drawbacks (see the comments
+above).  These drawbacks are due to the fact that there is no way
+that F2PY can determine what is the acctual intention of one or the
+other argument, is it input or output argument, or both, or
+something else. So, F2PY conservatively assumes that all arguments
+are input arguments by default.</p>
+<p>However, there are ways (see below) how to &quot;teach&quot; F2PY about the
+true intentions (among other things) of function arguments; and then
+F2PY is able to generate more Pythonic (more explicit, easier to
+use, and less error prone) wrappers to Fortran functions.</p>
+</div>
+</div>
+<div class="section" id="the-smart-way">
+<h2><a class="toc-backref" href="#id23">2.2&nbsp;&nbsp;&nbsp;The smart way</a></h2>
+<p>Let's apply the steps of wrapping Fortran functions to Python one by
+one.</p>
+<ul>
+<li><p class="first">First, we create a signature file from <tt class="docutils literal">fib1.f</tt> by running</p>
+<pre class="literal-block">
+f2py fib1.f -m fib2 -h fib1.pyf
+</pre>
+<p>The signature file is saved to <tt class="docutils literal">fib1.pyf</tt> (see <tt class="docutils literal"><span class="pre">-h</span></tt> flag) and
+its contents is shown below.</p>
+<pre class="literal-block">
+!    -*- f90 -*-
+python module fib2 ! in 
+    interface  ! in :fib2
+        subroutine fib(a,n) ! in :fib2:fib1.f
+            real*8 dimension(n) :: a
+            integer optional,check(len(a)&gt;=n),depend(a) :: n=len(a)
+        end subroutine fib
+    end interface 
+end python module fib2
+
+! This file was auto-generated with f2py (version:2.28.198-1366).
+! See http://cens.ioc.ee/projects/f2py2e/
+
+</pre>
+</li>
+<li><p class="first">Next, we'll teach F2PY that the argument <tt class="docutils literal">n</tt> is a input argument
+(use <tt class="docutils literal">intent(in)</tt> attribute) and that the result, i.e. the
+contents of <tt class="docutils literal">a</tt> after calling Fortran function <tt class="docutils literal">FIB</tt>, should be
+returned to Python (use <tt class="docutils literal">intent(out)</tt> attribute). In addition, an
+array <tt class="docutils literal">a</tt> should be created dynamically using the size given by
+the input argument <tt class="docutils literal">n</tt> (use <tt class="docutils literal">depend(n)</tt> attribute to indicate
+dependence relation).</p>
+<p>The content of a modified version of <tt class="docutils literal">fib1.pyf</tt> (saved as
+<tt class="docutils literal">fib2.pyf</tt>) is as follows:</p>
+<pre class="literal-block">
+!    -*- f90 -*-
+python module fib2 
+    interface
+        subroutine fib(a,n)
+            real*8 dimension(n),intent(out),depend(n) :: a
+            integer intent(in) :: n
+        end subroutine fib
+    end interface 
+end python module fib2
+
+</pre>
+</li>
+<li><p class="first">And finally, we build the extension module by running</p>
+<pre class="literal-block">
+f2py -c fib2.pyf fib1.f
+</pre>
+</li>
+</ul>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import fib2
+&gt;&gt;&gt; print fib2.fib.__doc__
+fib - Function signature:
+  a = fib(n)
+Required arguments:
+  n : input int
+Return objects:
+  a : rank-1 array('d') with bounds (n)
+
+&gt;&gt;&gt; print fib2.fib(8)
+[  0.   1.   1.   2.   3.   5.   8.  13.]
+</pre>
+<div class="topic">
+<p class="topic-title first">Comments</p>
+<ul class="simple">
+<li>Clearly, the signature of <tt class="docutils literal">fib2.fib</tt> now corresponds to the
+intention of Fortran subroutine <tt class="docutils literal">FIB</tt> more closely: given the
+number <tt class="docutils literal">n</tt>, <tt class="docutils literal">fib2.fib</tt> returns the first <tt class="docutils literal">n</tt> Fibonacci numbers
+as a Numeric array. Also, the new Python signature <tt class="docutils literal">fib2.fib</tt>
+rules out any surprises that we experienced with <tt class="docutils literal">fib1.fib</tt>.</li>
+<li>Note that by default using single <tt class="docutils literal">intent(out)</tt> also implies
+<tt class="docutils literal">intent(hide)</tt>. Argument that has <tt class="docutils literal">intent(hide)</tt> attribute
+specified, will not be listed in the argument list of a wrapper
+function.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-quick-and-smart-way">
+<h2><a class="toc-backref" href="#id24">2.3&nbsp;&nbsp;&nbsp;The quick and smart way</a></h2>
+<p>The &quot;smart way&quot; of wrapping Fortran functions, as explained above, is
+suitable for wrapping (e.g. third party) Fortran codes for which
+modifications to their source codes are not desirable nor even
+possible.</p>
+<p>However, if editing Fortran codes is acceptable, then the generation
+of an intermediate signature file can be skipped in most
+cases. Namely, F2PY specific attributes can be inserted directly to
+Fortran source codes using the so-called F2PY directive. A F2PY
+directive defines special comment lines (starting with <tt class="docutils literal">Cf2py</tt>, for
+example) which are ignored by Fortran compilers but F2PY interprets
+them as normal lines.</p>
+<p>Here is shown a <a class="reference external" href="fib3.f">modified version of the example Fortran code</a>, saved
+as <tt class="docutils literal">fib3.f</tt>:</p>
+<pre class="literal-block">
+C FILE: FIB3.F
+      SUBROUTINE FIB(A,N)
+C
+C     CALCULATE FIRST N FIBONACCI NUMBERS
+C
+      INTEGER N
+      REAL*8 A(N)
+Cf2py intent(in) n
+Cf2py intent(out) a
+Cf2py depend(n) a
+      DO I=1,N
+         IF (I.EQ.1) THEN
+            A(I) = 0.0D0
+         ELSEIF (I.EQ.2) THEN
+            A(I) = 1.0D0
+         ELSE 
+            A(I) = A(I-1) + A(I-2)
+         ENDIF
+      ENDDO
+      END
+C END FILE FIB3.F
+
+</pre>
+<p>Building the extension module can be now carried out in one command:</p>
+<pre class="literal-block">
+f2py -c -m fib3 fib3.f
+</pre>
+<p>Notice that the resulting wrapper to <tt class="docutils literal">FIB</tt> is as &quot;smart&quot; as in
+previous case:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import fib3
+&gt;&gt;&gt; print fib3.fib.__doc__
+fib - Function signature:
+  a = fib(n)
+Required arguments:
+  n : input int
+Return objects:
+  a : rank-1 array('d') with bounds (n)
+
+&gt;&gt;&gt; print fib3.fib(8)
+[  0.   1.   1.   2.   3.   5.   8.  13.]
+</pre>
+</div>
+</div>
+<div class="section" id="signature-file">
+<h1><a class="toc-backref" href="#id25">3&nbsp;&nbsp;&nbsp;Signature file</a></h1>
+<p>The syntax specification for signature files (.pyf files) is borrowed
+from the Fortran 90/95 language specification. Almost all Fortran
+90/95 standard constructs are understood, both in free and fixed
+format (recall that Fortran 77 is a subset of Fortran 90/95). F2PY
+introduces also some extensions to Fortran 90/95 language
+specification that help designing Fortran to Python interface, make it
+more &quot;Pythonic&quot;.</p>
+<p>Signature files may contain arbitrary Fortran code (so that Fortran
+codes can be considered as signature files). F2PY silently ignores
+Fortran constructs that are irrelevant for creating the interface.
+However, this includes also syntax errors. So, be careful not making
+ones;-).</p>
+<p>In general, the contents of signature files is case-sensitive.  When
+scanning Fortran codes and writing a signature file, F2PY lowers all
+cases automatically except in multi-line blocks or when <tt class="docutils literal"><span class="pre">--no-lower</span></tt>
+option is used.</p>
+<p>The syntax of signature files is overvied below.</p>
+<div class="section" id="python-module-block">
+<h2><a class="toc-backref" href="#id26">3.1&nbsp;&nbsp;&nbsp;Python module block</a></h2>
+<p>A signature file may contain one (recommended) or more <tt class="docutils literal">python
+module</tt> blocks.  <tt class="docutils literal">python module</tt> block describes the contents of
+a Python/C extension module <tt class="docutils literal">&lt;modulename&gt;module.c</tt> that F2PY
+generates.</p>
+<p>Exception: if <tt class="docutils literal">&lt;modulename&gt;</tt> contains a substring <tt class="docutils literal">__user__</tt>, then
+the corresponding <tt class="docutils literal">python module</tt> block describes the signatures of
+so-called call-back functions (see <a class="reference internal" href="#call-back-arguments">Call-back arguments</a>).</p>
+<p>A <tt class="docutils literal">python module</tt> block has the following structure:</p>
+<pre class="literal-block">
+python module &lt;modulename&gt;
+  [&lt;usercode statement&gt;]...
+  [
+  interface
+    &lt;usercode statement&gt;
+    &lt;Fortran block data signatures&gt;
+    &lt;Fortran/C routine signatures&gt;
+  end [interface]
+  ]...
+  [
+  interface
+    module &lt;F90 modulename&gt;
+      [&lt;F90 module data type declarations&gt;]
+      [&lt;F90 module routine signatures&gt;]
+    end [module [&lt;F90 modulename&gt;]]
+  end [interface]
+  ]...
+end [python module [&lt;modulename&gt;]]
+</pre>
+<p>Here brackets <tt class="docutils literal">[]</tt> indicate a optional part, dots <tt class="docutils literal">...</tt> indicate
+one or more of a previous part. So, <tt class="docutils literal"><span class="pre">[]...</span></tt> reads zero or more of a
+previous part.</p>
+</div>
+<div class="section" id="fortran-c-routine-signatures">
+<h2><a class="toc-backref" href="#id27">3.2&nbsp;&nbsp;&nbsp;Fortran/C routine signatures</a></h2>
+<p>The signature of a Fortran routine has the following structure:</p>
+<pre class="literal-block">
+[&lt;typespec&gt;] function | subroutine &lt;routine name&gt; \
+              [ ( [&lt;arguments&gt;] ) ] [ result ( &lt;entityname&gt; ) ]
+  [&lt;argument/variable type declarations&gt;]
+  [&lt;argument/variable attribute statements&gt;]
+  [&lt;use statements&gt;]
+  [&lt;common block statements&gt;]
+  [&lt;other statements&gt;]
+end [ function | subroutine [&lt;routine name&gt;] ]
+</pre>
+<p>From a Fortran routine signature F2PY generates a Python/C extension
+function that has the following signature:</p>
+<pre class="literal-block">
+def &lt;routine name&gt;(&lt;required arguments&gt;[,&lt;optional arguments&gt;]):
+     ...
+     return &lt;return variables&gt;
+</pre>
+<p>The signature of a Fortran block data has the following structure:</p>
+<pre class="literal-block">
+block data [ &lt;block data name&gt; ]
+  [&lt;variable type declarations&gt;]
+  [&lt;variable attribute statements&gt;]
+  [&lt;use statements&gt;]
+  [&lt;common block statements&gt;]
+  [&lt;include statements&gt;]
+end [ block data [&lt;block data name&gt;] ]
+</pre>
+<div class="section" id="type-declarations">
+<h3><a class="toc-backref" href="#id28">3.2.1&nbsp;&nbsp;&nbsp;Type declarations</a></h3>
+<blockquote>
+<p>The definition of the <tt class="docutils literal">&lt;argument/variable type declaration&gt;</tt> part
+is</p>
+<pre class="literal-block">
+&lt;typespec&gt; [ [&lt;attrspec&gt;] :: ] &lt;entitydecl&gt;
+</pre>
+<p>where</p>
+<pre class="literal-block">
+&lt;typespec&gt; := byte | character [&lt;charselector&gt;]
+           | complex [&lt;kindselector&gt;] | real [&lt;kindselector&gt;]
+           | double complex | double precision
+           | integer [&lt;kindselector&gt;] | logical [&lt;kindselector&gt;]
+
+&lt;charselector&gt; := * &lt;charlen&gt;
+               | ( [len=] &lt;len&gt; [ , [kind=] &lt;kind&gt;] )
+               | ( kind= &lt;kind&gt; [ , len= &lt;len&gt; ] )
+&lt;kindselector&gt; := * &lt;intlen&gt; | ( [kind=] &lt;kind&gt; )
+
+&lt;entitydecl&gt; := &lt;name&gt; [ [ * &lt;charlen&gt; ] [ ( &lt;arrayspec&gt; ) ]
+                      | [ ( &lt;arrayspec&gt; ) ] * &lt;charlen&gt; ]
+                     | [ / &lt;init_expr&gt; / | = &lt;init_expr&gt; ] \
+                       [ , &lt;entitydecl&gt; ]
+</pre>
+<p>and</p>
+<ul class="simple">
+<li><tt class="docutils literal">&lt;attrspec&gt;</tt> is a comma separated list of <a class="reference internal" href="#attributes">attributes</a>;</li>
+<li><tt class="docutils literal">&lt;arrayspec&gt;</tt> is a comma separated list of dimension bounds;</li>
+<li><tt class="docutils literal">&lt;init_expr&gt;</tt> is a <a class="reference internal" href="#c-expressions">C expression</a>.</li>
+<li><tt class="docutils literal">&lt;intlen&gt;</tt> may be negative integer for <tt class="docutils literal">integer</tt> type
+specifications. In such cases <tt class="docutils literal"><span class="pre">integer*&lt;negintlen&gt;</span></tt> represents
+unsigned C integers.</li>
+</ul>
+</blockquote>
+<blockquote>
+If an argument has no <tt class="docutils literal">&lt;argument type declaration&gt;</tt>, its type is
+determined by applying <tt class="docutils literal">implicit</tt> rules to its name.</blockquote>
+</div>
+<div class="section" id="statements">
+<h3><a class="toc-backref" href="#id29">3.2.2&nbsp;&nbsp;&nbsp;Statements</a></h3>
+<p>Attribute statements:</p>
+<blockquote>
+The <tt class="docutils literal">&lt;argument/variable attribute statement&gt;</tt> is
+<tt class="docutils literal">&lt;argument/variable type declaration&gt;</tt> without <tt class="docutils literal">&lt;typespec&gt;</tt>.
+In addition, in an attribute statement one cannot use other
+attributes, also <tt class="docutils literal">&lt;entitydecl&gt;</tt> can be only a list of names.</blockquote>
+<p>Use statements:</p>
+<blockquote>
+<p>The definition of the <tt class="docutils literal">&lt;use statement&gt;</tt> part is</p>
+<pre class="literal-block">
+use &lt;modulename&gt; [ , &lt;rename_list&gt; | , ONLY : &lt;only_list&gt; ]
+</pre>
+<p>where</p>
+<pre class="literal-block">
+&lt;rename_list&gt; := &lt;local_name&gt; =&gt; &lt;use_name&gt; [ , &lt;rename_list&gt; ]
+</pre>
+<p>Currently F2PY uses <tt class="docutils literal">use</tt> statement only for linking call-back
+modules and <tt class="docutils literal">external</tt> arguments (call-back functions), see
+<a class="reference internal" href="#call-back-arguments">Call-back arguments</a>.</p>
+</blockquote>
+<p>Common block statements:</p>
+<blockquote>
+<p>The definition of the <tt class="docutils literal">&lt;common block statement&gt;</tt> part is</p>
+<pre class="literal-block">
+common / &lt;common name&gt; / &lt;shortentitydecl&gt;
+</pre>
+<p>where</p>
+<pre class="literal-block">
+&lt;shortentitydecl&gt; := &lt;name&gt; [ ( &lt;arrayspec&gt; ) ] [ , &lt;shortentitydecl&gt; ]
+</pre>
+<p>One <tt class="docutils literal">python module</tt> block should not contain two or more
+<tt class="docutils literal">common</tt> blocks with the same name. Otherwise, the latter ones are
+ignored. The types of variables in <tt class="docutils literal">&lt;shortentitydecl&gt;</tt> are defined
+using <tt class="docutils literal">&lt;argument type declarations&gt;</tt>. Note that the corresponding
+<tt class="docutils literal">&lt;argument type declarations&gt;</tt> may contain array specifications;
+then you don't need to specify these in <tt class="docutils literal">&lt;shortentitydecl&gt;</tt>.</p>
+</blockquote>
+<p>Other statements:</p>
+<blockquote>
+<p>The <tt class="docutils literal">&lt;other statement&gt;</tt> part refers to any other Fortran language
+constructs that are not described above. F2PY ignores most of them
+except</p>
+<ul class="simple">
+<li><tt class="docutils literal">call</tt> statements and function calls of <tt class="docutils literal">external</tt> arguments
+(<a class="reference internal" href="#external">more details</a>?);</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><p class="first"><tt class="docutils literal">include</tt> statements</p>
+<blockquote>
+<pre class="literal-block">
+include '&lt;filename&gt;'
+include &quot;&lt;filename&gt;&quot;
+</pre>
+<p>If a file <tt class="docutils literal">&lt;filename&gt;</tt> does not exist, the <tt class="docutils literal">include</tt>
+statement is ignored. Otherwise, the file <tt class="docutils literal">&lt;filename&gt;</tt> is
+included to a signature file.  <tt class="docutils literal">include</tt> statements can be used
+in any part of a signature file, also outside the Fortran/C
+routine signature blocks.</p>
+</blockquote>
+</li>
+<li><p class="first"><tt class="docutils literal">implicit</tt> statements</p>
+<blockquote>
+<pre class="literal-block">
+implicit none
+implicit &lt;list of implicit maps&gt;
+</pre>
+<p>where</p>
+<pre class="literal-block">
+&lt;implicit map&gt; := &lt;typespec&gt; ( &lt;list of letters or range of letters&gt; )
+</pre>
+<p>Implicit rules are used to deterimine the type specification of
+a variable (from the first-letter of its name) if the variable
+is not defined using <tt class="docutils literal">&lt;variable type declaration&gt;</tt>.  Default
+implicit rule is given by</p>
+<pre class="literal-block">
+implicit real (a-h,o-z,$_), integer (i-m)
+</pre>
+</blockquote>
+</li>
+<li><p class="first"><tt class="docutils literal">entry</tt> statements</p>
+<blockquote>
+<pre class="literal-block">
+entry &lt;entry name&gt; [([&lt;arguments&gt;])]
+</pre>
+<p>F2PY generates wrappers to all entry names using the signature
+of the routine block.</p>
+<p>Tip: <tt class="docutils literal">entry</tt> statement can be used to describe the signature
+of an arbitrary routine allowing F2PY to generate a number of
+wrappers from only one routine block signature. There are few
+restrictions while doing this: <tt class="docutils literal">fortranname</tt> cannot be used,
+<tt class="docutils literal">callstatement</tt> and <tt class="docutils literal">callprotoargument</tt> can be used only if
+they are valid for all entry routines, etc.</p>
+</blockquote>
+</li>
+</ul>
+<p>In addition, F2PY introduces the following statements:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">threadsafe</tt></dt>
+<dd><p class="first last">Use <tt class="docutils literal">Py_BEGIN_ALLOW_THREADS .. Py_END_ALLOW_THREADS</tt> block
+around the call to Fortran/C function.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">callstatement <span class="pre">&lt;C-expr|multi-line</span> block&gt;</tt></dt>
+<dd><p class="first last">Replace F2PY generated call statement to Fortran/C function with
+<tt class="docutils literal"><span class="pre">&lt;C-expr|multi-line</span> block&gt;</tt>. The wrapped Fortran/C function
+is available as <tt class="docutils literal">(*f2py_func)</tt>. To raise an exception, set
+<tt class="docutils literal">f2py_success = 0</tt> in <tt class="docutils literal"><span class="pre">&lt;C-expr|multi-line</span> block&gt;</tt>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">callprotoargument <span class="pre">&lt;C-typespecs&gt;</span></tt></dt>
+<dd><p class="first">When <tt class="docutils literal">callstatement</tt> statement is used then F2PY may not
+generate proper prototypes for Fortran/C functions (because
+<tt class="docutils literal"><span class="pre">&lt;C-expr&gt;</span></tt> may contain any function calls and F2PY has no way
+to determine what should be the proper prototype). With this
+statement you can explicitely specify the arguments of the
+corresponding prototype:</p>
+<pre class="last literal-block">
+extern &lt;return type&gt; FUNC_F(&lt;routine name&gt;,&lt;ROUTINE NAME&gt;)(&lt;callprotoargument&gt;);
+</pre>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">fortranname [&lt;acctual Fortran/C routine name&gt;]</tt></dt>
+<dd><p class="first">You can use arbitrary <tt class="docutils literal">&lt;routine name&gt;</tt> for a given Fortran/C
+function. Then you have to specify
+<tt class="docutils literal">&lt;acctual Fortran/C routine name&gt;</tt> with this statement.</p>
+<p class="last">If <tt class="docutils literal">fortranname</tt> statement is used without
+<tt class="docutils literal">&lt;acctual Fortran/C routine name&gt;</tt> then a dummy wrapper is
+generated.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">usercode <span class="pre">&lt;multi-line</span> block&gt;</tt></dt>
+<dd><p class="first">When used inside <tt class="docutils literal">python module</tt> block, then given C code
+will be inserted to generated C/API source just before
+wrapper function definitions. Here you can define arbitrary
+C functions to be used in initialization of optional arguments,
+for example. If <tt class="docutils literal">usercode</tt> is used twise inside <tt class="docutils literal">python
+module</tt> block then the second multi-line block is inserted
+after the definition of external routines.</p>
+<p>When used inside <tt class="docutils literal">&lt;routine singature&gt;</tt>, then given C code will
+be inserted to the corresponding wrapper function just after
+declaring variables but before any C statements. So, <tt class="docutils literal">usercode</tt>
+follow-up can contain both declarations and C statements.</p>
+<p class="last">When used inside the first <tt class="docutils literal">interface</tt> block, then given C
+code will be inserted at the end of the initialization
+function of the extension module. Here you can modify extension
+modules dictionary. For example, for defining additional
+variables etc.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">pymethoddef <span class="pre">&lt;multi-line</span> block&gt;</tt></dt>
+<dd><p class="first last">Multiline block will be inserted to the definition of
+module methods <tt class="docutils literal">PyMethodDef</tt>-array. It must be a
+comma-separated list of C arrays (see <a class="reference external" href="http://www.python.org/doc/current/ext/ext.html">Extending and Embedding</a>
+Python documentation for details).
+<tt class="docutils literal">pymethoddef</tt> statement can be used only inside
+<tt class="docutils literal">python module</tt> block.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="attributes">
+<h3><a class="toc-backref" href="#id30">3.2.3&nbsp;&nbsp;&nbsp;Attributes</a></h3>
+<p>The following attributes are used by F2PY:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">optional</tt></dt>
+<dd><p class="first">The corresponding argument is moved to the end of <tt class="docutils literal">&lt;optional
+arguments&gt;</tt> list. A default value for an optional argument can be
+specified <tt class="docutils literal">&lt;init_expr&gt;</tt>, see <tt class="docutils literal">entitydecl</tt> definition. Note that
+the default value must be given as a valid C expression.</p>
+<p>Note that whenever <tt class="docutils literal">&lt;init_expr&gt;</tt> is used, <tt class="docutils literal">optional</tt> attribute
+is set automatically by F2PY.</p>
+<p class="last">For an optional array argument, all its dimensions must be bounded.</p>
+</dd>
+<dt><tt class="docutils literal">required</tt></dt>
+<dd><p class="first">The corresponding argument is considered as a required one. This is
+default. You need to specify <tt class="docutils literal">required</tt> only if there is a need to
+disable automatic <tt class="docutils literal">optional</tt> setting when <tt class="docutils literal">&lt;init_expr&gt;</tt> is used.</p>
+<p class="last">If Python <tt class="docutils literal">None</tt> object is used as an required argument, the
+argument is treated as optional. That is, in the case of array
+argument, the memory is allocated. And if <tt class="docutils literal">&lt;init_expr&gt;</tt> is given,
+the corresponding initialization is carried out.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">dimension(&lt;arrayspec&gt;)</span></tt></dt>
+<dd>The corresponding variable is considered as an array with given
+dimensions in <tt class="docutils literal">&lt;arrayspec&gt;</tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">intent(&lt;intentspec&gt;)</span></tt></dt>
+<dd><p class="first">This specifies the &quot;intention&quot; of the corresponding
+argument. <tt class="docutils literal">&lt;intentspec&gt;</tt> is a comma separated list of the
+following keys:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">in</tt></dt>
+<dd><p class="first last">The argument is considered as an input-only argument. It means
+that the value of the argument is passed to Fortran/C function and
+that function is expected not to change the value of an argument.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">inout</tt></dt>
+<dd><p class="first">The argument is considered as an input/output or <em>in situ</em>
+output argument. <tt class="docutils literal">intent(inout)</tt> arguments can be only
+&quot;contiguous&quot; Numeric arrays with proper type and size.  Here
+&quot;contiguous&quot; can be either in Fortran or C sense. The latter one
+coincides with the contiguous concept used in Numeric and is
+effective only if <tt class="docutils literal">intent(c)</tt> is used. Fortran-contiguousness
+is assumed by default.</p>
+<p class="last">Using <tt class="docutils literal">intent(inout)</tt> is generally not recommended, use
+<tt class="docutils literal">intent(in,out)</tt> instead. See also <tt class="docutils literal">intent(inplace)</tt> attribute.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">inplace</tt></dt>
+<dd><p class="first">The argument is considered as an input/output or <em>in situ</em>
+output argument. <tt class="docutils literal">intent(inplace)</tt> arguments must be
+Numeric arrays with proper size. If the type of an array is
+not &quot;proper&quot; or the array is non-contiguous then the array
+will be changed in-place to fix the type and make it contiguous.</p>
+<p class="last">Using <tt class="docutils literal">intent(inplace)</tt> is generally not recommended either.
+For example, when slices have been taken from an
+<tt class="docutils literal">intent(inplace)</tt> argument then after in-place changes,
+slices data pointers may point to unallocated memory area.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">out</tt></dt>
+<dd><p class="first">The argument is considered as an return variable. It is appended
+to the <tt class="docutils literal">&lt;returned variables&gt;</tt> list. Using <tt class="docutils literal">intent(out)</tt>
+sets <tt class="docutils literal">intent(hide)</tt> automatically, unless also
+<tt class="docutils literal">intent(in)</tt> or <tt class="docutils literal">intent(inout)</tt> were used.</p>
+<p class="last">By default, returned multidimensional arrays are
+Fortran-contiguous. If <tt class="docutils literal">intent(c)</tt> is used, then returned
+multi-dimensional arrays are C-contiguous.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">hide</tt></dt>
+<dd><p class="first">The argument is removed from the list of required or optional
+arguments. Typically <tt class="docutils literal">intent(hide)</tt> is used with <tt class="docutils literal">intent(out)</tt>
+or when <tt class="docutils literal">&lt;init_expr&gt;</tt> completely determines the value of the
+argument like in the following example:</p>
+<pre class="last literal-block">
+integer intent(hide),depend(a) :: n = len(a)
+real intent(in),dimension(n) :: a
+</pre>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">c</tt></dt>
+<dd><p class="first">The argument is treated as a C scalar or C array argument.  In
+the case of a scalar argument, its value is passed to C function
+as a C scalar argument (recall that Fortran scalar arguments are
+actually C pointer arguments).  In the case of an array
+argument, the wrapper function is assumed to treat
+multi-dimensional arrays as C-contiguous arrays.</p>
+<p>There is no need to use <tt class="docutils literal">intent(c)</tt> for one-dimensional
+arrays, no matter if the wrapped function is either a Fortran or
+a C function. This is because the concepts of Fortran- and
+C-contiguousness overlap in one-dimensional cases.</p>
+<p>If <tt class="docutils literal">intent(c)</tt> is used as an statement but without entity
+declaration list, then F2PY adds <tt class="docutils literal">intent(c)</tt> attibute to all
+arguments.</p>
+<p class="last">Also, when wrapping C functions, one must use <tt class="docutils literal">intent(c)</tt>
+attribute for <tt class="docutils literal">&lt;routine name&gt;</tt> in order to disable Fortran
+specific <tt class="docutils literal"><span class="pre">F_FUNC(..,..)</span></tt> macros.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">cache</tt></dt>
+<dd><p class="first last">The argument is treated as a junk of memory. No Fortran nor C
+contiguousness checks are carried out. Using <tt class="docutils literal">intent(cache)</tt>
+makes sense only for array arguments, also in connection with
+<tt class="docutils literal">intent(hide)</tt> or <tt class="docutils literal">optional</tt> attributes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">copy</tt></dt>
+<dd><p class="first last">Ensure that the original contents of <tt class="docutils literal">intent(in)</tt> argument is
+preserved. Typically used in connection with <tt class="docutils literal">intent(in,out)</tt>
+attribute.  F2PY creates an optional argument
+<tt class="docutils literal">overwrite_&lt;argument name&gt;</tt> with the default value <tt class="docutils literal">0</tt>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">overwrite</tt></dt>
+<dd><p class="first last">The original contents of the <tt class="docutils literal">intent(in)</tt> argument may be
+altered by the Fortran/C function.  F2PY creates an optional
+argument <tt class="docutils literal">overwrite_&lt;argument name&gt;</tt> with the default value
+<tt class="docutils literal">1</tt>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">out=&lt;new</span> name&gt;</tt></dt>
+<dd><p class="first last">Replace the return name with <tt class="docutils literal">&lt;new name&gt;</tt> in the <tt class="docutils literal">__doc__</tt>
+string of a wrapper function.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">callback</tt></dt>
+<dd><p class="first">Construct an external function suitable for calling Python function
+from Fortran. <tt class="docutils literal">intent(callback)</tt> must be specified before the
+corresponding <tt class="docutils literal">external</tt> statement. If 'argument' is not in
+argument list then it will be added to Python wrapper but only
+initializing external function.</p>
+<p>Use <tt class="docutils literal">intent(callback)</tt> in situations where a Fortran/C code
+assumes that a user implements a function with given prototype
+and links it to an executable. Don't use <tt class="docutils literal">intent(callback)</tt>
+if function appears in the argument list of a Fortran routine.</p>
+<p class="last">With <tt class="docutils literal">intent(hide)</tt> or <tt class="docutils literal">optional</tt> attributes specified and
+using a wrapper function without specifying the callback argument
+in argument list then call-back function is looked in the
+namespace of F2PY generated extension module where it can be
+set as a module attribute by a user.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">aux</tt></dt>
+<dd><p class="first last">Define auxiliary C variable in F2PY generated wrapper function.
+Useful to save parameter values so that they can be accessed
+in initialization expression of other variables. Note that
+<tt class="docutils literal">intent(aux)</tt> silently implies <tt class="docutils literal">intent(c)</tt>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The following rules apply:</p>
+<ul class="last simple">
+<li>If no <tt class="docutils literal">intent(in | inout | out | hide)</tt> is specified,
+<tt class="docutils literal">intent(in)</tt> is assumed.</li>
+<li><tt class="docutils literal">intent(in,inout)</tt> is <tt class="docutils literal">intent(in)</tt>.</li>
+<li><tt class="docutils literal">intent(in,hide)</tt> or <tt class="docutils literal">intent(inout,hide)</tt> is
+<tt class="docutils literal">intent(hide)</tt>.</li>
+<li><tt class="docutils literal">intent(out)</tt> is <tt class="docutils literal">intent(out,hide)</tt> unless <tt class="docutils literal">intent(in)</tt> or
+<tt class="docutils literal">intent(inout)</tt> is specified.</li>
+<li>If <tt class="docutils literal">intent(copy)</tt> or <tt class="docutils literal">intent(overwrite)</tt> is used, then an
+additional optional argument is introduced with a name
+<tt class="docutils literal">overwrite_&lt;argument name&gt;</tt> and a default value 0 or 1, respectively.</li>
+<li><tt class="docutils literal">intent(inout,inplace)</tt> is <tt class="docutils literal">intent(inplace)</tt>.</li>
+<li><tt class="docutils literal">intent(in,inplace)</tt> is <tt class="docutils literal">intent(inplace)</tt>.</li>
+<li><tt class="docutils literal">intent(hide)</tt> disables <tt class="docutils literal">optional</tt> and <tt class="docutils literal">required</tt>.</li>
+</ul>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">check([&lt;C-booleanexpr&gt;])</span></tt></dt>
+<dd><p class="first">Perform consistency check of arguments by evaluating
+<tt class="docutils literal"><span class="pre">&lt;C-booleanexpr&gt;</span></tt>; if <tt class="docutils literal"><span class="pre">&lt;C-booleanexpr&gt;</span></tt> returns 0, an exception
+is raised.</p>
+<p class="last">If <tt class="docutils literal"><span class="pre">check(..)</span></tt> is not used then F2PY generates few standard checks
+(e.g. in a case of an array argument, check for the proper shape
+and size) automatically. Use <tt class="docutils literal">check()</tt> to disable checks generated
+by F2PY.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">depend([&lt;names&gt;])</span></tt></dt>
+<dd><p class="first">This declares that the corresponding argument depends on the values
+of variables in the list <tt class="docutils literal">&lt;names&gt;</tt>. For example, <tt class="docutils literal">&lt;init_expr&gt;</tt>
+may use the values of other arguments.  Using information given by
+<tt class="docutils literal"><span class="pre">depend(..)</span></tt> attributes, F2PY ensures that arguments are
+initialized in a proper order. If <tt class="docutils literal"><span class="pre">depend(..)</span></tt> attribute is not
+used then F2PY determines dependence relations automatically. Use
+<tt class="docutils literal">depend()</tt> to disable dependence relations generated by F2PY.</p>
+<p class="last">When you edit dependence relations that were initially generated by
+F2PY, be careful not to break the dependence relations of other
+relevant variables. Another thing to watch out is cyclic
+dependencies. F2PY is able to detect cyclic dependencies
+when constructing wrappers and it complains if any are found.</p>
+</dd>
+<dt><tt class="docutils literal">allocatable</tt></dt>
+<dd>The corresponding variable is Fortran 90 allocatable array defined
+as Fortran 90 module data.</dd>
+</dl>
+<dl class="docutils" id="external">
+<dt><tt class="docutils literal">external</tt></dt>
+<dd><p class="first">The corresponding argument is a function provided by user. The
+signature of this so-called call-back function can be defined</p>
+<ul class="simple">
+<li>in <tt class="docutils literal">__user__</tt> module block,</li>
+<li>or by demonstrative (or real, if the signature file is a real Fortran
+code) call in the <tt class="docutils literal">&lt;other statements&gt;</tt> block.</li>
+</ul>
+<p>For example, F2PY generates from</p>
+<pre class="literal-block">
+external cb_sub, cb_fun
+integer n
+real a(n),r
+call cb_sub(a,n)
+r = cb_fun(4)
+</pre>
+<p>the following call-back signatures:</p>
+<pre class="literal-block">
+subroutine cb_sub(a,n)
+    real dimension(n) :: a
+    integer optional,check(len(a)&gt;=n),depend(a) :: n=len(a)
+end subroutine cb_sub
+function cb_fun(e_4_e) result (r)
+    integer :: e_4_e
+    real :: r
+end function cb_fun
+</pre>
+<p>The corresponding user-provided Python function are then:</p>
+<pre class="literal-block">
+def cb_sub(a,[n]):
+    ...
+    return
+def cb_fun(e_4_e):
+    ...
+    return r
+</pre>
+<p class="last">See also <tt class="docutils literal">intent(callback)</tt> attribute.</p>
+</dd>
+<dt><tt class="docutils literal">parameter</tt></dt>
+<dd>The corresponding variable is a parameter and it must have a fixed
+value. F2PY replaces all parameter occurrences by their
+corresponding values.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="extensions">
+<h2><a class="toc-backref" href="#id31">3.3&nbsp;&nbsp;&nbsp;Extensions</a></h2>
+<div class="section" id="f2py-directives">
+<h3><a class="toc-backref" href="#id32">3.3.1&nbsp;&nbsp;&nbsp;F2PY directives</a></h3>
+<p>The so-called F2PY directives allow using F2PY signature file
+constructs also in Fortran 77/90 source codes. With this feature you
+can skip (almost) completely intermediate signature file generations
+and apply F2PY directly to Fortran source codes.</p>
+<p>F2PY directive has the following form:</p>
+<pre class="literal-block">
+&lt;comment char&gt;f2py ...
+</pre>
+<p>where allowed comment characters for fixed and free format Fortran
+codes are <tt class="docutils literal"><span class="pre">cC*!#</span></tt> and <tt class="docutils literal">!</tt>, respectively. Everything that follows
+<tt class="docutils literal">&lt;comment char&gt;f2py</tt> is ignored by a compiler but read by F2PY as a
+normal Fortran (non-comment) line:</p>
+<blockquote>
+When F2PY finds a line with F2PY directive, the directive is first
+replaced by 5 spaces and then the line is reread.</blockquote>
+<p>For fixed format Fortran codes, <tt class="docutils literal">&lt;comment char&gt;</tt> must be at the
+first column of a file, of course. For free format Fortran codes,
+F2PY directives can appear anywhere in a file.</p>
+</div>
+<div class="section" id="c-expressions">
+<h3><a class="toc-backref" href="#id33">3.3.2&nbsp;&nbsp;&nbsp;C expressions</a></h3>
+<p>C expressions are used in the following parts of signature files:</p>
+<ul class="simple">
+<li><tt class="docutils literal">&lt;init_expr&gt;</tt> of variable initialization;</li>
+<li><tt class="docutils literal"><span class="pre">&lt;C-booleanexpr&gt;</span></tt> of the <tt class="docutils literal">check</tt> attribute;</li>
+<li><tt class="docutils literal">&lt;arrayspec&gt; of the ``dimension</tt> attribute;</li>
+<li><tt class="docutils literal">callstatement</tt> statement, here also a C multi-line block can be used.</li>
+</ul>
+<p>A C expression may contain:</p>
+<ul>
+<li><p class="first">standard C constructs;</p>
+</li>
+<li><p class="first">functions from <tt class="docutils literal">math.h</tt> and <tt class="docutils literal">Python.h</tt>;</p>
+</li>
+<li><p class="first">variables from the argument list, presumably initialized before
+according to given dependence relations;</p>
+</li>
+<li><p class="first">the following CPP macros:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">rank(&lt;name&gt;)</span></tt></dt>
+<dd><p class="first last">Returns the rank of an array <tt class="docutils literal">&lt;name&gt;</tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">shape(&lt;name&gt;,&lt;n&gt;)</span></tt></dt>
+<dd><p class="first last">Returns the <tt class="docutils literal">&lt;n&gt;</tt>-th dimension of an array <tt class="docutils literal">&lt;name&gt;</tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">len(&lt;name&gt;)</span></tt></dt>
+<dd><p class="first last">Returns the lenght of an array <tt class="docutils literal">&lt;name&gt;</tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">size(&lt;name&gt;)</span></tt></dt>
+<dd><p class="first last">Returns the size of an array <tt class="docutils literal">&lt;name&gt;</tt>.</p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">slen(&lt;name&gt;)</span></tt></dt>
+<dd><p class="first last">Returns the length of a string <tt class="docutils literal">&lt;name&gt;</tt>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For initializing an array <tt class="docutils literal">&lt;array name&gt;</tt>, F2PY generates a loop over
+all indices and dimensions that executes the following
+pseudo-statement:</p>
+<pre class="literal-block">
+&lt;array name&gt;(_i[0],_i[1],...) = &lt;init_expr&gt;;
+</pre>
+<p>where <tt class="docutils literal"><span class="pre">_i[&lt;i&gt;]</span></tt> refers to the <tt class="docutils literal">&lt;i&gt;</tt>-th index value and that runs
+from <tt class="docutils literal">0</tt> to <tt class="docutils literal"><span class="pre">shape(&lt;array</span> <span class="pre">name&gt;,&lt;i&gt;)-1</span></tt>.</p>
+<p>For example, a function <tt class="docutils literal">myrange(n)</tt> generated from the following
+signature</p>
+<pre class="literal-block">
+subroutine myrange(a,n)
+  fortranname        ! myrange is a dummy wrapper
+  integer intent(in) :: n
+  real*8 intent(c,out),dimension(n),depend(n) :: a = _i[0]
+end subroutine myrange
+</pre>
+<p>is equivalent to <tt class="docutils literal"><span class="pre">Numeric.arange(n,typecode='d')</span></tt>.</p>
+<div class="topic">
+<p class="topic-title first">Warning!</p>
+<p>F2PY may lower cases also in C expressions when scanning Fortran codes
+(see <tt class="docutils literal"><span class="pre">--[no]-lower</span></tt> option).</p>
+</div>
+</div>
+<div class="section" id="multi-line-blocks">
+<h3><a class="toc-backref" href="#id34">3.3.3&nbsp;&nbsp;&nbsp;Multi-line blocks</a></h3>
+<p>A multi-line block starts with <tt class="docutils literal">'''</tt> (triple single-quotes) and ends
+with <tt class="docutils literal">'''</tt> in some <em>strictly</em> subsequent line.  Multi-line blocks can
+be used only within .pyf files. The contents of a multi-line block can
+be arbitrary (except that it cannot contain <tt class="docutils literal">'''</tt>) and no
+transformations (e.g. lowering cases) are applied to it.</p>
+<p>Currently, multi-line blocks can be used in the following constructs:</p>
+<ul class="simple">
+<li>as a C expression of the <tt class="docutils literal">callstatement</tt> statement;</li>
+<li>as a C type specification of the <tt class="docutils literal">callprotoargument</tt> statement;</li>
+<li>as a C code block of the <tt class="docutils literal">usercode</tt> statement;</li>
+<li>as a list of C arrays of the <tt class="docutils literal">pymethoddef</tt> statement;</li>
+<li>as documentation string.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="using-f2py-bindings-in-python">
+<h1><a class="toc-backref" href="#id35">4&nbsp;&nbsp;&nbsp;Using F2PY bindings in Python</a></h1>
+<p>All wrappers (to Fortran/C routines or to common blocks or to Fortran
+90 module data) generated by F2PY are exposed to Python as <tt class="docutils literal">fortran</tt>
+type objects.  Routine wrappers are callable <tt class="docutils literal">fortran</tt> type objects
+while wrappers to Fortran data have attributes referring to data
+objects.</p>
+<p>All <tt class="docutils literal">fortran</tt> type object have attribute <tt class="docutils literal">_cpointer</tt> that contains
+CObject referring to the C pointer of the corresponding Fortran/C
+function or variable in C level. Such CObjects can be used as an
+callback argument of F2PY generated functions to bypass Python C/API
+layer of calling Python functions from Fortran or C when the
+computational part of such functions is implemented in C or Fortran
+and wrapped with F2PY (or any other tool capable of providing CObject
+of a function).</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider a <a class="reference external" href="ftype.f">Fortran 77 file</a> <tt class="docutils literal">ftype.f</tt>:</p>
+<pre class="literal-block">
+C FILE: FTYPE.F
+      SUBROUTINE FOO(N)
+      INTEGER N
+Cf2py integer optional,intent(in) :: n = 13
+      REAL A,X
+      COMMON /DATA/ A,X(3)
+      PRINT*, &quot;IN FOO: N=&quot;,N,&quot; A=&quot;,A,&quot; X=[&quot;,X(1),X(2),X(3),&quot;]&quot;
+      END
+C END OF FTYPE.F
+
+</pre>
+<p>and build a wrapper using:</p>
+<pre class="literal-block">
+f2py -c ftype.f -m ftype
+</pre>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import ftype
+&gt;&gt;&gt; print ftype.__doc__
+This module 'ftype' is auto-generated with f2py (version:2.28.198-1366).
+Functions:
+  foo(n=13)
+COMMON blocks:
+  /data/ a,x(3)
+.
+&gt;&gt;&gt; type(ftype.foo),type(ftype.data)
+(&lt;type 'fortran'&gt;, &lt;type 'fortran'&gt;)
+&gt;&gt;&gt; ftype.foo()
+ IN FOO: N= 13 A=  0. X=[  0.  0.  0.]
+&gt;&gt;&gt; ftype.data.a = 3
+&gt;&gt;&gt; ftype.data.x = [1,2,3]
+&gt;&gt;&gt; ftype.foo()
+ IN FOO: N= 13 A=  3. X=[  1.  2.  3.]
+&gt;&gt;&gt; ftype.data.x[1] = 45  
+&gt;&gt;&gt; ftype.foo(24)
+ IN FOO: N= 24 A=  3. X=[  1.  45.  3.]
+&gt;&gt;&gt; ftype.data.x
+array([  1.,  45.,   3.],'f')
+
+</pre>
+</div>
+<div class="section" id="scalar-arguments">
+<h2><a class="toc-backref" href="#id36">4.1&nbsp;&nbsp;&nbsp;Scalar arguments</a></h2>
+<p>In general, a scalar argument of a F2PY generated wrapper function can
+be ordinary Python scalar (integer, float, complex number) as well as
+an arbitrary sequence object (list, tuple, array, string) of
+scalars. In the latter case, the first element of the sequence object
+is passed to Fortran routine as a scalar argument.</p>
+<p>Note that when type-casting is required and there is possible loss of
+information (e.g. when type-casting float to integer or complex to
+float), F2PY does not raise any exception. In complex to real
+type-casting only the real part of a complex number is used.</p>
+<p><tt class="docutils literal">intent(inout)</tt> scalar arguments are assumed to be array objects in
+order to <em>in situ</em> changes to be effective. It is recommended to use
+arrays with proper type but also other types work.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="scalar.f">Fortran 77 code</a>:</p>
+<blockquote>
+<pre class="literal-block">
+C FILE: SCALAR.F
+      SUBROUTINE FOO(A,B)
+      REAL*8 A, B
+Cf2py intent(in) a
+Cf2py intent(inout) b
+      PRINT*, &quot;    A=&quot;,A,&quot; B=&quot;,B
+      PRINT*, &quot;INCREMENT A AND B&quot;
+      A = A + 1D0
+      B = B + 1D0
+      PRINT*, &quot;NEW A=&quot;,A,&quot; B=&quot;,B
+      END
+C END OF FILE SCALAR.F
+
+</pre>
+</blockquote>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> scalar scalar.f</tt>.</p>
+<p>In Python:</p>
+<blockquote>
+<pre class="literal-block">
+&gt;&gt;&gt; import scalar
+&gt;&gt;&gt; print scalar.foo.__doc__
+foo - Function signature:
+  foo(a,b)
+Required arguments:
+  a : input float
+  b : in/output rank-0 array(float,'d')
+ 
+&gt;&gt;&gt; scalar.foo(2,3)   
+     A=  2. B=  3.
+ INCREMENT A AND B
+ NEW A=  3. B=  4.
+&gt;&gt;&gt; import Numeric
+&gt;&gt;&gt; a=Numeric.array(2)   # these are integer rank-0 arrays
+&gt;&gt;&gt; b=Numeric.array(3)
+&gt;&gt;&gt; scalar.foo(a,b)
+     A=  2. B=  3.
+ INCREMENT A AND B
+ NEW A=  3. B=  4.
+&gt;&gt;&gt; print a,b            # note that only b is changed in situ
+2 4
+</pre>
+</blockquote>
+</div>
+</div>
+<div class="section" id="string-arguments">
+<h2><a class="toc-backref" href="#id37">4.2&nbsp;&nbsp;&nbsp;String arguments</a></h2>
+<p>F2PY generated wrapper functions accept (almost) any Python object as
+a string argument, <tt class="docutils literal">str</tt> is applied for non-string objects.
+Exceptions are Numeric arrays that must have type code <tt class="docutils literal">'c'</tt> or
+<tt class="docutils literal">'1'</tt> when used as string arguments.</p>
+<p>A string can have arbitrary length when using it as a string argument
+to F2PY generated wrapper function. If the length is greater than
+expected, the string is truncated. If the length is smaller that
+expected, additional memory is allocated and filled with <tt class="docutils literal">\0</tt>.</p>
+<p>Because Python strings are immutable, an <tt class="docutils literal">intent(inout)</tt> argument
+expects an array version of a string in order to <em>in situ</em> changes to
+be effective.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="string.f">Fortran 77 code</a>:</p>
+<pre class="literal-block">
+C FILE: STRING.F
+      SUBROUTINE FOO(A,B,C,D)
+      CHARACTER*5 A, B
+      CHARACTER*(*) C,D
+Cf2py intent(in) a,c
+Cf2py intent(inout) b,d
+      PRINT*, &quot;A=&quot;,A
+      PRINT*, &quot;B=&quot;,B
+      PRINT*, &quot;C=&quot;,C
+      PRINT*, &quot;D=&quot;,D
+      PRINT*, &quot;CHANGE A,B,C,D&quot;
+      A(1:1) = 'A'
+      B(1:1) = 'B'
+      C(1:1) = 'C'
+      D(1:1) = 'D'
+      PRINT*, &quot;A=&quot;,A
+      PRINT*, &quot;B=&quot;,B
+      PRINT*, &quot;C=&quot;,C
+      PRINT*, &quot;D=&quot;,D
+      END
+C END OF FILE STRING.F
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> mystring string.f</tt>.</p>
+<p>Python session:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import mystring
+&gt;&gt;&gt; print mystring.foo.__doc__
+foo - Function signature:
+  foo(a,b,c,d)
+Required arguments:
+  a : input string(len=5)
+  b : in/output rank-0 array(string(len=5),'c')
+  c : input string(len=-1)
+  d : in/output rank-0 array(string(len=-1),'c')
+
+&gt;&gt;&gt; import Numeric
+&gt;&gt;&gt; a=Numeric.array('123')
+&gt;&gt;&gt; b=Numeric.array('123')
+&gt;&gt;&gt; c=Numeric.array('123')
+&gt;&gt;&gt; d=Numeric.array('123')
+&gt;&gt;&gt; mystring.foo(a,b,c,d)
+ A=123
+ B=123
+ C=123
+ D=123
+ CHANGE A,B,C,D
+ A=A23
+ B=B23
+ C=C23
+ D=D23
+&gt;&gt;&gt; a.tostring(),b.tostring(),c.tostring(),d.tostring()
+('123', 'B23', '123', 'D23')
+</pre>
+</div>
+</div>
+<div class="section" id="array-arguments">
+<h2><a class="toc-backref" href="#id38">4.3&nbsp;&nbsp;&nbsp;Array arguments</a></h2>
+<p>In general, array arguments of F2PY generated wrapper functions accept
+arbitrary sequences that can be transformed to Numeric array objects.
+An exception is <tt class="docutils literal">intent(inout)</tt> array arguments that always must be
+proper-contiguous and have proper type, otherwise an exception is
+raised. Another exception is <tt class="docutils literal">intent(inplace)</tt> array arguments that
+attributes will be changed in-situ if the argument has different type
+than expected (see <tt class="docutils literal">intent(inplace)</tt> attribute for more
+information).</p>
+<p>In general, if a Numeric array is proper-contiguous and has a proper
+type then it is directly passed to wrapped Fortran/C function.
+Otherwise, an element-wise copy of an input array is made and the
+copy, being proper-contiguous and with proper type, is used as an
+array argument.</p>
+<p>There are two types of proper-contiguous Numeric arrays:</p>
+<ul class="simple">
+<li>Fortran-contiguous arrays when data is stored column-wise,
+i.e. indexing of data as stored in memory starts from the lowest
+dimension;</li>
+<li>C-contiguous or simply contiguous arrays when data is stored
+row-wise, i.e. indexing of data as stored in memory starts from the
+highest dimension.</li>
+</ul>
+<p>For one-dimensional arrays these notions coincide.</p>
+<p>For example, an 2x2 array <tt class="docutils literal">A</tt> is Fortran-contiguous if its elements
+are stored in memory in the following order:</p>
+<pre class="literal-block">
+A[0,0] A[1,0] A[0,1] A[1,1]
+</pre>
+<p>and C-contiguous if the order is as follows:</p>
+<pre class="literal-block">
+A[0,0] A[0,1] A[1,0] A[1,1]
+</pre>
+<p>To test whether an array is C-contiguous, use <tt class="docutils literal">.iscontiguous()</tt>
+method of Numeric arrays.  To test for Fortran-contiguousness, all
+F2PY generated extension modules provide a function
+<tt class="docutils literal"><span class="pre">has_column_major_storage(&lt;array&gt;)</span></tt>. This function is equivalent to
+<tt class="docutils literal"><span class="pre">Numeric.transpose(&lt;array&gt;).iscontiguous()</span></tt> but more efficient.</p>
+<p>Usually there is no need to worry about how the arrays are stored in
+memory and whether the wrapped functions, being either Fortran or C
+functions, assume one or another storage order. F2PY automatically
+ensures that wrapped functions get arguments with proper storage
+order; the corresponding algorithm is designed to make copies of
+arrays only when absolutely necessary. However, when dealing with very
+large multi-dimensional input arrays with sizes close to the size of
+the physical memory in your computer, then a care must be taken to use
+always proper-contiguous and proper type arguments.</p>
+<p>To transform input arrays to column major storage order before passing
+them to Fortran routines, use a function
+<tt class="docutils literal"><span class="pre">as_column_major_storage(&lt;array&gt;)</span></tt> that is provided by all F2PY
+generated extension modules.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider <a class="reference external" href="array.f">Fortran 77 code</a>:</p>
+<pre class="literal-block">
+C FILE: ARRAY.F
+      SUBROUTINE FOO(A,N,M)
+C
+C     INCREMENT THE FIRST ROW AND DECREMENT THE FIRST COLUMN OF A
+C
+      INTEGER N,M,I,J
+      REAL*8 A(N,M)
+Cf2py intent(in,out,copy) a
+Cf2py integer intent(hide),depend(a) :: n=shape(a,0), m=shape(a,1)
+      DO J=1,M
+         A(1,J) = A(1,J) + 1D0
+      ENDDO
+      DO I=1,N
+         A(I,1) = A(I,1) - 1D0
+      ENDDO
+      END
+C END OF FILE ARRAY.F
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> arr array.f <span class="pre">-DF2PY_REPORT_ON_ARRAY_COPY=1</span></tt>.</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import arr
+&gt;&gt;&gt; from Numeric import array
+&gt;&gt;&gt; print arr.foo.__doc__
+foo - Function signature:
+  a = foo(a,[overwrite_a])
+Required arguments:
+  a : input rank-2 array('d') with bounds (n,m)
+Optional arguments:
+  overwrite_a := 0 input int
+Return objects:
+  a : rank-2 array('d') with bounds (n,m)
+
+&gt;&gt;&gt; a=arr.foo([[1,2,3],
+...            [4,5,6]])
+copied an array using PyArray_CopyFromObject: size=6, elsize=8
+&gt;&gt;&gt; print a
+[[ 1.  3.  4.]
+ [ 3.  5.  6.]]
+&gt;&gt;&gt; a.iscontiguous(), arr.has_column_major_storage(a)
+(0, 1)
+&gt;&gt;&gt; b=arr.foo(a)              # even if a is proper-contiguous
+...                           # and has proper type, a copy is made
+...                           # forced by intent(copy) attribute
+...                           # to preserve its original contents
+... 
+copied an array using copy_ND_array: size=6, elsize=8
+&gt;&gt;&gt; print a
+[[ 1.  3.  4.]
+ [ 3.  5.  6.]]
+&gt;&gt;&gt; print b
+[[ 1.  4.  5.]
+ [ 2.  5.  6.]]
+&gt;&gt;&gt; b=arr.foo(a,overwrite_a=1) # a is passed directly to Fortran
+...                            # routine and its contents is discarded
+... 
+&gt;&gt;&gt; print a
+[[ 1.  4.  5.]
+ [ 2.  5.  6.]]
+&gt;&gt;&gt; print b
+[[ 1.  4.  5.]
+ [ 2.  5.  6.]]
+&gt;&gt;&gt; a is b                       # a and b are acctually the same objects
+1
+&gt;&gt;&gt; print arr.foo([1,2,3])       # different rank arrays are allowed
+copied an array using PyArray_CopyFromObject: size=3, elsize=8
+[ 1.  1.  2.]
+&gt;&gt;&gt; print arr.foo([[[1],[2],[3]]])
+copied an array using PyArray_CopyFromObject: size=3, elsize=8
+[ [[ 1.]
+  [ 3.]
+  [ 4.]]]
+&gt;&gt;&gt;
+&gt;&gt;&gt; # Creating arrays with column major data storage order:
+...
+&gt;&gt;&gt; s = arr.as_column_major_storage(array([[1,2,3],[4,5,6]]))
+copied an array using copy_ND_array: size=6, elsize=4
+&gt;&gt;&gt; arr.has_column_major_storage(s)
+1
+&gt;&gt;&gt; print s
+[[1 2 3]
+ [4 5 6]]
+&gt;&gt;&gt; s2 = arr.as_column_major_storage(s)
+&gt;&gt;&gt; s2 is s    # an array with column major storage order 
+               # is returned immediately
+1
+</pre>
+</div>
+</div>
+<div class="section" id="call-back-arguments">
+<h2><a class="toc-backref" href="#id39">4.4&nbsp;&nbsp;&nbsp;Call-back arguments</a></h2>
+<p>F2PY supports calling Python functions from Fortran or C codes.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="callback.f">Fortran 77 code</a></p>
+<pre class="literal-block">
+C FILE: CALLBACK.F
+      SUBROUTINE FOO(FUN,R)
+      EXTERNAL FUN
+      INTEGER I
+      REAL*8 R
+Cf2py intent(out) r
+      R = 0D0
+      DO I=-5,5
+         R = R + FUN(I)
+      ENDDO
+      END
+C END OF FILE CALLBACK.F
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> callback callback.f</tt>.</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import callback
+&gt;&gt;&gt; print callback.foo.__doc__
+foo - Function signature:
+  r = foo(fun,[fun_extra_args])
+Required arguments:
+  fun : call-back function
+Optional arguments:
+  fun_extra_args := () input tuple
+Return objects:
+  r : float
+Call-back functions:
+  def fun(i): return r
+  Required arguments:
+    i : input int
+  Return objects:
+    r : float
+
+&gt;&gt;&gt; def f(i): return i*i
+... 
+&gt;&gt;&gt; print callback.foo(f)     
+110.0
+&gt;&gt;&gt; print callback.foo(lambda i:1)
+11.0
+
+</pre>
+</div>
+<p>In the above example F2PY was able to guess accurately the signature
+of a call-back function. However, sometimes F2PY cannot establish the
+signature as one would wish and then the signature of a call-back
+function must be modified in the signature file manually. Namely,
+signature files may contain special modules (the names of such modules
+contain a substring <tt class="docutils literal">__user__</tt>) that collect various signatures of
+call-back functions.  Callback arguments in routine signatures have
+attribute <tt class="docutils literal">external</tt> (see also <tt class="docutils literal">intent(callback)</tt> attribute).  To
+relate a callback argument and its signature in <tt class="docutils literal">__user__</tt> module
+block, use <tt class="docutils literal">use</tt> statement as illustrated below. The same signature
+of a callback argument can be referred in different routine
+signatures.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>We use the same <a class="reference external" href="callback.f">Fortran 77 code</a> as in previous example but now
+we'll pretend that F2PY was not able to guess the signatures of
+call-back arguments correctly. First, we create an initial signature
+file <tt class="docutils literal">callback2.pyf</tt> using F2PY:</p>
+<pre class="literal-block">
+f2py -m callback2 -h callback2.pyf callback.f
+</pre>
+<p>Then modify it as follows</p>
+<pre class="literal-block">
+!    -*- f90 -*-
+python module __user__routines 
+    interface
+        function fun(i) result (r)
+            integer :: i
+            real*8 :: r
+        end function fun
+    end interface
+end python module __user__routines
+
+python module callback2
+    interface
+        subroutine foo(f,r)
+            use __user__routines, f=&gt;fun
+            external f
+            real*8 intent(out) :: r
+        end subroutine foo
+    end interface 
+end python module callback2
+
+</pre>
+<p>Finally, build the extension module using:</p>
+<pre class="literal-block">
+f2py -c callback2.pyf callback.f
+</pre>
+<p>An example Python session would be identical to the previous example
+except that argument names would differ.</p>
+</div>
+<p>Sometimes a Fortran package may require that users provide routines
+that the package will use. F2PY can construct an interface to such
+routines so that Python functions could be called from Fortran.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="calculate.f">Fortran 77 subroutine</a> that takes an array
+and applies a function <tt class="docutils literal">func</tt> to its elements.</p>
+<pre class="literal-block">
+      subroutine calculate(x,n)
+cf2py intent(callback) func
+      external func
+c     The following lines define the signature of func for F2PY:
+cf2py real*8 y
+cf2py y = func(y)
+c
+cf2py intent(in,out,copy) x
+      integer n,i
+      real*8 x(n)
+      do i=1,n
+         x(i) = func(x(i))
+      end do
+      end
+
+</pre>
+<p>It is expected that function <tt class="docutils literal">func</tt> has been defined
+externally. In order to use a Python function as <tt class="docutils literal">func</tt>, it must
+have an attribute <tt class="docutils literal">intent(callback)</tt> (it must be specified before
+the <tt class="docutils literal">external</tt> statement).</p>
+<p>Finally, build an extension module using:</p>
+<pre class="literal-block">
+f2py -c -m foo calculate.f
+</pre>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import foo
+&gt;&gt;&gt; foo.calculate(range(5), lambda x: x*x)
+array([  0.,   1.,   4.,   9.,  16.])
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; foo.calculate(range(5), math.exp)
+array([  1.        ,   2.71828175,   7.38905621,  20.08553696,  54.59814835])
+
+</pre>
+</div>
+<p>The function is included as an argument to the python function call to
+the FORTRAN subroutine eventhough it was NOT in the FORTRAN subroutine argument
+list. The &quot;external&quot; refers to the C function generated by f2py, not the python
+function itself. The python function must be supplied to the C function.</p>
+<p>The callback function may also be explicitly set in the module.
+Then it is not necessary to pass the function in the argument list to
+the FORTRAN function. This may be desired if the FORTRAN function calling
+the python callback function is itself called by another FORTRAN function.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="extcallback.f">Fortran 77 subroutine</a>.</p>
+<pre class="literal-block">
+      subroutine f1()
+         print *, &quot;in f1, calling f2 twice..&quot;
+         call f2()
+         call f2()
+         return
+      end
+      
+      subroutine f2()
+cf2py    intent(callback, hide) fpy
+         external fpy
+         print *, &quot;in f2, calling f2py..&quot;
+         call fpy()
+         return
+      end
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> pfromf extcallback.f</tt>.</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import pfromf
+&gt;&gt;&gt; pfromf.f2()
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in ?
+pfromf.error: Callback fpy not defined (as an argument or module pfromf attribute).
+
+&gt;&gt;&gt; def f(): print &quot;python f&quot;
+... 
+&gt;&gt;&gt; pfromf.fpy = f
+&gt;&gt;&gt; pfromf.f2()
+ in f2, calling f2py..
+python f
+&gt;&gt;&gt; pfromf.f1()
+ in f1, calling f2 twice..
+ in f2, calling f2py..
+python f
+ in f2, calling f2py..
+python f
+&gt;&gt;&gt; 
+</pre>
+</div>
+<div class="section" id="resolving-arguments-to-call-back-functions">
+<h3><a class="toc-backref" href="#id40">4.4.1&nbsp;&nbsp;&nbsp;Resolving arguments to call-back functions</a></h3>
+<p>F2PY generated interface is very flexible with respect to call-back
+arguments.  For each call-back argument an additional optional
+argument <tt class="docutils literal">&lt;name&gt;_extra_args</tt> is introduced by F2PY. This argument
+can be used to pass extra arguments to user provided call-back
+arguments.</p>
+<p>If a F2PY generated wrapper function expects the following call-back
+argument:</p>
+<pre class="literal-block">
+def fun(a_1,...,a_n):
+   ...
+   return x_1,...,x_k
+</pre>
+<p>but the following Python function</p>
+<pre class="literal-block">
+def gun(b_1,...,b_m):
+   ...
+   return y_1,...,y_l
+</pre>
+<p>is provided by an user, and in addition,</p>
+<pre class="literal-block">
+fun_extra_args = (e_1,...,e_p)
+</pre>
+<p>is used, then the following rules are applied when a Fortran or C
+function calls the call-back argument <tt class="docutils literal">gun</tt>:</p>
+<ul class="simple">
+<li>If <tt class="docutils literal"><span class="pre">p==0</span></tt> then <tt class="docutils literal"><span class="pre">gun(a_1,...,a_q)</span></tt> is called, here
+<tt class="docutils literal">q=min(m,n)</tt>.</li>
+<li>If <tt class="docutils literal"><span class="pre">n+p&lt;=m</span></tt> then <tt class="docutils literal"><span class="pre">gun(a_1,...,a_n,e_1,...,e_p)</span></tt> is called.</li>
+<li>If <tt class="docutils literal"><span class="pre">p&lt;=m&lt;n+p</span></tt> then <tt class="docutils literal"><span class="pre">gun(a_1,...,a_q,e_1,...,e_p)</span></tt> is called, here
+<tt class="docutils literal"><span class="pre">q=m-p</span></tt>.</li>
+<li>If <tt class="docutils literal">p&gt;m</tt> then <tt class="docutils literal"><span class="pre">gun(e_1,...,e_m)</span></tt> is called.</li>
+<li>If <tt class="docutils literal">n+p</tt> is less than the number of required arguments to <tt class="docutils literal">gun</tt>
+then an exception is raised.</li>
+</ul>
+<p>The function <tt class="docutils literal">gun</tt> may return any number of objects as a tuple. Then
+following rules are applied:</p>
+<ul class="simple">
+<li>If <tt class="docutils literal">k&lt;l</tt>, then <tt class="docutils literal"><span class="pre">y_{k+1},...,y_l</span></tt> are ignored.</li>
+<li>If <tt class="docutils literal">k&gt;l</tt>, then only <tt class="docutils literal"><span class="pre">x_1,...,x_l</span></tt> are set.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="common-blocks">
+<h2><a class="toc-backref" href="#id41">4.5&nbsp;&nbsp;&nbsp;Common blocks</a></h2>
+<p>F2PY generates wrappers to <tt class="docutils literal">common</tt> blocks defined in a routine
+signature block. Common blocks are visible by all Fortran codes linked
+with the current extension module, but not to other extension modules
+(this restriction is due to how Python imports shared libraries).  In
+Python, the F2PY wrappers to <tt class="docutils literal">common</tt> blocks are <tt class="docutils literal">fortran</tt> type
+objects that have (dynamic) attributes related to data members of
+common blocks. When accessed, these attributes return as Numeric array
+objects (multi-dimensional arrays are Fortran-contiguous) that
+directly link to data members in common blocks. Data members can be
+changed by direct assignment or by in-place changes to the
+corresponding array objects.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="common.f">Fortran 77 code</a></p>
+<pre class="literal-block">
+C FILE: COMMON.F
+      SUBROUTINE FOO
+      INTEGER I,X
+      REAL A
+      COMMON /DATA/ I,X(4),A(2,3)
+      PRINT*, &quot;I=&quot;,I
+      PRINT*, &quot;X=[&quot;,X,&quot;]&quot;
+      PRINT*, &quot;A=[&quot;
+      PRINT*, &quot;[&quot;,A(1,1),&quot;,&quot;,A(1,2),&quot;,&quot;,A(1,3),&quot;]&quot;
+      PRINT*, &quot;[&quot;,A(2,1),&quot;,&quot;,A(2,2),&quot;,&quot;,A(2,3),&quot;]&quot;
+      PRINT*, &quot;]&quot;
+      END
+C END OF COMMON.F
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> common common.f</tt>.</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import common
+&gt;&gt;&gt; print common.data.__doc__
+i - 'i'-scalar
+x - 'i'-array(4)
+a - 'f'-array(2,3)
+
+&gt;&gt;&gt; common.data.i = 5
+&gt;&gt;&gt; common.data.x[1] = 2 
+&gt;&gt;&gt; common.data.a = [[1,2,3],[4,5,6]]
+&gt;&gt;&gt; common.foo()
+ I= 5
+ X=[ 0 2 0 0]
+ A=[
+ [  1.,  2.,  3.]
+ [  4.,  5.,  6.]
+ ]
+&gt;&gt;&gt; common.data.a[1] = 45
+&gt;&gt;&gt; common.foo()
+ I= 5
+ X=[ 0 2 0 0]
+ A=[
+ [  1.,  2.,  3.]
+ [  45.,  45.,  45.]
+ ]
+&gt;&gt;&gt; common.data.a                 # a is Fortran-contiguous
+array([[  1.,   2.,   3.],
+       [ 45.,  45.,  45.]],'f')
+
+</pre>
+</div>
+</div>
+<div class="section" id="fortran-90-module-data">
+<h2><a class="toc-backref" href="#id42">4.6&nbsp;&nbsp;&nbsp;Fortran 90 module data</a></h2>
+<p>The F2PY interface to Fortran 90 module data is similar to Fortran 77
+common blocks.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="moddata.f90">Fortran 90 code</a></p>
+<pre class="literal-block">
+module mod
+  integer i
+  integer :: x(4)
+  real, dimension(2,3) :: a
+  real, allocatable, dimension(:,:) :: b 
+contains
+  subroutine foo
+    integer k
+    print*, &quot;i=&quot;,i
+    print*, &quot;x=[&quot;,x,&quot;]&quot;
+    print*, &quot;a=[&quot;
+    print*, &quot;[&quot;,a(1,1),&quot;,&quot;,a(1,2),&quot;,&quot;,a(1,3),&quot;]&quot;
+    print*, &quot;[&quot;,a(2,1),&quot;,&quot;,a(2,2),&quot;,&quot;,a(2,3),&quot;]&quot;
+    print*, &quot;]&quot;
+    print*, &quot;Setting a(1,2)=a(1,2)+3&quot;
+    a(1,2) = a(1,2)+3
+  end subroutine foo
+end module mod
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> moddata moddata.f90</tt>.</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import moddata
+&gt;&gt;&gt; print moddata.mod.__doc__
+i - 'i'-scalar
+x - 'i'-array(4)
+a - 'f'-array(2,3)
+foo - Function signature:
+  foo()
+
+
+&gt;&gt;&gt; moddata.mod.i = 5  
+&gt;&gt;&gt; moddata.mod.x[:2] = [1,2]
+&gt;&gt;&gt; moddata.mod.a = [[1,2,3],[4,5,6]]
+&gt;&gt;&gt; moddata.mod.foo()                
+ i=           5
+ x=[           1           2           0           0 ]
+ a=[
+ [   1.000000     ,   2.000000     ,   3.000000     ]
+ [   4.000000     ,   5.000000     ,   6.000000     ]
+ ]
+ Setting a(1,2)=a(1,2)+3
+&gt;&gt;&gt; moddata.mod.a               # a is Fortran-contiguous
+array([[ 1.,  5.,  3.],
+       [ 4.,  5.,  6.]],'f')
+
+</pre>
+</div>
+<div class="section" id="allocatable-arrays">
+<h3><a class="toc-backref" href="#id43">4.6.1&nbsp;&nbsp;&nbsp;Allocatable arrays</a></h3>
+<p>F2PY has basic support for Fortran 90 module allocatable arrays.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="allocarr.f90">Fortran 90 code</a></p>
+<pre class="literal-block">
+module mod
+  real, allocatable, dimension(:,:) :: b 
+contains
+  subroutine foo
+    integer k
+    if (allocated(b)) then
+       print*, &quot;b=[&quot;
+       do k = 1,size(b,1)
+          print*, b(k,1:size(b,2))
+       enddo
+       print*, &quot;]&quot;
+    else
+       print*, &quot;b is not allocated&quot;
+    endif
+  end subroutine foo
+end module mod
+
+</pre>
+<p>and wrap it using <tt class="docutils literal">f2py <span class="pre">-c</span> <span class="pre">-m</span> allocarr allocarr.f90</tt>.</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import allocarr 
+&gt;&gt;&gt; print allocarr.mod.__doc__
+b - 'f'-array(-1,-1), not allocated
+foo - Function signature:
+  foo()
+
+&gt;&gt;&gt; allocarr.mod.foo()  
+ b is not allocated
+&gt;&gt;&gt; allocarr.mod.b = [[1,2,3],[4,5,6]]         # allocate/initialize b
+&gt;&gt;&gt; allocarr.mod.foo()
+ b=[
+   1.000000       2.000000       3.000000    
+   4.000000       5.000000       6.000000    
+ ]
+&gt;&gt;&gt; allocarr.mod.b                             # b is Fortran-contiguous
+array([[ 1.,  2.,  3.],
+       [ 4.,  5.,  6.]],'f')
+&gt;&gt;&gt; allocarr.mod.b = [[1,2,3],[4,5,6],[7,8,9]] # reallocate/initialize b
+&gt;&gt;&gt; allocarr.mod.foo()
+ b=[
+   1.000000       2.000000       3.000000    
+   4.000000       5.000000       6.000000    
+   7.000000       8.000000       9.000000    
+ ]
+&gt;&gt;&gt; allocarr.mod.b = None                      # deallocate array
+&gt;&gt;&gt; allocarr.mod.foo()
+ b is not allocated
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-f2py">
+<h1><a class="toc-backref" href="#id44">5&nbsp;&nbsp;&nbsp;Using F2PY</a></h1>
+<p>F2PY can be used either as a command line tool <tt class="docutils literal">f2py</tt> or as a Python
+module <tt class="docutils literal">f2py2e</tt>.</p>
+<div class="section" id="command-f2py">
+<h2><a class="toc-backref" href="#id45">5.1&nbsp;&nbsp;&nbsp;Command <tt class="docutils literal">f2py</tt></a></h2>
+<p>When used as a command line tool, <tt class="docutils literal">f2py</tt> has three major modes,
+distinguished by the usage of <tt class="docutils literal"><span class="pre">-c</span></tt> and <tt class="docutils literal"><span class="pre">-h</span></tt> switches:</p>
+<ol class="arabic simple">
+<li>To scan Fortran sources and generate a signature file, use</li>
+</ol>
+<blockquote>
+<pre class="literal-block">
+f2py -h &lt;filename.pyf&gt; &lt;options&gt; &lt;fortran files&gt;   \
+  [[ only: &lt;fortran functions&gt;  : ]                \
+   [ skip: &lt;fortran functions&gt;  : ]]...            \
+  [&lt;fortran files&gt; ...]
+</pre>
+<p>Note that a Fortran source file can contain many routines, and not
+necessarily all routines are needed to be used from Python. So, you
+can either specify which routines should be wrapped (in <tt class="docutils literal">only: .. :</tt>
+part) or which routines F2PY should ignored (in <tt class="docutils literal">skip: .. :</tt> part).</p>
+<p>If <tt class="docutils literal">&lt;filename.pyf&gt;</tt> is specified as <tt class="docutils literal">stdout</tt> then signatures
+are send to standard output instead of a file.</p>
+<p>Among other options (see below), the following options can be used
+in this mode:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">--overwrite-signature</span></tt></dt>
+<dd>Overwrite existing signature file.</dd>
+</dl>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>To construct an extension module, use</li>
+</ol>
+<blockquote>
+<pre class="literal-block">
+f2py &lt;options&gt; &lt;fortran files&gt;          \
+  [[ only: &lt;fortran functions&gt;  : ]     \
+   [ skip: &lt;fortran functions&gt;  : ]]... \
+  [&lt;fortran files&gt; ...]
+</pre>
+<p>The constructed extension module is saved as
+<tt class="docutils literal">&lt;modulename&gt;module.c</tt> to the current directory.</p>
+<p>Here <tt class="docutils literal">&lt;fortran files&gt;</tt> may also contain signature files.
+Among other options (see below), the following options can be used
+in this mode:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">--debug-capi</span></tt></dt>
+<dd>Add debugging hooks to the extension module. When using this
+extension module, various information about the wrapper is printed
+to standard output, for example, the values of variables, the
+steps taken, etc.</dd>
+<dt><tt class="docutils literal"><span class="pre">-include'&lt;includefile&gt;'</span></tt></dt>
+<dd><p class="first">Add a CPP <tt class="docutils literal">#include</tt> statement to the extension module source.
+<tt class="docutils literal">&lt;includefile&gt;</tt> should be given in one of the following forms:</p>
+<pre class="literal-block">
+&quot;filename.ext&quot;
+&lt;filename.ext&gt;
+</pre>
+<p>The include statement is inserted just before the wrapper
+functions. This feature enables using arbitrary C functions
+(defined in <tt class="docutils literal">&lt;includefile&gt;</tt>) in F2PY generated wrappers.</p>
+<p class="last">This option is deprecated. Use <tt class="docutils literal">usercode</tt> statement to specify
+C codelets directly in signature filess</p>
+</dd>
+</dl>
+<p><tt class="docutils literal"><span class="pre">--[no-]wrap-functions</span></tt></p>
+<blockquote>
+Create Fortran subroutine wrappers to Fortran functions.
+<tt class="docutils literal"><span class="pre">--wrap-functions</span></tt> is default because it ensures maximum
+portability and compiler independence.</blockquote>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">--include-paths</span> <span class="pre">&lt;path1&gt;:&lt;path2&gt;:..</span></tt></dt>
+<dd>Search include files from given directories.</dd>
+<dt><tt class="docutils literal"><span class="pre">--help-link</span> [&lt;list of resources names&gt;]</tt></dt>
+<dd>List system resources found by <tt class="docutils literal">numpy_distutils/system_info.py</tt>.
+For example, try <tt class="docutils literal">f2py <span class="pre">--help-link</span> lapack_opt</tt>.</dd>
+</dl>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>To build an extension module, use</li>
+</ol>
+<blockquote>
+<pre class="literal-block">
+f2py -c &lt;options&gt; &lt;fortran files&gt;       \
+  [[ only: &lt;fortran functions&gt;  : ]     \
+   [ skip: &lt;fortran functions&gt;  : ]]... \
+  [ &lt;fortran/c source files&gt; ] [ &lt;.o, .a, .so files&gt; ]
+</pre>
+<p>If <tt class="docutils literal">&lt;fortran files&gt;</tt> contains a signature file, then a source for
+an extension module is constructed, all Fortran and C sources are
+compiled, and finally all object and library files are linked to the
+extension module <tt class="docutils literal"><span class="pre">&lt;modulename&gt;.so</span></tt> which is saved into the current
+directory.</p>
+<p>If <tt class="docutils literal">&lt;fortran files&gt;</tt> does not contain a signature file, then an
+extension module is constructed by scanning all Fortran source codes
+for routine signatures.</p>
+<p>Among other options (see below) and options described in previous
+mode, the following options can be used in this mode:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">--help-fcompiler</span></tt></dt>
+<dd>List available Fortran compilers.</dd>
+<dt><tt class="docutils literal"><span class="pre">--help-compiler</span></tt> [depreciated]</dt>
+<dd>List available Fortran compilers.</dd>
+<dt><tt class="docutils literal"><span class="pre">--fcompiler=&lt;Vendor&gt;</span></tt></dt>
+<dd>Specify Fortran compiler type by vendor.</dd>
+<dt><tt class="docutils literal"><span class="pre">--f77exec=&lt;path&gt;</span></tt></dt>
+<dd>Specify the path to F77 compiler</dd>
+<dt><tt class="docutils literal"><span class="pre">--fcompiler-exec=&lt;path&gt;</span></tt> [depreciated]</dt>
+<dd>Specify the path to F77 compiler</dd>
+<dt><tt class="docutils literal"><span class="pre">--f90exec=&lt;path&gt;</span></tt></dt>
+<dd>Specify the path to F90 compiler</dd>
+<dt><tt class="docutils literal"><span class="pre">--f90compiler-exec=&lt;path&gt;</span></tt> [depreciated]</dt>
+<dd>Specify the path to F90 compiler</dd>
+<dt><tt class="docutils literal"><span class="pre">--f77flags=&lt;string&gt;</span></tt></dt>
+<dd>Specify F77 compiler flags</dd>
+<dt><tt class="docutils literal"><span class="pre">--f90flags=&lt;string&gt;</span></tt></dt>
+<dd>Specify F90 compiler flags</dd>
+<dt><tt class="docutils literal"><span class="pre">--opt=&lt;string&gt;</span></tt></dt>
+<dd>Specify optimization flags</dd>
+<dt><tt class="docutils literal"><span class="pre">--arch=&lt;string&gt;</span></tt></dt>
+<dd>Specify architecture specific optimization flags</dd>
+<dt><tt class="docutils literal"><span class="pre">--noopt</span></tt></dt>
+<dd>Compile without optimization</dd>
+<dt><tt class="docutils literal"><span class="pre">--noarch</span></tt></dt>
+<dd>Compile without arch-dependent optimization</dd>
+<dt><tt class="docutils literal"><span class="pre">--debug</span></tt></dt>
+<dd>Compile with debugging information</dd>
+<dt><tt class="docutils literal"><span class="pre">-l&lt;libname&gt;</span></tt></dt>
+<dd>Use the library <tt class="docutils literal">&lt;libname&gt;</tt> when linking.</dd>
+<dt><tt class="docutils literal"><span class="pre">-D&lt;macro&gt;[=&lt;defn=1&gt;]</span></tt></dt>
+<dd>Define macro <tt class="docutils literal">&lt;macro&gt;</tt> as <tt class="docutils literal">&lt;defn&gt;</tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">-U&lt;macro&gt;</span></tt></dt>
+<dd>Define macro <tt class="docutils literal">&lt;macro&gt;</tt></dd>
+<dt><tt class="docutils literal"><span class="pre">-I&lt;dir&gt;</span></tt></dt>
+<dd>Append directory <tt class="docutils literal">&lt;dir&gt;</tt> to the list of directories searched for
+include files.</dd>
+<dt><tt class="docutils literal"><span class="pre">-L&lt;dir&gt;</span></tt></dt>
+<dd>Add directory <tt class="docutils literal">&lt;dir&gt;</tt> to the list of directories to  be  searched
+for <tt class="docutils literal"><span class="pre">-l</span></tt>.</dd>
+</dl>
+<p><tt class="docutils literal"><span class="pre">link-&lt;resource&gt;</span></tt></p>
+<blockquote>
+Link extension module with &lt;resource&gt; as defined by
+<tt class="docutils literal">numpy_distutils/system_info.py</tt>. E.g. to link with optimized
+LAPACK libraries (vecLib on MacOSX, ATLAS elsewhere), use
+<tt class="docutils literal"><span class="pre">--link-lapack_opt</span></tt>. See also <tt class="docutils literal"><span class="pre">--help-link</span></tt> switch.</blockquote>
+<p>When building an extension module, a combination of the following
+macros may be required for non-gcc Fortran compilers:</p>
+<pre class="literal-block">
+-DPREPEND_FORTRAN
+-DNO_APPEND_FORTRAN
+-DUPPERCASE_FORTRAN
+</pre>
+<p>To test the performance of F2PY generated interfaces, use
+<tt class="docutils literal"><span class="pre">-DF2PY_REPORT_ATEXIT</span></tt>. Then a report of various timings is
+printed out at the exit of Python. This feature may not work on
+all platforms, currently only Linux platform is supported.</p>
+<p>To see whether F2PY generated interface performs copies of array
+arguments, use <tt class="docutils literal"><span class="pre">-DF2PY_REPORT_ON_ARRAY_COPY=&lt;int&gt;</span></tt>. When the size
+of an array argument is larger than <tt class="docutils literal">&lt;int&gt;</tt>, a message about
+the coping is sent to <tt class="docutils literal">stderr</tt>.</p>
+</blockquote>
+<p>Other options:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">-m</span> &lt;modulename&gt;</tt></dt>
+<dd><p class="first">Name of an extension module. Default is <tt class="docutils literal">untitled</tt>. Don't use this option
+if a signature file (<a href="#id17"><span class="problematic" id="id18">*</span></a>.pyf) is used.</p>
+<div class="last system-message" id="id17">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">numpy/f2py/docs/usersguide/index.txt</tt>, line 1556); <em><a href="#id18">backlink</a></em></p>
+Inline emphasis start-string without end-string.</div>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">--[no-]lower</span></tt></dt>
+<dd>Do [not] lower the cases in <tt class="docutils literal">&lt;fortran files&gt;</tt>.  By default,
+<tt class="docutils literal"><span class="pre">--lower</span></tt> is assumed with <tt class="docutils literal"><span class="pre">-h</span></tt> switch, and <tt class="docutils literal"><span class="pre">--no-lower</span></tt>
+without the <tt class="docutils literal"><span class="pre">-h</span></tt> switch.</dd>
+<dt><tt class="docutils literal"><span class="pre">--build-dir</span> &lt;dirname&gt;</tt></dt>
+<dd>All F2PY generated files are created in <tt class="docutils literal">&lt;dirname&gt;</tt>.  Default is
+<tt class="docutils literal">tempfile.mktemp()</tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">--quiet</span></tt></dt>
+<dd>Run quietly.</dd>
+<dt><tt class="docutils literal"><span class="pre">--verbose</span></tt></dt>
+<dd>Run with extra verbosity.</dd>
+<dt><tt class="docutils literal"><span class="pre">-v</span></tt></dt>
+<dd>Print f2py version ID and exit.</dd>
+</dl>
+<p>Execute <tt class="docutils literal">f2py</tt> without any options to get an up-to-date list of
+available options.</p>
+</div>
+<div class="section" id="python-module-f2py2e">
+<h2><a class="toc-backref" href="#id46">5.2&nbsp;&nbsp;&nbsp;Python module <tt class="docutils literal">f2py2e</tt></a></h2>
+<div class="topic">
+<p class="topic-title first">Warning</p>
+<p>The current Python interface to <tt class="docutils literal">f2py2e</tt> module is not mature and
+may change in future depending on users needs.</p>
+</div>
+<p>The following functions are provided by the <tt class="docutils literal">f2py2e</tt> module:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">run_main(&lt;list&gt;)</span></tt></dt>
+<dd><p class="first">Equivalent to running:</p>
+<pre class="literal-block">
+f2py &lt;args&gt;
+</pre>
+<p>where <tt class="docutils literal"><span class="pre">&lt;args&gt;=string.join(&lt;list&gt;,'</span> ')</tt>, but in Python.  Unless
+<tt class="docutils literal"><span class="pre">-h</span></tt> is used, this function returns a dictionary containing
+information on generated modules and their dependencies on source
+files.  For example, the command <tt class="docutils literal">f2py <span class="pre">-m</span> scalar scalar.f</tt> can be
+executed from Python as follows</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import f2py2e
+&gt;&gt;&gt; r=f2py2e.run_main(['-m','scalar','docs/usersguide/scalar.f'])
+Reading fortran codes...
+        Reading file 'docs/usersguide/scalar.f'
+Post-processing...
+        Block: scalar
+                        Block: FOO
+Building modules...
+        Building module &quot;scalar&quot;...
+        Wrote C/API module &quot;scalar&quot; to file &quot;./scalarmodule.c&quot;
+&gt;&gt;&gt; print r
+{'scalar': {'h': ['/home/users/pearu/src_cvs/f2py2e/src/fortranobject.h'],
+         'csrc': ['./scalarmodule.c', 
+                  '/home/users/pearu/src_cvs/f2py2e/src/fortranobject.c']}}
+
+</pre>
+<p class="last">You cannot build extension modules with this function, that is,
+using <tt class="docutils literal"><span class="pre">-c</span></tt> is not allowed. Use <tt class="docutils literal">compile</tt> command instead, see
+below.</p>
+</dd>
+</dl>
+<p><tt class="docutils literal">compile(source, <span class="pre">modulename='untitled',</span> <span class="pre">extra_args='',</span> verbose=1, source_fn=None)</tt></p>
+<blockquote>
+<p>Build extension module from Fortran 77 source string <tt class="docutils literal">source</tt>.
+Return 0 if successful.
+Note that this function actually calls <tt class="docutils literal">f2py <span class="pre">-c</span> ..</tt> from shell to
+ensure safety of the current Python process.
+For example,</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import f2py2e
+&gt;&gt;&gt; fsource = '''
+...       subroutine foo
+...       print*, &quot;Hello world!&quot;
+...       end 
+... '''
+&gt;&gt;&gt; f2py2e.compile(fsource,modulename='hello',verbose=0)
+0
+&gt;&gt;&gt; import hello
+&gt;&gt;&gt; hello.foo()
+ Hello world!
+
+</pre>
+</blockquote>
+</div>
+</div>
+<div class="section" id="using-numpy-distutils">
+<h1><a class="toc-backref" href="#id47">6&nbsp;&nbsp;&nbsp;Using <tt class="docutils literal">numpy_distutils</tt></a></h1>
+<p><tt class="docutils literal">numpy_distutils</tt> is part of the <a class="reference external" href="http://www.numpy.org/">SciPy</a> project and aims to extend
+standard Python <tt class="docutils literal">distutils</tt> to deal with Fortran sources and F2PY
+signature files, e.g. compile Fortran sources, call F2PY to construct
+extension modules, etc.</p>
+<div class="topic">
+<p class="topic-title first">Example</p>
+<p>Consider the following <a class="reference external" href="setup_example.py">setup file</a>:</p>
+<pre class="literal-block">
+#!/usr/bin/env python
+# File: setup_example.py
+
+from numpy_distutils.core import Extension
+
+ext1 = Extension(name = 'scalar',
+                 sources = ['scalar.f'])
+ext2 = Extension(name = 'fib2',
+                 sources = ['fib2.pyf','fib1.f'])
+
+if __name__ == &quot;__main__&quot;:
+    from numpy_distutils.core import setup
+    setup(name = 'f2py_example',
+          description       = &quot;F2PY Users Guide examples&quot;,
+          author            = &quot;Pearu Peterson&quot;,
+          author_email      = &quot;pearu&#64;cens.ioc.ee&quot;,
+          ext_modules = [ext1,ext2]
+          )
+# End of setup_example.py
+
+</pre>
+<p>Running</p>
+<pre class="literal-block">
+python setup_example.py build
+</pre>
+<p>will build two extension modules <tt class="docutils literal">scalar</tt> and <tt class="docutils literal">fib2</tt> to the
+build directory.</p>
+</div>
+<p><tt class="docutils literal">numpy_distutils</tt> extends <tt class="docutils literal">distutils</tt> with the following features:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal">Extension</tt> class argument <tt class="docutils literal">sources</tt> may contain Fortran source
+files. In addition, the list <tt class="docutils literal">sources</tt> may contain at most one
+F2PY signature file, and then the name of an Extension module must
+match with the <tt class="docutils literal">&lt;modulename&gt;</tt> used in signature file.  It is
+assumed that an F2PY signature file contains exactly one <tt class="docutils literal">python
+module</tt> block.</p>
+<p>If <tt class="docutils literal">sources</tt> does not contain a signature files, then F2PY is used
+to scan Fortran source files for routine signatures to construct the
+wrappers to Fortran codes.</p>
+<p>Additional options to F2PY process can be given using <tt class="docutils literal">Extension</tt>
+class argument <tt class="docutils literal">f2py_options</tt>.</p>
+</li>
+</ul>
+<div class="section" id="numpy-distutils-0-2-2-and-up">
+<h2><a class="toc-backref" href="#id48">6.1&nbsp;&nbsp;&nbsp;<tt class="docutils literal">numpy_distutils</tt> 0.2.2 and up</a></h2>
+<ul>
+<li><p class="first">The following new <tt class="docutils literal">distutils</tt> commands are defined:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">build_src</tt></dt>
+<dd><p class="first last">to construct Fortran wrapper extension modules, among many other things.</p>
+</dd>
+<dt><tt class="docutils literal">config_fc</tt></dt>
+<dd><p class="first last">to change Fortran compiler options</p>
+</dd>
+</dl>
+<p>as well as <tt class="docutils literal">build_ext</tt> and  <tt class="docutils literal">build_clib</tt> commands are enhanced
+to support Fortran sources.</p>
+<p>Run</p>
+<pre class="literal-block">
+python &lt;setup.py file&gt; config_fc build_src build_ext --help
+</pre>
+<p>to see available options for these commands.</p>
+</li>
+<li><p class="first">When building Python packages containing Fortran sources, then one
+can choose different Fortran compilers by using <tt class="docutils literal">build_ext</tt>
+command option <tt class="docutils literal"><span class="pre">--fcompiler=&lt;Vendor&gt;</span></tt>. Here <tt class="docutils literal">&lt;Vendor&gt;</tt> can be one of the
+following names:</p>
+<pre class="literal-block">
+absoft sun mips intel intelv intele intelev nag compaq compaqv gnu vast pg hpux
+</pre>
+<p>See <tt class="docutils literal">numpy_distutils/fcompiler.py</tt> for up-to-date list of
+supported compilers or run</p>
+<pre class="literal-block">
+f2py -c --help-fcompiler
+</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="numpy-distutils-pre-0-2-2">
+<h2><a class="toc-backref" href="#id49">6.2&nbsp;&nbsp;&nbsp;<tt class="docutils literal">numpy_distutils</tt> pre 0.2.2</a></h2>
+<ul>
+<li><p class="first">The following new <tt class="docutils literal">distutils</tt> commands are defined:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">build_flib</tt></dt>
+<dd><p class="first last">to build f77/f90 libraries used by Python extensions;</p>
+</dd>
+<dt><tt class="docutils literal">run_f2py</tt></dt>
+<dd><p class="first last">to construct Fortran wrapper extension modules.</p>
+</dd>
+</dl>
+<p>Run</p>
+<pre class="literal-block">
+python &lt;setup.py file&gt; build_flib run_f2py --help
+</pre>
+<p>to see available options for these commands.</p>
+</li>
+<li><p class="first">When building Python packages containing Fortran sources, then one
+can choose different Fortran compilers either by using <tt class="docutils literal">build_flib</tt>
+command option <tt class="docutils literal"><span class="pre">--fcompiler=&lt;Vendor&gt;</span></tt> or by defining environment
+variable <tt class="docutils literal"><span class="pre">FC_VENDOR=&lt;Vendor&gt;</span></tt>. Here <tt class="docutils literal">&lt;Vendor&gt;</tt> can be one of the
+following names:</p>
+<pre class="literal-block">
+Absoft Sun SGI Intel Itanium NAG Compaq Digital Gnu VAST PG
+</pre>
+<p>See <tt class="docutils literal">numpy_distutils/command/build_flib.py</tt> for up-to-date list of
+supported compilers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="extended-f2py-usages">
+<h1><a class="toc-backref" href="#id50">7&nbsp;&nbsp;&nbsp;Extended F2PY usages</a></h1>
+<div class="section" id="adding-self-written-functions-to-f2py-generated-modules">
+<h2><a class="toc-backref" href="#id51">7.1&nbsp;&nbsp;&nbsp;Adding self-written functions to F2PY generated modules</a></h2>
+<p>Self-written Python C/API functions can be defined inside
+signature files using <tt class="docutils literal">usercode</tt> and <tt class="docutils literal">pymethoddef</tt> statements
+(they must be used inside the <tt class="docutils literal">python module</tt> block). For
+example, the following signature file <tt class="docutils literal">spam.pyf</tt></p>
+<pre class="literal-block">
+!    -*- f90 -*-
+python module spam
+    usercode '''
+  static char doc_spam_system[] = &quot;Execute a shell command.&quot;;
+  static PyObject *spam_system(PyObject *self, PyObject *args)
+  {
+    char *command;
+    int sts;
+
+    if (!PyArg_ParseTuple(args, &quot;s&quot;, &amp;command))
+        return NULL;
+    sts = system(command);
+    return Py_BuildValue(&quot;i&quot;, sts);
+  }
+    '''
+    pymethoddef '''
+    {&quot;system&quot;,  spam_system, METH_VARARGS, doc_spam_system},
+    '''
+end python module spam
+
+</pre>
+<p>wraps the C library function <tt class="docutils literal">system()</tt>:</p>
+<pre class="literal-block">
+f2py -c spam.pyf
+</pre>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import spam
+&gt;&gt;&gt; status = spam.system('whoami')
+pearu
+&gt;&gt; status = spam.system('blah')
+sh: line 1: blah: command not found
+</pre>
+</div>
+<div class="section" id="modifying-the-dictionary-of-a-f2py-generated-module">
+<h2><a class="toc-backref" href="#id52">7.2&nbsp;&nbsp;&nbsp;Modifying the dictionary of a F2PY generated module</a></h2>
+<p>The following example illustrates how to add an user-defined
+variables to a F2PY generated extension module. Given the following
+signature file</p>
+<pre class="literal-block">
+!    -*- f90 -*-
+python module var
+  usercode '''
+    int BAR = 5;
+  '''
+  interface
+    usercode '''
+      PyDict_SetItemString(d,&quot;BAR&quot;,PyInt_FromLong(BAR));
+    '''
+  end interface
+end python module
+
+</pre>
+<p>compile it as <tt class="docutils literal">f2py <span class="pre">-c</span> var.pyf</tt>.</p>
+<p>Notice that the second <tt class="docutils literal">usercode</tt> statement must be defined inside
+an <tt class="docutils literal">interface</tt> block and where the module dictionary is available through
+the variable <tt class="docutils literal">d</tt> (see <tt class="docutils literal">f2py var.pyf</tt>-generated <tt class="docutils literal">varmodule.c</tt> for
+additional details).</p>
+<p>In Python:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; import var
+&gt;&gt;&gt; var.BAR
+5
+</pre>
+<!-- References
+========== -->
+</div>
+</div>
+</div>
+</body>
+</html>

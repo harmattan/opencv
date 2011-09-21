@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Vectorization</TITLE>
+<META NAME="description" CONTENT="Vectorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node63.html">
+<LINK REL="previous" HREF="node61.html">
+<LINK REL="up" HREF="node61.html">
+<LINK REL="next" HREF="node63.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5030"
+ HREF="node63.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5024"
+ HREF="node61.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5018"
+ HREF="node61.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5026"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5028"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5031"
+ HREF="node63.html">Data Movement</A>
+<B> Up:</B> <A NAME="tex2html5025"
+ HREF="node61.html">Factors that Affect Performance</A>
+<B> Previous:</B> <A NAME="tex2html5019"
+ HREF="node61.html">Factors that Affect Performance</A>
+ &nbsp <B>  <A NAME="tex2html5027"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5029"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03311000000000000000"></A><A NAME="subsecvectorize"></A><A NAME="7591"></A>
+<BR>
+Vectorization
+</H2>
+
+<P>
+Designing vectorizable algorithms in linear algebra is usually
+straightforward.
+Indeed, for many computations there are several variants, all vectorizable,
+but
+with different characteristics in performance (see, for example,
+[<A
+ HREF="node151.html#Dongarra84a">45</A>]).
+Linear algebra algorithms can come close to the peak performance of
+many machines -- principally because peak performance depends on some form
+of
+chaining of vector addition and multiplication operations, and this is just
+what the algorithms require.
+
+<P>
+However, when the algorithms are realized in straightforward Fortran 77
+code,
+the performance may fall well short of the expected level, usually because
+vectorizing Fortran compilers fail to minimize the number of memory
+references
+-- that is, the number of vector load and store operations. This brings us
+to
+the next factor.
+
+<P>
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

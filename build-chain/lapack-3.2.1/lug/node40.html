@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>QR Factorization</TITLE>
+<META NAME="description" CONTENT="QR Factorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node41.html">
+<LINK REL="previous" HREF="node39.html">
+<LINK REL="up" HREF="node39.html">
+<LINK REL="next" HREF="node41.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4710"
+ HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4704"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4698"
+ HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4706"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4708"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4711"
+ HREF="node41.html">LQ Factorization</A>
+<B> Up:</B> <A NAME="tex2html4705"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4699"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+ &nbsp <B>  <A NAME="tex2html4707"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4709"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03242100000000000000">
+<I>QR</I> Factorization</A>
+</H3>
+
+<P>
+The most
+common, and best known, of the factorizations
+is the <B><I>QR</I></B>&nbsp;<B>factorization</B><A NAME="2569"></A>
+given by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q\left( \begin{array}{c}R\\0\end{array}\right), \quad \mbox{if $m \ge n$,}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="204" HEIGHT="54" BORDER="0"
+ SRC="img102.gif"
+ ALT="\begin{displaymath}
+A = Q\left( \begin{array}{c}R\\ 0\end{array}\right), \quad \mbox{if $m \ge n$,}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>R</I></B> is an <B><I>n</I></B>-by-<B><I>n</I></B> upper triangular matrix and <B><I>Q</I></B> is an <B><I>m</I></B>-by-<B><I>m</I></B>
+orthogonal (or unitary) matrix. If <B><I>A</I></B> is of full rank <B><I>n</I></B>, then <B><I>R</I></B> is
+non-singular.
+It is sometimes convenient to write the factorization as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{cc} Q_1 & Q_2\end{array} \right)
+    \left( \begin{array}{c}R\\0\end{array}\right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="183" HEIGHT="54" BORDER="0"
+ SRC="img103.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{cc} Q_1 &amp; Q_2\end{array} \right)
+\left( \begin{array}{c}R\\ 0\end{array}\right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which reduces to
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q_1 R ,
+\end{displaymath}
+ -->
+
+
+<B>
+<I>A</I> = <I>Q</I><SUB>1</SUB> <I>R</I> ,
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>Q</I><SUB>1</SUB></B> consists of the first <B><I>n</I></B> columns of <B><I>Q</I></B>, and <B><I>Q</I><SUB>2</SUB></B> the
+remaining <B><I>m</I>-<I>n</I></B> columns.
+
+<P>
+If <B><I>m</I> &lt; <I>n</I></B>, <B><I>R</I></B> is trapezoidal, and the factorization can be written
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q\left( \begin{array}{cc}R_1 & R_2\end{array}\right), \quad
+    \mbox{if $m < n$,}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="242" HEIGHT="37" BORDER="0"
+ SRC="img104.gif"
+ ALT="\begin{displaymath}
+A = Q\left( \begin{array}{cc}R_1 &amp; R_2\end{array}\right), \quad
+\mbox{if $m &lt; n$,}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>R</I><SUB>1</SUB></B> is upper triangular and <B><I>R</I><SUB>2</SUB></B> is rectangular.
+
+<P>
+The routine xGEQRF<A NAME="2584"></A><A NAME="2585"></A><A NAME="2586"></A><A NAME="2587"></A>
+computes the <B><I>QR</I></B> factorization. The matrix <B><I>Q</I></B> is not
+formed explicitly, but is represented as a product of elementary reflectors,
+<A NAME="2588"></A>
+<A NAME="2589"></A>
+as described in section&nbsp;<A HREF="node128.html#secorthog">5.4</A>.
+Users need not be aware of the details of this representation,
+because associated routines are provided to work with&nbsp;<B><I>Q</I></B>:
+xORGQR<A NAME="2591"></A><A NAME="2592"></A> (or xUNGQR<A NAME="2593"></A><A NAME="2594"></A>
+in the complex case) can generate all or part of <B><I>Q</I></B>,
+while xORMQR<A NAME="2595"></A><A NAME="2596"></A> (or xUNMQR<A NAME="2597"></A><A NAME="2598"></A>) can pre- or post-multiply
+a given matrix by <B><I>Q</I></B> or <B><I>Q</I><SUP><I>T</I></SUP></B>
+(<B><I>Q</I><SUP><I>H</I></SUP></B> if complex).
+
+<P>
+The <B><I>QR</I></B> factorization can be used to solve the linear least squares
+problem&nbsp;(<A HREF="node27.html#llsq">2.1</A>)<A NAME="2600"></A> when <IMG
+ WIDTH="53" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img105.gif"
+ ALT="$m \geq n$">
+and
+<B><I>A</I></B> is of full rank, since
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\|b - Ax\|_2 = \| Q^T b - Q^T A x\|_2 =
+\left\|\begin{array}{c} c_1 - Rx \\c_2 \end{array}\right \|_2, \quad
+\mbox{where } c \equiv
+\left( \begin{array}{c} c_1 \\c_2 \end{array} \right) =
+\left( \begin{array}{c} Q_1^T b \\Q_2^T b \end{array} \right) =
+Q^T b;
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="652" HEIGHT="55" BORDER="0"
+ SRC="img106.gif"
+ ALT="\begin{displaymath}
+\Vert b - Ax\Vert _2 = \Vert Q^T b - Q^T A x\Vert _2 =
+\left...
+...egin{array}{c} Q_1^T b \\ Q_2^T b \end{array} \right) =
+Q^T b;
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<B><I>c</I></B> can be computed by xORMQR<A NAME="2611"></A><A NAME="2612"></A> (or xUNMQR
+<A NAME="2613"></A><A NAME="2614"></A>), and <B><I>c</I><SUB>1</SUB></B> consists of its first
+<B><I>n</I></B> elements. Then
+<B><I>x</I></B> is the solution of the upper triangular system
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Rx = c_1
+\end{displaymath}
+ -->
+
+
+<B>
+<I>Rx</I> = <I>c</I><SUB>1</SUB>
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which can be computed by xTRTRS<A NAME="2615"></A><A NAME="2616"></A><A NAME="2617"></A><A NAME="2618"></A>.
+The residual vector <B><I>r</I></B> is given by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+r = b - A x = Q \left( \begin{array}{c} 0 \\c_2 \end{array} \right) ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="186" HEIGHT="54" BORDER="0"
+ SRC="img107.gif"
+ ALT="\begin{displaymath}
+r = b - A x = Q \left( \begin{array}{c} 0 \\ c_2 \end{array} \right) ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and may be computed using xORMQR<A NAME="2622"></A><A NAME="2623"></A> (or xUNMQR
+<A NAME="2624"></A><A NAME="2625"></A>).
+The residual sum of squares <B>|r|<SUB>2</SUB><SUP>2</SUP></B> may be computed without forming <B><I>r</I></B>
+explicitly, since
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\|r\|_2 = \|b - Ax\|_2 = \|c_2\|_2.
+\end{displaymath}
+ -->
+
+
+<B>
+|r|<SUB>2</SUB> = |b - <I>Ax</I>|<SUB>2</SUB> = |c<SUB>2</SUB>|<SUB>2</SUB>.
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4710"
+ HREF="node41.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4704"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4698"
+ HREF="node39.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4706"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4708"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4711"
+ HREF="node41.html">LQ Factorization</A>
+<B> Up:</B> <A NAME="tex2html4705"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4699"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+ &nbsp <B>  <A NAME="tex2html4707"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4709"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,540 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for the Generalized Singular Value Decomposition</TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for the Generalized Singular Value Decomposition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node106.html">
+<LINK REL="up" HREF="node106.html">
+<LINK REL="next" HREF="node108.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5693"
+ HREF="node108.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5687"
+ HREF="node106.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5683"
+ HREF="node106.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5689"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5691"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5694"
+ HREF="node108.html">Error Bounds for Fast</A>
+<B> Up:</B> <A NAME="tex2html5688"
+ HREF="node106.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5684"
+ HREF="node106.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5690"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5692"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION034121000000000000000">
+Further Details:  Error Bounds for the Generalized Singular Value Decomposition</A>
+</H2>
+
+<P>
+The GSVD algorithm used in LAPACK ([<A
+ HREF="node151.html#paige86a">83</A>,<A
+ HREF="node151.html#baidemmel92b">10</A>,<A
+ HREF="node151.html#baizha93">8</A>])
+is backward stable:
+<A NAME="12964"></A>
+<A NAME="12965"></A>
+<A NAME="12966"></A>
+
+<P>
+<P>
+<BLOCKQUOTE>Let the computed GSVD of <B><I>A</I></B> and <B><I>B</I></B> be 
+<!-- MATH
+ $\hat{U} \hat{\Sigma}_1 [0,\hat{R}] \hat{Q}^T$
+ -->
+<IMG
+ WIDTH="102" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img878.gif"
+ ALT="$\hat{U} \hat{\Sigma}_1 [0,\hat{R}] \hat{Q}^T$">
+and
+
+<!-- MATH
+ $\hat{V} \hat{\Sigma}_2 [0,\hat{R}] \hat{Q}^T$
+ -->
+<IMG
+ WIDTH="102" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img879.gif"
+ ALT="$\hat{V} \hat{\Sigma}_2 [0,\hat{R}] \hat{Q}^T$">.
+This is nearly the exact GSVD of
+<B><I>A</I>+<I>E</I></B> and <B><I>B</I>+<I>F</I></B> in the following sense. <B><I>E</I></B> and <B><I>F</I></B> are small:
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\|E\|_2 / \|A\|_2 \leq p(n) \epsilon \; \; {\rm and} \; \;
+\|F\|_2 / \|B\|_2 \leq p(n) \epsilon  \; ;
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="352" HEIGHT="31" BORDER="0"
+ SRC="img880.gif"
+ ALT="\begin{displaymath}
+\Vert E\Vert _2 / \Vert A\Vert _2 \leq p(n) \epsilon \; \; {...
+...; \;
+\Vert F\Vert _2 / \Vert B\Vert _2 \leq p(n) \epsilon \; ;
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+there exist small
+
+<!-- MATH
+ $\delta \hat{Q}$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img881.gif"
+ ALT="$\delta \hat{Q}$">,
+
+<!-- MATH
+ $\delta \hat{U}$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img882.gif"
+ ALT="$\delta \hat{U}$">,
+and 
+<!-- MATH
+ $\delta \hat{V}$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img883.gif"
+ ALT="$\delta \hat{V}$">
+such that
+
+<!-- MATH
+ $\hat{Q} + \delta \hat{Q}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img884.gif"
+ ALT="$\hat{Q} + \delta \hat{Q}$">,
+
+<!-- MATH
+ $\hat{U} + \delta \hat{U}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img652.gif"
+ ALT="$\hat{U}+ \delta \hat{U}$">,
+and
+
+<!-- MATH
+ $\hat{V} + \delta \hat{V}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img653.gif"
+ ALT="$\hat{V}+ \delta
+\hat{V}$">
+are exactly orthogonal (or unitary):
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\| \delta \hat{Q} \|_2 \leq p(n) \epsilon \; \; , \; \;
+\| \delta \hat{U} \|_2 \leq p(n) \epsilon \; \; {\rm and} \; \;
+\| \delta \hat{V} \|_2 \leq p(n) \epsilon \; \; ;
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="417" HEIGHT="31" BORDER="0"
+ SRC="img885.gif"
+ ALT="\begin{displaymath}
+\Vert \delta \hat{Q} \Vert _2 \leq p(n) \epsilon \; \; , \; ...
+...\; \;
+\Vert \delta \hat{V} \Vert _2 \leq p(n) \epsilon \; \; ;
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+and
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A + E = ( \hat{U} + \delta \hat{U} ) \hat{\Sigma}_1 [ 0, \hat{R}] (\hat{Q} + \delta \hat{Q})^T
+\; \; {\rm and} \; \;
+B + F = ( \hat{V} + \delta \hat{V} ) \hat{\Sigma}_2 [ 0, \hat{R}] (\hat{Q} + \delta \hat{Q})^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="568" HEIGHT="31" BORDER="0"
+ SRC="img886.gif"
+ ALT="\begin{displaymath}
+A + E = ( \hat{U} + \delta \hat{U} ) \hat{\Sigma}_1 [ 0, \ha...
+...V} ) \hat{\Sigma}_2 [ 0, \hat{R}] (\hat{Q} + \delta \hat{Q})^T
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+is the exact GSVD of <B><I>A</I>+<I>E</I></B> and <B><I>B</I>+<I>F</I></B>. Here <B><I>p</I>(<I>n</I>)</B> is a modestly growing function of <B><I>n</I></B>, and
+we take <B><I>p</I>(<I>n</I>)=1</B> in the above code fragment.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>Let <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+be the square roots of the diagonal entries of the exact
+
+<!-- MATH
+ $\Sigma_1^T \Sigma_1$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img887.gif"
+ ALT="$\Sigma_1^T \Sigma_1$">
+and 
+<!-- MATH
+ $\Sigma_2^T \Sigma_2$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img888.gif"
+ ALT="$\Sigma_2^T \Sigma_2$">,
+and let 
+<!-- MATH
+ $\hat{\alpha}_i$
+ -->
+<IMG
+ WIDTH="21" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img867.gif"
+ ALT="$\hat{\alpha}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img868.gif"
+ ALT="$\hat{\beta}_i$">
+the square roots of the diagonal entries
+of the computed 
+<!-- MATH
+ $\hat{\Sigma}_1^T \hat{\Sigma}_1$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img889.gif"
+ ALT="$\hat{\Sigma}_1^T \hat{\Sigma}_1$">
+and 
+<!-- MATH
+ $\hat{\Sigma}_2^T \hat{\Sigma}_2$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img890.gif"
+ ALT="$\hat{\Sigma}_2^T \hat{\Sigma}_2$">.
+Let
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+G = \left( \begin{array}{c} A \\B \end{array} \right) \; \; {\rm and} \; \; \hat{G} = \left( \begin{array}{c} \hat{A} \\\hat{B} \end{array} \right) \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="245" HEIGHT="54" BORDER="0"
+ SRC="img891.gif"
+ ALT="\begin{displaymath}
+G = \left( \begin{array}{c} A \\ B \end{array} \right) \; \;...
+...( \begin{array}{c} \hat{A} \\ \hat{B} \end{array} \right) \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+Then provided <B><I>G</I></B> and <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img892.gif"
+ ALT="$\hat{G}$">
+have full rank <B><I>n</I></B>, one can show [<A
+ HREF="node151.html#sun83">96</A>,<A
+ HREF="node151.html#paige84">82</A>] that
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \sum_{i=1}^n [( \hat{\alpha}_i - \alpha_i )^2 +
+                    ( \hat{\beta}_i - \beta_i )^2 ]  \right)^{1/2} \leq
+\frac{\sqrt{2} \left\| \left( \begin{array}{c} E \\F \end{array} \right) \right\|}
+{\min ( \sigma_{\min} (G) , \sigma_{\min} (\hat{G}) )}  \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="458" HEIGHT="82" BORDER="0"
+ SRC="img893.gif"
+ ALT="\begin{displaymath}
+\left( \sum_{i=1}^n [( \hat{\alpha}_i - \alpha_i )^2 +
+( \h...
+...{\min ( \sigma_{\min} (G) , \sigma_{\min} (\hat{G}) )} \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+In the code fragment we approximate the numerator of the last expression by
+
+<!-- MATH
+ $\epsilon \|\hat{R}\|_{\infty}$
+ -->
+<IMG
+ WIDTH="57" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img894.gif"
+ ALT="$\epsilon \Vert\hat{R}\Vert _{\infty}$">
+and approximate the denominator by
+
+<!-- MATH
+ $\| \hat{R}^{-1} \|^{-1}_{\infty}$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img895.gif"
+ ALT="$\Vert \hat{R}^{-1} \Vert^{-1}_{\infty}$">
+in order to compute <TT>SERRBD</TT>;
+STRCON returns an approximation <TT>RCOND</TT> to
+
+<!-- MATH
+ $1/ (\| \hat{R}^{-1} \|_{\infty} \| \hat{R} \|_{\infty})$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img896.gif"
+ ALT="$1/ (\Vert \hat{R}^{-1} \Vert _{\infty} \Vert \hat{R} \Vert _{\infty})$">.
+
+</BLOCKQUOTE>
+<A NAME="13040"></A>
+
+<P>
+We assume that the rank <B><I>r</I></B> of <B><I>G</I></B> equals <B><I>n</I></B>, because otherwise the
+<IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">s and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">s are not well determined. For example, if
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{cc} 10^{-16} & 0 \\0 & 1 \end{array} \right) 
+\; \; , \; \;
+B = \left( \begin{array}{cc} 0 & 0 \\0 & 1 \end{array} \right) 
+\; \; {\rm and} \; \;
+A' = \left( \begin{array}{cc} 0 & 0 \\0 & 1 \end{array} \right) 
+\; \; , \; \;
+B' = \left( \begin{array}{cc} 10^{-16} & 0 \\0 & 1 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="627" HEIGHT="54" BORDER="0"
+ SRC="img897.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{cc} 10^{-16} &amp; 0 \\ 0 &amp; 1 \end{arra...
+...( \begin{array}{cc} 10^{-16} &amp; 0 \\ 0 &amp; 1 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then <B><I>A</I></B> and <B><I>B</I></B> have
+
+<!-- MATH
+ $\alpha_{1,2} = 1, .7071$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img898.gif"
+ ALT="$\alpha_{1,2} = 1, .7071$">
+and 
+<!-- MATH
+ $\beta_{1,2} = 0, .7071$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img899.gif"
+ ALT="$\beta_{1,2} = 0, .7071$">,
+whereas
+<B><I>A</I>'</B> and <B><I>B</I>'</B> have
+
+<!-- MATH
+ $\alpha'_{1,2} = 0, .7071$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img900.gif"
+ ALT="$\alpha'_{1,2} = 0, .7071$">
+and 
+<!-- MATH
+ $\beta'_{1,2} = 1, .7071$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img901.gif"
+ ALT="$\beta'_{1,2} = 1, .7071$">,
+which
+are completely different, even though 
+<!-- MATH
+ $\|A - A' \| = 10^{-16}$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img902.gif"
+ ALT="$\Vert A - A' \Vert = 10^{-16}$">
+and
+
+<!-- MATH
+ $\|B - B' \| = 10^{-16}$
+ -->
+<IMG
+ WIDTH="141" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img903.gif"
+ ALT="$\Vert B - B' \Vert = 10^{-16}$">.
+In this case, 
+<!-- MATH
+ $\sigma_{\min} (G) = 10^{-16}$
+ -->
+<IMG
+ WIDTH="131" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img904.gif"
+ ALT="$\sigma_{\min} (G) = 10^{-16}$">,
+so <B><I>G</I></B> is nearly rank-deficient.
+
+<P>
+The reason the code fragment assumes <IMG
+ WIDTH="53" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img105.gif"
+ ALT="$m \geq n$">
+is that in this case <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img905.gif"
+ ALT="$\hat{R}$">
+is
+stored overwritten on <B><I>A</I></B>, and can be passed to STRCON in order to compute
+<TT>RCOND</TT>. If <IMG
+ WIDTH="53" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img906.gif"
+ ALT="$m \leq n$">,
+then the
+first <B><I>m</I></B> rows of <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img905.gif"
+ ALT="$\hat{R}$">
+are
+stored in <B><I>A</I></B>, and the last <B><I>n</I>-<I>m</I></B> rows of <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img905.gif"
+ ALT="$\hat{R}$">
+are stored in <B><I>B</I></B>. This
+complicates the computation of <TT>RCOND</TT>: either <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img905.gif"
+ ALT="$\hat{R}$">
+must be copied to
+a single array before calling STRCON, or else the lower level subroutine SLACON
+must be used with code capable of solving linear equations with <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img905.gif"
+ ALT="$\hat{R}$">
+and <IMG
+ WIDTH="28" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img907.gif"
+ ALT="$\hat{R}^T$">
+as coefficient matrices.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5693"
+ HREF="node108.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5687"
+ HREF="node106.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5683"
+ HREF="node106.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5689"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5691"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5694"
+ HREF="node108.html">Error Bounds for Fast</A>
+<B> Up:</B> <A NAME="tex2html5688"
+ HREF="node106.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5684"
+ HREF="node106.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5690"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5692"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized RQ Factorization</TITLE>
+<META NAME="description" CONTENT="Generalized RQ Factorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node46.html">
+<LINK REL="up" HREF="node45.html">
+<LINK REL="next" HREF="node48.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4806"
+ HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4800"
+ HREF="node45.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4796"
+ HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4802"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4804"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4807"
+ HREF="node48.html">Symmetric Eigenproblems</A>
+<B> Up:</B> <A NAME="tex2html4801"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+<B> Previous:</B> <A NAME="tex2html4797"
+ HREF="node46.html">Generalized QR Factorization</A>
+ &nbsp <B>  <A NAME="tex2html4803"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4805"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03243200000000000000">
+Generalized <B><I>RQ</I></B> Factorization</A>
+</H3>
+
+<P>
+<A NAME="2959"></A><A NAME="2960"></A>
+The <B>generalized</B>&nbsp;<B><I>RQ</I></B>&nbsp;<B>(GRQ) factorization</B> of an <B><I>m</I></B>-by-<B><I>n</I></B> matrix <B><I>A</I></B> and
+a <B><I>p</I></B>-by-<B><I>n</I></B> matrix <B><I>B</I></B> is given by the pair of factorizations
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = R Q \quad \mbox{and} \quad B = Z T Q
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="202" HEIGHT="30" BORDER="0"
+ SRC="img135.gif"
+ ALT="\begin{displaymath}
+A = R Q \quad \mbox{and} \quad B = Z T Q
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>Q</I></B> and <B><I>Z</I></B> are respectively <B><I>n</I></B>-by-<B><I>n</I></B> and <B><I>p</I></B>-by-<B><I>p</I></B> orthogonal
+matrices (or unitary matrices if <B><I>A</I></B> and <B><I>B</I></B> are complex).
+<B><I>R</I></B> has the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R = \bordermatrix{    & n-m    &   m    \cr
+                  m   & 0      &  R_{12}  }, \quad \mbox{if} \quad m \leq n
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="278" HEIGHT="60" BORDER="0"
+ SRC="img136.gif"
+ ALT="\begin{displaymath}
+R = \bordermatrix{ &amp; n-m &amp; m \cr
+m &amp; 0 &amp; R_{12} }, \quad \mbox{if} \quad m \leq n
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+or
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R = \bordermatrix{    & n   \cr
+                  m-n & R_{11} \cr
+         \hfill   n   & R_{21} },   \quad \mbox{if} \quad m > n,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="256" HEIGHT="79" BORDER="0"
+ SRC="img137.gif"
+ ALT="\begin{displaymath}
+R = \bordermatrix{ &amp; n \cr
+m-n &amp; R_{11} \cr
+\hfill n &amp; R_{21} }, \quad \mbox{if} \quad m &gt; n,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>R</I><SUB>12</SUB></B> or <B><I>R</I><SUB>21</SUB></B> is upper triangular. <B><I>T</I></B> has the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T = \bordermatrix{    & n   \cr
+         \hfill   n   & T_{11} \cr
+                  p-n & 0      }, \quad \mbox{if} \quad p \geq n
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="234" HEIGHT="79" BORDER="0"
+ SRC="img138.gif"
+ ALT="\begin{displaymath}
+T = \bordermatrix{ &amp; n \cr
+\hfill n &amp; T_{11} \cr
+p-n &amp; 0 }, \quad \mbox{if} \quad p \geq n
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+or
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T = \bordermatrix{    & p      &  n-p    \cr
+                  p   & T_{11} &  T_{12} }, \quad \mbox{if} \quad p < n
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="254" HEIGHT="60" BORDER="0"
+ SRC="img139.gif"
+ ALT="\begin{displaymath}
+T = \bordermatrix{ &amp; p &amp; n-p \cr
+p &amp; T_{11} &amp; T_{12} }, \quad \mbox{if} \quad p &lt; n
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>T</I><SUB>11</SUB></B> is upper triangular.
+
+<P>
+Note that if <B><I>B</I></B> is square and nonsingular, the GRQ factorization of
+<B><I>A</I></B> and <B><I>B</I></B> implicitly gives the <B><I>RQ</I></B> factorization of the matrix <B><I>AB</I><SUP>-1</SUP></B>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A B^{-1} = ( R T^{-1} ) Z^T
+\end{displaymath}
+ -->
+
+
+<B>
+<I>A B</I><SUP>-1</SUP> = ( <I>R T</I><SUP>-1</SUP> ) <I>Z</I><SUP><I>T</I></SUP>
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+without explicitly computing the matrix inverse <B><I>B</I><SUP>-1</SUP></B> or the product
+<B><I>AB</I><SUP>-1</SUP></B>.
+
+<P>
+The routine xGGRQF computes the GRQ factorization<A NAME="2983"></A><A NAME="2984"></A><A NAME="2985"></A><A NAME="2986"></A><A NAME="2987"></A><A NAME="2988"></A>
+by first computing the <B><I>RQ</I></B> factorization of <B><I>A</I></B> and then
+the <B><I>QR</I></B> factorization of <B><I>BQ</I><SUP><I>T</I></SUP></B>.
+The orthogonal (or unitary) matrices <B><I>Q</I></B> and <B><I>Z</I></B>
+can either be formed explicitly or
+just used to multiply another given matrix in the same way as the
+orthogonal (or unitary) matrix
+in the <B><I>RQ</I></B> factorization
+(see section&nbsp;<A HREF="node39.html#subseccomporthog">2.4.2</A>).
+
+<P>
+The GRQ factorization can be used to solve the linear
+equality-constrained least squares problem (LSE) (see (<A HREF="node28.html#eqnLSE">2.2</A>) and
+<A NAME="2991"></A><A NAME="2992"></A>
+[<A
+ HREF="node151.html#GVL2">55</A>, page 567]).
+We use the GRQ factorization of <B><I>B</I></B> and <B><I>A</I></B> (note that <B><I>B</I></B> and <B><I>A</I></B> have
+swapped roles), written as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+B = T Q \quad \mbox{and} \quad A = Z R Q.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="208" HEIGHT="30" BORDER="0"
+ SRC="img140.gif"
+ ALT="\begin{displaymath}
+B = T Q \quad \mbox{and} \quad A = Z R Q.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+We write the linear equality constraints <B><I>Bx</I> = <I>d</I></B> as:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T Q x = d
+\end{displaymath}
+ -->
+
+
+<B>
+<I>T Q x</I> = <I>d</I>
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which we partition as:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\bordermatrix{    & n-p    &   p    \cr
+              p   & 0      &  T_{12}  }
+\left( \begin{array}{c} x_1 \\x_2 \end{array} \right) = d   \quad
+\mbox{where}  \quad \left( \begin{array}{c} x_1 \\x_2 \end{array} \right) \equiv Q x.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="411" HEIGHT="70" BORDER="0"
+ SRC="img141.gif"
+ ALT="\begin{displaymath}
+\bordermatrix{ &amp; n-p &amp; p \cr
+p &amp; 0 &amp; T_{12} }
+\left( \begin...
+...t( \begin{array}{c} x_1 \\ x_2 \end{array} \right) \equiv Q x.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Therefore <B><I>x</I><SUB>2</SUB></B> is the solution of the upper triangular system
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T_{12} x_2 = d
+\end{displaymath}
+ -->
+
+
+<B>
+<I>T</I><SUB>12</SUB> <I>x</I><SUB>2</SUB> = <I>d</I>
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Furthermore,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="243" HEIGHT="58" BORDER="0"
+ SRC="img142.gif"
+ ALT="\begin{eqnarray*}
+\Vert A x - c \Vert _2 &amp; = &amp; \Vert Z^T A x - Z^T c \Vert _2 \\
+&amp; = &amp; \Vert R Q x - Z^T c \Vert _2.
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+We partition this expression as:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\bordermatrix{        &  n-p   & p   \cr
+      \hfill   n-p    & R_{11} & R_{12}   \cr
+               p+m-n  &   0    & R_{22}   }
+\left( \begin{array}{c} x_1 \\x_2 \end{array} \right) - \left( \begin{array}{c} c_1 \\c_2 \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="335" HEIGHT="79" BORDER="0"
+ SRC="img143.gif"
+ ALT="\begin{displaymath}
+\bordermatrix{ &amp; n-p &amp; p \cr
+\hfill n-p &amp; R_{11} &amp; R_{12} \...
+...ght) - \left( \begin{array}{c} c_1 \\ c_2 \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where 
+<!-- MATH
+ $\left( \begin{array}{c} c_1 \\c_2 \end{array} \right) \equiv Z^T c$
+ -->
+<IMG
+ WIDTH="115" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img144.gif"
+ ALT="$\left( \begin{array}{c} c_1 \\ c_2 \end{array} \right) \equiv Z^T c$">,
+which
+can be computed by xORMQR (or xUNMQR).<A NAME="3008"></A><A NAME="3009"></A><A NAME="3010"></A><A NAME="3011"></A>
+
+<P>
+To solve the LSE problem, we set
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R_{11} x_1 + R_{12} x_2 - c_1 = 0
+\end{displaymath}
+ -->
+
+
+<B>
+<I>R</I><SUB>11</SUB> <I>x</I><SUB>1</SUB> + <I>R</I><SUB>12</SUB> <I>x</I><SUB>2</SUB> - <I>c</I><SUB>1</SUB> = 0
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which gives <B><I>x</I><SUB>1</SUB></B> as the solution of the upper triangular system
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R_{11} x_1 = c_1 - R_{12} x_2.
+\end{displaymath}
+ -->
+
+
+<B>
+<I>R</I><SUB>11</SUB> <I>x</I><SUB>1</SUB> = <I>c</I><SUB>1</SUB> - <I>R</I><SUB>12</SUB> <I>x</I><SUB>2</SUB>.
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Finally, the desired solution is given by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = Q^T \left( \begin{array}{c} x_1 \\x_2 \end{array} \right) ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="126" HEIGHT="54" BORDER="0"
+ SRC="img145.gif"
+ ALT="\begin{displaymath}
+x = Q^T \left( \begin{array}{c} x_1 \\ x_2 \end{array} \right) ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which can be computed
+by xORMRQ (or xUNMRQ).<A NAME="3017"></A><A NAME="3018"></A><A NAME="3019"></A><A NAME="3020"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4806"
+ HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4800"
+ HREF="node45.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4796"
+ HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4802"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4804"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4807"
+ HREF="node48.html">Symmetric Eigenproblems</A>
+<B> Up:</B> <A NAME="tex2html4801"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+<B> Previous:</B> <A NAME="tex2html4797"
+ HREF="node46.html">Generalized QR Factorization</A>
+ &nbsp <B>  <A NAME="tex2html4803"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4805"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

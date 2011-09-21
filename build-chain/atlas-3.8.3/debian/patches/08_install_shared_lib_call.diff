@@ -1,0 +1,10 @@
+--- ATLAS/CONFIG/src/Makefile.orig	2009-09-09 05:10:07.000000000 -0400
++++ ATLAS/CONFIG/src/Makefile	2009-09-09 05:09:30.000000000 -0400
+@@ -367,6 +367,7 @@
+ install : $(INCINSTdir) $(LIBINSTdir) $(INCINSTdir)/atlas
+ 	$(MAKE) -f Make.top install_inc INSTdir=$(INCINSTdir) 
+ 	$(MAKE) -f Make.top install_static_lib INSTdir=$(LIBINSTdir)
++	$(MAKE) -f Make.top install_shared_lib INSTdir=$(LIBINSTdir)
+ install_headers : $(INCINSTdir) $(INCINSTdir)/atlas
+ 	$(MAKE) -f Make.top install_inc INSTdir=$(INCINSTdir) 
+ install_static : $(LIBINSTdir) $(LIBINSTdir)/atlas

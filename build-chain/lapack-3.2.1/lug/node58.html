@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Deflating Subspaces and Condition Numbers</TITLE>
+<META NAME="description" CONTENT="Deflating Subspaces and Condition Numbers">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node57.html">
+<LINK REL="up" HREF="node55.html">
+<LINK REL="next" HREF="node59.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4962"
+ HREF="node59.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4956"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4952"
+ HREF="node57.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4958"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4960"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4963"
+ HREF="node59.html">Generalized (or Quotient) Singular</A>
+<B> Up:</B> <A NAME="tex2html4957"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4953"
+ HREF="node57.html">Balancing</A>
+ &nbsp <B>  <A NAME="tex2html4959"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4961"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03248300000000000000">
+Deflating Subspaces and Condition Numbers</A>
+</H3>
+
+<P>
+The generalized Schur <A NAME="3771"></A>
+form depends on the order of the eigenvalues on the
+diagonal of <B>(<I>S</I>,<I>T</I>)</B> and this may optionally be chosen by the user.  Suppose
+the user chooses that 
+<!-- MATH
+ $(\alpha_1,\beta_1),\ldots,(\alpha_j,\beta_j),
+1 \leq j \leq n$
+ -->
+<IMG
+ WIDTH="238" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img203.gif"
+ ALT="$(\alpha_1,\beta_1),\ldots,(\alpha_j,\beta_j),
+1 \leq j \leq n$">,
+appear in the upper left corner of <B>(<I>S</I>,<I>T</I>)</B>.  Then the
+first <B><I>j</I></B> columns of <B><I>UQ</I></B> and <B><I>VZ</I></B> span the <B>left and right deflating
+subspaces</B>  <A NAME="3773"></A><A NAME="3774"></A>
+of <B>(<I>A</I>,<I>B</I>)</B> corresponding to 
+<!-- MATH
+ $(\alpha_1,\beta_1),\ldots, (\alpha_j,\beta_j)$
+ -->
+<IMG
+ WIDTH="157" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img204.gif"
+ ALT="$(\alpha_1,\beta_1),\ldots, (\alpha_j,\beta_j)$">.
+
+<P>
+The following routines perform this reordering
+<A NAME="3775"></A>
+and also compute condition
+numbers for eigenvalues, eigenvectors and deflating subspaces:
+<DL COMPACT>
+<DT>1.
+<DD>xTGEXC<A NAME="3777"></A><A NAME="3778"></A><A NAME="3779"></A><A NAME="3780"></A>
+will move an eigenvalue pair (or a pair of 2-by-2 blocks)
+      on the diagonal of the generalized Schur form <B>(<I>S</I>,<I>T</I>)</B>
+      <A NAME="3781"></A>
+      from its
+      original position to any other position.  It may be used to choose
+      the order in which eigenvalues appear in the generalized Schur
+      form.  The reordering is performed with orthogonal (unitary)
+      transformation matrices.  For more details see
+      [<A
+ HREF="node151.html#kagstrom93">70</A>,<A
+ HREF="node151.html#kagstromporomaa94a">73</A>].
+
+<P>
+<DT>2.
+<DD>xTGSYL<A NAME="3783"></A><A NAME="3784"></A><A NAME="3785"></A><A NAME="3786"></A>
+      solves the generalized Sylvester equations
+      <A NAME="3787"></A>
+      <B><I>AR</I> - <I>LB</I> = <I>sC</I></B> and <B><I>DR</I> - <I>LE</I> =<I>sF</I></B> for <B><I>L</I></B> and <B><I>R</I></B>, given <B><I>A</I></B> and <B><I>B</I></B>
+      upper (quasi-)triangular and <B><I>D</I></B> and <B><I>E</I></B> upper triangular.  It
+      is also possible to solve a transposed system (conjugate transposed
+      system in the complex case) 
+<!-- MATH
+ $A^T X + D^T Y = sC$
+ -->
+<B><I>A</I><SUP><I>T</I></SUP> <I>X</I> + <I>D</I><SUP><I>T</I></SUP> <I>Y</I> = <I>sC</I></B> and
+      
+<!-- MATH
+ $-X B^T - Y E^T = sF$
+ -->
+<B>-<I>X B</I><SUP><I>T</I></SUP> - <I>Y E</I><SUP><I>T</I></SUP> = <I>sF</I></B>
+      for <B><I>X</I></B> and <B><I>Y</I></B>.  The scaling factor <B><I>s</I></B> is set during the
+      computations to avoid overflow.  Optionally, xTGSYL computes a
+      Frobenius norm-based estimate of the ``separation'' between the two
+      matrix pairs <B>(<I>A</I>,<I>B</I>)</B> and <B>(<I>D</I>,<I>E</I>)</B>.  xTGSYL is used by the routines
+      xTGSNA and xTGSEN, but it is also of independent interest.
+      For more details see [<A
+ HREF="node151.html#kagstrom94">71</A>,<A
+ HREF="node151.html#kagstromporomaa93a">74</A>,<A
+ HREF="node151.html#kagstromwestin89">75</A>].
+
+<P>
+<DT>3.
+<DD>xTGSNA<A NAME="3789"></A><A NAME="3790"></A><A NAME="3791"></A><A NAME="3792"></A>
+      computes condition numbers of the
+      eigenvalues and/or left and right eigenvectors of a matrix pair
+      <B>(<I>S</I>,<I>T</I>)</B> in generalized Schur form.
+      <A NAME="3793"></A>
+      These are the same as the
+      condition numbers of the eigenvalues and eigenvectors of the
+      original matrix pair <B>(<I>A</I>,<I>B</I>)</B>, from which <B>(<I>S</I>,<I>T</I>)</B> is derived. The
+      user may compute these condition numbers for all eigenvalues and
+      associated eigenvectors, or for any selected subset.  For more
+      details see section&nbsp;<A HREF="node100.html#sec_GNEPErrorBounds">4.11</A> and
+      [<A
+ HREF="node151.html#kagstromporomaa94a">73</A>].
+
+<P>
+<DT>4.
+<DD>xTGSEN<A NAME="3796"></A><A NAME="3797"></A><A NAME="3798"></A><A NAME="3799"></A>
+      <A NAME="3800"></A>
+      moves a selected subset of the eigenvalues of a matrix pair
+      <B>(<I>S</I>,<I>T</I>)</B> in generalized Schur form to the upper left corner of
+      <B>(<I>S</I>,<I>T</I>)</B>, and optionally computes condition numbers
+      <A NAME="3801"></A>
+      of their average value and their associated pair of (left
+      and right) deflating subspaces.  These are the same as the condition
+      numbers of the average eigenvalue and the deflating subspace pair
+      of the original matrix pair <B>(<I>A</I>,<I>B</I>)</B>, from which <B>(<I>S</I>,<I>T</I>)</B> is derived.
+      For more details see section&nbsp;<A HREF="node100.html#sec_GNEPErrorBounds">4.11</A> and
+      [<A
+ HREF="node151.html#kagstromporomaa94a">73</A>].
+
+<P>
+</DL>
+
+<P>
+See Table <A HREF="node58.html#tabcompgeneig2">2.15</A> for a complete list of the routines, where,
+to save space, the word ``generalized'' is omitted.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabcompgeneig2"></A><A NAME="3807"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.15:</STRONG>
+Computational routines for the generalized nonsymmetric eigenproblem</CAPTION>
+<TR><TD ALIGN="LEFT">Type of matrix</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and storage scheme</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">general</TD>
+<TD ALIGN="LEFT">Hessenberg reduction</TD>
+<TD ALIGN="LEFT">SGGHRD<A NAME="3818"></A></TD>
+<TD ALIGN="LEFT">CGGHRD<A NAME="3819"></A></TD>
+<TD ALIGN="LEFT">DGGHRD<A NAME="3820"></A></TD>
+<TD ALIGN="LEFT">ZGGHRD<A NAME="3821"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">balancing</TD>
+<TD ALIGN="LEFT">SGGBAL<A NAME="3822"></A></TD>
+<TD ALIGN="LEFT">CGGBAL<A NAME="3823"></A></TD>
+<TD ALIGN="LEFT">DGGBAL<A NAME="3824"></A></TD>
+<TD ALIGN="LEFT">ZGGBAL<A NAME="3825"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">back transforming</TD>
+<TD ALIGN="LEFT">SGGBAK<A NAME="3826"></A></TD>
+<TD ALIGN="LEFT">CGGBAK<A NAME="3827"></A></TD>
+<TD ALIGN="LEFT">DGGBAK<A NAME="3828"></A></TD>
+<TD ALIGN="LEFT">ZGGBAK<A NAME="3829"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Hessenberg</TD>
+<TD ALIGN="LEFT">Schur factorization</TD>
+<TD ALIGN="LEFT">SHGEQZ<A NAME="3830"></A></TD>
+<TD ALIGN="LEFT">CHGEQZ<A NAME="3831"></A></TD>
+<TD ALIGN="LEFT">DHGEQZ<A NAME="3832"></A></TD>
+<TD ALIGN="LEFT">ZHGEQZ<A NAME="3833"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(quasi)triangular</TD>
+<TD ALIGN="LEFT">eigenvectors</TD>
+<TD ALIGN="LEFT">STGEVC<A NAME="3834"></A></TD>
+<TD ALIGN="LEFT">CTGEVC<A NAME="3835"></A></TD>
+<TD ALIGN="LEFT">DTGEVC<A NAME="3836"></A></TD>
+<TD ALIGN="LEFT">ZTGEVC<A NAME="3837"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">reordering</TD>
+<TD ALIGN="LEFT">STGEXC<A NAME="3838"></A></TD>
+<TD ALIGN="LEFT">CTGEXC<A NAME="3839"></A></TD>
+<TD ALIGN="LEFT">DTGEXC<A NAME="3840"></A></TD>
+<TD ALIGN="LEFT">ZTGEXC<A NAME="3841"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">Schur decomposition</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">Sylvester equation</TD>
+<TD ALIGN="LEFT">STGSYL<A NAME="3842"></A></TD>
+<TD ALIGN="LEFT">CTGSYL<A NAME="3843"></A></TD>
+<TD ALIGN="LEFT">DTGSYL<A NAME="3844"></A></TD>
+<TD ALIGN="LEFT">ZTGSYL<A NAME="3845"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">condition numbers of</TD>
+<TD ALIGN="LEFT">STGSNA<A NAME="3846"></A></TD>
+<TD ALIGN="LEFT">CTGSNA<A NAME="3847"></A></TD>
+<TD ALIGN="LEFT">DTGSNA<A NAME="3848"></A></TD>
+<TD ALIGN="LEFT">ZTGSNA<A NAME="3849"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">eigenvalues/vectors</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">condition numbers of</TD>
+<TD ALIGN="LEFT">STGSEN<A NAME="3850"></A></TD>
+<TD ALIGN="LEFT">CTGSEN<A NAME="3851"></A></TD>
+<TD ALIGN="LEFT">DTGSEN<A NAME="3852"></A></TD>
+<TD ALIGN="LEFT">ZTGSEN<A NAME="3853"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">eigenvalue cluster/</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">deflating subspaces</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4962"
+ HREF="node59.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4956"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4952"
+ HREF="node57.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4958"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4960"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4963"
+ HREF="node59.html">Generalized (or Quotient) Singular</A>
+<B> Up:</B> <A NAME="tex2html4957"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4953"
+ HREF="node57.html">Balancing</A>
+ &nbsp <B>  <A NAME="tex2html4959"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4961"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Invalid Arguments and XERBLA</TITLE>
+<META NAME="description" CONTENT="Invalid Arguments and XERBLA">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node138.html">
+<LINK REL="previous" HREF="node136.html">
+<LINK REL="up" HREF="node136.html">
+<LINK REL="next" HREF="node138.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6149"
+ HREF="node138.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6143"
+ HREF="node136.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6137"
+ HREF="node136.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6145"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6147"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6150"
+ HREF="node138.html">Computational Failures and INFO</A>
+<B> Up:</B> <A NAME="tex2html6144"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html6138"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html6146"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6148"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03741000000000000000"></A>
+<A NAME="21101"></A><A NAME="21102"></A>
+<BR>
+Invalid Arguments and XERBLA
+</H2>
+If an illegal value is supplied for one of the input arguments to
+an LAPACK routine, it will call the error handler XERBLA to write
+a message to the standard output unit of the form:
+<PRE>
+ ** On entry to SGESV  parameter number  4 had an illegal value
+</PRE>
+This particular message would be caused by passing to SGESV<A NAME="21105"></A> a value of LDA 
+which was less than the value of the argument N.
+The documentation for SGESV
+in Part&nbsp;<A HREF="node149.html#partroutines">2</A> states the set of acceptable input values:
+``LDA <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+max(1,N).'' This is required in order that the
+<A NAME="21107"></A>
+array A with leading dimension LDA can store an <B><I>n</I></B>-by-<B><I>n</I></B> 
+matrix.<A NAME="tex2html2713"
+ HREF="footnode.html#foot21108"><SUP>7.1</SUP></A>The arguments are checked in order, beginning with the first.
+In the above example, it may -- from the user's point of view -- be the
+value of N which is in fact wrong. 
+Invalid arguments are often caused by the kind of error listed in 
+Section&nbsp;<A HREF="node135.html#seccommonerrors">7.2</A>.
+
+<P>
+In the model implementation of XERBLA<A NAME="21110"></A> which is supplied with LAPACK,
+execution stops after the
+message; but the call to XERBLA is followed by a RETURN statement
+in the LAPACK routine, so that if the installer removes the
+STOP statement in XERBLA, the result will be an immediate exit from the
+LAPACK routine with a negative value of INFO.
+It is good practice always to check for a non-zero value of INFO
+on return from an LAPACK routine.
+<A NAME="21111"></A>
+(We recommend however that XERBLA should not be modified to return control
+to the calling routine, unless absolutely
+necessary, since this would remove one of the built-in safety-features
+of LAPACK.)
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6149"
+ HREF="node138.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6143"
+ HREF="node136.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6137"
+ HREF="node136.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6145"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6147"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6150"
+ HREF="node138.html">Computational Failures and INFO</A>
+<B> Up:</B> <A NAME="tex2html6144"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html6138"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html6146"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6148"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

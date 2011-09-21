@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The BLAS as the Key to Portability</TITLE>
+<META NAME="description" CONTENT="The BLAS as the Key to Portability">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node66.html">
+<LINK REL="previous" HREF="node61.html">
+<LINK REL="up" HREF="node60.html">
+<LINK REL="next" HREF="node66.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5070"
+ HREF="node66.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5064"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5058"
+ HREF="node64.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5066"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5068"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5071"
+ HREF="node66.html">Block Algorithms and their</A>
+<B> Up:</B> <A NAME="tex2html5065"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5059"
+ HREF="node64.html">Parallelism</A>
+ &nbsp <B>  <A NAME="tex2html5067"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5069"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03320000000000000000"></A><A NAME="secblasport"></A><A NAME="7605"></A>
+<BR>
+The BLAS as the Key to Portability
+</H1>
+
+<P>
+How then can we hope to be able to achieve sufficient control over
+vectorization, data movement, and parallelism in portable Fortran code,
+to obtain the levels of performance that machines can offer?
+
+<P>
+The LAPACK strategy for combining
+efficiency with portability<A NAME="7606"></A> is to construct the software
+as much as possible
+out of calls to the BLAS (Basic Linear Algebra Subprograms); the BLAS are
+used
+as building blocks.
+
+<P>
+The efficiency<A NAME="7607"></A> of LAPACK software depends on efficient
+implementations
+of the BLAS being provided by computer vendors (or others) for their
+machines.
+Thus the BLAS form a low-level interface between LAPACK software and
+different machine architectures.
+Above this level, almost all of the LAPACK software is truly portable.
+
+<P>
+There are now three levels of BLAS:
+
+<P>
+<DL>
+<DT><STRONG>Level 1 BLAS [<A
+ HREF="node151.html#blas1">78</A>]:</STRONG>
+<DD>for vector operations, such as
+
+<!-- MATH
+ $y \leftarrow \alpha x + y$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img207.gif"
+ ALT="$y \leftarrow \alpha x + y$">
+<P>
+<DT><STRONG>Level 2 BLAS [<A
+ HREF="node151.html#blas2">42</A>]:</STRONG>
+<DD>for matrix-vector operations, such as
+
+<!-- MATH
+ $y \leftarrow \alpha A x + \beta y$
+ -->
+<IMG
+ WIDTH="116" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img208.gif"
+ ALT="$y \leftarrow \alpha A x + \beta y$">
+
+<P>
+<DT><STRONG>Level 3 BLAS [<A
+ HREF="node151.html#blas3">40</A>]:</STRONG>
+<DD>for matrix-matrix operations, such as
+
+<!-- MATH
+ $C \leftarrow \alpha A B + \beta C$
+ -->
+<IMG
+ WIDTH="129" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img209.gif"
+ ALT="$C \leftarrow \alpha A B + \beta C$">
+
+<P>
+</DL>
+
+<P>
+Here, <B><I>A</I></B>, <B><I>B</I></B> and <B><I>C</I></B> are matrices, <B><I>x</I></B> and <B><I>y</I></B> are vectors, and <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$\alpha$">
+and
+<IMG
+ WIDTH="15" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$\beta$">
+are scalars.
+
+<P>
+The Level 1 BLAS<A NAME="7613"></A> are used in LAPACK,
+but for convenience rather than
+for performance: they perform an insignificant fraction of the computation,
+and they cannot achieve high efficiency on most modern supercomputers.
+
+<P>
+The Level 2 BLAS<A NAME="7614"></A> can achieve near-peak performance
+on many vector processors,
+such as a single processor of a CRAY Y-MP, CRAY C90, or CONVEX C4 machine.
+However on other vector processors, such as a CRAY&nbsp;2,
+or a RISC workstation or PC with one more levels of cache,
+their performance is limited by the rate of data movement between different
+levels of memory.
+
+<P>
+This limitation is overcome by the Level 3 BLAS<A NAME="7615"></A>,
+which perform <B><I>O</I>(<I>n</I><SUP>3</SUP>)</B>
+floating-point operations on <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> data, whereas the Level 2 BLAS
+perform only <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> operations on <B><I>O</I>(<I>n</I><SUP>2</SUP>)</B> data.
+
+<P>
+The BLAS also allow us to exploit parallelism in a way that is transparent
+to the software that calls them.
+Even the Level 2 BLAS offer some scope for exploiting parallelism, but
+greater
+scope is provided by the Level 3 BLAS, as Table <A HREF="node65.html#tabsgiblas">3.1</A>
+illustrates.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabsgiblas"></A>
+<P>
+<DIV ALIGN="CENTER">
+(all matrices are of order 1000; <B><I>U</I></B> is upper triangular)
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><A NAME="7618"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.1:</STRONG>
+Speed in megaflops of Level 2 and Level 3 BLAS operations on an
+SGI Origin 2000</CAPTION>
+<TR><TD ALIGN="LEFT">Number of processors:</TD>
+<TD ALIGN="RIGHT">1</TD>
+<TD ALIGN="RIGHT">2</TD>
+<TD ALIGN="RIGHT">4</TD>
+<TD ALIGN="RIGHT">8</TD>
+<TD ALIGN="RIGHT">16</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Level 2: 
+<!-- MATH
+ $y \leftarrow \alpha A x + \beta y$
+ -->
+<IMG
+ WIDTH="116" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img208.gif"
+ ALT="$y \leftarrow \alpha A x + \beta y$"></TD>
+<TD ALIGN="RIGHT">210</TD>
+<TD ALIGN="RIGHT">154</TD>
+<TD ALIGN="RIGHT">385</TD>
+<TD ALIGN="RIGHT">493</TD>
+<TD ALIGN="RIGHT">163</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Level 3: 
+<!-- MATH
+ $C \leftarrow \alpha A B + \beta C$
+ -->
+<IMG
+ WIDTH="129" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img209.gif"
+ ALT="$C \leftarrow \alpha A B + \beta C$"></TD>
+<TD ALIGN="RIGHT">555</TD>
+<TD ALIGN="RIGHT">1021</TD>
+<TD ALIGN="RIGHT">1864</TD>
+<TD ALIGN="RIGHT">3758</TD>
+<TD ALIGN="RIGHT">4200</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Level 2: 
+<!-- MATH
+ $x \leftarrow U x$
+ -->
+<IMG
+ WIDTH="65" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img210.gif"
+ ALT="$x \leftarrow U x$"></TD>
+<TD ALIGN="RIGHT">162</TD>
+<TD ALIGN="RIGHT">152</TD>
+<TD ALIGN="RIGHT">148</TD>
+<TD ALIGN="RIGHT">153</TD>
+<TD ALIGN="RIGHT">137</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Level 3: 
+<!-- MATH
+ $B \leftarrow U B$
+ -->
+<IMG
+ WIDTH="74" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img211.gif"
+ ALT="$B \leftarrow U B$"></TD>
+<TD ALIGN="RIGHT">518</TD>
+<TD ALIGN="RIGHT">910</TD>
+<TD ALIGN="RIGHT">1842</TD>
+<TD ALIGN="RIGHT">3519</TD>
+<TD ALIGN="RIGHT">5171</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Level 2: 
+<!-- MATH
+ $x \leftarrow U^{-1} x$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img212.gif"
+ ALT="$x \leftarrow U^{-1} x$"></TD>
+<TD ALIGN="RIGHT">172</TD>
+<TD ALIGN="RIGHT">80</TD>
+<TD ALIGN="RIGHT">140</TD>
+<TD ALIGN="RIGHT">168</TD>
+<TD ALIGN="RIGHT">17</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Level 3: 
+<!-- MATH
+ $B \leftarrow U^{-1} B$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img213.gif"
+ ALT="$B \leftarrow U^{-1} B$"></TD>
+<TD ALIGN="RIGHT">519</TD>
+<TD ALIGN="RIGHT">967</TD>
+<TD ALIGN="RIGHT">1859</TD>
+<TD ALIGN="RIGHT">3507</TD>
+<TD ALIGN="RIGHT">5078</TD>
+</TR>
+</TABLE> 
+</DIV>
+</DIV>
+<BR><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5070"
+ HREF="node66.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5064"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5058"
+ HREF="node64.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5066"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5068"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5071"
+ HREF="node66.html">Block Algorithms and their</A>
+<B> Up:</B> <A NAME="tex2html5065"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5059"
+ HREF="node64.html">Parallelism</A>
+ &nbsp <B>  <A NAME="tex2html5067"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5069"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

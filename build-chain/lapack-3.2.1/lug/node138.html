@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Computational Failures and INFO &gt; 0</TITLE>
+<META NAME="description" CONTENT="Computational Failures and INFO &gt; 0">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node137.html">
+<LINK REL="up" HREF="node136.html">
+<LINK REL="next" HREF="node139.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6161"
+ HREF="node139.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6155"
+ HREF="node136.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6151"
+ HREF="node137.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6157"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6159"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6162"
+ HREF="node139.html">Wrong Results</A>
+<B> Up:</B> <A NAME="tex2html6156"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html6152"
+ HREF="node137.html">Invalid Arguments and XERBLA</A>
+ &nbsp <B>  <A NAME="tex2html6158"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6160"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03742000000000000000"></A>
+<A NAME="21113"></A><A NAME="21114"></A>
+<BR>
+Computational Failures and INFO <B>&gt;</B> 0
+</H2>
+A positive value of INFO on return from an LAPACK routine indicates a
+failure in the course of the algorithm. Common causes are:
+
+<UL><LI>a matrix is singular (to working precision);
+
+<LI>a symmetric matrix is not positive definite;
+
+<LI>an iterative algorithm for computing eigenvalues or eigenvectors
+fails to converge in the permitted number of iterations.
+
+</UL>
+For example, if SGESVX<A NAME="21117"></A> is called to solve a system of equations 
+with a coefficient matrix that is approximately singular,
+it may detect exact singularity at the <B><I>i</I><SUP><I>th</I></SUP></B> stage of the <B><I>LU</I></B>
+factorization, in which case it returns INFO = <B><I>i</I></B>;
+or (more probably) it may compute an estimate of the reciprocal condition number
+that is less than machine precision, in which case it returns INFO = <B><I>n</I></B>+1.
+Again, the documentation in Part&nbsp;<A HREF="node149.html#partroutines">2</A> should be consulted for a 
+description of the error.  
+
+<P>
+When a failure with INFO <B>&gt;</B> 0 occurs, control is <EM>always</EM> returned
+to the calling program; XERBLA is <EM>not</EM> called, and no error message
+is written. 
+It is worth repeating that it is good practice always to check for
+a non-zero value of INFO on return from an LAPACK routine.
+
+<P>
+A failure with INFO <B>&gt;</B> 0 may indicate any of the following:
+
+<P>
+
+<UL><LI>an inappropriate routine was used: 
+for example, if a routine fails because a symmetric matrix turns out not to be 
+positive definite, consider using a routine for symmetric indefinite matrices.
+
+<P>
+
+<LI>a single precision routine was used when double precision was needed:
+for example, if SGESVX<A NAME="21123"></A> reports approximate singularity
+(as illustrated above), the corresponding double precision routine DGESVX
+may be able to solve the problem (but nevertheless the problem is
+ill-conditioned).
+
+<P>
+
+<LI>a programming error occurred in generating the data supplied
+to a routine: for example, even though theoretically a matrix should be
+well-conditioned and positive-definite, a programming error in generating
+the matrix could easily destroy either of those properties.
+
+<P>
+
+<LI>a programming error occurred in calling the routine, of the kind 
+listed in Section&nbsp;<A HREF="node135.html#seccommonerrors">7.2</A>.
+
+<P>
+
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6161"
+ HREF="node139.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6155"
+ HREF="node136.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6151"
+ HREF="node137.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6157"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6159"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6162"
+ HREF="node139.html">Wrong Results</A>
+<B> Up:</B> <A NAME="tex2html6156"
+ HREF="node136.html">Failures Detected by LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html6152"
+ HREF="node137.html">Invalid Arguments and XERBLA</A>
+ &nbsp <B>  <A NAME="tex2html6158"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6160"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

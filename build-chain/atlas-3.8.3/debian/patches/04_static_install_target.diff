@@ -1,0 +1,63 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_static_install_target.dpatch by  <david@evans>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad atlas-3.8.3~/CONFIG/src/Makefile atlas-3.8.3/CONFIG/src/Makefile
+--- atlas-3.8.3~/CONFIG/src/Makefile	2009-08-22 21:46:45.000000000 -0700
++++ atlas-3.8.3/CONFIG/src/Makefile	2009-08-22 21:47:08.000000000 -0700
+@@ -369,7 +369,7 @@
+ 	chmod 0755 $(LIBINSTdir)/atlas
+ install : $(INCINSTdir) $(LIBINSTdir) $(INCINSTdir)/atlas $(LIBINSTdir)/atlas
+ 	$(MAKE) -f Make.top install_inc INSTdir=$(INCINSTdir) 
+-	$(MAKE) -f Make.top install_lib INSTdir=$(LIBINSTdir)
++	$(MAKE) -f Make.top install_static_lib INSTdir=$(LIBINSTdir)
+ 
+ confclean:
+ 	rm -f *core* *.o config?.out
+diff -urNad atlas-3.8.3~/CONFIG/src/SpewMakeInc.c atlas-3.8.3/CONFIG/src/SpewMakeInc.c
+--- atlas-3.8.3~/CONFIG/src/SpewMakeInc.c	2009-08-22 21:47:07.000000000 -0700
++++ atlas-3.8.3/CONFIG/src/SpewMakeInc.c	2009-08-22 21:47:08.000000000 -0700
+@@ -535,6 +535,9 @@
+    fprintf(fpout, "   LAPACKlib = $(LIBdir)/liblapack_atlas.a\n");
+    fprintf(fpout, "   TESTlib = $(LIBdir)/libtstatlas.a\n\n");
+ 
++   fprintf(fpout, "   FULLBLASlib = $(LIBdir)/atlas/libblas.a\n");
++   fprintf(fpout, "   FULLLAPACKlib = $(LIBdir)/atlas/liblapack.a\n");
++
+    fprintf(fpout, "#  -------------------------------------------\n");
+    fprintf(fpout, "#  Upper bound on largest cache size, in bytes\n");
+    fprintf(fpout, "#  -------------------------------------------\n");
+diff -urNad atlas-3.8.3~/Make.top atlas-3.8.3/Make.top
+--- atlas-3.8.3~/Make.top	2009-08-22 21:47:07.000000000 -0700
++++ atlas-3.8.3/Make.top	2009-08-22 21:47:08.000000000 -0700
+@@ -15,6 +15,8 @@
+ build:
+ 	cd bin/ ; $(MAKE) xatlas_install
+ 	cd bin/ ; ./xatlas_install $(INSTFLAGS)
++	cd lib/ ; $(MAKE) atlas/libblas.a
++	cd lib/ ; $(MAKE) atlas/liblapack.a
+ time: 
+ 	./xatlbench -dc $(BLDdir)/bin/INSTALL_LOG -dp $(BLDdir)/ARCHS/$(ARCH)
+ C_sanity_test:
+@@ -290,12 +292,16 @@
+ 	chmod 0644 $(INSTdir)/cblas.h $(INSTdir)/clapack.h
+ 	cp $(INCAdir)/* $(INSTdir)/atlas/.
+ 	- chmod 0644 $(INSTdir)/atlas/*
+-install_lib:
++
++install_static_lib:
+ 	cp $(LIBdir)/libatlas.a $(INSTdir)/.
+ 	cp $(LIBdir)/libcblas.a $(INSTdir)/.
+ 	cp $(LIBdir)/liblapack_atlas.a $(INSTdir)/.
++	cp $(LIBdir)/atlas/libblas.a $(INSTdir)/atlas/.
++	cp $(LIBdir)/atlas/liblapack.a $(INSTdir)/atlas/.
+ 	chmod 0644 $(INSTdir)/libatlas.a  $(INSTdir)/liblapack_atlas.a \
+-                   $(INSTdir)/libcblas.a 
++                   $(INSTdir)/libcblas.a $(INSTdir)/atlas/libblas.a \
++		   $(INSTdir)/atlas/liblapack.a 
+ 	- cp $(LIBdir)/libf77blas.a $(INSTdir)/.
+ 	- chmod 0644 $(INSTdir)/libf77blas.a
+ 	- cp $(LIBdir)/libptcblas.a $(INSTdir)/.

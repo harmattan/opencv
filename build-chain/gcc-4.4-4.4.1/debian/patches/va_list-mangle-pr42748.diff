@@ -1,0 +1,81 @@
+--- a/src/gcc/cp/cp-tree.h	2010/02/28 16:16:22	157123
++++ b/src/gcc/cp/cp-tree.h	2010/02/28 17:07:54	157124
+@@ -4965,6 +4965,8 @@
+ extern bool reregister_specialization		(tree, tree, tree);
+ extern tree fold_non_dependent_expr		(tree);
+ extern bool explicit_class_specialization_p     (tree);
++extern int push_tinst_level                     (tree);
++extern void pop_tinst_level                     (void);
+ extern struct tinst_level *outermost_tinst_level(void);
+ extern bool parameter_of_template_p		(tree, tree);
+ extern void init_template_processing		(void);
+
+--- a/src/gcc/cp/mangle.c	2010/02/28 16:16:22	157123
++++ b/src/gcc/cp/mangle.c	2010/02/28 17:07:54	157124
+@@ -3008,6 +3008,22 @@
+ mangle_decl_string (const tree decl)
+ {
+   tree result;
++  location_t saved_loc = input_location;
++  tree saved_fn = NULL_TREE;
++  bool template_p = false;
++
++  if (DECL_LANG_SPECIFIC (decl) && DECL_USE_TEMPLATE (decl))
++    {
++      struct tinst_level *tl = current_instantiation ();
++      if (!tl || tl->decl != decl)
++	{
++	  template_p = true;
++	  saved_fn = current_function_decl;
++	  push_tinst_level (decl);
++	  current_function_decl = NULL_TREE;
++	}
++    }
++  input_location = DECL_SOURCE_LOCATION (decl);
+ 
+   start_mangling (decl);
+ 
+@@ -3020,6 +3036,14 @@
+   if (DEBUG_MANGLE)
+     fprintf (stderr, "mangle_decl_string = '%s'\n\n",
+ 	     IDENTIFIER_POINTER (result));
++
++  if (template_p)
++    {
++      pop_tinst_level ();
++      current_function_decl = saved_fn;
++    }
++  input_location = saved_loc;
++
+   return result;
+ }
+
+--- a/src/gcc/cp/pt.c	2010/02/28 16:16:22	157123
++++ b/src/gcc/cp/pt.c	2010/02/28 17:07:54	157124
+@@ -119,8 +119,6 @@
+ 			     unification_kind_t, int, bool);
+ static int unify (tree, tree, tree, tree, int);
+ static void add_pending_template (tree);
+-static int push_tinst_level (tree);
+-static void pop_tinst_level (void);
+ static tree reopen_tinst_level (struct tinst_level *);
+ static tree tsubst_initializer_list (tree, tree);
+ static tree get_class_bindings (tree, tree, tree);
+@@ -7013,7 +7011,7 @@
+ /* We're starting to instantiate D; record the template instantiation context
+    for diagnostics and to restore it later.  */
+ 
+-static int
++int
+ push_tinst_level (tree d)
+ {
+   struct tinst_level *new_level;
+@@ -7056,7 +7054,7 @@
+ /* We're done instantiating this template; return to the instantiation
+    context.  */
+ 
+-static void
++void
+ pop_tinst_level (void)
+ {
+   /* Restore the filename and line number stashed away when we started

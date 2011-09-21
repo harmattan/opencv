@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Nonsymmetric Eigenproblems (NEP)</TITLE>
+<META NAME="description" CONTENT="Nonsymmetric Eigenproblems (NEP)">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node32.html">
+<LINK REL="previous" HREF="node30.html">
+<LINK REL="up" HREF="node29.html">
+<LINK REL="next" HREF="node32.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4562"
+ HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4556"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4550"
+ HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4558"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4560"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4563"
+ HREF="node32.html">Singular Value Decomposition (SVD)</A>
+<B> Up:</B> <A NAME="tex2html4557"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4551"
+ HREF="node30.html">Symmetric Eigenproblems (SEP)</A>
+ &nbsp <B>  <A NAME="tex2html4559"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4561"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03234200000000000000">
+Nonsymmetric Eigenproblems (NEP)</A>
+</H3>
+
+<P>
+The <B>nonsymmetric eigenvalue problem</B> is to find the <B>eigenvalues</B><A NAME="1535"></A><A NAME="1536"></A>,
+<IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">,
+and corresponding <B>eigenvectors</B><A NAME="1538"></A>, <IMG
+ WIDTH="45" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img29.gif"
+ ALT="$v \ne 0$">,
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Av = \lambda v.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="68" HEIGHT="27" BORDER="0"
+ SRC="img30.gif"
+ ALT="\begin{displaymath}
+Av = \lambda v.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+A real matrix <I>A</I> may have complex eigenvalues, occurring as complex conjugate
+pairs. More precisely, the vector <I>v</I> is called a <B>right
+eigenvector</B><A NAME="1540"></A> of <I>A</I>, and a vector <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.gif"
+ ALT="$u\neq 0$">
+satisfying
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+u^HA = \lambda u^H
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="91" HEIGHT="27" BORDER="0"
+ SRC="img32.gif"
+ ALT="\begin{displaymath}
+u^HA = \lambda u^H
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+is called a <B>left eigenvector</B><A NAME="1542"></A> of <I>A</I>.
+
+<P>
+This problem can be solved
+via the <B>Schur factorization</B><A NAME="1544"></A> of <I>A</I>,
+defined in the real case as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = ZTZ^T,
+\end{displaymath}
+ -->
+
+
+<I>A</I> = <I>ZTZ</I><SUP><I>T</I></SUP>,
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>Z</I> is an orthogonal matrix and <I>T</I> is an upper quasi-triangular matrix
+with 1-by-1 and 2-by-2 diagonal blocks, the 2-by-2 blocks
+corresponding to complex conjugate pairs of eigenvalues of <I>A</I>. In the complex
+case the Schur factorization is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = ZTZ^H,
+\end{displaymath}
+ -->
+
+
+<I>A</I> = <I>ZTZ</I><SUP><I>H</I></SUP>,
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>Z</I> is unitary and <I>T</I> is a complex upper triangular matrix.
+
+<P>
+The columns of <I>Z</I> are called the <B>Schur vectors</B><A NAME="1546"></A>.
+For each <I>k</I>
+
+<!-- MATH
+ $(1 \leq k \leq n)$
+ -->
+<IMG
+ WIDTH="93" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.gif"
+ ALT="$(1 \leq k \leq n)$">,
+the first <I>k</I> columns of <I>Z</I> form an orthonormal
+<A NAME="1547"></A>
+basis for the <B>invariant subspace</B> corresponding to the
+first <I>k</I> eigenvalues on the diagonal of <I>T</I>. Because this
+basis is orthonormal, it is preferable in many
+applications to compute Schur vectors rather than
+eigenvectors. It is possible to order the Schur
+factorization so that any desired set of <I>k</I> eigenvalues
+occupy the <I>k</I> leading positions on the diagonal of <I>T</I>.
+
+<P>
+Two pairs of drivers<A NAME="1549"></A> are provided, one pair focusing on the Schur
+factorization, and the other pair on the eigenvalues and eigenvectors
+as shown in Table&nbsp;<A HREF="node32.html#tabdriveseig">2.5</A>:
+
+<P>
+
+<UL><LI>xGEES<A NAME="1552"></A><A NAME="1553"></A><A NAME="1554"></A><A NAME="1555"></A>: a simple driver that computes all or part of the Schur
+factorization of <I>A</I>, with optional ordering of the eigenvalues;
+<A NAME="1556"></A>
+
+<P>
+
+<LI>xGEESX<A NAME="1557"></A><A NAME="1558"></A><A NAME="1559"></A><A NAME="1560"></A>: an expert driver that can additionally compute condition
+numbers for the average of a selected subset of the eigenvalues, and for
+the corresponding right invariant subspace;
+
+<P>
+
+<LI>xGEEV<A NAME="1561"></A><A NAME="1562"></A><A NAME="1563"></A><A NAME="1564"></A>: a simple driver that computes all the eigenvalues of <I>A</I>,
+and (optionally) the right or left eigenvectors (or both);
+
+<P>
+
+<LI>xGEEVX<A NAME="1565"></A><A NAME="1566"></A><A NAME="1567"></A><A NAME="1568"></A>: an expert driver that can additionally balance the
+matrix to improve the conditioning of the eigenvalues and eigenvectors,
+and compute condition numbers for the eigenvalues or right eigenvectors
+(or both).
+
+<P>
+
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4562"
+ HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4556"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4550"
+ HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4558"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4560"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4563"
+ HREF="node32.html">Singular Value Decomposition (SVD)</A>
+<B> Up:</B> <A NAME="tex2html4557"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4551"
+ HREF="node30.html">Symmetric Eigenproblems (SEP)</A>
+ &nbsp <B>  <A NAME="tex2html4559"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4561"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

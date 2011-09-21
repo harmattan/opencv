@@ -1,0 +1,290 @@
+#!/usr/bin/make -f
+# Copyright 2008-2010 Sylvestre Ledru <sylvestre@debian.org>
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_BUILD_ARCH_CPU)
+DEB_BUILD_ARCH := $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
+CHECK_EXTENSIONS=""
+
+# Pointer bitwidth (default value)
+MODE_BITWIDTH = 32
+
+# This is a data structure (machnam) coming from the C code:
+# CONFIG/include/atlconf.h
+# It defines the list of archs with preset options:
+#    {"UNKNOWN", "POWER3", "POWER4", "POWER5", "PPCG4", "PPCG5",
+#    "P5", "P5MMX", "PPRO", "PII", "PIII", "PM", "CoreSolo",
+#    "CoreDuo", "Core2Solo", "Core2", "Corei7", "P4", "P4E", "Efficeon", "K7",
+#    "HAMMER", "AMD64K10h", "UNKNOWNx86", "IA64Itan", "IA64Itan2",
+#    "USI", "USII", "USIII", "USIV", "UnknownUS", "MIPSR1xK", "MIPSICE9"};
+# This is used by the flag -A with the position in the array 
+# Don't forget, C format, the array starts from 0 
+
+# About CPU extensions, it is defined in the same file
+# the datastructure ISAXNAM contains:
+#    {"", "AltiVec", "SSE3", "SSE2", "SSE1", "3DNow"};
+# For example, for the activation of SSE2, we need both SSE2 (Number 3) 
+# and SSE1 (Number 4)
+# >>> ISA=0
+# >>> ISA = ISA | (1<<3)
+# >>> ISA = ISA | (1<<4)
+# 24
+# So, to activate the SSE2, -V 24 should be used to the configure
+
+# 0 means Unknown CPU. Leave Atlas find out
+# 1 means no extension
+ARCHS=base_0_1
+DEB_SHLIBDEPS_INCLUDE_libatlas3gf-base := $(CURDIR)/debian/libatlas3gf-base/usr/lib/atlas-base/:$(CURDIR)/debian/libatlas3gf-base/usr/lib/atlas-base/atlas/
+
+# ifeq ($(DEB_HOST_ARCH_CPU),i386)
+# ifneq ($(DEB_BUILD_ARCH),kfreebsd-i386)
+# CHECK_EXTENSIONS=sse3
+# endif
+# ARCHS = base_10_1 sse_10_16 sse2_17_24 sse3_17_28 core2sse3_14_28
+# # 10 = PII  17 = P4
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-sse = $(CURDIR)/debian/libatlas3gf-sse/usr/lib/atlas-sse:$(CURDIR)/debian/libatlas3gf-sse/usr/lib/atlas-sse/atlas
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-sse2 = $(CURDIR)/debian/libatlas3gf-sse2/usr/lib/atlas-sse2:$(CURDIR)/debian/libatlas3gf-sse2/usr/lib/atlas-sse2/atlas
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-sse3 = $(CURDIR)/debian/libatlas3gf-sse3/usr/lib/atlas-sse3:$(CURDIR)/debian/libatlas3gf-sse3/usr/lib/atlas-sse3/atlas
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-core2sse3 = $(CURDIR)/debian/libatlas3gf-core2sse3/usr/lib/atlas-core2sse3:$(CURDIR)/debian/libatlas3gf-core2sse3/usr/lib/atlas-core2sse3/atlas
+# endif
+
+
+# # see what do we do with the amd64 / intel 64
+ifeq ($(DEB_HOST_ARCH_CPU),amd64)
+# # 64 bits
+MODE_BITWIDTH = 64
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-amd64sse3 = $(CURDIR)/debian/libatlas3gf-amd64sse3/usr/lib/atlas-amd64sse3:$(CURDIR)/debian/libatlas3gf-amd64sse3/usr/lib/atlas-amd64sse3/atlas
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-core2sse3 = $(CURDIR)/debian/libatlas3gf-core2sse3/usr/lib/atlas-core2sse3:$(CURDIR)/debian/libatlas3gf-core2sse3/usr/lib/atlas-core2sse3/atlas
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-corei7sse3 = $(CURDIR)/debian/libatlas3gf-corei7sse3/usr/lib/atlas-corei7sse3:$(CURDIR)/debian/libatlas3gf-corei7sse3/usr/lib/atlas-corei7sse3/atlas
+# ARCHS += amd64sse3_20_28 core2sse3_17_28 corei7sse3_18_28
+endif
+
+ifeq ($(DEB_HOST_ARCH_CPU),ia64)
+MODE_BITWIDTH = 64
+# ARCHS = base_25_1 sse_25_16 sse2_25_24
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-sse = $(CURDIR)/debian/libatlas3gf-sse/usr/lib/atlas-sse:$(CURDIR)/debian/libatlas3gf-sse/usr/lib/atlas-sse/atlas
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-sse2 = $(CURDIR)/debian/libatlas3gf-sse2/usr/lib/atlas-sse2:$(CURDIR)/debian/libatlas3gf-sse2/usr/lib/atlas-sse2/atlas
+endif
+
+ifeq ($(DEB_HOST_ARCH_CPU),ppc64)
+# Power PC 64
+MODE_BITWIDTH = 64
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-altivec = $(CURDIR)/debian/libatlas3gf-altivec/usr/lib/atlas-altivec:$(CURDIR)/debian/libatlas3gf-altivec/usr/lib/atlas-altivec/atlas
+# ARCHS += altivec_3_2
+# # 2 = altivec
+endif
+
+
+# ifeq ($(DEB_HOST_ARCH_CPU),ppc)
+# # Power PC 32
+# DEB_SHLIBDEPS_INCLUDE_libatlas3gf-altivec = $(CURDIR)/debian/libatlas3gf-altivec/usr/lib/atlas-altivec:$(CURDIR)/debian/libatlas3gf-altivec/usr/lib/atlas-altivec/atlas
+# ARCHS += altivec_3_2 
+# # 2 = altivec
+# endif
+
+# TODO: alpha hppa sparc (they have specific accelerations)
+
+#GFORTRAN_LIB_PATH=`gcc -print-search-dirs|grep ^install:|awk '{print $$2}'`
+GFORTRAN_LIB_PATH=/usr/lib/gcc/i486-linux-gnu/4.4/
+
+COMMON_CONFIG_PARAMS := --prefix="$(DEB_DESTDIR)" 	\
+	--incdir="$(DEB_DESTDIR)/usr/include/"			\
+	--libdir="$(DEB_DESTDIR)/usr/lib/$$targetName"		\
+	--cc="${CC}" 									\
+	--cflags="${CFLAGS}" 							\
+	-D c -DWALL 									\
+	-b $(MODE_BITWIDTH) 							\
+	-Fa alg '-Wa,--noexecstack -fPIC' 				\
+	-Ss f77lib "-L$(GFORTRAN_LIB_PATH) -lgfortran -lgcc_s -lpthread"  \
+	-Ss pmake '$(MAKE) -j 1'					\
+	--with-netlib-lapack=/usr/lib/liblapack_pic.a 	\
+	-A $$atlasArch									\
+	-V $$atlasISA 									\
+	-v 2											\
+	-Si cputhrchk 0
+
+custom: custom-stamp
+
+# Build a custom package optimized for the current arch
+custom-stamp:
+		rm -f configure-stamp
+
+		ncpu=$$(LANG=C cpufreq-info | grep "analyzing CPU" -c);\
+		cpu=0;\
+		while test $$cpu -lt $$ncpu ; do\
+		if test $$(cpufreq-info -p 2>&1 > /dev/null; echo $$?) \
+			-eq 0 -a -z "$$(LANG=C cpufreq-info -p -c $$cpu | grep performance)" ; then \
+			echo "frequency governor on cpu=$$ncpu is not set to 'performance'"; \
+			echo "run: 'sudo cpufreq-set -g performance -c cpu#' for each cpu"; \
+			echo "aborting atlas build"; \
+			exit 1; \
+		fi; \
+		cpu=$$((cpu+1)) ;\
+		done
+
+		# Here, the trick is pretty simple:
+		# * We don't want to build all the optimized version of Atlas. Just the
+		#   one for the current CPU
+		# * We override ARCHS by base__
+		# * Base is the name of the package (libatlas3gf-base)
+		# * __ is provided to have the right expression
+		# * the regexp will consider that atlasArch and atlasISA are empty
+		#   therefor, leaving the choice of the optimization to Atlas
+		# * After that, we fall back to the normal build procedure by calling
+		#   debian/rules itself (yep, recursively)
+
+		# Remove all the other archs in this case
+		sed '/AFTER THAT/q' $(CURDIR)/debian/control.in > $(CURDIR)/debian/control
+		dch --local='+custom'  "custom build on: `uname -a`"
+		LANG=C debian/rules ARCHS=base__ binary
+		touch $@
+
+configure-stamp:
+		if test -n "$(CHECK_EXTENSIONS)"; then \
+			if test -f /proc/cpuinfo; then \
+			if ! grep ^flags /proc/cpuinfo | grep -q $(CHECK_EXTENSIONS); then \
+				echo "Warning: In order to build Atlas under $(DEB_HOST_ARCH_CPU), you need the CPU extension $(CHECK_EXTENSIONS) available on your CPU"; 	\
+				exit 1; \
+			fi \
+			fi \
+		fi
+		dh_testdir
+
+		set -e; for ext in $(ARCHS); do							\
+			targetName=`echo $$ext|sed -e "s|\(.*\)_.*_.*|atlas-\1|g"`;	\
+			atlasArch=`echo $$ext|sed -e "s|.*_\(.*\)_.*|\1|g"`;		\
+			atlasISA=`echo $$ext|sed -e "s|.*_.*_\(.*\)|\1|g"`;		\
+			mkdir -p build/$$targetName;				\
+			cd build/$$targetName;					\
+			if test "$(ARCHS)" != "base__"; then 		\
+			../../configure $(COMMON_CONFIG_PARAMS) -t 2;	\
+			else 						\
+			../../configure $(COMMON_CONFIG_PARAMS);        \
+			fi;						\
+			echo "Configure done. targetName = $$targetName / atlasArch = $$atlasArch / atlasISA = $$atlasISA";							\
+			if test ! -s Make.inc; then echo "Configure failed: Make.inc not found"; exit 1; fi; \
+			cat Make.inc |grep ARCH|head -1|awk '{print $$3}';	\
+			echo "=============================================="; \
+			cd -;										\
+		done
+		touch $@
+
+
+build: build-arch build-indep
+
+build-indep: build-indep-stamp
+build-indep-stamp: configure-stamp
+		touch $@
+
+build-arch: build-arch-stamp
+build-arch-stamp: configure-stamp
+		dh_testdir
+		set -e; for ext in $(ARCHS); do					\
+			targetName=`echo $$ext|sed -e "s|\(.*\)_.*_.*|atlas-\1|g"`;		\
+			cd build/$$targetName;				\
+			$(MAKE) build;										\
+			cd lib;												\
+			$(MAKE) shared;										\
+			$(MAKE) ptshared;									\
+			echo "==============================================";	\
+			cd ../../../;										\
+		done
+#		-for ext in $(ARCHS); do	\
+#			targetName=`echo $$ext|sed -e "s|\(.*\)_.*_.*|atlas-\1|g"`;	\
+#			cd build/$$targetName;	\
+#			$(MAKE) check ptcheck;		\
+#			echo "=============================================="; \
+#			cd ../../../; \
+#		done
+		make -C TexDoc atlas_contrib.pdf atlas_devel.pdf atlas_install.pdf cblasqref.pdf  f77blasqref.pdf lapackqref.pdf
+		touch $@
+
+clean:: clean-work #unpatch
+clean-work:
+		dh_testdir
+		dh_testroot
+		rm -rf build check 
+		rm -f build-arch-stamp build-indep-stamp
+		rm -f install-arch-stamp install-indep-stamp configure-stamp
+
+		[ ! -f Makefile ] || $(MAKE) distclean
+		# some additional cleanups
+		dh_clean 
+
+
+install: install-arch install-indep
+
+install-indep: configure build install-indep-stamp
+install-indep-stamp:
+		dh_testdir
+		dh_testroot
+		dh_installdirs -i
+
+install-arch: configure build  install-arch-stamp
+install-arch-stamp:
+		dh_testdir
+		dh_testroot
+
+		set -e; for ext in $(ARCHS); do					\
+			targetName=`echo $$ext|sed -e "s|\(.*\)_.*_.*|atlas-\1|g"`;		\
+			cd build/$$targetName;		\
+			echo "make install of $$targetName to $(DEB_DESTDIR)";	\
+			$(MAKE) DESTDIR=$(DEB_DESTDIR) install; 		\
+			echo "============================================="; 	\
+			cd -;										\
+		done
+
+install/libatlas-dev::
+	if test -d $(CURDIR)/debian/libatlas-dev/usr/include/; then \
+		rm -rf $(CURDIR)/debian/libatlas-dev/usr/include/;  \
+	fi
+	mkdir -p $(CURDIR)/debian/libatlas-dev/usr/include/
+	mv $(CURDIR)/debian/tmp/usr/include/*.h $(CURDIR)/debian/tmp/usr/include/atlas/
+	mv $(CURDIR)/debian/tmp/usr/include/atlas $(CURDIR)/debian/libatlas-dev/usr/include/
+
+install/libatlas-doc::
+	mkdir -p $(CURDIR)/debian/libatlas-doc/usr/share/doc/libatlas-doc/
+	cp -R $(CURDIR)/doc/* $(CURDIR)/TexDoc/*.pdf $(CURDIR)/debian/libatlas-doc/usr/share/doc/libatlas-doc/
+
+binary: binary-indep binary-arch
+	if test "$(ARCHS)" != "base__"; then \
+		cp $(CURDIR)/debian/control.in $(CURDIR)/debian/control; \
+	fi
+
+binary-indep: build install
+		dh_testdir -i
+		dh_testroot -i
+		dh_installchangelogs  -i
+#		dh_installexamples -patlas-doc examples/*
+		dh_installman -i
+		dh_link -i
+		dh_strip -i
+		dh_compress  -i -X.pdf
+		dh_fixperms -i
+		dh_makeshlibs -i
+		dh_installdeb -i
+		dh_shlibdeps -i -l $$(pwd)
+#		dh_shlibdeps -i
+		dh_gencontrol -i
+		dh_md5sums -i
+		dh_builddeb -i
+
+binary-arch: build install
+		dh_testdir -a
+		dh_testroot -a
+		dh_installchangelogs  -a
+		dh_installexamples -a
+		dh_installman -a
+		dh_link -a
+		dh_compress  -a
+		dh_fixperms -a
+		dh_installdeb -a
+
+.PHONY: build build-indep build-indep-stamp build-arch build-arch-stamp check clean binary binary-indep binary-arch configure-stamp configure custom custom-stamp
+
+
+get-orig-source:
+	-uscan --upstream-version 0

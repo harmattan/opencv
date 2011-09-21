@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LWORK Query</TITLE>
+<META NAME="description" CONTENT="LWORK Query">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node119.html">
+<LINK REL="previous" HREF="node117.html">
+<LINK REL="up" HREF="node110.html">
+<LINK REL="next" HREF="node119.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5873"
+ HREF="node119.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5867"
+ HREF="node110.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5861"
+ HREF="node117.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5869"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5871"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5874"
+ HREF="node119.html">Error Handling and the</A>
+<B> Up:</B> <A NAME="tex2html5868"
+ HREF="node110.html">Design and Documentation of</A>
+<B> Previous:</B> <A NAME="tex2html5862"
+ HREF="node117.html">Work Arrays</A>
+ &nbsp <B>  <A NAME="tex2html5870"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5872"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03518000000000000000"></A>                               <A NAME="lworkquery"></A>
+<BR>
+LWORK Query
+</H2>
+ 
+If in doubt about the amount of workspace to supply to an LAPACK
+routine, the user may choose to supply <B><I>LWORK</I>=-1</B><A NAME="19559"></A>
+and use the returned value in <B><I>WORK</I>(1)</B> as the correct value
+for <B><I>LWORK</I></B>.  Setting <B><I>LWORK</I>=-1</B> does not invoke an error message
+from <TT>XERBLA</TT> and is defined as a global
+query<A NAME="19561"></A><A NAME="19562"></A><A NAME="19563"></A>.
+
+<P>
+The routines xGEESX and xGGESX are the only exceptions to this rule.
+For these routines, the value of LWORK is dependent upon the dimension
+of the invariant subspace (SDIM), and is not known on entry to the routine.
+
+<P>
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

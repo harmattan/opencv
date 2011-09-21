@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Balancing and Conditioning</TITLE>
+<META NAME="description" CONTENT="Balancing and Conditioning">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node95.html">
+<LINK REL="previous" HREF="node93.html">
+<LINK REL="up" HREF="node92.html">
+<LINK REL="next" HREF="node95.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5511"
+ HREF="node95.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5505"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5499"
+ HREF="node93.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5507"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5509"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5512"
+ HREF="node95.html">Computing s and</A>
+<B> Up:</B> <A NAME="tex2html5506"
+ HREF="node92.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5500"
+ HREF="node93.html">Overview</A>
+ &nbsp <B>  <A NAME="tex2html5508"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5510"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03481200000000000000"></A><A NAME="secbalance"></A>
+<BR>
+Balancing and Conditioning
+</H3>
+
+<P>
+There are two preprocessing
+steps<A NAME="11534"></A> one may perform
+on a matrix <B><I>A</I></B> in order
+to make its eigenproblem easier. The first is <B>permutation</B>, or
+reordering the rows and columns to make <B><I>A</I></B> more nearly upper triangular
+(closer to Schur form): <B><I>A</I>' = <I>PAP</I><SUP><I>T</I></SUP></B>, where <B><I>P</I></B> is a permutation matrix.
+If <B><I>A</I>'</B> is permutable to upper triangular form (or close to it), then
+no floating-point operations (or very few) are needed to reduce it to
+Schur form.
+The second is <B>scaling</B><A NAME="11537"></A> by a diagonal matrix <B><I>D</I></B> to make the rows and
+columns of <B><I>A</I>'</B> more nearly equal in norm: 
+<!-- MATH
+ $A''= DA'D^{-1}$
+ -->
+<B><I>A</I>''= <I>DA</I>'<I>D</I><SUP>-1</SUP></B>. Scaling
+can make the matrix norm smaller with respect to the eigenvalues, and so
+possibly reduce the inaccuracy contributed by roundoff
+[<A
+ HREF="node151.html#wilkinson3">106</A>, Chap. II/11]. We refer to these two operations as
+<B>balancing</B>.
+
+<P>
+Balancing is performed by driver xGEEVX, which calls
+computational routine xGEBAL. The user may tell xGEEVX to optionally
+<A NAME="11541"></A><A NAME="11542"></A><A NAME="11543"></A><A NAME="11544"></A>
+permute, scale, do both, or do neither; this is specified by input
+parameter <TT>BALANC</TT>. Permuting has no effect on
+<A NAME="11546"></A>
+the condition numbers
+<A NAME="11547"></A>
+or their interpretation as described in previous
+subsections. Scaling, however, does change their interpretation,
+as we now describe.
+
+<P>
+The output parameters of xGEEVX -- <TT>SCALE</TT> (real array of length N),
+<A NAME="11549"></A>
+<A NAME="11550"></A>
+<A NAME="11551"></A>
+<TT>ILO</TT> (integer), <TT>IHI</TT> (integer) and <TT>ABNRM</TT> (real) -- describe
+the result of
+balancing a matrix <B><I>A</I></B> into <B><I>A</I>''</B>, where N is the dimension of <B><I>A</I></B>.
+The matrix <B><I>A</I>''</B> is block upper triangular, with at most three blocks:
+from <B>1</B> to <TT>ILO</TT><B>-1</B>, from <TT>ILO</TT> to <TT>IHI</TT>, and from <TT>IHI</TT><B>+1</B> to N.
+The first and last blocks are upper triangular, and so already in Schur
+form. These are not scaled; only the block from <TT>ILO</TT> to <TT>IHI</TT> is scaled.
+Details of the scaling and permutation are described in <TT>SCALE</TT> (see the
+specification of xGEEVX or xGEBAL for details)<A NAME="11562"></A>. The one-norm of
+<B><I>A</I>''</B> is returned in <TT>ABNRM</TT>.
+
+<P>
+The condition numbers
+<A NAME="11564"></A>
+described in earlier subsections are computed for
+the balanced matrix <B><I>A</I>''</B>, and so some interpretation is needed to
+apply them to the eigenvalues and eigenvectors of the original matrix <B><I>A</I></B>.
+To use the bounds for eigenvalues in Tables <A HREF="node93.html#tabasympnepbounds">4.5</A> and
+<A HREF="node93.html#tabglobalnepbounds">4.6</A>,
+we must replace <B>|E|<SUB>2</SUB></B> and <B>|E|<SUB><I>F</I></SUB></B>
+by 
+<!-- MATH
+ $O(\epsilon) \|A''\| = O(\epsilon) \cdot {\tt ABNRM}$
+ -->
+<IMG
+ WIDTH="193" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img612.gif"
+ ALT="$O(\epsilon) \Vert A''\Vert = O(\epsilon) \cdot {\tt ABNRM}$">.
+To use the
+bounds for eigenvectors, we also need to take into account that bounds
+on rotations of eigenvectors are for the eigenvectors <B><I>x</I>''</B> of
+<B><I>A</I>''</B>, which are related to the eigenvectors <B><I>x</I></B> of <B><I>A</I></B> by
+<B><I>DPx</I>=<I>x</I>''</B>, or 
+<!-- MATH
+ $x=P^T D^{-1}x''$
+ -->
+<B><I>x</I>=<I>P</I><SUP><I>T</I></SUP> <I>D</I><SUP>-1</SUP><I>x</I>''</B>. One coarse but simple way to do this is
+as follows: let <IMG
+ WIDTH="21" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img613.gif"
+ ALT="$\theta''$">
+be the bound on rotations of <B><I>x</I>''</B> from
+Table&nbsp;<A HREF="node93.html#tabasympnepbounds">4.5</A> or Table&nbsp;<A HREF="node93.html#tabglobalnepbounds">4.6</A>
+and let <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img328.gif"
+ ALT="$\theta$">
+be the desired bound on rotation of <B><I>x</I></B>. Let
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\kappa (D) =
+\frac{{\rule[-.25cm]{0cm}{.5cm} \max_{{\tt ILO} \leq i \leq {\tt IHI}}
+{\tt SCALE}(i)}}
+{\min_{{\tt ILO} \leq i \leq {\tt IHI}} {\tt SCALE}(i)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="235" HEIGHT="54" BORDER="0"
+ SRC="img614.gif"
+ ALT="\begin{displaymath}
+\kappa (D) =
+\frac{{\rule[-.25cm]{0cm}{.5cm} \max_{{\tt ILO}...
+...}(i)}}
+{\min_{{\tt ILO} \leq i \leq {\tt IHI}} {\tt SCALE}(i)}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+be the condition number of <B><I>D</I></B>.
+<A NAME="11579"></A>
+Then
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\sin \theta \leq \kappa(D) \cdot \sin \theta'' \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="162" HEIGHT="31" BORDER="0"
+ SRC="img615.gif"
+ ALT="\begin{displaymath}
+\sin \theta \leq \kappa(D) \cdot \sin \theta'' \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<A NAME="11580"></A>
+<A NAME="11581"></A>
+
+<P>
+The numerical example in subsection&nbsp;<A HREF="node91.html#secnonsym">4.8</A> does no scaling,
+just permutation.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5511"
+ HREF="node95.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5505"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5499"
+ HREF="node93.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5507"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5509"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5512"
+ HREF="node95.html">Computing s and</A>
+<B> Up:</B> <A NAME="tex2html5506"
+ HREF="node92.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5500"
+ HREF="node93.html">Overview</A>
+ &nbsp <B>  <A NAME="tex2html5508"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5510"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

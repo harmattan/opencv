@@ -1,0 +1,1464 @@
+ ***********************************************************************
+ -----------------------------------
+ MACHINE-SPECIFIC INSTALLATION HINTS:
+ -----------------------------------
+
+ Entries are listed in ALPHABETICAL ORDER by the computer name.
+ 
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ TEMPLATE FOR THE ENTRIES:                                             +
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ ==================================================================    +
+ Computer name, version of OS, and version of fortran compiler used    +
+ ==================================================================    +
+                                                                       +
+ Compiler/options:                                                     +
+                                                                       +
+ BLAS:                                                                 +
+                                                                       +
+ Test status:                                                          +
+                                                                       +
+ Notes:                                                                +
+                                                                       +
+ ----- Date reported:                                                  +
+                                                                       +
+ ==================================================================    +
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+ ----------------------
+ KNOWN TESTING FAILURES: 
+ ----------------------
+
+ The only known testing failures are in condition number estimation
+ routines in the generalized nonsymmetric eigenproblem testing.  
+ Specifically in sgd.out, dgd.out, cgd.out and zgd.out. The cause for 
+ the failures of some test cases is that the mathematical algorithm 
+ used for estimating the condition numbers could over- or under-estimate
+ the true values in a certain factor in some rare cases.  Further
+ details can be found in LAPACK Working Note 87. 
+ 
+ The failures noted below were reported to us and are still under
+ investigation.  Please contact us (lapack@cs.utk.edu) if you feel that
+ an entry is out-of-date or incorrect.
+ 
+ Please NOTE that no claim is made as to the accuracy of the installation
+ information for specific computers; in some cases, no attempts were made
+ at verification.
+
+ ======================================================================
+ Apple Mac G4
+ OS: PPC RedHat Linux 6.0 (kernel 2.2.15)
+ g77 (version egcs-2.91.66)
+
+ LAPACK, version 3.0 + update
+
+ FORTRAN  = g77 
+ OPTS     = -fno-f2c -O3
+ DRVOPTS  = $(OPTS)
+ NOOPT    =
+ LOADER   = g77
+ LOADOPTS =
+  
+ ARCH     = ar
+ ARCHFLAGS= cr
+ RANLIB   = ranlib
+
+ Notes:
+
+ (1)Do not use -funroll-all-loops option!
+
+ Test status:  Expected failures in sgd.out and cgd.out;  
+               Minor failures of SPB and SLS in stest.out and ctest.out;
+               
+ ----- Date reported:  March, 2000
+
+ =======================================================================
+ CRAY C90, Unicos 9.0 with Programming Environment 3.0
+
+ LAPACK: VERSION 3.0
+ 
+ FORTRAN  = f90
+ OPTS     = -O3
+ DRVOPTS  = $(OPTS)
+ NOOPT    = -g
+ LOADER   = f90
+ LOADOPTS =
+ 
+ BLAS:  /lib/libsci.a
+    except for SNRM2 and SCNRM2  (use Fortran versions)
+
+ Notes:
+ 
+ 1. The Cray compilers implement a complex divide without scaling.  To run
+    the complex linear equation tests on the T3D, I had to modify SLABAD to
+    take the square root of overflow and underflow.  I ran the eigenvalue
+    tests with the default version of SLABAD.
+ 
+ 2. I also needed the Fortran SNRM2 when running the real linear equation
+    tests on a CRAY C90.
+ 
+ 3. Set ILAENV=0 for ISPEC=10 and ISPEC=11 in LAPACK/SRC/ilaenv.f, as
+    well as the specialized versions of ILAENV in TESTING/LIN/, TESTING/EIG/.
+ 
+ Test status:  Expected failures in sgd.out and cgd.out;
+               Failure in ssg.in (under investigation);
+
+ -------
+ ssg.out
+ -------
+
+ SSG:  NB =   3, NBMIN =   2, NX =   1
+ SDRVSG: SSYGVX(V,AU) returned INFO=     1.
+         N=     3, JTYPE=    10, ISEED=(  458, 2510, 3431,  397)
+
+ SSG -- Real Symmetric Generalized eigenvalue problem
+ Matrix types (see xDRVSG for details): 
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense or Banded Symmetric Matrices: 
+  8=Evenly spaced eigenvals.          15=Matrix with small random entries.
+  9=Geometrically spaced eigenvals.   16=Evenly spaced eigenvals, KA=1, KB=1.
+ 10=Clustered eigenvalues.            17=Evenly spaced eigenvals, KA=2, KB=1.
+ 11=Large, evenly spaced eigenvals.   18=Evenly spaced eigenvals, KA=2, KB=2.
+ 12=Small, evenly spaced eigenvals.   19=Evenly spaced eigenvals, KA=3, KB=1.
+ 13=Matrix with random O(1) entries.  20=Evenly spaced eigenvals, KA=3, KB=2.
+ 14=Matrix with large random entries. 21=Evenly spaced eigenvals, KA=3, KB=3.
+
+ Tests performed:   
+( For each pair (A,B), where A is of the given type 
+ and B is a random well-conditioned matrix. D is 
+ diagonal, and Z is orthogonal. )
+ 1 = SSYGV, with ITYPE=1 and UPLO='U':  | A Z - B Z D | / ( |A| |Z| n ulp )     
+ 2 = SSPGV, with ITYPE=1 and UPLO='U':  | A Z - B Z D | / ( |A| |Z| n ulp )     
+ 3 = SSBGV, with ITYPE=1 and UPLO='U':  | A Z - B Z D | / ( |A| |Z| n ulp )     
+ 4 = SSYGV, with ITYPE=1 and UPLO='L':  | A Z - B Z D | / ( |A| |Z| n ulp )     
+ 5 = SSPGV, with ITYPE=1 and UPLO='L':  | A Z - B Z D | / ( |A| |Z| n ulp )     
+ 6 = SSBGV, with ITYPE=1 and UPLO='L':  | A Z - B Z D | / ( |A| |Z| n ulp )     
+ 7 = SSYGV, with ITYPE=2 and UPLO='U':  | A B Z - Z D | / ( |A| |Z| n ulp )     
+ 8 = SSPGV, with ITYPE=2 and UPLO='U':  | A B Z - Z D | / ( |A| |Z| n ulp )     
+ 9 = SSPGV, with ITYPE=2 and UPLO='L':  | A B Z - Z D | / ( |A| |Z| n ulp )     
+10 = SSPGV, with ITYPE=2 and UPLO='L':  | A B Z - Z D | / ( |A| |Z| n ulp )     
+11 = SSYGV, with ITYPE=3 and UPLO='U':  | B A Z - Z D | / ( |A| |Z| n ulp )     
+12 = SSPGV, with ITYPE=3 and UPLO='U':  | B A Z - Z D | / ( |A| |Z| n ulp )     
+13 = SSYGV, with ITYPE=3 and UPLO='L':  | B A Z - Z D | / ( |A| |Z| n ulp )     
+14 = SSPGV, with ITYPE=3 and UPLO='L':  | B A Z - Z D | / ( |A| |Z| n ulp )     
+ Matrix order=    3, type=10, seed= 458,2510,3431, 397, result  53 is 3.518E+13
+ SSG:    1 out of 10288 tests failed to pass the threshold 
+
+ ----- Date reported:  April, 1999
+ 
+ =======================================================================
+ =======================================================================
+ DCG ALPHA LX164
+ OS: Alpha RedHat Linux 6.0 (kernel 2.2.5-16)
+ g77 (version egcs-2.91.66)
+
+ LAPACK, version 3.0 + update
+
+ FORTRAN  = g77 
+ OPTS     = -funroll-all-loops -fno-f2c -O3
+ DRVOPTS  = $(OPTS)
+ NOOPT    =
+ LOADER   = g77
+ LOADOPTS =
+  
+ ARCH     = ar
+ ARCHFLAGS= cr
+ RANLIB   = ranlib
+
+ Notes:
+
+ (1)Set ILAENV=0 for ISPEC=10 and ISPEC=11 in LAPACK/SRC/ilaenv.f, as
+    well as the specialized versions of ILAENV in TESTING/LIN/, TESTING/EIG/.
+
+ Test status:  Expected failures in sgd.out and cgd.out;  
+               Minor failures of SPB and SLS in stest.out and ctest.out;
+               Failure in csvd.out and minor failure in zsep.out;
+               Failure in cgbak.out (under investigation, optimization?);
+               
+ ---------
+ cgbak.out
+ ---------
+
+ .. test output of CGGBAK .. 
+ value of largest test error                  =   0.796E+04
+ example number where CGGBAL info is not 0    =   0
+ example number where CGGBAK(L) info is not 0 =   0
+ example number where CGGBAK(R) info is not 0 =   0
+ example number having largest error          =   5
+ number of examples where info is not 0       =   0
+ total number of examples tested              =  10
+
+
+ End of tests
+ Total time used =         0.01 seconds
+
+ ----- Date reported:  March, 2000
+
+ =======================================================================
+ =======================================================================
+  DEC 3000-500 ALPHA 
+  OS: OSF1 V4.0 (Rev. 1091)
+  COMPILER: F90
+
+  LAPACK, version 3.0 + update
+
+  FORTRAN  = f77
+  OPTS     = -O4 -fpe1
+  DRVOPTS  = $(OPTS)
+  NOOPT    =
+  LOADER   = f77
+  LOADOPTS =
+  
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = ranlib
+
+  BLASLIB     = -ldxml
+
+ Test status:  Expected failures in sgd.out and cgd.out;  
+               Minor failures of SPB and SLS in stest.out and ctest.out;
+               Minor failures in ssep.out/csep.out and ssvd.out/csvd.out;
+               Failure in cgbak.out (under investigation, optimization?);
+               
+               If (-O5 -fpe1 level of optimization) is used, failures in
+               STP,DTP,CTP, and ZTP tests in _test.out;
+
+ ---------
+ cgbak.out
+ ---------
+
+ .. test output of CGGBAK .. 
+ value of largest test error                  =   0.796E+04
+ example number where CGGBAL info is not 0    =   0
+ example number where CGGBAK(L) info is not 0 =   0
+ example number where CGGBAK(R) info is not 0 =   0
+ example number having largest error          =   5
+ number of examples where info is not 0       =   0
+ total number of examples tested              =  10
+
+
+ End of tests
+ Total time used =         0.01 seconds
+
+ ----- Date reported:  November, 1999
+
+ =======================================================================
+ =======================================================================
+  Hewlett Packard HP 9000 Model 735
+  OS:  HP-UX A.09.05
+  F77, HP-UX Release 10.0
+
+  LAPACK, version 3.0
+
+  FORTRAN  = f77
+  OPTS     = +O4 +U77
+  DRVOPTS  = $(OPTS) -K
+  NOOPT    = +U77
+  LOADER   = f77
+  LOADOPTS = -Aa +U77
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = echo
+
+  BLASLIB = -lblas (HP BLAS)
+
+ Test status:  As yet, Unable to run xeigtst_ tests due to swap space
+               problem
+
+ Notes:
+
+ 1.  Due to unscaled complex divide, you must set LAPACK/SRC/slabad.f
+     and dlabad.f to take the square root of SMLNUM and BIGNUM as for
+     the Cray.
+
+ 2.  LAPACK/INSTALL/testieee test failed for NaN arithmetic.  Set
+     ILAENV=0 for ISPEC=10 and ISPEC=11 in ilaenv.f.
+
+ ----- Date reported:  April, 1999
+
+ =======================================================================
+ =======================================================================
+ IBM RS/6000 Power3
+ OS:  AIX VERSION 4.3.3
+ COMPILER:  XL FORTRAN Compiler Version 6.1.0.0
+
+ LAPACK, version 3.0 + UPDATE
+
+ FORTRAN  = xlf
+ OPTS     = -O3 -qarch=pwr3 -qmaxmem=-1
+ DRVOPTS  = $(OPTS)
+ NOOPT    =
+ LOADER   = xlf
+ LOADOPTS =
+
+ ARCH     = ar
+ ARCHFLAGS= cr
+ RANLIB   = ranlib
+
+ BLASLIB     = -lessl
+ 
+ BLAS:    (ESSL version 3.1.1.0)
+ 
+ Notes:
+ 
+ (1) use XLF-supplied routine ETIME_ for second.f and dsecnd.f
+
+ (2) Remove all optimization for SRC/cgtrfs.f (xlf -qarch=pwr3)
+                                 SRC/zgtrfs.f
+                                 TESTING/LIN/cgtt05.f
+                                 TESTING/LIN/zgtt05.f
+     Example error message:
+"cgtrfs.f", 1500-008 (S) COMPILER LIMIT EXCEEDED in cgtrfs: Program too
+ complicated to be compiled.  Compilation ended.  Reduce the complexity of
+ the program and recompile, or lower the level of optimization and recompile.
+ 
+ Test status: Expected failures in _gd.out;
+              RMAX failures in sec.out/dec.out;
+              Failure in zgbak.out (under investigation, optimization?);
+              Failure in ssvd.out/dsvd.out/zsvd.out (under investigation);
+              Minors failure in ssep.out and snep.out;
+              Failures in csep.out/zsep.out (under investigation).
+ --------
+ dec.out
+ -------
+
+ Tests of the Nonsymmetric eigenproblem condition estimation routines
+ DLALN2, DLASY2, DLANV2, DLAEXC, DTRSYL, DTREXC, DTRSNA, DTRSEN, DLAQTR
+
+ Relative machine precision (EPS) =      .222045D-15
+ Safe minimum (SFMIN)             =      .222507-307
+
+ Routines pass computational tests if test ratio is less than   20.00
+
+
+ DEC routines passed the tests of the error exits ( 35 tests done)
+ Error in DLANV2: RMAX =    .117D+16
+ LMAX =    16067 NINFO=       0 KNT=   20736
+ Error in DLAEXC: RMAX =    .808D+15
+ LMAX =    11125 NINFO=     148       0 KNT=   42258
+ Error in DTREXC: RMAX =    .686D+15
+ LMAX =       14 NINFO=       0       0       0 KNT=      14
+ Error in DTRSEN: RMAX =    .728D+05    .152D+01    .152D+01
+ LMAX =       76      68      68 NINFO=       0       0       0 KNT=      78
+
+
+ End of tests
+ Total time used =         6.65 seconds
+
+ --------
+ zgbak.out
+ ---------
+
+ .. test output of ZGGBAK .. 
+ value of largest test error                  =    .796D+04
+ example number where ZGGBAL info is not 0    =   0
+ example number where ZGGBAK(L) info is not 0 =   0
+ example number where ZGGBAK(R) info is not 0 =   0
+ example number having largest error          =   5
+ number of examples where info is not 0       =   0
+ total number of examples tested              =  10
+
+
+ End of tests
+ Total time used =          .02 seconds
+
+ --------
+ ssvd.out
+ --------
+
+ SVD:  NB =   1, NBMIN =   2, NX =   1, NRHS =   2
+ SCHKBD: SBDSDC(vects) returned INFO=     1.
+         M=    30, N=    40, JTYPE=    12, ISEED=( 2195,  634, 3653, 1853)
+
+ SBD -- Real Singular Value Decomposition
+ Matrix types (see xCHKBD for details):
+ Diagonal matrices:
+   1: Zero                             5: Clustered entries
+   2: Identity                         6: Large, evenly spaced entries
+   3: Evenly spaced entries            7: Small, evenly spaced entries
+   4: Geometrically spaced entries
+ General matrices:
+   8: Evenly spaced sing. vals.       12: Small, evenly spaced sing vals
+   9: Geometrically spaced sing vals  13: Random, O(1) entries
+  10: Clustered sing. vals.           14: Random, scaled near overflow
+  11: Large, evenly spaced sing vals  15: Random, scaled near underflow
+
+ Test ratios:  (B: bidiagonal, S: diagonal, Q, P, U, and V: orthogonal
+                X: m x nrhs, Y = Q' X, and Z = U' Y)
+   1: norm( A - Q B P' ) / ( norm(A) max(m,n) ulp )
+   2: norm( I - Q' Q )   / ( m ulp )
+   3: norm( I - P' P )   / ( n ulp )
+   4: norm( B - U S V' ) / ( norm(B) min(m,n) ulp )
+   5: norm( Y - U Z )    / ( norm(Z) max(min(m,n),k) ulp )
+   6: norm( I - U' U )   / ( min(m,n) ulp )
+   7: norm( I - V' V )   / ( min(m,n) ulp )
+   8: Test ordering of S  (0 if nondecreasing, 1/ulp  otherwise)
+   9: norm( S - S2 )     / ( norm(S) ulp ), where S2 is computed
+                                            without computing U and V'
+  10: Sturm sequence test (0 if sing. vals of B within THRESH of S)
+  11: norm( A - (QU) S (V' P') ) / ( norm(A) max(m,n) ulp )
+  12: norm( X - (QU) Z )         / ( |X| max(M,k) ulp )
+  13: norm( I - (QU)'(QU) )      / ( M ulp )
+  14: norm( I - (V' P') (P V) )  / ( N ulp )
+ M=   30, N=   40, type 12, seed=2195, 634,3653,1853, test(15)=  .8389E+07
+ SBD:      1 out of   5510 tests failed to pass the threshold
+ *** Error code from SCHKBD =    1
+
+ --------
+ csep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   9
+
+ All tests for CST passed the threshold ( 3276 tests run)
+
+ CST -- Complex Hermitian eigenvalue problem
+ Matrix types (see xDRVST for details):
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+
+ Tests performed:  See cdrvst.f
+ Matrix order=   20, type= 9, seed=1494,3156,1807,2209, result  47 is 1.006E+04
+ Matrix order=   20, type= 9, seed=1494,3156,1807,2209, result 101 is  114.52
+ CST drivers:      2 out of  11664 tests failed to pass the threshold
+
+ --------
+ zsep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   9
+
+ All tests for ZST passed the threshold ( 3276 tests run)
+
+ ZST -- Complex Hermitian eigenvalue problem
+ Matrix types (see xDRVST for details): 
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+
+ Tests performed:  See cdrvst.f
+ Matrix order=    5, type=10, seed= 791,4087,1614,3401, result  46 is      NaNQ
+ Matrix order=    5, type=10, seed= 791,4087,1614,3401, result  47 is 4.504D+15
+ Matrix order=    5, type=10, seed= 791,4087,1614,3401, result  48 is      NaNQ
+ ZST drivers:      3 out of  11664 tests failed to pass the threshold
+
+ ----- Date reported:  November, 1999
+ 
+ =======================================================================
+ =======================================================================
+ IBM RISC/6000 model 550
+ OS:  AIX VERSION 4.1
+ COMPILER:  XL FORTRAN Compiler Version 4.1
+
+ LAPACK, version 3.0
+
+ FORTRAN  = xlf
+ OPTS     = -O3 -qmaxmem=-1
+
+            (except -O2 for LAPACK/SRC/cgelsx.f )
+
+            (except -O2 for LAPACK/TESTING/LIN/zchktp.f )
+
+ DRVOPTS  = $(OPTS)
+ NOOPT    =
+ LOADER   = xlf
+ LOADOPTS =
+
+ ARCH     = ar
+ ARCHFLAGS= cr
+ RANLIB   = ranlib
+
+ BLASLIB     = -lessl
+ 
+ BLAS:    (ESSL version 2.2.2.2)
+ 
+ Notes:
+ 
+ (1) use XLF-supplied routine ETIME_ for second.f and dsecnd.f
+ 
+ Test status: Expected failures in _gd.out;
+              Failure in dsvd.out (under investigation);
+              Failures in dsep.out and zsep.out (under investigation).
+
+ --------
+ dsvd.out
+ --------
+
+ SVD:  NB =   1, NBMIN =   2, NX =   1, NRHS =   2
+ DCHKBD: DBDSDC(vects) returned INFO=     1.
+         M=    30, N=    40, JTYPE=    12, ISEED=( 2195,  634, 3653, 1853)
+ 
+ DBD -- Real Singular Value Decomposition
+ Matrix types (see xCHKBD for details):
+ Diagonal matrices:
+   1: Zero                             5: Clustered entries
+   2: Identity                         6: Large, evenly spaced entries
+   3: Evenly spaced entries            7: Small, evenly spaced entries
+   4: Geometrically spaced entries
+ General matrices:
+   8: Evenly spaced sing. vals.       12: Small, evenly spaced sing vals
+   9: Geometrically spaced sing vals  13: Random, O(1) entries
+  10: Clustered sing. vals.           14: Random, scaled near overflow
+  11: Large, evenly spaced sing vals  15: Random, scaled near underflow
+ 
+ Test ratios:  (B: bidiagonal, S: diagonal, Q, P, U, and V: orthogonal
+                X: m x nrhs, Y = Q' X, and Z = U' Y)
+   1: norm( A - Q B P' ) / ( norm(A) max(m,n) ulp )
+   2: norm( I - Q' Q )   / ( m ulp )
+   3: norm( I - P' P )   / ( n ulp )
+   4: norm( B - U S V' ) / ( norm(B) min(m,n) ulp )
+   5: norm( Y - U Z )    / ( norm(Z) max(min(m,n),k) ulp )
+   6: norm( I - U' U )   / ( min(m,n) ulp )
+   7: norm( I - V' V )   / ( min(m,n) ulp )
+   8: Test ordering of S  (0 if nondecreasing, 1/ulp  otherwise)
+   9: norm( S - S2 )     / ( norm(S) ulp ), where S2 is computed
+                                            without computing U and V'
+  10: Sturm sequence test (0 if sing. vals of B within THRESH of S)
+  11: norm( A - (QU) S (V' P') ) / ( norm(A) max(m,n) ulp )
+  12: norm( X - (QU) Z )         / ( |X| max(M,k) ulp )
+  13: norm( I - (QU)'(QU) )      / ( M ulp )
+  14: norm( I - (V' P') (P V) )  / ( N ulp )
+ M=   30, N=   40, type 12, seed=2195, 634,3653,1853, test(15)=  .4504E+16
+ DBD:      1 out of   5510 tests failed to pass the threshold
+ *** Error code from DCHKBD =    1
+
+ --------
+ dsep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   5
+ 
+ DST -- Real Symmetric eigenvalue problem
+ Matrix types (see DCHKST for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Symmetric Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 16=Positive definite, evenly spaced eigenvalues
+ 17=Positive definite, geometrically spaced eigenvlaues
+ 18=Positive definite, clustered eigenvalues
+ 19=Positive definite, small evenly spaced eigenvalues
+ 20=Positive definite, large evenly spaced eigenvalues
+ 21=Diagonally dominant tridiagonal, geometrically spaced eigenvalues
+ 
+Test performed:  see DCHKST for details.
+ 
+ N=   40, seed=1451, 418,3916,1509, type  9, test(35)=  .335E+12
+ N=   40, seed=1451, 418,3916,1509, type  9, test(36)=  .269E+15
+ DST:    2 out of  4662 tests failed to pass the threshold
+ 
+ All tests for DST drivers  passed the threshold ( 14256 tests run)
+
+ --------
+ zsep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   0
+ 
+ ZST -- Complex Hermitian eigenvalue problem
+ Matrix types (see ZCHKST for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 16=Positive definite, evenly spaced eigenvalues
+ 17=Positive definite, geometrically spaced eigenvlaues
+ 18=Positive definite, clustered eigenvalues
+ 19=Positive definite, small evenly spaced eigenvalues
+ 20=Positive definite, large evenly spaced eigenvalues
+ 21=Diagonally dominant tridiagonal, geometrically spaced eigenvalues
+ 
+Test performed:  see ZCHKST for details.
+ 
+ Matrix order=   40, type= 9, seed= 419, 892, 345,2089, result  35 is 2.756D+12
+ Matrix order=   40, type= 9, seed= 419, 892, 345,2089, result  36 is 3.073D+14
+ ZST:    2 out of  4662 tests failed to pass the threshold
+ 
+ All tests for ZST drivers  passed the threshold ( 11664 tests run)
+
+ ----- Date reported:  April, 1999
+ 
+  =======================================================================
+  =======================================================================
+  Intel Pentium 120MHz (IBM Thinkpad 760E)
+  Linux 2.0.34
+  g77 (version egcs-2.91.60)
+
+  LAPACK, version 3.0
+
+  FORTRAN  = g77
+  OPTS     = -g
+  DRVOPTS  = $(OPTS)
+  NOOPT    = -g
+  LOADER   = g77
+  LOADOPTS = -g
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = ranlib
+
+  BLASLIB  =  Fortran 77 BLAS
+
+ Test status: Expected failures in _gd.out;
+              Two failures in ded.out (DES, DSX);
+              One failure in dgg.out (DGG);
+
+ -------
+ ded.out
+ -------
+
+ DGEES  passed the tests of the error exits (  6 tests done)
+ DDRVES: DGEES1 returned INFO=     6.
+         N=     5, JTYPE=    17, ISEED=(  100, 2082,   33,  613)
+ 
+ DES -- Real Schur Form Decomposition Driver
+ Matrix types (see DDRVES for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: geometr. spaced entries.
+  2=Identity matrix.                      6=Diagonal: clustered entries.
+  3=Transposed Jordan block.              7=Diagonal: large, evenly spaced.
+  4=Diagonal: evenly spaced entries.      8=Diagonal: small, evenly spaced.
+ Dense, Non-Symmetric Matrices:
+  9=Well-cond., evenly spaced eigenvals. 14=Ill-cond., geomet. spaced eigenals.
+ 10=Well-cond., geom. spaced eigenvals.  15=Ill-conditioned, clustered e.vals.
+ 11=Well-conditioned, clustered e.vals.  16=Ill-cond., random complex
+ 12=Well-cond., random complex           17=Ill-cond., large rand. complx
+ 13=Ill-conditioned, evenly spaced.      18=Ill-cond., small rand. complx
+ 19=Matrix with random O(1) entries.     21=Matrix with small random entries.
+ 20=Matrix with large random entries.
+ 
+ Tests performed with test threshold =   20.00
+ ( A denotes A on input and T denotes A on output)
+ 
+ 1 = 0 if T in Schur form (no sort),   1/ulp otherwise
+ 2 = | A - VS T transpose(VS) | / ( n |A| ulp ) (no sort)
+ 3 = | I - VS transpose(VS) | / ( n ulp ) (no sort)
+ 4 = 0 if WR+sqrt(-1)*WI are eigenvalues of T (no sort),  1/ulp otherwise
+ 5 = 0 if T same no matter if VS computed (no sort),  1/ulp otherwise
+ 6 = 0 if WR, WI same no matter if VS computed (no sort),  1/ulp otherwise
+ 7 = 0 if T in Schur form (sort),   1/ulp otherwise
+ 8 = | A - VS T transpose(VS) | / ( n |A| ulp ) (sort)
+ 9 = | I - VS transpose(VS) | / ( n ulp ) (sort)
+ 10 = 0 if WR+sqrt(-1)*WI are eigenvalues of T (sort),  1/ulp otherwise
+ 11 = 0 if T same no matter if VS computed (sort),  1/ulp otherwise
+ 12 = 0 if WR, WI same no matter if VS computed (sort),  1/ulp otherwise
+ 13 = 0 if sorting succesful, 1/ulp otherwise
+ 
+ N=    5, IWK= 2, seed= 100,2082,  33, 613, type 17, test( 7)= 0.450E+16
+ DES:    1 out of  3270 tests failed to pass the threshold
+ *** Error code from  DGEES =    6
+ 
+ ...
+
+ DGEESX passed the tests of the error exits (  7 tests done)
+ DGET24: DGEESX1 returned INFO=     6.
+         N=     5, JTYPE=    17, ISEED=(  100, 2082,   33,  613)
+ 
+ DSX -- Real Schur Form Decomposition Expert Driver
+ Matrix types (see DDRVSX for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: geometr. spaced entries.
+  2=Identity matrix.                      6=Diagonal: clustered entries.
+  3=Transposed Jordan block.              7=Diagonal: large, evenly spaced.
+  4=Diagonal: evenly spaced entries.      8=Diagonal: small, evenly spaced.
+ Dense, Non-Symmetric Matrices:
+  9=Well-cond., evenly spaced eigenvals. 14=Ill-cond., geomet. spaced eigenals.
+ 10=Well-cond., geom. spaced eigenvals.  15=Ill-conditioned, clustered e.vals.
+ 11=Well-conditioned, clustered e.vals.  16=Ill-cond., random complex
+ 12=Well-cond., random complex           17=Ill-cond., large rand. complx
+ 13=Ill-conditioned, evenly spaced.      18=Ill-cond., small rand. complx
+ 19=Matrix with random O(1) entries.     21=Matrix with small random entries.
+ 20=Matrix with large random entries.
+ 
+ Tests performed with test threshold =   20.00
+ ( A denotes A on input and T denotes A on output)
+ 
+ 1 = 0 if T in Schur form (no sort),   1/ulp otherwise
+ 2 = | A - VS T transpose(VS) | / ( n |A| ulp ) (no sort)
+ 3 = | I - VS transpose(VS) | / ( n ulp ) (no sort)
+ 4 = 0 if WR+sqrt(-1)*WI are eigenvalues of T (no sort),  1/ulp otherwise
+ 5 = 0 if T same no matter if VS computed (no sort),  1/ulp otherwise
+ 6 = 0 if WR, WI same no matter if VS computed (no sort),  1/ulp otherwise
+ 7 = 0 if T in Schur form (sort),   1/ulp otherwise
+ 8 = | A - VS T transpose(VS) | / ( n |A| ulp ) (sort)
+ 9 = | I - VS transpose(VS) | / ( n ulp ) (sort)
+ 10 = 0 if WR+sqrt(-1)*WI are eigenvalues of T (sort),  1/ulp otherwise
+ 11 = 0 if T same no matter what else computed (sort),  1/ulp otherwise
+ 12 = 0 if WR, WI same no matter what else computed (sort), 1/ulp otherwise
+ 13 = 0 if sorting succesful, 1/ulp otherwise
+ 14 = 0 if RCONDE same no matter what else computed, 1/ulp otherwise
+ 15 = 0 if RCONDv same no matter what else computed, 1/ulp otherwise
+ 16 = | RCONDE - RCONDE(precomputed) | / cond(RCONDE),
+ 17 = | RCONDV - RCONDV(precomputed) | / cond(RCONDV),
+ N=    5, IWK= 2, seed= 100,2082,  33, 613, type 17, test( 7)= 0.450E+16
+ DSX:    1 out of  3500 tests failed to pass the threshold
+
+ -------
+ dgg.out
+ -------
+
+ DGG:  NB =   2, NBMIN =   2, NS =   4, MAXB =   2, NBCOL =   2
+ DCHKGG: DHGEQZ(E) returned INFO=     9.
+         N=    16, JTYPE=    18, ISEED=(  740, 2515, 3243, 3753)
+ 
+ DGG -- Real Generalized eigenvalue problem
+ Matrix types (see DCHKGG for details):
+ Special Matrices:                       (J'=transposed Jordan block)
+   1=(0,0)  2=(I,0)  3=(0,I)  4=(I,I)  5=(J',J')  6=(diag(J',I), diag(I,J'))
+ Diagonal Matrices:  ( D=diag(0,1,2,...) )
+   7=(D,I)   9=(large*D, small*I)  11=(large*I, small*D)  13=(large*D, large*I)
+   8=(I,D)  10=(small*D, large*I)  12=(small*I, large*D)  14=(small*D, small*I)
+  15=(D, reversed D)
+ Matrices Rotated by Random Orthogonal Matrices U, V:
+  16=Transposed Jordan Blocks             19=geometric alpha, beta=0,1
+  17=arithm. alpha&beta                   20=arithmetic alpha, beta=0,1
+  18=clustered alpha, beta=0,1            21=random alpha, beta=0,1
+ Large & Small Matrices:
+  22=(large, small)   23=(small,large)    24=(small,small)    25=(large,large)
+  26=random O(1) matrices.
+ 
+ Tests performed:   (H is Hessenberg, S is Schur, B, T, P are triangular,
+                    U, V, Q, and Z are orthogonal, l and r are the
+                    appropriate left and right eigenvectors, resp., a is
+                    alpha, b is beta, and ' means transpose.)
+ 1 = | A - U H V' | / ( |A| n ulp )      2 = | B - U T V' | / ( |B| n ulp )
+ 3 = | I - UU' | / ( n ulp )             4 = | I - VV' | / ( n ulp )
+ 5 = | H - Q S Z' | / ( |H| n ulp )      6 = | T - Q P Z' | / ( |T| n ulp )
+ 7 = | I - QQ' | / ( n ulp )             8 = | I - ZZ' | / ( n ulp )
+ 9 = max | ( b S - a P )' l | / const.  10 = max | ( b H - a T )' l | / const.
+ 11= max | ( b S - a P ) r | / const.   12 = max | ( b H - a T ) r | / const.
+ 
+ Matrix order=   16, type=18, seed= 740,2515,3243,3753, result  5 is 4.504E+15
+ DGG:    1 out of  2177 tests failed to pass the threshold
+ *** Error code from DCHKGG =    9
+ 
+ All tests for DGG drivers  passed the threshold (  1274 tests run)
+
+  ----- Date reported: May, 1999
+
+ =======================================================================
+ =======================================================================
+  Intel Pentium II 300MHz
+  RedHat Linux 2.2.5-15
+  g77 (version egcs-2.91.66)
+
+  LAPACK, version 3.0 + UPDATE
+
+  FORTRAN  = g77
+  OPTS     = -funroll-all-loops -fno-f2c -O3
+  DRVOPTS  = $(OPTS)
+  NOOPT    =
+  LOADER   = g77
+  LOADOPTS = $(OPTS)
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = ranlib
+
+  BLASLIB  =  Fortran 77 BLAS
+
+ Test status: Expected failures in _gd.out;
+              Failure in cgbak.out (under investigation);
+              Failures in ssep.out/csep.out (under investigation);
+
+ ---------
+ cgbak.out
+ ---------
+
+ .. test output of CGGBAK .. 
+ value of largest test error                  =   0.796E+04
+ example number where CGGBAL info is not 0    =   0
+ example number where CGGBAK(L) info is not 0 =   0
+ example number where CGGBAK(R) info is not 0 =   0
+ example number having largest error          =   5
+ number of examples where info is not 0       =   0
+ total number of examples tested              =  10
+
+
+ End of tests
+ Total time used =         0.04 seconds
+
+ --------
+ ssep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   9
+
+ SST -- Real Symmetric eigenvalue problem
+ Matrix types (see SCHKST for details):
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Symmetric Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 16=Positive definite, evenly spaced eigenvalues
+ 17=Positive definite, geometrically spaced eigenvlaues
+ 18=Positive definite, clustered eigenvalues
+ 19=Positive definite, small evenly spaced eigenvalues
+ 20=Positive definite, large evenly spaced eigenvalues
+ 21=Diagonally dominant tridiagonal, geometrically spaced eigenvalues
+
+Test performed:  see SCHKST for details.
+
+ N=   20, seed= 443,2933, 429,1581, type  9, test(35)= 0.224E+05
+ N=   20, seed= 443,2933, 429,1581, type  9, test(36)= 0.207E+07
+ SST:    2 out of  4662 tests failed to pass the threshold
+
+ --------
+ csep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   9
+
+ CST -- Complex Hermitian eigenvalue problem
+ Matrix types (see CCHKST for details):
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 16=Positive definite, evenly spaced eigenvalues
+ 17=Positive definite, geometrically spaced eigenvlaues
+ 18=Positive definite, clustered eigenvalues
+ 19=Positive definite, small evenly spaced eigenvalues
+ 20=Positive definite, large evenly spaced eigenvalues
+ 21=Diagonally dominant tridiagonal, geometrically spaced eigenvalues
+
+Test performed:  see CCHKST for details.
+
+ Matrix order=   20, type= 9, seed=1052,3651,3662,3633, result  35 is   88.19
+ Matrix order=   20, type= 9, seed=1052,3651,3662,3633, result  36 is 2616.94
+ CST:    2 out of  4662 tests failed to pass the threshold
+
+ CST -- Complex Hermitian eigenvalue problem
+ Matrix types (see xDRVST for details):
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+
+ Tests performed:  See cdrvst.f
+ Matrix order=   20, type= 9, seed=1494,3156,1807,2209, result  46 is 8.389E+06
+ Matrix order=   20, type= 9, seed=1494,3156,1807,2209, result  47 is 8.389E+06
+ CST drivers:      2 out of  11664 tests failed to pass the threshold
+
+  ----- Date reported: November, 1999
+
+ =======================================================================
+ =======================================================================
+  Intel PentiumII PC
+  OS:  Linux (SuSE 6.1)
+  COMPILER:  Portland Group pgf77, version 3.0
+  COMPILER OPTIONS:  -tp p6 -pc 64 -mp -O2 -Munroll
+  BLAS:  Optimized BLAS for PentiumII/Pro, obtained from
+         http://www.cs.utk.edu/~ghenry/distrib/
+
+  LAPACK, version 3.0
+
+  Test status: Expected failures in _gd.out;
+
+  ----- Date reported: October, 1999
+
+ =======================================================================
+ =======================================================================
+ Intel Pentium PPro
+ OS:  Windows NT 4.0 
+ COMPILER:  Watcom Fortran 77/32 Compiler Version 11.0
+
+ LAPACK, version 3.0
+
+ FORTRAN  = wfc386
+ OPTS     = -EXP -NOER -NOR
+ DRVOPTS  = -EXP -NOER -NOR
+ NOOPT    = -EXP -NOER -NOR
+ LOADER   = wlink
+ LOADOPTS =
+
+ ARCH     = wlib
+ ARCHFLAGS= -b -fa
+ RANLIB   = echo
+
+ BLASLIB  = ..\..\blas_win32.lib
+         (Fortran 77 reference implementation)
+
+ Notes:
+
+ (1) separate LAPACK distribution file:
+     http://www.netlib.org/lapack/lapack-pc-wfc.zip
+ 
+ (2) use CLOCK() for second.f and dsecnd.f
+
+ (3) Set ILAENV=0 for ISPEC=10 and ISPEC=11 in lapack\src\ilaenv.f, as
+    well as the specialized versions of ILAENV in testing\lin\, testing\eig\.
+ 
+ Test status: Expected failures in _gd.out;
+ 
+  ----- Date reported: August, 1999
+  
+ =======================================================================
+ =======================================================================
+ Intel Pentium PPro
+ OS:  Windows NT 4.0 
+ COMPILER: Digital Fortran
+
+ LAPACK, version 3.0 + UPDATES
+
+ FORTRAN  = df
+ OPTS     = -optimize:2
+ DRVOPTS  = $(OPTS)
+ NOOPT    = -optimize:0
+ LOADER   = $(FORTRAN)
+ LOADOPTS =
+ ARCH     = lib
+ ARCHFLAGS= -out:
+ RANLIB   = echo
+
+ BLASLIB  = ..\..\blas_win32.lib
+         (Fortran 77 reference implementation)
+
+ Notes:
+ 
+ (1) separate LAPACK distribution file:
+     http://www.netlib.org/lapack/lapack-pc-df.zip
+ 
+ (2) use SECNDS() for second.f and dsecnd.f
+
+ (3) Set ILAENV=0 for ISPEC=10 and ISPEC=11 in lapack\src\ilaenv.f, as
+    well as the specialized versions of ILAENV in testing\lin\, testing\eig\.
+ 
+ Test status: Expected failures in _gd.out;
+ 
+  ----- Date reported: August, 1999
+  
+ =======================================================================
+ =======================================================================
+  SGI Indigo, IRIX Release 6.5, IP28, f77, MIPSpro version 7.2.1
+
+  LAPACK, version 3.0
+
+  FORTRAN  = f77
+  OPTS     = -O3 -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON
+  DRVOPTS  = $(OPTS) -static
+  NOOPT    = -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON
+  LOADER   = f77
+  LOADOPTS = -O3 -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = echo
+
+  BLASLIB  = -lblas
+
+  BLAS: -lblas (bug in SDOT, so must link with Fortran 77 SDOT)
+ 
+  Notes: 
+  (1) Set SHELL = /sbin/sh in make.inc.
+
+  (2) Compiler options -trapuv and -OPT:IEEE_NaN_inf=ON cannot
+      be used together. 
+
+  Test status:  Expected failures in _gd.out;
+                Failures in stest.out, ssep.out and zsep.out.
+
+ ---------
+ stest.out
+ ---------
+
+ SLS:  Least squares driver routines
+ Matrix types (1-3: full rank, 4-6: rank deficient):
+    1 and 4. Normal scaling
+    2 and 5. Scaled near overflow
+    3 and 6. Scaled near underflow
+ Test ratios:
+    (1-2: SGELS, 3-6: SGELSX, 7-10: SGELSY, 11-14: SGELSS, 15-18: SGELSD)
+    1: norm( B - A * X )   / ( max(M,N) * norm(A) * norm(X) * EPS )
+    2: norm( (A*X-B)' *A ) / ( max(M,N,NRHS) * norm(A) * norm(B) * EPS )
+       if TRANS='N' and M.GE.N or TRANS='T' and M.LT.N, otherwise
+       check if X is in the row space of A or A' (overdetermined case)
+    3: norm(svd(A)-svd(R)) / ( min(M,N) * norm(svd(R)) * EPS )
+    4: norm( B - A * X )   / ( max(M,N) * norm(A) * norm(X) * EPS )
+    5: norm( (A*X-B)' *A ) / ( max(M,N,NRHS) * norm(A) * norm(B) * EPS )
+    6: Check if X is in the row space of A or A'
+    7-10: same as 3-6    11-14: same as 3-6    15-18: same as 3-6
+ Messages:
+ TRANS='N', M=   16, N=    1, NRHS=  15, NB=  20, type 3, test( 1)=  91.327
+ TRANS='T', M=   16, N=    2, NRHS=  15, NB=   3, type 3, test( 1)=  47.908
+ SLS drivers:      2 out of  65268 tests failed to pass the threshold
+
+ --------
+ ssep.out
+ --------
+
+ SST -- Real Symmetric eigenvalue problem
+ Matrix types (see xDRVST for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Symmetric Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 
+ Tests performed:  See sdrvst.f
+ Matrix order=   40, type= 9, seed= 905, 436,1903, 257, result  71 is 4.204E+05
+ SST drivers:      1 out of  14256 tests failed to pass the threshold
+
+ --------
+ zsep.out
+ --------
+
+ ZST -- Complex Hermitian eigenvalue problem
+ Matrix types (see ZCHKST for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 16=Positive definite, evenly spaced eigenvalues
+ 17=Positive definite, geometrically spaced eigenvlaues
+ 18=Positive definite, clustered eigenvalues
+ 19=Positive definite, small evenly spaced eigenvalues
+ 20=Positive definite, large evenly spaced eigenvalues
+ 21=Diagonally dominant tridiagonal, geometrically spaced eigenvalues
+ 
+Test performed:  see ZCHKST for details.
+ 
+ Matrix order=   40, type= 9, seed= 869,2319,1455, 761, result  35 is 9.007D+15
+ Matrix order=   40, type= 9, seed= 869,2319,1455, 761, result  36 is 9.007D+15
+ ZST:    2 out of  4662 tests failed to pass the threshold
+ 
+  ----- Date reported: April, 1999
+  
+  =======================================================================
+  =======================================================================
+  SGI Octane, IRIX Release 6.5, R12000 IP30, f77, MIPSpro version 7.3.0
+
+  LAPACK, version 3.0 + update
+
+  FORTRAN  = f77
+  OPTS     = -g  -DEBUG:subscript_check=ON -OPT:IEEE_NaN_inf=ON
+  DRVOPTS  = $(OPTS) -static -TENV:large_GOT:ON
+  NOOPT    = -g  -DEBUG:subscript_check=ON -OPT:IEEE_NaN_inf=ON
+  LOADER   = f77
+  LOADOPTS = -g -DEBUG:subscript_check=ON -OPT:IEEE_NaN_inf=ON
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = echo
+
+  BLASLIB  = -lblas
+
+  Notes: 
+  (1) Set SHELL = /sbin/sh in make.inc.
+
+  (2) Compiler options -trapuv and -OPT:IEEE_NaN_inf=ON cannot
+      be used together.   And it seems that optimization also
+      disables -OPT:IEEE_NaN_inf=ON, as the LAPACK/INSTALL/tstieee
+      test fails if both are used. 
+
+  Test status:  Expected failures in _gd.out;
+                Minor failures (SPB and SLS) in stest.out;
+                Minor failures in ssvd.out;
+                Failures in ssep.out (under investigation);
+                Failure in cgbak.out (under investigation);
+
+ ---------
+ stest.out
+ ---------
+
+ SPB:  Symmetric positive definite band matrices
+ Matrix types:
+    1. Random, CNDNUM = 2              5. Random, CNDNUM = sqrt(0.1/EPS)
+   *2. First row and column zero       6. Random, CNDNUM = 0.1/EPS
+   *3. Last row and column zero        7. Scaled near underflow
+   *4. Middle row and column zero      8. Scaled near overflow
+   (* - tests error exits from SPBTRF, no test ratios are computed)
+ Test ratios:
+    1: norm( U' * U - A ) / ( N * norm(A) * EPS ), or
+       norm( L * L' - A ) / ( N * norm(A) * EPS )
+    2: norm( B - A * X )  / ( norm(A) * norm(X) * EPS )
+    3: norm( X - XACT )   / ( norm(XACT) * CNDNUM * EPS )
+    4: norm( X - XACT )   / ( norm(XACT) * CNDNUM * EPS ), refined
+    5: norm( X - XACT )   / ( norm(XACT) * (error bound) )
+    6: (backward error)   / EPS
+    7: RCOND * CNDNUM - 1.0
+ Messages:
+ UPLO='L', N=   50, KD=   37, NRHS= 15, type  7, test( 3) =   39.913
+ SPB:      1 out of   3458 tests failed to pass the threshold
+
+ SLS:  Least squares driver routines
+ Matrix types (1-3: full rank, 4-6: rank deficient):
+    1 and 4. Normal scaling
+    2 and 5. Scaled near overflow
+    3 and 6. Scaled near underflow
+ Test ratios:
+    (1-2: SGELS, 3-6: SGELSX, 7-10: SGELSY, 11-14: SGELSS, 15-18: SGELSD)
+    1: norm( B - A * X )   / ( max(M,N) * norm(A) * norm(X) * EPS )
+    2: norm( (A*X-B)' *A ) / ( max(M,N,NRHS) * norm(A) * norm(B) * EPS )
+       if TRANS='N' and M.GE.N or TRANS='T' and M.LT.N, otherwise
+       check if X is in the row space of A or A' (overdetermined case)
+    3: norm(svd(A)-svd(R)) / ( min(M,N) * norm(svd(R)) * EPS )
+    4: norm( B - A * X )   / ( max(M,N) * norm(A) * norm(X) * EPS )
+    5: norm( (A*X-B)' *A ) / ( max(M,N,NRHS) * norm(A) * norm(B) * EPS )
+    6: Check if X is in the row space of A or A'
+    7-10: same as 3-6    11-14: same as 3-6    15-18: same as 3-6
+ Messages:
+ TRANS='T', M=   50, N=    1, NRHS=   2, NB=   3, type 3, test( 1)=  139.96
+ TRANS='T', M=   50, N=    1, NRHS=  15, NB=   3, type 3, test( 1)=  1235.6
+ TRANS='T', M=   50, N=    1, NRHS=  15, NB=   3, type 3, test( 1)=  91.860
+ SLS drivers:      3 out of  65268 tests failed to pass the threshold
+
+ --------
+ ssep.out
+ --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   9
+
+ SST -- Real Symmetric eigenvalue problem
+ Matrix types (see SCHKST for details): 
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Symmetric Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 16=Positive definite, evenly spaced eigenvalues
+ 17=Positive definite, geometrically spaced eigenvlaues
+ 18=Positive definite, clustered eigenvalues
+ 19=Positive definite, small evenly spaced eigenvalues
+ 20=Positive definite, large evenly spaced eigenvalues
+ 21=Diagonally dominant tridiagonal, geometrically spaced eigenvalues
+
+Test performed:  see SCHKST for details.
+
+ N=   20, seed= 443,2933, 429,1581, type  9, test(35)= 0.681E+04
+ N=   20, seed= 443,2933, 429,1581, type  9, test(36)= 0.195E+07
+ SST:    2 out of  4662 tests failed to pass the threshold
+
+ SST -- Real Symmetric eigenvalue problem
+ Matrix types (see xDRVST for details): 
+
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Symmetric Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+
+ Tests performed:  See sdrvst.f
+ Matrix order=   20, type= 9, seed=3966,3411,3597,2265, result  71 is  104.82
+ Matrix order=   20, type= 9, seed=3966,3411,3597,2265, result  72 is   61.70
+ SST drivers:      2 out of  14256 tests failed to pass the threshold
+
+ ---------
+ cgbak.out
+ ---------
+
+ .. test output of CGGBAK .. 
+ value of largest test error                  =   0.796E+04
+ example number where CGGBAL info is not 0    =   0
+ example number where CGGBAK(L) info is not 0 =   0
+ example number where CGGBAK(R) info is not 0 =   0
+ example number having largest error          =   5
+ number of examples where info is not 0       =   0
+ total number of examples tested              =  10
+
+
+ End of tests
+ Total time used =         0.01 seconds
+
+  ----- Date reported: December, 1999
+  
+  =======================================================================
+  =======================================================================
+  SGI O2K, IRIX Release 6.5, R12000 IP27, f77, MIPSpro version 7.2.1.2
+
+  LAPACK, version 3.0
+
+  FORTRAN  = f77
+  OPTS     = -O3 -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON
+  DRVOPTS  = $(OPTS) -static
+  NOOPT    = -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON
+  LOADER   = f77
+  LOADOPTS = -O3 -64 -mips4 -r10000 -OPT:IEEE_NaN_inf=ON
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = echo
+
+  BLASLIB  = -lblas
+
+  Notes: 
+  (1) Set SHELL = /sbin/sh in make.inc.
+
+  (2) Compiler options -trapuv and -OPT:IEEE_NaN_inf=ON cannot
+      be used together. 
+
+  Test status:  Expected failures in _gd.out;
+                Minor failures in stest.out;
+
+ ---------
+ stest.out
+ ---------
+
+ SLS:  Least squares driver routines
+ Matrix types (1-3: full rank, 4-6: rank deficient):
+    1 and 4. Normal scaling
+    2 and 5. Scaled near overflow
+    3 and 6. Scaled near underflow
+ Test ratios:
+    (1-2: SGELS, 3-6: SGELSX, 7-10: SGELSY, 11-14: SGELSS, 15-18: SGELSD)
+    1: norm( B - A * X )   / ( max(M,N) * norm(A) * norm(X) * EPS )
+    2: norm( (A*X-B)' *A ) / ( max(M,N,NRHS) * norm(A) * norm(B) * EPS )
+       if TRANS='N' and M.GE.N or TRANS='T' and M.LT.N, otherwise
+       check if X is in the row space of A or A' (overdetermined case)
+    3: norm(svd(A)-svd(R)) / ( min(M,N) * norm(svd(R)) * EPS )
+    4: norm( B - A * X )   / ( max(M,N) * norm(A) * norm(X) * EPS )
+    5: norm( (A*X-B)' *A ) / ( max(M,N,NRHS) * norm(A) * norm(B) * EPS )
+    6: Check if X is in the row space of A or A'
+    7-10: same as 3-6    11-14: same as 3-6    15-18: same as 3-6
+ Messages:
+ TRANS='N', M=   16, N=    1, NRHS=  15, NB=  20, type 3, test( 1)=  91.243
+ TRANS='T', M=   16, N=    2, NRHS=  15, NB=   3, type 3, test( 1)=  47.768
+ SLS drivers:      2 out of  65268 tests failed to pass the threshold
+
+  ----- Date reported: May, 1999
+  
+  =======================================================================
+  =======================================================================
+ 
+  SUN Ultra-2, Solaris 2.7, f77 (SC 5.0)
+
+  LAPACK, version 3.0 + patches from release_notes.html
+
+  FORTRAN  = f77
+  OPTS     = -f -dalign -native -xO5 -xarch=v8plusa
+  DRVOPTS  = $(OPTS)
+  NOOPT    = -f
+  LOADER   = f77
+  LOADOPTS = -f -dalign -native -xO5 -xarch=v8plusa
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = echo
+
+  BLASLIB     = -xlic_lib=sunperf
+
+  BLAS:  Sun Performance Library BLAS
+
+  Notes: 
+  (1) If using "f90" instead of "f77", I strangely need to add
+      "-lF77" to link line in LAPACK/TESTING/LIN/Makefile and
+      LAPACK/TESTING/EIG/Makefile, or else the link fails with
+      missing Fortran77 I/0 routines.
+
+  (2) If using "f90" instead of "f77" compiler, you MUST additionally
+      supply "-ftrap=%none".  The defaults for IEEE arithmetic
+      using "f77" and "f90" are not the same!
+
+      The f90 default is -ftrap=common.  (Note that the default with
+      f77 is -ftrap=%none.)  See "man f90" for full details.
+
+  Test status:  Expected failures in _gd.out;
+                Failure in dsvd.out and zsvd.out;
+                One minor failure in zsep.out;
+
+  --------
+  dsvd.out
+  --------
+
+ DBD -- Real Singular Value Decomposition
+ Matrix types (see xCHKBD for details):
+ Diagonal matrices:
+   1: Zero                             5: Clustered entries
+   2: Identity                         6: Large, evenly spaced entries
+   3: Evenly spaced entries            7: Small, evenly spaced entries
+   4: Geometrically spaced entries
+ General matrices:
+   8: Evenly spaced sing. vals.       12: Small, evenly spaced sing vals
+   9: Geometrically spaced sing vals  13: Random, O(1) entries
+  10: Clustered sing. vals.           14: Random, scaled near overflow
+  11: Large, evenly spaced sing vals  15: Random, scaled near underflow
+
+ Test ratios:  (B: bidiagonal, S: diagonal, Q, P, U, and V: orthogonal
+                X: m x nrhs, Y = Q' X, and Z = U' Y)
+   1: norm( A - Q B P' ) / ( norm(A) max(m,n) ulp )
+   2: norm( I - Q' Q )   / ( m ulp )
+   3: norm( I - P' P )   / ( n ulp )
+   4: norm( B - U S V' ) / ( norm(B) min(m,n) ulp )
+   5: norm( Y - U Z )    / ( norm(Z) max(min(m,n),k) ulp )
+   6: norm( I - U' U )   / ( min(m,n) ulp )
+   7: norm( I - V' V )   / ( min(m,n) ulp )
+   8: Test ordering of S  (0 if nondecreasing, 1/ulp  otherwise)
+   9: norm( S - S2 )     / ( norm(S) ulp ), where S2 is computed
+                                            without computing U and V'
+  10: Sturm sequence test (0 if sing. vals of B within THRESH of S)
+  11: norm( A - (QU) S (V' P') ) / ( norm(A) max(m,n) ulp )
+  12: norm( X - (QU) Z )         / ( |X| max(M,k) ulp )
+  13: norm( I - (QU)'(QU) )      / ( M ulp )
+  14: norm( I - (V' P') (P V) )  / ( N ulp )
+ M=   40, N=   30, type 16, seed=3445,2073,3188, 129, test( 9)= 0.4502E+16
+ DBD:      1 out of   5510 tests failed to pass the threshold
+
+  ----- Date reported: April, 2000
+
+  =======================================================================
+  =======================================================================
+ 
+  SUN Ultra-2, Solaris 2.5.1, f77 (SC 5.0)
+
+  LAPACK, version 3.0
+
+  FORTRAN  = f77
+  OPTS     = -u -f -dalign -native -xO5 -xarch=v8plusa
+  DRVOPTS  = $(OPTS)
+  NOOPT    = -u -f
+  LOADER   = f77
+  LOADOPTS = -f -dalign -native -xO5 -xarch=v8plusa
+
+  ARCH     = ar
+  ARCHFLAGS= cr
+  RANLIB   = echo
+
+  BLASLIB     = -xlic_lib=sunperf
+
+  BLAS:  Sun Performance Library BLAS
+
+  Test status:  Expected failures in _gd.out;
+                Two failures in ssep.out, one minor failure in zsep.out;
+                IEEE warning exceptions of "Division by Zero" and
+                "Invalid Operation" in ssep.out, dsep.out, csep.out,
+                 and zsep.out, as a result of ILAENV IEEECK test;
+
+  --------
+  ssep.out
+  --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   0
+ 
+ All tests for SST passed the threshold ( 4662 tests run)
+ 
+ SST -- Real Symmetric eigenvalue problem
+ Matrix types (see xDRVST for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Symmetric Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 
+ Tests performed:  See sdrvst.f
+ Matrix order=   20, type= 9, seed=2570,2010,1676,1489, result 124 is 1.577E+05
+ Matrix order=   20, type= 9, seed=2570,2010,1676,1489, result 125 is 6.605E+05
+ SST drivers:      2 out of  14256 tests failed to pass the threshold
+
+  --------
+  zsep.out
+  --------
+
+ SEP:  NB =   3, NBMIN =   2, NX =   9
+ 
+ All tests for ZST passed the threshold ( 4662 tests run)
+ 
+ ZST -- Complex Hermitian eigenvalue problem
+ Matrix types (see xDRVST for details):
+ 
+ Special Matrices:
+  1=Zero matrix.                          5=Diagonal: clustered entries.
+  2=Identity matrix.                      6=Diagonal: large, evenly spaced.
+  3=Diagonal: evenly spaced entries.      7=Diagonal: small, evenly spaced.
+  4=Diagonal: geometr. spaced entries.
+ Dense Hermitian Matrices:
+  8=Evenly spaced eigenvals.             12=Small, evenly spaced eigenvals.
+  9=Geometrically spaced eigenvals.      13=Matrix with random O(1) entries.
+ 10=Clustered eigenvalues.               14=Matrix with large random entries.
+ 11=Large, evenly spaced eigenvals.      15=Matrix with small random entries.
+ 
+ Tests performed:  See cdrvst.f
+ Matrix order=   20, type=10, seed=3336, 516, 978,2569, result  71 is   59.27
+ ZST drivers:      1 out of  11664 tests failed to pass the threshold
+
+  ---- Date reported: April, 1999
+
+  ======================================================================

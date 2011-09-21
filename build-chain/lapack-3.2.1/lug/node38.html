@@ -1,0 +1,1043 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Linear Equations</TITLE>
+<META NAME="description" CONTENT="Linear Equations">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node39.html">
+<LINK REL="previous" HREF="node37.html">
+<LINK REL="up" HREF="node37.html">
+<LINK REL="next" HREF="node39.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4677"
+ HREF="node39.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4671"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4665"
+ HREF="node37.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4673"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4675"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4678"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Up:</B> <A NAME="tex2html4672"
+ HREF="node37.html">Computational Routines</A>
+<B> Previous:</B> <A NAME="tex2html4666"
+ HREF="node37.html">Computational Routines</A>
+ &nbsp <B>  <A NAME="tex2html4674"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4676"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03241000000000000000"></A><A NAME="subseccomplineq"></A>
+<BR>
+Linear Equations
+</H2>
+
+<P>
+We use the standard notation for a system of simultaneous
+linear<A NAME="1956"></A>
+equations<A NAME="1957"></A>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+
+<!-- MATH
+ \begin{equation}
+A x = b
+\end{equation}
+ -->
+<A NAME="Axb1"></A>
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+  <I>A x</I> = <I>b</I>
+</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.4)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+where <I>A</I> is the <B>coefficient matrix</B>,
+<I>b</I> is the <B>right hand side</B>,
+and <I>x</I> is the <B>solution</B>.
+In (<A HREF="node38.html#Axb1">2.4</A>) <I>A</I> is assumed to be a square matrix of order <I>n</I>,
+but some of the individual routines allow <I>A</I> to be rectangular.
+If there are several right hand sides,
+we write
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+
+<!-- MATH
+ \begin{equation}
+A X = B
+\end{equation}
+ -->
+<A NAME="AXB"></A>
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+  <I>A X</I> = <I>B</I>
+</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(2.5)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+where the columns of <I>B</I> are the individual right hand sides,
+and the columns of
+<I>X</I> are the corresponding solutions.
+The basic task is to compute <I>X</I>, given <I>A</I> and <I>B</I>.
+
+<P>
+If <I>A</I> is upper or lower triangular, (<A HREF="node38.html#Axb1">2.4</A>) can be solved by a
+straightforward
+process of backward or forward substitution.
+Otherwise, the solution is obtained after first factorizing <I>A</I> as a
+product of
+triangular matrices (and possibly also a diagonal matrix or permutation
+matrix).
+
+<P>
+The form of the factorization depends on the properties of the matrix
+<I>A</I>.
+LAPACK provides routines for the following types of matrices, based on
+the stated<A NAME="1969"></A> factorizations:
+
+<P>
+
+<UL><LI><B>general</B> matrices<A NAME="1972"></A> (<I>LU</I> factorization with partial pivoting):
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = PLU
+\end{displaymath}
+ -->
+
+
+<I>A</I> = <I>PLU</I>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>P</I> is a permutation matrix, <I>L</I> is lower triangular with unit
+diagonal elements (lower trapezoidal if <I>m</I> &gt; <I>n</I>), and U is upper
+triangular (upper trapezoidal if <I>m</I> &lt; <I>n</I>).
+
+<P>
+
+<LI><B>general band</B> matrices including <B>tridiagonal</B> matrices
+(<I>LU</I> factorization with partial pivoting):
+If <I>A</I> is <I>m</I>-by-<I>n</I> with <I>kl</I> subdiagonals and <I>ku</I> superdiagonals,
+the factorization is
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = LU
+\end{displaymath}
+ -->
+
+
+<I>A</I> = <I>LU</I>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>L</I> is a product of permutation and unit lower triangular
+matrices with <I>kl</I> subdiagonals, and <I>U</I> is upper triangular with
+<I>kl</I>+<I>ku</I> superdiagonals.
+
+<LI><B>symmetric and Hermitian positive definite</B> matrices including
+<B>band</B> matrices (Cholesky factorization):
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U^{T}U \; \; {\rm or}\; \; A = LL^{T} \mbox{(in the symmetric case)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="358" HEIGHT="31" BORDER="0"
+ SRC="img96.gif"
+ ALT="\begin{displaymath}A = U^{T}U \; \; {\rm or}\; \; A = LL^{T} \mbox{(in the symmetric case)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U^{H}U \; \; {\rm or}\; \; A = LL^{H} \mbox{(in the Hermitian case)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="361" HEIGHT="31" BORDER="0"
+ SRC="img97.gif"
+ ALT="\begin{displaymath}A = U^{H}U \; \; {\rm or}\; \; A = LL^{H} \mbox{(in the Hermitian case)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>U</I> is an upper triangular matrix and <I>L</I> is lower triangular.
+
+<LI><B>symmetric and Hermitian positive definite tridiagonal</B> matrices (<I>L D</I>
+<I>L</I><SUP><I>T</I></SUP> factorization):<A NAME="1987"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U D U^{T} \; \; {\rm or}\; \; A = L D L^{T} \mbox{(in the symmetric case)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="387" HEIGHT="31" BORDER="0"
+ SRC="img98.gif"
+ ALT="\begin{displaymath}A = U D U^{T} \; \; {\rm or}\; \; A = L D L^{T} \mbox{(in the symmetric case)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U D U^{H} \; \; {\rm or}\; \; A = L D L^{H} \mbox{(in the Hermitian case)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="390" HEIGHT="31" BORDER="0"
+ SRC="img99.gif"
+ ALT="\begin{displaymath}A = U D U^{H} \; \; {\rm or}\; \; A = L D L^{H} \mbox{(in the Hermitian case)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>U</I> is a unit upper bidiagonal matrix, <I>L</I> is unit lower
+bidiagonal, and <I>D</I> is diagonal.
+
+<P>
+
+<LI><B>symmetric and Hermitian indefinite</B> matrices (symmetric indefinite
+factorization)<A NAME="1997"></A>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U D U^T \; \; {\rm or} \; \; A = L D L^T \mbox{(in the symmetric case)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="387" HEIGHT="31" BORDER="0"
+ SRC="img98.gif"
+ ALT="\begin{displaymath}A = U D U^{T} \; \; {\rm or}\; \; A = L D L^{T} \mbox{(in the symmetric case)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U D U^H \; \; {\rm or} \; \; A = L D L^H \mbox{(in the Hermitian case)}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="390" HEIGHT="31" BORDER="0"
+ SRC="img99.gif"
+ ALT="\begin{displaymath}A = U D U^{H} \; \; {\rm or}\; \; A = L D L^{H} \mbox{(in the Hermitian case)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>U</I> (or <I>L</I>) is a product of permutation and unit upper (lower)
+triangular matrices, and <I>D</I> is symmetric and block diagonal with diagonal
+blocks of order 1 or 2.
+
+<P>
+
+</UL>
+
+<P>
+The factorization for a general tridiagonal matrix is like that for
+a general band matrix with <I>kl</I> = 1 and <I>ku</I> = 1.  The factorization
+for a symmetric positive definite band matrix with <I>k</I> superdiagonals
+(or
+subdiagonals) has the same form as for a symmetric positive definite
+matrix, but the factor <I>U</I> (or <I>L</I>) is a band matrix with <I>k</I>
+superdiagonals (subdiagonals).  Band matrices use a compact band
+storage scheme described in section&nbsp;<A HREF="node124.html#subsecband">5.3.3</A>.
+LAPACK routines are also provided for symmetric matrices (whether
+positive definite or indefinite) using <B>packed</B> storage,
+as described in section&nbsp;<A HREF="node123.html#subsecpacked">5.3.2</A>.
+
+<P>
+While the primary use of a matrix factorization is to solve a system
+of equations, other related tasks are provided as well.
+Wherever possible, LAPACK provides routines to perform each of these
+tasks
+for each type of matrix and storage scheme (see
+Tables&nbsp;<A HREF="node38.html#tabcomplineq1">2.7</A> and <A HREF="node38.html#tabcomplineq2">2.8</A>).
+The following list relates the tasks
+to the last 3 characters of the name of the corresponding
+computational routine:
+
+<P>
+<DL>
+<DT><STRONG>xyyTRF:</STRONG>
+<DD>factorize (obviously not needed for triangular matrices);
+<A NAME="2009"></A><A NAME="2010"></A><A NAME="2011"></A><A NAME="2012"></A>
+<A NAME="2013"></A><A NAME="2014"></A><A NAME="2015"></A><A NAME="2016"></A>
+<A NAME="2017"></A><A NAME="2018"></A><A NAME="2019"></A><A NAME="2020"></A>
+<A NAME="2021"></A><A NAME="2022"></A>
+<A NAME="2023"></A><A NAME="2024"></A>
+<A NAME="2025"></A><A NAME="2026"></A><A NAME="2027"></A><A NAME="2028"></A>
+<A NAME="2029"></A><A NAME="2030"></A><A NAME="2031"></A><A NAME="2032"></A>
+<A NAME="2033"></A><A NAME="2034"></A><A NAME="2035"></A><A NAME="2036"></A>
+<A NAME="2037"></A><A NAME="2038"></A><A NAME="2039"></A><A NAME="2040"></A>
+<A NAME="2041"></A><A NAME="2042"></A><A NAME="2043"></A><A NAME="2044"></A>
+<A NAME="2045"></A><A NAME="2046"></A><A NAME="2047"></A><A NAME="2048"></A>
+<P>
+<DT><STRONG>xyyTRS:</STRONG>
+<DD>use the factorization (or the matrix <I>A</I> itself if it is
+triangular) to
+solve (<A HREF="node38.html#AXB">2.5</A>) by forward or backward substitution;
+<A NAME="2050"></A><A NAME="2051"></A><A NAME="2052"></A><A NAME="2053"></A>
+<A NAME="2054"></A><A NAME="2055"></A><A NAME="2056"></A><A NAME="2057"></A>
+<A NAME="2058"></A><A NAME="2059"></A><A NAME="2060"></A><A NAME="2061"></A>
+<A NAME="2062"></A><A NAME="2063"></A>
+<A NAME="2064"></A><A NAME="2065"></A>
+<A NAME="2066"></A><A NAME="2067"></A><A NAME="2068"></A><A NAME="2069"></A>
+<A NAME="2070"></A><A NAME="2071"></A><A NAME="2072"></A><A NAME="2073"></A>
+<A NAME="2074"></A><A NAME="2075"></A><A NAME="2076"></A><A NAME="2077"></A>
+<A NAME="2078"></A><A NAME="2079"></A><A NAME="2080"></A><A NAME="2081"></A>
+<A NAME="2082"></A><A NAME="2083"></A><A NAME="2084"></A><A NAME="2085"></A>
+<A NAME="2086"></A><A NAME="2087"></A><A NAME="2088"></A><A NAME="2089"></A>
+<A NAME="2090"></A><A NAME="2091"></A><A NAME="2092"></A><A NAME="2093"></A>
+<A NAME="2094"></A><A NAME="2095"></A><A NAME="2096"></A><A NAME="2097"></A>
+<A NAME="2098"></A><A NAME="2099"></A><A NAME="2100"></A><A NAME="2101"></A>
+
+<P>
+<DT><STRONG>xyyCON:</STRONG>
+<DD>estimate the reciprocal of the condition number
+
+<!-- MATH
+ $\kappa(A) = \|A\| . \|A^{-1} \|$
+ -->
+<IMG
+ WIDTH="148" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img100.gif"
+ ALT="$\kappa(A) = \Vert A\Vert . \Vert A^{-1} \Vert$">;
+Higham's modification&nbsp;[<A
+ HREF="node151.html#nick2">63</A>] of Hager's method&nbsp;[<A
+ HREF="node151.html#hager84">59</A>]
+ is used to estimate |A<SUP>-1</SUP>|,
+except for symmetric positive definite tridiagonal matrices for which it
+is computed directly with comparable efficiency&nbsp;[<A
+ HREF="node151.html#higham3">61</A>];
+<A NAME="2107"></A><A NAME="2108"></A><A NAME="2109"></A><A NAME="2110"></A>
+<A NAME="2111"></A><A NAME="2112"></A><A NAME="2113"></A><A NAME="2114"></A>
+<A NAME="2115"></A><A NAME="2116"></A><A NAME="2117"></A><A NAME="2118"></A>
+<A NAME="2119"></A><A NAME="2120"></A>
+<A NAME="2121"></A><A NAME="2122"></A>
+<A NAME="2123"></A><A NAME="2124"></A><A NAME="2125"></A><A NAME="2126"></A>
+<A NAME="2127"></A><A NAME="2128"></A><A NAME="2129"></A><A NAME="2130"></A>
+<A NAME="2131"></A><A NAME="2132"></A><A NAME="2133"></A><A NAME="2134"></A>
+<A NAME="2135"></A><A NAME="2136"></A><A NAME="2137"></A><A NAME="2138"></A>
+<A NAME="2139"></A><A NAME="2140"></A><A NAME="2141"></A><A NAME="2142"></A>
+<A NAME="2143"></A><A NAME="2144"></A><A NAME="2145"></A><A NAME="2146"></A>
+<A NAME="2147"></A><A NAME="2148"></A><A NAME="2149"></A><A NAME="2150"></A>
+<A NAME="2151"></A><A NAME="2152"></A><A NAME="2153"></A><A NAME="2154"></A>
+<A NAME="2155"></A><A NAME="2156"></A><A NAME="2157"></A><A NAME="2158"></A>
+
+<P>
+<DT><STRONG>xyyRFS:</STRONG>
+<DD>compute bounds on the error in the computed solution (returned
+by the xyyTRS routine), and
+refine the solution to reduce the backward error (see below);
+<A NAME="2159"></A><A NAME="2160"></A><A NAME="2161"></A><A NAME="2162"></A>
+<A NAME="2163"></A><A NAME="2164"></A><A NAME="2165"></A><A NAME="2166"></A>
+<A NAME="2167"></A><A NAME="2168"></A><A NAME="2169"></A><A NAME="2170"></A>
+<A NAME="2171"></A><A NAME="2172"></A>
+<A NAME="2173"></A><A NAME="2174"></A>
+<A NAME="2175"></A><A NAME="2176"></A><A NAME="2177"></A><A NAME="2178"></A>
+<A NAME="2179"></A><A NAME="2180"></A><A NAME="2181"></A><A NAME="2182"></A>
+<A NAME="2183"></A><A NAME="2184"></A><A NAME="2185"></A><A NAME="2186"></A>
+<A NAME="2187"></A><A NAME="2188"></A><A NAME="2189"></A><A NAME="2190"></A>
+<A NAME="2191"></A><A NAME="2192"></A><A NAME="2193"></A><A NAME="2194"></A>
+<A NAME="2195"></A><A NAME="2196"></A><A NAME="2197"></A><A NAME="2198"></A>
+<A NAME="2199"></A><A NAME="2200"></A><A NAME="2201"></A><A NAME="2202"></A>
+<A NAME="2203"></A><A NAME="2204"></A><A NAME="2205"></A><A NAME="2206"></A>
+<A NAME="2207"></A><A NAME="2208"></A><A NAME="2209"></A><A NAME="2210"></A>
+
+<P>
+<DT><STRONG>xyyTRI:</STRONG>
+<DD>use the factorization (or the matrix <I>A</I> itself if it is
+triangular)
+to compute <I>A</I><SUP>-1</SUP> (not provided for band matrices, because the inverse
+does not in general preserve bandedness);
+<A NAME="2212"></A><A NAME="2213"></A><A NAME="2214"></A><A NAME="2215"></A>
+<A NAME="2216"></A><A NAME="2217"></A>
+<A NAME="2218"></A><A NAME="2219"></A>
+<A NAME="2220"></A><A NAME="2221"></A><A NAME="2222"></A><A NAME="2223"></A>
+<A NAME="2224"></A><A NAME="2225"></A><A NAME="2226"></A><A NAME="2227"></A>
+<A NAME="2228"></A><A NAME="2229"></A><A NAME="2230"></A><A NAME="2231"></A>
+<A NAME="2232"></A><A NAME="2233"></A><A NAME="2234"></A><A NAME="2235"></A>
+<A NAME="2236"></A><A NAME="2237"></A><A NAME="2238"></A><A NAME="2239"></A>
+<A NAME="2240"></A><A NAME="2241"></A><A NAME="2242"></A><A NAME="2243"></A>
+
+<P>
+<DT><STRONG>xyyEQU:</STRONG>
+<DD>compute scaling factors to equilibrate<A NAME="2244"></A> <I>A</I>
+(not provided for tridiagonal, symmetric
+indefinite, or triangular matrices). These routines do not actually scale
+the matrices: auxiliary routines xLAQyy may be used for that purpose --
+see the code of the driver routines xyySVX for sample usage<A NAME="2245"></A>.
+<A NAME="2246"></A><A NAME="2247"></A><A NAME="2248"></A><A NAME="2249"></A>
+<A NAME="2250"></A><A NAME="2251"></A><A NAME="2252"></A><A NAME="2253"></A>
+<A NAME="2254"></A><A NAME="2255"></A><A NAME="2256"></A><A NAME="2257"></A>
+<A NAME="2258"></A><A NAME="2259"></A><A NAME="2260"></A><A NAME="2261"></A>
+<A NAME="2262"></A><A NAME="2263"></A><A NAME="2264"></A><A NAME="2265"></A>
+
+<P>
+</DL>
+
+<P>
+Note that some of the above routines depend on the output of others:
+
+<P>
+<DL>
+<DT><STRONG>xyyTRF:</STRONG>
+<DD>may work on an equilibrated matrix produced by
+xyyEQU and xLAQyy, if yy is one of {GE, GB, PO, PP, PB};
+<P>
+<DT><STRONG>xyyTRS:</STRONG>
+<DD>requires the factorization returned by xyyTRF;
+
+<P>
+<DT><STRONG>xyyCON:</STRONG>
+<DD>requires the norm of the original matrix <I>A</I>, and the
+factorization returned by xyyTRF;
+
+<P>
+<DT><STRONG>xyyRFS:</STRONG>
+<DD>requires the original matrices <I>A</I> and <I>B</I>, the factorization
+returned by xyyTRF, and the solution <I>X</I> returned by xyyTRS;
+
+<P>
+<DT><STRONG>xyyTRI:</STRONG>
+<DD>requires the factorization returned by xyyTRF.
+
+<P>
+</DL>
+
+<P>
+The RFS (``refine solution'') routines perform iterative
+refinement<A NAME="2269"></A>
+and compute backward and forward error<A NAME="2270"></A> bounds for the solution.
+Iterative refinement is done in the same precision as the input data.
+In particular, the residual is <EM>not</EM> computed with extra precision,
+as has been traditionally done.
+The benefit of this procedure is discussed in Section&nbsp;<A HREF="node80.html#secAx_b">4.4</A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabcomplineq1"></A>
+<DIV ALIGN="CENTER">
+<A NAME="2274"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.7:</STRONG>
+Computational routines for linear equations</CAPTION>
+<TR><TD ALIGN="LEFT">Type of matrix</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and storage scheme</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">general</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SGETRF<A NAME="2286"></A></TD>
+<TD ALIGN="LEFT">CGETRF<A NAME="2287"></A></TD>
+<TD ALIGN="LEFT">DGETRF<A NAME="2288"></A></TD>
+<TD ALIGN="LEFT">ZGETRF<A NAME="2289"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SGETRS<A NAME="2290"></A></TD>
+<TD ALIGN="LEFT">CGETRS<A NAME="2291"></A></TD>
+<TD ALIGN="LEFT">DGETRS<A NAME="2292"></A></TD>
+<TD ALIGN="LEFT">ZGETRS<A NAME="2293"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SGECON<A NAME="2294"></A></TD>
+<TD ALIGN="LEFT">CGECON<A NAME="2295"></A></TD>
+<TD ALIGN="LEFT">DGECON<A NAME="2296"></A></TD>
+<TD ALIGN="LEFT">ZGECON<A NAME="2297"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SGERFS<A NAME="2298"></A></TD>
+<TD ALIGN="LEFT">CGERFS<A NAME="2299"></A></TD>
+<TD ALIGN="LEFT">DGERFS<A NAME="2300"></A></TD>
+<TD ALIGN="LEFT">ZGERFS<A NAME="2301"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">SGETRI<A NAME="2302"></A></TD>
+<TD ALIGN="LEFT">CGETRI<A NAME="2303"></A></TD>
+<TD ALIGN="LEFT">DGETRI<A NAME="2304"></A></TD>
+<TD ALIGN="LEFT">ZGETRI<A NAME="2305"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">equilibrate</TD>
+<TD ALIGN="LEFT">SGEEQU<A NAME="2306"></A></TD>
+<TD ALIGN="LEFT">CGEEQU<A NAME="2307"></A></TD>
+<TD ALIGN="LEFT">DGEEQU<A NAME="2308"></A></TD>
+<TD ALIGN="LEFT">ZGEEQU<A NAME="2309"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">general</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SGBTRF<A NAME="2310"></A></TD>
+<TD ALIGN="LEFT">CGBTRF<A NAME="2311"></A></TD>
+<TD ALIGN="LEFT">DGBTRF<A NAME="2312"></A></TD>
+<TD ALIGN="LEFT">ZGBTRF<A NAME="2313"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">band</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SGBTRS<A NAME="2314"></A></TD>
+<TD ALIGN="LEFT">CGBTRS<A NAME="2315"></A></TD>
+<TD ALIGN="LEFT">DGBTRS<A NAME="2316"></A></TD>
+<TD ALIGN="LEFT">ZGBTRS<A NAME="2317"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SGBCON<A NAME="2318"></A></TD>
+<TD ALIGN="LEFT">CGBCON<A NAME="2319"></A></TD>
+<TD ALIGN="LEFT">DGBCON<A NAME="2320"></A></TD>
+<TD ALIGN="LEFT">ZGBCON<A NAME="2321"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SGBRFS<A NAME="2322"></A></TD>
+<TD ALIGN="LEFT">CGBRFS<A NAME="2323"></A></TD>
+<TD ALIGN="LEFT">DGBRFS<A NAME="2324"></A></TD>
+<TD ALIGN="LEFT">ZGBRFS<A NAME="2325"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">equilibrate</TD>
+<TD ALIGN="LEFT">SGBEQU<A NAME="2326"></A></TD>
+<TD ALIGN="LEFT">CGBEQU<A NAME="2327"></A></TD>
+<TD ALIGN="LEFT">DGBEQU<A NAME="2328"></A></TD>
+<TD ALIGN="LEFT">ZGBEQU<A NAME="2329"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">general</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SGTTRF<A NAME="2330"></A></TD>
+<TD ALIGN="LEFT">CGTTRF<A NAME="2331"></A></TD>
+<TD ALIGN="LEFT">DGTTRF<A NAME="2332"></A></TD>
+<TD ALIGN="LEFT">ZGTTRF<A NAME="2333"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">tridiagonal</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SGTTRS<A NAME="2334"></A></TD>
+<TD ALIGN="LEFT">CGTTRS<A NAME="2335"></A></TD>
+<TD ALIGN="LEFT">DGTTRS<A NAME="2336"></A></TD>
+<TD ALIGN="LEFT">ZGTTRS<A NAME="2337"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SGTCON<A NAME="2338"></A></TD>
+<TD ALIGN="LEFT">CGTCON<A NAME="2339"></A></TD>
+<TD ALIGN="LEFT">DGTCON<A NAME="2340"></A></TD>
+<TD ALIGN="LEFT">ZGTCON<A NAME="2341"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SGTRFS<A NAME="2342"></A></TD>
+<TD ALIGN="LEFT">CGTRFS<A NAME="2343"></A></TD>
+<TD ALIGN="LEFT">DGTRFS<A NAME="2344"></A></TD>
+<TD ALIGN="LEFT">ZGTRFS<A NAME="2345"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SPOTRF<A NAME="2346"></A></TD>
+<TD ALIGN="LEFT">CPOTRF<A NAME="2347"></A></TD>
+<TD ALIGN="LEFT">DPOTRF<A NAME="2348"></A></TD>
+<TD ALIGN="LEFT">ZPOTRF<A NAME="2349"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SPOTRS<A NAME="2350"></A></TD>
+<TD ALIGN="LEFT">CPOTRS<A NAME="2351"></A></TD>
+<TD ALIGN="LEFT">DPOTRS<A NAME="2352"></A></TD>
+<TD ALIGN="LEFT">ZPOTRS<A NAME="2353"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SPOCON<A NAME="2354"></A></TD>
+<TD ALIGN="LEFT">CPOCON<A NAME="2355"></A></TD>
+<TD ALIGN="LEFT">DPOCON<A NAME="2356"></A></TD>
+<TD ALIGN="LEFT">ZPOCON<A NAME="2357"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SPORFS<A NAME="2358"></A></TD>
+<TD ALIGN="LEFT">CPORFS<A NAME="2359"></A></TD>
+<TD ALIGN="LEFT">DPORFS<A NAME="2360"></A></TD>
+<TD ALIGN="LEFT">ZPORFS<A NAME="2361"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">SPOTRI<A NAME="2362"></A></TD>
+<TD ALIGN="LEFT">CPOTRI<A NAME="2363"></A></TD>
+<TD ALIGN="LEFT">DPOTRI<A NAME="2364"></A></TD>
+<TD ALIGN="LEFT">ZPOTRI<A NAME="2365"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">equilibrate</TD>
+<TD ALIGN="LEFT">SPOEQU<A NAME="2366"></A></TD>
+<TD ALIGN="LEFT">CPOEQU<A NAME="2367"></A></TD>
+<TD ALIGN="LEFT">DPOEQU<A NAME="2368"></A></TD>
+<TD ALIGN="LEFT">ZPOEQU<A NAME="2369"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SPPTRF<A NAME="2370"></A></TD>
+<TD ALIGN="LEFT">CPPTRF<A NAME="2371"></A></TD>
+<TD ALIGN="LEFT">DPPTRF<A NAME="2372"></A></TD>
+<TD ALIGN="LEFT">ZPPTRF<A NAME="2373"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SPPTRS<A NAME="2374"></A></TD>
+<TD ALIGN="LEFT">CPPTRS<A NAME="2375"></A></TD>
+<TD ALIGN="LEFT">DPPTRS<A NAME="2376"></A></TD>
+<TD ALIGN="LEFT">ZPPTRS<A NAME="2377"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SPPCON<A NAME="2378"></A></TD>
+<TD ALIGN="LEFT">CPPCON<A NAME="2379"></A></TD>
+<TD ALIGN="LEFT">DPPCON<A NAME="2380"></A></TD>
+<TD ALIGN="LEFT">ZPPCON<A NAME="2381"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SPPRFS<A NAME="2382"></A></TD>
+<TD ALIGN="LEFT">CPPRFS<A NAME="2383"></A></TD>
+<TD ALIGN="LEFT">DPPRFS<A NAME="2384"></A></TD>
+<TD ALIGN="LEFT">ZPPRFS<A NAME="2385"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">SPPTRI<A NAME="2386"></A></TD>
+<TD ALIGN="LEFT">CPPTRI<A NAME="2387"></A></TD>
+<TD ALIGN="LEFT">DPPTRI<A NAME="2388"></A></TD>
+<TD ALIGN="LEFT">ZPPTRI<A NAME="2389"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">equilibrate</TD>
+<TD ALIGN="LEFT">SPPEQU<A NAME="2390"></A></TD>
+<TD ALIGN="LEFT">CPPEQU<A NAME="2391"></A></TD>
+<TD ALIGN="LEFT">DPPEQU<A NAME="2392"></A></TD>
+<TD ALIGN="LEFT">ZPPEQU<A NAME="2393"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SPBTRF<A NAME="2394"></A></TD>
+<TD ALIGN="LEFT">CPBTRF<A NAME="2395"></A></TD>
+<TD ALIGN="LEFT">DPBTRF<A NAME="2396"></A></TD>
+<TD ALIGN="LEFT">ZPBTRF<A NAME="2397"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SPBTRS<A NAME="2398"></A></TD>
+<TD ALIGN="LEFT">CPBTRS<A NAME="2399"></A></TD>
+<TD ALIGN="LEFT">DPBTRS<A NAME="2400"></A></TD>
+<TD ALIGN="LEFT">ZPBTRS<A NAME="2401"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">band</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SPBCON<A NAME="2402"></A></TD>
+<TD ALIGN="LEFT">CPBCON<A NAME="2403"></A></TD>
+<TD ALIGN="LEFT">DPBCON<A NAME="2404"></A></TD>
+<TD ALIGN="LEFT">ZPBCON<A NAME="2405"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SPBRFS<A NAME="2406"></A></TD>
+<TD ALIGN="LEFT">CPBRFS<A NAME="2407"></A></TD>
+<TD ALIGN="LEFT">DPBRFS<A NAME="2408"></A></TD>
+<TD ALIGN="LEFT">ZPBRFS<A NAME="2409"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">equilibrate</TD>
+<TD ALIGN="LEFT">SPBEQU<A NAME="2410"></A></TD>
+<TD ALIGN="LEFT">CPBEQU<A NAME="2411"></A></TD>
+<TD ALIGN="LEFT">DPBEQU<A NAME="2412"></A></TD>
+<TD ALIGN="LEFT">ZPBEQU<A NAME="2413"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SPTTRF<A NAME="2414"></A></TD>
+<TD ALIGN="LEFT">CPTTRF<A NAME="2415"></A></TD>
+<TD ALIGN="LEFT">DPTTRF<A NAME="2416"></A></TD>
+<TD ALIGN="LEFT">ZPTTRF<A NAME="2417"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">positive definite</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SPTTRS<A NAME="2418"></A></TD>
+<TD ALIGN="LEFT">CPTTRS<A NAME="2419"></A></TD>
+<TD ALIGN="LEFT">DPTTRS<A NAME="2420"></A></TD>
+<TD ALIGN="LEFT">ZPTTRS<A NAME="2421"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">tridiagonal</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SPTCON<A NAME="2422"></A></TD>
+<TD ALIGN="LEFT">CPTCON<A NAME="2423"></A></TD>
+<TD ALIGN="LEFT">DPTCON<A NAME="2424"></A></TD>
+<TD ALIGN="LEFT">ZPTCON<A NAME="2425"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SPTRFS<A NAME="2426"></A></TD>
+<TD ALIGN="LEFT">CPTRFS<A NAME="2427"></A></TD>
+<TD ALIGN="LEFT">DPTRFS<A NAME="2428"></A></TD>
+<TD ALIGN="LEFT">ZPTRFS<A NAME="2429"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabcomplineq2"></A>
+<DIV ALIGN="CENTER">
+<A NAME="2434"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.8:</STRONG>
+Computational routines for linear equations (continued)</CAPTION>
+<TR><TD ALIGN="LEFT">Type of matrix</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and storage scheme</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SSYTRF<A NAME="2446"></A></TD>
+<TD ALIGN="LEFT">CHETRF<A NAME="2447"></A></TD>
+<TD ALIGN="LEFT">DSYTRF<A NAME="2448"></A></TD>
+<TD ALIGN="LEFT">ZHETRF<A NAME="2449"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">indefinite</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SSYTRS<A NAME="2450"></A></TD>
+<TD ALIGN="LEFT">CHETRS<A NAME="2451"></A></TD>
+<TD ALIGN="LEFT">DSYTRS<A NAME="2452"></A></TD>
+<TD ALIGN="LEFT">ZHETRS<A NAME="2453"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SSYCON<A NAME="2454"></A></TD>
+<TD ALIGN="LEFT">CHECON<A NAME="2455"></A></TD>
+<TD ALIGN="LEFT">DSYCON<A NAME="2456"></A></TD>
+<TD ALIGN="LEFT">ZHECON<A NAME="2457"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SSYRFS<A NAME="2458"></A></TD>
+<TD ALIGN="LEFT">CHERFS<A NAME="2459"></A></TD>
+<TD ALIGN="LEFT">DSYRFS<A NAME="2460"></A></TD>
+<TD ALIGN="LEFT">ZHERFS<A NAME="2461"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">SSYTRI<A NAME="2462"></A></TD>
+<TD ALIGN="LEFT">CHETRI<A NAME="2463"></A></TD>
+<TD ALIGN="LEFT">DSYTRI<A NAME="2464"></A></TD>
+<TD ALIGN="LEFT">ZHETRI<A NAME="2465"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">complex symmetric</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYTRF<A NAME="2466"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYTRF<A NAME="2467"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYTRS<A NAME="2468"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYTRS<A NAME="2469"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYCON<A NAME="2470"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYCON<A NAME="2471"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYRFS<A NAME="2472"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYRFS<A NAME="2473"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSYTRI<A NAME="2474"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSYTRI<A NAME="2475"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">symmetric/Hermitian</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">SSPTRF<A NAME="2476"></A></TD>
+<TD ALIGN="LEFT">CHPTRF<A NAME="2477"></A></TD>
+<TD ALIGN="LEFT">DSPTRF<A NAME="2478"></A></TD>
+<TD ALIGN="LEFT">ZHPTRF<A NAME="2479"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">indefinite</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">SSPTRS<A NAME="2480"></A></TD>
+<TD ALIGN="LEFT">CHPTRS<A NAME="2481"></A></TD>
+<TD ALIGN="LEFT">DSPTRS<A NAME="2482"></A></TD>
+<TD ALIGN="LEFT">ZHPTRS<A NAME="2483"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">SSPCON<A NAME="2484"></A></TD>
+<TD ALIGN="LEFT">CHPCON<A NAME="2485"></A></TD>
+<TD ALIGN="LEFT">DSPCON<A NAME="2486"></A></TD>
+<TD ALIGN="LEFT">ZHPCON<A NAME="2487"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">SSPRFS<A NAME="2488"></A></TD>
+<TD ALIGN="LEFT">CHPRFS<A NAME="2489"></A></TD>
+<TD ALIGN="LEFT">DSPRFS<A NAME="2490"></A></TD>
+<TD ALIGN="LEFT">ZHPRFS<A NAME="2491"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">SSPTRI<A NAME="2492"></A></TD>
+<TD ALIGN="LEFT">CHPTRI<A NAME="2493"></A></TD>
+<TD ALIGN="LEFT">DSPTRI<A NAME="2494"></A></TD>
+<TD ALIGN="LEFT">ZHPTRI<A NAME="2495"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">complex symmetric</TD>
+<TD ALIGN="LEFT">factorize</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPTRF<A NAME="2496"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPTRF<A NAME="2497"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">solve using factorization</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPTRS<A NAME="2498"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPTRS<A NAME="2499"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPCON<A NAME="2500"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPCON<A NAME="2501"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPRFS<A NAME="2502"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPRFS<A NAME="2503"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert using factorization</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">CSPTRI<A NAME="2504"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">ZSPTRI<A NAME="2505"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">triangular</TD>
+<TD ALIGN="LEFT">solve</TD>
+<TD ALIGN="LEFT">STRTRS<A NAME="2506"></A></TD>
+<TD ALIGN="LEFT">CTRTRS<A NAME="2507"></A></TD>
+<TD ALIGN="LEFT">DTRTRS<A NAME="2508"></A></TD>
+<TD ALIGN="LEFT">ZTRTRS<A NAME="2509"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">STRCON<A NAME="2510"></A></TD>
+<TD ALIGN="LEFT">CTRCON<A NAME="2511"></A></TD>
+<TD ALIGN="LEFT">DTRCON<A NAME="2512"></A></TD>
+<TD ALIGN="LEFT">ZTRCON<A NAME="2513"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">STRRFS<A NAME="2514"></A></TD>
+<TD ALIGN="LEFT">CTRRFS<A NAME="2515"></A></TD>
+<TD ALIGN="LEFT">DTRRFS<A NAME="2516"></A></TD>
+<TD ALIGN="LEFT">ZTRRFS<A NAME="2517"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert</TD>
+<TD ALIGN="LEFT">STRTRI<A NAME="2518"></A></TD>
+<TD ALIGN="LEFT">CTRTRI<A NAME="2519"></A></TD>
+<TD ALIGN="LEFT">DTRTRI<A NAME="2520"></A></TD>
+<TD ALIGN="LEFT">ZTRTRI<A NAME="2521"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">triangular</TD>
+<TD ALIGN="LEFT">solve</TD>
+<TD ALIGN="LEFT">STPTRS<A NAME="2522"></A></TD>
+<TD ALIGN="LEFT">CTPTRS<A NAME="2523"></A></TD>
+<TD ALIGN="LEFT">DTPTRS<A NAME="2524"></A></TD>
+<TD ALIGN="LEFT">ZTPTRS<A NAME="2525"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">STPCON<A NAME="2526"></A></TD>
+<TD ALIGN="LEFT">CTPCON<A NAME="2527"></A></TD>
+<TD ALIGN="LEFT">DTPCON<A NAME="2528"></A></TD>
+<TD ALIGN="LEFT">ZTPCON<A NAME="2529"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">STPRFS<A NAME="2530"></A></TD>
+<TD ALIGN="LEFT">CTPRFS<A NAME="2531"></A></TD>
+<TD ALIGN="LEFT">DTPRFS<A NAME="2532"></A></TD>
+<TD ALIGN="LEFT">ZTPRFS<A NAME="2533"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">invert</TD>
+<TD ALIGN="LEFT">STPTRI<A NAME="2534"></A></TD>
+<TD ALIGN="LEFT">CTPTRI<A NAME="2535"></A></TD>
+<TD ALIGN="LEFT">DTPTRI<A NAME="2536"></A></TD>
+<TD ALIGN="LEFT">ZTPTRI<A NAME="2537"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">triangular</TD>
+<TD ALIGN="LEFT">solve</TD>
+<TD ALIGN="LEFT">STBTRS<A NAME="2538"></A></TD>
+<TD ALIGN="LEFT">CTBTRS<A NAME="2539"></A></TD>
+<TD ALIGN="LEFT">DTBTRS<A NAME="2540"></A></TD>
+<TD ALIGN="LEFT">ZTBTRS<A NAME="2541"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">band</TD>
+<TD ALIGN="LEFT">estimate condition number</TD>
+<TD ALIGN="LEFT">STBCON<A NAME="2542"></A></TD>
+<TD ALIGN="LEFT">CTBCON<A NAME="2543"></A></TD>
+<TD ALIGN="LEFT">DTBCON<A NAME="2544"></A></TD>
+<TD ALIGN="LEFT">ZTBCON<A NAME="2545"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">error bounds for solution</TD>
+<TD ALIGN="LEFT">STBRFS<A NAME="2546"></A></TD>
+<TD ALIGN="LEFT">CTBRFS<A NAME="2547"></A></TD>
+<TD ALIGN="LEFT">DTBRFS<A NAME="2548"></A></TD>
+<TD ALIGN="LEFT">ZTBRFS<A NAME="2549"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4677"
+ HREF="node39.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4671"
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4665"
+ HREF="node37.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4673"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4675"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4678"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Up:</B> <A NAME="tex2html4672"
+ HREF="node37.html">Computational Routines</A>
+<B> Previous:</B> <A NAME="tex2html4666"
+ HREF="node37.html">Computational Routines</A>
+ &nbsp <B>  <A NAME="tex2html4674"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4676"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

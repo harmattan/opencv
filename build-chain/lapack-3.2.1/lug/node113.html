@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Argument Descriptions</TITLE>
+<META NAME="description" CONTENT="Argument Descriptions">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node114.html">
+<LINK REL="previous" HREF="node112.html">
+<LINK REL="up" HREF="node110.html">
+<LINK REL="next" HREF="node114.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5803"
+ HREF="node114.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5797"
+ HREF="node110.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5791"
+ HREF="node112.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5799"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5801"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5804"
+ HREF="node114.html">Option Arguments</A>
+<B> Up:</B> <A NAME="tex2html5798"
+ HREF="node110.html">Design and Documentation of</A>
+<B> Previous:</B> <A NAME="tex2html5792"
+ HREF="node112.html">Order of Arguments</A>
+ &nbsp <B>  <A NAME="tex2html5800"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5802"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03513000000000000000"></A><A NAME="subsecargdesc"></A>
+<BR>
+Argument Descriptions
+</H2>
+
+<P>
+The style of the argument<A NAME="19467"></A>  
+descriptions is illustrated by the following example:
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV><TABLE  WIDTH="547">
+<TR><TD>
+
+ 
+<DT>N      
+
+<DL COMPACT><DD>(input) INTEGER 
+<BR>
+The number of columns of the matrix A.  N <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+0.
+
+<P>
+<DT>A      
+<DD>(input/output) REAL array, dimension (LDA,N) 
+<BR>
+On entry, the m-by-n matrix to be factored.
+ 
+<BR>
+On exit, the factors L and U from the factorization
+        A = P<IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img914.gif"
+ ALT="$\ast$">L<IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img914.gif"
+ ALT="$\ast$">U; the unit diagonal elements of L are not stored.
+
+</DL>
+</TD></TR>
+</TABLE>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+The description of each argument gives:
+
+<P>
+
+<UL><LI>a classification of the argument as (input), (output),
+(input/output), (input or output)<A NAME="tex2html2527"
+ HREF="footnode.html#foot19489"><SUP>5.1</SUP></A>,
+(workspace) or (workspace/output)<A NAME="tex2html2528"
+ HREF="footnode.html#foot19490"><SUP>5.2</SUP></A>;
+
+<P>
+
+<LI>the type of the argument;
+
+<P>
+
+<LI>(for an array) its dimension(s);
+
+<P>
+
+<LI>a specification of the value(s) that must be supplied for the
+argument (if it's an input argument), or of the value(s) returned
+by the routine (if it's an output argument), or both (if it's an
+input/output argument). In the last case, the two parts of the
+description are introduced by the phrases ``On entry'' and
+``On exit''.
+
+<P>
+
+<LI>(for a scalar input argument) any constraints that the
+supplied values must satisfy (such as  ``N <IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img913.gif"
+ ALT="$\geq$">
+0'' in the
+example above).
+
+<P>
+
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5803"
+ HREF="node114.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5797"
+ HREF="node110.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5791"
+ HREF="node112.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5799"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5801"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5804"
+ HREF="node114.html">Option Arguments</A>
+<B> Up:</B> <A NAME="tex2html5798"
+ HREF="node110.html">Design and Documentation of</A>
+<B> Previous:</B> <A NAME="tex2html5792"
+ HREF="node112.html">Order of Arguments</A>
+ &nbsp <B>  <A NAME="tex2html5800"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5802"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

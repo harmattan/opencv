@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized QR Factorization</TITLE>
+<META NAME="description" CONTENT="Generalized QR Factorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node47.html">
+<LINK REL="previous" HREF="node45.html">
+<LINK REL="up" HREF="node45.html">
+<LINK REL="next" HREF="node47.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4794"
+ HREF="node47.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4788"
+ HREF="node45.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4782"
+ HREF="node45.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4790"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4792"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4795"
+ HREF="node47.html">Generalized RQ Factorization</A>
+<B> Up:</B> <A NAME="tex2html4789"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+<B> Previous:</B> <A NAME="tex2html4783"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+ &nbsp <B>  <A NAME="tex2html4791"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4793"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03243100000000000000">
+Generalized <B><I>QR</I></B> Factorization</A>
+</H3>
+
+<P>
+<A NAME="2890"></A><A NAME="2891"></A>
+The <B>generalized</B>&nbsp;<B><I>QR</I></B>&nbsp;<B>(GQR) factorization</B> of an <B><I>n</I></B>-by-<B><I>m</I></B> matrix <B><I>A</I></B> and
+an <B><I>n</I></B>-by-<B><I>p</I></B> matrix <B><I>B</I></B> is given by the pair of factorizations
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q R \quad  \mbox{and} \quad B = Q T Z
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="203" HEIGHT="30" BORDER="0"
+ SRC="img124.gif"
+ ALT="\begin{displaymath}
+A = Q R \quad \mbox{and} \quad B = Q T Z
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>Q</I></B> and <B><I>Z</I></B> are respectively <B><I>n</I></B>-by-<B><I>n</I></B> and <B><I>p</I></B>-by-<B><I>p</I></B> orthogonal
+matrices
+(or unitary matrices if <B><I>A</I></B> and <B><I>B</I></B> are complex).
+<B><I>R</I></B> has the form:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R = \bordermatrix{    & m   \cr
+        \hfill    m   & R_{11} \cr
+                  n-m & 0      },   \quad \mbox{if} \quad n \geq m
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="252" HEIGHT="79" BORDER="0"
+ SRC="img125.gif"
+ ALT="\begin{displaymath}
+R = \bordermatrix{ &amp; m \cr
+\hfill m &amp; R_{11} \cr
+n-m &amp; 0 }, \quad \mbox{if} \quad n \geq m
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+or
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R = \bordermatrix{    & n      &   m-n    \cr
+                  n   & R_{11} &  R_{12}  }, \quad \mbox{if} \quad n < m
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="274" HEIGHT="60" BORDER="0"
+ SRC="img126.gif"
+ ALT="\begin{displaymath}
+R = \bordermatrix{ &amp; n &amp; m-n \cr
+n &amp; R_{11} &amp; R_{12} }, \quad \mbox{if} \quad n &lt; m
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>R</I><SUB>11</SUB></B> is upper triangular. <B><I>T</I></B> has the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T = \bordermatrix{    & p-n    &   n    \cr
+                  n   & 0      &  T_{12}  }, \quad \mbox{if} \quad n \leq p
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="257" HEIGHT="60" BORDER="0"
+ SRC="img127.gif"
+ ALT="\begin{displaymath}
+T = \bordermatrix{ &amp; p-n &amp; n \cr
+n &amp; 0 &amp; T_{12} }, \quad \mbox{if} \quad n \leq p
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+or
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+T = \bordermatrix{    & p   \cr
+                  n-p & T_{11} \cr
+         \hfill   p   & T_{21} },   \quad \mbox{if} \quad n > p
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="235" HEIGHT="79" BORDER="0"
+ SRC="img128.gif"
+ ALT="\begin{displaymath}
+T = \bordermatrix{ &amp; p \cr
+n-p &amp; T_{11} \cr
+\hfill p &amp; T_{21} }, \quad \mbox{if} \quad n &gt; p
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>T</I><SUB>12</SUB></B> or <B><I>T</I><SUB>21</SUB></B> is upper triangular.
+
+<P>
+Note that if <B><I>B</I></B> is square and nonsingular, the GQR factorization
+of <B><I>A</I></B> and <B><I>B</I></B> implicitly gives the <B><I>QR</I></B> factorization of the matrix <B><I>B</I><SUP>-1</SUP><I>A</I></B>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+B^{-1} A = Z^T ( T^{-1} R )
+\end{displaymath}
+ -->
+
+
+<B>
+<I>B</I><SUP>-1</SUP> <I>A</I> = <I>Z</I><SUP><I>T</I></SUP> ( <I>T</I><SUP>-1</SUP> <I>R</I> )
+</B>
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+without explicitly computing the matrix inverse <B><I>B</I><SUP>-1</SUP></B> or the product <B><I>B</I><SUP>-1</SUP><I>A</I></B>.
+
+<P>
+The routine xGGQRF computes the GQR<A NAME="2914"></A> factorization by<A NAME="2915"></A><A NAME="2916"></A><A NAME="2917"></A><A NAME="2918"></A>
+first computing the <B><I>QR</I></B> factorization of <B><I>A</I></B> and then
+the <B><I>RQ</I></B> factorization of <B><I>Q</I><SUP><I>T</I></SUP><I>B</I></B>.
+The orthogonal (or unitary) matrices <B><I>Q</I></B> and <B><I>Z</I></B>
+can either be formed explicitly or just used to multiply another given matrix
+in the same way as the
+orthogonal (or unitary) matrix in the <B><I>QR</I></B> factorization
+(see section&nbsp;<A HREF="node39.html#subseccomporthog">2.4.2</A>).
+
+<P>
+The GQR factorization was introduced in [<A
+ HREF="node151.html#hammarling86">60</A>,<A
+ HREF="node151.html#paige90">84</A>].
+The implementation of the GQR factorization here follows [<A
+ HREF="node151.html#lawn31">2</A>].
+Further generalizations of the GQR<A NAME="2922"></A> factorization can be found in
+[<A
+ HREF="node151.html#demoorvandooren92">22</A>].
+
+<P>
+The GQR factorization can be used to solve the general (Gauss-Markov) linear<A NAME="2924"></A><A NAME="2925"></A>
+model problem (GLM) (see (<A HREF="node28.html#eqnGLM">2.3</A>) and
+[<A
+ HREF="node151.html#paige79">81</A>][<A
+ HREF="node151.html#GVL2">55</A>, page 252]).
+Using the GQR factorization of <B><I>A</I></B> and <B><I>B</I></B>, we rewrite the equation
+<B><I>d</I> = <I>A x</I> + <I>B y</I></B> from (<A HREF="node28.html#eqnGLM">2.3</A>) as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="194" HEIGHT="57" BORDER="0"
+ SRC="img129.gif"
+ ALT="\begin{eqnarray*}
+Q^T d &amp; = &amp; Q^T A x + Q^T B y \\
+&amp; = &amp; R x + T Z y.
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+We partition this as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{c}
+   d_1 \\
+   d_2
+   \end{array} \right) =
+\bordermatrix{    &  m  \cr
+       \hfill  m  & R_{11}   \cr
+               n-m & 0     } x +
+\bordermatrix{      & p-n+m  & n-m   \cr
+       \hfill  m    & T_{11} & T_{12}   \cr
+               n-m  &   0    & T_{22}   } \left( \begin{array}{c}
+                                            y_1 \\
+                                            y_2 \\
+                                            \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="507" HEIGHT="79" BORDER="0"
+ SRC="img130.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{c}
+d_1 \\
+d_2
+\end{array} \right) =...
+...left( \begin{array}{c}
+y_1 \\
+y_2 \\
+\end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{c}
+            d_1  \\
+            d_2 \\
+            \end{array} \right) \equiv Q^T d, \; \; \; {\rm and} \; \; \;
+\left( \begin{array}{c}
+            y_1  \\
+            y_2 \\
+            \end{array} \right) \equiv Z y \; ;
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="291" HEIGHT="54" BORDER="0"
+ SRC="img131.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{c}
+d_1 \\
+d_2 \\
+\end{array} \righ...
+...ray}{c}
+y_1 \\
+y_2 \\
+\end{array} \right) \equiv Z y \; ;
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<!-- MATH
+ $\left( \begin{array}{c} d_1 \\d_2 \end{array} \right)$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img132.gif"
+ ALT="$\left( \begin{array}{c} d_1 \\ d_2 \end{array} \right) $">
+can be computed by xORMQR (or xUNMQR).<A NAME="2942"></A><A NAME="2943"></A><A NAME="2944"></A><A NAME="2945"></A>
+
+<P>
+The GLM problem is solved by setting
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+y_1 = 0 \quad \mbox{and} \quad y_2 = T^{-1}_{22} d_2
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="196" HEIGHT="31" BORDER="0"
+ SRC="img133.gif"
+ ALT="\begin{displaymath}
+y_1 = 0 \quad \mbox{and} \quad y_2 = T^{-1}_{22} d_2
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+from which we obtain the desired solutions
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = R^{-1}_{11}(d_1 - T_{12} y_2) \quad \mbox{and} \quad
+y = Z^T \left( \begin{array}{c}
+            0  \\
+            y_2 \\
+            \end{array} \right) ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="343" HEIGHT="54" BORDER="0"
+ SRC="img134.gif"
+ ALT="\begin{displaymath}
+x = R^{-1}_{11}(d_1 - T_{12} y_2) \quad \mbox{and} \quad
+y =...
+...\left( \begin{array}{c}
+0 \\
+y_2 \\
+\end{array} \right) ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which can be computed by xTRSV, xGEMV and xORMRQ (or xUNMRQ).<A NAME="2954"></A><A NAME="2955"></A><A NAME="2956"></A><A NAME="2957"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4794"
+ HREF="node47.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4788"
+ HREF="node45.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4782"
+ HREF="node45.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4790"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4792"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4795"
+ HREF="node47.html">Generalized RQ Factorization</A>
+<B> Up:</B> <A NAME="tex2html4789"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+<B> Previous:</B> <A NAME="tex2html4783"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+ &nbsp <B>  <A NAME="tex2html4791"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4793"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

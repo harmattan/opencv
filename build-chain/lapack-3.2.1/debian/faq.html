@@ -1,0 +1,1087 @@
+<html>
+<head>
+<title>LAPACK FAQ</title>
+</head>
+<body>
+<center>
+<h1> LAPACK Frequently Asked Questions (FAQ) </h1>
+<h2>
+<i>
+<a href="mailto:lapack@cs.utk.edu"><address>lapack@cs.utk.edu</address></a>
+</i>
+</h2>
+</center>
+<p>
+<IMG SRC="http://www.netlib.org/scalapack/html/gif/blue.gif"></p>
+<p>
+<i>
+Many thanks to the <a href="http://www.netlib.org/utk/icl/maintainers.html">
+netlib_maintainers@netlib.org</a> from whose FAQ list I have patterned
+this list for LAPACK.
+</i>
+</p>
+
+<p>
+<IMG SRC="http://www.netlib.org/scalapack/html/gif/blue.gif"></p>
+
+<h2>
+Table of Contents
+</h2>
+
+<dl>
+<dd>LAPACK
+   <dl>
+    <a href="#1.1"> <dd>1.1)  What is LAPACK?</a>
+    <a href="#1.2"> <dd>1.2)  Are there legal restrictions on the use of LAPACK software?</a>
+    <a href="#1.3"> <dd>1.3)  How do I reference LAPACK in a scientific publication?</a>
+    <a href="#1.4"> <dd>1.4)  What revisions have been made since the last release?</a>
+    <a href="#1.5"> <dd>1.5)  When is the next scheduled release of LAPACK?</a>
+    <a href="#1.6"> <dd>1.6)  Where can I find out more information about LAPACK?</a>
+    <a href="#1.7"> <dd>1.7)  Where can I find Java LAPACK?</a>
+    <a href="#1.8"> <dd>1.8)  How do I obtain a copy of the LAPACK Users' Guide?</a>
+    <a href="#1.9"> <dd>1.9)  Why aren't BLAS routines included when I download an LAPACK routine?</a>
+    <a href="#1.10"> <dd>1.10)  Are prebuilt LAPACK libraries available?</a>
+    <a href="#1.11"> <dd>1.11)  Are prebuilt LAPACK libraries (lib and dll) available for Windows?</a>
+    <a href="#1.12"> <dd>1.12)  Is there an LAPACK rpm available for RedHat Linux?</a>
+    <a href="#1.13"> <dd>1.13)  Is there an LAPACK deb file available for Debian Linux?</a>
+    <a href="#1.14"> <dd>1.14)  How do I install LAPACK under Windows 98/NT?</a>
+    <a href="#1.15"> <dd>1.15)  What is the naming scheme for LAPACK routines?</a>
+    <a href="#1.16"> <dd>1.16)  How do I find a particular routine?</a>
+    <a href="#1.17"> <dd>1.17)  Are there routines in LAPACK to compute determinants?</a>
+    <a href="#1.18"> <dd>1.18)  Are there routines in LAPACK for the complex symmetric eigenproblem?</a>
+    <a href="#1.19"> <dd>1.19)  Why aren't auxiliary routines listed on the index?</a>
+    <a href="#1.20"> <dd>1.20)  I can't get a program to work.  What should I do?</a>
+    <a href="#1.21"> <dd>1.21)  How can I unpack lapack.tgz?</a>
+    <a href="#1.22"> <dd>1.22)  Where do I find details of the LAPACK Test Suite?</a>
+    <a href="#1.23"> <dd>1.23) What technical support for LAPACK is available?</a>
+    <a href="#1.24"> <dd>1.24) How do I interpret LAPACK testing failures?</a>
+    <a href="#1.25"> <dd>1.25) Problems running the BLAS test suite with an optimized BLAS library?</a>
+    <a href="#1.26"> <dd>1.26) Problems compiling dlamch.f?</a>
+   </dl>
+<p>
+<p>
+<dd>BLAS
+   <dl>
+    <a href="#2.1"> <dd>2.1)  What and where are the BLAS?</a>
+    <a href="#2.2"> <dd>2.2)  Publications/references for the BLAS?</a>
+    <a href="#2.3"> <dd>2.3)  Is there a Quick Reference Guide to the BLAS available?</a>
+    <a href="#2.4"> <dd>2.4)  Are optimized BLAS libraries available?</a>
+    <a href="#2.5"> <dd>2.5)  What is ATLAS?</a>
+    <a href="#2.6"> <dd>2.6)  Where can I find vendor supplied BLAS?</a>
+    <a href="#2.7"> <dd>2.7)  Where can I find the Intel BLAS for Windows NT?</a>
+    <a href="#2.8"> <dd>2.8)  Where can I find Java BLAS?</a>
+    <a href="#2.9"> <dd>2.9)  Is there a C interface to the BLAS?</a>
+    <a href="#2.10"> <dd>2.10)  Are prebuilt Fortran77 ref implementation BLAS lib
+raries available from Netlib?</a>
+   </dl>
+</dl>
+
+<p>
+<IMG SRC="http://www.netlib.org/scalapack/html/gif/blue.gif"></p>
+<h2>
+1)  LAPACK 
+</h2>
+
+<p>
+<strong>
+<a name="1.1">
+    1.1) What is LAPACK?  <br>
+</a>
+</strong>
+
+<p>
+<B>LAPACK</B> provides routines for solving systems of simultaneous linear
+equations, least-squares solutions of linear systems of equations,
+eigenvalue problems, and singular value problems.  The associated
+matrix factorizations (LU, Cholesky, QR, SVD, Schur, generalized Schur)
+are also provided, as are related computations such as reordering
+of the Schur factorizations and estimating condition numbers.
+Dense and banded matrices are handled, but not general sparse matrices.
+In all areas, similar functionality is provided for real and complex
+matrices, in both single and double precision.
+<p>
+ 
+<B>Release 3.0 of LAPACK</B> introduces new routines, as well as extending
+the functionality of existing routines.  For detailed information
+on the revisions, please refer to <a href="http://www.netlib.org/lapack/revisions.info">revisions.info</a>.
+<p>
+<ul>
+<li>
+<a href="http://www.netlib.org/lapack/lug/lapack_lug.html">LAPACK Users' Guide, Third Edition</a>
+</ul>
+<p>
+ 
+The original goal of the <B>LAPACK</B> project was to make the widely
+used <a href="http://www.netlib.org/eispack/">EISPACK</a> and
+<a href="http://www.netlib.org/linpack/">LINPACK</a> libraries
+run efficiently on shared-memory vector and parallel processors.
+On these machines, LINPACK and EISPACK are inefficient because
+their memory access patterns disregard the multi-layered memory
+hierarchies of the machines, thereby spending too much time
+moving data instead of doing useful floating-point operations.
+LAPACK addresses this problem by reorganizing the algorithms
+to use block matrix operations, such as matrix multiplication,
+in the innermost loops.  These block operations can be optimized
+for each architecture to account for the memory hierarchy,
+and so provide a transportable way to achieve high efficiency
+on diverse modern machines.  We use the term "transportable"
+instead of "portable" because, for fastest possible performance,
+LAPACK requires that highly optimized block matrix operations
+be already implemented on each machine.
+<p>
+LAPACK routines are written so that as much as possible of the computation
+is performed by calls to the <a href="http://www.netlib.org/blas/">Basic Linear Algebra Subprograms (BLAS)</a>.
+While LINPACK and EISPACK are based on the vector operation kernels
+of the Level 1 BLAS, LAPACK was designed at the outset to exploit
+the Level 3 BLAS -- a set of specifications for Fortran subprograms
+that do various types of matrix multiplication and the solution of
+triangular systems with multiple right-hand sides.  Because of
+the coarse granularity of the Level 3 BLAS operations, their use
+promotes high efficiency on many high-performance computers,
+particularly if specially coded implementations are provided
+by the manufacturer.
+<p>
+Highly efficient machine-specific implementations of the BLAS are
+available for many modern high-performance computers. The BLAS
+enable LAPACK routines to achieve high performance with transportable
+software.
+Although a model Fortran implementation of the BLAS in available
+from netlib in the <a href="http://www.netlib.org/blas/">BLAS library</a>,
+it is not expected to perform as well as a specially
+tuned implementation on most high-performance computers -- on some
+machines
+it may give much worse performance -- but it allows users to run LAPACK
+software on machines that do not offer any other implementation of the
+BLAS.
+<p>
+<strong>
+<a name="1.2">
+    1.2)  Are there legal restrictions on the use of LAPACK software?<br>
+</a>
+</strong>
+
+<p>
+LAPACK is a freely-available
+software package.  It is available from netlib via anonymous ftp and
+the World Wide Web.  Thus, it can be included in commercial
+software packages (and has been).
+We only ask that proper credit be given to the authors.</p>
+<p> 
+Like all software, it is copyrighted.  It is not trademarked, but we do
+ask the following:</p>
+<p> 
+If you modify the source for these routines
+we ask that you change the name of the routine and comment
+the changes made to the original.</p>
+<p> 
+We will gladly answer any questions regarding the software.
+If a modification is done, however, it is the responsibility of the
+person who modified the routine to provide support.</p>
+
+<p>
+<strong>
+    <a name="1.3">
+        1.3) How do I reference LAPACK in a scientific publication?<br>
+</a>
+</strong>
+<p>
+We ask that you cite the LAPACK Users' Guide, Third Edition.
+</p>
+<pre>
+@BOOK{laug,
+      AUTHOR = {Anderson, E. and Bai, Z. and Bischof, C. and
+                Blackford, S. and Demmel, J. and Dongarra, J. and
+                Du Croz, J. and Greenbaum, A. and Hammarling, S. and
+                McKenney, A. and Sorensen, D.},
+      TITLE = {{LAPACK} Users' Guide},
+      EDITION = {Third},
+      PUBLISHER = {Society for Industrial and Applied Mathematics},
+      YEAR = {1999},
+      ADDRESS = {Philadelphia, PA},
+      ISBN = {0-89871-447-8 (paperback)} }
+</pre>
+
+<p>
+<strong>
+<a name="1.4">
+    1.4)  What revisions have been made since the last release? <br>
+</a>
+</strong>
+
+<p>
+For detailed information on the revisions since the previous public
+release, please refer to
+<a href="http://www.netlib.org/lapack/release_notes.html">release_notes.html</a>.
+
+<p>
+<strong>
+<a name="1.5">
+    1.5)  When is the next scheduled release of LAPACK? <br>
+</a>
+</strong>
+
+<p>
+<B>LAPACK, version 3.0</B> was announced June 30, 1999.  The
+update to this release <a href="http://www.netlib.org/lapack/update.tgz">update.tgz</a> was posted to netlib in November, 1999.<br> 
+The most significant new routines are:</p>
+<ol>
+
+ <li> a faster singular value decomposition (SVD),
+    computed by divide-and-conquer (xGESDD)
+ <li> faster routines for solving rank-deficient least squares problems:
+     <ul>
+     <li>  using QR with column pivoting (xGELSY, based on xGEQP3)
+     <li>  using the SVD based on divide-and-conquer (xGELSD)
+     </ul>
+ <li> new routines for the generalized symmetric eigenproblem:
+     <ul>
+     <li> xHEGVD/xSYGVD, xHPGVD/xSPGVD, xHBGVD/xSBGVD: faster routines
+          based on divide-and-conquer
+     <li> xHEGVX/xSYGVX, xHPGVX/xSPGVX, xHBGVX/xSBGVX: routines based on
+          bisection/inverse iteration, for computing part of the spectrum
+     </ul>
+ <li> faster routine for the symmetric eigenproblem using "relatively robust
+    eigenvector algorithm" (xSTEGR, xSYEVR/xHEEVR, SSTEVR)
+ <li> new simple and expert drivers for the generalized nonsymmetric
+    eigenproblem (xGGES,xGGEV,xGGESX,xGGEVX), including error bounds
+ <li> solver for generalized Sylvester equation (xTGSYL), used in 5)
+ <li> computational routines (xTGEXC, xTGSEN, xTGSNA) used in 5))
+ <li> a blocked version of xTZRQF (xTZRZF), and associated xORMRZ/xUNMRZ
+</ol>
+<p>
+The <B>LAPACK Users' Guide, Third Edition</B> is available from SIAM,
+as well as in HTML form, <a href="http://www.netlib.org/lapack/lug/lapack_lug.html">LAPACK Users' Guide, Third Edition</a>.
+
+<p>
+<strong>
+<a name="1.6">
+    1.6)  Where can I find more information about LAPACK?<br>
+</a>
+</strong>
+
+<p>
+A variety of working notes related to the development of the
+LAPACK library were published as LAPACK Working Notes and are
+available in postscript or pdf format at:
+<dl>
+<dd><a href="http://www.netlib.org/lapack/lawns/index.html"><address>http://www.netlib.org/lapack/lawns/</address></a>
+<dd><a href="http://www.netlib.org/lapack/lawnspdf/index.html"><address>http://www.netlib.org/lapack/lawnspdf/</address></a>
+</dl>
+
+<p>
+<strong>
+<a name="1.7">
+    1.7)  Where can I find Java LAPACK?<br>
+</a>
+</strong>
+
+<p>
+The first public release of the Java LAPACK (version 0.3 beta) is available
+for download at the following URL:
+
+<dl>
+<dd><a href="http://www.netlib.org/java/f2j/"><address>http://www.netlib.org/java/f2j/</address></a>
+</dl>
+The <a href="http://math.nist.gov/javanumerics/">JavaNumerics</a>
+webpage provides a focal point for information
+on numerical computing in Java!
+
+</p>
+
+<p>
+<strong>
+<a name="1.8">
+    1.8)  How do I obtain a copy of the LAPACK Users' Guide?<br>
+</a>
+</strong>
+
+<p>
+An html version of the <a href="http://www.netlib.org/lapack/lug/lapack_lug.html"><B>LAPACK Users' Guide</B></a> is available for viewing on netlib.</p>
+<p>
+The printed version of the <b>LAPACK Users' Guide, Third Edition</b> is
+available from SIAM (Society for Industrial and Applied Mathematics).
+The list price is $39.00 and the SIAM
+Member Price is $31.20.  The order code for the book is <b>SE09</b>.
+Contact SIAM for additional information.</p>
+<p>
+<ul>
+<li><a href="http://www.siam.org/"><address>http://www.siam.org/</address></a>.
+<li><a href="mailto:service@siam.org"><address>service@siam.org</address></a>
+<li>fax: 215-386-7999
+<li>phone: (USA) 800-447-SIAM
+<li>(outside USA) 215-382-9800
+<li>mail: SIAM, Customer Service, P. O. Box 7260, Philadelphia, PA 19104.
+</ul>
+<P>
+ 
+<P>
+The royalties from the sales of this book are being placed in a fund
+to help students attend SIAM meetings and other SIAM related activities.
+This fund is administered by SIAM and qualified individuals are encouraged to
+write directly to SIAM for guidelines.
+<p>
+
+<p>
+<strong>
+<a name="1.9">
+    1.9) Why aren't BLAS routines included when I download an LAPACK routine?<br>
+</a>
+</strong>
+
+<p>
+It is assumed that you have a machine-specific optimized <b>BLAS</b> library
+already available on the architecture to which you are installing
+<b>LAPACK</b>.  If this is not the case, you can download a
+<a href="http://www.netlib.org/blas/blas.shar">Fortran77 reference implementation of the BLAS</a> from netlib.
+<p>
+Although a model implementation of the BLAS in available
+from netlib in the <a href="http://www.netlib.org/blas/">blas directory</a>,
+it is not expected to perform as well as a specially
+tuned implementation on most high-performance computers -- on some machines
+it may give much worse performance -- but it allows users to run LAPACK
+software on machines that do not offer any other implementation of the
+BLAS.</p>
+<p>
+Alternatively, you can automatically generate an optimized BLAS library for
+your machine, using ATLAS <a href="http://www.netlib.org/atlas/"><address>http://www.netlib.org/atlas/</address></a>.
+
+<p>
+<strong>
+<a name="1.10">
+    1.10)  Are prebuilt LAPACK libraries available?<br>
+</a>
+</strong>
+
+<p>
+Yes, prebuilt LAPACK libraries are available for a variety
+of architectures.  Refer to
+<dl>
+<dd><a href="http://www.netlib.org/lapack/archives/">
+<address>http://www.netlib.org/lapack/archives/</address></a>
+</dl>
+for a complete list of available prebuilt libraries.
+
+<p>
+<strong>
+<a name="1.11">
+    1.11)  Are prebuilt LAPACK libraries (lib and dll) available for Windows?<br>
+</a>
+</strong>
+
+<p>
+Yes, refer to the
+<a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/matlisp/matlisp/lib/"><address>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/matlisp/matlisp/lib/</address></a> 
+webpage for details.
+
+<p>
+<strong>
+<a name="1.12">
+    1.12)  Is there an LAPACK rpm available for RedHat Linux?<br>
+</a>
+</strong>
+
+<p>
+Yes!  Refer to the <a href="http://www.netlib.org/lapack/rpms/"><address>http://www.netlib.org/lapack/rpms</address></a> directory on netlib for the
+LAPACK rpms for RedHat Linux.
+</p>
+
+<p>
+<strong>
+<a name="1.13">
+    1.13)  Is there an LAPACK deb file available for Debian Linux?<br>
+</a>
+</strong>
+
+<p>
+Yes!  Refer to <a href="http://www.debian.org/Packages/frozen/libs/lapack.html">LAPACK deb file for Debian Linux</a>.
+</p>
+<p>
+<strong>
+<a name="1.14">
+    1.14)  How do I install LAPACK under Windows 98/NT?<br>
+</a>
+</strong>
+
+<p>
+Separate zip files are available for installation using Digital Fortran
+or Watcom Fortran 77/32 compiler version 11.0.  Both zip files use
+Microsoft <i>nmake</i>.
+Refer to the <a href="http://www.netlib.org/lapack/lapack-pc-df.zip">lapack-pc-df.zip</a> or
+<a href="http://www.netlib.org/lapack/lapack-pc-wfc.zip">lapack-pc-wfc.zip</a>
+files on the lapack index.
+<p>
+Otherwise,
+the lapack.tgz distribution file requires unix-style make and /bin/sh commands in order to install on a 
+Windows system.  A fairly complete unix-style environment is available free of
+charge at the cygnus website,<br>
+   <a href="http://sourceware.cygnus.com/cygwin/"><address>http://sourceware.cygnus.com/cygwin/</address></a>
+</p>
+<p>
+From this website, you can download the package, get installation instructions,
+etc.  You will want to download the "full" version of cygwin, which includes
+compilers, shells, make, etc.  You will need to download the fortran compiler
+separately.
+</P>
+<P>
+The installation is quite simple, involving downloading an executable and
+installing with Windows' usual install procedure (you can remove it from
+your machine with Windows' ADD/REMOVE if you later decide you don't want it).
+</P>
+<P>
+<CENTER>
+IMPORTANT: 
+</CENTER>
+<P>
+Windows 95/98 does a poor job of process load balance.  If you change
+the focus from the cygnus window, performance will immediately drop by
+at least 1/3, and the timings will be inaccurate.  When doing timings, it is
+recommended that you leave the focus on the window throughout the entire
+timing suite.
+This is not necessary for Windows NT.
+</P>
+<P>
+Because people often miss them in the install instructions, I repeat two
+very important pieces of information about the cygnus install here:
+</P>
+<P>
+<OL>
+<LI>
+<PRE>
+If, after installing cygnus, you get the message:
+    Out of environment space
+add the line 
+    shell=C:\command.com /e:4096 /p
+to your c:\config.sys
+</PRE>
+<LI>
+<PRE>
+For installation, LAPACK needs to find /bin/sh, so you should (assuming you
+don't already have this directory made):
+   mkdir -p /bin
+Then, you should copy sh.exe from the cygwin bin directory to this one.
+The location of the cygwin bin directory changes depending on where you
+did the install, what type of machine you have, and the version of cygnus.
+Here is an example:
+    /cygnus/cygwin-b20/H-i586-cygwin32/bin
+the cygwin-b20 is a version number, so you might see cygwin-b21, if you have
+a newer release, for instance.  The i586 refers to your processor, you might
+expect to see i386, i486, i586 or i686, for instance.
+</PRE>
+</OL>
+<UL>
+<LI> <b>NOTE:</b>
+Gnu g77 and gcc provide better performance than MSVC++ (Digital Fortran) 
+(or Watcom F77 or C), so we recommend that you use g77 and gcc.
+<LI> <b>NOTE:</b>
+Be careful.  Many PC compilers often perform optimization by default at
+compile time!  Thus, for routines such as LAPACK/SRC/slamch.f and
+LAPACK/SRC/dlamch.f, you will need to explicitly set a compile flag to
+turn OFF optimization.
+<LI> <b>NOTE:</b>
+Be aware that Microsoft <i>nmake</i> and Watcom <i>wmake</i> contain only
+a subset of the functionality of unix-style make.  Therefore, if you choose
+to use this form of <i>make</i>, you will need to simply the makefiles.  In
+the future, these makefiles may be made available.
+<LI> <b>NOTE:</b>
+Timing functions and Windows 98/NT...  You will need to modify the
+LAPACK/INSTALL/second.f and dsecnd.f to call <b>clock()</b>, as there
+are no sophisticate timing functions available.  Many users have written
+their own timing functions for Windows 98/NT applications.
+<LI> <b>NOTE:</b>
+An optimized BLAS library for Windows on an Intel Pentium is available.
+Refer to the <a href="http://www.netlib.org/blas/faq.html">BLAS FAQ</a>
+for further details.
+</UL>
+<p>
+<strong>
+<a name="1.15">
+    1.15)  What is the naming scheme for LAPACK routines?<br>
+</a>
+</strong>
+
+<p>
+The name of each LAPACK routine is a coded specification of
+its function (within the very tight limits of standard Fortran 77
+6-character names).</p>
+<p>
+All driver and computational routines have names of the form <b>XYYZZZ</b>,
+where for some driver routines the 6th character is blank.
+<p> 
+The first letter, <b>X</b>, indicates the data type as follows:
+</p>
+<pre> 
+    S  REAL
+    D  DOUBLE PRECISION
+    C  COMPLEX
+    Z  COMPLEX*16  or DOUBLE COMPLEX
+</pre> 
+<p>
+The next two letters, <b>YY</b>, indicate the type of matrix (or of the most
+significant matrix).  Most of these two-letter codes apply to both real
+and complex matrices; a few apply specifically to one or the other.
+<p> 
+The last three letters <b>ZZZ</b> indicate the computation performed.
+For example, SGEBRD is a single precision routine that performs a
+bidiagonal reduction (BRD) of a real general matrix.</p>
+
+<p>
+<strong>
+<a name="1.16">
+    1.16)  How do I find a particular routine?<br>
+</a>
+</strong>
+
+<p>
+Indexes of individual LAPACK driver and computational routines
+are available.  These indexes contain brief descriptions of each
+routine.
+
+<p>
+<B>LAPACK</B> routines are available in four types:  <B>single precision
+real</B>, <B>double precision real</B>, <B>single precision complex</B>, and
+<B>double precision complex</B>.</P>
+<UL>
+<LI><a href="http://www.netlib.org/lapack/single/index.html">Index of LAPACK Single Precision REAL Routines</a>.
+<LI><a href="http://www.netlib.org/lapack/double/index.html">Index of LAPACK Double Precision REAL Routines</a>.
+<LI><a href="http://www.netlib.org/lapack/complex/index.html">Index of LAPACK Single Precision COMPLEX Routines</a>.
+<LI><a href="http://www.netlib.org/lapack/complex16/index.html">Index of LAPACK Double Precision COMPLEX Routines</a>.
+</UL>
+<p>
+<i>NOTE:  For brevity, LAPACK auxiliary routines are NOT listed on
+these indexes of routines. </i></p>
+
+<p>
+<strong>
+<a name="1.17">
+    1.17)  Are there routines in LAPACK to compute determinants?<br>
+</a>
+</strong>
+
+<p>
+No.  There are no routines in LAPACK to compute determinants.  This
+is discussed in the "Accuracy and Stability" chapter in the
+<a href="http://www.netlib.org/lapack/lug/lapack_lug.html">LAPACK Users'
+Guide</a>.
+
+<p>
+<strong>
+<a name="1.18">
+    1.18)  Are there routines in LAPACK for the complex symmetric eigenproblem?<br>
+</a>
+</strong>
+
+<p>
+About your question on the eigenvalue problem
+of a pair of complex symmetric matrices, there
+is no public domain software I know of for
+solving this problem directly. Three closest references are:<br>
+<ol>
+<li> in QMRpack (your can access it from www.netlib.org)
+     there is a Lanczos method for finding
+     a few eigenvalues/eigenvectors by exploring
+     the complex symmetric structure. 
+<li> Back to few years ago, J. Cullum and ... published
+    a paper on using QR iteration to find all eigenvalues
+    and eigenvectors of a complex symmtric tridiagonal 
+    matrix. The paper was published in SIAM J. Matrix Analysis 
+    and Applications. 
+<li> A couple of years ago, Bar-on published a paper in 
+    SIAM J. of Sci. Comp. for full dense complex symmetric
+    eigenvalue problems. He discussed how to use a variant of
+     Householder reduction for tridiagonalization. 
+</ol>
+<p>    
+All these approaches try to explore the symmetric structure
+for saving in CPU time and storage. However, since there is
+no particular mathematical properties we can explore in a complex
+symmetric system, all above mentioned approaches are potentially
+numerical unstable! This also reflects why there is no 
+high quality (black-box) math. software available. 
+
+
+<p>
+<strong>
+<a name="1.19">
+    1.19)  Why aren't auxiliary routines listed on the index?<br>
+</a>
+</strong>
+
+<p>
+<i>For brevity, LAPACK auxiliary routines are not listed on
+the indexes of routines. </i></p>
+<p>
+However, the routines are contained in the
+respective directories on netlib.  If you download a routine with
+dependencies, these auxiliary routines should be included with your
+request.  Or, if for some reason you wish to obtain an individual
+auxiliary routine, and you already know the name of the routine,
+you can request that routine.  For example, if I would like to 
+obtain <i>dlacpy.f</i>, I would connect to the URL:</p>
+<pre>
+   http://www.netlib.org/lapack/double/dlacpy.f
+</pre>
+
+
+<p>
+<strong>
+<a name="1.20">
+    1.20) I can't get a program to work.  What should I do?<br>
+</a>
+</strong>
+
+<p>
+Technical questions should be directed to the authors at
+<a href="mailto:lapack@cs.utk.edu"><address>lapack@cs.utk.edu.</address></a></p>
+<p>
+Please tell us the type of machine on
+which the tests were run, the compiler and compiler options that
+were used, details of the BLAS library that was used, and a copy of
+the input file if appropriate.</p>
+<p>
+Be prepared to answer the following questions:</p>
+<ol>
+<li> Have you run the BLAS and LAPACK test suites?
+<li> Have you checked the errata list on netlib?
+     <ul>
+     <li> <a href="http://www.netlib.org/lapack/release_notes.html">release_notes.html</a>
+     </ul>
+<li> If you are using an optimized BLAS library, have you tried
+     using the reference implementation from netlib?
+</ol>
+Machine-specific installation hints can be found in <a href="http://www.netlib.org/lapack/release_notes.html">release_notes.html</a>, as well as the <a href="http://www.netlib.org/lapack/lawns/lawn81.ps">Quick Installation Guide</a>.  
+
+<p>
+<strong>
+<a name="1.21">
+    1.21) How can I unpack lapack.tgz?<br>
+</a>
+</strong>
+
+<p>
+<pre>
+   gunzip -c lapack.tgz | tar xvf -
+</pre>
+
+<p>
+The compression program <i>gzip (and gunzip)</i> is Gnu software.  If
+it is not already available on your machine, you can download it 
+via <i>anonymous ftp</i>:</p>
+<pre>
+   ncftp prep.ai.mit.edu
+   cd pub/gnu/
+   get gzip-1.2.4.tar
+</pre>
+
+<p>
+<strong>
+<a name="1.22">
+    1.22) Where do I find details of the LAPACK Test Suite and Timing Suite?<br>
+</a>
+</strong>
+
+<p>
+Full details of the LAPACK Test Suite and Timing Suite can be found in
+LAPACK Working Note 41:  "Installation Guide to LAPACK" available via the
+URL:
+<ul>
+<li><a href="http://www.netlib.org/lapack/lawns/lawn41.ps">LAPACK Working Note 41</a>.
+</ul>
+
+<p>
+<strong>
+<a name="1.23">
+    1.23) What technical support for LAPACK is available?<br>
+</a>
+</strong>
+
+<p>
+Technical questions and comments should be directed to the authors at
+<a href="mailto:lapack@cs.utk.edu"><address>lapack@cs.utk.edu.</address></a>
+<p>
+See <a href="#1.20">Question 1.20</a>
+
+<p>
+<strong>
+<a name="1.24">
+    1.24) How do I interpret LAPACK testing failures?<br>
+</a>
+</strong>
+
+<p>
+Installation hints for various architectures are maintained in
+the <a href="http://www.netlib.org/lapack/release_notes.html">http://www.netlib.org/lapack/release_notes.html</a> file on netlib.  Click on "Machine-Specific
+Installation Hints".</p>
+<p>
+The only known testing failures are in condition number estimation
+routines in the generalized nonsymmetric eigenproblem testing.  
+Specifically in <b>sgd.out</b>, <b>dgd.out</b>, <b>cgd.out</b> and
+<b>zgd.out</b>. The cause for 
+the failures of some test cases is that the mathematical algorithm 
+used for estimating the condition numbers could over- or under-estimate
+the true values in a certain factor in some rare cases.  Further
+details can be found in <a href="http://www.netlib.org/lapack/lawns/lawn87.ps">LAPACK Working Note 87</a>. </p>
+<p>
+In addition, LAPACK, version 3.0, introduced new routines which
+rely on IEEE-754 compliance.  Refer to the <a href="http://www.netlib.org/lapack/lawns/lawn41.ps">Installation Guide</a> for complete details.  As
+a result, two settings were added to LAPACK/SRC/ilaenv.f to denote
+IEEE-754 compliance for NaN and infinity arithmetic, respectively.
+By default, ILAENV assumes an IEEE machine and does a test for
+IEEE-754 compliance.  If you are installing LAPACK on a non-IEEE
+machine, you MUST modify ILAENV, as this test inside ILAENV will
+crash!  Note that there are also specialized testing/timing versions
+of ILAENV located in LAPACK/TESTING/LIN/, LAPACK/TESTING/EIG/, 
+LAPACK/TIMING/LIN/, and LAPACK/TIMING/EIG/, that must also be
+modified.  Be aware that some compilers have IEEE-754 compliance
+by default, and some compilers require a separate compiler flag.
+</p> 
+Testing failures can be divided into two categories.  <i>Minor</i> testing
+failures, and <i>major</i> testing failures.  
+</p>
+<p>
+A <i>minor</i> testing failure is one in which the test ratio reported
+in the LAPACK/TESTING/*.out file slightly exceeds the threshold (specified 
+in the associated LAPACK/TESTING/*.in file).  The cause of such failures
+can mainly be attributed to differences in the implementation of math
+libraries (square root, absolute value, complex division, complex absolute
+value, etc).  These failures are negligible, and do not affect the
+proper functioning of the library.
+</p>
+<p>
+A <i>major</i> testing failures is one in which the test ratio reported
+in the LAPACK/TESTING/*.out file is on the order of E+06.  This type
+of testing failure should be investigated.  For a complete discussion
+of the comprehensive LAPACK testing suite, please refer to
+<a href="http://www.netlib.org/lapack/lawns/lawn41.ps">LAPACK Working Note 41</a>.  When a
+testing failure occurs, the output in the LAPACK/TESTING/*.out file will
+tell the user which test criterion failed and for which type of matrix.
+It is important to note if the error only occurs with a specific
+matrix type, a specific precision, a specific test criterion, and 
+the number of tests failed.
+There can be several possible causes of such failures:</p>
+<ul>
+<li>compiler optimization bug
+<li>bug in the optimized BLAS library
+<li>bug in an LAPACK routine
+</ul>
+<p>
+The first question/suggestion is, if you are using an optimized BLAS library,
+did you run the BLAS test suite?  Also, have you tried linking to the
+reference implementation BLAS library to see if the error disappears?
+There is a reference implementation BLAS library included with the
+LAPACK distribution.  This type of problem will typically cause a lot
+of test failures for only a specific matrix type.</p>
+<p>
+A compiler optimization bug will typically also cause a lot of 
+test failures for only a specific matrix type.  If a compiler 
+optimization problem is suspected, the user should recompile 
+the entire library with no optimization and see if the error
+disappears.  If the error disappears, then the user will need to pinpoint
+which routine causes the optimization problem.  This search can
+be narrowed by noticing which precision caused the error and for
+which matrix type.
+</p>
+<p> In some rare cases, naive implementations
+of functions such as complex absolute value and complex division can
+result in <i>major</i> testing failures.  Refer to the discussion of
+the LAPACK/SRC/slabad.f and dlabad.f routines to restrict the range
+of representable numbers to be used in testing (<a href="http://www.netlib.org/lapack/lawns/lawn41.ps">LAPACK Working Note 41</a>).
+</p>
+<p>
+An isolated test failure that is not affected by the level of optimization
+or the BLAS library used, should be reported to the authors
+<a href="mailto:lapack@cs.utk.edu"><address>lapack@cs.utk.edu.</address></a>.
+</p>
+
+<p>
+Installation hints for various architectures are maintained in
+the <a href="http://www.netlib.org/lapack/release_notes.html">http://www.netlib.org/lapack/release_notes.html</a> file on netlib.  Click on "Machine-Specific
+Installation Hints".</p>
+
+<p>
+<strong>
+<a name="1.25">
+    1.25) Problems running the BLAS test suite with an optimized BLAS library?<br>
+</a>
+</strong>
+<p>
+If you encounter difficulties running the BLAS Test Suite with an
+optimized BLAS library, it may be that you need to disable "input
+error checking" in the BLAS Test Suite.  Most optimized BLAS 
+libraries do NOT perform input error checking.  To disable
+"input error checking" in the BLAS testers, you need to modify
+line 7 of the data files LAPACK/BLAS/*blat2.in and LAPACK/BLAS/*blat3.in by
+setting the "T" to "F".
+<pre>
+F        LOGICAL FLAG, T TO TEST ERROR EXITS.
+</pre>
+</p>
+
+<p>
+<strong>
+<a name="1.26">
+    1.26) Problems compiling dlamch.f?<br>
+</a>
+</strong>
+<p>
+The routine dlamch.f (and its dependent subroutines dlamc1, dlamc2,
+dlamc3, dlamc4, dlamc5) MUST be compiled without optimization.
+If you downloaded the entire lapack distribution this will be
+taken care of by the LAPACK/SRC/Makefile.  However, if you downloaded
+a specific LAPACK routine plus dependencies, you need to take care
+that slamch.f (if you downloaded a single precision real or 
+single precision complex routine) or dlamch.f (if you downloaded
+a double precision real or double precision complex routine) has
+been included.
+</p>
+
+<p>
+<IMG SRC="http://www.netlib.org/scalapack/html/gif/blue.gif"></p>
+<h2>
+2)  BLAS 
+</h2>
+
+<p>
+<strong>
+<a name="2.1">
+    2.1) What and where are the BLAS?<br>
+</a>
+</strong>
+
+<p>
+The BLAS (Basic Linear Algebra Subprograms) are high quality
+"building block" routines for performing basic vector and matrix
+operations.  Level 1 BLAS do vector-vector operations, Level 2
+BLAS do matrix-vector operations, and Level 3 BLAS do
+matrix-matrix operations.  Because the BLAS are efficient,
+portable, and widely available, they're commonly used in the
+development of high quality linear algebra software,
+<a href="http://www.netlib.org/linpack/">LINPACK</a> and
+<a href="http://www.netlib.org/lapack/">LAPACK</a> for example.  
+<p>
+A Fortran77 reference implementation of the BLAS is located in the
+<a href="http://www.netlib.org/blas/">blas directory</a> of Netlib.
+
+<p>
+<strong>
+<a name="2.2">
+    2.2) Publications/references for the BLAS?<br>
+</a>
+</strong>
+
+<p>
+<ol>
+<li>
+C. L. Lawson, R. J. Hanson, D. Kincaid, and F. T. Krogh, <i>Basic
+Linear Algebra Subprograms for FORTRAN usage</i>, <a href="http://www.acm.org/toms/V5.html#v5n3">ACM Trans. Math.
+Soft., 5 (1979)</a>, pp. 308--323.<p>
+
+<li>
+J. J. Dongarra, J. Du Croz, S. Hammarling, and R. J. Hanson, <i>An
+extended set of FORTRAN Basic Linear Algebra Subprograms</i>, <a href="http://www.acm.org/toms/V14.html">ACM Trans.
+Math. Soft., 14 (1988)</a>, pp. 1--17.<p>
+
+<li>
+J. J. Dongarra, J. Du Croz, S. Hammarling, and R. J. Hanson,
+<i>Algorithm 656: An extended set of FORTRAN Basic Linear Algebra
+Subprograms</i>, <a href="http://www.acm.org/toms/V14.html">ACM Trans. Math. Soft., 14 (1988)</a>, pp. 18--32.<p>
+
+<li>
+J. J. Dongarra, J. Du Croz, I. S. Duff, and S. Hammarling, <i>A set of
+Level 3 Basic Linear Algebra Subprograms</i>, <a href="http://www.acm.org/toms/V16.html">ACM Trans. Math. Soft.,
+16 (1990)</a>, pp. 1--17.<p>
+
+<li>
+J. J. Dongarra, J. Du Croz, I. S. Duff, and S. Hammarling, <i>Algorithm
+679: A set of Level 3 Basic Linear Algebra Subprograms</i>, <a href="http://www.acm.org/toms/V16.html">ACM Trans.
+Math. Soft., 16 (1990)</a>, pp. 18--28.<p>
+</ol>
+
+<p>
+<strong>
+<a name="2.3">
+    2.3)  Is there a Quick Reference Guide to the BLAS available?<br>
+</a>
+</strong>
+ 
+<p>
+Yes, there is a postscript version of the <a href="http://www.netlib.org/blas/blasqr.ps">Quick Reference Guide to the BLAS</a> available.
+
+<p>
+<strong>
+<a name="2.4">
+    2.4)  Are optimized BLAS libraries available?<br>
+</a>
+</strong>
+
+<p>
+YES!  Machine-specific optimized BLAS libraries are available for
+a variety of computer architectures.  These optimized BLAS libraries
+are provided by the computer vendor or by an independent software
+vendor (ISV).  For further details, please contact your local vendor
+representative.  </p>
+<p>
+Alternatively, the user can download <a href="http://www.netlib.org/atlas/">ATLA
+S</a> to automatically generate an optimized BLAS library for his
+architecture.
+</p>
+<p>
+If all else fails, the user can
+download a <a href="http://www.netlib.org/blas/blas.tgz">Fortran77
+reference implementation of the BLAS</a> from netlib.  However,
+keep in mind that this is a reference implementation and is not
+optimized.</p>
+ 
+
+<p>
+<strong>
+<a name="2.5">
+    2.5)  What is ATLAS?<br>
+</a>
+</strong>
+
+<p>
+ATLAS is an approach for the automatic generation and optimization of
+numerical software for processors with deep memory hierarchies and pipelined
+functional units. The production of such software for machines ranging from
+desktop workstations to embedded processors can be a tedious and time
+consuming task. ATLAS has been designed to automate much of this process.
+We concentrate our efforts on the widely used linear algebra kernels
+called the Basic Linear Algebra Subroutines (BLAS). </p>
+<p>
+For further information, refer to the <a href="http://www.netlib.org/atlas/">ATL
+AS webpage</a>.</p>
+
+
+<p>
+<strong>
+<a name="2.6">
+    2.6)  Where can I find vendor supplied BLAS?<br>
+</a>
+</strong>
+<p>
+BLAS Vendor List <BR>
+Last updated: March 14, 2001 <BR>
+<HR><TABLE BORDER="1" CELLPADDING="3">
+  <TR><TD ALIGN=LEFT><BOLD><H3> Vendor </H3></TD>
+  <TD ALIGN=LEFT><BOLD><H3> URL </H3></BOLD></TD></TR>
+
+
+  <TR><TD ALIGN=LEFT> Compaq </TD>
+  <TD ALIGN=LEFT>
+  <A HREF="http://www.compaq.com/hpc/software/dxml.html">
+  http://www.compaq.com/hpc/software/dxml.html
+  </A></TD></TR>
+
+  <TR><TD ALIGN=LEFT> HP </TD>
+  <TD ALIGN=LEFT>
+  <A HREF="http://www.hp.com/rsn/mlib/mlibhome.html">
+  http://www.hp.com/rsn/mlib/mlibhome.html
+  </A></TD></TR>
+
+  <TR><TD ALIGN=LEFT> IBM </TD>
+  <TD ALIGN=LEFT>
+  <A HREF="http://www.rs6000.ibm.com/software/Apps/essl.html">
+  http://www.rs6000.ibm.com/software/Apps/essl.html
+  <BR>
+  <A HREF="http://www.rs6000.ibm.com/software/sp_products/esslpara.html">
+  http://www.rs6000.ibm.com/software/sp_products/esslpara.html
+  </A></TD></TR>
+
+  <TR><TD ALIGN=LEFT> Intel </TD>
+  <TD ALIGN=LEFT>
+  <A HREF="http://developer.intel.com/software/products/mkl/index.htm">
+  http://developer.intel.com/software/products/mkl/index.htm 
+  </A></TD></TR>
+
+  <TR><TD ALIGN=LEFT> SGI </TD>
+  <TD ALIGN=LEFT>
+  <A HREF="http://www.sgi.com/software/scsl.html">
+  http://www.sgi.com/software/scsl.html
+  </A></TD></TR>
+
+  <TR><TD ALIGN=LEFT> SUN </TD>
+  <TD ALIGN=LEFT>
+  <A HREF="http://docs.sun.com/htmlcoll/coll.118.3/iso-8859-1/PERFLIBUG/plug_bookTOC.html
+">
+http://docs.sun.com/htmlcoll/coll.118.3/iso-8859-1/PERFLIBUG/plug_bookTOC.html
+  </A></TD></TR>
+
+</TABLE>
+</p>
+
+<p>
+<strong>
+<a name="2.7">
+    2.7)  Where can I find the Intel BLAS for Linux?<br>
+</a>
+</strong>
+<p>
+Yes, the Intel BLAS for Linux are available!  Refer to the following
+URL:</p>
+<a href="http://www.cs.utk.edu/~ghenry/distrib">Intel BLAS for Linux</a>.
+</p>
+
+<p>
+<strong>
+<a name="2.8">
+    2.8)  Where can I find Java BLAS?<br>
+</a>
+</strong>
+<p>
+Yes, Java BLAS are available.  Refer to the following
+URLs:
+<a href="http://www.cs.utk.edu/f2j/download.html/">Java LAPACK</a>
+and
+<a href="http://math.nist.gov/javanumerics/">JavaNumerics</a>.
+The <b>JavaNumerics</b> webpage provides a focal point for information
+on numerical computing in Java.
+</p>
+
+<p>
+<strong>
+<a name="2.9">
+    2.9)  Is there a C interface to the BLAS?<br>
+</a>
+</strong>
+<p>
+Yes, a C interface to the BLAS was defined in the <a href="http://www.netlib.org
+/blas/blast-forum/">BLAS Technical Forum Standard</a>.  The <a href="http://www.
+netlib.org/blas/blast-forum/cblas.tgz">source code</a> is
+also available.
+</p>
+
+
+
+<p>
+<strong>
+<a name="2.10">
+    2.10)  Are prebuilt Fortran77 ref implementation BLAS libraries available?<br>
+</a>
+</strong>
+ 
+<p>
+Yes.  HOWEVER, it is assumed that you have a machine-specific optimized <b>BLAS</b>
+library already available on the architecture to which you are installing
+<b>LAPACK</b>.  If this is not the case, you can download a
+<a href="http://www.netlib.org/blas/archives/">prebuilt Fortran77 reference
+implementation BLAS library</a> or compile the
+<a href="http://www.netlib.org/blas/blas.tgz">Fortran77 reference implementation
+source code of the BLAS</a> from netlib.
+<p>
+Although a model implementation of the BLAS in available
+from netlib in the <a href="http://www.netlib.org/blas/">blas directory</a>,
+it is not expected to perform as well as a specially
+tuned implementation on most high-performance computers -- on some machines
+it may give much worse performance -- but it allows users to run LAPACK
+software on machines that do not offer any other implementation of the
+BLAS.
+<p>
+Alternatively, you can automatically generate an optimized BLAS library
+for your machine using ATLAS, <a href="http://www.netlib.org/atlas/"><address>http://www.netlib.org/atlas/</address></a>.
+
+<p>
+<IMG SRC="http://www.netlib.org/scalapack/html/gif/blue.gif"></p>
+<a href="mailto:lapack@cs.utk.edu"><address>lapack@cs.utk.edu</address></a>
+
+</body>
+</html>

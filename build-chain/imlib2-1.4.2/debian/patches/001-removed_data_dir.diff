@@ -1,0 +1,26 @@
+Index: b/Makefile.am
+===================================================================
+--- a/Makefile.am	2009-01-12 12:31:08.771611351 -0500
++++ b/Makefile.am	2009-01-12 12:31:43.496611299 -0500
+@@ -1,6 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-SUBDIRS = src data doc
++SUBDIRS = src doc
+ 
+ MAINTAINERCLEANFILES = aclocal.m4 config.guess config.h.in \
+ 		       config.sub configure depcomp install-sh \
+Index: b/configure.ac
+===================================================================
+--- a/configure.ac	2009-01-12 12:31:08.777611717 -0500
++++ b/configure.ac	2009-01-12 12:31:43.502611334 -0500
+@@ -523,9 +523,6 @@
+ src/modules/Makefile
+ src/modules/filters/Makefile
+ src/modules/loaders/Makefile
+-data/Makefile
+-data/fonts/Makefile
+-data/images/Makefile
+ doc/Makefile
+ imlib2-config
+ README

@@ -1,0 +1,132 @@
+
+ =============================================
+ Errata in LAPACK Users' Guide, Third Edition
+ =============================================
+
+ VERSION 3.0  :  June 30, 1999
+
+ UPDATED:  May 7, 2001
+
+ page
+ ----
+
+  99:  Removal of IWORK from calling sequence of SGGGLM
+
+ 202:  Correction to an author's name in LAWN 138:
+       J. Wa --> J. Wasniewski
+
+ 208:  Specification for SBDSDC:
+       Correction to the size of WORK array when COMPQ='I':
+       The line:
+       IF COMPQ = 'I' then LWORK >= 3*N^2 + 2*N.
+       should be replaced by:       
+       IF COMPQ = 'I' then LWORK >= 3*N^2 + 4*N.
+
+       Correction to the size of IWORK array:
+       The line:
+       IWORK (workspace) INTEGER array, dimension (7*N)
+       should be replaced by:
+       IWORK (workspace) INTEGER array, dimension (8*N)
+
+ 209:  Documentation improvement for SBDSQR/CBDSQR.
+       Refer to "bug fixes" in this release_notes.html
+       file for new documentation.
+
+ 230:  Specification for SGELSD/CGELSD:
+       Correction to the description of argument A.
+
+       A       (input) REAL array, dimension (LDA,N)
+               On entry, the M-by-N matrix A.
+               On exit, A has been destroyed.
+
+       Correction to the description of argument LWORK.
+
+       (SGELSD only)
+       If M>=N, LWORK >= 12*N + 2*N*SMLSIZ + 8*N*NLVL + N*NRHS + (SMLSIZ+1)**2.
+       If M<N, LWORK >= 12*M + 2*M*SMLSIZ + 8*M*NLVL + M*NRHS + (SMLSIZ+1)**2.
+       (CGELSD only)
+       If M>=N, LWORK >= 2*N + N*NRHS.
+       If M<N, LWORK >= 2*M + M*NRHS.
+
+       Description of argument RWORK is missing.  It should be:
+
+       RWORK (workspace) (CGELSD only} REAL array, dimension (LRWORK)
+             If M>=N, LRWORK >= 10*N + 2*N*SMLSIZ + 8*N*NLVL +
+                                3*SMLSIZ*NRHS + (SMLSIZ+1)**2.
+             If M<N, LRWORK >= 10*M + 2*M*SMLSIZ + 8*M*NLVL +
+                               3*SMLSIZ*NRHS + (SMLSIZ+1)**2.
+             SMLSIZ is returned by ILAENV and is equal to the maximum
+             size of the subproblems at the bottom of the computation
+             tree (usually about 25), and
+              NLVL = MAX( 0, INT( LOG_2( MIN( M,N )/(SMLSIZ+1) ) ) + 1 )
+
+ 237:  Specification for SGESDD/CGESDD:
+       Correction to the description of argument LWORK for SGESDD.
+       SGESDD
+       If JOBZ = 'N', LWORK >= 3*min(M,N) + max(max(M,N),6*min(M,N)).
+       If JOBZ = 'O', LWORK >= 3*min(M,N)*min(M,N) +
+                  max(max(M,N),5*min(M,N)*min(M,N)+4*min(M,N)).
+       If JOBZ = 'S' or 'A', LWORK >= 3*min(M,N)*min(M,N) +
+                  max(max(M,N),4*min(M,N)*min(M,N)+4*min(M,N)).
+
+ 254:  Documentation improvement for SGGHRD/CGGHRD.
+       Refer to "bug fixes" in this release_notes.html
+       file for new documentation.
+
+ 266-268:  Documentation improvement for SHGEQZ/CHGEQZ.
+       Refer to "bug fixes" in this release_notes.html
+       file for new documentation.
+
+ 338:  Specification for SSTEVR:
+       Correction to the description of RANGE:
+
+       For RANGE = 'V' or 'I' and IU - IL < N - 1, SSTEBZ and
+       SSTEIN are called.
+
+       Correction to the description of ISUPPZ, where the following
+       text should be added:
+
+       Implemented only for RANGE = 'A' or 'I' and IU - IL = N - 1.
+
+ 343:  Specification for SSYEVR/CHEEVR:
+       Correction to the description of RANGE:
+
+       For RANGE = 'V' or 'I' and IU - IL < N - 1, SSTEBZ and
+       SSTEIN/CSTEIN are called.
+
+       Correction to the description of ISUPPZ, where the following
+       text should be added:
+
+       Implemented only for RANGE = 'A' or 'I' and IU - IL = N - 1.
+
+ 359-360:  Documentation improvement for STGEVC/CTGEVC.
+       Refer to "bug fixes" in this release_notes.html
+       file for new documentation.
+
+ 373-374:  Documentation improvement for STREVC/CTREVC.
+       Refer to "bug fixes" in this release_notes.html
+       file for new documentation.
+
+ 377:  Specification for STRSEN/CTRSEN:
+       Correction to the description of WORK:
+
+       On exit, if INFO=0, WORK(1) returns the optimal LWORK.
+
+       Added missing LWORK=-1 text to LWORK description:
+
+       If LWORK = -1, then a workspace query is assumed; the routine
+       only calculates the optimal size of the WORK array, returns
+       this value as the first entry of the WORK array, and no error
+       message related to LWORK is issued by XERBLA.
+
+       Correction to the description of IWORK:
+
+       On exit, if INFO=0, IWORK(1) returns the optimal LIWORK.
+
+       Added missing LIWORK=-1 text to LIWORK description:
+
+       If LIWORK = -1, then a workspace query is assumed; the routine
+       only calculates the optimal size of the IWORK array, returns
+       this value as the first entry of the IWORK array, and no error
+       message related to LIWORK is issued by XERBLA.
+ ***********************************************************************

@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Preface to the Third Edition</TITLE>
+<META NAME="description" CONTENT="Preface to the Third Edition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="node2.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html3964"
+ HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html3958"
+ HREF="node2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html3952"
+ HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html3960"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html3962"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3965"
+ HREF="node4.html">Preface to the Second</A>
+<B> Up:</B> <A NAME="tex2html3959"
+ HREF="node2.html">List of Tables</A>
+<B> Previous:</B> <A NAME="tex2html3953"
+ HREF="node2.html">List of Tables</A>
+ &nbsp <B>  <A NAME="tex2html3961"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html3963"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION02100000000000000000"></A>
+<BR>
+Preface to the Third Edition
+</H1>
+
+<P>
+Since the release of version 2.0 of the LAPACK software and the second edition
+of the Users' Guide in 1994, LAPACK has been expanded further and has become an
+even wider community effort.
+The publication of this third edition of the
+Users' Guide coincides with the release of version 3.0
+of the LAPACK software.  Some of the software contributors to this release
+were not original LAPACK authors, and thus their names have been
+credited in the routines to which they contributed.
+
+<P>
+Release 3.0 of LAPACK introduces new routines, as well as extending
+the functionality of existing routines.  The most significant
+new routines and functions are:
+<DL COMPACT>
+<DT>1.
+<DD>a faster singular value decomposition (SVD),
+computed by divide-and-conquer (xGESDD)
+ <DT>2.
+<DD>faster routines for solving rank-deficient least squares problems:
+
+<UL><LI>using QR with column pivoting (xGELSY, based on xGEQP3)
+
+<LI>using the SVD based on divide-and-conquer (xGELSD)
+    
+</UL>
+ <DT>3.
+<DD>new routines for the generalized symmetric eigenproblem:
+
+<UL><LI>xHEGVD/xSYGVD, xHPGVD/xSPGVD, xHBGVD/xSBGVD: faster routines
+         based on divide-and-conquer
+
+<LI>xHEGVX/xSYGVX, xHPGVX/xSPGVX, xHBGVX/xSBGVX: routines based on
+         bisection/inverse iteration to more efficiently compute
+         a subset of the spectrum
+      
+</UL>
+<DT>4.
+<DD>faster routines for the symmetric eigenproblem using the
+     ``relative robust representation'' algorithm
+     (xSYEVR/xHEEVR, xSTEVR, xSTEGR)
+ <DT>5.
+<DD>faster routine for the symmetric eigenproblem using ``relatively robust
+    eigenvector algorithm'' (xSTEGR, xSYEVR/xHEEVR, SSTEVR)
+ <DT>6.
+<DD>new simple and expert drivers for the generalized nonsymmetric
+    eigenproblem (xGGES, xGGEV, xGGESX, xGGEVX), including error bounds
+ <DT>7.
+<DD>a solver for the generalized Sylvester equation (xTGSYL), used in 5)
+ <DT>8.
+<DD>computational routines (xTGEXC, xTGSEN, xTGSNA) used in 5))
+ <DT>9.
+<DD>a blocked version of xTZRQF (xTZRZF), and associated xORMRZ/xUNMRZ
+</DL>
+
+<P>
+All LAPACK routines reflect the current version number with the
+date on the routine indicating when it was last modified.
+For more information on revisions to the LAPACK software or this Users'
+Guide please refer to the LAPACK <TT>release_notes</TT> file on netlib.
+Instructions for obtaining this file can be found in
+Chapter&nbsp;<A HREF="node6.html#chapessentials">1</A>.
+
+<P>
+The following additions/modifications have been made to this third edition
+of the Users' Guide:
+
+<P>
+Chapter&nbsp;<A HREF="node6.html#chapessentials">1</A> (Essentials) 
+includes updated information on accessing LAPACK and related projects 
+via the World Wide Web.
+
+<P>
+Chapter&nbsp;<A HREF="node19.html#chapcontents">2</A> (Contents of LAPACK) has been expanded to discuss
+the new routines.
+
+<P>
+Chapter&nbsp;<A HREF="node60.html#chapperformance">3</A> (Performance of LAPACK) has been updated
+with performance results for version 3.0 of LAPACK.
+
+<P>
+Chapter&nbsp;<A HREF="node72.html#chapaccstab">4</A> (Accuracy and Stability) has been extended
+to include error bounds for generalized least squares.
+
+<P>
+Appendices&nbsp;<A HREF="node141.html#chapcomp">A</A> and&nbsp;<A HREF="node143.html#chapauxil">B</A> have
+been expanded to cover the new routines.
+
+<P>
+Appendix&nbsp;<A HREF="node148.html#chapqreflawn">E</A> (LAPACK Working Notes) lists a number of new
+Working Notes, written during the LAPACK&nbsp;2 and ScaLAPACK 
+projects (see below) and published by the University of Tennessee.
+The Bibliography has been updated to give
+the most recent published references.
+
+<P>
+The Specifications of Routines have been extended and updated to cover
+the new routines and revisions to existing routines.
+
+<P>
+The original LAPACK project was funded by the NSF. Since its completion,
+four follow-up projects, LAPACK&nbsp;2, ScaLAPACK, ScaLAPACK&nbsp;2 and LAPACK&nbsp;3 have
+been funded in the U.S. by the NSF and ARPA in 1990-1994, 1991-1995,
+1995-1998, and 1998-2001, respectively.  
+
+<P>
+In addition to making possible
+the additions and extensions in this release, these grants have 
+supported the following closely related activities.
+
+<P>
+A major effort is underway
+to implement LAPACK-type algorithms for distributed memory
+<A NAME="506"></A> machines.
+As a result of these efforts,
+several new software items are now available on netlib.  The new
+items that have been introduced are distributed memory versions of the
+core routines from LAPACK; sparse Gaussian elimination - SuperLU, SuperLU_MT,
+and distributed-memory SuperLU; a fully parallel package to solve a symmetric
+positive definite sparse linear system on a message passing
+multiprocessor using Cholesky factorization<A NAME="507"></A>; a package based on
+Arnoldi's method for solving large-scale nonsymmetric, symmetric, and
+generalized algebraic eigenvalue problems<A NAME="508"></A>; 
+and templates for sparse
+iterative methods for solving <I>Ax</I>=<I>b</I><A NAME="509"></A>.
+For more information on the
+availability of each of these packages, consult the following URLs:
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/scalapack/</TT> 
+<BR>
+<TT>http://www.netlib.org/linalg/</TT>
+
+</BLOCKQUOTE>
+
+<P>
+Alternative language interfaces to LAPACK (or translations/conversions
+of LAPACK) are available in Fortran&nbsp;95, C, and Java. 
+For more information consult Section &nbsp;<A HREF="node18.html#relsoftware">1.12</A> or the following URLs:
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/lapack90/</TT> 
+<BR>
+<TT>http://www.netlib.org/clapack/</TT> 
+<BR>
+<TT>http://www.netlib.org/java/f2j/</TT>
+
+</BLOCKQUOTE>
+
+<P>
+The performance results presented in this book were obtained using
+computer resources at various sites:
+
+<UL><LI>Compaq AlphaServer DS-20, donated by Compaq Corporation, and
+located at the Innovative Computing Laboratory, in
+the Department of Computer Science, University of Tennessee, Knoxville.
+
+<P>
+
+<LI>IBM Power&nbsp;3, donated by IBM, and located at the Innovative Computing
+Laboratory, in the Department of Computer Science, University of
+Tennessee, Knoxville.
+
+<P>
+
+<LI>Intel Pentium III, donated by Intel Corporation, and
+located at the Innovative Computing Laboratory, in
+the Department of Computer Science, University of Tennessee, Knoxville.
+
+<P>
+
+<LI>Clusters of Pentium IIs, PowerPCs, and Alpha EV56s, located at the LIP
+(Laboratoire de l'Informatique du Parall&#233;lisme), ENS (&#201;cole
+Normale Sup&#233;rieure), Lyon, France.
+
+<P>
+
+<LI>SGI Origin 2000, located at the Army Research Laboratory
+in Aberdeen Proving Ground, Maryland, and supported by the DoD High
+Performance Computing Modernization Program ARL Major Shared Resource Center
+through Programming Environment and Training (PET) under Contract Number
+DAHC-94-96-C-0010, Raytheon E-Systems, subcontract no. AA23.
+
+<P>
+
+</UL>
+
+<P>
+We would like to thank the following people, who were either not
+acknowledged in previous editions, or who have made significant
+additional contributions to this edition:
+ 
+Henri Casanova,
+Tzu-Yi Chen,
+David Day,
+Inderjit Dhillon,
+Mark Fahey,
+Patrick Geoffray,
+Ming Gu,
+Greg Henry,
+Nick Higham,
+Bo K&#229;gstr&#246;m,
+Linda Kaufman,
+John Lewis,
+Ren-Cang Li,
+Osni Marques,
+Rolf Neubert,
+Beresford Parlett,
+Antoine Petitet,
+Peter Poromaa,
+Gregorio Quintana,
+Huan Ren,
+Jeff Rutter,
+Keith Seymour,
+Vasile Sima,
+Ken Stanley,
+Xiaobai Sun,
+Fran&#231;oise Tisseur,
+Zachary Walker, and
+Clint Whaley. 
+<BR>
+
+<P>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<P>
+<IMG
+ WIDTH="566" HEIGHT="105" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.gif"
+ ALT="\fbox{\parbox{\textwidth}{
+As before, the royalties from the sales of this book ...
+...ualified individuals are
+encouraged to write directly to SIAM for guidelines. }}">
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3964"
+ HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html3958"
+ HREF="node2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html3952"
+ HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html3960"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html3962"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3965"
+ HREF="node4.html">Preface to the Second</A>
+<B> Up:</B> <A NAME="tex2html3959"
+ HREF="node2.html">List of Tables</A>
+<B> Previous:</B> <A NAME="tex2html3953"
+ HREF="node2.html">List of Tables</A>
+ &nbsp <B>  <A NAME="tex2html3961"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html3963"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

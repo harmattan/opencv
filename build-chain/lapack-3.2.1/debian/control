@@ -1,0 +1,127 @@
+Source: lapack
+Section: libs
+Priority: optional
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders:  Sylvestre Ledru <sylvestre@debian.org>
+Build-Depends: debhelper (>= 7), gfortran, libblas-dev (>= 1.2-7)
+Standards-Version: 3.8.4
+Homepage: http://www.netlib.org/lapack/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-scicomp/lapack/
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-scicomp/lapack/
+
+Package: liblapack3gf
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, debconf | debconf-2.0
+Provides: liblapack.so.3gf
+Conflicts: lapack99
+Replaces: lapack99
+Description: library of linear algebra routines 3 - shared version
+ This package is a binary incompatible upgrade to the lapack
+ package. The (minor) incompatibilities are entirely due to changes in
+ the blas library, against which this library is linked. Please see the
+ documentation for the refblas3 package for details.
+ .
+ LAPACK version 3.X is a comprehensive FORTRAN library that does
+ linear algebra operations including matrix inversions, least
+ squared solutions to linear sets of equations, eigenvector
+ analysis, singular value decomposition, etc. It is a very
+ comprehensive and reputable package that has found extensive
+ use in the scientific community.
+
+Package: liblapack-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, liblapack3gf (= ${binary:Version}),
+ libatlas-base-dev | libblas-dev | libblas-3gf.so
+Provides: liblapack-3gf.so
+Conflicts: lapack99-dev,lapack-dev,liblapack-3.so
+Replaces: lapack99-dev,lapack-dev,liblapack-3.so
+Description: library of linear algebra routines 3 - static version
+ This package is a binary incompatible upgrade to the lapack-dev
+ package. The (minor) incompatibilities are entirely due to changes in
+ the blas library, against which this library is linked. Please see the
+ documentation for the refblas3 package for details.
+ .
+ LAPACK version 3.X is a comprehensive FORTRAN library that does
+ linear algebra operations including matrix inversions, least
+ squared solutions to linear sets of equations, eigenvector
+ analysis, singular value decomposition, etc. It is a very
+ comprehensive and reputable package that has found extensive
+ use in the scientific community.
+
+Package: liblapack-pic
+Section: libdevel
+Architecture: any
+Conflicts: lapack-pic,lapack3-pic
+Replaces: lapack-pic,lapack3-pic
+Depends: ${misc:Depends}, liblapack3gf (= ${binary:Version}),
+ libatlas-base-dev | libblas-dev | libblas-3gf.so
+Description: library of linear algebra routines 3 - static PIC version
+ This package is a binary incompatible upgrade to the lapack-pic
+ package. The (minor) incompatibilities are entirely due to changes in
+ the blas library, against which this library is linked. Please see the
+ documentation for the refblas3 package for details.
+ .
+ LAPACK version 3.X is a comprehensive FORTRAN library that does
+ linear algebra operations including matrix inversions, least
+ squared solutions to linear sets of equations, eigenvector
+ analysis, singular value decomposition, etc. It is a very
+ comprehensive and reputable package that has found extensive
+ use in the scientific community.
+ .
+ Normally one would want to use non-PIC code for static linking.  In
+ this case, install lapack-dev.  This package is provided for other
+ packages, such as atlas, needing access to PIC versions of the lapack
+ objects in their own build process.
+
+Package: liblapack-test
+Section: libdevel
+Architecture: any
+Conflicts: lapack-test,lapack3-test
+Replaces: lapack-test,lapack3-test
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: library of linear algebra routines 3 - testing programs
+ This package is a binary incompatible upgrade to the lapack-test
+ package. The (minor) incompatibilities are entirely due to changes in
+ the blas library, against which this library is linked. Please see the
+ documentation for the refblas3 package for details.
+ .
+ LAPACK version 3.X is a comprehensive FORTRAN library that does
+ linear algebra operations including matrix inversions, least
+ squared solutions to linear sets of equations, eigenvector
+ analysis, singular value decomposition, etc. It is a very
+ comprehensive and reputable package that has found extensive
+ use in the scientific community.
+ .
+ These testing programs have been run against the
+ shared library in the lapack package.  The results have been
+ collected in the files test_results.  These
+ programs are provided separately here so that the user can
+ test and compare alternate versions of the lapack libraries,
+ such as those provided by the atlas packages, and the lapack99
+ package.
+
+Package: liblapack-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Conflicts: lapack-doc,lapack3-doc
+Replaces: lapack-doc,lapack3-doc
+Description: library of linear algebra routines 3 - documentation
+ This package is an upgrade to the lapack-doc package to accompany
+ the binary incompatible upgrade from lapack to liblapack3gf. The
+ (minor) incompatibilities in this upgrade are entirely due to changes
+ in the blas library, against which this library is linked. Please see
+ the documentation for the refblas3 package for details.
+ .
+ LAPACK version 3.X is a comprehensive FORTRAN library that does
+ linear algebra operations including matrix inversions, least
+ squared solutions to linear sets of equations, eigenvector
+ analysis, singular value decomposition, etc. It is a very
+ comprehensive and reputable package that has found extensive
+ use in the scientific community.
+ .
+ This package contains manual pages for the routines, a
+ "Quick-Reference" guide, release notes, a frequently asked
+ questions document, and a copy of the Lapack User's Guide
+ manual in html format.

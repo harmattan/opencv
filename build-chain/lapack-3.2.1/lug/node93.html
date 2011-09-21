@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Overview</TITLE>
+<META NAME="description" CONTENT="Overview">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node94.html">
+<LINK REL="previous" HREF="node92.html">
+<LINK REL="up" HREF="node92.html">
+<LINK REL="next" HREF="node94.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5497"
+ HREF="node94.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5491"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5485"
+ HREF="node92.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5493"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5495"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5498"
+ HREF="node94.html">Balancing and Conditioning</A>
+<B> Up:</B> <A NAME="tex2html5492"
+ HREF="node92.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5486"
+ HREF="node92.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5494"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5496"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03481100000000000000"></A><A NAME="secnepsummary"></A>
+<BR>
+Overview
+</H3>
+
+<P>
+In this subsection, we will summarize all the available error bounds.
+Later subsections will provide further details. The reader may also
+refer to [<A
+ HREF="node151.html#baidemmelmckenney">12</A>,<A
+ HREF="node151.html#stewartsun90">95</A>].
+
+<P>
+Bounds for individual eigenvalues and eigenvectors are provided by
+driver xGEEVX (subsection&nbsp;<A HREF="node29.html#subsecdriveeig">2.3.4</A>) or computational
+routine xTRSNA (subsection&nbsp;<A HREF="node49.html#subseccompnep">2.4.5</A>).
+<A NAME="11403"></A><A NAME="11404"></A><A NAME="11405"></A><A NAME="11406"></A>
+<A NAME="11407"></A><A NAME="11408"></A><A NAME="11409"></A><A NAME="11410"></A>
+Bounds for
+clusters<A NAME="11411"></A> of eigenvalues
+and their associated invariant subspace are
+provided by driver xGEESX (subsection&nbsp;<A HREF="node29.html#subsecdriveeig">2.3.4</A>) or
+<A NAME="11413"></A><A NAME="11414"></A><A NAME="11415"></A><A NAME="11416"></A>
+<A NAME="11417"></A><A NAME="11418"></A><A NAME="11419"></A><A NAME="11420"></A>
+computational routine xTRSEN (subsection&nbsp;<A HREF="node49.html#subseccompnep">2.4.5</A>).
+<A NAME="11422"></A>
+
+<P>
+We let 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+be the <B><I>i</I><SUP><I>th</I></SUP></B> computed eigenvalue and
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+an <B><I>i</I><SUP><I>th</I></SUP></B> true eigenvalue.<A NAME="tex2html2253"
+ HREF="footnode.html#foot13242"><SUP>4.1</SUP></A> 
+
+Let <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img564.gif"
+ ALT="$\hat{v}_i$">
+be the
+corresponding computed right eigenvector, and <B><I>v</I><SUB><I>i</I></SUB></B> a true right
+eigenvector (so 
+<!-- MATH
+ $Av_i = \lambda_i v_i$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img563.gif"
+ ALT="$A v_i = \lambda_i v_i$">).
+If <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+is a subset of the
+integers from 1 to <B><I>n</I></B>, we let 
+<!-- MATH
+ $\lambda_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img582.gif"
+ ALT="$\lambda_{\cal I}$">
+denote the average of
+the selected eigenvalues:
+
+<!-- MATH
+ $\lambda_{\cal I} = (\sum_{i \in \cal I} \lambda_i)/(\sum_{i \in \cal I} 1)$
+ -->
+<IMG
+ WIDTH="192" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img583.gif"
+ ALT="$\lambda_{\cal I} = (\sum_{i \in \cal I} \lambda_i)/(\sum_{i \in \cal I} 1)$">,
+and similarly for 
+<!-- MATH
+ $\hat{\lambda}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img584.gif"
+ ALT="$\hat{\lambda}_{\cal I}$">.
+We also let 
+<!-- MATH
+ ${\cal S}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img585.gif"
+ ALT="${\cal S}_{\cal I}$">
+denote the subspace spanned by 
+<!-- MATH
+ $\{ v_i \, , \, i \in \cal I \}$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img586.gif"
+ ALT="$\{ v_i \, , \, i \in \cal I \}$">;
+it is
+called a right invariant subspace because if <B><I>v</I></B> is any vector in 
+<!-- MATH
+ ${\cal S}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img585.gif"
+ ALT="${\cal S}_{\cal I}$">
+then
+<B><I>Av</I></B> is also in 
+<!-- MATH
+ ${\cal S}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img585.gif"
+ ALT="${\cal S}_{\cal I}$">.
+
+<!-- MATH
+ ${\hat{\cal S}}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img587.gif"
+ ALT="${\hat{\cal S}}_{\cal I}$">
+is the corresponding computed subspace.
+
+<P>
+The algorithms for the nonsymmetric eigenproblem are normwise backward stable:
+<A NAME="11447"></A>
+<A NAME="11448"></A>
+they compute the exact eigenvalues, eigenvectors and invariant subspaces
+of slightly perturbed matrices <B><I>A</I>+<I>E</I></B>, where 
+<!-- MATH
+ $\|E\| \leq p(n) \epsilon \|A\|$
+ -->
+<IMG
+ WIDTH="129" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img588.gif"
+ ALT="$\Vert E\Vert \leq p(n) \epsilon \Vert A\Vert$">.
+Some of the bounds are stated in terms of <B>|E|<SUB>2</SUB></B> and others in
+terms of <B>|E|<SUB><I>F</I></SUB></B>; one may use 
+<!-- MATH
+ $p(n) \epsilon \|A\|_1$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img589.gif"
+ ALT="$p(n) \epsilon \Vert A\Vert _1$">
+to approximate
+either quantity.
+The code fragment in the previous subsection approximates
+<B>|E|</B> by 
+<!-- MATH
+ $\epsilon \cdot {\tt ABNRM}$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img590.gif"
+ ALT="$\epsilon \cdot {\tt ABNRM}$">,
+where 
+<!-- MATH
+ ${\tt ABNRM} = \|A\|_1$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img591.gif"
+ ALT="${\tt ABNRM} = \Vert A\Vert _1$">
+is returned by xGEEVX.
+
+<P>
+xGEEVX (or xTRSNA) returns two quantities for each
+
+<!-- MATH
+ $\hat{\lambda_i}$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">,
+<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img564.gif"
+ ALT="$\hat{v}_i$">
+pair: <B><I>s</I><SUB><I>i</I></SUB></B> and <IMG
+ WIDTH="34" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img592.gif"
+ ALT="${\rm sep}_i$">.
+xGEESX (or xTRSEN) returns two quantities for a selected subset
+<IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+of eigenvalues: <IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img593.gif"
+ ALT="$s_{\cal I}$">
+and 
+<!-- MATH
+ ${\rm sep}_{\cal I}$
+ -->
+<IMG
+ WIDTH="38" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img594.gif"
+ ALT="${\rm sep}_{\cal I}$">.
+<B><I>s</I><SUB><I>i</I></SUB></B> (or <IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img593.gif"
+ ALT="$s_{\cal I}$">)
+is a reciprocal condition number for the
+computed eigenvalue 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+(or 
+<!-- MATH
+ $\hat{\lambda}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img584.gif"
+ ALT="$\hat{\lambda}_{\cal I}$">),
+and is referred to as <TT>RCONDE</TT> by xGEEVX (or xGEESX).
+<A NAME="11460"></A>
+<A NAME="11461"></A>
+<IMG
+ WIDTH="34" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img592.gif"
+ ALT="${\rm sep}_i$">
+(or 
+<!-- MATH
+ ${\rm sep}_{\cal I}$
+ -->
+<IMG
+ WIDTH="38" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img594.gif"
+ ALT="${\rm sep}_{\cal I}$">)
+is a reciprocal condition number for
+the right eigenvector <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img564.gif"
+ ALT="$\hat{v}_i$">
+(or 
+<!-- MATH
+ ${\cal S}_{\cal I}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img585.gif"
+ ALT="${\cal S}_{\cal I}$">), and
+is referred to as <TT>RCONDV</TT> by xGEEVX (or xGEESX).
+<A NAME="11467"></A>
+The approximate error bounds for eigenvalues, averages of eigenvalues,
+eigenvectors, and invariant subspaces
+provided in Table&nbsp;<A HREF="node93.html#tabasympnepbounds">4.5</A> are
+true for sufficiently small <B>|E|</B>, which is why they are called asymptotic.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabasympnepbounds"></A>
+<DIV ALIGN="CENTER">
+<A NAME="11470"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 4.5:</STRONG>
+Asymptotic error bounds for the nonsymmetric eigenproblem</CAPTION>
+<TR><TD ALIGN="LEFT">Simple eigenvalue</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $|\hat{\lambda}_i - \lambda_i | \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\|E\|_2 / s_i$
+ -->
+<IMG
+ WIDTH="151" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img595.gif"
+ ALT="$\vert\hat{\lambda}_i - \lambda_i \vert \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle &lt;}$}}\Vert E\Vert _2 / s_i$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Eigenvalue cluster</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $|\hat{\lambda}_{\cal I} - \lambda_{\cal I} | \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\|E\|_2 / s_{\cal I}$
+ -->
+<IMG
+ WIDTH="162" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img596.gif"
+ ALT="$\vert\hat{\lambda}_{\cal I} - \lambda_{\cal I} \vert \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle &lt;}$}}\Vert E\Vert _2 / s_{\cal I}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Eigenvector</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta ( \hat{v}_i , v_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\|E\|_F / {\rm sep}_i$
+ -->
+<IMG
+ WIDTH="166" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img597.gif"
+ ALT="$\theta ( \hat{v}_i , v_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle &lt;}$}}\Vert E\Vert _F / {\rm sep}_i$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Invariant subspace</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta ( {\hat{\cal S}}_{\cal I}, {\cal S}_{\cal I}) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\|E\|_F / {\rm sep}_{\cal I}$
+ -->
+<IMG
+ WIDTH="182" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img598.gif"
+ ALT="$\theta ( {\hat{\cal S}}_{\cal I}, {\cal S}_{\cal I}) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle &lt;}$}}\Vert E\Vert _F / {\rm sep}_{\cal I}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+<A NAME="11485"></A>
+<A NAME="11486"></A>
+<A NAME="11487"></A>
+<A NAME="11488"></A>
+
+<P>
+If the problem is ill-conditioned, the asymptotic bounds may only hold
+for extremely small <B>|E|</B>. Therefore, in Table&nbsp;<A HREF="node93.html#tabglobalnepbounds">4.6</A>
+we also provide global bounds
+which are guaranteed to hold for all 
+<!-- MATH
+ $\|E\|_F < s \cdot {\rm sep}/ 4$
+ -->
+<IMG
+ WIDTH="133" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img599.gif"
+ ALT="$\Vert E\Vert _F &lt; s \cdot {\rm sep}/ 4$">.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabglobalnepbounds"></A>
+<DIV ALIGN="CENTER">
+<A NAME="11491"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table:</STRONG>
+Global error bounds for the nonsymmetric eigenproblem
+assuming 
+<!-- MATH
+ $\|E\|_F < s_i \cdot {\rm sep}_i / 4$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img600.gif"
+ ALT="$\Vert E\Vert _F &lt; s_i \cdot {\rm sep}_i / 4$"></CAPTION>
+<TR><TD ALIGN="LEFT">Eigenvalue cluster</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $|\hat{\lambda}_{\cal I} - \lambda_{\cal I} | \leq 2 \|E\|_2 / s_{\cal I}$
+ -->
+<IMG
+ WIDTH="171" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img601.gif"
+ ALT="$\vert\hat{\lambda}_{\cal I} - \lambda_{\cal I} \vert \leq 2 \Vert E\Vert _2 / s_{\cal I}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Eigenvector</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta ( \hat{v}_i , v_i ) \leq \arctan (2 \|E\|_F/({\rm sep}_i - 4 \|E\|_F/s_i))$
+ -->
+<IMG
+ WIDTH="345" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img602.gif"
+ ALT="$\theta ( \hat{v}_i , v_i ) \leq \arctan (2 \Vert E\Vert _F/({\rm sep}_i - 4 \Vert E\Vert _F/s_i))$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Invariant subspace</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta ( {\hat{\cal S}}_{\cal I}, {\cal S}_{\cal I}) \leq \arctan (2 \|E\|_F/({\rm sep}_{\cal I} - 4 \|E\|_F/s_{\cal I}))$
+ -->
+<IMG
+ WIDTH="364" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img603.gif"
+ ALT="$\theta ( {\hat{\cal S}}_{\cal I}, {\cal S}_{\cal I}) \leq \arctan (2 \Vert E\Vert _F/({\rm sep}_{\cal I} - 4 \Vert E\Vert _F/s_{\cal I}))$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+We also have the following bound, which is true for all <B><I>E</I></B>:
+all the <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+lie in the union of <B><I>n</I></B> disks,
+where the <B><I>i</I></B>-th disk is centered at 
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$">
+and has
+radius 
+<!-- MATH
+ $n \|E\|_2 / s_i$
+ -->
+<B><I>n</I> |E|<SUB>2</SUB> / <I>s</I><SUB><I>i</I></SUB></B>. If <B><I>k</I></B> of these disks overlap,
+so that any two points inside the <B><I>k</I></B> disks can be connected
+by a continuous curve lying entirely inside the <B><I>k</I></B> disks,
+and if no larger set of <B><I>k</I>+1</B> disks has this property,
+then exactly <B><I>k</I></B> of the <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$">
+lie inside the
+union of these <B><I>k</I></B> disks. Figure&nbsp;<A HREF="node93.html#figureBauerFike">4.1</A> illustrates
+this for a 10-by-10 matrix, with 4 such overlapping unions
+of disks, two containing 1 eigenvalue each, one containing 2
+eigenvalues, and one containing 6 eigenvalues.
+
+<P>
+
+<P></P>
+<DIV ALIGN="CENTER"><A NAME="figureBauerFike"></A><A NAME="11509"></A>
+<TABLE>
+<CAPTION><STRONG>Figure 4.1:</STRONG>
+Bounding eigenvalues inside overlapping disks</CAPTION>
+<TR><TD></TD></TR>
+</TABLE>
+</DIV><P></P>
+
+<P>
+Finally, the quantities <B><I>s</I></B> and <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">
+tell use how we can best
+(block) diagonalize a matrix <B><I>A</I></B> by a similarity,
+
+<!-- MATH
+ $V^{-1}AV = {\mbox {\rm diag}}(A_{11} , \ldots , A_{bb})$
+ -->
+<IMG
+ WIDTH="224" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img605.gif"
+ ALT="$V^{-1}AV = {\mbox {\rm diag}}(A_{11} , \ldots , A_{bb})$">,
+where each diagonal block
+<B><I>A</I><SUB><I>ii</I></SUB></B> has a selected subset of the eigenvalues of <B><I>A</I></B>. Such a decomposition
+may be useful in computing functions of matrices, for example.
+The goal is to choose a <B><I>V</I></B> with a nearly minimum condition number
+<IMG
+ WIDTH="50" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img606.gif"
+ ALT="$\kappa_2 (V)$">
+<A NAME="11516"></A>
+which performs this decomposition, since this generally minimizes the error
+in the decomposition.
+This may be done as follows. Let <B><I>A</I><SUB><I>ii</I></SUB></B> be
+<B><I>n</I><SUB><I>i</I></SUB></B>-by-<B><I>n</I><SUB><I>i</I></SUB></B>. Then columns 
+<!-- MATH
+ $1+\sum_{j=1}^{i-1} n_j$
+ -->
+<IMG
+ WIDTH="96" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img607.gif"
+ ALT="$1+\sum_{j=1}^{i-1} n_j$">
+through
+
+<!-- MATH
+ $\sum_{j=1}^{i} n_j$
+ -->
+<IMG
+ WIDTH="66" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img608.gif"
+ ALT="$\sum_{j=1}^{i} n_j$">
+of <B><I>V</I></B> span the invariant
+subspace<A NAME="11522"></A> of <B><I>A</I></B> corresponding
+to the eigenvalues of <B><I>A</I><SUB><I>ii</I></SUB></B>; these columns should be chosen to be any
+orthonormal basis of this space (as computed by xGEESX, for example).
+Let 
+<!-- MATH
+ $s_{{\cal I}_i}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img609.gif"
+ ALT="$s_{{\cal I}_i}$">
+be the value corresponding to the
+cluster of
+eigenvalues of <B><I>A</I><SUB><I>ii</I></SUB></B>, as computed by xGEESX or xTRSEN. Then
+
+<!-- MATH
+ $\kappa_2 (V) \leq b/ \min_i (s_{{\cal I}_i})$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img610.gif"
+ ALT="$\kappa_2 (V) \leq b/ \min_i (s_{{\cal I}_i})$">,
+and no other choice of <B><I>V</I></B> can make
+its condition number smaller than 
+<!-- MATH
+ $1/ \min_i (s_{{\cal I}_i})$
+ -->
+<IMG
+ WIDTH="94" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img611.gif"
+ ALT="$1/ \min_i (s_{{\cal I}_i})$">
+[<A
+ HREF="node151.html#demmel83">26</A>].
+Thus choosing orthonormal
+subblocks of <B><I>V</I></B> gets <IMG
+ WIDTH="50" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img606.gif"
+ ALT="$\kappa_2 (V)$">
+to within a factor <B><I>b</I></B> of its minimum
+value.
+
+<P>
+In the case of a real symmetric (or complex Hermitian) matrix,
+<B><I>s</I>=1</B> and <IMG
+ WIDTH="29" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="${\rm sep}$">
+is the absolute gap, as defined in subsection&nbsp;<A HREF="node89.html#secsym">4.7</A>.
+The bounds in Table&nbsp;<A HREF="node93.html#tabasympnepbounds">4.5</A> then reduce to the
+bounds in subsection&nbsp;<A HREF="node89.html#secsym">4.7</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5497"
+ HREF="node94.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5491"
+ HREF="node92.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5485"
+ HREF="node92.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5493"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5495"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5498"
+ HREF="node94.html">Balancing and Conditioning</A>
+<B> Up:</B> <A NAME="tex2html5492"
+ HREF="node92.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5486"
+ HREF="node92.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5494"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5496"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

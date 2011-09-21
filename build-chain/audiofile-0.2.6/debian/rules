@@ -1,0 +1,134 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+PACKAGE= audiofile
+
+include /usr/share/dpatch/dpatch.make
+
+export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	audiofile_confflags += --build $(DEB_HOST_GNU_TYPE)
+else
+	audiofile_confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
+endif
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+
+version=`ls libaudiofile/.libs/lib*.so.* | \
+ awk '{if (match($$0,/[0-9]+\.[0-9]+\.[0-9]+$$/)) print substr($$0,RSTART)}'`
+major=`ls libaudiofile/.libs/lib*.so.* | \
+ awk '{if (match($$0,/\.so\.[0-9]+$$/)) print substr($$0,RSTART+4)}'`
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	# Make sure we use the latest autotools helpers.
+	if test -f config.sub; then \
+                 mv config.sub config.sub.debsave; \
+        fi
+	if test -f config.guess; then \
+                 mv config.guess config.guess.debsave; \
+        fi
+
+	ln -sf /usr/share/misc/config.sub .
+	ln -sf /usr/share/misc/config.guess .
+
+
+	rm -rf "$(CURDIR)/obj"
+	mkdir "$(CURDIR)/obj"
+	cd "$(CURDIR)/obj" && \
+		CFLAGS="$(CFLAGS)" ../configure $(audiofile_confflags) \
+			--prefix=/usr --mandir=\$${prefix}/share/man \
+			--infodir=\$${prefix}/share/info
+
+	touch configure-stamp
+
+build: build-stamp
+build-stamp: patch-stamp configure-stamp
+	dh_testdir
+	cd "$(CURDIR)/obj" && $(MAKE)
+	touch build-stamp
+
+check: check-stamp
+check-stamp: build-stamp
+	dh_testdir
+	@if test "$(DEB_HOST_GNU_TYPE)" = "$(DEB_BUILD_GNU_TYPE)"; then \
+		cd "$(CURDIR)/obj" && $(MAKE) check; \
+	else \
+		echo "Skipping regression tests because we appear to be cross-compiling"; \
+	fi
+	touch check-stamp
+	
+clean: unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp check-stamp
+
+	rm -rf "$(CURDIR)/obj"
+	
+	if test -L config.sub; then \
+                $(RM) config.sub; \
+		if test -e config.sub.debsave; then \
+                	mv config.sub.debsave config.sub; \
+		fi; \
+	fi
+	if test -L config.guess; then \
+                $(RM) config.guess; \
+		if test -e config.guess.debsave; then \
+                	mv config.guess.debsave config.guess; \
+		fi; \
+        fi
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	cd "$(CURDIR)/obj" && $(MAKE) install DESTDIR="$(CURDIR)/debian/tmp/"
+
+
+# Build architecture-independent files here.
+binary-indep: build check install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build check install
+	dh_testdir
+	dh_testroot
+
+	dh_install -A --sourcedir=debian/tmp
+	dh_installdocs
+	dh_installman
+	dh_installchangelogs ChangeLog
+	dh_link -A
+	dh_strip -p libaudiofile0 --dbg-package=libaudiofile0-dbg
+	dh_strip
+	dh_compress 
+	dh_fixperms
+	dh_makeshlibs -V 'libaudiofile0 (>= 0.2.3-4)'
+	dh_installdeb
+	dh_shlibdeps -L libaudiofile0 -l debian/libaudiofile0/usr/lib
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb 
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure patch unpatch check

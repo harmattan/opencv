@@ -1,0 +1,52 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_float_size_calculation_fix.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix incorrect calculation of file sizes due to loss of precision
+## DP: in various float-based subroutines. Patch by Thomas Eschenbacher.
+
+@DPATCH@
+diff -urNad audiofile~/libaudiofile/util.c audiofile/libaudiofile/util.c
+--- audiofile~/libaudiofile/util.c	2004-03-09 12:49:52.000000000 +0100
++++ audiofile/libaudiofile/util.c	2009-12-06 19:57:05.000000000 +0100
+@@ -343,10 +343,10 @@
+ 	return size;
+ }
+ 
+-float _af_format_sample_size (_AudioFormat *fmt, bool stretch3to4)
++double _af_format_sample_size (_AudioFormat *fmt, bool stretch3to4)
+ {
+ 	int	compressionIndex;
+-	float	squishFactor;
++	double	squishFactor;
+ 
+ 	compressionIndex = _af_compression_index_from_id(fmt->compressionType);
+ 	squishFactor = _af_compression[compressionIndex].squishFactor;
+@@ -361,10 +361,10 @@
+ 		fmt->channelCount;
+ }
+ 
+-float _af_format_frame_size (_AudioFormat *fmt, bool stretch3to4)
++double _af_format_frame_size (_AudioFormat *fmt, bool stretch3to4)
+ {
+ 	int	compressionIndex;
+-	float	squishFactor;
++	double	squishFactor;
+ 
+ 	compressionIndex = _af_compression_index_from_id(fmt->compressionType);
+ 	squishFactor = _af_compression[compressionIndex].squishFactor;
+diff -urNad audiofile~/libaudiofile/util.h audiofile/libaudiofile/util.h
+--- audiofile~/libaudiofile/util.h	2004-03-09 12:49:52.000000000 +0100
++++ audiofile/libaudiofile/util.h	2009-12-06 19:57:05.000000000 +0100
+@@ -55,9 +55,9 @@
+ 
+ bool _af_unique_ids (int *ids, int nids, char *idname, int iderr);
+ 
+-float _af_format_frame_size (_AudioFormat *format, bool stretch3to4);
++double _af_format_frame_size (_AudioFormat *format, bool stretch3to4);
+ int _af_format_frame_size_uncompressed (_AudioFormat *format, bool stretch3to4);
+-float _af_format_sample_size (_AudioFormat *format, bool stretch3to4);
++double _af_format_sample_size (_AudioFormat *format, bool stretch3to4);
+ int _af_format_sample_size_uncompressed (_AudioFormat *format, bool stretch3to4);
+ 
+ status _af_set_sample_format (_AudioFormat *f, int sampleFormat, int sampleWidth);

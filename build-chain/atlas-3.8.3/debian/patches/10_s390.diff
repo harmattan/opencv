@@ -1,0 +1,39 @@
+--- CONFIG//include/atlconf.h.orig	2010-04-18 17:25:13.000000000 +0000
++++ CONFIG//include/atlconf.h	2010-04-18 17:25:22.000000000 +0000
+@@ -47,6 +47,14 @@
+ #endif
+ #define MachIsPPC(mach_) \
+    ( (mach_) >= PPCG4 && (mach_) <= PPCG5 )
++#ifdef __s390__
++#define MachIsS390(mach_) \
++  ( __s390__ )
++#else
++#define MachIsS390(mach_) \
++   ( 0 )
++#endif
++
+ 
+ static char *f2c_namestr[5] = {"UNKNOWN","Add_", "Add__", "NoChange", "UpCase"};
+ static char *f2c_intstr[5] =
+--- CONFIG//src/probe_comp.c.orig	2010-04-18 17:25:35.000000000 +0000
++++ CONFIG//src/probe_comp.c	2010-04-18 17:25:51.000000000 +0000
+@@ -510,6 +510,8 @@
+ 
+    if (MachIsIA64(arch))
+       return(sp);
++   if (MachIsS390(arch))
++      return(sp);
+    if (MachIsMIPS(arch))
+       return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))
+--- CONFIG//src/SpewMakeInc.c.orig	2010-04-18 17:26:01.000000000 +0000
++++ CONFIG//src/SpewMakeInc.c	2010-04-18 17:26:12.000000000 +0000
+@@ -340,6 +340,8 @@
+ 
+    if (MachIsIA64(arch))
+       return(sp);
++   if (MachIsS390(arch))
++      return(sp);
+    if (MachIsMIPS(arch))
+       return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))

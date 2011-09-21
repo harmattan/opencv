@@ -1,0 +1,8 @@
+Document: liblapack-doc.qref
+Title: Lapack Quick Reference Guide
+Author: J. Dongarra, et. al.
+Abstract: Synopsis of Lapack routines  
+Section: Programming
+
+Format: postscript
+Files: /usr/share/doc/liblapack-doc/lapackqref.ps.gz

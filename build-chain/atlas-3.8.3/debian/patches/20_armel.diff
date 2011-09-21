@@ -1,0 +1,45 @@
+Index: atlas-3.8.3/CONFIG/include/atlconf.h
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/include/atlconf.h	2010-04-29 14:09:06.000000000 +0000
++++ atlas-3.8.3/CONFIG/include/atlconf.h	2010-04-29 14:09:39.000000000 +0000
+@@ -68,6 +68,14 @@
+ #define MachIsALPHA(mach_) \
+   ( 0 )
+ #endif
++#ifdef __ARMEL__
++#define MachIsARMEL(mach_) \
++  ( __ARMEL__ )
++#else
++#define MachIsARMEL(mach_) \
++  ( 0 )
++#endif
++
+ 
+ static char *f2c_namestr[5] = {"UNKNOWN","Add_", "Add__", "NoChange", "UpCase"};
+ static char *f2c_intstr[5] =
+Index: atlas-3.8.3/CONFIG/src/SpewMakeInc.c
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/src/SpewMakeInc.c	2010-04-29 14:10:54.000000000 +0000
++++ atlas-3.8.3/CONFIG/src/SpewMakeInc.c	2010-04-29 14:11:20.000000000 +0000
+@@ -346,6 +346,8 @@
+      return(sp);
+    if (MachIsALPHA(arch))
+      return(sp);
++   if (MachIsARMEL(arch))
++     return(sp);
+    if (MachIsMIPS(arch))
+       return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))
+Index: atlas-3.8.3/CONFIG/src/probe_comp.c
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/src/probe_comp.c	2010-04-29 14:09:48.000000000 +0000
++++ atlas-3.8.3/CONFIG/src/probe_comp.c	2010-04-29 14:10:46.000000000 +0000
+@@ -516,6 +516,8 @@
+      return(sp);
+    if (MachIsALPHA(arch))
+      return(sp);
++   if (MachIsARMEL(arch))
++     return(sp);
+    if (MachIsMIPS(arch))
+       return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))

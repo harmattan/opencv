@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Other Factorizations</TITLE>
+<META NAME="description" CONTENT="Other Factorizations">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node43.html">
+<LINK REL="up" HREF="node39.html">
+<LINK REL="next" HREF="node45.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4764"
+ HREF="node45.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4758"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4754"
+ HREF="node43.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4760"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4762"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4765"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+<B> Up:</B> <A NAME="tex2html4759"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4755"
+ HREF="node43.html">Complete Orthogonal Factorization</A>
+ &nbsp <B>  <A NAME="tex2html4761"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4763"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03242500000000000000">
+Other Factorizations</A>
+</H3>
+
+<P>
+The <B><I>QL</I></B> and <B><I>RQ</I></B>&nbsp;<B>factorizations</B>
+<A NAME="2788"></A><A NAME="2789"></A> are given by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q \left( \begin{array}{c} 0 \\L \end{array} \right) ,
+\quad \mbox{if $m \geq n$,}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="203" HEIGHT="54" BORDER="0"
+ SRC="img122.gif"
+ ALT="\begin{displaymath}
+A = Q \left( \begin{array}{c} 0 \\ L \end{array} \right) ,
+\quad \mbox{if $m \geq n$,}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{cc} 0 & R \end{array} \right) Q,
+\quad \mbox{if $m \leq n$.}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="220" HEIGHT="37" BORDER="0"
+ SRC="img123.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{cc} 0 &amp; R \end{array} \right) Q,
+\quad \mbox{if $m \leq n$.}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+These factorizations are computed by xGEQLF and xGERQF, respectively; they are
+<A NAME="2798"></A><A NAME="2799"></A><A NAME="2800"></A><A NAME="2801"></A>
+<A NAME="2802"></A><A NAME="2803"></A><A NAME="2804"></A><A NAME="2805"></A>
+less commonly used than either the <B><I>QR</I></B> or <B><I>LQ</I></B> factorizations
+described above, but have applications in, for example, the
+computation of generalized <B><I>QR</I></B> factorizations&nbsp;[<A
+ HREF="node151.html#lawn31">2</A>].
+<A NAME="2807"></A><A NAME="2808"></A>
+
+<P>
+All the factorization routines discussed here (except xTZRQF and xTZRZF) allow
+arbitrary <B><I>m</I></B> and <B><I>n</I></B>, so that in some cases the matrices <B><I>R</I></B> or <B><I>L</I></B> are
+trapezoidal rather than triangular.
+A routine that performs pivoting is provided only for the <B><I>QR</I></B> factorization.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabcompof"></A>
+<DIV ALIGN="CENTER">
+<A NAME="2810"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.9:</STRONG>
+Computational routines for orthogonal factorizations</CAPTION>
+<TR><TD ALIGN="LEFT">Type of factorization</TD>
+<TD ALIGN="LEFT">Operation</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="LEFT">and matrix</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B><I>QR</I></B>, general</TD>
+<TD ALIGN="LEFT">factorize with pivoting</TD>
+<TD ALIGN="LEFT">SGEQP3<A NAME="2822"></A></TD>
+<TD ALIGN="LEFT">CGEQP3<A NAME="2823"></A></TD>
+<TD ALIGN="LEFT">DGEQP3<A NAME="2824"></A></TD>
+<TD ALIGN="LEFT">ZGEQP3<A NAME="2825"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">factorize, no pivoting</TD>
+<TD ALIGN="LEFT">SGEQRF<A NAME="2826"></A></TD>
+<TD ALIGN="LEFT">CGEQRF<A NAME="2827"></A></TD>
+<TD ALIGN="LEFT">DGEQRF<A NAME="2828"></A></TD>
+<TD ALIGN="LEFT">ZGEQRF<A NAME="2829"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">generate <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORGQR<A NAME="2830"></A></TD>
+<TD ALIGN="LEFT">CUNGQR<A NAME="2831"></A></TD>
+<TD ALIGN="LEFT">DORGQR<A NAME="2832"></A></TD>
+<TD ALIGN="LEFT">ZUNGQR<A NAME="2833"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">multiply matrix by <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORMQR<A NAME="2834"></A></TD>
+<TD ALIGN="LEFT">CUNMQR<A NAME="2835"></A></TD>
+<TD ALIGN="LEFT">DORMQR<A NAME="2836"></A></TD>
+<TD ALIGN="LEFT">ZUNMQR<A NAME="2837"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B><I>LQ</I></B>, general</TD>
+<TD ALIGN="LEFT">factorize, no pivoting</TD>
+<TD ALIGN="LEFT">SGELQF<A NAME="2838"></A></TD>
+<TD ALIGN="LEFT">CGELQF<A NAME="2839"></A></TD>
+<TD ALIGN="LEFT">DGELQF<A NAME="2840"></A></TD>
+<TD ALIGN="LEFT">ZGELQF<A NAME="2841"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">generate <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORGLQ<A NAME="2842"></A></TD>
+<TD ALIGN="LEFT">CUNGLQ<A NAME="2843"></A></TD>
+<TD ALIGN="LEFT">DORGLQ<A NAME="2844"></A></TD>
+<TD ALIGN="LEFT">ZUNGLQ<A NAME="2845"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">multiply matrix by <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORMLQ<A NAME="2846"></A></TD>
+<TD ALIGN="LEFT">CUNMLQ<A NAME="2847"></A></TD>
+<TD ALIGN="LEFT">DORMLQ<A NAME="2848"></A></TD>
+<TD ALIGN="LEFT">ZUNMLQ<A NAME="2849"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B><I>QL</I></B>, general</TD>
+<TD ALIGN="LEFT">factorize, no pivoting</TD>
+<TD ALIGN="LEFT">SGEQLF<A NAME="2850"></A></TD>
+<TD ALIGN="LEFT">CGEQLF<A NAME="2851"></A></TD>
+<TD ALIGN="LEFT">DGEQLF<A NAME="2852"></A></TD>
+<TD ALIGN="LEFT">ZGEQLF<A NAME="2853"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">generate <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORGQL<A NAME="2854"></A></TD>
+<TD ALIGN="LEFT">CUNGQL<A NAME="2855"></A></TD>
+<TD ALIGN="LEFT">DORGQL<A NAME="2856"></A></TD>
+<TD ALIGN="LEFT">ZUNGQL<A NAME="2857"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">multiply matrix by <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORMQL<A NAME="2858"></A></TD>
+<TD ALIGN="LEFT">CUNMQL<A NAME="2859"></A></TD>
+<TD ALIGN="LEFT">DORMQL<A NAME="2860"></A></TD>
+<TD ALIGN="LEFT">ZUNMQL<A NAME="2861"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B><I>RQ</I></B>, general</TD>
+<TD ALIGN="LEFT">factorize, no pivoting</TD>
+<TD ALIGN="LEFT">SGERQF<A NAME="2862"></A></TD>
+<TD ALIGN="LEFT">CGERQF<A NAME="2863"></A></TD>
+<TD ALIGN="LEFT">DGERQF<A NAME="2864"></A></TD>
+<TD ALIGN="LEFT">ZGERQF<A NAME="2865"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">generate <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORGRQ<A NAME="2866"></A></TD>
+<TD ALIGN="LEFT">CUNGRQ<A NAME="2867"></A></TD>
+<TD ALIGN="LEFT">DORGRQ<A NAME="2868"></A></TD>
+<TD ALIGN="LEFT">ZUNGRQ<A NAME="2869"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">multiply matrix by <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORMRQ<A NAME="2870"></A></TD>
+<TD ALIGN="LEFT">CUNMRQ<A NAME="2871"></A></TD>
+<TD ALIGN="LEFT">DORMRQ<A NAME="2872"></A></TD>
+<TD ALIGN="LEFT">ZUNMRQ<A NAME="2873"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B><I>RZ</I></B>, trapezoidal</TD>
+<TD ALIGN="LEFT">factorize, no pivoting</TD>
+<TD ALIGN="LEFT">STZRZF<A NAME="2874"></A></TD>
+<TD ALIGN="LEFT">CTZRZF<A NAME="2875"></A></TD>
+<TD ALIGN="LEFT">DTZRZF<A NAME="2876"></A></TD>
+<TD ALIGN="LEFT">ZTZRZF<A NAME="2877"></A></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">(blocked algorithm)</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">multiply matrix by <B><I>Q</I></B></TD>
+<TD ALIGN="LEFT">SORMRZ<A NAME="2878"></A></TD>
+<TD ALIGN="LEFT">CUNMRZ<A NAME="2879"></A></TD>
+<TD ALIGN="LEFT">DORMRZ<A NAME="2880"></A></TD>
+<TD ALIGN="LEFT">ZUNMRZ<A NAME="2881"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4764"
+ HREF="node45.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4758"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4754"
+ HREF="node43.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4760"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4762"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4765"
+ HREF="node45.html">Generalized Orthogonal Factorizations and</A>
+<B> Up:</B> <A NAME="tex2html4759"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4755"
+ HREF="node43.html">Complete Orthogonal Factorization</A>
+ &nbsp <B>  <A NAME="tex2html4761"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4763"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

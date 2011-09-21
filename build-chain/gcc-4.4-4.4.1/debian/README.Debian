@@ -1,0 +1,65 @@
+		The Debian GNU Compiler Collection setup
+		========================================
+
+Please see the README.Debian in /usr/share/doc/gcc, contained in the
+gcc package for a description of the setup of the different compiler
+versions.
+
+For general discussion about the Debian toolchain (GCC, glibc, binutils)
+please use the mailing list debian-toolchain@lists.debian.org; for GCC
+specific things, please use debian-gcc@lists.debian.org.  When in doubt
+use the debian-toolchain ML.
+
+
+Maintainers of these packages
+-----------------------------
+
+Matthias Klose <doko@debian.org>
+Ray Dassen <jdassen@debian.org>
+Jeff Bailey <jbailey@nisa.net>			(hurd-i386)
+Joel Baker <fenton@debian.org>			(netbsd-i386)
+Philip Blundell <pb@debian.org>			(arm-linux)
+Ben Collins <bcollins@debian.org>		(sparc-linux)
+Randolph Chung <tausq@debian.org>		(ia64-linux)
+Falk Hueffner <falk@debian.org>			(alpha-linux)
+Dan Jacobowitz <dan@debian.org>			(powerpc-linux)
+Thiemo Seufer <ths@networkno.de>		(mips*-linux)
+Matt Taggart <taggart@carmen.fc.hp.com>		(hppa-linux)
+Gerhard Tonn <GerhardTonn@swol.de>		(s390-linux)
+Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
+Ludovic Brenta <ludovic@ludovic-brenta.org>	(gnat)
+Arthur Loiret <arthur.loiret@gmail.com>		(gdc)
+
+===============================================================================
+
+gcc-cloog-dl:
+  Link against -ldl instead of -lcloog -lppl. Exit with an error when using
+  the Graphite loop transformation infrastructure without having the
+  libcloog-ppl0 package installed. Packages using these optimizations
+  should build-depend on libcloog-ppl0.
+
+libstdc++-pic:
+  Build and install libstdc++_pic.a library.
+
+deb-protoize:
+  build protoize/unprotoize binaries
+
+gcc-hash-style-gnu-arm:
+
+patch-draft-2-40518:
+
+copyhaste-longlong-4.4:
+
+local-variables-pic:
+
+rev-162637-sfp-hfp-calling-convention:
+
+pr45112:
+
+rev161833:
+
+gcc-cs2010q1:
+
+pr-46865-save-temps:
+
+debuginfo-fix:

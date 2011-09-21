@@ -1,0 +1,357 @@
+Atlas for Debian
+----------------------
+
+Starting from Atlas 3.8.3-1, the whole build process has been rewrited.
+It is now using most of the debhelper tools and simplify the management of 
+other archs.
+
+Why optimized packages are no longer available?
+===============================================
+
+ Before version 3.8.3-25, optimized binary packages were provided.
+ However, due to the fact that most Atlas optimisation are done at build time,
+ it has been decided to remove them and give priority to locally built packages.
+
+ See section "Building Optimized Atlas Packages on your ARCH" on how to rebuild
+ Atlas for best performances.
+
+ See also http://people.debian.org/~sylvestre/presentation-linear-algebra.pdf
+ for more information about linear algebra libraries.
+
+How to switch between the BLAS/LAPACK implementation and ATLAS optimized version
+===============================================================================
+
+Since Atlas 3.8.3-10, it is trivial to switch between the various Atlas
+optimized version.
+More information are available here:
+http://wiki.debian.org/DebianScience/LinearAlgebraLibraries
+
+BLAS:
+update-alternatives --config libblas.so.3gf
+
+LAPACK:
+update-alternatives --config liblapack.so.3gf 
+
+
+Building Optimized Atlas Packages on your ARCH
+==============================================
+
+Building your own optimized packages of Atlas is straightforward.
+Just get the sources of the package and type
+
+# fakeroot debian/rules custom
+
+it should produce a package called:
+# ../libatlas3gf-base_*.deb
+
+which should be optimized for the architecture Atlas has been built on.
+
+All dependencies can be installed with the following command:
+# aptitude install build-essential dpkg-dev cdbs devscritps gfortran \
+ liblapack-dev, liblapack-pic, texlive-latex-base
+
+How to load optimized/custom atlas libraries
+============================================
+
+In the previous packages of Atlas, each packages was configured through
+/etc/ld.so.conf.d/.
+Since Atlas 3.8.3-1, this mechanism has been removed since it is forbidden
+by the Debian Policy.
+
+For now, the way to load one optimized library or the other is left to the
+application based on atlas or to the final application user.
+This can be done through LD_LIBRARY_PATH or LD_PRELOAD.
+
+If someone has a solution to automate this behavior, please drop me an email.
+I will be happy to implement a perfect solution.
+
+See rational:
+http://lists.alioth.debian.org/pipermail/pkg-scicomp-devel/2009-October/004582.html
+
+
+Misc
+====
+
+Thanks to David Cournapeau for providing all the patches for the shared 
+libraries managements.
+
+Most the information underneath are outdated. They are left here "in case".
+
+
+ -- Sylvestre Ledru <sylvestre@debian.org>  Wed, 24 Jun 2009 16:20:02 +0200
+Last update: Wed, 25 Aug 2010 21:42:25 +0200
+
+
+
+Old debconf information
+------------------------
+
+Certain information regarding atlas has been removed from its debconf
+notes and is now provided here:
+
+Directory layout for atlas libraries
+ These atlas packages provide a number of static and shared libraries
+ optimized for commonly found hosts.  The packages will configure your
+ runtime linker to use the version best suited for your system from the
+ versions you select for installation.  You can, however, override this
+ system default by setting the LD_LIBRARY_PATH environment variable for a
+ given process at runtime.  The first directory in this path containing the
+ library sought will be used by the runtime linker.  The directory layout
+ used by atlas is as follows:
+ 
+ /usr/lib -- reference blas and lapack libraries if installed; atlas
+ libraries using only generic code for this general architecture.
+ 
+ /usr/lib/atlas  --  atlas-provided blas and lapack libs using only generic
+ code for this general architecture.
+ 
+ /usr/lib/<flag> --  atlas libraries using cpu extension instructions which
+ require the running cpu to have capability <flag>, as reported in
+ /proc/cpuinfo.  E.g. 'sse' for SSE1, '3dnow' for 3dnow, etc.
+ 
+ /usr/lib/<flag>/atlas -- atlas-provided blas and lapack libraries using
+  cpu extensions as described above.
+
+Using atlas-provided blas/lapack instead of reference
+
+ Atlas provides binary compatible blas and lapack shared libraries which
+ can transparently be used instead of the reference implementations (i.e.
+ packages blas and lapack), thereby significantly enhancing the performance
+ of several software packages using BLAS and LAPACK routines (e.g. R,
+ octave).  This package has configured ld.so.conf to load the
+ atlas-provided versions of these libraries instead of the reference
+ versions which may or may not be installed.
+
+Sharing /usr via nfs
+
+ Please note that if you export /usr via nfs, the runtime linker
+ configuration performed here will not affect the nfs clients.  These atlas
+ packages can therefore be installed on an nfs server serving a mixed
+ subarchitecture network, with each client running its own optimal version
+ of the libraries.  To achieve this, please configure /etc/ld.so.conf.d/atlas.conf on
+ the clients appropriately given the directory layout specified previously,
+ and then run ldconfig.
+
+
+
+Important note on ISAEXT
+------------------------
+
+On three architectures, sparc, alpha, and hppa, the desired isa
+extension in any custom build as described below is not selected via
+the ISAEXT environment variable, but rather by the MACH environment
+variable.  This is due to the way upstream classifies and probes for
+extensions, and is intended to keep the patch to config.c small.  If
+desired, simply replace the ISAEXT settings described below with MACH
+settings from this table on these platforms:
+
+arch     isa extension desired  MACH variable setting
+====     =====================  =====================
+sparc    v9                     'UltraSparc II'
+hppa     2.0 (abi)              'PA-RISC 2.0'
+alpha    ev6                    'EV6'
+
+What's new in 3.6.0
+-------------------
+
+The soname for the blas, lapack, and atlas shared libraries has been
+incremented due to a (minor) incompatibility introduced in the cblas
+API when a long outstanding error had been corrected.  
+
+The changes can be summarized as follows:
+
+    1) cblas_i?amax routines now return a value i such that 0 <= i < N,
+    where N is the length of the array. 
+
+    2) certain cblas error codes are now correctly switched or
+    interchanged in the case of row major matrices.
+
+    3) the symbol RowMajorStrg is not longer exported by the
+    library.
+
+Packages for both the old soname (2) and the new are being
+simultaneously provided to ease in the transition.
+
+In addition, three new environment variables have been added for use
+in building custom packages:
+
+Variable    Default      Notes
+--------    -------      -----
+CACHE	    variable     This will default to a value determined from 
+			 /proc/cpuinfo (L2) if available, and the atlas
+			 supplied default otherwise.  This serves as
+			 an upperbound for the timing and searching
+			 algorithms, so that knowing the true value
+			 is smaller than the default will speed up
+			 the tiing process.
+
+BIT	    1            For use on Opteron systems, 1 indicates a 32bit
+			 build, 2 indicates 64bit
+
+TDNCOMP     n            On certain AMD processors, atlas can use the
+			 non-IEEE compliant 3DNow2 instructions for
+			 computational operations.  As this can lead to
+			 inaccuracy should the operation overflow (as
+			 3DNow2 provides no NaN nor Inf results), this
+			 is turned off by default as in upstream atlas.
+			 This behavior differs from that in 3.2.1.  For
+			 the Debian pre-supplied 3dnow build, this variable 
+			 has been set to y and a debconf warning attached,
+			 as otherwise the build would be close to atlas3-base
+			 and could therefore be covered by this package
+			 to the resolution attempted by the pre-supplied
+			 builds.  Unless this variable is changed when building
+			 a custom package, unlike the pre-supplied 3dnow build, 
+			 3DNow2 instructions will only be used for 
+			 non-computational operations (like prefetch).  
+
+What's new in 3.2.1
+-------------------
+
+As of version 3.2.1, atlas provides kernels optimized to use processor
+extension instructions, such as 3dNOW and SSE.  While this is a great
+benefit in terms of performance, it introduces several difficulties in
+packaging for a distribution such as Debian.  
+
+The first difficulty, which this package attempts to resolve, is that
+atlas by its very nature (Automatically Tuned Linear Algebra
+Subroutines) cannot adequately cross-compile without compile-time
+access to the target subarch in question.  As Debian currently cannot
+ensure that a given package will be auto-built on a machine of a
+particular subarch, this would normally entail that the atlas package
+configure itself for the lowest common denominator.  In this
+particular case, as the performance differences are so great, such a
+policy would essentially result in the vast majority of users
+recompiling the package for themselves, making a binary package at all
+of questionable use.  
+
+This package attempts to strike a middle ground.  Sample builds have
+been recorded and collected on a variety of representative subarch
+machines.  The default build process reruns these records at compile
+time without ever executing any generated code on the compiling
+machine.  A procedure for customizing the atlas libraries to the
+machine of installation is provided via the 'custom' target of
+debian/rules, and is described more thoroughly below.  
+
+The second difficulty regards the location of these libraries.  The
+default build puts only generic code which can run on all systems of
+the general architecture in /usr/lib.  Subarch specific code is placed
+in /usr/lib/<cpu flag>, where the flag refers to the capability as
+listed in /proc/cpuinfo required to execute the library.  There was
+some discussion that ldso might automatically search these directories
+first on the run-time machine, making the installation completely
+transparent to the user, and even allowing sharing /usr across NFS
+with all participating machines running their own optimal code.  So
+far, however, ldso only searches ix86 and ix86/mmx subdirs, which does
+not provide sufficient resolution.  
+
+The solution at present therefore is for the user to either add the
+appropriate paths to /etc/ld.so.conf.d/atlas.conf on each machine accessing the
+libraries, or to set the environment variable LD_LIBRARY_PATH at
+runtime.  For example, in a setup where atlas2-{base,sse,sse2,3dnow} are
+all installed and /usr is NFS exported, the user should either
+
+	1. a) add /usr/lib/3dnow to /etc/ld.so.conf.d/atlas.conf all participating 
+		3dnow machines, and then run ldconfig
+	   b) add /usr/lib/sse to /etc/ld.so.conf.d/atlas.conf all participating 
+		sse machines, and then run ldconfig
+	   c) add /usr/lib/sse2 to /etc/ld.so.conf.d/atlas.conf all participating 
+		sse2 machines, and then run ldconfig
+
+or 
+
+	2. Add this or equivalent to $(HOME)/.profile or /etc/profile:
+	    for i in sse sse2 3dnow ; do \
+	      grep ^flags /proc/cpuinfo | grep "\<$i\>" > /dev/null && \
+		export LD_LIBRARY_PATH=/usr/lib/$i:$LD_LIBRARY_PATH \
+	    done
+
+The current versions of the atlas packages will perform the above
+modifications on /etc/ld.so.conf.d/atlas.conf automatically, but only, of course,
+on the machine of installation.  Manual treatment is still required
+for any clients accessing the libraries across NFS.
+
+If you are a 'porter', and want to submit a build record for a new
+binary subarch package, please do the following:
+
+	1. apt-get source atlas
+	2. cd atlas-3.2.1
+ 	3. (ensure that all necessary tools for building are
+	   available, as listed in 'grep Build-Depends
+	   debian/control') 
+	4a. 'fakeroot debian/rules build_record' (probed isa
+	    extension) or
+	4b. 'ISAEXT= fakeroot debian/rules build_record' (no isa
+            extension) or
+	4c. 'ISAEXT=??? fakeroot debian/rules build_record' (specified
+            isa extension)
+	5. If 4. terminates successfully, email me the emitted and
+           uuencoded build record, between the output lines "Build 
+	   record" and "done"
+
+
+Building Customized Atlas Packages
+==================================
+
+A user wishing to run the full upstream build process, customizing
+thereby the library to her particular machine, should unpack the
+source with 'apt-get source atlas', ensure all build-dependencies are
+satisfied as listed by 'grep Build-Depends debian/control', and then
+'fakeroot debian/rules custom' in the source directory.  This will
+create the appropriate isa extension atlas2-?  and atlas2-?-dev
+packages tailored to the compiling machine which the user can then
+install.  If a custom 'base' install is desired, i.e. ignoring any
+probed available isa extensions, replace the above with 'ISAEXT=
+fakeroot debian/rules custom'.  Finally, if you wish to ignore any
+upstream defaults atlas has provided for your machine, thereby
+selecting the most thorough and time-consuming customization of the
+atlas libraries to your system, you can execute 'DEFAULTS=n fakeroot
+debian/rules custom.'  The DEFAULTS and ISAEXT variables can be
+combined.  Whenever one wishes to change the ISAEXT variable from a
+previous custom build, however, a 'fakeroot debian/rules clean' must
+be executed first.  
+
+The atlas-doc and atlas2-headers packages (the latter which is a
+dependency of atlas2-?-dev) can be created with 'fakeroot debian/rules
+binary-indep'.
+
+
+
+3.0 README
+----------
+
+
+The atlas packages provide both atlas libraries in /usr/lib
+(libatlas*,libf77blas*,libcblas*,liblapack_atlas*), and full,
+atlas-optimized, binary-compatible blas/lapack libraries in
+/usr/lib/atlas (libblas*,liblapack*).  The i386 versions of these
+binary libraries are the result of running the atlas tuning routines
+on an Intel PII 350.  While these binaries seem to offer good
+performance on a variety of Intel hardware, the end user may wish to
+customize the atlas libraries to her/his own system.  This is done by
+rebuilding the Debian atlas packages from their Debian sources on the
+machine in question, and installing the resulting binary packages.
+
+The atlas-optimized blas libraries were built purely from atlas source
+(a merge of libatlas and libf77blas), as atlas now provides full blas
+support as of version 3.0.  The atlas-optimized lapack libraries were
+built from the reference implementation sources on netlib (via the
+Debian lapack package), with optimized modules in the lapack_atlas
+library replacing the reference version where possible.  Atlas does
+not yet offer optimized versions of all lapack routines.  Both
+libraries should be a completely binary compatible with their netlib
+reference implementations.  Any program linking against a shared
+libblas.so.2 and/or liblapack.so.2 can use the atlas-optimized
+versions without recompiling by setting the environment variable
+LD_LIBRARY_PATH to /usr/lib/atlas.  Alternately, one can force the
+loading of the atlas modules under any environment by relinking
+executables and replacing -lblas with -lf77blas -latlas and -llapack
+with -llapack_atlas -lcblas -lf77blas on the command line.
+
+Please note that the performance of some Atlas routines varies
+significantly with the LDA parameter.  Large powers of two (of the
+order of magnitude of the system page size, e.g. 1024, 2048 ... floats
+on Linux x86) are particularly bad, but other multiples of small
+powers of two (e.g. 4,8,16) are generally good.
+
+ -- Camm Maguire <camm@enhanced.com>, Fri,  9 Nov 2007 15:34:32 -0500

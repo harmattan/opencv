@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized Symmetric Definite Eigenproblems (GSEP)</TITLE>
+<META NAME="description" CONTENT="Generalized Symmetric Definite Eigenproblems (GSEP)">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node35.html">
+<LINK REL="previous" HREF="node33.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node35.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4603"
+ HREF="node35.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4597"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4591"
+ HREF="node33.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4599"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4601"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4604"
+ HREF="node35.html">Generalized Nonsymmetric Eigenproblems (GNEP)</A>
+<B> Up:</B> <A NAME="tex2html4598"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4592"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+ &nbsp <B>  <A NAME="tex2html4600"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4602"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03235100000000000000"></A>
+<A NAME="secGSEP"></A>
+<BR>
+Generalized Symmetric Definite Eigenproblems (GSEP)
+</H3>
+
+<P>
+<A NAME="1695"></A><A NAME="1696"></A>
+Drivers are provided to compute all the eigenvalues and
+(optionally) the eigenvectors of the following types of problems:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>
+<!-- MATH
+ $A z = \lambda B z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.gif"
+ ALT="$A z = \lambda B z$">
+<P>
+<DT>2.
+<DD>
+<!-- MATH
+ $A B z = \lambda z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img40.gif"
+ ALT="$A B z = \lambda z$">
+
+<P>
+<DT>3.
+<DD>
+<!-- MATH
+ $B A z = \lambda z$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img41.gif"
+ ALT="$B A z = \lambda z$">
+
+<P>
+</DL>
+
+<P>
+where <I>A</I> and <I>B</I> are symmetric or Hermitian and <I>B</I> is positive definite.
+For all these problems the eigenvalues<A NAME="1699"></A> <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+are real. The matrices <I>Z</I>
+of computed eigenvectors<A NAME="1700"></A> satisfy
+
+<!-- MATH
+ $Z^T A Z = \Lambda$
+ -->
+<IMG
+ WIDTH="90" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img42.gif"
+ ALT="$Z^T A Z = \Lambda$">
+(problem types 1 and 3) or 
+<!-- MATH
+ $Z^{-1} A Z^{-T} = I$
+ -->
+<I>Z</I><SUP>-1</SUP> <I>A Z</I><SUP>-<I>T</I></SUP> = <I>I</I>
+(problem type 2), where <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\Lambda$">
+is a diagonal matrix with the eigenvalues
+on the diagonal. <I>Z</I> also satisfies
+<I>Z</I><SUP><I>T</I></SUP> <I>B Z</I> = <I>I</I> (problem types 1 and 2) or 
+<!-- MATH
+ $Z^T B^{-1} Z = I$
+ -->
+<I>Z</I><SUP><I>T</I></SUP> <I>B</I><SUP>-1</SUP> <I>Z</I> = <I>I</I> (problem type 3).
+
+<P>
+There are three types of driver routines for generalized symmetric and
+Hermitian eigenproblems.  Originally LAPACK had just the simple and expert
+drivers described below, and the other one was added after an improved algorithm
+was discovered.
+
+<P>
+
+<UL><LI>a <B>simple</B> driver (name ending -GV)<A NAME="1706"></A>
+      computes all the eigenvalues and (optionally) eigenvectors.
+
+<P>
+
+<LI>an <B>expert</B> driver
+      (name ending -GVX)<A NAME="1708"></A> computes
+      all or a selected subset of the eigenvalues and (optionally) eigenvectors.
+      If few enough eigenvalues or eigenvectors are desired, the expert driver
+      is faster than the simple driver.
+
+<P>
+
+<LI>a <B>divide-and-conquer</B> driver
+      (name ending -GVD)<A NAME="1710"></A> solves the
+      same problem as the simple driver. It is much faster than the simple
+      driver for large matrices, but uses more workspace. The name
+      divide-and-conquer<A NAME="1711"></A> refers to the underlying
+      algorithm (see sections <A HREF="node48.html#subseccompsep">2.4.4</A> and <A HREF="node70.html#subsecblockeig">3.4.3</A>).
+
+<P>
+
+</UL>
+
+<P>
+Different driver routines are provided to take advantage of special
+structure or storage of the matrices <I>A</I> and <I>B</I>, as shown in
+Table&nbsp;<A HREF="node36.html#tabdrivegeig">2.6</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4603"
+ HREF="node35.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4597"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4591"
+ HREF="node33.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4599"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4601"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4604"
+ HREF="node35.html">Generalized Nonsymmetric Eigenproblems (GNEP)</A>
+<B> Up:</B> <A NAME="tex2html4598"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4592"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+ &nbsp <B>  <A NAME="tex2html4600"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4602"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

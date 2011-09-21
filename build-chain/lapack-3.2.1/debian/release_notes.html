@@ -1,0 +1,824 @@
+<HTML>
+<HEAD>
+<TITLE>RELEASE_NOTES webpage for LAPACK</TITLE>
+</HEAD>
+<BODY>
+<center>
+<H1>RELEASE_NOTES webpage for LAPACK</H1>
+<FONT color="red"><H2>UNDER CONSTRUCTION!</H2></FONT>
+</center>
+<hr>
+<pre>
+ History of LAPACK releases
+
+ Version 1.0 : February 29, 1992
+ Revised, Version 1.0a:  June 30, 1992
+ Revised, Version 1.0b:  October 31, 1992
+ Revised, Version 1.1:   March 31, 1993
+
+ Version 2.0:   September 30, 1994
+ Version 3.0:   June 30, 1999
+ Update, Version 3.0:  October 31, 1999
+ Update, Version 3.0:  May 31, 2000
+</pre>
+<hr>
+<p>
+ To better address the needs of our LAPACK users, we're in the
+ process of creating this RELEASE_NOTES webpage.  Users will
+ be able to download updates/patches to LAPACK in a variety of
+ ways (Unix patch, tar-gzip file), and will no longer need to wait
+ for an update/release, or make the changes by-hand.</p>
+<p>
+ This file contains:
+<ul>
+<li> Errata for LAPACK Users' Guide, Third Edition
+<li> Machine-specific Installation Hints
+<li> Errata for LAPACK, Version 3.0
+</ul>
+<p>
+ LAPACK has been tested on a variety of architectures.  However,
+ keep in mind that we do not have access to every possible type of
+ machine, and the regrettable bug report will appear.  We apologize
+ for any inconvenience this may cause to our users, and strongly
+ encourage users to contact us if you suspect an abnormality.
+ Please contribute "machine-specific installation.hints.gz" for
+ architectures that we do not have listed.  These "hints" are of
+ great benefit to many users.</p>
+<p>
+ <b>LAPACK test suite failure when linking with ATLAS</b>:  The LAPACK
+test suite assumes that diagonal elements are not inverted, and
+then tests only the 'Left' case of xTRSM, since the 'Right' case of the
+reference implementation of xTRSM inverts the diagonal elements.  In
+the implementation of xTRSM in ATLAS, inversion is used for both
+cases.  Thus, the LAPACK test suite (./xlintsts < stest.in ) will
+fail when linking with ATLAS.  The LAPACK test suite needs to be
+modified to allow for the inversion of diagonal elements, as 
+ATLAS's implementation of xTRSM is valid.</p>
+<hr>
+<p>
+<a href="errata.lug.gz"><H2>Errata in LAPACK Users' Guide, Third Edition</H2></a>
+<br>
+<a href="installation.hints.gz"><H2>Machine-specific Installation Hints</H2></a>
+<br>
+<hr>
+<p>
+<H2>Errata in LAPACK, version 3.0</H2>
+
+<i>UPDATED: October 4, 2002</i>
+
+<!--
+<p>
+There are no outstanding bug fixes.  All known bug fixes have been
+incorporated into the update of LAPACK. 
+</p>
+-->
+<p>
+The following bug fixes have NOT yet been incorporated in a release/update
+of LAPACK.
+</p>
+<table border cellspacing=1 bordercolor="#000000" cellpadding=7>
+<tr>
+<td valign="left">DIRECTORY/ROUTINE</td>
+<td valign="left">DATE POSTED (M/D/Y)</td>
+<td valign="left">DESCRIPTION OF CHANGE</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/sblat2.f">LAPACK/BLAS/TESTING/sblat2.f</a></td>
+<td valign="left">10/9/2000</td>
+<td valign="left">Changed STATUS='NEW' to 'UNKNOWN'</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/dblat2.f">LAPACK/BLAS/TESTING/dblat2.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/cblat2.f">LAPACK/BLAS/TESTING/cblat2.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/zblat2.f">LAPACK/BLAS/TESTING/zblat2.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/sblat3.f">LAPACK/BLAS/TESTING/sblat3.f</a></td>
+<td valign="left">10/9/2000</td>
+<td valign="left">Changed STATUS='NEW' to 'UNKNOWN'</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/dblat3.f">LAPACK/BLAS/TESTING/dblat3.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/cblat3.f">LAPACK/BLAS/TESTING/cblat3.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/blas/testing/zblat3.f">LAPACK/BLAS/TESTING/zblat3.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/install/make.inc.LINUX">LAPACK/INSTALL/make.inc.LINUX</a></td>
+<td valign="left">3/29/2001</td>
+<td valign="left">Removal of -fno-f2c from compiler flags!</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sbdsqr.f">LAPACK/SRC/sbdsqr.f</a></td>
+<td valign="left">4/25/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dbdsqr.f">LAPACK/SRC/dbdsqr.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cbdsqr.f">LAPACK/SRC/cbdsqr.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zbdsqr.f">LAPACK/SRC/zbdsqr.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgebd2.f">LAPACK/SRC/sgebd2.f</a></td>
+<td valign="left">5/7/2001</td>
+<td valign="left">Fix to avoid zero-size array reference in call to xLARF on lines 174 and 212</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgebd2.f">LAPACK/SRC/dgebd2.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgebd2.f">LAPACK/SRC/cgebd2.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgebd2.f">LAPACK/SRC/zgebd2.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgees.f">LAPACK/SRC/sgees.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgees.f">LAPACK/SRC/dgees.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgees.f">LAPACK/SRC/cgees.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgees.f">LAPACK/SRC/zgees.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgeesx.f">LAPACK/SRC/sgeesx.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Added workspace calculation (upper bound)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgeesx.f">LAPACK/SRC/dgeesx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgeesx.f">LAPACK/SRC/cgeesx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgeesx.f">LAPACK/SRC/zgeesx.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgeev.f">LAPACK/SRC/sgeev.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgeev.f">LAPACK/SRC/dgeev.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgeev.f">LAPACK/SRC/cgeev.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgeev.f">LAPACK/SRC/zgeev.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgeevx.f">LAPACK/SRC/sgeevx.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgeevx.f">LAPACK/SRC/dgeevx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgeevx.f">LAPACK/SRC/cgeevx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgeevx.f">LAPACK/SRC/zgeevx.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgegs.f">LAPACK/SRC/sgegs.f</a></td>
+<td valign="left">4/26/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgegs.f">LAPACK/SRC/dgegs.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgegs.f">LAPACK/SRC/cgegs.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgegs.f">LAPACK/SRC/zgegs.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgegv.f">LAPACK/SRC/sgegv.f</a></td>
+<td valign="left">4/26/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgegv.f">LAPACK/SRC/dgegv.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgegv.f">LAPACK/SRC/cgegv.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgegv.f">LAPACK/SRC/zgegv.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgelsd.f">LAPACK/SRC/sgelsd.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgelsd.f">LAPACK/SRC/dgelsd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgelsd.f">LAPACK/SRC/cgelsd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgelsd.f">LAPACK/SRC/zgelsd.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgelss.f">LAPACK/SRC/sgelss.f</a></td>
+<td valign="left">4/25/2001</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1), and bug in DO 40 loop</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgelss.f">LAPACK/SRC/dgelss.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgelss.f">LAPACK/SRC/cgelss.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgelss.f">LAPACK/SRC/zgelss.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgesdd.f">LAPACK/SRC/sgesdd.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgesdd.f">LAPACK/SRC/dgesdd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgesdd.f">LAPACK/SRC/cgesdd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgesdd.f">LAPACK/SRC/zgesdd.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgesvd.f">LAPACK/SRC/sgesvd.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgesvd.f">LAPACK/SRC/dgesvd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgesvd.f">LAPACK/SRC/cgesvd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgesvd.f">LAPACK/SRC/zgesvd.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sggbak.f">LAPACK/SRC/sggbak.f</a></td>
+<td valign="left">2/1/2001</td>
+<td valign="left">Corrected incorrect error exit when N=0, ILO=1, IHI=0</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dggbak.f">LAPACK/SRC/dggbak.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cggbak.f">LAPACK/SRC/cggbak.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zggbak.f">LAPACK/SRC/zggbak.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sggbal.f">LAPACK/SRC/sggbal.f</a></td>
+<td valign="left">4/12/2001</td>
+<td valign="left">Corrected incorrect error exit for LDB and LDA->LDB in call to IxAMAX on line 427(474)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dggbal.f">LAPACK/SRC/dggbal.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cggbal.f">LAPACK/SRC/cggbal.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zggbal.f">LAPACK/SRC/zggbal.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgges.f">LAPACK/SRC/sgges.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgges.f">LAPACK/SRC/dgges.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgges.f">LAPACK/SRC/cgges.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgges.f">LAPACK/SRC/zgges.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sggesx.f">LAPACK/SRC/sggesx.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Added workspace calculation (upper bound)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dggesx.f">LAPACK/SRC/dggesx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cggesx.f">LAPACK/SRC/cggesx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zggesx.f">LAPACK/SRC/zggesx.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sggev.f">LAPACK/SRC/sggev.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dggev.f">LAPACK/SRC/dggev.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cggev.f">LAPACK/SRC/cggev.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zggev.f">LAPACK/SRC/zggev.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sggevx.f">LAPACK/SRC/sggevx.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dggevx.f">LAPACK/SRC/dggevx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cggevx.f">LAPACK/SRC/cggevx.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zggevx.f">LAPACK/SRC/zggevx.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sgghrd.f">LAPACK/SRC/sgghrd.f</a></td>
+<td valign="left">4/26/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dgghrd.f">LAPACK/SRC/dgghrd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/cgghrd.f">LAPACK/SRC/cgghrd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zgghrd.f">LAPACK/SRC/zgghrd.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/shgeqz.f">LAPACK/SRC/shgeqz.f</a></td>
+<td valign="left">5/3/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dhgeqz.f">LAPACK/SRC/dhgeqz.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/chgeqz.f">LAPACK/SRC/chgeqz.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zhgeqz.f">LAPACK/SRC/zhgeqz.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/slasr.f">LAPACK/SRC/slasr.f</a></td>
+<td valign="left">5/3/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dlasr.f">LAPACK/SRC/dlasr.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/clasr.f">LAPACK/SRC/clasr.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zlasr.f">LAPACK/SRC/zlasr.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/ssbgst.f">LAPACK/SRC/ssbgst.f</a></td>
+<td valign="left">1/9/2001</td>
+<td valign="left">Corrected error in input error-checking</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dsbgst.f">LAPACK/SRC/dsbgst.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/chbgst.f">LAPACK/SRC/chbgst.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/zhbgst.f">LAPACK/SRC/zhbgst.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/sstebz.f">LAPACK/SRC/sstebz.f</a></td>
+<td valign="left">10/5/2000</td>
+<td valign="left">Changed FUDGE factor from 2.0 to 2.1 (for the T3E)</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dstebz.f">LAPACK/SRC/dstebz.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/stgevc.f">LAPACK/SRC/stgevc.f</a></td>
+<td valign="left">5/3/2001</td>
+<td valign="left">Removed erroneous HOWMNY='T' in input error-checking and documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dtgevc.f">LAPACK/SRC/dtgevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ctgevc.f">LAPACK/SRC/ctgevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ztgevc.f">LAPACK/SRC/ztgevc.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/strevc.f">LAPACK/SRC/strevc.f</a></td>
+<td valign="left">5/7/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dtrevc.f">LAPACK/SRC/dtrevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ctrevc.f">LAPACK/SRC/ctrevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ztrevc.f">LAPACK/SRC/ztrevc.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/strsen.f">LAPACK/SRC/strsen.f</a></td>
+<td valign="left">1/3/2001</td>
+<td valign="left">Corrected error in documentation with LQUERY</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dtrsen.f">LAPACK/SRC/dtrsen.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ctrsen.f">LAPACK/SRC/ctrsen.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ztrsen.f">LAPACK/SRC/ztrsen.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/strsna.f">LAPACK/SRC/strsna.f</a></td>
+<td valign="left">10/26/2001</td>
+<td valign="left">Corrected documentation error in size of WORK and IWORK</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/dtrsna.f">LAPACK/SRC/dtrsna.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ctrsna.f">LAPACK/SRC/ctrsna.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/src/ztrsna.f">LAPACK/SRC/ztrsna.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/ctrsyl.f">LAPACK/SRC/ctrsyl.f</a></td>
+<td valign="left">1/9/2001</td>
+<td valign="left">Corrected error in input error-checking</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/src/ztrsyl.f">LAPACK/SRC/ztrsyl.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/lin/serrqp.f">LAPACK/TESTING/LIN/serrqp.f</a></td>
+<td valign="left">10/6/2000</td>
+<td valign="left">Avoid LDA=0 to test input error checking</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/lin/derrqp.f">LAPACK/TESTING/LIN/derrqp.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/lin/cerrqp.f">LAPACK/TESTING/LIN/cerrqp.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/lin/zerrqp.f">LAPACK/TESTING/LIN/zerrqp.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/lin/cchkhe.f">LAPACK/TESTING/LIN/cchkhe.f</a></td>
+<td valign="left">7/6/2001</td>
+<td valign="left">Removal of line 386 (XTYPE='C')</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/lin/zchkhe.f">LAPACK/TESTING/LIN/zchkhe.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/eig/serrgg.f">LAPACK/TESTING/EIG/serrgg.f</a></td>
+<td valign="left">10/9/2000</td>
+<td valign="left">Avoid LDA=LDB=LDU=LDV=LDQ=0 to test input error checking</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/eig/derrgg.f">LAPACK/TESTING/EIG/derrgg.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/eig/cerrgg.f">LAPACK/TESTING/EIG/cerrgg.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/testing/eig/zerrgg.f">LAPACK/TESTING/EIG/zerrgg.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/Makefile">LAPACK/TIMING/Makefile</a></td>
+<td valign="left">10/9/2000</td>
+<td valign="left">Added ./ for running executables</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/sbdsqr.f">LAPACK/TIMING/EIG/EIGSRC/sbdsqr.f</a></td>
+<td valign="left">4/25/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/dbdsqr.f">LAPACK/TIMING/EIG/EIGSRC/dbdsqr.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/cbdsqr.f">LAPACK/TIMING/EIG/EIGSRC/cbdsqr.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/zbdsqr.f">LAPACK/TIMING/EIG/EIGSRC/zbdsqr.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/sgghrd.f">LAPACK/TIMING/EIG/EIGSRC/sgghrd.f</a></td>
+<td valign="left">4/26/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/dgghrd.f">LAPACK/TIMING/EIG/EIGSRC/dgghrd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/cgghrd.f">LAPACK/TIMING/EIG/EIGSRC/cgghrd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/zgghrd.f">LAPACK/TIMING/EIG/EIGSRC/zgghrd.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/shgeqz.f">LAPACK/TIMING/EIG/EIGSRC/shgeqz.f</a></td>
+<td valign="left">5/3/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/dhgeqz.f">LAPACK/TIMING/EIG/EIGSRC/dhgeqz.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/chgeqz.f">LAPACK/TIMING/EIG/EIGSRC/chgeqz.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/zhgeqz.f">LAPACK/TIMING/EIG/EIGSRC/zhgeqz.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/stgevc.f">LAPACK/TIMING/EIG/EIGSRC/stgevc.f</a></td>
+<td valign="left">5/3/2001</td>
+<td valign="left">Removed erroneous HOWMNY='T' in input error-checking and documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/dtgevc.f">LAPACK/TIMING/EIG/EIGSRC/dtgevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/ctgevc.f">LAPACK/TIMING/EIG/EIGSRC/ctgevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/ztgevc.f">LAPACK/TIMING/EIG/EIGSRC/ztgevc.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/strevc.f">LAPACK/TIMING/EIG/EIGSRC/strevc.f</a></td>
+<td valign="left">5/7/2001</td>
+<td valign="left">Documentation improvement</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/dtrevc.f">LAPACK/TIMING/EIG/EIGSRC/dtrevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/ctrevc.f">LAPACK/TIMING/EIG/EIGSRC/ctrevc.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/eig/eigsrc/ztrevc.f">LAPACK/TIMING/EIG/EIGSRC/ztrevc.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/sgelsd.f">LAPACK/TIMING/LIN/LINSRC/sgelsd.f</a></td>
+<td valign="left">10/4/2002</td>
+<td valign="left">Inserted missing instrumentation code, and corrected declaration of WLALSD</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/dgelsd.f">LAPACK/TIMING/LIN/LINSRC/dgelsd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/cgelsd.f">LAPACK/TIMING/LIN/LINSRC/cgelsd.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/zgelsd.f">LAPACK/TIMING/LIN/LINSRC/zgelsd.f</a></td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/sgelss.f">LAPACK/TIMING/LIN/LINSRC/sgelss.f</a></td>
+<td valign="left">4/25/2001</td>
+<td valign="left">Corrected error with LQUERY and setting of WORK(1), and bug in DO 40 loop</td>
+</tr>
+<tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/dgelss.f">LAPACK/TIMING/LIN/LINSRC/dgelss.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/cgelss.f">LAPACK/TIMING/LIN/LINSRC/cgelss.f</a></td>
+</tr>
+<td valign="left"><a href="/lapack/patch/timing/lin/linsrc/zgelss.f">LAPACK/TIMING/LIN/LINSRC/zgelss.f</a></td>
+</tr>
+</table>
+<p>
+
+<hr>
+<H2>Details of existing software updates</H2>
+<p>
+ UPDATES (Version 3.0)  October 31, 1999 and May 31, 2000
+</p>
+The modifications listed below are included in the file:
+<a href="http://www.netlib.org/lapack/update.tgz">http://www.netlib.org/lapack/update.tgz</a>
+as well as the <a href="http://www.netlib.org/lapack/lapack.tgz">http://www.netlib.org/lapack/lapack.tgz</a>.
+<p>
+ Note: Unless otherwise stated, changes to single precision routines (names
+ beginning with S or C) apply also to the corresponding double precision
+ routines (names beginning with D and Z).
+<p>
+ To view/download individual updated files from this list, please consult
+ the individual files on netlib.
+<br>
+<a href="http://www.netlib.org/lapack/single/">http://www.netlib.org/lapack/single</a><br>
+<a href="http://www.netlib.org/lapack/double/">http://www.netlib.org/lapack/double</a><br>
+<a href="http://www.netlib.org/lapack/complex/">http://www.netlib.org/lapack/complex</a><br>
+<a href="http://www.netlib.org/lapack/complex16/">http://www.netlib.org/lapack/complex16</a>
+<pre> 
+ -------------  -------    --------------------------
+ DIRECTORY      ROUTINE    DESCRIPTION OF CHANGE
+ -------------  -------    --------------------------
+ LAPACK/        Makefile   Added ./ for executables
+
+ LAPACK/
+ BLAS/TESTING/  cblat3.f   Missing CMPLX intrinsic in assignment statement
+                           Lines 1995-1996
+                           ALPHA = ( ONE, -ONE )
+                           BETA = ( TWO, -TWO )
+                           should be 
+                           ALPHA = CMPLX( ONE, -ONE )
+                           BETA = CMPLX( TWO, -TWO )
+ SRC/
+               Makefile    Move slarrb.o, slarre.o, and slarrf.o to SCLAUX
+                           Move dlarrb.o, dlarre.o, and dlarrf.o to DZLAUX
+
+               cheevr.f    Line 310 should instead be
+                           RWORK(1) = LRWMIN
+
+               chetd2.f    Error in zero'ing of imaginary parts of diagonal
+                           elements
+                                            
+               chbgvd.f    Incorrect workspace calculation for LLWK2 and
+                           LLRWK when N=1. 
+
+               chpgvd.f    Missing LQUERY return
+
+               cstegr.f    Replace SSTEGR->CSTEGR in call to XERBLA
+
+               sbdsdc.f    Workspace correction
+                           Line 113, 2*N --> 4*N
+                           Documentation correction IWORK dimension
+
+               sbdsqr.f/   Workspace correction
+               cbdsqr.f    Line 99, 2*N --> 4*N
+
+               sgeev.f     Corrected error with LQUERY and WORK(1)
+
+               sgelsd.f/   Leading comment correction for A and LWORK and
+               cgelsd.f    workspace correction
+ 
+               sgelss.f/   Workspace correction
+                          Line 178, 5*N-4 --> 5*N
+                          Line 194, 5*M-4 --> 5*M
+               cgelss.f    Workspace correction
+                          Line 95, 5*MIN(M,N)-1 --> 5*MIN(M,N)
+                          Line 174, 5*N-1 --> 5*N
+                          Line 204, 5*M-1 --> 5*M
+                          Line 224, 5*M-1 --> 5*M
+
+               sgesdd.f/  Possible MAXWRK uninitialized and
+               cgesdd.f   and LWORK=-1 query insertion
+
+               sgesvd.f/  Workspace correction in comments
+                          Line 118, 5*MIN(M,N)-4 --> 5*MIN(M,N)
+                          Line 217, MAX(3*N,5*N-4) --> 5*N
+                          Line 390, MAX(3*M,5*M-4) --> 5*M
+               cgesvd.f   Workspace correction in comments
+                          Line 123, MAX(3*MIN(M,N),5*MIN(M,N)-4) --> 5*MIN(M,N)
+                          Line 224, MAX(3*N,5*N-4) --> 5*N
+                          Line 386, MAX(3*M,5*M-4) --> 5*M
+
+               sgtsv.f    Leading comment correction for B
+
+               slaed2.f   Error in routine name passed to XERBLA
+
+               slaed4.f   Corrected error in rootfinding
+
+               slals0.f/  Out-of-range array reference
+               clals0.f
+
+               slalsd.f/  Leading comment correction for LWORK and a
+               clalsd.f   call to SLASRT was added
+
+               slarzb.f/  Out-of-range array reference
+               clarzb.f
+
+               slasd2.f   Fix out-of-range memory reference when N=0
+
+               slasd3.f   Fix out-of-range memory reference when N=0
+
+               slasd4.f   Cray compiler workaround on lines 596-597 and 607-608
+
+               slasda.f   Leading comment correction for size of WORK
+
+               slasdq.f   Workspace correction
+                          Line 115, max(1,4*N-4) --> 4*N
+                          and incorrect routine name passed to XERBLA
+
+               slasq1.f   Workspace correction
+                          Line 53, 2*N --> 4*N
+                          and modifications for IEEE
+
+               slasq2.f   Fix out-of-range error for N=1 and modifications
+                          for IEEE
+
+               slasq3.f   Modifications for IEEE and index correction
+                          I0-->N0 on line 193
+
+               slasq4.f   Modifications for IEEE
+               slasq5.f   Modifications for IEEE
+               slasq6.f   Modifications for IEEE 
+
+               sormrz.f   Missing LQUERY return
+
+               spteqr.f/  Workspace correction
+               cpteqr.f   Line 78, 2*N --> 4*N
+
+               sstevr.f   Documentation correction and call to SSTEGR
+
+               ssyevr.f/  Documentation correction and call to SSTEGR
+               cheevr.f
+
+ TESTING/
+               Makefile   Added ./ for executables
+
+               sgd.in/    Fixed NSIZE line for xGX
+               cgd.in     Replace line 18 with
+                   5              Largest matrix dimension (0 <= NSIZE <= 5)
+
+ TESTING/MATGEN/
+               slatm6.f   Modification for SGESVD workspace change
+
+ TESTING/LIN/
+               schkgb.f/  Missing integer item in 9996 FORMAT statement
+               cchkgb.f
+
+               schkge.f/  Correction to FORMAT statements
+               cchkge.f
+
+               schkpb.f/  Removal of XTYPE='C' line
+               cchkpb.f
+
+               schkpo.f/  Removal of XTYPE='C' line
+               cchkpo.f
+
+               schkpp.f/  Removal of XTYPE='C' line
+               cchkpp.f
+
+               schksp.f/  Removal of XTYPE='C' line
+               cchksp.f
+
+               schksy.f/  Removal of XTYPE='C' line
+               cchksy.f
+
+               schktb.f/  Correction to FORMAT statements
+               cchktb.f
+
+               schktp.f/  Correction to FORMAT statements
+               cchktp.f
+
+               schktr.f/  Correction to FORMAT 9999 and 9998 statements
+               cchktr.f
+
+               sdrvls.f/  Correction to argument passed to INTRINSIC and
+               cdrvls.f   remove a call to SLASRT in TEST 15;
+                          Correction to leading comments (IWORK) 
+
+ TESTING/EIG/
+               schkhs.f   Fixed out-of-range error for N=0
+
+               sdrgsx.f/  BDSPAC correction for xGESVD workspace and
+               cdrgsx.f   initialize IFUNC = 0
+
+               sdrvbd.f/  IWTMP correction for xGESVD workspace
+               cdrvbd.f
+        
+               sdrvst.f/  Out-of-range array reference.
+               cdrvst.f
+
+               cerrbd.f   Correction to summary line
+    
+               serred.f/  Correction to summary line
+               cerred.f
+
+ TIMING/
+               Makefile    Erroneous sgeptim.in instead of SGEPTIM.in on
+                           line 253
+
+ TIMING/LIN/
+               stimls.f/   Correction to size of LWORK for xGELSD
+               ctimls.f
+
+               stimq3.f/   Correction Q3->QP before ATIMIN call
+               ctimq3.f
+
+ TIMING/LIN/LINSRC/
+               sgelsd.f/   Same correction as in SRC
+               cgelsd.f
+
+               sgelss.f/   Same correction as in SRC
+               cgelss.f
+
+               slals0.f/   Same correction as in SRC
+               clals0.f
+
+               slalsd.f/   Same correction as in SRC
+               clalsd.f
+
+ TIMING/EIG/
+               stim22.f/   Disable timing of SSTEGR if non-IEEE-754 compliant
+               ctim22.f
+
+ TIMING/EIG/EIGSRC/
+               sbdsdc.f    Same correction as in SRC
+
+               sbdsqr.f/   Same correction as in SRC
+               cbdsqr.f
+
+               sgesdd.f/   Same correction as in SRC
+               cgesdd.f
+
+               slaed2.f    Same correction as in SRC
+
+               slasd2.f    Same correction as in SRC
+               slasd3.f    Same correction as in SRC
+               slasd4.f    Same correction as in SRC
+
+               slasdq.f    Same correction as in SRC
+
+               slasq1.f    Same correction as in SRC
+               slasq2.f    Same correction as in SRC
+               slasq3.f    Same correction as in SRC
+               slasq4.f    Same correction as in SRC
+               slasq5.f    Same correction as in SRC
+               slasq6.f    Same correction as in SRC
+
+               spteqr.f/   Same correction as in SRC
+               cpteqr.f
+</pre>
+<HR>
+</BODY>
+</HTML>

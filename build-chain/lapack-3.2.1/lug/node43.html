@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Complete Orthogonal Factorization</TITLE>
+<META NAME="description" CONTENT="Complete Orthogonal Factorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node44.html">
+<LINK REL="previous" HREF="node42.html">
+<LINK REL="up" HREF="node39.html">
+<LINK REL="next" HREF="node44.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4752"
+ HREF="node44.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4746"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4740"
+ HREF="node42.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4748"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4750"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4753"
+ HREF="node44.html">Other Factorizations</A>
+<B> Up:</B> <A NAME="tex2html4747"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4741"
+ HREF="node42.html">QR Factorization with Column</A>
+ &nbsp <B>  <A NAME="tex2html4749"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4751"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03242400000000000000">
+Complete Orthogonal Factorization</A>
+</H3>
+
+<P>
+The <B><I>QR</I></B> factorization with column pivoting does not enable us to compute
+a <I>minimum norm</I> solution to a rank-deficient linear least squares problem,
+<A NAME="2737"></A>
+unless <B><I>R</I><SUB>12</SUB> = 0</B>. However,
+by applying further orthogonal (or unitary) transformations<A NAME="2739"></A>
+from the right to the upper trapezoidal matrix
+
+<!-- MATH
+ $\left( \begin{array}{cc}R_{11} & R_{12}\end{array} \right)$
+ -->
+<IMG
+ WIDTH="110" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img118.gif"
+ ALT="$\left( \begin{array}{cc}R_{11} &amp; R_{12}\end{array} \right)$">,
+using the routine xTZRQF (or xTZRZF), <B><I>R</I><SUB>12</SUB></B> can be eliminated:
+<A NAME="2746"></A><A NAME="2747"></A><A NAME="2748"></A><A NAME="2749"></A>
+<A NAME="2750"></A><A NAME="2751"></A><A NAME="2752"></A><A NAME="2753"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{cc}R_{11} & R_{12}\end{array}\right) Z =
+\left( \begin{array}{cc}T_{11} & 0\end{array}\right) .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="234" HEIGHT="37" BORDER="0"
+ SRC="img119.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{cc}R_{11} &amp; R_{12}\end{array}\right) Z =
+\left( \begin{array}{cc}T_{11} &amp; 0\end{array}\right) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+This gives the
+<B>complete orthogonal
+factorization</B><A NAME="2764"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A P = Q \left(
+\begin{array}{cc}T_{11} & 0 \\0 & 0\end{array}
+\right) Z^{T}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="184" HEIGHT="54" BORDER="0"
+ SRC="img120.gif"
+ ALT="\begin{displaymath}
+A P = Q \left(
+\begin{array}{cc}T_{11} &amp; 0 \\ 0 &amp; 0\end{array}\right) Z^{T}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+from which the minimum norm solution<A NAME="2770"></A> can be obtained as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = P Z \left( \begin{array}{c} T_{11}^{-1} \hat{c}_1 \\0\end{array}\right) .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="156" HEIGHT="54" BORDER="0"
+ SRC="img121.gif"
+ ALT="\begin{displaymath}
+x = P Z \left( \begin{array}{c} T_{11}^{-1} \hat{c}_1 \\ 0\end{array}\right) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The matrix <B><I>Z</I></B> is not
+formed explicitly, but is represented as a product of elementary
+reflectors,
+<A NAME="2777"></A>
+<A NAME="2778"></A>
+as described in section&nbsp;<A HREF="node128.html#secorthog">5.4</A>.
+Users need not be aware of the details of this representation,
+because associated routines are provided to work with&nbsp;<B><I>Z</I></B>:
+xORMRZ<A NAME="2780"></A><A NAME="2781"></A> (or
+xUNMRZ<A NAME="2782"></A><A NAME="2783"></A>) can pre- or post-multiply
+a given matrix by <B><I>Z</I></B> or <B><I>Z</I><SUP><I>T</I></SUP></B>
+(<B><I>Z</I><SUP><I>H</I></SUP></B> if complex).
+
+<P>
+The subroutine xTZRZF is a faster and blocked version of xTZRQF.
+xTZRQF has been retained for compatibility
+with Release 2.0 of LAPACK, but we omit references to this routine
+in the remainder of this users' guide.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4752"
+ HREF="node44.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4746"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4740"
+ HREF="node42.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4748"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4750"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4753"
+ HREF="node44.html">Other Factorizations</A>
+<B> Up:</B> <A NAME="tex2html4747"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4741"
+ HREF="node42.html">QR Factorization with Column</A>
+ &nbsp <B>  <A NAME="tex2html4749"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4751"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

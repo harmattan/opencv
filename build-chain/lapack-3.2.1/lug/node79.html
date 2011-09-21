@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Improved Error Bounds</TITLE>
+<META NAME="description" CONTENT="Improved Error Bounds">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node78.html">
+<LINK REL="up" HREF="node77.html">
+<LINK REL="next" HREF="node80.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5299"
+ HREF="node80.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5293"
+ HREF="node77.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5289"
+ HREF="node78.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5295"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5297"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5300"
+ HREF="node80.html">Error Bounds for Linear</A>
+<B> Up:</B> <A NAME="tex2html5294"
+ HREF="node77.html">Further Details: How Error</A>
+<B> Previous:</B> <A NAME="tex2html5290"
+ HREF="node78.html">Standard Error Analysis</A>
+ &nbsp <B>  <A NAME="tex2html5296"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5298"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03432000000000000000"></A><A NAME="seccomponentwise"></A>
+<BR>
+Improved Error Bounds
+</H2>
+
+<P>
+The standard error analysis just outlined has a drawback: by using the
+infinity norm 
+<!-- MATH
+ $\| \delta \|_{\infty}$
+ -->
+<IMG
+ WIDTH="45" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img391.gif"
+ ALT="$\Vert \delta \Vert _{\infty}$">
+to measure the backward error,
+entries of equal magnitude in <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+contribute equally to the final
+error bound 
+<!-- MATH
+ $\kappa (f,z) (\| \delta \|/\|z\|)$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img392.gif"
+ ALT="$\kappa (f,z) (\Vert \delta \Vert/\Vert z\Vert)$">.
+This means that
+if <B><I>z</I></B> is sparse or has some very tiny entries, a normwise backward
+stable algorithm may make very large changes in these entries
+compared to their original values. If these tiny values are known accurately
+by the user, these errors may be unacceptable,
+or the error bounds may be unacceptably large.
+
+<P>
+For example, consider solving a diagonal system of linear equations <B><I>Ax</I>=<I>b</I></B>.
+Each component of the solution is computed accurately by
+Gaussian elimination: 
+<!-- MATH
+ $x_i = b_i / a_{ii}$
+ -->
+<B><I>x</I><SUB><I>i</I></SUB> = <I>b</I><SUB><I>i</I></SUB> / <I>a</I><SUB><I>ii</I></SUB></B>.
+The usual error bound is approximately
+
+<!-- MATH
+ $\epsilon \cdot \kappa_{\infty}(A) = \epsilon \cdot \max_i |a_{ii}| / \min_i |a_{ii}|$
+ -->
+<IMG
+ WIDTH="265" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img393.gif"
+ ALT="$\epsilon \cdot \kappa_{\infty}(A) = \epsilon \cdot \max_i \vert a_{ii}\vert / \min_i \vert a_{ii}\vert$">,
+which can arbitrarily overestimate the true error, <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">,
+if at least one
+<B><I>a</I><SUB><I>ii</I></SUB></B> is tiny and another one is large.
+
+<P>
+LAPACK addresses this inadequacy by providing some algorithms
+whose backward error <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+is a tiny relative change in
+each component of <B><I>z</I></B>: 
+<!-- MATH
+ $| \delta_{i} | = O( \epsilon ) | z_{i} |$
+ -->
+<IMG
+ WIDTH="108" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img394.gif"
+ ALT="$\vert \delta_{i} \vert = O( \epsilon ) \vert z_{i} \vert$">.
+This backward error retains both the sparsity structure of <B><I>z</I></B> as
+well as the information in tiny entries. These algorithms are therefore
+called <B>componentwise relatively backward stable</B>.
+Furthermore, computed error bounds reflect this stronger form of backward
+error<A NAME="tex2html2039"
+ HREF="footnode.html#foot13141"><SUP>4.9</SUP></A>.
+<A NAME="10386"></A>
+<A NAME="10387"></A>
+<A NAME="10388"></A>
+<A NAME="10389"></A>
+<A NAME="10390"></A>
+
+<P>
+If the input data has independent uncertainty in each component,
+each component must have at least a small <EM>relative</EM> uncertainty,
+since each is a floating-point number.
+In this case, the extra uncertainty contributed by the algorithm is not much
+worse than the uncertainty in the input data, so
+one could say the answer provided by a componentwise
+relatively backward stable algorithm is as accurate as the data
+warrants [<A
+ HREF="node151.html#lawn20">1</A>].
+
+<P>
+When solving <B><I>Ax</I>=<I>b</I></B> using expert driver xyySVX or computational routine xyyRFS,
+for example, we almost always
+compute  <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+satisfying 
+<!-- MATH
+ $(A+E) \hat{x}= b+f$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img379.gif"
+ ALT="$(A+E)\hat{x}=b+f$">,
+where
+<B><I>e</I><SUB><I>ij</I></SUB></B> is a small relative change in <B><I>a</I><SUB><I>ij</I></SUB></B> and
+<B><I>f</I><SUB><I>k</I></SUB></B> is a small relative change in <B><I>b</I><SUB><I>k</I></SUB></B>. In particular, if <B><I>A</I></B> is diagonal,
+the corresponding error bound is always tiny, as one would
+expect (see the next section).
+
+<P>
+LAPACK can achieve this accuracy <A NAME="10395"></A>
+for linear equation solving,
+the bidiagonal singular value decomposition, and
+the symmetric tridiagonal eigenproblem,
+and provides facilities for achieving this accuracy for least squares problems.
+Future versions of LAPACK will also achieve this
+accuracy for other linear algebra problems, as discussed below.
+
+<P>
+ 
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5299"
+ HREF="node80.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5293"
+ HREF="node77.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5289"
+ HREF="node78.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5295"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5297"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5300"
+ HREF="node80.html">Error Bounds for Linear</A>
+<B> Up:</B> <A NAME="tex2html5294"
+ HREF="node77.html">Further Details: How Error</A>
+<B> Previous:</B> <A NAME="tex2html5290"
+ HREF="node78.html">Standard Error Analysis</A>
+ &nbsp <B>  <A NAME="tex2html5296"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5298"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

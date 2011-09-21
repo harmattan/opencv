@@ -1,0 +1,52 @@
+Description: Upstream changes introduced in version 007-1harmattan1
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ cpufrequtils (007-1harmattan1) unstable; urgency=low
+ .
+   * Package for Meego/Harmattan 1.2
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Oliver Hookins <ohookins@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- cpufrequtils-007.orig/Makefile
++++ cpufrequtils-007/Makefile
+@@ -178,14 +178,14 @@ build/ccdv: build/ccdv.c
+ 	@$(HOSTCC) -O1  -O1 $< -o $@
+ 
+ %.lo: $(LIB_OBJS) $(LIB_HEADERS) ccdv
+-	$(QUIET) $(LIBTOOL) $(LIBTOOL_OPT) --mode=compile $(CC) $(CPPFLAGS) $(CFLAGS) -o $@ -c $*.c
++	$(QUIET) $(LIBTOOL) $(LIBTOOL_OPT) --tag=CC --mode=compile $(CC) $(CPPFLAGS) $(CFLAGS) -o $@ -c $*.c
+ 
+ libcpufreq.la: $(LIB_OBJS) $(LIB_HEADERS) $(LIB_PARTS) Makefile
+ 	@if [ $(strip $(SYSFS)) != true -a $(strip $(PROC)) != true ]; then \
+ 		echo '*** At least one of /sys support or /proc support MUST be enabled ***'; \
+ 		exit -1; \
+ 	fi;
+-	$(QUIET) $(LIBTOOL) $(LIBTOOL_OPT) --mode=link $(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o libcpufreq.la -rpath \
++	$(QUIET) $(LIBTOOL) $(LIBTOOL_OPT) --tag=CC --mode=link $(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o libcpufreq.la -rpath \
+ 		${libdir} -version-info $(LIB_VERSION) $(LIB_PARTS)
+ 
+ libcpufreq: libcpufreq.la
+@@ -232,7 +232,7 @@ clean:
+ 
+ install-lib:
+ 	$(INSTALL) -d $(DESTDIR)${libdir}
+-	$(LIBTOOL) --mode=install $(INSTALL) libcpufreq.la $(DESTDIR)${libdir}/libcpufreq.la
++	$(LIBTOOL) --tag=CC --mode=install $(INSTALL) libcpufreq.la $(DESTDIR)${libdir}/libcpufreq.la
+ 	$(INSTALL) -d $(DESTDIR)${includedir}
+ 	$(INSTALL_DATA) lib/cpufreq.h $(DESTDIR)${includedir}/cpufreq.h
+ 

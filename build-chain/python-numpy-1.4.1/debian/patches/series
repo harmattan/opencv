@@ -1,0 +1,11 @@
+#01_fix_man_hyphens.patch
+02_build_dotblas.patch
+03_force_f2py_version.patch
+#05_fix_endianness_detection.patch
+07_bts585309_string_exceptions.diff
+10_use_local_python.org_object.inv_sphinx.diff
+changeset_r8510.diff
+changeset_r8511.diff
+changeset_r8526.diff
+changeset_r8364.diff
+debian-changes-1:1.4.1-5harmattan1

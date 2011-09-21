@@ -1,0 +1,46 @@
+.TH  DLA_GERFSX_EXTENDED 1 "November 2008" "    LAPACK routine (version 3.2)                                 " "    LAPACK routine (version 3.2)                                 " 
+.SH NAME
+DLA_GERFSX_EXTENDED - computes ..
+.SH SYNOPSIS
+.TP 32
+SUBROUTINE DLA_GERFSX_EXTENDED(
+PREC_TYPE, TRANS_TYPE, N, NRHS, A,
+LDA, AF, LDAF, IPIV, COLEQU, C, B,
+LDB, Y, LDY, BERR_OUT, N_NORMS,
+ERRS_N, ERRS_C, RES, AYB, DY,
+Y_TAIL, RCOND, ITHRESH, RTHRESH,
+DZ_UB, IGNORE_CWISE, INFO )
+.TP 32
+.ti +4
+IMPLICIT
+NONE
+.TP 32
+.ti +4
+INTEGER
+INFO, LDA, LDAF, LDB, LDY, N, NRHS, PREC_TYPE,
+TRANS_TYPE, N_NORMS, ITHRESH
+.TP 32
+.ti +4
+LOGICAL
+COLEQU, IGNORE_CWISE
+.TP 32
+.ti +4
+DOUBLE
+PRECISION RTHRESH, DZ_UB
+.TP 32
+.ti +4
+INTEGER
+IPIV( * )
+.TP 32
+.ti +4
+DOUBLE
+PRECISION A( LDA, * ), AF( LDAF, * ), B( LDB, * ),
+Y( LDY, * ), RES( * ), DY( * ), Y_TAIL( * )
+.TP 32
+.ti +4
+DOUBLE
+PRECISION C( * ), AYB( * ), RCOND, BERR_OUT( * ),
+ERRS_N( NRHS, * ), ERRS_C( NRHS, * )
+.SH PURPOSE
+DLA_GERFSX_EXTENDED computes ... .
+.SH ARGUMENTS

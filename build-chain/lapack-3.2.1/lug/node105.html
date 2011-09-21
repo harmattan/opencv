@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Singular Eigenproblems</TITLE>
+<META NAME="description" CONTENT="Singular Eigenproblems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node104.html">
+<LINK REL="up" HREF="node101.html">
+<LINK REL="next" HREF="node106.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5666"
+ HREF="node106.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5660"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5656"
+ HREF="node104.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5662"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5664"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5667"
+ HREF="node106.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5661"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5657"
+ HREF="node104.html">Computing s<SUB>i</SUB>, , and</A>
+ &nbsp <B>  <A NAME="tex2html5663"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5665"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION034111400000000000000"></A><A NAME="sec_singular"></A>
+<BR>
+Singular Eigenproblems
+</H3>
+
+<P>
+In this section, we give a brief discussion of singular
+matrix pairs <B>(<I>A</I>,<I>B</I>)</B><A NAME="12856"></A>.
+
+<P>
+If the determinant of <IMG
+ WIDTH="63" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.gif"
+ ALT="$A - \lambda B$">
+is zero for all values of <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+(or the determinant of 
+<!-- MATH
+ $\beta A  - \alpha B$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img851.gif"
+ ALT="$\beta A - \alpha B$">
+is zero for all 
+<!-- MATH
+ $(\alpha,\beta)$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img181.gif"
+ ALT="$(\alpha,\beta)$">),
+the pair <B>(<I>A</I>,<I>B</I>)</B> is said to be <B>singular</B>.
+The eigenvalue problem of a singular pair is much more complicated
+than for a regular pair.
+
+<P>
+Consider for example the singular pair
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A  = \left( \begin{array}{cc}
+                          1 & 0 \\0 & 0 \\
+            \end{array} \right), \quad\quad
+B  = \left( \begin{array}{cc}
+                         1 & 0 \\0 & 0 \\
+            \end{array} \right),
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="275" HEIGHT="54" BORDER="0"
+ SRC="img852.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{cc}
+1 &amp; 0 \\ 0 &amp; 0 \\
+\end{array...
+...t( \begin{array}{cc}
+1 &amp; 0 \\ 0 &amp; 0 \\
+\end{array} \right),
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which has one finite eigenvalue 1 and one indeterminate eigenvalue 0/0.
+To see that neither eigenvalue is well determined by the data,
+consider the slightly different problem
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A'  = \left( \begin{array}{cc}
+                          1 & \epsilon_1 \\\epsilon_2 & 0 \\
+            \end{array} \right), \quad\quad
+B'  = \left( \begin{array}{cc}
+                         1 & \epsilon_3 \\\epsilon_4 & 0 \\
+            \end{array} \right),
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="308" HEIGHT="54" BORDER="0"
+ SRC="img853.gif"
+ ALT="\begin{displaymath}
+A' = \left( \begin{array}{cc}
+1 &amp; \epsilon_1 \\ \epsilon_2 ...
+...c}
+1 &amp; \epsilon_3 \\ \epsilon_4 &amp; 0 \\
+\end{array} \right),
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where the <IMG
+ WIDTH="17" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img854.gif"
+ ALT="$\epsilon_i$">
+are tiny nonzero numbers. Then it is easy to see
+that <B>(<I>A</I>',<I>B</I>')</B> is regular with eigenvalues
+
+<!-- MATH
+ $\epsilon_1 / \epsilon_3$
+ -->
+<IMG
+ WIDTH="42" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img855.gif"
+ ALT="$\epsilon_1 / \epsilon_3$">
+and
+
+<!-- MATH
+ $\epsilon_2 / \epsilon_4$
+ -->
+<IMG
+ WIDTH="42" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img856.gif"
+ ALT="$\epsilon_2 / \epsilon_4$">.
+Given <EM>any</EM> two complex numbers <IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img857.gif"
+ ALT="$\lambda_1$">
+and
+<IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img858.gif"
+ ALT="$\lambda_2$">,
+we can find arbitrarily tiny <IMG
+ WIDTH="17" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img854.gif"
+ ALT="$\epsilon_i$">
+such that
+
+<!-- MATH
+ $\lambda_1 = \epsilon_1 / \epsilon_3$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img859.gif"
+ ALT="$\lambda_1 = \epsilon_1 / \epsilon_3$">
+and
+
+<!-- MATH
+ $\lambda_2 = \epsilon_2 / \epsilon_4$
+ -->
+<IMG
+ WIDTH="83" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img860.gif"
+ ALT="$\lambda_2 = \epsilon_2 / \epsilon_4$">
+are the eigenvalues of <B>(<I>A</I>',<I>B</I>')</B>.
+Since, in principle, roundoff could change <B>(<I>A</I>,<I>B</I>)</B> to <B>(<I>A</I>',<I>B</I>')</B>, we
+cannot hope to compute accurate or even meaningful eigenvalues of
+singular problems, without further information.
+
+<P>
+ 
+<P>
+It is possible for a pair <B>(<I>A</I>,<I>B</I>)</B> in Schur form to be very close to singular,
+and so have very sensitive eigenvalues, even if no diagonal entries of
+<B><I>A</I></B> or <B><I>B</I></B> are small.
+It suffices, for example, for <B><I>A</I></B> and <B><I>B</I></B> to nearly have a common null space
+(though this condition is not necessary).
+For example, consider the 16-by-16 matrices
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A'' = \left( \begin{array}{ccccc}
+           0.1 & 1   &        &        &     \\
+               & 0.1 & 1      &        &     \\
+               &     & \ddots & \ddots &      \\
+               &     &        & 0.1    &  1   \\
+               &     &        &        & 0.1   \\
+           \end{array} \right) \quad\quad
+\mbox{and} \quad\quad B'' = A''.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="432" HEIGHT="124" BORDER="0"
+ SRC="img861.gif"
+ ALT="\begin{displaymath}
+A'' = \left( \begin{array}{ccccc}
+0.1 &amp; 1 &amp; &amp; &amp; \\
+&amp; 0.1 ...
+...end{array} \right) \quad\quad
+\mbox{and} \quad\quad B'' = A''.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Changing the <B>(<I>n</I>,1)</B> entries of <B><I>A</I>''</B> and <B><I>B</I>''</B> to <B>10<SUP>-16</SUP></B>, respectively,
+makes both <B><I>A</I></B> and <B><I>B</I></B> singular, with a common null vector.
+Then, using a technique analogous to the one applied to <B>(<I>A</I>,<I>B</I>)</B> above,
+we can show that there is a
+perturbation of <B><I>A</I>''</B> and <B><I>B</I>''</B> of norm 
+<!-- MATH
+ $10^{-16} + \epsilon$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img862.gif"
+ ALT="$10^{-16} + \epsilon$">,
+for <EM>any</EM> <IMG
+ WIDTH="44" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img863.gif"
+ ALT="$\epsilon&gt;0$">,
+that makes the 16 perturbed eigenvalues
+have <EM>any</EM> arbitrary 16 complex values.
+
+<P>
+A complete understanding of the structure of a singular eigenproblem
+<B>(<I>A</I>,<I>B</I>)</B> requires a study of its <EM>Kronecker canonical form</EM>,
+a generalization of the <EM>Jordan canonical form</EM>.
+In addition to Jordan blocks for finite and infinite eigenvalues,
+the Kronecker form can contain ``singular blocks'', which occur only
+if 
+<!-- MATH
+ ${\rm det}(A- \lambda B) \equiv 0$
+ -->
+<IMG
+ WIDTH="133" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img864.gif"
+ ALT="${\rm det}(A- \lambda B) \equiv 0$">
+for all <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+(or if <B><I>A</I></B> and <B><I>B</I></B>
+are nonsquare).
+See [<A
+ HREF="node151.html#gantmacher">53</A>,<A
+ HREF="node151.html#stewart72">93</A>,<A
+ HREF="node151.html#wilkinson79">105</A>,<A
+ HREF="node151.html#vandooren79">97</A>,<A
+ HREF="node151.html#demmelkagstrom87">29</A>] for
+more details. Other numerical software, called GUPTRI<A NAME="12891"></A>,
+is available for
+computing a generalization of the
+Schur canonical form for singular eigenproblems
+[<A
+ HREF="node151.html#demmelkagstrom93a">30</A>,<A
+ HREF="node151.html#demmelkagstrom93b">31</A>].
+
+<P>
+The error bounds discussed in this guide hold for regular pairs only
+(they become unbounded, or otherwise provide no information, when
+<B>(<I>A</I>,<I>B</I>)</B> is close to singular).  If a (nearly) singular pencil is reported
+by the software discussed in this guide, then a further study of the matrix
+pencil should be conducted, in order to determine whether meaningful results
+have been computed.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5666"
+ HREF="node106.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5660"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5656"
+ HREF="node104.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5662"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5664"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5667"
+ HREF="node106.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5661"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5657"
+ HREF="node104.html">Computing s<SUB>i</SUB>, , and</A>
+ &nbsp <B>  <A NAME="tex2html5663"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5665"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

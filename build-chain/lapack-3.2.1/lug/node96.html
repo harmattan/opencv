@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for the Singular Value Decomposition</TITLE>
+<META NAME="description" CONTENT="Error Bounds for the Singular Value Decomposition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node98.html">
+<LINK REL="previous" HREF="node91.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node97.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5537"
+ HREF="node97.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5531"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5525"
+ HREF="node95.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5533"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5535"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5538"
+ HREF="node97.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5532"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5526"
+ HREF="node95.html">Computing s and</A>
+ &nbsp <B>  <A NAME="tex2html5534"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5536"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03490000000000000000"></A><A NAME="secsvd"></A>
+<BR>
+Error Bounds for the Singular Value Decomposition
+</H1>
+
+<P>
+The singular<A NAME="11684"></A> value decomposition (SVD) of a
+real <B><I>m</I></B>-by-<B><I>n</I></B> matrix <B><I>A</I></B> is defined as follows. Let 
+<!-- MATH
+ $r = \min (m,n)$
+ -->
+<IMG
+ WIDTH="112" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img159.gif"
+ ALT="$r = \min (m,n)$">.
+The SVD of <B><I>A</I></B> is 
+<!-- MATH
+ $A=U \Sigma V^T$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img157.gif"
+ ALT="$A=U \Sigma V^T$">
+(
+<!-- MATH
+ $A=U \Sigma V^H$
+ -->
+<IMG
+ WIDTH="94" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img161.gif"
+ ALT="$A=U \Sigma V^H$">
+in the complex case),
+where
+<B><I>U</I></B> and <B><I>V</I></B> are orthogonal (unitary) matrices and
+
+<!-- MATH
+ $\Sigma = {\mbox {\rm diag}}( \sigma_1 , \ldots , \sigma_{r} )$
+ -->
+<IMG
+ WIDTH="159" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img158.gif"
+ ALT="$\Sigma = {\mbox {\rm diag}}( \sigma_1 , \ldots , \sigma_r )$">
+is diagonal,
+with 
+<!-- MATH
+ $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_{r} \geq 0$
+ -->
+<IMG
+ WIDTH="179" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img629.gif"
+ ALT="$\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_{r} \geq 0$">.
+The <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">
+are the <B>singular values</B> of <B><I>A</I></B> and the leading
+<B><I>r</I></B> columns <B><I>u</I><SUB><I>i</I></SUB></B> of <B><I>U</I></B> and <B><I>v</I><SUB><I>i</I></SUB></B> of <B><I>V</I></B> the
+<B>left and right singular vectors,</B> respectively.
+The SVD of a general matrix is computed by xGESVD or xGESDD
+<A NAME="11689"></A><A NAME="11690"></A><A NAME="11691"></A><A NAME="11692"></A>
+<A NAME="11693"></A><A NAME="11694"></A><A NAME="11695"></A><A NAME="11696"></A>
+(see subsection <A HREF="node29.html#subsecdriveeig">2.3.4</A>).
+
+<P>
+The approximate error
+bounds<A NAME="footfnm 0"><SUP>4.10</SUP></A>for the computed singular values
+
+<!-- MATH
+ $\hat{\sigma}_1 \geq \cdots \geq \hat{\sigma}_{r}$
+ -->
+<IMG
+ WIDTH="106" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img630.gif"
+ ALT="$\hat{\sigma}_1 \geq \cdots \geq \hat{\sigma}_{r}$">
+are
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\sigma}_i - \sigma_i | \leq {\tt SERRBD} \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="153" HEIGHT="31" BORDER="0"
+ SRC="img631.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\sigma}_i - \sigma_i \vert \leq {\tt SERRBD} \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The approximate error bounds for the computed singular vectors
+<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img564.gif"
+ ALT="$\hat{v}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img632.gif"
+ ALT="$\hat{u}_i$">,
+which bound the acute angles between the computed singular vectors and true
+singular vectors <B><I>v</I><SUB><I>i</I></SUB></B> and <B><I>u</I><SUB><I>i</I></SUB></B>, are
+<A NAME="11706"></A>
+<A NAME="11707"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="194" HEIGHT="58" BORDER="0"
+ SRC="img633.gif"
+ ALT="\begin{eqnarray*}
+\theta ( \hat{v}_i , v_i ) &amp; \leq &amp; {\tt VERRBD}(i) \\
+\theta ( \hat{u}_i , u_i ) &amp; \leq &amp; {\tt UERRBD}(i) \; \; .
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+These bounds can be computing by the following code fragment.
+<A NAME="11714"></A>
+<A NAME="11715"></A>
+
+<P>
+ 
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Compute singular value decomposition of A
+*     The singular values are returned in S
+*     The left singular vectors are returned in U
+*     The transposed right singular vectors are returned in VT
+      CALL  SGESVD( 'S', 'S', M, N, A, LDA, S, U, LDU, VT, LDVT,
+     $              WORK, LWORK, INFO )
+      IF( INFO.GT.0 ) THEN
+         PRINT *,'SGESVD did not converge'
+      ELSE IF ( MIN(M,N) .GT. 0 ) THEN
+         SERRBD  = EPSMCH * S(1)
+*        Compute reciprocal condition numbers for singular vectors
+         CALL SDISNA( 'Left', M, N, S, RCONDU, INFO )
+         CALL SDISNA( 'Right', M, N, S, RCONDV, INFO )
+         DO 10 I = 1, MIN(M,N)
+            VERRBD( I ) = EPSMCH*( S(1)/RCONDV( I ) )
+            UERRBD( I ) = EPSMCH*( S(1)/RCONDU( I ) )
+10       CONTINUE
+      END IF
+</PRE>
+
+<P>
+For example<A NAME="footfnm 0"><SUP>4.11</SUP></A>,
+if
+
+<!-- MATH
+ ${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="259" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img397.gif"
+ ALT="${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$">
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{ccc} 4 & 3 & 5 \\2 & 5 & 8 \\3 & 6 & 10 \\4 & 5 & 11 \end{array} \right) \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="158" HEIGHT="93" BORDER="0"
+ SRC="img634.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{ccc} 4 &amp; 3 &amp; 5 \\ 2 &amp; 5 &amp; 8 \\ 3 &amp; 6 &amp; 10 \\ 4 &amp; 5 &amp; 11 \end{array} \right) \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+then the singular values, approximate error bounds, and true errors are given below.
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER"><B><I>i</I></B></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\hat{\sigma}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img635.gif"
+ ALT="$\hat{\sigma}_i$"></TD>
+<TD ALIGN="CENTER"><TT> SERRBD</TT></TD>
+<TD ALIGN="CENTER">true 
+<!-- MATH
+ $| \hat{\sigma}_i - \sigma_i |$
+ -->
+<IMG
+ WIDTH="66" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img636.gif"
+ ALT="$\vert \hat{\sigma}_i - \sigma_i \vert$"></TD>
+<TD ALIGN="CENTER"><TT> VERRBD</TT>(<B><I>i</I></B>)</TD>
+<TD ALIGN="CENTER">true 
+<!-- MATH
+ $\theta ( \hat{v}_i , v_i )$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img568.gif"
+ ALT="$\theta ( \hat{v}_i , v_i )$"></TD>
+<TD ALIGN="CENTER"><TT> UERRBD</TT>(<B><I>i</I></B>)</TD>
+<TD ALIGN="CENTER">true 
+<!-- MATH
+ $\theta ( \hat{u}_i , u_i )$
+ -->
+<IMG
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img637.gif"
+ ALT="$\theta ( \hat{u}_i , u_i )$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">21.05</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.3 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img638.gif"
+ ALT="$1.3 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.7 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img639.gif"
+ ALT="$1.7 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.7 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img640.gif"
+ ALT="$6.7 \cdot 10^{-8}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $8.1 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img641.gif"
+ ALT="$8.1 \cdot 10^{-8}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.7 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img640.gif"
+ ALT="$6.7 \cdot 10^{-8}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.5 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img642.gif"
+ ALT="$1.5 \cdot 10^{-7}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">2.370</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.3 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img638.gif"
+ ALT="$1.3 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $5.8 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img643.gif"
+ ALT="$5.8 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.0 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img644.gif"
+ ALT="$1.0 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.9 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img645.gif"
+ ALT="$2.9 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.0 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img644.gif"
+ ALT="$1.0 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.4 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img646.gif"
+ ALT="$2.4 \cdot 10^{-7}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">3</TD>
+<TD ALIGN="CENTER">1.143</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.3 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img638.gif"
+ ALT="$1.3 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $3.2 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img536.gif"
+ ALT="$3.2 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.0 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img644.gif"
+ ALT="$1.0 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $3.0 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img647.gif"
+ ALT="$3.0 \cdot 10^{-7}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.1 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img648.gif"
+ ALT="$1.1 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.4 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img646.gif"
+ ALT="$2.4 \cdot 10^{-7}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5539"
+ HREF="node97.html">Further Details:  Error Bounds for the Singular Value Decomposition</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5537"
+ HREF="node97.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5531"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5525"
+ HREF="node95.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5533"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5535"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5538"
+ HREF="node97.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5532"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5526"
+ HREF="node95.html">Computing s and</A>
+ &nbsp <B>  <A NAME="tex2html5534"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5536"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

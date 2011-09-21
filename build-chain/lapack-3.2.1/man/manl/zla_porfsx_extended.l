@@ -1,0 +1,46 @@
+.TH  ZLA_PORFSX_EXTENDED 1 "November 2008" "    LAPACK routine (version 3.2)                                 " "    LAPACK routine (version 3.2)                                 " 
+.SH NAME
+ZLA_PORFSX_EXTENDED - computes ..
+.SH SYNOPSIS
+.TP 32
+SUBROUTINE ZLA_PORFSX_EXTENDED(
+PREC_TYPE, UPLO, N, NRHS, A, LDA,
+AF, LDAF, COLEQU, C, B, LDB, Y,
+LDY, BERR_OUT, N_NORMS, ERRS_N,
+ERRS_C, RES, AYB, DY, Y_TAIL,
+RCOND, ITHRESH, RTHRESH, DZ_UB,
+IGNORE_CWISE, INFO )
+.TP 32
+.ti +4
+IMPLICIT
+NONE
+.TP 32
+.ti +4
+INTEGER
+INFO, LDA, LDAF, LDB, LDY, N, NRHS, PREC_TYPE,
+N_NORMS, ITHRESH
+.TP 32
+.ti +4
+CHARACTER
+UPLO
+.TP 32
+.ti +4
+LOGICAL
+COLEQU, IGNORE_CWISE
+.TP 32
+.ti +4
+DOUBLE
+PRECISION RTHRESH, DZ_UB
+.TP 32
+.ti +4
+COMPLEX*16
+A( LDA, * ), AF( LDAF, * ), B( LDB, * ),
+Y( LDY, * ), RES( * ), DY( * ), Y_TAIL( * )
+.TP 32
+.ti +4
+DOUBLE
+PRECISION C( * ), AYB( * ), RCOND, BERR_OUT( * ),
+ERRS_N( NRHS, * ), ERRS_C( NRHS, * )
+.SH PURPOSE
+ZLA_PORFSX_EXTENDED computes ... .
+.SH ARGUMENTS

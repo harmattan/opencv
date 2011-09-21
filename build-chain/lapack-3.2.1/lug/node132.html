@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Troubleshooting</TITLE>
+<META NAME="description" CONTENT="Troubleshooting">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node141.html">
+<LINK REL="previous" HREF="node129.html">
+<LINK REL="up" HREF="node5.html">
+<LINK REL="next" HREF="node133.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6069"
+ HREF="node133.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6063"
+ HREF="node5.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6057"
+ HREF="node131.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6065"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6067"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6070"
+ HREF="node133.html">Bug Report Checklist</A>
+<B> Up:</B> <A NAME="tex2html6064"
+ HREF="node5.html">Guide</A>
+<B> Previous:</B> <A NAME="tex2html6058"
+ HREF="node131.html">Installing ILAENV</A>
+ &nbsp <B>  <A NAME="tex2html6066"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6068"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03700000000000000000"></A><A NAME="troubleshooting"></A><A NAME="21043"></A>
+<BR>
+Troubleshooting
+</H1>
+
+<P>
+<A NAME="21044"></A><A NAME="21045"></A>
+Successful use of LAPACK relies heavily on proper installation
+and testing of LAPACK and the BLAS.  Frequently Asked Questions (FAQ) lists
+are maintained in the <EM>blas</EM> and <EM>lapack</EM> directories on <EM>netlib</EM>
+to answer some of the most common user questions.  For the user's convenience,
+prebuilt LAPACK libraries are provided for a variety of computer
+architectures in the following URL:
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/lapack/archives/</TT>
+
+</BLOCKQUOTE>
+ 
+Test suites are provided for the BLAS and LAPACK.
+It is highly recommended that each of these respective test
+suites be run prior to the use of the library.
+A comprehensive installation guide<A NAME="21052"></A> is
+provided for LAPACK.  Refer to the <EM>lapack</EM> directory on <EM>netlib</EM> for
+further information.
+
+<P>
+We begin this chapter by discussing a set of first-step debugging
+hints to pinpoint where the problem is occurring.
+Following these debugging hints, we discuss the types of
+error messages that can be encountered during the execution of an LAPACK
+routine.
+ 
+If these suggestions do not help evaluate specific difficulties,
+we suggest that the user review the following ``bug report checklist'' and then
+feel free to contact the authors at <TT>lapack@cs.utk.edu</TT><A NAME="21056"></A><A NAME="21057"></A>.
+The user should tell us the type of machine
+on which the tests were run, the compiler and compiler options that were
+used, and details of the BLAS library; also, the user should send a copy of
+the input file, if appropriate.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html6071"
+ HREF="node133.html">Bug Report Checklist</A>
+<LI><A NAME="tex2html6072"
+ HREF="node134.html">Installation Debugging Hints</A>
+<LI><A NAME="tex2html6073"
+ HREF="node135.html">Common Errors in Calling LAPACK Routines</A>
+<LI><A NAME="tex2html6074"
+ HREF="node136.html">Failures Detected by LAPACK Routines</A>
+<UL>
+<LI><A NAME="tex2html6075"
+ HREF="node137.html">Invalid Arguments and XERBLA</A>
+<LI><A NAME="tex2html6076"
+ HREF="node138.html">Computational Failures and INFO <B>&gt;</B> 0</A>
+</UL>
+<LI><A NAME="tex2html6077"
+ HREF="node139.html">Wrong Results</A>
+<LI><A NAME="tex2html6078"
+ HREF="node140.html">Poor Performance</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6069"
+ HREF="node133.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6063"
+ HREF="node5.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6057"
+ HREF="node131.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6065"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6067"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6070"
+ HREF="node133.html">Bug Report Checklist</A>
+<B> Up:</B> <A NAME="tex2html6064"
+ HREF="node5.html">Guide</A>
+<B> Previous:</B> <A NAME="tex2html6058"
+ HREF="node131.html">Installing ILAENV</A>
+ &nbsp <B>  <A NAME="tex2html6066"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6068"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

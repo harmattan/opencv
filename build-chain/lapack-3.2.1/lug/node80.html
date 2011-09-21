@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for Linear Equation Solving</TITLE>
+<META NAME="description" CONTENT="Error Bounds for Linear Equation Solving">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node82.html">
+<LINK REL="previous" HREF="node77.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node81.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5313"
+ HREF="node81.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5307"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5301"
+ HREF="node79.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5309"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5311"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5314"
+ HREF="node81.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5308"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5302"
+ HREF="node79.html">Improved Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5310"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5312"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03440000000000000000"></A><A NAME="secAx_b"></A>
+<BR>
+Error Bounds for Linear Equation Solving
+</H1>
+
+<P>
+ 
+<P>
+Let <B><I>Ax</I>=<I>b</I></B> be the system to be solved, and <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+the computed
+solution. Let <B><I>n</I></B> be the dimension of <B><I>A</I></B>.
+An approximate error bound<A NAME="10532"></A>
+for <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\hat{x}$">
+may be obtained in one of the following two ways,
+depending on whether the solution is computed by a simple driver or
+an expert driver:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>Suppose that <B><I>Ax</I>=<I>b</I></B> is solved using the simple driver SGESV
+<A NAME="10535"></A>
+(subsection&nbsp;<A HREF="node26.html#subsecdrivelineq">2.3.1</A>).
+Then the approximate error bound<A NAME="tex2html2046"
+HREF="footnode.html#foot13155"><SUP>4.10</SUP></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\| \hat{x} - x \|_{\infty}}{\|x\|_{\infty}} \leq {\tt ERRBD}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="144" HEIGHT="48" BORDER="0"
+ SRC="img396.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert \hat{x} - x \Vert _{\infty}}{\Vert x\Vert _{\infty}} \leq {\tt ERRBD}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+can be computed by the following code fragment.
+
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Get infinity-norm of A
+      ANORM = SLANGE( 'I', N, N, A, LDA, WORK )
+*     Solve system; The solution X overwrites B
+      CALL SGESV( N, 1, A, LDA, IPIV, B, LDB, INFO )
+      IF( INFO.GT.0 ) THEN
+         PRINT *,'Singular Matrix'
+      ELSE IF (N .GT. 0) THEN
+*        Get reciprocal condition number RCOND of A
+         CALL SGECON( 'I', N, A, LDA, ANORM, RCOND, WORK, IWORK, INFO )
+         RCOND = MAX( RCOND, EPSMCH )
+         ERRBD = EPSMCH / RCOND
+      END IF
+</PRE>
+<A NAME="10546"></A>
+
+<P>
+For example, suppose<A NAME="tex2html2047"
+ HREF="footnode.html#foot13159"><SUP>4.11</SUP></A>
+
+<!-- MATH
+ ${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="259" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img397.gif"
+ ALT="${\tt SLAMCH('E')} = 2^{-24} = 5.961 \cdot 10^{-8}$">,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{ccc} 4 & 16000 & 17000 \\2 & 5 & 8 \\3 & 6 & 10 \end{array} \right) 
+\; \; {\rm and} \; \;
+b = \left( \begin{array}{c} 100.1 \\.1 \\.01 \end{array} \right) \; . \; \;
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="384" HEIGHT="73" BORDER="0"
+ SRC="img398.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{ccc} 4 &amp; 16000 &amp; 17000 \\ 2 &amp; 5 &amp; 8...
+...in{array}{c} 100.1 \\ .1 \\ .01 \end{array} \right) \; . \; \;
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Then (to 4 decimal places)
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = \left( \begin{array}{c} -.3974 \\-.3349 \\.3211 \end{array} \right) \; , \; \;
+\hat{x} = \left( \begin{array}{c} -.3968 \\-.3344 \\.3207 \end{array} \right) \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="297" HEIGHT="73" BORDER="0"
+ SRC="img399.gif"
+ ALT="\begin{displaymath}
+x = \left( \begin{array}{c} -.3974 \\ -.3349 \\ .3211 \end{a...
+...n{array}{c} -.3968 \\ -.3344 \\ .3207 \end{array} \right) \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<!-- MATH
+ ${\tt ANORM} = 3.300 \cdot 10^4$
+ -->
+<IMG
+ WIDTH="151" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img400.gif"
+ ALT="${\tt ANORM} = 3.300 \cdot 10^4$">,
+
+<!-- MATH
+ ${\tt RCOND} = 3.907 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="161" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img401.gif"
+ ALT="${\tt RCOND} = 3.907 \cdot 10^{-6}$">,
+the true reciprocal condition number 
+<!-- MATH
+ $= 3.902 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="111" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img402.gif"
+ ALT="$= 3.902 \cdot 10^{-6}$">,
+
+<!-- MATH
+ ${\tt ERRBD} =  1.5 \cdot 10^{-2}$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img403.gif"
+ ALT="${\tt ERRBD} = 1.5 \cdot 10^{-2}$">,
+and the true error
+
+<!-- MATH
+ $= 1.5 \cdot 10^{-3}$
+ -->
+<IMG
+ WIDTH="93" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img404.gif"
+ ALT="$= 1.5 \cdot 10^{-3}$">.
+<A NAME="10566"></A>
+
+<P>
+<DT>2.
+<DD>Suppose that <B><I>Ax</I>=<I>b</I></B> is solved using the expert driver SGESVX
+(subsection&nbsp;<A HREF="node26.html#subsecdrivelineq">2.3.1</A>).
+<A NAME="10568"></A>
+This routine provides an explicit error bound <TT>FERR</TT>, measured
+with the infinity-norm:
+<A NAME="10570"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{\| \hat{x} - x \|_{\infty}}{\|x\|_{\infty}} \leq {\tt FERR}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="135" HEIGHT="48" BORDER="0"
+ SRC="img405.gif"
+ ALT="\begin{displaymath}
+\frac{\Vert \hat{x} - x \Vert _{\infty}}{\Vert x\Vert _{\infty}} \leq {\tt FERR}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+For example, the following code fragment solves
+<B><I>Ax</I>=<I>b</I></B> and computes an approximate error bound <TT>FERR</TT>:
+
+<P>
+<PRE>
+      CALL SGESVX( 'E', 'N', N, 1, A, LDA, AF, LDAF, IPIV,
+     $             EQUED, R, C, B, LDB, X, LDX, RCOND, FERR, BERR,
+     $             WORK, IWORK, INFO )
+      IF( INFO.GT.0 ) PRINT *,'(Nearly) Singular Matrix'
+</PRE>
+
+<P>
+For the same <TT>A</TT> and <TT>b</TT> as above,
+
+<!-- MATH
+ $\hat{x} = \left( \begin{array}{c} -.3974 \\-.3349 \\.3211 \end{array} \right)$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="83" ALIGN="MIDDLE" BORDER="0"
+ SRC="img406.gif"
+ ALT="$\hat{x} = \left( \begin{array}{c} -.3974 \\ -.3349 \\ .3211 \end{array} \right) $">,
+
+<!-- MATH
+ ${\tt FERR} = 3.0 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="135" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img407.gif"
+ ALT="${\tt FERR} = 3.0 \cdot 10^{-5}$">,
+and the actual error is 
+<!-- MATH
+ $4.3 \cdot 10^{-7}$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img408.gif"
+ ALT="$4.3 \cdot 10^{-7}$">.
+
+<P>
+</DL>
+
+<P>
+This example illustrates
+that the expert driver provides an error bound with less programming
+effort than the simple driver, and also that it may produce a significantly
+more accurate answer.
+
+<P>
+Similar code fragments, with obvious adaptations,
+may be used with all the driver routines for linear
+equations listed in Table&nbsp;<A HREF="node26.html#tabdrivelineq">2.2</A>.
+For example, if a symmetric system is solved using the simple driver xSYSV,
+then xLANSY must be used to compute <TT>ANORM</TT>, and xSYCON must be used
+to compute <TT>RCOND</TT>.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5315"
+ HREF="node81.html">Further Details:  Error Bounds for Linear Equation Solving</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5313"
+ HREF="node81.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5307"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5301"
+ HREF="node79.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5309"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5311"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5314"
+ HREF="node81.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5308"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5302"
+ HREF="node79.html">Improved Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5310"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5312"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

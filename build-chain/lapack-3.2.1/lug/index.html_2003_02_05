@@ -1,0 +1,552 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LAPACK Users' Guide -- Third Edition</TITLE>
+<META NAME="description" CONTENT="LAPACK Users' Guide, Third Edition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node1.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html3680"
+ HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="http://www.netlib.org/utk/icons/next_motif.gif"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="http://www.netlib.org/utk/icons/up_motif_gr.gif"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="http://www.netlib.org/utk/icons/previous_motif_gr.gif"> 
+<A NAME="tex2html3676"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="http://www.netlib.org/utk/icons/contents_motif.gif"></A> 
+<A NAME="tex2html3678"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="http://www.netlib.org/utk/icons/index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3681"
+ HREF="node1.html">Contents</A>
+ &nbsp <B>  <A NAME="tex2html3677"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html3679"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<p>
+<p><img align=top src="lug-cover2.jpg">
+
+<H1 ALIGN="CENTER">LAPACK Users' Guide 
+<BR>
+Third Edition</H1>
+<P ALIGN="CENTER"><STRONG>UPDATED: 22 Aug 1999</STRONG></P>
+<P><STRONG>
+<li><a href="http://www.cs.utk.edu/~eanderso/">E. Anderson</a>,
+<li><a href="http://www.ms.uky.edu/~bai/">Z. Bai</a>,
+<li><a href="http://www.mcs.anl.gov/people/bischof">C. Bischof</a>,
+<li><a href="http://www.netlib.org/utk/people/SusanBlackford.html">S. Blackford</a>,
+<li><a href="http://http.cs.berkeley.edu/~demmel/">J. Demmel</a>,
+<li><a href="http://www.netlib.org/utk/people/JackDongarra.html">J. Dongarra</a>,
+<li>J. Du Croz,
+<li>A. Greenbaum,
+<li><a href="http://www.nag.co.uk/Local/About/People/SvenHammarling/Shhome.asp">S. Hammarling</a>,
+<li>A. McKenney,
+<li>D. Sorensen
+
+</STRONG><P>
+
+<P>
+
+<IMG ALIGN=BOTTOM SRC="_21926_tex2html_wrap2798.gif"> 1999 by the
+Society for Industrial and Applied Mathematics. Certain derivative work
+portions have been copyrighted by the Numerical Algorithms Group Ltd.
+<P>
+
+The hardcopy version of <b>LAPACK Users' Guide, Third Edition</b> may be
+ordered directly from <b>SIAM</b>. Mail ordering information and payment
+to
+<ul>
+<li> SIAM
+<br> Customer Service
+<br> P.O. Box 7260
+<br> Philadelphia, PA 19104
+</ul>
+<p> You can
+also call 800-447-SIAM in USA and Canada or 215-382-9800 worldwide. You can
+fax your order to 215-386-7999, send us e-mail
+<a href="mailto:service@siam.org">service@siam.org</a>
+or order over the web <a href="http://www.siam.org">www.siam.org</a>.
+<p>
+<table border cellspacing=0 cellpadding=5>
+<tr>
+ <th>Order Code: SE09</th><th>List Price: $39.00</th>
+</tr>
+<tr>
+<th>ISBN:0-89871-447-8</th><th>SIAM Member Price: $31.20</th>
+</tr>
+</table>
+</p>
+<P>
+The royalties from the sales of this book are being placed in a fund
+to help students attend SIAM meetings and other SIAM related activities.
+This fund is administered by SIAM and qualified individuals are
+encouraged to
+write directly to SIAM for guidelines.
+
+<P>
+<HR>
+<BR>
+<DIV ALIGN="CENTER">
+<FONT SIZE="+1"><B>Dedication 
+<BR></B></FONT>
+
+</DIV>
+
+<P>
+This work is dedicated to Jim Wilkinson whose ideas and
+spirit have given us inspiration and influenced the project
+at every turn.
+
+<HR>
+
+<DIV ALIGN="CENTER">
+<FONT SIZE="+1">Authors' Affiliations:
+
+</FONT></DIV>
+<BR>
+<BR>
+<DIV ALIGN="CENTER">
+<FONT SIZE="+0">E. Anderson 
+<BR>
+<I>University of Tennessee, Knoxville</I> 
+<BR>
+<BR>
+Z. Bai 
+<BR>
+<I>University of Kentucky and 
+<BR>
+University of California, Davis</I> 
+<BR>
+<BR>
+C. Bischof 
+<BR>
+<I>Institute of Scientific Computing, Technical University Aachen, Germany</I> 
+<BR> 
+<BR>
+L. S. Blackford (formerly L. S. Ostrouchov)
+<BR>
+<I>University of Tennessee, Knoxville</I> 
+<BR> 
+<BR>
+J. Demmel 
+<BR>
+<I>University of California, Berkeley</I> 
+<BR> 
+<BR>
+J. Dongarra 
+<BR>
+<I>University of Tennessee, Knoxville and 
+<BR>
+Oak Ridge National Laboratory</I> 
+<BR>
+<BR>
+J. Du Croz 
+<BR>
+<I>Numerical Algorithms Group Ltd. (retired)</I> 
+<BR> 
+<BR>
+A. Greenbaum 
+<BR>
+<I>University of Washington</I> 
+<BR> 
+<BR>
+S. Hammarling 
+<BR>
+<I>Numerical Algorithms Group Ltd.</I> 
+<BR> 
+<BR>
+A. McKenney 
+<BR>
+<BR>
+D. Sorensen 
+<BR>
+<I>Rice University</I> 
+<BR>
+
+</FONT></DIV>
+
+<P>
+
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html3682"
+ HREF="node1.html">Contents</A>
+<LI><A NAME="tex2html3683"
+ HREF="node2.html">List of Tables</A>
+<UL>
+<LI><A NAME="tex2html3684"
+ HREF="node3.html">Preface to the Third Edition</A>
+<LI><A NAME="tex2html3685"
+ HREF="node4.html">Preface to the Second Edition</A>
+</UL>
+<LI><A NAME="tex2html3686"
+ HREF="node5.html">Guide</A>
+<UL>
+<LI><A NAME="tex2html3687"
+ HREF="node6.html">Essentials</A>
+<UL>
+<LI><A NAME="tex2html3688"
+ HREF="node7.html">LAPACK</A>
+<LI><A NAME="tex2html3689"
+ HREF="node8.html">Problems that LAPACK can Solve</A>
+<LI><A NAME="tex2html3690"
+ HREF="node9.html">Computers for which LAPACK is Suitable</A>
+<LI><A NAME="tex2html3691"
+ HREF="node10.html">LAPACK Compared with LINPACK and EISPACK</A>
+<LI><A NAME="tex2html3692"
+ HREF="node11.html">LAPACK and the BLAS</A>
+<LI><A NAME="tex2html3693"
+ HREF="node12.html">Availability of LAPACK</A>
+<LI><A NAME="tex2html3694"
+ HREF="node13.html">Commercial Use of LAPACK</A>
+<LI><A NAME="tex2html3695"
+ HREF="node14.html">Installation of LAPACK</A>
+<LI><A NAME="tex2html3696"
+ HREF="node15.html">Documentation for LAPACK</A>
+<LI><A NAME="tex2html3697"
+ HREF="node16.html">Support for LAPACK</A>
+<LI><A NAME="tex2html3698"
+ HREF="node17.html">Errata in LAPACK</A>
+<LI><A NAME="tex2html3699"
+ HREF="node18.html">Other Related Software</A>
+</UL>
+<LI><A NAME="tex2html3700"
+ HREF="node19.html">Contents of LAPACK</A>
+<UL>
+<LI><A NAME="tex2html3701"
+ HREF="node20.html">What's new in version 3.0?</A>
+<LI><A NAME="tex2html3702"
+ HREF="node21.html">Structure of LAPACK</A>
+<UL>
+<LI><A NAME="tex2html3703"
+ HREF="node22.html">Levels of Routines</A>
+<LI><A NAME="tex2html3704"
+ HREF="node23.html">Data Types and Precision</A>
+<LI><A NAME="tex2html3705"
+ HREF="node24.html">Naming Scheme</A>
+</UL>
+<LI><A NAME="tex2html3706"
+ HREF="node25.html">Driver Routines</A>
+<UL>
+<LI><A NAME="tex2html3707"
+ HREF="node26.html">Linear Equations</A>
+<LI><A NAME="tex2html3708"
+ HREF="node27.html">Linear Least Squares (LLS) Problems</A>
+<LI><A NAME="tex2html3709"
+ HREF="node28.html">Generalized Linear Least Squares (LSE and GLM) Problems</A>
+<LI><A NAME="tex2html3710"
+ HREF="node29.html">Standard Eigenvalue and Singular Value Problems</A>
+<LI><A NAME="tex2html3711"
+ HREF="node33.html">Generalized Eigenvalue and Singular Value
+Problems</A>
+</UL>
+<LI><A NAME="tex2html3712"
+ HREF="node37.html">Computational Routines</A>
+<UL>
+<LI><A NAME="tex2html3713"
+ HREF="node38.html">Linear Equations</A>
+<LI><A NAME="tex2html3714"
+ HREF="node39.html">Orthogonal Factorizations and Linear Least Squares Problems</A>
+<LI><A NAME="tex2html3715"
+ HREF="node45.html">Generalized Orthogonal Factorizations and Linear Least Squares Problems</A>
+<LI><A NAME="tex2html3716"
+ HREF="node48.html">Symmetric Eigenproblems</A>
+<LI><A NAME="tex2html3717"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<LI><A NAME="tex2html3718"
+ HREF="node53.html">Singular Value Decomposition</A>
+<LI><A NAME="tex2html3719"
+ HREF="node54.html">Generalized Symmetric Definite Eigenproblems</A>
+<LI><A NAME="tex2html3720"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<LI><A NAME="tex2html3721"
+ HREF="node59.html">Generalized (or Quotient) Singular Value Decomposition</A>
+</UL>
+</UL>
+<LI><A NAME="tex2html3722"
+ HREF="node60.html">Performance of LAPACK</A>
+<UL>
+<LI><A NAME="tex2html3723"
+ HREF="node61.html">Factors that Affect Performance</A>
+<UL>
+<LI><A NAME="tex2html3724"
+ HREF="node62.html">Vectorization</A>
+<LI><A NAME="tex2html3725"
+ HREF="node63.html">Data Movement</A>
+<LI><A NAME="tex2html3726"
+ HREF="node64.html">Parallelism</A>
+</UL>
+<LI><A NAME="tex2html3727"
+ HREF="node65.html">The BLAS as the Key to Portability</A>
+<LI><A NAME="tex2html3728"
+ HREF="node66.html">Block Algorithms and their
+Derivation</A>
+<LI><A NAME="tex2html3729"
+ HREF="node67.html">Examples of Block Algorithms in LAPACK</A>
+<UL>
+<LI><A NAME="tex2html3730"
+ HREF="node68.html">Factorizations for Solving Linear Equations</A>
+<LI><A NAME="tex2html3731"
+ HREF="node69.html"><B><I>QR</I></B> Factorization</A>
+<LI><A NAME="tex2html3732"
+ HREF="node70.html">Eigenvalue Problems</A>
+</UL>
+<LI><A NAME="tex2html3733"
+ HREF="node71.html">LAPACK Benchmark</A>
+</UL>
+<LI><A NAME="tex2html3734"
+ HREF="node72.html">Accuracy and Stability</A>
+<UL>
+<LI><A NAME="tex2html3735"
+ HREF="node73.html">Sources of Error in Numerical Calculations</A>
+<UL>
+<LI><A NAME="tex2html3736"
+ HREF="node74.html">Further Details:  Floating Point Arithmetic</A>
+</UL>
+<LI><A NAME="tex2html3737"
+ HREF="node75.html">How to Measure Errors</A>
+<UL>
+<LI><A NAME="tex2html3738"
+ HREF="node76.html">Further Details:  How to Measure Errors</A>
+</UL>
+<LI><A NAME="tex2html3739"
+ HREF="node77.html">Further Details:  How Error Bounds Are Derived</A>
+<UL>
+<LI><A NAME="tex2html3740"
+ HREF="node78.html">Standard Error Analysis</A>
+<LI><A NAME="tex2html3741"
+ HREF="node79.html">Improved Error Bounds</A>
+</UL>
+<LI><A NAME="tex2html3742"
+ HREF="node80.html">Error Bounds for Linear Equation Solving</A>
+<UL>
+<LI><A NAME="tex2html3743"
+ HREF="node81.html">Further Details:  Error Bounds for Linear Equation Solving</A>
+</UL>
+<LI><A NAME="tex2html3744"
+ HREF="node82.html">Error Bounds for Linear Least Squares Problems</A>
+<UL>
+<LI><A NAME="tex2html3745"
+ HREF="node83.html">Further Details:  Error Bounds for Linear Least Squares
+Problems</A>
+</UL>
+<LI><A NAME="tex2html3746"
+ HREF="node84.html">Error Bounds for Generalized Least Squares Problems</A>
+<UL>
+<LI><A NAME="tex2html3747"
+ HREF="node85.html">Linear Equality Constrained Least Squares Problem</A>
+<LI><A NAME="tex2html3748"
+ HREF="node87.html">General Linear Model Problem</A>
+</UL>
+<LI><A NAME="tex2html3749"
+ HREF="node89.html">Error Bounds for the Symmetric Eigenproblem </A>
+<UL>
+<LI><A NAME="tex2html3750"
+ HREF="node90.html">Further Details:  Error Bounds for the Symmetric Eigenproblem </A>
+</UL>
+<LI><A NAME="tex2html3751"
+ HREF="node91.html">Error Bounds for the Nonsymmetric Eigenproblem </A>
+<UL>
+<LI><A NAME="tex2html3752"
+ HREF="node92.html">Further Details:  Error Bounds for the Nonsymmetric Eigenproblem</A>
+</UL>
+<LI><A NAME="tex2html3753"
+ HREF="node96.html">Error Bounds for the Singular Value Decomposition</A>
+<UL>
+<LI><A NAME="tex2html3754"
+ HREF="node97.html">Further Details:  Error Bounds for the Singular Value Decomposition</A>
+</UL>
+<LI><A NAME="tex2html3755"
+ HREF="node98.html">Error Bounds for the Generalized Symmetric Definite
+Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html3756"
+ HREF="node99.html">Further Details:  Error Bounds for the Generalized Symmetric Definite
+Eigenproblem</A>
+</UL>
+<LI><A NAME="tex2html3757"
+ HREF="node100.html">Error Bounds for the Generalized Nonsymmetric Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html3758"
+ HREF="node101.html">Further Details: Error Bounds for the Generalized
+Nonsymmetric Eigenproblem</A>
+</UL>
+<LI><A NAME="tex2html3759"
+ HREF="node106.html">Error Bounds for the Generalized Singular Value Decomposition</A>
+<UL>
+<LI><A NAME="tex2html3760"
+ HREF="node107.html">Further Details:  Error Bounds for the Generalized Singular Value Decomposition</A>
+</UL>
+<LI><A NAME="tex2html3761"
+ HREF="node108.html">Error Bounds for Fast Level 3 BLAS</A>
+</UL>
+<LI><A NAME="tex2html3762"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<UL>
+<LI><A NAME="tex2html3763"
+ HREF="node110.html">Design and Documentation of Argument Lists</A>
+<UL>
+<LI><A NAME="tex2html3764"
+ HREF="node111.html">Structure of the Documentation</A>
+<LI><A NAME="tex2html3765"
+ HREF="node112.html">Order of Arguments</A>
+<LI><A NAME="tex2html3766"
+ HREF="node113.html">Argument Descriptions</A>
+<LI><A NAME="tex2html3767"
+ HREF="node114.html">Option Arguments</A>
+<LI><A NAME="tex2html3768"
+ HREF="node115.html">Problem Dimensions</A>
+<LI><A NAME="tex2html3769"
+ HREF="node116.html">Array Arguments</A>
+<LI><A NAME="tex2html3770"
+ HREF="node117.html">Work Arrays</A>
+<LI><A NAME="tex2html3771"
+ HREF="node118.html">LWORK Query</A>
+<LI><A NAME="tex2html3772"
+ HREF="node119.html">Error Handling and the Diagnostic Argument INFO</A>
+</UL>
+<LI><A NAME="tex2html3773"
+ HREF="node120.html">Determining the Block Size for Block Algorithms</A>
+<LI><A NAME="tex2html3774"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<UL>
+<LI><A NAME="tex2html3775"
+ HREF="node122.html">Conventional Storage</A>
+<LI><A NAME="tex2html3776"
+ HREF="node123.html">Packed Storage</A>
+<LI><A NAME="tex2html3777"
+ HREF="node124.html">Band Storage</A>
+<LI><A NAME="tex2html3778"
+ HREF="node125.html">Tridiagonal and Bidiagonal Matrices</A>
+<LI><A NAME="tex2html3779"
+ HREF="node126.html">Unit Triangular Matrices</A>
+<LI><A NAME="tex2html3780"
+ HREF="node127.html">Real Diagonal Elements of Complex Matrices</A>
+</UL>
+<LI><A NAME="tex2html3781"
+ HREF="node128.html">Representation of Orthogonal or Unitary Matrices</A>
+</UL>
+<LI><A NAME="tex2html3782"
+ HREF="node129.html">Installing LAPACK Routines</A>
+<UL>
+<LI><A NAME="tex2html3783"
+ HREF="node130.html">Points to Note</A>
+<LI><A NAME="tex2html3784"
+ HREF="node131.html">Installing ILAENV</A>
+</UL>
+<LI><A NAME="tex2html3785"
+ HREF="node132.html">Troubleshooting</A>
+<UL>
+<LI><A NAME="tex2html3786"
+ HREF="node133.html">Bug Report Checklist</A>
+<LI><A NAME="tex2html3787"
+ HREF="node134.html">Installation Debugging Hints</A>
+<LI><A NAME="tex2html3788"
+ HREF="node135.html">Common Errors in Calling LAPACK Routines</A>
+<LI><A NAME="tex2html3789"
+ HREF="node136.html">Failures Detected by LAPACK Routines</A>
+<UL>
+<LI><A NAME="tex2html3790"
+ HREF="node137.html">Invalid Arguments and XERBLA</A>
+<LI><A NAME="tex2html3791"
+ HREF="node138.html">Computational Failures and INFO <B>&gt;</B> 0</A>
+</UL>
+<LI><A NAME="tex2html3792"
+ HREF="node139.html">Wrong Results</A>
+<LI><A NAME="tex2html3793"
+ HREF="node140.html">Poor Performance</A>
+</UL>
+<LI><A NAME="tex2html3794"
+ HREF="node141.html">Index of Driver and Computational Routines</A>
+<UL>
+<LI><A NAME="tex2html3795"
+ HREF="node142.html">Notes</A>
+</UL>
+<LI><A NAME="tex2html3796"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+<UL>
+<LI><A NAME="tex2html3797"
+ HREF="node144.html">Notes</A>
+</UL>
+<LI><A NAME="tex2html3798"
+ HREF="node145.html">Quick Reference 
+Guide to the BLAS</A>
+<LI><A NAME="tex2html3799"
+ HREF="node146.html">Converting from LINPACK or EISPACK</A>
+<UL>
+<LI><A NAME="tex2html3800"
+ HREF="node147.html">Notes</A>
+</UL>
+<LI><A NAME="tex2html3801"
+ HREF="node148.html">LAPACK Working Notes</A>
+</UL>
+<LI><A NAME="tex2html3802"
+ HREF="node149.html">Specifications of Routines</A>
+<UL>
+<LI><A NAME="tex2html3803"
+ HREF="node150.html">Notes</A>
+</UL>
+<LI><A NAME="tex2html3804"
+ HREF="node151.html">Bibliography</A>
+<LI><A NAME="tex2html3805"
+ HREF="node152.html">Index by Keyword</A>
+<LI><A NAME="tex2html3806"
+ HREF="node153.html">About this document ...</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3680"
+ HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="http://www.netlib.org/utk/icons/next_motif.gif"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="http://www.netlib.org/utk/icons/up_motif_gr.gif"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="http://www.netlib.org/utk/icons/previous_motif_gr.gif"> 
+<A NAME="tex2html3676"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="http://www.netlib.org/utk/icons/contents_motif.gif"></A> 
+<A NAME="tex2html3678"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="http://www.netlib.org/utk/icons/index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3681"
+ HREF="node1.html">Contents</A>
+ &nbsp <B>  <A NAME="tex2html3677"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html3679"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

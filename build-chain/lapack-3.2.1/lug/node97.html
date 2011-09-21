@@ -1,0 +1,557 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for the Singular Value Decomposition</TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for the Singular Value Decomposition">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node96.html">
+<LINK REL="up" HREF="node96.html">
+<LINK REL="next" HREF="node98.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5550"
+ HREF="node98.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5544"
+ HREF="node96.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5540"
+ HREF="node96.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5546"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5548"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5551"
+ HREF="node98.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5545"
+ HREF="node96.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5541"
+ HREF="node96.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5547"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5549"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03491000000000000000"></A><A NAME="secbackgroundsvd"></A>
+<BR>
+Further Details:  Error Bounds for the Singular Value Decomposition
+</H2>
+
+<P>
+The usual error analysis of the SVD
+algorithms<A NAME="11756"></A>
+xGESVD and xGESDD in LAPACK (see subsection <A HREF="node29.html#subsecdriveeig">2.3.4</A>)
+or the routines in LINPACK and EISPACK is as follows [<A
+ HREF="node151.html#demmelMA221">25</A>,<A
+ HREF="node151.html#GVL2">55</A>]:
+
+<P>
+<BLOCKQUOTE>
+The SVD algorithm is backward stable.
+<A NAME="11760"></A>
+<A NAME="11761"></A>
+This means that the computed SVD, 
+<!-- MATH
+ $\hat{U} \hat{\Sigma} \hat{V}^T$
+ -->
+<IMG
+ WIDTH="55" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img649.gif"
+ ALT="$\hat{U} \hat{\Sigma} \hat{V}^T$">,
+is nearly the exact SVD of <B><I>A</I>+<I>E</I></B> where 
+<!-- MATH
+ $\|E\|_2 / \|A\|_2 \leq p(m,n) \epsilon$
+ -->
+<IMG
+ WIDTH="176" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img650.gif"
+ ALT="$\Vert E\Vert _2 / \Vert A\Vert _2 \leq p(m,n) \epsilon$">,
+and <B><I>p</I>(<I>m</I>,<I>n</I>)</B> is a modestly growing function of <B><I>m</I></B> and <B><I>n</I></B>. This means
+
+<!-- MATH
+ $A+E = (\hat{U} + \delta \hat{U}) \hat{\Sigma} (\hat{V}+ \delta \hat{V})$
+ -->
+<IMG
+ WIDTH="231" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img651.gif"
+ ALT="$A+E = (\hat{U} + \delta \hat{U}) \hat{\Sigma} (\hat{V}+ \delta \hat{V})$">
+is the true SVD, so that 
+<!-- MATH
+ $\hat{U}+ \delta \hat{U}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img652.gif"
+ ALT="$\hat{U}+ \delta \hat{U}$">
+and 
+<!-- MATH
+ $\hat{V}+ \delta
+\hat{V}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img653.gif"
+ ALT="$\hat{V}+ \delta
+\hat{V}$">
+are both orthogonal, where
+
+<!-- MATH
+ $\| \delta \hat{U} \| \leq p(m,n) \epsilon$
+ -->
+<IMG
+ WIDTH="130" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img654.gif"
+ ALT="$\Vert \delta \hat{U} \Vert \leq p(m,n) \epsilon$">,
+and
+
+<!-- MATH
+ $\| \delta \hat{V} \| \leq p(m,n) \epsilon$
+ -->
+<IMG
+ WIDTH="130" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img655.gif"
+ ALT="$\Vert \delta \hat{V} \Vert \leq p(m,n) \epsilon$">.
+Each computed singular value 
+<!-- MATH
+ $\hat{\sigma}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img635.gif"
+ ALT="$\hat{\sigma}_i$">
+differs from true <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">
+by at most
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\sigma}_i - \sigma_i | \leq p(m,n) \cdot \epsilon \cdot \sigma_1
+= {\tt SERRBD} \; ,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="276" HEIGHT="31" BORDER="0"
+ SRC="img656.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\sigma}_i - \sigma_i \vert \leq p(m,n) \cdot \epsilon \cdot \sigma_1
+= {\tt SERRBD} \; ,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+(we take <B><I>p</I>(<I>m</I>,<I>n</I>)=1</B> in the code fragment).
+Thus large singular values (those near <IMG
+ WIDTH="22" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img657.gif"
+ ALT="$\sigma_1$">)
+are computed to
+high relative accuracy <A NAME="11777"></A> and small ones may not be.
+<A NAME="11778"></A>
+<A NAME="11779"></A>
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>There are two questions to ask about the computed singular vectors:
+``Are they orthogonal?'' and ``How much do they differ from the
+true eigenvectors?''
+The answer to the first question is yes,
+the computed singular vectors
+are always nearly orthogonal to working precision, independent of
+how much they differ from the true singular vectors. In other words
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|\hat{u}_i^T \hat{u}_j | = O( \epsilon )
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="102" HEIGHT="32" BORDER="0"
+ SRC="img658.gif"
+ ALT="\begin{displaymath}
+\vert\hat{u}_i^T \hat{u}_j \vert = O( \epsilon )
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+for <IMG
+ WIDTH="42" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img549.gif"
+ ALT="$i \neq j$">.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>Here is the answer to the second question about singular vectors.
+The angular difference between the computed left singular vector <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img632.gif"
+ ALT="$\hat{u}_i$">
+and a true <B><I>u</I><SUB><I>i</I></SUB></B> satisfies the approximate bound
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{u}_i , u_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\frac{p(m,n) \epsilon \|A\|_2}{{\rm gap}_i}
+= {\tt UERRBD}(i)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="285" HEIGHT="48" BORDER="0"
+ SRC="img659.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{u}_i , u_i ) \mathrel{\raisebox{-.75ex}{$\math...
+...(m,n) \epsilon \Vert A\Vert _2}{{\rm gap}_i}
+= {\tt UERRBD}(i)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+where 
+<!-- MATH
+ ${\rm gap}_i = \min_{j \neq i} | \sigma_i - \sigma_j |$
+ -->
+<IMG
+ WIDTH="177" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img660.gif"
+ ALT="${\rm gap}_i = \min_{j \neq i} \vert \sigma_i - \sigma_j \vert$">
+is the
+<B>absolute gap</B><A NAME="11787"></A><A NAME="11788"></A>
+between <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">
+and the nearest other singular value.
+We take <B><I>p</I>(<I>m</I>,<I>n</I>)=1</B> in the code fragment.
+Thus, if <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">
+is close to other singular values, its corresponding singular vector <B><I>u</I><SUB><I>i</I></SUB></B>
+may be inaccurate. When <B><I>n</I> &lt; <I>m</I></B>, then <IMG
+ WIDTH="41" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img661.gif"
+ ALT="${\rm gap}_n$">
+must be redefined
+as 
+<!-- MATH
+ $\min ( \min_{j \neq n} ( | \sigma_n - \sigma_j | , \sigma_n ) )$
+ -->
+<IMG
+ WIDTH="209" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img662.gif"
+ ALT="$\min ( \min_{j \neq n} ( \vert \sigma_n - \sigma_j \vert , \sigma_n ) )$">.
+The gaps may be easily computed from the array of computed singular values
+using function <A NAME="11790"></A><A NAME="11791"></A><TT>SDISNA</TT>.
+The gaps computed by <TT>SDISNA</TT> are ensured not to be so small as
+to cause overflow when used as divisors.
+<A NAME="11794"></A>
+<A NAME="11795"></A>
+The same bound applies to the computed right singular
+vector <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img564.gif"
+ ALT="$\hat{v}_i$">
+and a true vector <B><I>v</I><SUB><I>i</I></SUB></B>.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>Let 
+<!-- MATH
+ ${\hat{\cal S}}$
+ -->
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+be the space spanned by a collection of computed left singular
+vectors 
+<!-- MATH
+ $\{\hat{u}_i \, , \, i \in {\cal I}\}$
+ -->
+<IMG
+ WIDTH="89" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img663.gif"
+ ALT="$\{\hat{u}_i \, , \, i \in {\cal I}\}$">,
+where <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+is a subset
+of the integers from 1 to <B><I>n</I></B>. Let <IMG
+ WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img318.gif"
+ ALT="$\cal S$">
+be the corresponding true space.
+Then
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( {\hat{\cal S}}, {\cal S}) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\frac{p(m,n) \epsilon \|A\|_2}
+{{\rm gap}_{\cal I}}  .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="186" HEIGHT="48" BORDER="0"
+ SRC="img664.gif"
+ ALT="\begin{displaymath}
+\theta ( {\hat{\cal S}}, {\cal S}) \mathrel{\raisebox{-.75ex...
+...}\frac{p(m,n) \epsilon \Vert A\Vert _2}
+{{\rm gap}_{\cal I}} .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+where
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+{\rm gap}_{\cal I} = \min_{i \in {\cal I} \atop j \not\in {\cal I}}
+| \sigma_i - \sigma_j |
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="153" HEIGHT="50" BORDER="0"
+ SRC="img665.gif"
+ ALT="\begin{displaymath}
+{\rm gap}_{\cal I} = \min_{i \in {\cal I} \atop j \not\in {\cal I}}
+\vert \sigma_i - \sigma_j \vert
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+is the absolute gap between the singular values in <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+and the nearest
+other singular value. Thus, a cluster<A NAME="11803"></A>
+of close singular values which is
+far away from any other singular value may have a well determined
+space 
+<!-- MATH
+ ${\hat{\cal S}}$
+ -->
+<IMG
+ WIDTH="16" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\hat{\cal S}$">
+even if its individual singular vectors are ill-conditioned.
+The same bound applies to a set of right singular vectors
+
+<!-- MATH
+ $\{\hat{v}_i \, , \, i \in {\cal I}\}$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img666.gif"
+ ALT="$\{\hat{v}_i \, , \, i \in {\cal I}\}$"><A NAME="tex2html2331"
+ HREF="footnode.html#foot13254"><SUP>4.1</SUP></A>.
+</BLOCKQUOTE>
+<P>
+
+<P>
+In the special case of bidiagonal matrices, the singular values and
+singular vectors may be computed much more accurately. A bidiagonal
+matrix <B><I>B</I></B> has nonzero entries only on the main diagonal and the diagonal
+immediately
+above it (or immediately below it). xGESVD computes the SVD of a general
+<A NAME="11811"></A><A NAME="11812"></A><A NAME="11813"></A><A NAME="11814"></A>
+matrix by first reducing it to bidiagonal form <B><I>B</I></B>, and then calling xBDSQR
+<A NAME="11815"></A><A NAME="11816"></A><A NAME="11817"></A><A NAME="11818"></A>
+(subsection <A HREF="node53.html#subseccompsvd">2.4.6</A>)
+to compute the SVD of <B><I>B</I></B>.
+xGESDD is similar, but calls xBDSDC to compute the SVD of <B><I>B</I></B>.
+<A NAME="11820"></A><A NAME="11821"></A>
+Reduction of a dense matrix to bidiagonal form <B><I>B</I></B> can introduce
+additional errors, so the following bounds for the bidiagonal case
+do not apply to the dense case.
+
+<P>
+<BLOCKQUOTE>
+Each computed singular value of a bidiagonal matrix
+is accurate to nearly full relative accuracy<A NAME="11823"></A>,
+no matter how tiny it is:
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+| \hat{\sigma}_i - \sigma_i | \leq p(m,n) \cdot \epsilon \cdot \sigma_i.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="191" HEIGHT="31" BORDER="0"
+ SRC="img668.gif"
+ ALT="\begin{displaymath}
+\vert \hat{\sigma}_i - \sigma_i \vert \leq p(m,n) \cdot \epsilon \cdot \sigma_i.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+<A NAME="11824"></A>
+<A NAME="11825"></A>
+The following bounds apply only to xBDSQR.
+The computed left singular vector <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img632.gif"
+ ALT="$\hat{u}_i$">
+has an angular error
+at most about
+</BLOCKQUOTE>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta ( \hat{u}_i , u_i ) \mathrel{\raisebox{-.75ex}{$\mathop{\sim}\limits^{\textstyle <}$}}\frac{p(m,n) \epsilon}{{\rm relgap}_i}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="149" HEIGHT="48" BORDER="0"
+ SRC="img669.gif"
+ ALT="\begin{displaymath}
+\theta ( \hat{u}_i , u_i ) \mathrel{\raisebox{-.75ex}{$\math...
+...limits^{\textstyle &lt;}$}}\frac{p(m,n) \epsilon}{{\rm relgap}_i}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P><BLOCKQUOTE>
+where
+
+<!-- MATH
+ ${\rm relgap}_i = \min_{j \neq i} | \sigma_i - \sigma_j | / ( \sigma_i + \sigma_j )$
+ -->
+<IMG
+ WIDTH="273" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img670.gif"
+ ALT="${\rm relgap}_i = \min_{j \neq i} \vert \sigma_i - \sigma_j \vert / ( \sigma_i + \sigma_j )$">
+is the <B>relative gap</B> between <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">
+and the nearest other singular
+value. The same bound applies to the right singular vector <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img564.gif"
+ ALT="$\hat{v}_i$">
+and <B><I>v</I><SUB><I>i</I></SUB></B>.
+Since the relative gap<A NAME="11830"></A><A NAME="11831"></A> may be much larger than
+the absolute gap<A NAME="11832"></A><A NAME="11833"></A>,
+this error bound may be much smaller than the previous one. The relative gaps
+may be easily computed from the array of computed singular values.
+
+</BLOCKQUOTE>
+
+<P>
+In the very special case of 2-by-2 bidiagonal matrices, xBDSQR and xBDSDC
+call auxiliary routine xLASV2 to compute the SVD. xLASV2 will
+actually compute nearly correctly rounded singular vectors independent of
+the relative gap, but this requires accurate computer arithmetic:
+if leading digits cancel during floating-point subtraction, the resulting
+difference must be exact.
+On machines without guard digits one has the slightly weaker result that the
+algorithm is componentwise relatively backward stable, and therefore the
+accuracy <A NAME="11835"></A> of the singular vectors depends on the relative gap as described
+above.
+<A NAME="11836"></A>
+<A NAME="11837"></A>
+
+<P>
+Jacobi's method [<A
+ HREF="node151.html#demmelveselic">34</A>,<A
+ HREF="node151.html#veselicslapnicar">99</A>,<A
+ HREF="node151.html#slapnicar1">91</A>] is another
+algorithm for finding singular values and singular vectors of matrices.
+It is slower than the algorithms based on first bidiagonalizing the matrix,
+but is capable of computing more accurate answers in several important cases.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5550"
+ HREF="node98.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5544"
+ HREF="node96.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5540"
+ HREF="node96.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5546"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5548"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5551"
+ HREF="node98.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5545"
+ HREF="node96.html">Error Bounds for the</A>
+<B> Previous:</B> <A NAME="tex2html5541"
+ HREF="node96.html">Error Bounds for the</A>
+ &nbsp <B>  <A NAME="tex2html5547"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5549"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

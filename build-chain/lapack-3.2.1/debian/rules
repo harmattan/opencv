@@ -1,0 +1,327 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This is the debhelper compatability version to use.
+#export DH_COMPAT=2
+
+SO:=3gf
+MN:=0
+VERS:=$(SO).$(MN)
+
+GCC:=gcc
+
+ARCH:=$(shell dpkg --print-architecture)
+F77:=gfortran
+FOPTS:= #-ff90
+#OPTOPTS:=-g
+#UNROLL:=
+OPTOPTS:=-g -O3
+UNROLL:=-funroll-all-loops
+ifneq (,$(filter $(ARCH), arm armel))
+  OPTOPTS:=-g -O0
+  UNROLL:=
+endif
+
+ifneq (,$(filter $(ARCH), m68k))
+  #FOPTS:=-ffloat-store
+  UNROLL:=
+endif
+
+ifeq ($(ARCH),alpha)
+  FOPTS:=-mieee
+endif
+
+ifeq ($(ARCH),s390)
+  OPTOPTS:=-g -O0
+endif
+
+ifneq (,$(filter $(ARCH), none))
+  export ignore_testing_failures = -
+endif
+
+#
+#
+# Add-on documentation from upstream
+#
+#
+
+
+debian/lapackqref.ps debian/faq.html:
+	cd $(@D) && wget -N ftp://ftp.netlib.org/lapack/$(@F)
+
+debian/release_notes.html:
+	cd $(@D) && wget -N ftp://ftp.netlib.org/lapack/$(@F)
+	cat $@ | sed -e "s,/lapack/html/,,g" \
+		     -e "s,errata.lug\",errata.lug.gz\",1" \
+		     -e "s,installation.hints\",installation.hints.gz\",1" >tmp
+	mv tmp $@
+
+MF:=$(shell find man -type f)
+MANEXT:=3lapack
+MF3:=$(subst .l,.$(MANEXT),$(MF))
+man:
+	cd debian && wget -N ftp://ftp.netlib.org/lapack/manpages.tgz
+	tar zxf debian/manpages.tgz
+	rm -rf debian/manpages.tgz blas/man
+
+%.$(MANEXT): %.l
+	cat $< | sed "s,^.TH  *\([^ ]*\)  *.  *\(.*\),.TH \1 $(MANEXT) \2,1" >$@
+	@echo Converted $< to $@, diff:
+	diff -u $< $@ || true
+
+debian/errata.lug debian/installation.hints:
+	cd $(@D) && wget -N ftp://ftp.netlib.org/lapack/html/$(@F)
+
+lug/index.html:
+	mkdir -p $(@D)
+	cd $(@D) && \
+		wget -r -N --no-parent -nH --cut-dirs=2 ftp://ftp.netlib.org/lapack/lug/
+	cd $(@D) && \
+		wget -r -N --no-parent -nH --cut-dirs=2 -A gif ftp://ftp.netlib.org/utk/icons/
+	cd $(@D) && ( set -e ; \
+		for i in $$(ls -1 *.html); do \
+			cat $$i | sed "s,http://www.netlib.org/utk/icons/,,g" >tmp && mv tmp $$i ; \
+		done )
+	cd $(@D) && web2png -a -d
+
+doc: lug/index.html debian/lapackqref.ps man\
+     debian/release_notes.html debian/errata.lug debian/installation.hints\
+     debian/faq.html
+
+#
+#
+# Configure
+#
+#
+
+make.inc: install/make.inc.gfortran
+	cat $< | sed -e "s,g77,$(F77),g" \
+		     -e "s,\(^NOOPT  *=\),\1 \$$(PICOPTS) $(FOPTS),1" \
+		     -e "s,-O3,\$$(PICOPTS) $(FOPTS) $(OPTOPTS),1" \
+		     -e "s,\(^OPTS  *=\).*,\1 $(UNROLL) \$$(PICOPTS) $(OPTOPTS),1" \
+		     -e "s,[^ ]*blas[^ ]*\.a,-lblas,1" \
+		     -e "s,TIMER. *,#&," > $@
+	echo "TIMER = INT_ETIME" >> $@
+
+TIMEOUT:=1800
+
+testing/Makefile.ori:
+	cp testing/Makefile $@
+
+testing/Makefile: testing/Makefile.ori
+	cat $< | sed -e "s,\./x,$(ignore_testing_failures)../debian/trun $(TIMEOUT) ./x,g" >$@
+
+#
+#
+# Build rules for libraries
+#
+#
+
+
+liblapack_pic.a: make.inc testing/Makefile
+	$(MAKE) cleanlib
+	$(MAKE) lapack_install PICOPTS=-fPIC
+	$(MAKE) lib        PICOPTS=-fPIC
+	mv lapack_LINUX.a $@
+
+liblapack.so.$(VERS): liblapack_pic.a libblas.so
+	mkdir tmp
+	cd tmp && ar x ../$<
+# Cannot link against blas -- causes circular dependency in atlas packages.
+	$(F77) -shared -Wl,-soname=liblapack.so.$(SO) -o $@ tmp/*.o  -L. -lblas
+	rm -rf tmp
+
+liblapack.so.$(SO): liblapack.so.$(VERS)
+	ln -snf $< $@
+
+liblapack.so: liblapack.so.$(SO)
+	ln -snf $< $@
+
+liblapack.a: make.inc testing/Makefile
+	$(MAKE) cleanlib
+	$(MAKE) lapack_install
+	$(MAKE) lib
+	mv lapack_LINUX.a $@
+
+BF:=liblapack.a liblapack.so
+build: $(BF) make.inc
+
+
+#
+#
+# Testing rules
+#
+#
+
+TB:=s d c z
+TB:=$(addprefix tst,$(TB))
+TB:=$(addprefix eig,$(TB)) $(addprefix lin,$(TB))
+TB:=$(addprefix testing/x,$(TB))
+TESF:=cbak cbal cbb cec ced cgbak cgbal cgd cgg cglm cgqr cgsv\
+	clse cnep csb csep csg csvd ctest dbak dbal dbb dec ded\
+	dgbak dgbal dgd dgg dglm dgqr dgsv dlse dnep dsb dsep dsg\
+	dsvd dtest sbak sbal sbb sec sed sgbak sgbal sgd sgg sglm\
+	sgqr sgsv slse snep ssb ssep ssg ssvd stest zbak zbal zbb\
+	zec zed zgbak zgbal zgd zgg zglm zgqr zgsv zlse znep zsb\
+	zsep zsg zsvd ztest
+
+#
+# Work around for alpha, cgqr test fails to converge
+#
+# Now fixed
+#
+# FIXME: filtering here has no effect; all tests are run.
+#ifeq ($(ARCH),alpha)
+#  TESF:=$(filter-out cgqr,$(TESF))
+#endif
+
+TESF:=$(addprefix testing/,$(addsuffix .out,$(TESF)))
+
+libblas.so:
+	cp -d /usr/lib/libblas/libblas.so.$(SO).* libblas.so
+
+$(TB) $(TESF): libblas.so liblapack.so
+	chmod +x debian/trun
+	grep -q debian/trun testing/Makefile \
+	    || sed -i -e "s,\./x,$(ignore_testing_failures)../debian/trun $(TIMEOUT) ./x,g" testing/Makefile
+	$(ignore_testing_failures)LD_LIBRARY_PATH=$$(pwd):$$LD_LIBRARY_PATH \
+	    $(MAKE) PICOPTS= \
+		LLIB="-L $$(pwd) -llapack -lblas" lapack_testing & \
+		j=$$! ;\
+		tail -f --pid=$$j --retry $(TESF) & \
+		wait $$j
+
+$(subst testing,debian/test,$(TESF)):\
+	debian/test/%: testing/%
+	mkdir -m 777 -p $(@D)
+	echo Test file $(@F) >$@
+	cat $< >> $@
+
+debian/test_results: $(subst testing,debian/test,$(TESF))
+	echo "These libraries and tests were compiled with:" >$@
+	$(F77) -v >>$@
+	cat $^ >>$@
+
+debian/liblapack3gf.templates: debian/test_results
+	cp debian/main_templates $@
+#	chmod +x debian/rawk
+#	cat $^ | debian/rawk >>$@ ; j=$$? ; echo Warning level: $$j;\
+		cat debian/liblapack3gf.config | sed "s,^STAT=.,STAT=$$j,1" >tmp && \
+		mv tmp debian/liblapack3gf.config
+#	cat $@ debian/liblapack3gf.config
+
+#
+#
+# Install
+#
+#
+
+debian/tmp/usr/lib/lapack/%: %
+	dh_testdir
+	dh_testroot
+
+	install -m 755 -d $(@D)
+	[ -L $* ] || install -m 644 $< $(@D)
+	! [ -L $* ] || cp -d $< $@
+
+$(addprefix debian/tmp/usr/lib/liblapack3gf/,$(subst testing/,,$(TB))): \
+	debian/tmp/usr/lib/liblapack3gf/%: testing/%
+	dh_testdir
+	dh_testroot
+
+	install -m 755 -d $(@D)
+	install -m 755 $< $(@D)
+
+
+IF:=$(addprefix liblapack.,a so so.$(SO) so.$(VERS)) liblapack_pic.a
+IF:=$(addprefix debian/tmp/usr/lib/lapack/,$(IF))
+IF:=$(IF) $(addprefix debian/tmp/usr/lib/liblapack3gf/,$(subst testing/,,$(TB)))
+
+install: $(IF) $(MF3) debian/test_results debian/liblapack3gf.templates
+# Delete the empty man page
+	rm man/manl/zbcon.$(MANEXT)
+	dh_testdir
+	dh_testroot
+	dh_movefiles
+
+
+#
+#
+# Clean
+#
+#
+
+
+clean:: make.inc
+	dh_testdir
+	dh_testroot
+	rm -rf debian/*_stamp debian/*_results lib* testing/*out
+	find man -name "*.$(MANEXT)" -exec rm {} \;
+	rm -rf *.a install/test* debian/test/ debian/time/
+	rm -f debian/test_results debian/liblapack3gf.templates
+	rm -f testing/tmp
+
+	touch TESTING/xlinfoo TESTING/xeigfoo  && $(MAKE) clean
+	rm -f make.inc
+
+	-[ -e testing/Makefile.ori ] \
+		&& mv testing/Makefile.ori testing/Makefile
+
+	dh_clean
+
+#
+#
+# Package rules
+#
+#
+
+
+# Build architecture-independent files here.
+binary-indep: install
+	dh_testdir -i
+	dh_testroot -i
+	rm -f debian/liblapack-doc/usr/share/doc/liblapack-doc/lug/index.html
+	rm -f debian/liblapack-doc/usr/share/doc/liblapack-doc/lug/robots.txt
+	dh_installdocs -i
+	dh_installexamples -i
+	dh_installman -i -pliblapack-doc
+	dh_installchangelogs -i
+	dh_link -i
+	dh_strip -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_makeshlibs -i
+	dh_installdeb -i
+	dh_shlibdeps -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installdebconf -a
+	dh_installexamples -a
+	dh_installman -a -pliblapack-test
+	dh_installchangelogs -a
+	dh_link -a
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -a -V "liblapack3gf | liblapack.so.3gf | libatlas3gf-base"
+	dh_installdeb -a
+#	dh_shlibdeps -a -l $$(pwd)
+	dh_gencontrol -a #-u"-Vg77=$(F77)"
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: clean binary-indep binary-arch binary \
+	debian/lapackqref.ps debian/manpages.tgz lug/index.html \
+	debian/release_notes.html debian/faq.html debian/errata.lug \
+	debian/installation.hints  doc\
+	build

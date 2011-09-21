@@ -1,0 +1,1098 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Overview</TITLE>
+<META NAME="description" CONTENT="Overview">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node103.html">
+<LINK REL="previous" HREF="node101.html">
+<LINK REL="up" HREF="node101.html">
+<LINK REL="next" HREF="node103.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5626"
+ HREF="node103.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5620"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5614"
+ HREF="node101.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5622"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5624"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5627"
+ HREF="node103.html">Balancing and Conditioning</A>
+<B> Up:</B> <A NAME="tex2html5621"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5615"
+ HREF="node101.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5623"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5625"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION034111100000000000000"></A><A NAME="GNEP311"></A>
+<BR>
+Overview
+</H3>
+In this subsection, we summarize all the available error bounds.
+Later sections will provide further details.
+The error bounds presented here apply to regular matrix pairs only.
+
+<P>
+Bounds for individual eigenvalues and eigenvectors are provided by
+the driver
+xGGEVX<A NAME="12138"></A><A NAME="12139"></A><A NAME="12140"></A><A NAME="12141"></A>
+(subsection <A HREF="node35.html#sec_gnep_driver">2.3.5.2</A>)
+or the computational routine xTGSNA
+<A NAME="12143"></A><A NAME="12144"></A><A NAME="12145"></A><A NAME="12146"></A>
+(subsection <A HREF="node55.html#sec_gnep_comp">2.4.8</A>).
+Bounds for cluster of eigenvalues
+<A NAME="12148"></A>
+and their associated pair of deflating
+subspaces are provided by the driver
+xGGESX<A NAME="12149"></A><A NAME="12150"></A><A NAME="12151"></A><A NAME="12152"></A>
+(subsection <A HREF="node35.html#sec_gnep_driver">2.3.5.2</A>) or the
+computational routine xTGSEN
+<A NAME="12154"></A><A NAME="12155"></A><A NAME="12156"></A><A NAME="12157"></A>
+(subsection <A HREF="node55.html#sec_gnep_comp">2.4.8</A>).
+<A NAME="12159"></A>
+
+<P>
+We let 
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+be the <B><I>i</I><SUP><I>th</I></SUP></B> computed
+eigenvalue pair and 
+<!-- MATH
+ $({\alpha}_i, {\beta}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img725.gif"
+ ALT="$({\alpha}_i, {\beta}_i)$">
+the <B><I>i</I><SUP><I>th</I></SUP></B> exact eigenvalue
+pair.<A NAME="tex2html2442"
+ HREF="footnode.html#foot13385"><SUP>4.2</SUP></A>Let <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">
+and <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img760.gif"
+ ALT="$\hat{y}_i$">
+be the corresponding computed right
+and left eigenvectors, and <B><I>x</I><SUB><I>i</I></SUB></B> and <B><I>y</I><SUB><I>i</I></SUB></B> the exact right and left
+eigenvectors (so that 
+<!-- MATH
+ ${\beta}_i A x_i = {\alpha}_i B x_i$
+ -->
+<IMG
+ WIDTH="117" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img726.gif"
+ ALT="${\beta}_i A x_i = {\alpha}_i B x_i$">
+and
+
+<!-- MATH
+ ${\beta}_i y_i^H A  = {\alpha}_i y_i^H B$
+ -->
+<IMG
+ WIDTH="131" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img761.gif"
+ ALT="${\beta}_i y_i^H A = {\alpha}_i y_i^H B$">).
+As in the standard nonsymmetric eigenvalue problem, we also want to
+bound the error in the average of a cluster of eigenvalues, corresponding
+to a subset <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+of the integers from 1 to <B><I>n</I></B>.
+However, since there are both finite and infinite eigenvalues,
+we need a proper definition for the average of the eigenvalues
+
+<!-- MATH
+ ${\lambda}_i = {\alpha}_i/{\beta}_i$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img192.gif"
+ ALT="$\lambda_i = \alpha_i / \beta_i$">
+for 
+<!-- MATH
+ $i \in {\cal I}$
+ -->
+<IMG
+ WIDTH="43" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img762.gif"
+ ALT="$i \in {\cal I}$">.
+Here we let 
+<!-- MATH
+ $( {\alpha}_{\cal I}, {\beta}_{\cal I} )$
+ -->
+<IMG
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img763.gif"
+ ALT="$( {\alpha}_{\cal I}, {\beta}_{\cal I} )$">
+denote the average of the selected eigenvalues<A NAME="tex2html2443"
+ HREF="footnode.html#foot13386"><SUP>4.3</SUP></A>:
+
+<!-- MATH
+ $( {\alpha}_{\cal I}, {\beta}_{\cal I} ) =
+  (\sum_{i \in {\cal I}} {\alpha}_i, \sum_{i \in {\cal I}} {\beta}_i )/
+  (\sum_{i \in {\cal I}} 1)$
+ -->
+<IMG
+ WIDTH="300" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img766.gif"
+ ALT="$( {\alpha}_{\cal I}, {\beta}_{\cal I} ) =
+(\sum_{i \in {\cal I}} {\alpha}_i, \sum_{i \in {\cal I}} {\beta}_i )/
+(\sum_{i \in {\cal I}} 1)$">,
+and similarly for
+
+<!-- MATH
+ $( \hat{{\alpha}}_{\cal I}, \hat{{\beta}}_{\cal I} )$
+ -->
+<IMG
+ WIDTH="65" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img767.gif"
+ ALT="$( \hat{{\alpha}}_{\cal I}, \hat{{\beta}}_{\cal I} )$">.
+We also let 
+<!-- MATH
+ ${\cal L}_{\cal I}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img768.gif"
+ ALT="${\cal L}_{\cal I}$">
+and 
+<!-- MATH
+ ${\cal R}_{\cal I}$
+ -->
+<IMG
+ WIDTH="28" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img769.gif"
+ ALT="${\cal R}_{\cal I}$">
+denote the
+exact pair of left
+and right deflating subspaces associated with the cluster of selected
+eigenvalues.
+Similarly, 
+<!-- MATH
+ $\widehat{{\cal L}}_{\cal I}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img770.gif"
+ ALT="$\widehat{{\cal L}}_{\cal I}$">
+and
+
+<!-- MATH
+ $\widehat{{\cal R}}_{\cal I}$
+ -->
+<IMG
+ WIDTH="28" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img771.gif"
+ ALT="$\widehat{{\cal R}}_{\cal I}$">
+are the
+corresponding computed pair of left and right deflating subspaces.
+
+<P>
+The algorithms for the generalized nonsymmetric eigenproblem are normwise
+backward stable;
+<A NAME="12230"></A>
+<A NAME="12231"></A>
+the computed eigenvalues, eigenvectors and deflating
+subspaces are the exact ones of slightly perturbed matrices <B><I>A</I> + <I>E</I></B> and <B><I>B</I> +<I>F</I></B>,
+where 
+<!-- MATH
+ $\|(E, F)\|_F \leq p(n) \epsilon \|(A, B)\|_F$
+ -->
+<IMG
+ WIDTH="222" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img772.gif"
+ ALT="$\Vert(E, F)\Vert _F \leq p(n) \epsilon \Vert(A, B)\Vert _F$">.
+The code fragment in the previous subsection approximates
+<IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img773.gif"
+ ALT="$\Vert(E, F)\Vert _F$">
+by 
+<!-- MATH
+ $\epsilon \cdot {\tt ABNORM}$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img774.gif"
+ ALT="$\epsilon \cdot {\tt ABNORM}$">,
+where
+
+<!-- MATH
+ ${\tt ABNORM} = \sqrt{ {\tt ABNRM}^2 + {\tt BBNRM}^2 }$
+ -->
+<IMG
+ WIDTH="225" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img775.gif"
+ ALT="${\tt ABNORM} = \sqrt{ {\tt ABNRM}^2 + {\tt BBNRM}^2 }$">,
+and the values <TT>ABNRM</TT> and <TT>BBNRM</TT> returned by xGGEVX
+are the 1-norm of the matrices <B><I>A</I></B> and <B><I>B</I></B>, respectively.
+
+<P>
+xGGEVX (or xTGSNA) returns reciprocal condition numbers
+for each eigenvalue pair
+
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+and corresponding
+left and right eigenvectors <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img760.gif"
+ ALT="$\hat{y}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">:
+<B><I>s</I><SUB><I>i</I></SUB></B> and 
+<!-- MATH
+ ${\rm Dif}_l(i)$
+ -->
+<IMG
+ WIDTH="54" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img776.gif"
+ ALT="${\rm Dif}_l(i)$">.
+<B><I>s</I><SUB><I>i</I></SUB></B> is a reciprocal condition
+number for the computed eigenpair 
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">,
+and is referred to as <TT>RCONDE(i)</TT> by xGGEVX.
+<A NAME="12249"></A>
+<A NAME="12250"></A>
+
+<!-- MATH
+ ${\rm Dif}_l(i)$
+ -->
+<IMG
+ WIDTH="54" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img776.gif"
+ ALT="${\rm Dif}_l(i)$">
+is a reciprocal condition number for the left and right
+eigenvectors <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img760.gif"
+ ALT="$\hat{y}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">,
+and is referred to as
+<TT>RCONDV(i)</TT> by xGGEVX (see subsection <A HREF="node104.html#GNEP33">4.11.1.3</A> for definitions).
+Similarly, xGGESX (or xTGSEN) returns condition numbers for
+eigenvalue clusters and deflating subspaces corresponding to
+a subset <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img553.gif"
+ ALT="$\cal I$">
+of the eigenvalues.
+<A NAME="12256"></A>
+These are <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">
+and <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">,
+the reciprocal values of
+the left and right projection norms <B><I>p</I></B> and <B><I>q</I></B>, and
+estimates of the separation between two matrix pairs
+defined by 
+<!-- MATH
+ ${\rm Dif}_u({\cal I})$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img777.gif"
+ ALT="${\rm Dif}_u({\cal I})$">
+and 
+<!-- MATH
+ ${\rm Dif}_l({\cal I})$
+ -->
+<IMG
+ WIDTH="59" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img778.gif"
+ ALT="${\rm Dif}_l({\cal I})$">
+(see subsection <A HREF="node104.html#GNEP33">4.11.1.3</A> for definitions).
+xGGESX reports <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">
+and <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">
+in <TT>RCONDE(1)</TT>
+and <TT>RCONDE(2)</TT> (<TT>PL</TT> and <TT>PR</TT> in xTGSEN)), respectively,
+and estimates of 
+<!-- MATH
+ ${\rm Dif}_u({\cal I})$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img777.gif"
+ ALT="${\rm Dif}_u({\cal I})$">
+and 
+<!-- MATH
+ ${\rm Dif}_l({\cal I})$
+ -->
+<IMG
+ WIDTH="59" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img778.gif"
+ ALT="${\rm Dif}_l({\cal I})$">
+in <TT>RCONDV(1)</TT>
+and <TT>RCONDV(2)</TT> (<TT>DIF(1)</TT> and <TT>DIF(2)</TT> in xTGSEN), respectively.
+
+<P>
+As for the nonsymmetric eigenvalue problem we provide both asymptotic
+and global error bounds.  The asymptotic approximate error bounds for
+eigenvalues, averages of eigenvalues, eigenvectors, and deflating
+subspaces provided in Table <A HREF="node102.html#asymp">4.7</A> are true only for
+sufficiently small <IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img773.gif"
+ ALT="$\Vert(E, F)\Vert _F$">.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="asymp"></A>
+<P>
+<DIV ALIGN="CENTER">
+<A NAME="12281"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 4.7:</STRONG>
+Asymptotic error bounds for the generalized nonsymmetric eigenvalue
+problem</CAPTION>
+<TR><TD ALIGN="LEFT">Simple eigenvalue:</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ ${\cal X}(({\hat{\alpha}}_i,{\hat{\beta}}_i), ({\alpha}_i,{\beta}_i))
+    \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}\|(E,F)\|_F/ s_i$
+ -->
+<IMG
+ WIDTH="320" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img779.gif"
+ ALT="% latex2html id marker 16841
+${\cal X}(({\hat{\alpha}}_i,{\hat{\beta}}_i), ({\al...
+...n{$;\hfil ..."></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Eigenvalue cluster:</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ ${\cal X}( ({\hat{\alpha}}_{\cal I},{\hat{\beta}}_{\cal I}),
+             ({\alpha}_{\cal I},{\beta}_{\cal I}) )
+    \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}\|(E,F)\|_F/ l_{\cal I}$
+ -->
+<IMG
+ WIDTH="336" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img780.gif"
+ ALT="% latex2html id marker 16845
+${\cal X}( ({\hat{\alpha}}_{\cal I},{\hat{\beta}}_{...
+...fil ..."></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Eigenvector pair:</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Left</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} (\hat{{\em y}}_i , {\em y}_i) \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}
+{\|(E,F)\|_F}/{{\rm Dif}_l(i)}$
+ -->
+<IMG
+ WIDTH="297" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img781.gif"
+ ALT="% latex2html id marker 16849
+$\theta_{\max} (\hat{{\em y}}_i , {\em y}_i) \def \...
+...il$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}
+{\Vert(E,F)\Vert _F}/{{\rm Dif}_l(i)}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Right</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} (\hat{{\em x}}_i , {\em x}_i) \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}
+{\|(E,F)\|_F}/{{\rm Dif}_l(i)}$
+ -->
+<IMG
+ WIDTH="296" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img782.gif"
+ ALT="% latex2html id marker 16853
+$\theta_{\max} (\hat{{\em x}}_i , {\em x}_i) \def \...
+...il$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}
+{\Vert(E,F)\Vert _F}/{{\rm Dif}_l(i)}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Deflating subspace pair:</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Left</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} ({\widehat{{\cal L}}}_{\cal I} , {\cal L}_{\cal I})
+     \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}{\|(E,F)\|_F}/{{\rm Dif}_l({\cal I})}$
+ -->
+<IMG
+ WIDTH="316" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img783.gif"
+ ALT="% latex2html id marker 16857
+$\theta_{\max} ({\widehat{{\cal L}}}_{\cal I} , {\c...
+...cr S\crcr
+\theguybelow\crcr}}PMlt;}{\Vert(E,F)\Vert _F}/{{\rm Dif}_l({\cal I})}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Right</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} ({\widehat{{\cal R}}}_{\cal I} , {\cal R}_{\cal I})
+     \def \theguybelow{\sim}
+\def \verticalposition{\lower 2.5pt}
+\def \spacingwithinsymbol{\baselineskip0pt.2pt}
+\mathrel{\mathpalette\verticalposition\vbox{\spacingwithinsymbol
+\everycr={}\tabskip0pt
+\halign{$;\hfil##\hfil$\crcr S\crcr
+\theguybelow\crcr}}PMlt;}{\|(E,F)\|_F}/{{\rm Dif}_l({\cal I})}$
+ -->
+<IMG
+ WIDTH="321" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img784.gif"
+ ALT="% latex2html id marker 16861
+$\theta_{\max} ({\widehat{{\cal R}}}_{\cal I} , {\c...
+...cr S\crcr
+\theguybelow\crcr}}PMlt;}{\Vert(E,F)\Vert _F}/{{\rm Dif}_l({\cal I})}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+<A NAME="12332"></A>
+<A NAME="12333"></A>
+<A NAME="12334"></A>
+<A NAME="12335"></A>
+
+<P>
+If the problem is ill-conditioned, the asymptotic bounds
+may only hold for extremely small values of <IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img773.gif"
+ ALT="$\Vert(E, F)\Vert _F$">.
+Therefore, we also
+provide similar global error bounds, which are valid for
+all perturbations that satisfy an upper bound on <IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img773.gif"
+ ALT="$\Vert(E, F)\Vert _F$">.
+The global error bounds in Table <A HREF="node102.html#global">4.8</A> are guaranteed to hold for all
+
+<!-- MATH
+ $\|(E,F)\|_F < {\Delta}$
+ -->
+<IMG
+ WIDTH="120" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img785.gif"
+ ALT="$\Vert(E,F)\Vert _F &lt; {\Delta}$">,
+where
+
+<UL><LI>
+<!-- MATH
+ ${\Delta} \equiv \frac{1}{4} \min (l_i,r_i)
+{\min({\rm Dif}_u(i), {\rm Dif}_l(i))}$
+ -->
+<IMG
+ WIDTH="283" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img786.gif"
+ ALT="${\Delta} \equiv \frac{1}{4} \min (l_i,r_i)
+{\min({\rm Dif}_u(i), {\rm Dif}_l(i))}$">
+for an individual eigenvector pair, and
+
+<LI>
+<!-- MATH
+ ${\Delta} \equiv \frac{1}{4} \min (l_{\cal I},r_{\cal I})
+{\min({\rm Dif}_u({\cal I}), {\rm Dif}_l({\cal I}))}$
+ -->
+<IMG
+ WIDTH="300" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img787.gif"
+ ALT="${\Delta} \equiv \frac{1}{4} \min (l_{\cal I},r_{\cal I})
+{\min({\rm Dif}_u({\cal I}), {\rm Dif}_l({\cal I}))}$">
+for a cluster of
+eigenvalues or a deflating subspace pair.
+
+</UL>
+
+<P>
+We let 
+<!-- MATH
+ $\delta \equiv \|(E,F)\|_F / {\Delta}$
+ -->
+<IMG
+ WIDTH="137" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img788.gif"
+ ALT="$\delta \equiv \Vert(E,F)\Vert _F / {\Delta}$">
+in Table <A HREF="node102.html#global">4.8</A>.
+If <IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img366.gif"
+ ALT="$\delta$">
+is small, then the computed pair of left and right deflating
+subspaces (or computed left and right eigenvectors) are small perturbations of
+the exact pair of deflating subspaces (or the true left and right eigenvectors).
+The error bounds conform with the corresponding bounds for the nonsymmetric
+eigenproblem (see subsection&nbsp;<A HREF="node93.html#secnepsummary">4.8.1.1</A> ).
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="global"></A>
+<DIV ALIGN="CENTER">
+<A NAME="13304"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table:</STRONG>
+ Global error bounds for the generalized nonsymmetric
+eigenvalue problem assuming 
+<!-- MATH
+ $\delta \equiv \|(E,F)\|_F/{\Delta} < 1$
+ -->
+<IMG
+ WIDTH="169" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img789.gif"
+ ALT="$\delta \equiv \Vert(E,F)\Vert _F/{\Delta} &lt; 1$">.</CAPTION>
+<TR><TD ALIGN="LEFT">Eigenvalue cluster:</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ ${\cal X}( ({\hat{\alpha}}_{\cal I},{\hat{\beta}}_{\cal I}),
+             ({\alpha}_{\cal I},{\beta}_{\cal I}) )
+    \leq 2 \|(E,F)\|_F/ l_{\cal I}$
+ -->
+<IMG
+ WIDTH="294" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img790.gif"
+ ALT="${\cal X}( ({\hat{\alpha}}_{\cal I},{\hat{\beta}}_{\cal I}),
+({\alpha}_{\cal I},{\beta}_{\cal I}) )
+\leq 2 \Vert(E,F)\Vert _F/ l_{\cal I}$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Eigenvector pair:</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Left</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} (\hat{y}_i , y_i) \leq
+\arctan \left(
+{\delta \cdot l_i}/{(1 - \delta \sqrt{1 - l_i^2})}
+\right)$
+ -->
+<IMG
+ WIDTH="337" HEIGHT="55" ALIGN="MIDDLE" BORDER="0"
+ SRC="img791.gif"
+ ALT="$\theta_{\max} (\hat{y}_i , y_i) \leq
+\arctan \left(
+{\delta \cdot l_i}/{(1 - \delta \sqrt{1 - l_i^2})}
+\right)$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Right</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} (\hat{x}_i , x_i) \leq
+\arctan \left(
+{\delta \cdot r_i}/{(1 - \delta \sqrt{1 - r_i^2})}
+\right)$
+ -->
+<IMG
+ WIDTH="345" HEIGHT="55" ALIGN="MIDDLE" BORDER="0"
+ SRC="img792.gif"
+ ALT="$\theta_{\max} (\hat{x}_i , x_i) \leq
+\arctan \left(
+{\delta \cdot r_i}/{(1 - \delta \sqrt{1 - r_i^2})}
+\right)$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">Deflating subspace pair:</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Left</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max} ({\widehat{{\cal L}}}_{\cal I},{\cal L}_{\cal I})\leq
+\arctan \left(
+{\delta \cdot l_{\cal I}}/{(1 - \delta \sqrt{1 - l_{\cal I}^2})}
+\right)$
+ -->
+<IMG
+ WIDTH="352" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+ SRC="img793.gif"
+ ALT="$\theta_{\max} ({\widehat{{\cal L}}}_{\cal I},{\cal L}_{\cal I})\leq
+\arctan \left(
+{\delta \cdot l_{\cal I}}/{(1 - \delta \sqrt{1 - l_{\cal I}^2})}
+\right)$"></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;&nbsp; Right</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\theta_{\max}({\widehat{{\cal R}}}_{\cal I},{\cal R}_{\cal I})\leq
+\arctan \left(
+{\delta \cdot r_{\cal I}}/{(1 - \delta \sqrt{1 - r_{\cal I}^2 })}
+\right)$
+ -->
+<IMG
+ WIDTH="363" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+ SRC="img794.gif"
+ ALT="$\theta_{\max}({\widehat{{\cal R}}}_{\cal I},{\cal R}_{\cal I})\leq
+\arctan \left(
+{\delta \cdot r_{\cal I}}/{(1 - \delta \sqrt{1 - r_{\cal I}^2 })}
+\right)$"></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+For ill-conditioned problems the restriction <IMG
+ WIDTH="19" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img795.gif"
+ ALT="$\Delta$">
+on <IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img773.gif"
+ ALT="$\Vert(E, F)\Vert _F$">
+may also be small.
+Indeed, a small value of <IMG
+ WIDTH="19" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img795.gif"
+ ALT="$\Delta$">
+shows that the cluster of
+eigenvalues (in the (1,1)-blocks of <B>(<I>A</I>, <I>B</I>)</B>) is ill-conditioned in
+the sense that small perturbations of <B>(<I>A</I>, <I>B</I>)</B> may imply that one eigenvalue in
+the cluster moves and coalesces with another eigenvalue (outside the cluster).
+Accordingly, this also means that the associated (left and right)
+deflating subspaces are sensitive to small perturbations,
+since the size of the
+perturbed subspaces may change for small perturbations of <B>(<I>A</I>, <I>B</I>)</B>.
+See also the discussion of singular problems in section&nbsp;<A HREF="node105.html#sec_singular">4.11.1.4</A>.
+
+<P>
+As for the nonsymmetric eigenvalue problem we have global error bounds for
+eigenvalues which are true for all <B><I>E</I></B> and <B><I>F</I></B>.
+Let <B>(<I>A</I>, <I>B</I>)</B> be a diagonalizable matrix pair. We let the columns of
+<IMG
+ WIDTH="18" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img796.gif"
+ ALT="$\widehat{Y}$">
+and <IMG
+ WIDTH="20" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img797.gif"
+ ALT="$\widehat{X}$">
+be the computed left and right
+eigenvectors associated with
+the computed generalized eigenvalue pairs
+
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i), i = 1, \ldots, n$
+ -->
+<IMG
+ WIDTH="152" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img798.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i), i = 1, \ldots, n$">.
+Moreover, we assume that <IMG
+ WIDTH="18" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img796.gif"
+ ALT="$\widehat{Y}$">
+and <IMG
+ WIDTH="20" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img797.gif"
+ ALT="$\widehat{X}$">
+are normalized such that 
+<!-- MATH
+ $|\hat{\alpha}_i|^2 + |\hat{\beta}_i|^2 = 1$
+ -->
+<IMG
+ WIDTH="124" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img799.gif"
+ ALT="$\vert\hat{\alpha}_i\vert^2 + \vert\hat{\beta}_i\vert^2 = 1$">
+and 
+<!-- MATH
+ $\|\hat{y}_i\|_2 = 1$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img800.gif"
+ ALT="$\Vert\hat{y}_i\Vert _2 = 1$">,
+i.e., we
+overwrite <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img760.gif"
+ ALT="$\hat{y}_i$">
+with  
+<!-- MATH
+ $\hat{y_i}/ \|\hat{y_i}\|_2$
+ -->
+<IMG
+ WIDTH="66" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img801.gif"
+ ALT="$\hat{y_i}/ \Vert\hat{y_i}\Vert _2$">,
+
+<!-- MATH
+ $({\hat{\alpha}}_i,
+{\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+with  
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i) /
+(|\hat{\alpha}_i|^2 + |\hat{\beta}_i|^2)^{1/2}$
+ -->
+<IMG
+ WIDTH="188" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img802.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i) /
+(\vert\hat{\alpha}_i\vert^2 + \vert\hat{\beta}_i\vert^2)^{1/2}$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">
+with
+
+<!-- MATH
+ $\hat{x}_i \|\hat{y}_i\|_2 / (|\hat{\alpha}_i|^2 + |\hat{\beta}_i|^2)^{1/2}$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img803.gif"
+ ALT="$\hat{x}_i \Vert\hat{y}_i\Vert _2 / (\vert\hat{\alpha}_i\vert^2 + \vert\hat{\beta}_i\vert^2)^{1/2}$">.
+Then all eigenvalues 
+<!-- MATH
+ $({\alpha}_i, {\beta}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img725.gif"
+ ALT="$({\alpha}_i, {\beta}_i)$">
+of <B>(<I>A</I>, <I>B</I>)</B> with
+
+<!-- MATH
+ $|{\alpha}_i|^2 + |{\beta}_i|^2 = 1$
+ -->
+<IMG
+ WIDTH="124" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img804.gif"
+ ALT="$\vert{\alpha}_i\vert^2 + \vert{\beta}_i\vert^2 = 1$">
+lie in the union of <B><I>n</I></B> regions
+(``spheres'')
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\left\{  (\alpha,\beta), |\alpha|^2 + |\beta|^2 = 1:
+{\cal X}((\alpha,\beta), ({\hat{\alpha}}_i, {\hat{\beta}}_i))
+\leq n \|(E,F)\|_2/ s_i \right\}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.29a"></A><IMG
+ WIDTH="465" HEIGHT="37" BORDER="0"
+ SRC="img805.gif"
+ ALT="\begin{displaymath}
+\left\{ (\alpha,\beta), \vert\alpha\vert^2 + \vert\beta\vert...
+..._i, {\hat{\beta}}_i))
+\leq n \Vert(E,F)\Vert _2/ s_i \right\}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.10)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+If <B><I>k</I></B> of the regions overlap, so that any two points inside the <B><I>k</I></B>
+``spheres''
+can be connected by a continuous curve lying entirely inside the <B><I>k</I></B> regions,
+and if no larger set of <B><I>k</I> + 1</B> regions has this property,
+then exactly <B><I>k</I></B> of the
+eigenvalues  
+<!-- MATH
+ $({\alpha}_i, {\beta}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img725.gif"
+ ALT="$({\alpha}_i, {\beta}_i)$">
+lie inside the union of these
+``spheres''.
+In other words, the global error bound with respect to an individual eigenvalue
+
+<!-- MATH
+ $({\alpha}_i,{\beta}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img725.gif"
+ ALT="$({\alpha}_i, {\beta}_i)$">
+is only useful if it defines a region
+that does not intersect with regions corresponding to other eigenvalues.
+If two or more regions intersect,
+then we can only say that a (true) eigenvalue of <B>(<I>A</I>, <I>B</I>)</B> lies in
+the union of the overlapping regions. If <IMG
+ WIDTH="78" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img806.gif"
+ ALT="$\Vert(E,F)\Vert _2$">
+is so large
+that <B>(<I>A</I>+<I>E</I>,<I>B</I>+<I>F</I>)</B> could be singular, which means that the eigenvalues
+are not well-determined by the data, then the error bound from
+(<A HREF="node102.html#eq411.29a">4.10</A>) will be so large as to not limit the eigenvalues at all;
+see section&nbsp;<A HREF="node105.html#sec_singular">4.11.1.4</A> for details.
+
+<P>
+<B>Notation Conversion</B> For easy of reference,
+the following table summarizes the notation used in mathematical
+expression of the error bounds in tables <A HREF="node102.html#asymp">4.7</A> and <A HREF="node102.html#global">4.8</A>
+and in the corresponding driver and computational routines.
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Mathematical</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Driver Routines</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Computational Routines</TD>
+</TR>
+<TR><TD ALIGN="LEFT">notation</TD>
+<TD ALIGN="CENTER">name</TD>
+<TD ALIGN="LEFT">parameter</TD>
+<TD ALIGN="CENTER">name</TD>
+<TD ALIGN="LEFT">parameter</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B><I>s</I><SUB><I>i</I></SUB></B></TD>
+<TD ALIGN="CENTER">xGGEVX</TD>
+<TD ALIGN="LEFT"><TT> RCONDE(i)</TT></TD>
+<TD ALIGN="CENTER">xTGSNA</TD>
+<TD ALIGN="LEFT"><TT> S(i)</TT>&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">
+<!-- MATH
+ $\mbox{Dif}_l(i)$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img807.gif"
+ ALT="$\mbox{Dif}_l(i)$"></TD>
+<TD ALIGN="CENTER">xGGEVX</TD>
+<TD ALIGN="LEFT"><TT> RCONDV(i)</TT></TD>
+<TD ALIGN="CENTER">xTGSNA</TD>
+<TD ALIGN="LEFT"><TT> DIF(i)</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$"></TD>
+<TD ALIGN="CENTER">xGGESX</TD>
+<TD ALIGN="LEFT"><TT> RCONDE(1)</TT></TD>
+<TD ALIGN="CENTER">xTGSEN</TD>
+<TD ALIGN="LEFT"><TT> PL</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$"></TD>
+<TD ALIGN="CENTER">xGGESX</TD>
+<TD ALIGN="LEFT"><TT> RCONDE(2)</TT></TD>
+<TD ALIGN="CENTER">xTGSEN</TD>
+<TD ALIGN="LEFT"><TT> PR</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">
+<!-- MATH
+ $\mbox{Dif}_u({\cal I})$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img808.gif"
+ ALT="$\mbox{Dif}_u({\cal I})$"></TD>
+<TD ALIGN="CENTER">xGGESX</TD>
+<TD ALIGN="LEFT"><TT> RCONDV(1)</TT></TD>
+<TD ALIGN="CENTER">xTGSEN</TD>
+<TD ALIGN="LEFT"><TT> DIF(1)</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT">
+<!-- MATH
+ $\mbox{Dif}_l({\cal I})$
+ -->
+<IMG
+ WIDTH="57" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img809.gif"
+ ALT="$\mbox{Dif}_l({\cal I})$"></TD>
+<TD ALIGN="CENTER">xGGESX</TD>
+<TD ALIGN="LEFT"><TT> RCONDV(2)</TT></TD>
+<TD ALIGN="CENTER">xTGSEN</TD>
+<TD ALIGN="LEFT"><TT> DIF(2)</TT></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+The quantities <B><I>l</I><SUB><I>i</I></SUB></B>, <B><I>r</I><SUB><I>i</I></SUB></B>, 
+<!-- MATH
+ $\mbox{Dif}_u(i)$
+ -->
+<IMG
+ WIDTH="56" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img810.gif"
+ ALT="$\mbox{Dif}_u(i)$">
+and 
+<!-- MATH
+ $\mbox{Dif}_l(i)$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img807.gif"
+ ALT="$\mbox{Dif}_l(i)$">
+used in
+Table <A HREF="node102.html#global">4.8</A> (for the global error bounds of
+the <IMG
+ WIDTH="28" HEIGHT="23" ALIGN="BOTTOM" BORDER="0"
+ SRC="img811.gif"
+ ALT="$i^{\mbox{th}}$">
+computed eigenvalue pair 
+<!-- MATH
+ $(\hat{\alpha},\hat{\beta})$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img812.gif"
+ ALT="$(\hat{\alpha},\hat{\beta})$">
+and the left and right eigenvectors <IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img760.gif"
+ ALT="$\hat{y}_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">)
+can be obtained by calling xTGSEN with 
+<!-- MATH
+ ${\cal I} = \{ i \}$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img813.gif"
+ ALT="${\cal I} = \{ i \}$">.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5626"
+ HREF="node103.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5620"
+ HREF="node101.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5614"
+ HREF="node101.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5622"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5624"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5627"
+ HREF="node103.html">Balancing and Conditioning</A>
+<B> Up:</B> <A NAME="tex2html5621"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Previous:</B> <A NAME="tex2html5615"
+ HREF="node101.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5623"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5625"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

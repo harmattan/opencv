@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>QR Factorization with Column Pivoting</TITLE>
+<META NAME="description" CONTENT="QR Factorization with Column Pivoting">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node43.html">
+<LINK REL="previous" HREF="node41.html">
+<LINK REL="up" HREF="node39.html">
+<LINK REL="next" HREF="node43.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4738"
+ HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4732"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4726"
+ HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4734"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4736"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4739"
+ HREF="node43.html">Complete Orthogonal Factorization</A>
+<B> Up:</B> <A NAME="tex2html4733"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4727"
+ HREF="node41.html">LQ Factorization</A>
+ &nbsp <B>  <A NAME="tex2html4735"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4737"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03242300000000000000">
+<B><I>QR</I></B> Factorization with Column Pivoting</A>
+</H3>
+
+<P>
+To solve a linear least squares problem&nbsp;(<A HREF="node27.html#llsq">2.1</A>)<A NAME="2673"></A><A NAME="2674"></A>
+when <B><I>A</I></B> is not of full rank, or the rank of <B><I>A</I></B> is in doubt, we can
+perform either a <B><I>QR</I></B> factorization with column pivoting
+<A NAME="2675"></A> or a singular value
+decomposition (see subsection <A HREF="node53.html#subseccompsvd">2.4.6</A>).
+
+<P>
+The <B><I>QR</I></B>&nbsp;<B>factorization with column pivoting</B> is given by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Q\left( \begin{array}{c}R\\0\end{array}\right)P^T, \quad m \ge n,
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="212" HEIGHT="54" BORDER="0"
+ SRC="img111.gif"
+ ALT="\begin{displaymath}
+A = Q\left( \begin{array}{c}R\\ 0\end{array}\right)P^T, \quad m \ge n,
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>Q</I></B> and <B><I>R</I></B> are as before and <B><I>P</I></B> is a permutation matrix, chosen
+(in general) so that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|r_{11}| \ge |r_{22}| \ge \ldots \ge |r_{nn}|
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="186" HEIGHT="31" BORDER="0"
+ SRC="img112.gif"
+ ALT="\begin{displaymath}
+\vert r_{11}\vert \ge \vert r_{22}\vert \ge \ldots \ge \vert r_{nn}\vert
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and moreover, for each <B><I>k</I></B>,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+|r_{kk}| \ge \|R_{k:j,j}\|_2 \quad \mbox{for $j = k+1, \ldots, n$.}
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="289" HEIGHT="32" BORDER="0"
+ SRC="img113.gif"
+ ALT="\begin{displaymath}
+\vert r_{kk}\vert \ge \Vert R_{k:j,j}\Vert _2 \quad \mbox{for $j = k+1, \ldots, n$.}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+In exact arithmetic, if 
+<!-- MATH
+ $\mbox{rank}(A) = k$
+ -->
+<IMG
+ WIDTH="98" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.gif"
+ ALT="$\mbox{rank}(A) = k$">,
+then the whole of the submatrix
+<B><I>R</I><SUB>22</SUB></B> in rows and columns <B><I>k</I>+1</B> to <B><I>n</I></B>
+would be zero. In numerical computation, the aim must be to
+determine an index <B><I>k</I></B>, such that the leading submatrix <B><I>R</I><SUB>11</SUB></B> in the first
+<B><I>k</I></B> rows and columns is well-conditioned, and <B><I>R</I><SUB>22</SUB></B> is negligible:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+R = \left( \begin{array}{cc}R_{11} & R_{12} \\0 & R_{22} \end{array}\right)
+\simeq \left( \begin{array}{cc}R_{11} & R_{12} \\0 & 0\end{array}\right) .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="291" HEIGHT="54" BORDER="0"
+ SRC="img115.gif"
+ ALT="\begin{displaymath}
+R = \left( \begin{array}{cc}R_{11} &amp; R_{12} \\ 0 &amp; R_{22} \e...
+... \begin{array}{cc}R_{11} &amp; R_{12} \\ 0 &amp; 0\end{array}\right) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Then <B><I>k</I></B> is the effective rank of <B><I>A</I></B>.
+See Golub and Van Loan&nbsp;[<A
+ HREF="node151.html#GVL2">55</A>]
+for a further discussion of numerical rank determination.
+<A NAME="2704"></A><A NAME="2705"></A>
+
+<P>
+The so-called basic solution to the linear least squares
+problem&nbsp;(<A HREF="node27.html#llsq">2.1</A>)<A NAME="2707"></A> can be obtained from this factorization as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+x = P \left( \begin{array}{c} R_{11}^{-1} \hat{c}_1 \\0 \end{array} \right),
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="144" HEIGHT="54" BORDER="0"
+ SRC="img116.gif"
+ ALT="\begin{displaymath}
+x = P \left( \begin{array}{c} R_{11}^{-1} \hat{c}_1 \\ 0 \end{array} \right),
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img117.gif"
+ ALT="$\hat{c}_1$">
+consists of just the first <B><I>k</I></B> elements of <B><I>c</I> = <I>Q</I><SUP><I>T</I></SUP> <I>b</I></B>.
+
+<P>
+The <B><I>QR</I></B> factorization with column pivoting can be computed either by
+subroutine xGEQPF<A NAME="2715"></A><A NAME="2716"></A><A NAME="2717"></A><A NAME="2718"></A>
+or by subroutine
+xGEQP3.<A NAME="2719"></A><A NAME="2720"></A><A NAME="2721"></A><A NAME="2722"></A>
+Both subroutines compute the factorization but do not attempt to
+determine the rank of <B><I>A</I></B>.  xGEQP3 is a Level 3 BLAS version of <B><I>QR</I></B> with
+column pivoting and is considerably faster than xGEQPF, while maintaining
+the same numerical behavior.  The difference between the two routines
+can best be described as follows.  For each column, the subroutine xGEQPF
+selects one column, permutes it, computes the reflector that zeroes some
+of its components, and applies it to the rest of the matrix via Level 2
+BLAS operations.  The subroutine xGEQP3, however, only updates one column
+and one row of the rest of the matrix (information necessary for the
+next pivoting phase) and delays the update of the rest of the matrix
+until a block of columns has been processed.  This resulting block
+of reflectors is then applied to the rest of the matrix as a Level 3 BLAS
+operation.  xGEQPF has been retained for compatibility with Release 2.0
+of LAPACK, but we omit references to this routine in the remainder
+of this users' guide.
+
+<P>
+For both subroutines, the matrix <B><I>Q</I></B> is represented in exactly the same way
+as after a call of
+xGEQRF<A NAME="2723"></A><A NAME="2724"></A><A NAME="2725"></A><A NAME="2726"></A>, and so the
+routines xORGQR and xORMQR can be used to work with <B><I>Q</I></B>
+(xUNGQR and xUNMQR if <B><I>Q</I></B> is complex).
+<A NAME="2727"></A><A NAME="2728"></A><A NAME="2729"></A><A NAME="2730"></A>
+<A NAME="2731"></A><A NAME="2732"></A><A NAME="2733"></A><A NAME="2734"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4738"
+ HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4732"
+ HREF="node39.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4726"
+ HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4734"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4736"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4739"
+ HREF="node43.html">Complete Orthogonal Factorization</A>
+<B> Up:</B> <A NAME="tex2html4733"
+ HREF="node39.html">Orthogonal Factorizations and Linear</A>
+<B> Previous:</B> <A NAME="tex2html4727"
+ HREF="node41.html">LQ Factorization</A>
+ &nbsp <B>  <A NAME="tex2html4735"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4737"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

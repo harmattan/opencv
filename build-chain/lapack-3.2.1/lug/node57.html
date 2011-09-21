@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Balancing</TITLE>
+<META NAME="description" CONTENT="Balancing">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node58.html">
+<LINK REL="previous" HREF="node56.html">
+<LINK REL="up" HREF="node55.html">
+<LINK REL="next" HREF="node58.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4950"
+ HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4944"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4938"
+ HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4946"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4948"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4951"
+ HREF="node58.html">Deflating Subspaces and Condition</A>
+<B> Up:</B> <A NAME="tex2html4945"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4939"
+ HREF="node56.html">Eigenvalues, Eigenvectors and Generalized</A>
+ &nbsp <B>  <A NAME="tex2html4947"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4949"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03248200000000000000">
+Balancing</A>
+</H3>
+
+<P>
+The routine xGGBAL <A NAME="3698"></A><A NAME="3699"></A><A NAME="3700"></A><A NAME="3701"></A>
+may be used to <B>balance</B> the matrix pair <B>(<I>A</I>,<I>B</I>)</B>
+prior to reduction to generalized Hessenberg form.
+<A NAME="3703"></A>
+Balancing involves two steps, either of which is optional:
+<DL COMPACT>
+<DT>1.
+<DD>First, xGGBAL attempts to permute <A NAME="3705"></A> <B>(<I>A</I>,<I>B</I>)</B>
+by an equivalence transformation
+      to block upper triangular form:
+      <BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+P_1(A,B)P_2 = (A^\prime,B^\prime) = \left(
+        \left[
+        \begin{array}{ccc}
+          A^\prime_{11} & A^\prime_{12} & A^\prime_{13} \\
+          0             & A^\prime_{22} & A^\prime_{23} \\
+          0             &      0        & A^\prime_{33} \\
+        \end{array}\right],\;\;
+        \left[
+        \begin{array}{ccc}
+          B^\prime_{11} & B^\prime_{12} & B^\prime_{13} \\
+          0             & B^\prime_{22} & B^\prime_{23} \\
+          0             &      0        & B^\prime_{33} \\
+        \end{array}  \right]
+        \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="537" HEIGHT="73" BORDER="0"
+ SRC="img193.gif"
+ ALT="\begin{displaymath}P_1(A,B)P_2 = (A^\prime,B^\prime) = \left(
+\left[
+\begin{ar...
+... \\
+0 &amp; 0 &amp; B^\prime_{33} \\
+\end{array} \right]
+\right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>P</I><SUB>1</SUB></B> and <B><I>P</I><SUB>2</SUB></B> are permutation matrices and <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img194.gif"
+ ALT="$A^\prime_{11}$">,
+      <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img195.gif"
+ ALT="$A^\prime_{33}$">,
+<IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img196.gif"
+ ALT="$B^\prime_{11}$">
+and <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img197.gif"
+ ALT="$B^\prime_{33}$">
+are <I>upper
+      triangular</I>.  Thus the matrix pair is already in generalized Schur
+      form outside the central diagonal blocks <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img198.gif"
+ ALT="$A^\prime_{22}$">
+and
+      <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img199.gif"
+ ALT="$B^\prime_{22}$">
+in rows and columns ILO to IHI.  Subsequent operations
+      by xGGBAL, xGGHRD or xHGEQZ need only be applied to these rows and
+      columns; therefore ILO and IHI are passed as arguments to xGGHRD and
+      xHGEQZ.  This can save a significant amount of work if ILO <B>&gt; 1</B>
+      or IHI <B>&lt; <I>n</I></B>.  If no suitable permutations can be found (as is very
+      often the case), xGGBAL sets ILO <B>= 1</B> and IHI <B>= <I>n</I></B>, and
+      <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img198.gif"
+ ALT="$A^\prime_{22}$">
+is the whole of <B><I>A</I></B> and <IMG
+ WIDTH="32" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img199.gif"
+ ALT="$B^\prime_{22}$">
+is the whole
+      of <B><I>B</I></B>.
+
+<P>
+<DT>2.
+<DD>Secondly, xGGBAL applies diagonal equivalence transformations
+      to 
+<!-- MATH
+ $(A^\prime,B^\prime)$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img200.gif"
+ ALT="$(A^\prime,B^\prime)$">
+to attempt to make the matrix norm smaller
+      with respect
+      to the eigenvalues and tries to reduce the inaccuracy contributed by
+      roundoff [<A
+ HREF="node151.html#ward81">100</A>]:
+      <BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="679" HEIGHT="104" BORDER="0"
+ SRC="img201.gif"
+ ALT="\begin{eqnarray*}
+(A^{\prime\prime},B^{\prime\prime}) &amp; = &amp;
+D_1(A^\prime,B^\pr...
+...&amp; 0 &amp; 0 \\
+0 &amp; D'_2 &amp; 0 \\
+0 &amp; 0 &amp; I \\ \end{array} \right]
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+      This can improve the accuracy of later processing in some cases; see
+      subsection <A HREF="node103.html#GENP32">4.11.1.2</A>.
+
+<P>
+</DL>
+
+<P>
+If the matrix pair <B>(<I>A</I>,<I>B</I>)</B> was balanced by xGGBAL, then eigenvectors
+computed by subsequent operations are eigenvectors of the balanced
+matrix pair 
+<!-- MATH
+ $(A^{\prime\prime},B^{\prime\prime})$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img202.gif"
+ ALT="$(A^{\prime\prime},B^{\prime\prime})$">.
+xGGBAK
+<A NAME="3766"></A><A NAME="3767"></A><A NAME="3768"></A><A NAME="3769"></A>
+must then
+be called to transform them back to eigenvectors of the original matrix
+pair <B>(<I>A</I>,<I>B</I>)</B>.
+Note that these transformations can improve speed and accuracy of
+later processing in some cases; however, the diagonal transformation
+step can occasionally make the norm of the pencil 
+<!-- MATH
+ $(A^\prime,B^\prime)$
+ -->
+<IMG
+ WIDTH="62" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img200.gif"
+ ALT="$(A^\prime,B^\prime)$">
+larger
+and hence degrade the accuracy.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4950"
+ HREF="node58.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4944"
+ HREF="node55.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4938"
+ HREF="node56.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4946"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4948"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4951"
+ HREF="node58.html">Deflating Subspaces and Condition</A>
+<B> Up:</B> <A NAME="tex2html4945"
+ HREF="node55.html">Generalized Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4939"
+ HREF="node56.html">Eigenvalues, Eigenvectors and Generalized</A>
+ &nbsp <B>  <A NAME="tex2html4947"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4949"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

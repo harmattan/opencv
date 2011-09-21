@@ -1,0 +1,72 @@
+Source: dirac
+Section: libs
+Priority: optional
+Maintainer: Debian multimedia packages maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>
+Uploaders: Andres Mejia <mcitadel@gmail.com>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7), quilt (>= 0.46-7), autoconf
+Build-Depends-Indep: doxygen, graphviz, texlive-base-bin, texlive-latex-base
+Standards-Version: 3.8.4
+Homepage: http://diracvideo.org/
+Vcs-Git: git://git.debian.org/git/pkg-multimedia/dirac.git
+Vcs-Browser: http://git.debian.org/?p=pkg-multimedia/dirac.git;a=summary
+
+Package: dirac
+Architecture: any
+Section: video
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: open and royalty free high quality codec - commandline utilities
+ Dirac is an advanced royalty-free video compression format designed for a wide
+ range of uses, from delivering low-resolution web content to broadcasting HD
+ and beyond, to near-lossless studio editing.
+ .
+ This package contains some general command line utilities for dirac.
+
+Package: libdirac-decoder0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libdirac0, libdirac0c2a
+Conflicts: libdirac0, libdirac0c2a
+Description: open and royalty free high quality codec - decoder library
+ Dirac is an advanced royalty-free video compression format designed for a wide
+ range of uses, from delivering low-resolution web content to broadcasting HD
+ and beyond, to near-lossless studio editing.
+ .
+ This package contains the dirac decoder library.
+
+Package: libdirac-encoder0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libdirac0, libdirac0c2a
+Conflicts: libdirac0, libdirac0c2a
+Description: open and royalty free high quality codec - encoder library
+ Dirac is an advanced royalty-free video compression format designed for a wide
+ range of uses, from delivering low-resolution web content to broadcasting HD
+ and beyond, to near-lossless studio editing.
+ .
+ This package contains the dirac encoder library.
+
+Package: libdirac-dev
+Architecture: any
+Section: libdevel
+Depends: libdirac-decoder0 (= ${binary:Version}),
+ libdirac-encoder0 (= ${binary:Version}),
+ ${misc:Depends},
+Description: open and royalty free high quality codec - development files
+ Dirac is an advanced royalty-free video compression format designed for a wide
+ range of uses, from delivering low-resolution web content to broadcasting HD
+ and beyond, to near-lossless studio editing.
+ .
+ This package contains the files necessary for development with dirac.
+
+Package: libdirac-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Suggests: libdirac-dev (= ${source:Version})
+Description: open and royalty free high quality codec - library documentation
+ Dirac is an advanced royalty-free video compression format designed for a wide
+ range of uses, from delivering low-resolution web content to broadcasting HD
+ and beyond, to near-lossless studio editing.
+ .
+ This package contains the HTML API documentation for dirac.

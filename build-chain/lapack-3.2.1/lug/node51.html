@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Balancing</TITLE>
+<META NAME="description" CONTENT="Balancing">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node52.html">
+<LINK REL="previous" HREF="node50.html">
+<LINK REL="up" HREF="node49.html">
+<LINK REL="next" HREF="node52.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4865"
+ HREF="node52.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4859"
+ HREF="node49.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4853"
+ HREF="node50.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4861"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4863"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4866"
+ HREF="node52.html">Invariant Subspaces and Condition</A>
+<B> Up:</B> <A NAME="tex2html4860"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4854"
+ HREF="node50.html">Eigenvalues, Eigenvectors and Schur</A>
+ &nbsp <B>  <A NAME="tex2html4862"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4864"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03245200000000000000">
+Balancing</A>
+</H3>
+
+<P>
+The routine xGEBAL<A NAME="3246"></A><A NAME="3247"></A><A NAME="3248"></A><A NAME="3249"></A>
+may be used to <B>balance</B> the
+matrix <B><I>A</I></B> prior to reduction to Hessenberg form<A NAME="3251"></A>. Balancing involves two
+steps, either of which is optional:
+
+<UL><LI>first, xGEBAL<A NAME="3253"></A><A NAME="3254"></A><A NAME="3255"></A><A NAME="3256"></A>
+attempts to permute <B><I>A</I></B> by a similarity transformation<A NAME="3257"></A> to
+block upper triangular form:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+P A P^T = A'
+ = \left( \begin{array}{ccc} A'_{11} & A'_{12} & A'_{13} \\
+                              0    &  A'_{22} & A'_{23} \\
+                              0   &   0     & A'_{33} \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="269" HEIGHT="73" BORDER="0"
+ SRC="img152.gif"
+ ALT="\begin{displaymath}
+P A P^T = A'
+= \left( \begin{array}{ccc} A'_{11} &amp; A'_{12} ...
+...0 &amp; A'_{22} &amp; A'_{23} \\
+0 &amp; 0 &amp; A'_{33} \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <B><I>P</I></B> is a permutation matrix and <B><I>A</I>'<SUB>11</SUB></B> and <B><I>A</I>'<SUB>33</SUB></B> are
+<EM>upper triangular</EM>.
+Thus the matrix is already in Schur form<A NAME="3270"></A> outside the
+central diagonal block <B><I>A</I>'<SUB>22</SUB></B> in rows and columns ILO to IHI.
+<A NAME="3272"></A>
+Subsequent operations by xGEBAL, xGEHRD or xHSEQR need only be applied to
+these rows and columns; therefore ILO and IHI are passed as arguments to
+xGEHRD<A NAME="3273"></A><A NAME="3274"></A><A NAME="3275"></A><A NAME="3276"></A> and
+xHSEQR<A NAME="3277"></A><A NAME="3278"></A><A NAME="3279"></A><A NAME="3280"></A>. This can save a significant amount of
+work if ILO <B>&gt;</B> 1 or IHI <B>&lt; <I>n</I></B>.
+If no suitable permutation can be found (as is very often the case),
+xGEBAL sets ILO = 1 and IHI = <B><I>n</I></B>, and <B><I>A</I>'<SUB>22</SUB></B> is
+the whole of <B><I>A</I></B>.
+
+<P>
+
+<LI>secondly, xGEBAL applies a diagonal similarity transformation to
+<B><I>A</I>'</B>
+to make the rows and columns of <B><I>A</I>'<SUB>22</SUB></B>
+as close in norm in possible:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A'' = D A' D^{-1} = \left( \begin{array}{ccc} I & 0 & 0 \\
+                                        0 & D_{22} & 0 \\
+                                        0 & 0 & I \end{array} \right)
+              \left( \begin{array}{ccc} A'_{11} & A'_{12} & A'_{13} \\
+                                        0    &  A'_{22} & A'_{23} \\
+                                        0   &   0  & A'_{33} \end{array} \right)
+              \left( \begin{array}{ccc} I & 0 & 0 \\
+                                        0 & D_{22}^{-1} & 0 \\
+                                        0 & 0 & I \end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="542" HEIGHT="73" BORDER="0"
+ SRC="img153.gif"
+ ALT="\begin{displaymath}
+A'' = D A' D^{-1} = \left( \begin{array}{ccc} I &amp; 0 &amp; 0 \\
+...
+... 0 \\
+0 &amp; D_{22}^{-1} &amp; 0 \\
+0 &amp; 0 &amp; I \end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+This can improve the
+accuracy of later processing in some cases; see subsection&nbsp;<A HREF="node94.html#secbalance">4.8.1.2</A>.
+
+<P>
+
+</UL>
+
+<P>
+If <B><I>A</I></B> was balanced by xGEBAL, then eigenvectors computed by subsequent
+operations are eigenvectors of the balanced matrix <B><I>A</I>''</B>;
+xGEBAK<A NAME="3304"></A><A NAME="3305"></A><A NAME="3306"></A><A NAME="3307"></A> must then be called
+to transform them back to eigenvectors of the original matrix <B><I>A</I></B>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4865"
+ HREF="node52.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4859"
+ HREF="node49.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4853"
+ HREF="node50.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4861"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4863"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4866"
+ HREF="node52.html">Invariant Subspaces and Condition</A>
+<B> Up:</B> <A NAME="tex2html4860"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4854"
+ HREF="node50.html">Eigenvalues, Eigenvectors and Schur</A>
+ &nbsp <B>  <A NAME="tex2html4862"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4864"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

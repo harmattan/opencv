@@ -1,0 +1,750 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for the Generalized Nonsymmetric Eigenproblem</TITLE>
+<META NAME="description" CONTENT="Error Bounds for the Generalized Nonsymmetric Eigenproblem">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node106.html">
+<LINK REL="previous" HREF="node98.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node101.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5591"
+ HREF="node101.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5585"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5579"
+ HREF="node99.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5587"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5589"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5592"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5586"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5580"
+ HREF="node99.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5588"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5590"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION034110000000000000000"></A>
+<A NAME="sec_GNEPErrorBounds"></A>
+<BR>
+Error Bounds for the Generalized Nonsymmetric Eigenproblem
+</H1>
+
+<P>
+We start by stating the simplest error bounds for individual eigenvalues
+and eigenvectors and leave the more complicated ones to subsequent
+subsections. <A NAME="12054"></A>
+
+<P>
+As discussed in section&nbsp;<A HREF="node55.html#sec_gnep_comp">2.4.8</A> ,
+from a computational point of view it is more natural to define
+the generalized nonsymmetric eigenvalue problem in
+the form 
+<!-- MATH
+ $\beta A x = \alpha B x$
+ -->
+<IMG
+ WIDTH="97" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img714.gif"
+ ALT="$\beta A x = \alpha B x$">
+with 
+<!-- MATH
+ $\lambda = \alpha / \beta$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.gif"
+ ALT="$\lambda = \alpha/\beta$">
+instead of 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">.
+The eigenvalue <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+is represented
+as a pair 
+<!-- MATH
+ $(\alpha, \beta)$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img181.gif"
+ ALT="$(\alpha,\beta)$">,
+where a finite
+eigenvalue has <IMG
+ WIDTH="47" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img715.gif"
+ ALT="$\beta \neq 0$">
+and an infinite eigenvalue has <IMG
+ WIDTH="47" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img716.gif"
+ ALT="$\beta = 0$">.
+As in the standard nonsymmetric eigenvalue problem we have both right
+and left eigenvectors <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img717.gif"
+ ALT="$x \neq 0$">
+and <IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img718.gif"
+ ALT="$y \neq 0$">,
+respectively, defined as
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+\beta A x = \alpha B x, \quad \beta y^H A  = \alpha y^H B .
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.1"></A><IMG
+ WIDTH="238" HEIGHT="30" BORDER="0"
+ SRC="img719.gif"
+ ALT="\begin{displaymath}
+\beta A x = \alpha B x, \quad \beta y^H A = \alpha y^H B .
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.8)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+Error bounds for eigenvalues are stated in terms of
+the distance between pairs 
+<!-- MATH
+ $(\alpha, \beta)$
+ -->
+<IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img181.gif"
+ ALT="$(\alpha,\beta)$">
+and 
+<!-- MATH
+ $(\alpha',\beta')$
+ -->
+<IMG
+ WIDTH="57" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img720.gif"
+ ALT="$(\alpha',\beta')$">.
+Let 
+<!-- MATH
+ $\lambda = \alpha/\beta$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.gif"
+ ALT="$\lambda = \alpha/\beta$">
+and 
+<!-- MATH
+ $\lambda' = \alpha'/\beta'$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img721.gif"
+ ALT="$\lambda' = \alpha'/\beta'$">.
+Then the <EM>chordal distance</EM><A NAME="12058"></A> between <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+and
+<IMG
+ WIDTH="19" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img722.gif"
+ ALT="$\lambda'$">
+(see section&nbsp;<A HREF="node99.html#secGSEPFurtherDetails">4.10.1</A>)
+can equivalently be expressed as the chordal distance between two pairs:
+<BR>
+<DIV ALIGN="RIGHT">
+
+
+<!-- MATH
+ \begin{equation}
+{\cal X}( \lambda,\lambda') =
+{\cal X}((\alpha, \beta), (\alpha',\beta')) = \frac{|\alpha \beta' -
+\beta \alpha' |}{\sqrt{|\alpha|^2 + |\beta|^2} \sqrt{|\alpha'|^2 + |\beta'|^2}}.
+\end{equation}
+ -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq411.2"></A><IMG
+ WIDTH="442" HEIGHT="50" BORDER="0"
+ SRC="img723.gif"
+ ALT="\begin{displaymath}
+{\cal X}( \lambda,\lambda') =
+{\cal X}((\alpha, \beta), (\al...
+...beta\vert^2} \sqrt{\vert\alpha'\vert^2 + \vert\beta'\vert^2}}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(4.9)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+
+<P>
+Now we state our error bounds.
+Let 
+<!-- MATH
+ $({\alpha}_i, {\beta}_i), i = 1, \ldots, n$
+ -->
+<IMG
+ WIDTH="152" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img724.gif"
+ ALT="$({\alpha}_i, {\beta}_i), i = 1, \ldots, n$">
+be the eigenvalues of <B>(<I>A</I>, <I>B</I>)</B>,
+let <B><I>x</I><SUB><I>i</I></SUB></B> be a right eigenvector corresponding to 
+<!-- MATH
+ $({\alpha}_i, {\beta}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img725.gif"
+ ALT="$({\alpha}_i, {\beta}_i)$">:
+
+<!-- MATH
+ ${\beta}_i A x_i = {\alpha}_i B x_i$
+ -->
+<IMG
+ WIDTH="117" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img726.gif"
+ ALT="${\beta}_i A x_i = {\alpha}_i B x_i$">
+and let
+
+<!-- MATH
+ $({\hat{\alpha}}_i, {\hat{\beta}}_i)$
+ -->
+<IMG
+ WIDTH="58" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img727.gif"
+ ALT="$({\hat{\alpha}}_i, {\hat{\beta}}_i)$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">
+be the corresponding eigenvalues and
+eigenvectors computed by the expert driver routine
+xGGEVX (see subsection <A HREF="node35.html#sec_gnep_driver">2.3.5.2</A>).
+<A NAME="12076"></A><A NAME="12077"></A><A NAME="12078"></A><A NAME="12079"></A>
+
+<P>
+The approximate error bounds<A NAME="footfnm 0"><SUP>4.10</SUP></A>for the computed eigenvalues are
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+{\cal X}(({\hat{\alpha}}_i, {\hat{\beta}}_i), ({\alpha}_i, {\beta}_i)) \leq
+{\tt EERRBD}(i) .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="243" HEIGHT="31" BORDER="0"
+ SRC="img728.gif"
+ ALT="\begin{displaymath}
+{\cal X}(({\hat{\alpha}}_i, {\hat{\beta}}_i), ({\alpha}_i, {\beta}_i)) \leq
+{\tt EERRBD}(i) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The approximate error bounds
+<A NAME="12087"></A><A NAME="12088"></A>
+for the computed eigenvectors <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img356.gif"
+ ALT="$\hat{x}_i$">,
+which
+bound the acute angles between the computed eigenvectors and the true
+eigenvectors <B><I>x</I><SUB><I>i</I></SUB></B> are
+<A NAME="12090"></A>
+<A NAME="12091"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\theta(\hat{x}_i, x_i) \leq {\tt VERRBD}(i) .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="162" HEIGHT="31" BORDER="0"
+ SRC="img729.gif"
+ ALT="\begin{displaymath}
+\theta(\hat{x}_i, x_i) \leq {\tt VERRBD}(i) .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The same bounds also hold for the computed left eigenvectors.
+
+<P>
+These bounds can be computed by the following code fragment:
+
+<P>
+<PRE>
+      EPSMCH = SLAMCH( 'E' )
+*     Compute the generalized eigenvalues and eigenvectors of (A,B)
+*     ALPHAR/BETA contains the real parts of the eigenvalues
+*     ALPHAI/BETA contains the imaginary parts of the eigenvalues
+*     VL contains the left eigenvectors
+*     VR contains the right eigenvectors
+      CALL SGGEVX( 'P', 'V', 'V', 'B', N, A, LDA, B, LDB, ALPHAR,
+     $             ALPHAI, BETA, VL, LDVL, VR, LDVR, ILO, IHI, LSCALE,
+     $             RSCALE, ABNRM, BBNRM, RCONDE, RCONDV, WORK, LWORK,
+     $             IWORK, BWORK, INFO )
+      IF( INFO.GT.0 ) THEN
+         PRINT *,'INFO =', info, ' from SGGEVX.'
+      ELSE IF( N.GT.0 ) THEN
+         ABNORM = SLAPY2( ABNRM, BBNRM )
+         DO 10 I = 1,N
+            EERRBD(I) = EPSMCH*ABNORM/RCONDE(I)
+            VERRBD(I) = EPSMCH*ABNORM/RCONDV(I)
+   10    CONTINUE
+      END IF
+</PRE>
+
+<P>
+For example, suppose<A NAME="tex2html2431"
+ HREF="footnode.html#foot12096"><SUP>4.1</SUP></A><code>SLAMCH('E')</code> 
+<!-- MATH
+ $= 2^{-24} = 5.960  \cdot 10^{-8}$
+ -->
+<IMG
+ WIDTH="167" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img730.gif"
+ ALT="$ = 2^{-24} = 5.960 \cdot 10^{-8}$">
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = \left( \begin{array}{cccc}
+           -132~~   &   -88~~  &    84    &    104     \\
+           -158.4   &   -79.2  &  ~~76.8  &  ~~129.6   \\
+          ~~129.6   &  ~~81.6  &   -79.2  &   -100.8   \\
+            160     &    84    &   -80~~  &   -132~~   \\
+           \end{array} \right )
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="319" HEIGHT="93" BORDER="0"
+ SRC="img731.gif"
+ ALT="\begin{displaymath}
+A = \left( \begin{array}{cccc}
+-132~~ &amp; -88~~ &amp; 84 &amp; 104 \\...
+...100.8 \\
+160 &amp; 84 &amp; -80~~ &amp; -132~~ \\
+\end{array} \right )
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+B = \left( \begin{array}{cccc}
+           -60~~  &  -50~~  &   40   &   50   \\
+           -69~~  &  -46.4  &   38   & ~~58.2 \\
+          ~~58.8  &   46    &  -37.6 &  -48~~ \\
+            70    &   50    &  -40~~ &  -60~~ \\
+           \end{array} \right ).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="310" HEIGHT="93" BORDER="0"
+ SRC="img732.gif"
+ ALT="\begin{displaymath}
+B = \left( \begin{array}{cccc}
+-60~~ &amp; -50~~ &amp; 40 &amp; 50 \\
+...
+... -48~~ \\
+70 &amp; 50 &amp; -40~~ &amp; -60~~ \\
+\end{array} \right ).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+For this problem, the exact eigenvalues, eigenvectors, and eigenvalue
+condition numbers are known.  Then the true eigenvalues, computed eigenvalues,
+approximate error bounds, and true error bounds are
+given in the following table.
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER"><B><I>i</I></B></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">3</TD>
+<TD ALIGN="CENTER">4</TD>
+</TR>
+<TR><TD ALIGN="CENTER"><IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img523.gif"
+ ALT="$\lambda_i$"></TD>
+<TD ALIGN="CENTER"><B>1</B></TD>
+<TD ALIGN="CENTER"><B>2</B></TD>
+<TD ALIGN="CENTER"><B>3</B></TD>
+<TD ALIGN="CENTER"><B>4</B></TD>
+</TR>
+<TR><TD ALIGN="CENTER">
+<!-- MATH
+ $\hat{\lambda}_i$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img530.gif"
+ ALT="$\hat{\lambda}_i$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.0000529 \cdot 10^0~~$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img733.gif"
+ ALT="$1.0000529 \cdot 10^0~~$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.9999847 \cdot 10^0~~$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img734.gif"
+ ALT="$1.9999847 \cdot 10^0~~$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.9999785 \cdot 10^0~~$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img735.gif"
+ ALT="$2.9999785 \cdot 10^0~~$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $4.0002117 \cdot 10^0~~$
+ -->
+<IMG
+ WIDTH="128" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img736.gif"
+ ALT="$4.0002117 \cdot 10^0~~$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><code>EERRBD</code><B>(<I>i</I>)</B></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $9.4562565 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img737.gif"
+ ALT="$9.4562565 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $5.3651773 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img738.gif"
+ ALT="$5.3651773 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $5.6895351 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img739.gif"
+ ALT="$5.6895351 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.2976544 \cdot 10^{-4}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img740.gif"
+ ALT="$1.2976544 \cdot 10^{-4}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">
+<!-- MATH
+ ${\cal X}(\hat{\lambda}_i, \lambda_i )$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img741.gif"
+ ALT="${\cal X}(\hat{\lambda}_i, \lambda_i )$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $3.6398560 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img742.gif"
+ ALT="$3.6398560 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.3351108 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img743.gif"
+ ALT="$2.3351108 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $2.2801253 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img744.gif"
+ ALT="$2.2801253 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.0059956 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img745.gif"
+ ALT="$1.0059956 \cdot 10^{-5}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><code>VERRBD</code><B>(<I>i</I>)</B></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.4116328 \cdot 10^{-4}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img746.gif"
+ ALT="$1.4116328 \cdot 10^{-4}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.4498082 \cdot 10^{-4}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img747.gif"
+ ALT="$1.4498082 \cdot 10^{-4}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.8483077 \cdot 10^{-4}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img748.gif"
+ ALT="$6.8483077 \cdot 10^{-4}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $5.5552053 \cdot 10^{-4}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img749.gif"
+ ALT="$5.5552053 \cdot 10^{-4}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">
+<!-- MATH
+ $\theta(\hat{l}_i,l_i)$
+ -->
+<IMG
+ WIDTH="56" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img750.gif"
+ ALT="$\theta(\hat{l}_i,l_i)$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.0050300 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img751.gif"
+ ALT="$1.0050300 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $6.9755580 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img752.gif"
+ ALT="$6.9755580 \cdot 10^{-6}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.3587955 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img753.gif"
+ ALT="$1.3587955 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $4.2988235 \cdot 10^{-6}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img754.gif"
+ ALT="$4.2988235 \cdot 10^{-6}$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">
+<!-- MATH
+ $\theta(\hat{r}_i,r_i)$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img755.gif"
+ ALT="$\theta(\hat{r}_i,r_i)$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $5.2165419 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img756.gif"
+ ALT="$5.2165419 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $1.4475762 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img757.gif"
+ ALT="$1.4475762 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $5.1648690 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img758.gif"
+ ALT="$5.1648690 \cdot 10^{-5}$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $7.9673846 \cdot 10^{-5}$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img759.gif"
+ ALT="$7.9673846 \cdot 10^{-5}$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5593"
+ HREF="node101.html">Further Details: Error Bounds for the Generalized
+Nonsymmetric Eigenproblem</A>
+<UL>
+<LI><A NAME="tex2html5594"
+ HREF="node102.html">Overview</A>
+<LI><A NAME="tex2html5595"
+ HREF="node103.html">Balancing and Conditioning</A>
+<LI><A NAME="tex2html5596"
+ HREF="node104.html">Computing <B><I>s</I><SUB><I>i</I></SUB></B>, <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.gif"
+ ALT="$l_{\cal I}$">,
+<IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.gif"
+ ALT="$r_{\cal I}$">
+and
+<IMG
+ WIDTH="38" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.gif"
+ ALT="${\rm Dif}_u$">,
+<IMG
+ WIDTH="34" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.gif"
+ ALT="${\rm Dif}_l$"></A>
+<LI><A NAME="tex2html5597"
+ HREF="node105.html">Singular Eigenproblems</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5591"
+ HREF="node101.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5585"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5579"
+ HREF="node99.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5587"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5589"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5592"
+ HREF="node101.html">Further Details: Error Bounds</A>
+<B> Up:</B> <A NAME="tex2html5586"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5580"
+ HREF="node99.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5588"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5590"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

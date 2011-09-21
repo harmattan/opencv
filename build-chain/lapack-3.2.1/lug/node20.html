@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>What's new in version 3.0?</TITLE>
+<META NAME="description" CONTENT="What's new in version 3.0?">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node21.html">
+<LINK REL="previous" HREF="node19.html">
+<LINK REL="up" HREF="node19.html">
+<LINK REL="next" HREF="node21.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4393"
+ HREF="node21.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4387"
+ HREF="node19.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4381"
+ HREF="node19.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4389"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4391"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4394"
+ HREF="node21.html">Structure of LAPACK</A>
+<B> Up:</B> <A NAME="tex2html4388"
+ HREF="node19.html">Contents of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html4382"
+ HREF="node19.html">Contents of LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html4390"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4392"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03210000000000000000"></A><A NAME="whatisnew"></A>
+<BR>
+What's new in version 3.0?
+</H1>
+
+<P>
+Version 3.0 of LAPACK introduces new routines, as well
+as extending the functionality of existing routines.  The most significant
+new routines and functions are:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>a faster singular value decomposition (SVD),
+computed by divide-and-conquer (xGESDD)
+ <DT>2.
+<DD>faster routines for solving rank-deficient least squares problems:
+
+<UL><LI>using QR with column pivoting (xGELSY, based on xGEQP3)
+
+<LI>using the SVD based on divide-and-conquer (xGELSD)
+    
+</UL>
+ <DT>3.
+<DD>new routines for the generalized symmetric eigenproblem:
+
+<UL><LI>xHEGVD/xSYGVD, xHPGVD/xSPGVD, xHBGVD/xSBGVD: faster routines
+          based on divide-and-conquer
+
+<LI>xHEGVX/xSYGVX, xHPGVX/xSPGVX, xHBGVX/xSBGVX: routines based on
+          bisection/inverse iteration to more efficiently compute
+          a subset of the eigenvalues and/or eigenvectors
+      
+</UL>
+ <DT>4.
+<DD>faster routines for the symmetric eigenproblem using the
+       ``relative robust representation'' algorithm
+       (xSYEVR/xHEEVR, xSTEVR, xSTEGR)
+ <DT>5.
+<DD>new simple and expert drivers for the generalized nonsymmetric
+    eigenproblem (xGGES, xGGEV, xGGESX, xGGEVX), including error bounds
+ <DT>6.
+<DD>a solver for the generalized Sylvester equation (xTGSYL), used in 5)
+ <DT>7.
+<DD>computational routines (xTGEXC, xTGSEN, xTGSNA) used in 5)
+ <DT>8.
+<DD>a blocked version of xTZRQF (xTZRZF), and associated xORMRZ/xUNMRZ
+</DL>
+
+<P>
+One of the primary design features of the LAPACK library is that all
+releases are backward compatible.  A user's program calling LAPACK will
+never fail because of a new release of the library.  As a result,
+however, the calling sequences (or amount of workspace required) to existing
+routines cannot be altered.  Therefore, if a performance enhancement requires a
+modification of this type, a new routine must be created.  There are
+several routines included in LAPACK, version 3.0, that fall into this
+category.  Specifically,
+
+<UL><LI>xGEGS is deprecated and replaced by routine xGGES
+
+<LI>xGEGV is deprecated and replaced by routine xGGEV
+
+<LI>xGELSX is deprecated and replaced by routine xGELSY
+
+<LI>xGEQPF is deprecated and replaced by routine xGEQP3
+
+<LI>xTZRQF is deprecated and replaced by routine xTZRZF
+
+<LI>xLATZM is deprecated and replaced by routines xORMRZ/xUNMRZ
+
+</UL>
+The ``old'' version of the routine is still included in the
+library but the user is advised to upgrade to the ``new'' faster
+version.  References to the ``old'' versions are removed from this
+users' guide.
+
+<P>
+In addition to replacing the above list of routines, there are a number of
+other significantly faster new driver routines that we recommend in place of
+their older counterparts listed below. We continue to include the older drivers
+in this users' guide because the old drivers may use less workspace than the
+new drivers, and because the old drivers may be faster in certain special cases
+(we will continue to improve the new drivers in a future release until they
+completely replace their older counterparts):
+
+<UL><LI>xSYEV/xHEEV and xSYEVD/xHEEVD should be replaced by xSYEVR/xHEEVR
+
+<LI>xSTEV and xSTEVD should be replaced by xSTEVR
+
+<LI>xSPEV/xHPEV should be replaced by xSPEVD/xHPEVD
+
+<LI>xSBEV/xHBEV should be replaced by xSBEVD/xHBEVD
+
+<LI>xGESVD should be replaced by xGESDD
+
+<LI>xSYGV/xHEGV should be replaced by xSYGVD/xHEGVD
+
+<LI>xSPGV/xHPGV should be replaced by xSPGVD/xHPGVD
+
+<LI>xSBGV/xHBGV should be replaced by xSBGVD/xHBGVD
+
+</UL>
+
+<P>
+This release of LAPACK introduces routines that exploit IEEE arithmetic.
+We have a prototype running of a new algorithm (xSTEGR), which may be the
+ultimate solution for the symmetric eigenproblem on both parallel and serial
+machines.
+This algorithm has been incorporated into the drivers xSYEVR, xHEEVR and xSTEVR
+for the symmetric eigenproblem, and will be propagated into the generalized
+symmetric definite eigenvalue problems, the SVD, the generalized SVD and the
+SVD-based least squares solver.
+Refer to section&nbsp;<A HREF="node48.html#subseccompsep">2.4.4</A> for further information.
+We expect to also propagate this algorithm into ScaLAPACK.
+
+<P>
+We have also incorporated the <I>LWORK</I>=-1 query capability into this
+release of LAPACK, whereby a user can request the amount of workspace required
+for a routine.  For complete details, refer to section&nbsp;<A HREF="node118.html#lworkquery">5.1.8</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4393"
+ HREF="node21.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4387"
+ HREF="node19.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4381"
+ HREF="node19.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4389"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4391"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4394"
+ HREF="node21.html">Structure of LAPACK</A>
+<B> Up:</B> <A NAME="tex2html4388"
+ HREF="node19.html">Contents of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html4382"
+ HREF="node19.html">Contents of LAPACK</A>
+ &nbsp <B>  <A NAME="tex2html4390"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4392"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

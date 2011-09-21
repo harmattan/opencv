@@ -1,0 +1,1463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Notes</TITLE>
+<META NAME="description" CONTENT="Notes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node141.html">
+<LINK REL="up" HREF="node141.html">
+<LINK REL="next" HREF="node143.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6214"
+ HREF="node143.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6208"
+ HREF="node141.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6204"
+ HREF="node141.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6210"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6212"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6215"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+<B> Up:</B> <A NAME="tex2html6209"
+ HREF="node141.html">Index of Driver and</A>
+<B> Previous:</B> <A NAME="tex2html6205"
+ HREF="node141.html">Index of Driver and</A>
+ &nbsp <B>  <A NAME="tex2html6211"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6213"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03810000000000000000">
+Notes</A>
+</H1>
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>This index<A NAME="21182"></A><A NAME="21183"></A> lists related pairs of real and complex routines together,
+for example, SBDSQR and CBDSQR. 
+<P>
+<DT>2.
+<DD>Driver routines are listed in bold type, for example <B>SGBSV</B> and
+<B>CGBSV</B>.
+
+<P>
+<DT>3.
+<DD>Routines are listed in alphanumeric order
+of the real (single precision) routine name (which always begins with S-).
+(See subsection&nbsp;<A HREF="node24.html#subsecnaming">2.2.3</A> for details of the LAPACK naming scheme.)
+
+<P>
+<DT>4.
+<DD>Double precision routines are not listed here;
+they have names beginning with D- instead of
+S-, or Z- instead of C-.
+
+<P>
+<DT>5.
+<DD>This index gives only a brief description of the purpose of each
+routine. For a precise description, consult the specifications
+in Part&nbsp;<A HREF="node149.html#partroutines">2</A>, where the routines appear in the same
+order as here.
+
+<P>
+<DT>6.
+<DD>The text of the descriptions applies to both real and complex routines,
+except where alternative words or phrases are indicated, for example
+``symmetric/Hermitian'', ``orthogonal/unitary''
+or ``quasi-triangular/triangular''. For the real routines <B><I>A</I><SUP><I>H</I></SUP></B> is equivalent
+to <B><I>A</I><SUP><I>T</I></SUP></B>.
+(The same convention is used in Part&nbsp;<A HREF="node149.html#partroutines">2</A>.)
+
+<P>
+<DT>7.
+<DD>In a few cases, three routines are listed together, one for
+real symmetric, one for complex symmetric, and one for complex Hermitian
+matrices (for example SSPCON, CSPCON and CHPCON). 
+
+<P>
+<DT>8.
+<DD>A few routines for real matrices have no complex equivalent (for example
+SSTEBZ).
+
+<P>
+</DL>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SBDSDC<A NAME="21200"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the singular value decomposition (SVD) of a real bidiagonal matrix,
+using a divide and conquer method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SBDSQR<A NAME="21201"></A></TD>
+<TD ALIGN="LEFT">CBDSQR<A NAME="21202"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the singular value decomposition (SVD) of a real bidiagonal matrix,
+using the bidiagonal <B><I>QR</I></B> algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SDISNA</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the reciprocal condition numbers for the eigenvectors of a
+real symmetric or complex Hermitian matrix or for the left or right
+singular vectors of a general matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBBRD<A NAME="21203"></A></TD>
+<TD ALIGN="LEFT">CGBBRD<A NAME="21204"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a general band matrix to real upper bidiagonal form
+by an orthogonal/unitary transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBCON<A NAME="21205"></A></TD>
+<TD ALIGN="LEFT">CGBCON<A NAME="21206"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number
+of a general band matrix, 
+in either the 1-norm or the infinity-norm,
+using the <B><I>LU</I></B> factorization computed by SGBTRF<A NAME="21207"></A>/CGBTRF<A NAME="21208"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBEQU<A NAME="21209"></A></TD>
+<TD ALIGN="LEFT">CGBEQU<A NAME="21210"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes row and column scalings to equilibrate a general band matrix 
+and reduce its condition number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBRFS<A NAME="21211"></A></TD>
+<TD ALIGN="LEFT">CGBRFS<A NAME="21212"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to a general banded system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGBSV<A NAME="21213"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGBSV<A NAME="21214"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general banded system of linear equations
+<B><I>AX</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGBSVX<A NAME="21215"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGBSVX<A NAME="21216"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general banded system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBTRF<A NAME="21217"></A></TD>
+<TD ALIGN="LEFT">CGBTRF<A NAME="21218"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization of a general band matrix,
+using partial pivoting with row interchanges.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGBTRS<A NAME="21219"></A></TD>
+<TD ALIGN="LEFT">CGBTRS<A NAME="21220"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general banded system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+using the <B><I>LU</I></B> factorization computed by SGBTRF<A NAME="21221"></A>/CGBTRF<A NAME="21222"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEBAK<A NAME="21223"></A></TD>
+<TD ALIGN="LEFT">CGEBAK<A NAME="21224"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Transforms eigenvectors of a balanced matrix to those of the original matrix 
+supplied to SGEBAL<A NAME="21225"></A>/CGEBAL<A NAME="21226"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEBAL<A NAME="21227"></A></TD>
+<TD ALIGN="LEFT">CGEBAL<A NAME="21228"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Balances a general matrix
+in order to improve the accuracy of computed eigenvalues.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEBRD<A NAME="21229"></A></TD>
+<TD ALIGN="LEFT">CGEBRD<A NAME="21230"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a general rectangular matrix to  real bidiagonal form 
+by an orthogonal/unitary transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGECON<A NAME="21231"></A></TD>
+<TD ALIGN="LEFT">CGECON<A NAME="21232"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number
+of a general matrix, 
+in either the 1-norm or the infinity-norm,
+using the <B><I>LU</I></B> factorization computed by SGETRF<A NAME="21233"></A>/CGETRF<A NAME="21234"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEEQU<A NAME="21235"></A></TD>
+<TD ALIGN="LEFT">CGEEQU<A NAME="21236"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes row and column scalings to equilibrate a general rectangular matrix 
+and reduce its condition number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGEES<A NAME="21237"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGEES<A NAME="21238"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and Schur factorization of a general matrix, 
+and orders the factorization so that selected eigenvalues are at the top left 
+of the Schur form.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGEESX<A NAME="21251"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGEESX<A NAME="21252"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and Schur factorization of a general matrix, 
+orders the factorization so that selected eigenvalues are at the top left 
+of the Schur form, 
+and computes reciprocal condition numbers for the average of the selected
+eigenvalues, 
+and for the associated right invariant<A NAME="21253"></A>
+subspace.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGEEV<A NAME="21254"></A> </B></TD>
+<TD ALIGN="LEFT"><B> CGEEV<A NAME="21255"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and left and right eigenvectors of a general matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGEEVX<A NAME="21256"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGEEVX<A NAME="21257"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and left and right eigenvectors of a general matrix, 
+with preliminary balancing of the matrix, 
+and computes reciprocal condition numbers for the eigenvalues and right 
+eigenvectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEHRD<A NAME="21258"></A></TD>
+<TD ALIGN="LEFT">CGEHRD<A NAME="21259"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a general matrix to upper Hessenberg form 
+by an orthogonal/unitary similarity transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGELQF<A NAME="21260"></A></TD>
+<TD ALIGN="LEFT">CGELQF<A NAME="21261"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LQ</I></B> factorization of a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGELS<A NAME="21262"></A> </B></TD>
+<TD ALIGN="LEFT"><B> CGELS<A NAME="21263"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the least squares solution to an overdetermined system of linear
+equations, <B><I>A X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>, 
+or the minimum norm solution of an underdetermined system,
+where <B><I>A</I></B> is a general rectangular matrix of full rank, 
+using a <B><I>QR</I></B> or <B><I>LQ</I></B> factorization of <B><I>A</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGELSD<A NAME="21264"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGELSD<A NAME="21265"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the minimum norm least squares solution
+to an over- or underdetermined system of linear equations <B><I>A X</I>=<I>B</I></B>, 
+using the singular value decomposition of <B><I>A</I></B> and a divide and 
+conquer method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGELSS<A NAME="21266"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGELSS<A NAME="21267"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the minimum norm least squares solution
+to an over- or underdetermined system of linear equations <B><I>A X</I>=<I>B</I></B>, 
+using the singular value decomposition of <B><I>A</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGELSY<A NAME="21268"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGELSY<A NAME="21269"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the minimum norm least squares solution
+to an over- or underdetermined system of linear equations <B><I>A X</I>=<I>B</I></B>,
+using a complete orthogonal factorization of <B><I>A</I></B> via xGEQP3.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQLF<A NAME="21270"></A></TD>
+<TD ALIGN="LEFT">CGEQLF<A NAME="21271"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a <B><I>QL</I></B> factorization of a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQP3<A NAME="21272"></A></TD>
+<TD ALIGN="LEFT">CGEQP3<A NAME="21273"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a <B><I>QR</I></B> factorization with column pivoting of a general rectangular 
+matrix using Level 3 BLAS.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGEQRF<A NAME="21274"></A></TD>
+<TD ALIGN="LEFT">CGEQRF<A NAME="21275"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a <B><I>QR</I></B> factorization of a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGERFS<A NAME="21276"></A></TD>
+<TD ALIGN="LEFT">CGERFS<A NAME="21277"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to a general system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGERQF<A NAME="21278"></A></TD>
+<TD ALIGN="LEFT">CGERQF<A NAME="21279"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>RQ</I></B> factorization of a general rectangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGESDD<A NAME="21280"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGESDD<A NAME="21281"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the singular value decomposition (SVD) of a general rectangular 
+matrix using a divide and conquer method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGESV<A NAME="21282"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGESV<A NAME="21283"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general system of linear equations <B><I>AX</I>=<I>B</I></B>.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGESVD<A NAME="21296"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGESVD<A NAME="21297"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the singular value decomposition (SVD) of a general rectangular 
+matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGESVX<A NAME="21298"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGESVX<A NAME="21299"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETRF<A NAME="21300"></A></TD>
+<TD ALIGN="LEFT">CGETRF<A NAME="21301"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization of a general matrix,
+using partial pivoting with row interchanges.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETRI<A NAME="21302"></A></TD>
+<TD ALIGN="LEFT">CGETRI<A NAME="21303"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of a general matrix, 
+using the <B><I>LU</I></B> factorization computed by SGETRF<A NAME="21304"></A>/CGETRF<A NAME="21305"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGETRS<A NAME="21306"></A></TD>
+<TD ALIGN="LEFT">CGETRS<A NAME="21307"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+using the <B><I>LU</I></B> factorization computed by SGETRF<A NAME="21308"></A>/CGETRF<A NAME="21309"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGGBAK<A NAME="21310"></A></TD>
+<TD ALIGN="LEFT">CGGBAK<A NAME="21311"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Forms the right or left eigenvectors of a real generalized
+eigenvalue problem <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+by backward transformation on
+the computed eigenvectors of the balanced pair of matrices output by
+SGGBAL<A NAME="21312"></A>/CGGBAL<A NAME="21313"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGGBAL<A NAME="21314"></A></TD>
+<TD ALIGN="LEFT">CGGBAL<A NAME="21315"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Balances a pair of general matrices
+to improve the accuracy of computed eigenvalues and/or
+eigenvectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGES<A NAME="21316"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGES<A NAME="21317"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the generalized eigenvalues, Schur form, and the left
+and/or right Schur vectors for a pair of nonsymmetric matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGESX<A NAME="21318"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGESX<A NAME="21319"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the generalized eigenvalues, Schur form, and, optionally, the left
+and/or right matrices of Schur vectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGEV<A NAME="21320"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGEV<A NAME="21321"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the generalized eigenvalues and the left and/or right
+generalized eigenvectors for a pair of nonsymmetric matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGEVX<A NAME="21322"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGEVX<A NAME="21323"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the generalized eigenvalues and, optionally, the left and/or right
+generalized eigenvectors.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGGLM<A NAME="21324"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGGLM<A NAME="21325"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general Gauss-Markov linear model (GLM)<A NAME="21326"></A> problem using a generalized QR
+factorization.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGGHRD<A NAME="21327"></A></TD>
+<TD ALIGN="LEFT">CGGHRD<A NAME="21328"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a pair of matrices to generalized upper Hessenberg form
+using orthogonal/unitary transformations.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGLSE<A NAME="21329"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGLSE<A NAME="21330"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves the linear equality-constrained least squares (LSE)<A NAME="21331"></A> problem using a
+generalized RQ factorization.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGGQRF<A NAME="21332"></A></TD>
+<TD ALIGN="LEFT">CGGQRF<A NAME="21333"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a generalized QR factorization of a pair of matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGGRQF<A NAME="21334"></A></TD>
+<TD ALIGN="LEFT">CGGRQF<A NAME="21335"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a generalized RQ factorization of a pair of matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGGSVD<A NAME="21336"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGGSVD<A NAME="21337"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the generalized singular value decomposition (GSVD) of a pair
+of general rectangular matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGGSVP<A NAME="21338"></A></TD>
+<TD ALIGN="LEFT">CGGSVP<A NAME="21339"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes orthogonal/unitary matrices U, V, and Q as the preprocessing
+step for computing the generalized singular value decomposition (GSVD).</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGTCON<A NAME="21352"></A></TD>
+<TD ALIGN="LEFT">CGTCON<A NAME="21353"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of a general tridiagonal 
+matrix, 
+in either the 1-norm or the infinity-norm,
+using the <B><I>LU</I></B> factorization computed by SGTTRF<A NAME="21354"></A>/CGTTRF<A NAME="21355"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGTRFS<A NAME="21356"></A></TD>
+<TD ALIGN="LEFT">CGTRFS<A NAME="21357"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to a general tridiagonal system of linear 
+equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGTSV<A NAME="21358"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGTSV<A NAME="21359"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general tridiagonal system of linear equations <B><I>AX</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SGTSVX<A NAME="21360"></A></B></TD>
+<TD ALIGN="LEFT"><B> CGTSVX<A NAME="21361"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general tridiagonal system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGTTRF<A NAME="21362"></A></TD>
+<TD ALIGN="LEFT">CGTTRF<A NAME="21363"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>LU</I></B> factorization of a general tridiagonal matrix,
+using partial pivoting with row interchanges.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGTTRS<A NAME="21364"></A></TD>
+<TD ALIGN="LEFT">CGTTRS<A NAME="21365"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a general tridiagonal system of linear equations
+<B><I>AX</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+using the <B><I>LU</I></B> factorization computed by SGTTRF<A NAME="21366"></A>/CGTTRF<A NAME="21367"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SHGEQZ<A NAME="21368"></A></TD>
+<TD ALIGN="LEFT">CHGEQZ<A NAME="21369"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Implements a single-/double-shift version of the QZ
+method for finding the generalized eigenvalues of a pair of general
+matrices, which can simultaneously be reduced to generalized Schur form
+using orthogonal/unitary transformations.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SHSEIN<A NAME="21370"></A></TD>
+<TD ALIGN="LEFT">CHSEIN<A NAME="21371"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes specified right and/or left eigenvectors of an upper Hessenberg matrix 
+by inverse iteration.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SHSEQR<A NAME="21372"></A></TD>
+<TD ALIGN="LEFT">CHSEQR<A NAME="21373"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the eigenvalues and Schur factorization of an upper Hessenberg matrix, 
+using the multishift <B><I>QR</I></B> algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SOPGTR<A NAME="21374"></A></TD>
+<TD ALIGN="LEFT">CUPGTR<A NAME="21375"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates the orthogonal/unitary transformation matrix
+from a reduction to tridiagonal form determined by SSPTRD<A NAME="21376"></A>/CHPTRD<A NAME="21377"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SOPMTR<A NAME="21378"></A></TD>
+<TD ALIGN="LEFT">CUPMTR<A NAME="21379"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary transformation matrix
+from a reduction to tridiagonal form determined by SSPTRD<A NAME="21380"></A>/CHPTRD<A NAME="21381"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGBR<A NAME="21382"></A></TD>
+<TD ALIGN="LEFT">CUNGBR<A NAME="21383"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates the orthogonal/unitary transformation matrices
+from a reduction to bidiagonal form determined by SGEBRD<A NAME="21384"></A>/CGEBRD<A NAME="21385"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGHR<A NAME="21386"></A></TD>
+<TD ALIGN="LEFT">CUNGHR<A NAME="21387"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates the orthogonal/unitary transformation matrix
+from a reduction to Hessenberg form determined by SGEHRD<A NAME="21388"></A>/CGEHRD<A NAME="21389"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGLQ<A NAME="21390"></A></TD>
+<TD ALIGN="LEFT">CUNGLQ<A NAME="21391"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from an <B><I>LQ</I></B> factorization determined by SGELQF<A NAME="21392"></A>/CGELQF<A NAME="21393"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGQL<A NAME="21394"></A></TD>
+<TD ALIGN="LEFT">CUNGQL<A NAME="21395"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from a <B><I>QL</I></B> factorization determined by SGEQLF<A NAME="21396"></A>/CGEQLF<A NAME="21397"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGQR<A NAME="21398"></A></TD>
+<TD ALIGN="LEFT">CUNGQR<A NAME="21399"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from a <B><I>QR</I></B> factorization determined by SGEQRF<A NAME="21400"></A>/CGEQRF<A NAME="21401"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGRQ<A NAME="21402"></A></TD>
+<TD ALIGN="LEFT">CUNGRQ<A NAME="21403"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates all or part of the orthogonal/unitary matrix <B><I>Q</I></B> 
+from an <B><I>RQ</I></B> factorization determined by SGERQF<A NAME="21404"></A>/CGERQF<A NAME="21405"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORGTR<A NAME="21406"></A></TD>
+<TD ALIGN="LEFT">CUNGTR<A NAME="21407"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Generates the orthogonal/unitary transformation matrix 
+from a reduction to tridiagonal form determined by SSYTRD<A NAME="21408"></A>/CHETRD<A NAME="21409"></A>.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMBR<A NAME="21422"></A></TD>
+<TD ALIGN="LEFT">CUNMBR<A NAME="21423"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by one of the orthogonal/unitary transformation 
+matrices 
+from a reduction to bidiagonal form determined by SGEBRD<A NAME="21424"></A>/CGEBRD<A NAME="21425"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMHR<A NAME="21426"></A></TD>
+<TD ALIGN="LEFT">CUNMHR<A NAME="21427"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary transformation matrix
+from a reduction to Hessenberg form determined by SGEHRD<A NAME="21428"></A>/CGEHRD<A NAME="21429"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMLQ<A NAME="21430"></A></TD>
+<TD ALIGN="LEFT">CUNMLQ<A NAME="21431"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from an <B><I>LQ</I></B> factorization determined by SGELQF<A NAME="21432"></A>/CGELQF<A NAME="21433"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMQL<A NAME="21434"></A></TD>
+<TD ALIGN="LEFT">CUNMQL<A NAME="21435"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from a <B><I>QL</I></B> factorization determined by SGEQLF<A NAME="21436"></A>/CGEQLF<A NAME="21437"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMQR<A NAME="21438"></A></TD>
+<TD ALIGN="LEFT">CUNMQR<A NAME="21439"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from a <B><I>QR</I></B> factorization determined by SGEQRF<A NAME="21440"></A>/CGEQRF<A NAME="21441"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMRQ<A NAME="21442"></A></TD>
+<TD ALIGN="LEFT">CUNMRQ<A NAME="21443"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix 
+from an <B><I>RQ</I></B> factorization determined by SGERQF<A NAME="21444"></A>/CGERQF<A NAME="21445"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMRZ<A NAME="21446"></A></TD>
+<TD ALIGN="LEFT">CUNMRZ<A NAME="21447"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary matrix
+from an <B><I>RZ</I></B> factorization determined by STZRZF<A NAME="21448"></A>/CTZRZF<A NAME="21449"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SORMTR<A NAME="21450"></A></TD>
+<TD ALIGN="LEFT">CUNMTR<A NAME="21451"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Multiplies a general matrix by the orthogonal/unitary transformation matrix
+from a reduction to tridiagonal form determined by SSYTRD<A NAME="21452"></A>/CHETRD<A NAME="21453"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBCON<A NAME="21454"></A></TD>
+<TD ALIGN="LEFT">CPBCON<A NAME="21455"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of 
+a symmetric/Hermitian positive definite band matrix,
+using the Cholesky factorization computed by SPBTRF<A NAME="21456"></A>/CPBTRF<A NAME="21457"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBEQU<A NAME="21458"></A></TD>
+<TD ALIGN="LEFT">CPBEQU<A NAME="21459"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes row and column scalings to equilibrate 
+a symmetric/Hermitian positive definite band matrix 
+and reduce its condition number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBRFS<A NAME="21460"></A></TD>
+<TD ALIGN="LEFT">CPBRFS<A NAME="21461"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to 
+a symmetric/Hermitian positive definite banded system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBSTF<A NAME="21462"></A></TD>
+<TD ALIGN="LEFT">CPBSTF<A NAME="21463"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes a split Cholesky factorization of a real/complex
+symmetric/Hermitian positive definite band matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPBSV<A NAME="21464"></A></B></TD>
+<TD ALIGN="LEFT"><B> CPBSV<A NAME="21465"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite banded system of linear 
+equations <B><I>A X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPBSVX<A NAME="21466"></A></B></TD>
+<TD ALIGN="LEFT"><B> CPBSVX<A NAME="21467"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite banded system of linear 
+equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBTRF<A NAME="21468"></A></TD>
+<TD ALIGN="LEFT">CPBTRF<A NAME="21469"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Cholesky factorization of 
+a symmetric/Hermitian positive definite band matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPBTRS<A NAME="21470"></A></TD>
+<TD ALIGN="LEFT">CPBTRS<A NAME="21471"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite banded system of linear 
+equations <B><I>A X</I>=<I>B</I></B>, 
+using the Cholesky factorization computed by SPBTRF<A NAME="21472"></A>/CPBTRF<A NAME="21473"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOCON<A NAME="21474"></A></TD>
+<TD ALIGN="LEFT">CPOCON<A NAME="21475"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of 
+a symmetric/Hermitian positive definite matrix,
+using the Cholesky factorization computed by SPOTRF<A NAME="21476"></A>/CPOTRF<A NAME="21477"></A>.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOEQU<A NAME="21491"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPOEQU<A NAME="21492"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes row and column scalings to equilibrate 
+a symmetric/Hermitian positive definite matrix 
+and reduce its condition number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPORFS<A NAME="21493"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPORFS<A NAME="21494"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to 
+a symmetric/Hermitian positive definite system of linear equations <B><I>A X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPOSV<A NAME="21495"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CPOSV<A NAME="21496"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite system of linear equations
+<B><I>A X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPOSVX<A NAME="21497"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CPOSVX<A NAME="21498"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOTRF<A NAME="21499"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPOTRF<A NAME="21500"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Cholesky factorization of 
+a symmetric/Hermitian positive definite matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOTRI<A NAME="21501"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPOTRI<A NAME="21502"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of 
+a symmetric/Hermitian positive definite matrix,
+using the Cholesky factorization computed by SPOTRF<A NAME="21503"></A>/CPOTRF<A NAME="21504"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPOTRS<A NAME="21505"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPOTRS<A NAME="21506"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+using the Cholesky factorization computed by SPOTRF<A NAME="21507"></A>/CPOTRF<A NAME="21508"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPCON<A NAME="21509"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPPCON<A NAME="21510"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of 
+a symmetric/Hermitian positive definite matrix in packed storage,
+using the Cholesky factorization computed by SPPTRF<A NAME="21511"></A>/CPPTRF<A NAME="21512"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPEQU<A NAME="21513"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPPEQU<A NAME="21514"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes row and column scalings to equilibrate 
+a symmetric/Hermitian positive definite matrix in packed storage
+and reduce its condition number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPRFS<A NAME="21515"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPPRFS<A NAME="21516"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to 
+a symmetric/Hermitian positive definite system of linear equations <B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPPSV<A NAME="21517"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CPPSV<A NAME="21518"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPPSVX<A NAME="21519"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CPPSVX<A NAME="21520"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPTRF<A NAME="21521"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPPTRF<A NAME="21522"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the Cholesky factorization of 
+a symmetric/Hermitian positive definite matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPTRI<A NAME="21523"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPPTRI<A NAME="21524"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of 
+a symmetric/Hermitian positive definite matrix in packed storage,
+using the Cholesky factorization computed by SPPTRF<A NAME="21525"></A>/CPPTRF<A NAME="21526"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPPTRS<A NAME="21527"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPPTRS<A NAME="21528"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage,
+using the Cholesky factorization computed by SPPTRF<A NAME="21529"></A>/CPPTRF<A NAME="21530"></A>.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTCON<A NAME="21544"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPTCON<A NAME="21545"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the reciprocal of the condition number of 
+a symmetric/Hermitian positive definite tridiagonal matrix,
+using the <B><I>LDL</I><SUP><I>H</I></SUP></B> factorization computed by SPTTRF<A NAME="21546"></A>/CPTTRF<A NAME="21547"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTEQR<A NAME="21548"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPTEQR<A NAME="21549"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and eigenvectors of 
+a real symmetric positive definite tridiagonal matrix,
+by computing the SVD of its bidiagonal Cholesky factor.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTRFS<A NAME="21550"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPTRFS<A NAME="21551"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to 
+a symmetric/Hermitian positive definite tridiagonal system of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPTSV<A NAME="21552"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CPTSV<A NAME="21553"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite tridiagonal system of linear 
+equations
+<B><I>A X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SPTSVX<A NAME="21554"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CPTSVX<A NAME="21555"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite tridiagonal system of linear 
+equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTTRF<A NAME="21556"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPTTRF<A NAME="21557"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the <B><I>LDL</I><SUP><I>H</I></SUP></B> factorization of 
+a symmetric/Hermitian positive definite tridiagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SPTTRS<A NAME="21558"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CPTTRS<A NAME="21559"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a symmetric/Hermitian positive definite tridiagonal system of linear 
+equations, 
+using the <B><I>LDL</I><SUP><I>H</I></SUP></B> factorization computed by SPTTRF<A NAME="21560"></A>/CPTTRF<A NAME="21561"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSBEV<A NAME="21562"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHBEV<A NAME="21563"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian band matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSBEVD<A NAME="21564"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHBEVD<A NAME="21565"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian band matrix.  If eigenvectors are desired, it uses
+a divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSBEVX<A NAME="21566"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHBEVX<A NAME="21567"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and eigenvectors of 
+a symmetric/Hermitian band matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSBGST<A NAME="21568"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHBGST<A NAME="21569"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a real/complex symmetric-/Hermitian-definite banded
+generalized eigenproblem 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">
+to standard form,
+where <B><I>B</I></B> has been factorized by SPBSTF/CPBSTF (Crawford's algorithm).</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSBGV<A NAME="21570"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHBGV<A NAME="21571"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all of the eigenvalues, and optionally, the eigenvectors 
+of a real/complex generalized symmetric-/Hermitian-definite banded 
+eigenproblem 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSBGVD<A NAME="21572"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHBGVD<A NAME="21573"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues, and optionally, the eigenvectors 
+of a real/complex generalized symmetric-/Hermitian-definite banded 
+eigenproblem 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">.
+If eigenvectors are desired,
+it uses a divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSBGVX<A NAME="21574"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHBGVX<A NAME="21575"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues, and optionally, the eigenvectors 
+of a real/complex generalized symmetric-/Hermitian-definite banded 
+eigenproblem 
+<!-- MATH
+ $A x = \lambda B x$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSBTRD<A NAME="21576"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHBTRD<A NAME="21577"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian band matrix 
+to real symmetric tridiagonal form
+by an orthogonal/unitary similarity transformation.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPCON<A NAME="21591"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSPCON<A NAME="21592"></A> CHPCON<A NAME="21593"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix in 
+packed storage,
+using the factorization computed by SSPTRF<A NAME="21594"></A>/CSPTRF<A NAME="21595"></A>/CHPTRF<A NAME="21596"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPEV<A NAME="21597"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHPEV<A NAME="21598"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPEVD<A NAME="21599"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHPEVD<A NAME="21600"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian matrix in packed storage.  If eigenvectors are
+desired, it uses a divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPEVX<A NAME="21601"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHPEVX<A NAME="21602"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and eigenvectors of 
+a symmetric/Hermitian matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPGST<A NAME="21603"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHPGST<A NAME="21604"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian definite generalized eigenproblem 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">,
+to standard form, 
+where <B><I>A</I></B> and <B><I>B</I></B> are held in packed storage,
+and <B><I>B</I></B> has been factorized by SPPTRF<A NAME="21605"></A>/CPPTRF<A NAME="21606"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPGV<A NAME="21607"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHPGV<A NAME="21608"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and optionally, the eigenvectors of 
+a generalized symmetric/Hermitian definite generalized eigenproblem, 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">,
+where <B><I>A</I></B> and <B><I>B</I></B> are in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPGVD<A NAME="21609"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHPGVD<A NAME="21610"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues, and optionally, the eigenvectors of 
+a generalized symmetric/Hermitian definite generalized eigenproblem, 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">,
+where <B><I>A</I></B> and <B><I>B</I></B> are in packed storage.  If eigenvectors are
+desired, it uses a divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPGVX<A NAME="21611"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHPGVX<A NAME="21612"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues, and optionally, the eigenvectors of 
+a generalized symmetric/Hermitian definite generalized eigenproblem, 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">,
+where <B><I>A</I></B> and <B><I>B</I></B> are in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPRFS<A NAME="21613"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSPRFS<A NAME="21614"></A> CHPRFS<A NAME="21615"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to 
+a real symmetric/complex symmetric/complex Hermitian indefinite system of linear
+equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPSV<A NAME="21616"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CSPSV<A NAME="21617"></A></B> <B> CHPSV<A NAME="21618"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real symmetric/complex symmetric/complex Hermitian indefinite system 
+of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSPSVX<A NAME="21619"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CSPSVX<A NAME="21620"></A></B> <B> CHPSVX<A NAME="21621"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real symmetric/complex symmetric/complex Hermitian indefinite system 
+of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPTRD<A NAME="21622"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHPTRD<A NAME="21623"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian matrix in packed storage
+to real symmetric tridiagonal form 
+by an orthogonal/unitary similarity transformation.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPTRF<A NAME="21637"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSPTRF<A NAME="21638"></A> CHPTRF<A NAME="21639"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the factorization of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix in 
+packed storage,
+using the diagonal pivoting<A NAME="21640"></A> method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPTRI<A NAME="21641"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSPTRI<A NAME="21642"></A> CHPTRI<A NAME="21643"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix in 
+packed storage,
+using the factorization computed by SSPTRF<A NAME="21644"></A>/CSPTRF<A NAME="21645"></A>/CHPTRF<A NAME="21646"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSPTRS<A NAME="21647"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSPTRS<A NAME="21648"></A> CHPTRS<A NAME="21649"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real symmetric/complex symmetric/complex Hermitian indefinite system 
+of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage,
+using the factorization computed by SSPTRF<A NAME="21650"></A>/CSPTRF<A NAME="21651"></A>/CHPTRF<A NAME="21652"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTEBZ<A NAME="21653"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues of a real symmetric tridiagonal matrix 
+by bisection.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTEDC<A NAME="21654"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSTEDC<A NAME="21655"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of a
+symmetric tridiagonal matrix using the divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTEGR<A NAME="21656"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSTEGR<A NAME="21657"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and, optionally, eigenvectors of 
+a real symmetric tridiagonal matrix using the Relatively Robust
+Representations.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTEIN<A NAME="21658"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSTEIN<A NAME="21659"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvectors of a real symmetric tridiagonal matrix 
+by inverse iteration.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTEQR<A NAME="21660"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSTEQR<A NAME="21661"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and eigenvectors of 
+a real symmetric tridiagonal matrix,
+using the implicit <B><I>QL</I></B> or <B><I>QR</I></B> algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSTERF<A NAME="21662"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues of a real symmetric tridiagonal matrix,
+using a root-free variant of the <B><I>QL</I></B> or <B><I>QR</I></B> algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSTEV<A NAME="21663"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a real symmetric tridiagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSTEVD<A NAME="21664"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a real symmetric tridiagonal matrix.  If eigenvectors are desired, it
+uses a divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSTEVR<A NAME="21665"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and, optionally, eigenvectors of 
+a real symmetric tridiagonal matrix using the Relatively Robust
+Representations.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSTEVX<A NAME="21666"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and eigenvectors of 
+a real symmetric tridiagonal matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYCON<A NAME="21667"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSYCON<A NAME="21668"></A> CHECON<A NAME="21669"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix,
+using the factorization computed by SSYTRF<A NAME="21670"></A>/CSYTRF<A NAME="21671"></A>/CHETRF<A NAME="21672"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYEV<A NAME="21673"></A> </B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEEV<A NAME="21674"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYEVD<A NAME="21675"></A> </B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEEVD<A NAME="21676"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian matrix.  If eigenvectors are desired, it
+uses a divide and conquer algorithm.</TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYEVR<A NAME="21690"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEEVR<A NAME="21691"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and, optionally, eigenvectors of 
+a real symmetric/Hermitian matrix using the Relatively Robust
+Representations.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYEVX<A NAME="21692"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEEVX<A NAME="21693"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues and, optionally, eigenvectors of 
+a symmetric/Hermitian matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYGST<A NAME="21694"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHEGST<A NAME="21695"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian definite generalized eigenproblem 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">,
+to standard form, where <B><I>B</I></B> has been factorized by SPOTRF<A NAME="21696"></A>/CPOTRF<A NAME="21697"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYGV<A NAME="21698"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEGV<A NAME="21699"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues, and optionally, the eigenvectors of 
+a generalized symmetric/Hermitian definite generalized eigenproblem, 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYGVD<A NAME="21700"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEGVD<A NAME="21701"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes all eigenvalues, and optionally, the eigenvectors of 
+a generalized symmetric/Hermitian definite generalized eigenproblem, 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">.
+If eigenvectors
+are desired, it uses a divide and conquer algorithm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYGVX<A NAME="21702"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CHEGVX<A NAME="21703"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes selected eigenvalues, and optionally, the eigenvectors of 
+a generalized symmetric/Hermitian definite generalized eigenproblem, 
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img176.gif"
+ ALT="$Ax = \lambda Bx$">,
+<IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img951.gif"
+ ALT="$ABx=\lambda x$">,
+or <IMG
+ WIDTH="85" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img952.gif"
+ ALT="$BAx=\lambda x$">.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYRFS<A NAME="21704"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSYRFS<A NAME="21705"></A> CHERFS<A NAME="21706"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Improves the computed solution to 
+a real symmetric/complex symmetric/complex Hermitian indefinite system of linear
+equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides forward and backward error bounds for the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYSV<A NAME="21707"></A> </B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CSYSV<A NAME="21708"></A></B> <B> CHESV<A NAME="21709"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real symmetric/complex symmetric/complex Hermitian indefinite system 
+of linear equations
+<B><I>A X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><B> SSYSVX<A NAME="21710"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54><B> CSYSVX<A NAME="21711"></A></B> <B> CHESVX<A NAME="21712"></A></B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real symmetric/complex symmetric/complex Hermitian indefinite system 
+of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+and provides an estimate of the condition number 
+and error bounds on the solution.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTRD<A NAME="21713"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CHETRD<A NAME="21714"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reduces a symmetric/Hermitian matrix to 
+real symmetric tridiagonal form 
+by an orthogonal/unitary similarity transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTRF<A NAME="21715"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSYTRF<A NAME="21716"></A> CHETRF<A NAME="21717"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the factorization of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix,
+using the diagonal pivoting<A NAME="21718"></A> method.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTRI<A NAME="21719"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSYTRI<A NAME="21720"></A> CHETRI<A NAME="21721"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of 
+a real symmetric/complex symmetric/complex Hermitian indefinite matrix,
+using the factorization computed by SSYTRF<A NAME="21722"></A>/CSYTRF<A NAME="21723"></A>/CHETRF<A NAME="21724"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SSYTRS<A NAME="21725"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CSYTRS<A NAME="21726"></A> CHETRS<A NAME="21727"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a real symmetric/complex symmetric/complex Hermitian indefinite system 
+of linear equations
+<B><I>A X</I>=<I>B</I></B>,
+using the factorization computed by SSPTRF<A NAME="21728"></A>/CSPTRF<A NAME="21729"></A>/CHPTRF<A NAME="21730"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STBCON<A NAME="21731"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=54>CTBCON<A NAME="21732"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of a triangular band matrix,
+in either the 1-norm or the infinity-norm.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STBRFS<A NAME="21745"></A></TD>
+<TD ALIGN="LEFT">CTBRFS<A NAME="21746"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Provides forward and backward error bounds for the solution of
+a triangular banded system of linear equations
+<B><I>A X</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STBTRS<A NAME="21747"></A></TD>
+<TD ALIGN="LEFT">CTBTRS<A NAME="21748"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a triangular banded system of linear equations
+<B><I>A X</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGEVC<A NAME="21749"></A></TD>
+<TD ALIGN="LEFT">CTGEVC<A NAME="21750"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes some or all of the right and/or left generalized eigenvectors of a
+pair of upper triangular matrices.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGEXC<A NAME="21751"></A></TD>
+<TD ALIGN="LEFT">CTGEXC<A NAME="21752"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reorders the generalized real-Schur/Schur decomposition of a matrix pair <B>(<I>A</I>,<I>B</I>)</B>
+using an orthogonal/unitary equivalence transformation so that the
+diagonal block of <B>(<I>A</I>,<I>B</I>)</B> with row index <B><I>IFST</I></B> is moved to row <B><I>ILST</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGSEN<A NAME="21753"></A></TD>
+<TD ALIGN="LEFT">CTGSEN<A NAME="21754"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reorders the generalized real-Schur/Schur decomposition of a matrix pair
+<B>(<I>A</I>,<I>B</I>)</B>, computes the generalized eigenvalues of the reordered matrix
+pair, and, optionally, computes the estimates of reciprocal condition
+numbers for eigenvalues and eigenspaces.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGSJA<A NAME="21755"></A></TD>
+<TD ALIGN="LEFT">CTGSJA<A NAME="21756"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the generalized singular value decomposition (GSVD) of a pair
+of upper triangular (or trapezoidal) matrices, which may be obtained by
+the preprocessing subroutine SGGSVP/CGGSVP<A NAME="21757"></A><A NAME="21758"></A>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGSNA<A NAME="21759"></A></TD>
+<TD ALIGN="LEFT">CTGSNA<A NAME="21760"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates reciprocal condition numbers for specified
+eigenvalues and/or eigenvectors of a matrix pair <B>(<I>A</I>,<I>B</I>)</B> in
+generalized real-Schur/Schur canonical form</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STGSYL<A NAME="21761"></A></TD>
+<TD ALIGN="LEFT">CTGSYL<A NAME="21762"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves the generalized Sylvester equation</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STPCON<A NAME="21763"></A></TD>
+<TD ALIGN="LEFT">CTPCON<A NAME="21764"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of a triangular matrix
+in packed storage,
+in either the 1-norm or the infinity-norm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STPRFS<A NAME="21765"></A></TD>
+<TD ALIGN="LEFT">CTPRFS<A NAME="21766"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Provides forward and backward error bounds for the solution of
+a triangular system of linear equations
+<B><I>A X</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STPTRI<A NAME="21767"></A></TD>
+<TD ALIGN="LEFT">CTPTRI<A NAME="21768"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of a triangular matrix in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STPTRS<A NAME="21769"></A></TD>
+<TD ALIGN="LEFT">CTPTRS<A NAME="21770"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a triangular system of linear equations
+<B><I>A X</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>,
+where <B><I>A</I></B> is held in packed storage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRCON<A NAME="21771"></A></TD>
+<TD ALIGN="LEFT">CTRCON<A NAME="21772"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal of the condition number of a triangular matrix,
+in either the 1-norm or the infinity-norm.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STREVC<A NAME="21773"></A></TD>
+<TD ALIGN="LEFT">CTREVC<A NAME="21774"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes some or all of the right and/or left eigenvectors of 
+an upper quasi-triangular/triangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STREXC<A NAME="21775"></A></TD>
+<TD ALIGN="LEFT">CTREXC<A NAME="21776"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reorders the Schur factorization of a matrix
+by an orthogonal/unitary similarity transformation.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRRFS<A NAME="21777"></A></TD>
+<TD ALIGN="LEFT">CTRRFS<A NAME="21778"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Provides forward and backward error bounds for the solution of
+a triangular system of linear equations
+<B><I>A X</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=2>Routine</TD>
+<TD ALIGN="CENTER" COLSPAN=1>Description</TD>
+</TR>
+<TR><TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRSEN<A NAME="21791"></A></TD>
+<TD ALIGN="LEFT">CTRSEN<A NAME="21792"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Reorders the Schur factorization of a matrix 
+in order to find an orthonormal basis of a right invariant subspace
+corresponding to selected eigenvalues,
+and returns reciprocal condition numbers (sensitivities)
+of the average of the cluster of eigenvalues and of the invariant subspace.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRSNA<A NAME="21793"></A></TD>
+<TD ALIGN="LEFT">CTRSNA<A NAME="21794"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Estimates the reciprocal condition numbers (sensitivities) of 
+selected eigenvalues and eigenvectors
+of an upper quasi-triangular/triangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRSYL<A NAME="21795"></A></TD>
+<TD ALIGN="LEFT">CTRSYL<A NAME="21796"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves the Sylvester matrix equation <IMG
+ WIDTH="122" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img156.gif"
+ ALT="$AX \pm XB=C$">
+where <B><I>A</I></B> and <B><I>B</I></B> are upper quasi-triangular/triangular, 
+and may be transposed.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRTRI<A NAME="21797"></A></TD>
+<TD ALIGN="LEFT">CTRTRI<A NAME="21798"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes the inverse of a triangular matrix.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STRTRS<A NAME="21799"></A></TD>
+<TD ALIGN="LEFT">CTRTRS<A NAME="21800"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Solves a triangular system of linear equations
+<B><I>A X</I>=<I>B</I></B>, <B><I>A</I><SUP><I>T</I></SUP> <I>X</I>=<I>B</I></B> or <B><I>A</I><SUP><I>H</I></SUP> <I>X</I>=<I>B</I></B>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">STZRZF<A NAME="21801"></A></TD>
+<TD ALIGN="LEFT">CTZRZF<A NAME="21802"></A></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=324>Computes an <B><I>RZ</I></B> factorization of an upper trapezoidal matrix (blocked
+algorithm).</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6214"
+ HREF="node143.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6208"
+ HREF="node141.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6204"
+ HREF="node141.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6210"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6212"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6215"
+ HREF="node143.html">Index of Auxiliary Routines</A>
+<B> Up:</B> <A NAME="tex2html6209"
+ HREF="node141.html">Index of Driver and</A>
+<B> Previous:</B> <A NAME="tex2html6205"
+ HREF="node141.html">Index of Driver and</A>
+ &nbsp <B>  <A NAME="tex2html6211"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6213"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

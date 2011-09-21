@@ -1,0 +1,81 @@
+#!/usr/bin/awk -f
+
+/^Test file / {f=$3}
+/^Time file / {f=$3}
+/ failed with status / {sig=$(NF-1);F[$NF]=F[$NF] " " f;N[sig]=$NF;T[$NF]++;tsig++;next}
+/ failed to terminate / {term++;termf=termf " " f;next}
+/ failed to pass / {	if (substr(f,2)=="gd.out") 
+				next;
+			$0=substr($0,match($0,":")+1);
+			a=($1+0.0)/($4+0.0);
+			if (a<0.01) {
+				minor++;
+				minf=minf " " f "(" $1 "/" $4 ")";
+			} else {
+				major++;
+				majf=majf " " f "(" $1 "/" $4 ")";
+			}		
+			next}
+/ failed / {mysterious++;mysf=mysf " " f;next}
+
+function out(pref,arr) {
+
+	k=split(arr,L," ");
+	j=1;
+	l=pref;
+	while (j<=k) {
+		while (j<=k && length(l)<76) {
+			l=l " " L[j];
+			j++;
+		}
+		print l
+		l=pref;
+	}
+
+}
+
+END { 	
+	print "Template: lapack2/ttr";
+	print "Type: note";
+	print "Description: Error summary"
+	print " More details on these errors can be found in";
+	print " /usr/share/doc/lapack/test_results.gz and";
+	stat=0;
+	if (mysterious) {
+		print " .";
+		print " WARNING! " mysterious " tests had unknown failues!!!"
+		out("  files: ",mysf);
+#		print " files: " mysf;
+		stat=4>stat ? 4 : stat;
+	}
+	if (tsig) {
+		print " .";
+		print " WARNING! " tsig " tests terminated abnormally!!!";
+		for (i in N) 
+#			print " " T[N[i]] " tests with " N[i] ", files: " F[N[i]];
+			out("  " T[N[i]] " tests with " N[i] ", files: ",F[N[i]]);
+		stat=3>stat ? 3 : stat;
+	}
+	if (term) {
+		print " .";
+		print " WARNING! " term " tests failed to terminate!!!";
+#		print "  files: " termf
+		out("  files: ",termf);
+		stat=3>stat ? 3 : stat;
+	}
+	if (major) {
+		print " .";
+		print " WARNING! " major " tests had major threshhold errors!"
+#		print " files: " majf;
+		out("  files: ",majf);
+		stat=2>stat ? 2 : stat;
+	}
+	if (minor) {
+		print " .";
+		print " " minor " tests had minor threshhold errors"
+#		print " files: " minf;
+		out("  files: ",minf);
+		stat=1>stat ? 1 : stat;
+	}
+	exit stat;
+}		

@@ -1,0 +1,49 @@
+#!/bin/sh -e
+## 10_incorrect_wav_size by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Be lenient on WAV files with incorrect size entries. Try to
+## DP: process file anyway if all required chunk could be found.
+
+if [ $# -ne 1 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
+
+case "$1" in
+       -patch) patch $patch_opts -p1 < $0;;
+       -unpatch) patch $patch_opts -p1 -R < $0;;
+        *)
+                echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+                exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+--- audiofile-0.2.4.orig/libaudiofile/wave.c
++++ audiofile-0.2.4/libaudiofile/wave.c
+@@ -687,9 +687,17 @@
+ #ifdef DEBUG
+ 		printf("index: %d\n", index);
+ #endif
+-		af_fread(&chunkid, 4, 1, filehandle->fh);
+-
+-		af_fread(&chunksize, 4, 1, filehandle->fh);
++		/* We're being lenient on premature EOF and try to process
++		 * the file anyway if all required chunks could be read.
++		 * (Check further below.) 
++		 * FIXME: Is it PC to raise an error but keep going? [dk]
++		 */
++		if (af_fread(&chunkid, 4, 1, filehandle->fh) != 1 ||
++		    af_fread(&chunksize, 4, 1, filehandle->fh) != 1) {
++			_af_error(AF_BAD_HEADER,
++			          "WAVE header ended unexpectedly");
++			break;
++		}
+ 		chunksize = LENDIAN_TO_HOST_INT32(chunksize);
+ 
+ #ifdef DEBUG

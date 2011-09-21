@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Notes</TITLE>
+<META NAME="description" CONTENT="Notes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node149.html">
+<LINK REL="up" HREF="node149.html">
+<LINK REL="next" HREF="node151.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6321"
+ HREF="node151.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6315"
+ HREF="node149.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6311"
+ HREF="node149.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6317"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6319"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6322"
+ HREF="node151.html">Bibliography</A>
+<B> Up:</B> <A NAME="tex2html6316"
+ HREF="node149.html">Specifications of Routines</A>
+<B> Previous:</B> <A NAME="tex2html6312"
+ HREF="node149.html">Specifications of Routines</A>
+ &nbsp <B>  <A NAME="tex2html6318"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6320"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION04010000000000000000">
+Notes</A>
+</H1>
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>The specifications that follow give the calling sequence, purpose,
+and descriptions of the arguments of each LAPACK driver and
+computational routine (but not of auxiliary routines).
+<P>
+<DT>2.
+<DD>Specifications of pairs of real and complex routines have been merged
+(for example SBDSQR/CBDSQR).
+In a few cases, specifications of three routines have been merged, one for
+real symmetric, one for complex symmetric, and one for complex Hermitian
+matrices (for example SSYTRF/CSYTRF/CHETRF). 
+A few routines for real matrices have no complex equivalent (for example
+SSTEBZ).
+
+<P>
+<DT>3.
+<DD>Specifications are given only for <EM>single precision</EM> routines.
+To adapt them for the double precision version of the software, simply
+interpret REAL as DOUBLE PRECISION, COMPLEX as COMPLEX*16 (or DOUBLE COMPLEX), 
+and the initial letters S- and C- of LAPACK routine names as D- and  Z-.
+
+<P>
+<DT>4.
+<DD>Specifications are arranged in alphabetical order of the real routine
+name.
+
+<P>
+<DT>5.
+<DD>The text of the specifications has been derived from the leading comments
+in the source-text of the routines. It makes only a limited use of
+mathematical typesetting facilities.  To eliminate redundancy, <B><I>A</I><SUP><I>H</I></SUP></B>
+has been used throughout the specifications.  Thus, the reader should
+note that <B><I>A</I><SUP><I>H</I></SUP></B> is equivalent to <B><I>A</I><SUP><I>T</I></SUP></B> in the real case.
+
+<P>
+<DT>6.
+<DD>If there is a discrepancy between the specifications listed in
+this section and the actual source code, the source code should be
+regarded as the most up-to-date.
+
+<P>
+</DL>
+
+<P>
+
+=0.15in
+=-.4in
+
+colhtcolroom
+
+
+<P>
+<FONT SIZE="-2">
+
+=0in
+=0in
+
+colhtcolroom
+
+</FONT>
+<P>
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html6321"
+ HREF="node151.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6315"
+ HREF="node149.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6311"
+ HREF="node149.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6317"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6319"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6322"
+ HREF="node151.html">Bibliography</A>
+<B> Up:</B> <A NAME="tex2html6316"
+ HREF="node149.html">Specifications of Routines</A>
+<B> Previous:</B> <A NAME="tex2html6312"
+ HREF="node149.html">Specifications of Routines</A>
+ &nbsp <B>  <A NAME="tex2html6318"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6320"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

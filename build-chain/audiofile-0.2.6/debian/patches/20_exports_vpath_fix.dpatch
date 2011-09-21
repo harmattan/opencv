@@ -1,0 +1,20 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_exports_vpath_fix.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add full path to symbol exports file to Fix file-not-found error
+## DP: in VPATH builds.
+
+@DPATCH@
+diff -urNad audiofile~/libaudiofile/Makefile.am audiofile/libaudiofile/Makefile.am
+--- audiofile~/libaudiofile/Makefile.am	2004-03-09 12:49:51.000000000 +0100
++++ audiofile/libaudiofile/Makefile.am	2007-06-18 22:03:14.000000000 +0200
+@@ -29,7 +29,7 @@
+ libaudiofile_la_LIBADD = modules/libmodules.la
+ 
+ libaudiofile_la_LDFLAGS = -version-info 0:2:0 -no-undefined \
+-	-export-symbols audiofile.exports
++	-export-symbols $(srcdir)/audiofile.exports
+ 
+ include_HEADERS = audiofile.h aupvlist.h af_vfs.h
+ 

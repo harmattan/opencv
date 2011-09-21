@@ -1,0 +1,18 @@
+--- Make.top.orig	2009-09-09 05:26:27.000000000 -0400
++++ Make.top	2009-09-09 05:26:11.000000000 -0400
+@@ -297,6 +297,7 @@
+ 	- chmod 0644 $(INSTdir)/atlas/*
+ 
+ install_static_lib:
++	mkdir -p $(INSTdir)/atlas
+ 	cp $(LIBdir)/libatlas.a $(INSTdir)/.
+ 	cp $(LIBdir)/libcblas.a $(INSTdir)/.
+ 	cp $(LIBdir)/liblapack_atlas.a $(INSTdir)/.
+@@ -312,6 +313,7 @@
+ 	- chmod 0644 $(INSTdir)/libptcblas.a $(INSTdir)/libptf77blas.a
+ 
+ install_shared_lib:
++	mkdir -p $(INSTdir)/atlas
+ 	for lib in atlas cblas f77blas lapack_atlas; do \
+ 		cp $(LIBdir)/lib$$lib.so.3gf.0 $(INSTdir)/. ; \
+ 		( cd $(INSTdir) && ln -s lib$$lib.so.3gf.0 lib$$lib.so.3gf); \

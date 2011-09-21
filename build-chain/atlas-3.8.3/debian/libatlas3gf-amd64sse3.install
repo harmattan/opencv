@@ -1,0 +1,2 @@
+debian/tmp/usr/lib/atlas-amd64sse3/*.so.*
+debian/tmp/usr/lib/atlas-amd64sse3/atlas/*.so.*

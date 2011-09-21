@@ -1,0 +1,28 @@
+Index: atlas-3.8.3/CONFIG/src/SpewMakeInc.c
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/src/SpewMakeInc.c	2010-05-11 09:36:12.000000000 +0000
++++ atlas-3.8.3/CONFIG/src/SpewMakeInc.c	2010-05-11 09:36:34.000000000 +0000
+@@ -347,7 +347,8 @@
+    if (MachIsALPHA(arch))
+      return(sp);
+    if (MachIsMIPS(arch))
+-      return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
++	return(sp);
++//      return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))
+    {
+ /*
+Index: atlas-3.8.3/CONFIG/src/probe_comp.c
+===================================================================
+--- atlas-3.8.3.orig/CONFIG/src/probe_comp.c	2010-05-11 09:32:40.000000000 +0000
++++ atlas-3.8.3/CONFIG/src/probe_comp.c	2010-05-11 09:36:03.000000000 +0000
+@@ -517,7 +517,8 @@
+    if (MachIsALPHA(arch))
+      return(sp);
+    if (MachIsMIPS(arch))
+-      return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
++	return(sp);
++//      return((ptrbits == 64) ? "-mabi=64" : "-mabi=n32");
+    if (!CompIsGcc(comp))
+    {
+ /*

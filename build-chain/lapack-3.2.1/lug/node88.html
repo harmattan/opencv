@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Further Details: Error Bounds for General Linear Model Problems</TITLE>
+<META NAME="description" CONTENT="Further Details: Error Bounds for General Linear Model Problems">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node87.html">
+<LINK REL="up" HREF="node87.html">
+<LINK REL="next" HREF="node89.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5423"
+ HREF="node89.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5417"
+ HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5413"
+ HREF="node87.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5419"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5421"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5424"
+ HREF="node89.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5418"
+ HREF="node87.html">General Linear Model Problem</A>
+<B> Previous:</B> <A NAME="tex2html5414"
+ HREF="node87.html">General Linear Model Problem</A>
+ &nbsp <B>  <A NAME="tex2html5420"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5422"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03462100000000000000"></A>
+<A NAME="sec_lseglm_glmdetails"></A>
+<BR>
+Further Details:  Error Bounds for General Linear Model Problems
+</H3>
+
+<P>
+In this subsection, we will summarize the available error bounds.
+The reader may also refer to [<A
+ HREF="node151.html#lawn31">2</A>,<A
+ HREF="node151.html#baifahey97">13</A>,<A
+ HREF="node151.html#elden">50</A>,<A
+ HREF="node151.html#paige79b">80</A>]
+for further details.  
+<BR>
+
+<P>
+Let <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img467.gif"
+ ALT="$\widehat {x}$">
+and <IMG
+ WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img492.gif"
+ ALT="$\widehat {y}$">
+be the solutions
+by the driver routine xGGGLM (see subsection
+<A HREF="node84.html#sec_lseglm_drivers">4.6</A>). Then <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img467.gif"
+ ALT="$\widehat {x}$">
+is normwise
+backward stable and <IMG
+ WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img492.gif"
+ ALT="$\widehat {y}$">
+is stable
+in a mixed forward/backward sense [<A
+ HREF="node151.html#baifahey97">13</A>]. Specifically,
+we have <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img467.gif"
+ ALT="$\widehat {x}$">
+and 
+<!-- MATH
+ $\widehat {y} = \bar {y} + \Delta \bar {y}$
+ -->
+<IMG
+ WIDTH="91" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img504.gif"
+ ALT="$\widehat {y} = \bar {y} + \Delta \bar {y}$">,
+where <IMG
+ WIDTH="14" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img467.gif"
+ ALT="$\widehat {x}$">
+and <IMG
+ WIDTH="14" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img505.gif"
+ ALT="$\bar {y}$">
+solve
+  
+<!-- MATH
+ $\min\{\| y \|_2: \; (A + \Delta A)x + (B + \Delta B)y= d + \Delta d \}$
+ -->
+<IMG
+ WIDTH="375" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img506.gif"
+ ALT="$\min\{\Vert y \Vert _2: \; (A + \Delta A)x + (B + \Delta B)y= d + \Delta d \} $">,
+and
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="234" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img507.gif"
+ ALT="$\textstyle \parbox{2in}{
+\begin{eqnarray*}
+\Vert \Delta \bar {y} \Vert _2 &amp; \...
+... \Delta A \Vert _F &amp; \leq &amp; q(m,n,p)\epsilon\Vert A\Vert _F,
+\end{eqnarray*} }$">&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG
+ WIDTH="234" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img508.gif"
+ ALT="$\textstyle \parbox{2in}{
+\begin{eqnarray*}
+\Vert \Delta d \Vert _2 &amp; \leq &amp; q...
+...t \Delta B \Vert _F &amp; \leq &amp; q(m,n,p)\epsilon\Vert B\Vert _F,
+\end{eqnarray*}}$">
+</DIV>
+and <B><I>q</I>(<I>m</I>,<I>n</I>,<I>p</I>)</B> is a modestly growing function of <B><I>m</I></B>, <B><I>n</I></B>, and <B><I>p</I></B>.
+We take <B><I>q</I>(<I>m</I>,<I>n</I>,<I>p</I>) = 1</B> in the code fragment above.
+Let <IMG
+ WIDTH="27" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img480.gif"
+ ALT="$X^{\dagger}$">
+denote the Moore-Penrose pseudo-inverse of <B><I>X</I></B>.
+Let 
+<!-- MATH
+ $\kappa_B(A) =  \| A \|_F  \| (A^\dagger_B) \|_2$
+ -->
+<IMG
+ WIDTH="181" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
+ SRC="img509.gif"
+ ALT="$\kappa_B(A) = \Vert A \Vert _F \Vert (A^\dagger_B) \Vert _2 $">( = <TT>CNDAB</TT> above) and
+    
+<!-- MATH
+ $\kappa_A(B) =  \| B \|_F  \| (GB)^\dagger \|_2$
+ -->
+<IMG
+ WIDTH="192" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img510.gif"
+ ALT="$\kappa_A(B) = \Vert B \Vert _F \Vert (GB)^\dagger \Vert _2 $">( = <TT>CNDBA</TT> above)
+where 
+<!-- MATH
+ $G = I - AA^\dagger$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img511.gif"
+ ALT="$G = I - AA^\dagger$">
+and 
+<!-- MATH
+ $A^\dagger_B = A^\dagger[I-B(GB)^\dagger]$
+ -->
+<IMG
+ WIDTH="174" HEIGHT="42" ALIGN="MIDDLE" BORDER="0"
+ SRC="img512.gif"
+ ALT="$A^\dagger_B = A^\dagger[I-B(GB)^\dagger]$">.
+When 
+<!-- MATH
+ $q(m,n,p) \epsilon$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img485.gif"
+ ALT="$q(m,n,p)\epsilon$">
+is small, the errors 
+<!-- MATH
+ $x-\widehat {x}$
+ -->
+<IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img513.gif"
+ ALT="$x-\widehat {x}$">
+and 
+<!-- MATH
+ $y - \widehat {y}$
+ -->
+<IMG
+ WIDTH="44" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img514.gif"
+ ALT="$y - \widehat {y}$">
+are bounded by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="647" HEIGHT="222" BORDER="0"
+ SRC="img515.gif"
+ ALT="\begin{eqnarray*}
+\frac{ \Vert x-\widehat {x} \Vert _2 }{ \Vert x \Vert _2 } &amp; ...
+...ght)
++ \Vert B \Vert _F \Vert (GB)^\dagger \Vert _2 ^2 \bigg] .
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+
+<P>
+<BR>
+<BR>
+
+<P>
+When <B><I>B</I> = <I>I</I></B>, the GLM problem is the standard LS problem.
+<B><I>y</I></B> is the residual vector <B><I>y</I> = <I>d</I> - <I>Ax</I></B>, and we have
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{ \| x-\widehat {x} \|_2 }{ \| x \|_2 } \leq q(m,n)\epsilon
+      \kappa(A)\Bigg( 1 + \frac{ \| d \|_2 }{ \| A \|_F  \| x \|_2 }
+         + \kappa(A)\frac{ \| y \|_2 }{ \| A \|_F  \| x \|_2 } \Bigg),
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="469" HEIGHT="54" BORDER="0"
+ SRC="img516.gif"
+ ALT="\begin{displaymath}
+\frac{ \Vert x-\widehat {x} \Vert _2 }{ \Vert x \Vert _2 } ...
+...Vert y \Vert _2 }{ \Vert A \Vert _F \Vert x \Vert _2 } \Bigg),
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\frac{ \| y - \widehat {y} \|_2 }{ \| y \|_2 } \leq q(m,n)\epsilon
+         \kappa(A)\frac{ \| y \|_2 }{ \| d \|_2 } .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="231" HEIGHT="48" BORDER="0"
+ SRC="img517.gif"
+ ALT="\begin{displaymath}
+\frac{ \Vert y - \widehat {y} \Vert _2 }{ \Vert y \Vert _2 ...
+...ilon
+\kappa(A)\frac{ \Vert y \Vert _2 }{ \Vert d \Vert _2 } .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where 
+<!-- MATH
+ $\kappa(A) = \kappa_B(A) =  \| A \|_F  \| A^\dagger \|_2$
+ -->
+<IMG
+ WIDTH="222" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img518.gif"
+ ALT="$\kappa(A) = \kappa_B(A) = \Vert A \Vert _F \Vert A^\dagger \Vert _2 $">
+and
+
+<!-- MATH
+ $\kappa_A(B) = 1$
+ -->
+<IMG
+ WIDTH="85" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img519.gif"
+ ALT="$\kappa_A(B) = 1$">.
+The error bound of 
+<!-- MATH
+ $x-\widehat {x}$
+ -->
+<IMG
+ WIDTH="46" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img513.gif"
+ ALT="$x-\widehat {x}$">
+is the same
+as in the LSE problem (see section&nbsp;<A HREF="node86.html#sec_lseglm_lsedetails">4.6.1.1</A>),
+which is essentially the same as given in section 4.5.1.
+The bound on the error in <IMG
+ WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img492.gif"
+ ALT="$\widehat {y}$">
+is the same as that provided
+in [<A
+ HREF="node151.html#GVL2">55</A>, section 5.3.7]. 
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5423"
+ HREF="node89.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5417"
+ HREF="node87.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5413"
+ HREF="node87.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5419"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5421"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5424"
+ HREF="node89.html">Error Bounds for the</A>
+<B> Up:</B> <A NAME="tex2html5418"
+ HREF="node87.html">General Linear Model Problem</A>
+<B> Previous:</B> <A NAME="tex2html5414"
+ HREF="node87.html">General Linear Model Problem</A>
+ &nbsp <B>  <A NAME="tex2html5420"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5422"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

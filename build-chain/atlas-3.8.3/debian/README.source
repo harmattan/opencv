@@ -1,0 +1,7 @@
+atlas*.tar.gz is modified from upstream.
+
+*.pdf are removed from the tarball and the TexDoc directory from the CVS
+AtlasBase module is included.
+
+ -- Sylvestre Ledru <sylvestre@debian.org>  Thu, 17 Sep 2009 23:31:54 +0200
+

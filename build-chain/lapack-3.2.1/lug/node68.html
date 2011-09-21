@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Factorizations for Solving Linear Equations</TITLE>
+<META NAME="description" CONTENT="Factorizations for Solving Linear Equations">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node69.html">
+<LINK REL="previous" HREF="node67.html">
+<LINK REL="up" HREF="node67.html">
+<LINK REL="next" HREF="node69.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5115"
+ HREF="node69.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5109"
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5103"
+ HREF="node67.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5111"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5113"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5116"
+ HREF="node69.html">QR Factorization</A>
+<B> Up:</B> <A NAME="tex2html5110"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Previous:</B> <A NAME="tex2html5104"
+ HREF="node67.html">Examples of Block Algorithms</A>
+ &nbsp <B>  <A NAME="tex2html5112"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5114"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03341000000000000000"></A>
+<A NAME="subsecblocklineq"></A>
+<BR>
+Factorizations for Solving Linear Equations
+</H2>
+
+<P>
+The well-known <B><I>LU</I></B> and Cholesky factorizations are the simplest block
+algorithms to derive. No extra floating-point operations nor extra
+working storage are required.
+
+<P>
+Table&nbsp;<A HREF="node68.html#tablu">3.7</A>
+illustrates the speed of the LAPACK routine for <B><I>LU</I></B> factorization of a
+real matrix<A NAME="7805"></A>,
+DGETRF<A NAME="7806"></A> in double precision.
+This corresponds to 64-bit floating-point arithmetic.
+A block size of 1 means that the unblocked algorithm
+is used, since it is faster than -- or at least as fast as -- a
+blocked algorithm. These numbers may be compared to those for DGEMM in
+Table&nbsp;<A HREF="node71.html#emmtable">3.12</A>, which should be upper bounds.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tablu"></A>
+<DIV ALIGN="CENTER">
+<A NAME="7809"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.7:</STRONG>
+Speed in megaflops of DGETRF for square matrices of order <B><I>n</I></B></CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">No. of</TD>
+<TD ALIGN="CENTER">Block</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">processors</TD>
+<TD ALIGN="CENTER">size</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">172</TD>
+<TD ALIGN="RIGHT">370</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AlphaServer DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">353</TD>
+<TD ALIGN="RIGHT">440</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">278</TD>
+<TD ALIGN="RIGHT">551</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM PowerPC</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">52</TD>
+<TD ALIGN="RIGHT">77</TD>
+<TD ALIGN="RIGHT">148</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">132</TD>
+<TD ALIGN="RIGHT">250</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">143</TD>
+<TD ALIGN="RIGHT">297</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">228</TD>
+<TD ALIGN="RIGHT">452</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">190</TD>
+<TD ALIGN="RIGHT">699</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">121</TD>
+<TD ALIGN="RIGHT">240</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">163</TD>
+<TD ALIGN="RIGHT">334</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+Table&nbsp;<A HREF="node68.html#tabchol">3.8</A>
+gives similar results for Cholesky factorization<A NAME="7822"></A>.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabchol"></A>
+<DIV ALIGN="CENTER">
+<A NAME="7824"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.8:</STRONG>
+Speed in megaflops of DPOTRF for matrices of order <B><I>n</I></B> with UPLO =
+`U'</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">No. of</TD>
+<TD ALIGN="CENTER">Block</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">processors</TD>
+<TD ALIGN="CENTER">size</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">1000</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Dec Alpha Miata</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">197</TD>
+<TD ALIGN="RIGHT">399</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Compaq AlphaServer DS-20</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">28</TD>
+<TD ALIGN="RIGHT">306</TD>
+<TD ALIGN="RIGHT">464</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM Power 3</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">299</TD>
+<TD ALIGN="RIGHT">586</TD>
+</TR>
+<TR><TD ALIGN="LEFT">IBM PowerPC</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">52</TD>
+<TD ALIGN="RIGHT">79</TD>
+<TD ALIGN="RIGHT">125</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium II</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">118</TD>
+<TD ALIGN="RIGHT">253</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Intel Pentium III</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">40</TD>
+<TD ALIGN="RIGHT">142</TD>
+<TD ALIGN="RIGHT">306</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">222</TD>
+<TD ALIGN="RIGHT">520</TD>
+</TR>
+<TR><TD ALIGN="LEFT">SGI Origin 2000</TD>
+<TD ALIGN="CENTER">4</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">137</TD>
+<TD ALIGN="RIGHT">1056</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Ultra 2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">131</TD>
+<TD ALIGN="RIGHT">276</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Sun Enterprise 450</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">64</TD>
+<TD ALIGN="RIGHT">178</TD>
+<TD ALIGN="RIGHT">391</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+LAPACK, like LINPACK, provides a factorization for symmetric
+indefinite<A NAME="7836"></A>
+matrices,  so that <B><I>A</I></B> is factorized as <B><I>P U D U</I><SUP><I>T</I></SUP> <I>P</I><SUP><I>T</I></SUP></B>, where <B><I>P</I></B> is a
+permutation matrix, and <B><I>D</I></B> is block diagonal with blocks of order 1
+or 2. A block form of this algorithm has been derived,
+and is implemented in the LAPACK routine
+SSYTRF<A NAME="7837"></A>/DSYTRF<A NAME="7838"></A>.
+It has to duplicate a little of the computation in order
+to ``look ahead''
+to determine the necessary row and column interchanges, but the extra work
+can be more than compensated for by the greater speed of updating the matrix
+by blocks as is illustrated in Table&nbsp;<A HREF="node68.html#tabbk"
+ NAME="7840">3.9</A>,
+provided that <B><I>n</I></B> is large enough.
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabbk"></A>
+<DIV ALIGN="CENTER">
+<A NAME="7842"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 3.9:</STRONG>
+Speed in megaflops of DSYTRF for matrices of order <B><I>n</I></B> with UPLO =
+`U' on an IBM Power&nbsp;3</CAPTION>
+<TR><TD ALIGN="CENTER">Block</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Values of <B><I>n</I></B></TD>
+</TR>
+<TR><TD ALIGN="CENTER">size</TD>
+<TD ALIGN="RIGHT">100</TD>
+<TD ALIGN="RIGHT">1000</TD>
+</TR>
+<TR><TD ALIGN="CENTER">1</TD>
+<TD ALIGN="RIGHT">186</TD>
+<TD ALIGN="RIGHT">215</TD>
+</TR>
+<TR><TD ALIGN="CENTER">32</TD>
+<TD ALIGN="RIGHT">130</TD>
+<TD ALIGN="RIGHT">412</TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+LAPACK, like LINPACK, provides <B><I>LU</I></B> and Cholesky factorizations of
+band matrices. The LINPACK algorithms can easily be restructured to use
+Level 2 BLAS, though that has little effect on performance for
+matrices of very narrow bandwidth. It is also possible to use Level 3 BLAS,
+at the price of doing some extra work with zero elements outside the band
+[<A
+ HREF="node151.html#lapwn21">48</A>]. This becomes worthwhile for matrices of large order and
+semi-bandwidth greater than 100 or so.
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5115"
+ HREF="node69.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5109"
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5103"
+ HREF="node67.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5111"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5113"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5116"
+ HREF="node69.html">QR Factorization</A>
+<B> Up:</B> <A NAME="tex2html5110"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Previous:</B> <A NAME="tex2html5104"
+ HREF="node67.html">Examples of Block Algorithms</A>
+ &nbsp <B>  <A NAME="tex2html5112"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5114"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

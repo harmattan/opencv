@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Singular Value Decomposition (SVD)</TITLE>
+<META NAME="description" CONTENT="Singular Value Decomposition (SVD)">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node31.html">
+<LINK REL="up" HREF="node29.html">
+<LINK REL="next" HREF="node33.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4574"
+ HREF="node33.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4568"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4564"
+ HREF="node31.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4570"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4572"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4575"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Up:</B> <A NAME="tex2html4569"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4565"
+ HREF="node31.html">Nonsymmetric Eigenproblems (NEP)</A>
+ &nbsp <B>  <A NAME="tex2html4571"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4573"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03234300000000000000">
+Singular Value Decomposition (SVD)</A>
+</H3>
+
+<P>
+The <B>singular value decomposition</B> of an <I>m</I>-by-<I>n</I> matrix <I>A</I> is given by
+<A NAME="1572"></A><A NAME="1573"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U \Sigma V ^T, \quad (A=U\Sigma V ^H \quad \mbox{in the complex case})
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="381" HEIGHT="31" BORDER="0"
+ SRC="img34.gif"
+ ALT="\begin{displaymath}
+A = U \Sigma V ^T, \quad (A=U\Sigma V ^H \quad \mbox{in the complex case})
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>U</I> and <I>V</I> are orthogonal (unitary)
+and <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.gif"
+ ALT="$\Sigma$">
+is an <I>m</I>-by-<I>n</I> diagonal matrix with real
+diagonal elements, <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">,
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\sigma_1 \ge \sigma_2 \ge \ldots \ge \sigma_{\min (m,n)} \ge 0 .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="229" HEIGHT="33" BORDER="0"
+ SRC="img37.gif"
+ ALT="\begin{displaymath}
+\sigma_1 \ge \sigma_2 \ge \ldots \ge \sigma_{\min (m,n)} \ge 0 .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The <IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$\sigma _ i $">
+are the <B>singular values</B> of <I>A</I> and the
+first min(<I>m</I>,<I>n</I>) columns of <I>U</I> and <I>V</I>
+are the <B>left</B> and <B>right singular vectors</B> of <I>A</I>.
+<A NAME="1579"></A><A NAME="1580"></A>
+
+<P>
+The singular values and singular vectors satisfy:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A v_i = \sigma_i u_i \quad \mbox{and} \quad
+A^T u_i = \sigma_i v_i \quad ({\rm or} \quad
+A^H u_i = \sigma_i v_i \quad )
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="409" HEIGHT="31" BORDER="0"
+ SRC="img38.gif"
+ ALT="\begin{displaymath}
+A v_i = \sigma_i u_i \quad \mbox{and} \quad
+A^T u_i = \sigma_i v_i \quad ({\rm or} \quad
+A^H u_i = \sigma_i v_i \quad )
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <I>u</I><SUB><I>i</I></SUB> and <I>v</I><SUB><I>i</I></SUB> are the <I>i</I><SUP><I>th</I></SUP> columns of <I>U</I> and <I>V</I> respectively.
+
+<P>
+There are two types of driver routines for the SVD.  Originally LAPACK had
+just the simple driver described below, and the other one was added after
+an improved algorithm was discovered.
+
+<P>
+
+<UL><LI>a <B>simple</B> driver
+xGESVD<A NAME="1586"></A><A NAME="1587"></A><A NAME="1588"></A><A NAME="1589"></A>
+computes all the singular values and (optionally) left and/or right
+singular vectors.
+
+<LI>a <B>divide and conquer</B> driver <A NAME="1591"></A>
+xGESDD<A NAME="1592"></A><A NAME="1593"></A><A NAME="1594"></A><A NAME="1595"></A> <A NAME="1596"></A> solves the same problem
+as the simple driver.  It is much faster than the simple driver
+for large matrices, but uses more workspace. The name divide-and-conquer
+refers to the underlying algorithm
+(see sections <A HREF="node48.html#subseccompsep">2.4.4</A> and <A HREF="node70.html#subsecblockeig">3.4.3</A>).
+
+</UL>
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabdriveseig"></A>
+<DIV ALIGN="CENTER">
+<A NAME="1601"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.5:</STRONG>
+Driver routines for standard eigenvalue and singular value problems</CAPTION>
+<TR><TD ALIGN="CENTER">Type of</TD>
+<TD ALIGN="LEFT">Function and storage scheme</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="CENTER">problem</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="CENTER">SEP</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SSYEV<A NAME="1613"></A></TD>
+<TD ALIGN="LEFT">CHEEV<A NAME="1614"></A></TD>
+<TD ALIGN="LEFT">DSYEV<A NAME="1615"></A></TD>
+<TD ALIGN="LEFT">ZHEEV<A NAME="1616"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSYEVD<A NAME="1617"></A></TD>
+<TD ALIGN="LEFT">CHEEVD<A NAME="1618"></A></TD>
+<TD ALIGN="LEFT">DSYEVD<A NAME="1619"></A></TD>
+<TD ALIGN="LEFT">ZHEEVD<A NAME="1620"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SSYEVX<A NAME="1621"></A></TD>
+<TD ALIGN="LEFT">CHEEVX<A NAME="1622"></A></TD>
+<TD ALIGN="LEFT">DSYEVX<A NAME="1623"></A></TD>
+<TD ALIGN="LEFT">ZHEEVX<A NAME="1624"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">RRR driver</TD>
+<TD ALIGN="LEFT">SSYEVR<A NAME="1625"></A></TD>
+<TD ALIGN="LEFT">CHEEVR<A NAME="1626"></A></TD>
+<TD ALIGN="LEFT">DSYEVR<A NAME="1627"></A></TD>
+<TD ALIGN="LEFT">ZHEEVR<A NAME="1628"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver (packed storage)</TD>
+<TD ALIGN="LEFT">SSPEV<A NAME="1629"></A></TD>
+<TD ALIGN="LEFT">CHPEV<A NAME="1630"></A></TD>
+<TD ALIGN="LEFT">DSPEV<A NAME="1631"></A></TD>
+<TD ALIGN="LEFT">ZHPEV<A NAME="1632"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSPEVD<A NAME="1633"></A></TD>
+<TD ALIGN="LEFT">CHPEVD<A NAME="1634"></A></TD>
+<TD ALIGN="LEFT">DSPEVD<A NAME="1635"></A></TD>
+<TD ALIGN="LEFT">ZHPEVD<A NAME="1636"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">(packed storage)</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver (packed storage)</TD>
+<TD ALIGN="LEFT">SSPEVX<A NAME="1638"></A></TD>
+<TD ALIGN="LEFT">CHPEVX<A NAME="1639"></A></TD>
+<TD ALIGN="LEFT">DSPEVX<A NAME="1640"></A></TD>
+<TD ALIGN="LEFT">ZHPEVX<A NAME="1641"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver (band matrix)</TD>
+<TD ALIGN="LEFT">SSBEV<A NAME="1642"></A></TD>
+<TD ALIGN="LEFT">CHBEV<A NAME="1643"></A></TD>
+<TD ALIGN="LEFT">DSBEV<A NAME="1644"></A></TD>
+<TD ALIGN="LEFT">ZHBEV<A NAME="1645"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSBEVD<A NAME="1646"></A></TD>
+<TD ALIGN="LEFT">CHBEVD<A NAME="1647"></A></TD>
+<TD ALIGN="LEFT">DSBEVD<A NAME="1648"></A></TD>
+<TD ALIGN="LEFT">ZHBEVD<A NAME="1649"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">(band matrix)</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver (band matrix)</TD>
+<TD ALIGN="LEFT">SSBEVX<A NAME="1651"></A></TD>
+<TD ALIGN="LEFT">CHBEVX<A NAME="1652"></A></TD>
+<TD ALIGN="LEFT">DSBEVX<A NAME="1653"></A></TD>
+<TD ALIGN="LEFT">ZHBEVX<A NAME="1654"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver (tridiagonal matrix)</TD>
+<TD ALIGN="LEFT">SSTEV<A NAME="1655"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">DSTEV<A NAME="1656"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSTEVD<A NAME="1657"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">DSTEVD<A NAME="1658"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">(tridiagonal matrix)</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver (tridiagonal matrix)</TD>
+<TD ALIGN="LEFT">SSTEVX<A NAME="1660"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">DSTEVX<A NAME="1661"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">RRR driver (tridiagonal matrix)</TD>
+<TD ALIGN="LEFT">SSTEVR<A NAME="1662"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">DSTEVR<A NAME="1663"></A></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">NEP</TD>
+<TD ALIGN="LEFT">simple driver for Schur factorization</TD>
+<TD ALIGN="LEFT">SGEES<A NAME="1664"></A></TD>
+<TD ALIGN="LEFT">CGEES<A NAME="1665"></A></TD>
+<TD ALIGN="LEFT">DGEES<A NAME="1666"></A></TD>
+<TD ALIGN="LEFT">ZGEES<A NAME="1667"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver for Schur factorization</TD>
+<TD ALIGN="LEFT">SGEESX<A NAME="1668"></A></TD>
+<TD ALIGN="LEFT">CGEESX<A NAME="1669"></A></TD>
+<TD ALIGN="LEFT">DGEESX<A NAME="1670"></A></TD>
+<TD ALIGN="LEFT">ZGEESX<A NAME="1671"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver for eigenvalues/vectors</TD>
+<TD ALIGN="LEFT">SGEEV<A NAME="1672"></A></TD>
+<TD ALIGN="LEFT">CGEEV<A NAME="1673"></A></TD>
+<TD ALIGN="LEFT">DGEEV<A NAME="1674"></A></TD>
+<TD ALIGN="LEFT">ZGEEV<A NAME="1675"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver for eigenvalues/vectors</TD>
+<TD ALIGN="LEFT">SGEEVX<A NAME="1676"></A></TD>
+<TD ALIGN="LEFT">CGEEVX<A NAME="1677"></A></TD>
+<TD ALIGN="LEFT">DGEEVX<A NAME="1678"></A></TD>
+<TD ALIGN="LEFT">ZGEEVX<A NAME="1679"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">SVD</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SGESVD<A NAME="1680"></A></TD>
+<TD ALIGN="LEFT">CGESVD<A NAME="1681"></A></TD>
+<TD ALIGN="LEFT">DGESVD<A NAME="1682"></A></TD>
+<TD ALIGN="LEFT">ZGESVD<A NAME="1683"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SGESDD<A NAME="1684"></A></TD>
+<TD ALIGN="LEFT">CGESDD<A NAME="1685"></A></TD>
+<TD ALIGN="LEFT">DGESDD<A NAME="1686"></A></TD>
+<TD ALIGN="LEFT">ZGESDD<A NAME="1687"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4574"
+ HREF="node33.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4568"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4564"
+ HREF="node31.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4570"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4572"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4575"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Up:</B> <A NAME="tex2html4569"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4565"
+ HREF="node31.html">Nonsymmetric Eigenproblems (NEP)</A>
+ &nbsp <B>  <A NAME="tex2html4571"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4573"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

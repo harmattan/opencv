@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LAPACK and the BLAS</TITLE>
+<META NAME="description" CONTENT="LAPACK and the BLAS">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node12.html">
+<LINK REL="previous" HREF="node10.html">
+<LINK REL="up" HREF="node6.html">
+<LINK REL="next" HREF="node12.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4229"
+ HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4223"
+ HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4217"
+ HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4225"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4227"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4230"
+ HREF="node12.html">Availability of LAPACK</A>
+<B> Up:</B> <A NAME="tex2html4224"
+ HREF="node6.html">Essentials</A>
+<B> Previous:</B> <A NAME="tex2html4218"
+ HREF="node10.html">LAPACK Compared with LINPACK</A>
+ &nbsp <B>  <A NAME="tex2html4226"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4228"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03150000000000000000">
+LAPACK and the BLAS</A>
+</H1>
+
+<P>
+LAPACK routines are written so that as much as possible of the
+computation is performed by calls to the
+Basic Linear Algebra Subprograms (BLAS)&nbsp;[<A
+ HREF="node151.html#blas1">78</A>,<A
+ HREF="node151.html#blas2">42</A>,<A
+ HREF="node151.html#blas3">40</A>]<A NAME="765"></A>.
+Highly efficient machine-specific implementations of the BLAS are
+available for many modern high-performance computers. The BLAS
+enable LAPACK routines to achieve high performance with portable code.
+The methodology for
+constructing LAPACK routines in terms of calls to the BLAS
+is described in Chapter&nbsp;<A HREF="node60.html#chapperformance">3</A>. 
+
+<P>
+The BLAS are not strictly speaking part of LAPACK, but Fortran 77 code
+for the BLAS is distributed with LAPACK, or can be obtained separately
+from <EM>netlib</EM>.  This code constitutes the
+``model implementation''&nbsp;[<A
+ HREF="node151.html#blas2alg">41</A>,<A
+ HREF="node151.html#blas3alg">39</A>].
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/blas/blas.tgz</TT>
+
+</BLOCKQUOTE>
+
+<P>
+The model implementation is not expected
+to perform as well as a specially tuned implementation
+on most high-performance computers -- on some machines it may give <I>much</I>
+worse performance --  but it 
+allows users to run LAPACK codes on machines that do not offer any other
+implementation of the BLAS.
+
+<P>
+For information on available optimized BLAS libraries, as well as
+other BLAS-related questions, please refer to the BLAS FAQ:
+<BLOCKQUOTE>
+<TT>http://www.netlib.org/blas/faq.html</TT>
+
+</BLOCKQUOTE>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4229"
+ HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4223"
+ HREF="node6.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4217"
+ HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4225"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4227"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4230"
+ HREF="node12.html">Availability of LAPACK</A>
+<B> Up:</B> <A NAME="tex2html4224"
+ HREF="node6.html">Essentials</A>
+<B> Previous:</B> <A NAME="tex2html4218"
+ HREF="node10.html">LAPACK Compared with LINPACK</A>
+ &nbsp <B>  <A NAME="tex2html4226"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4228"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

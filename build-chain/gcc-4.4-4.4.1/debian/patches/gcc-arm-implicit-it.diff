@@ -1,0 +1,13 @@
+# DP: Pass -mimplicit-it=thumb to as by default on ARM.
+
+--- a/src/gcc/config/arm/elf.h~	2008-07-14 23:01:42.000000000 +0200
++++ b/src/gcc/config/arm/elf.h	2009-12-04 09:55:07.000000000 +0100
+@@ -63,7 +63,7 @@
+ %{mthumb-interwork:-mthumb-interwork} \
+ %{msoft-float:-mfloat-abi=soft} %{mhard-float:-mfloat-abi=hard} \
+ %{mfloat-abi=*} %{mfpu=*} \
+-%(subtarget_extra_asm_spec)"
++%(subtarget_extra_asm_spec) %{!-mimplicit-it=*:-mimplicit-it=thumb}"
+ #endif
+ 
+ /* The ARM uses @ are a comment character so we need to redefine

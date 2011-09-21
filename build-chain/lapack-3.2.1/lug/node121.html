@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Matrix Storage Schemes</TITLE>
+<META NAME="description" CONTENT="Matrix Storage Schemes">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node128.html">
+<LINK REL="previous" HREF="node120.html">
+<LINK REL="up" HREF="node109.html">
+<LINK REL="next" HREF="node122.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5913"
+ HREF="node122.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5907"
+ HREF="node109.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5901"
+ HREF="node120.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5909"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5911"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5914"
+ HREF="node122.html">Conventional Storage</A>
+<B> Up:</B> <A NAME="tex2html5908"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Previous:</B> <A NAME="tex2html5902"
+ HREF="node120.html">Determining the Block Size</A>
+ &nbsp <B>  <A NAME="tex2html5910"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5912"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03530000000000000000"></A><A NAME="secstorage"></A>
+<BR>
+Matrix Storage Schemes
+</H1>
+
+<P>
+LAPACK allows the following different storage schemes<A NAME="19610"></A> 
+for matrices:
+
+<P>
+
+<UL><LI>conventional storage in a two-dimensional array;
+
+<P>
+
+<LI>packed storage for symmetric, Hermitian or triangular matrices;
+
+<P>
+
+<LI>band storage for band matrices; 
+
+<P>
+
+<LI>the use of two or three
+one-dimensional arrays to store tridiagonal or bidiagonal
+matrices. 
+
+<P>
+
+</UL>
+
+<P>
+These storage schemes are compatible with those
+used in LINPACK<A NAME="19613"></A> and the BLAS, but EISPACK<A NAME="19614"></A> uses incompatible schemes
+for band and tridiagonal matrices.
+
+<P>
+In the examples below, <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img914.gif"
+ ALT="$\ast$">
+indicates an array element that need not be set
+and is not referenced by LAPACK routines. Elements that ``need not be
+set'' are never read, written to, or otherwise accessed by the LAPACK
+routines.  The examples illustrate only the
+relevant part of the arrays; array arguments may of course have additional
+rows or columns, according to the usual rules for passing array arguments
+in Fortran 77.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5915"
+ HREF="node122.html">Conventional Storage</A>
+<LI><A NAME="tex2html5916"
+ HREF="node123.html">Packed Storage</A>
+<LI><A NAME="tex2html5917"
+ HREF="node124.html">Band Storage</A>
+<LI><A NAME="tex2html5918"
+ HREF="node125.html">Tridiagonal and Bidiagonal Matrices</A>
+<LI><A NAME="tex2html5919"
+ HREF="node126.html">Unit Triangular Matrices</A>
+<LI><A NAME="tex2html5920"
+ HREF="node127.html">Real Diagonal Elements of Complex Matrices</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

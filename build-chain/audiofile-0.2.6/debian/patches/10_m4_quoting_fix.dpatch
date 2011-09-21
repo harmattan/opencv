@@ -1,0 +1,39 @@
+#! /bin/sh -e
+## 10_m4_quoting_fix.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Frederic L. W. Meunier fixed an error with automake 1.8 that 
+## DP: trips over a missing quote in audiofile.m4.
+## DP: Diff pulled from upstream repository. (Part of BK cset 1.157)
+
+if [ $# -lt 1 ]; then
+    echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+    exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch} ${2:+-d $2}"
+
+case "$1" in
+    -patch) patch -p1 ${patch_opts} < $0;;
+    -unpatch) patch -R -p1 ${patch_opts} < $0;;
+    *)
+        echo "`basename $0`: script expects -patch|-unpatch as argument" >&2
+        exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+diff -Nru a/audiofile.m4 b/audiofile.m4
+--- a/audiofile.m4	Sat Apr  3 08:01:21 2004
++++ b/audiofile.m4	Sat Apr  3 08:01:21 2004
+@@ -9,7 +9,7 @@
+ dnl AM_PATH_AUDIOFILE([MINIMUM-VERSION, [ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND]]])
+ dnl Test for Audio File Library, and define AUDIOFILE_CFLAGS and AUDIOFILE_LIBS.
+ dnl
+-AC_DEFUN(AM_PATH_AUDIOFILE,
++AC_DEFUN([AM_PATH_AUDIOFILE],
+ [dnl 
+ dnl Get compiler flags and libraries from the audiofile-config script.
+ dnl

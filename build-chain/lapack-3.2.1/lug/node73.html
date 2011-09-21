@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Sources of Error in Numerical Calculations</TITLE>
+<META NAME="description" CONTENT="Sources of Error in Numerical Calculations">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node75.html">
+<LINK REL="previous" HREF="node72.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node74.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5217"
+ HREF="node74.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5211"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5205"
+ HREF="node72.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5213"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5215"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5218"
+ HREF="node74.html">Further Details: Floating Point</A>
+<B> Up:</B> <A NAME="tex2html5212"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5206"
+ HREF="node72.html">Accuracy and Stability</A>
+ &nbsp <B>  <A NAME="tex2html5214"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5216"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03410000000000000000"></A><A NAME="secroundoff"></A>
+<BR>
+Sources of Error in Numerical Calculations
+</H1>
+
+<P>
+<A NAME="9705"></A>
+<A NAME="9706"></A>
+<A NAME="9707"></A>
+<A NAME="9708"></A>
+<A NAME="9709"></A>
+There are two sources of error whose effects can be measured by the bounds in
+this chapter: <EM>roundoff error</EM> and <EM>input error</EM>. Roundoff error
+arises from rounding results of floating-point operations during
+the algorithm.
+Input error is error in the input to the algorithm from prior calculations or
+measurements.  We describe roundoff error first, and then input error.
+
+<P>
+Almost all the error bounds LAPACK provides are multiples of
+<EM>machine epsilon</EM>,<A NAME="9713"></A><A NAME="9714"></A><A NAME="9715"></A>
+which we abbreviate
+by <IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">.
+Machine epsilon bounds the roundoff in individual
+floating-point operations.
+It may be loosely defined as the largest relative error
+<A NAME="9716"></A><A NAME="9717"></A>
+in any floating-point operation that neither overflows nor underflows.
+(Overflow means the result is too
+large to represent accurately, and underflow means the result is too
+small to represent accurately.) Machine epsilon is available either by
+the function call
+<A NAME="9718"></A><A NAME="9719"></A>SLAMCH('Epsilon') (or simply SLAMCH('E')) in single precision, or
+by the function call DLAMCH('Epsilon') (or DLAMCH('E')) in double precision.
+See section&nbsp;<A HREF="node74.html#secbackgroundfloatingpoint">4.1.1</A> and
+Table&nbsp;<A HREF="node74.html#tabIEEEvalues">4.1</A> for a discussion of common values of machine
+epsilon.
+<A NAME="9722"></A><A NAME="9723"></A>
+<A NAME="9724"></A><A NAME="9725"></A>
+
+<P>
+Since underflow is almost always less significant than roundoff,
+we will not consider it further.
+Overflow usually means the computation is invalid, but there
+are some LAPACK routines that routinely generate and handle overflows
+using the rules of IEEE arithmetic
+(see section&nbsp;<A HREF="node74.html#secbackgroundfloatingpoint">4.1.1</A>).
+
+<P>
+Bounds on <EM>input errors</EM>, or errors in the input parameters inherited
+from prior computations or measurements, may be easily incorporated
+into most LAPACK error bounds.
+Suppose the input data is accurate to, say, 5 decimal digits
+(we discuss exactly what
+this means in section&nbsp;<A HREF="node75.html#secnormnotation">4.2</A>). Then one simply replaces
+<IMG
+ WIDTH="12" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img262.gif"
+ ALT="$\epsilon$">
+by 
+<!-- MATH
+ $\max(\epsilon, 10^{-5})$
+ -->
+<IMG
+ WIDTH="101" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img263.gif"
+ ALT="$\max(\epsilon, 10^{-5})$">
+in the error bounds.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html5219"
+ HREF="node74.html">Further Details:  Floating Point Arithmetic</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5217"
+ HREF="node74.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5211"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5205"
+ HREF="node72.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5213"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5215"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5218"
+ HREF="node74.html">Further Details: Floating Point</A>
+<B> Up:</B> <A NAME="tex2html5212"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5206"
+ HREF="node72.html">Accuracy and Stability</A>
+ &nbsp <B>  <A NAME="tex2html5214"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5216"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

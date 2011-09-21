@@ -1,0 +1,46 @@
+Source: audiofile
+Section: libs
+Priority: optional
+Maintainer: Daniel Kobras <kobras@debian.org>
+Build-Depends: debhelper (>= 5), autotools-dev, dpatch
+Standards-Version: 3.8.3
+
+Package: libaudiofile-dev
+Section: libdevel
+Architecture: any
+Depends: libaudiofile0 (= ${binary:Version}), libc6-dev
+Conflicts: libaudiofile0 (<= 0.2.3-4)
+Replaces: libaudiofile0 (<= 0.2.3-4)
+Description: Open-source version of SGI's audiofile library (header files)
+ The audiofile library allows the processing of audio data to and from audio
+ files of many common formats (currently AIFF, AIFF-C, WAVE, NeXT/Sun, BICS,
+ and raw data).
+ .
+ This package contains the development headers and library files needed to
+ compile programs using libaudiofile, as well as example programs for
+ identifying and converting audio files.
+
+Package: libaudiofile0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Open-source version of SGI's audiofile library
+ The audiofile library allows the processing of audio data to and from audio
+ files of many common formats (currently AIFF, AIFF-C, WAVE, NeXT/Sun, BICS,
+ and raw data).
+ .
+ This package contains the library needed to run executables using
+ libaudiofile.
+
+Package: libaudiofile0-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: libaudiofile0 (= ${binary:Version})
+Description: Open-source version of SGI's audiofile library
+ The audiofile library allows the processing of audio data to and from audio
+ files of many common formats (currently AIFF, AIFF-C, WAVE, NeXT/Sun, BICS,
+ and raw data).
+ .
+ This package contains debugging symbols for the audiofile shared library.
+ Tools like gdb and ltrace make use of these symbols.

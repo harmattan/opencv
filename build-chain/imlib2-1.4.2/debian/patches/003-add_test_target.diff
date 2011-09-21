@@ -1,0 +1,10 @@
+Index: b/Makefile.am
+===================================================================
+--- a/Makefile.am	2009-01-12 12:31:54.684611401 -0500
++++ b/Makefile.am	2009-01-12 12:31:56.020611425 -0500
+@@ -16,3 +16,5 @@
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = imlib2.pc
++
++test check:

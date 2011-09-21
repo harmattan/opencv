@@ -1,0 +1,548 @@
+\begin{thebibliography}{100}
+
+\bibitem{lawn20}
+{\sc E.~Anderson, Z.~Bai, C.~Bischof, J.~Demmel, J.~Dongarra, J.~Du~Croz,
+  A.~Greenbaum, S.~Hammarling, A.~McKenney, and D.~Sorensen}, {\em {LAPACK}: A
+  portable linear algebra library for high-performance computers}, {C}omputer
+  {S}cience {D}ept. {T}echnical {R}eport CS-90-105, University of Tennessee,
+  Knoxville, TN, May 1990.
+\newblock (Also LAPACK Working Note \#20).
+
+\bibitem{lawn31}
+{\sc E.~Anderson, Z.~Bai, and J.~Dongarra}, {\em Generalized {QR} factorization
+  and its applications}, Linear Algebra and Its Applications, 162-164 (1992),
+  pp.~243--271.
+\newblock (Also LAPACK Working Note \#31).
+
+\bibitem{lawn41}
+{\sc E.~Anderson, J.~Dongarra, and S.~Ostrouchov}, {\em Installation guide for
+  {LAPACK}}, {C}omputer {S}cience {D}ept. {T}echnical {R}eport CS-92-151,
+  University of Tennessee, Knoxville, TN, March 1992.
+\newblock (Also LAPACK Working Note \#41).
+
+\bibitem{ieee754}
+{\sc {ANSI/IEEE}}, {\em
+  \mbox{IEEE~Standard~for~Binary~Floating~Point~Arithmetic}}, New York, {S}td
+  754-1985~ed., 1985.
+
+\bibitem{ieee854}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em
+  \mbox{IEEE~Standard~for~Radix~Independent~Floating~Point~Arithmetic}}, New
+  York, {S}td 854-1987~ed., 1987.
+
+\bibitem{ariolidemmelduff}
+{\sc M.~Arioli, J.~W. Demmel, and I.~S. Duff}, {\em Solving sparse linear
+  systems with sparse backward error}, {SIAM} J. Matrix Anal. Appl., 10 (1989),
+  pp.~165--190.
+
+\bibitem{arioliduffderijk}
+{\sc M.~Arioli, I.~S. Duff, and P.~P.~M. de~Rijk}, {\em On the augmented system
+  approach to sparse least squares problems}, Num. Math., 55 (1989),
+  pp.~667--684.
+
+\bibitem{baizha93}
+{\sc Z.~Bai, , and H.~Zha}, {\em A new preprocessing algorithm for the
+  computation of the generalized singular value decomposition}, SIAM J. Sci.
+  Comp., 14 (1993), pp.~1007--1012.
+
+\bibitem{baidemmel}
+{\sc Z.~Bai and J.~W. Demmel}, {\em On a block implementation of {H}essenberg
+  multishift {QR} iteration}, International Journal of High Speed Computing, 1
+  (1989), pp.~97--112.
+\newblock (Also LAPACK Working Note \#8).
+
+\bibitem{baidemmel92b}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Computing the
+  generalized singular value decomposition}, {SIAM} J. Sci. Comp., 14 (1993),
+  pp.~1464--1486.
+\newblock (Also LAPACK Working Note \#46).
+
+\bibitem{baidemmel92a}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Design of a parallel
+  nonsymmetric eigenroutine toolbox, {P}art {I}}, in Proceedings of the Sixth
+  SIAM Conference on Parallel Processing for Scientific Computing, R.~F.~{\em
+  et al}. Sincovec, ed., Philadelphia, PA, 1993, Society for Industrial and
+  Applied Mathematics, pp.~391--398.
+\newblock Long version available as {C}omputer {S}cience {R}eport {CSD}-92-718,
+  {U}niversity of {C}alifornia, {B}erkeley, 1992.
+
+\bibitem{baidemmelmckenney}
+{\sc Z.~Bai, J.~W. Demmel, and A.~McKenney}, {\em On computing condition
+  numbers for the nonsymmetric eigenproblem}, {ACM} Trans. Math. Softw., 19
+  (1993), pp.~202--223.
+\newblock (LAPACK Working Note \#13).
+
+\bibitem{baifahey97}
+{\sc Z.~Bai and M.~Fahey}, {\em Computation of error bounds in linear least
+  squares problems with equality constraints and generalized linear model
+  problems}.
+\newblock to appear, 1997.
+
+\bibitem{barlowdemmel}
+{\sc J.~Barlow and J.~Demmel}, {\em Computing accurate eigensystems of scaled
+  diagonally dominant matrices}, {SIAM} J. Num. Anal., 27 (1990), pp.~762--791.
+\newblock (Also LAPACK Working Note \#7).
+
+\bibitem{lawn111}
+{\sc J.~Bilmes, K.~Asanovic, J.~Demmel, D.~Lam, and C.~Chin}, {\em Optimizing
+  matrix multiply using {PH}i{PAC}: A portable, high-performance, {ANSI} {C}
+  coding methodology}, {C}omputer {S}cience {D}ept. {T}echnical {R}eport
+  CS-96-326, University of Tennessee, Knoxville, TN, 1996.
+\newblock (Also LAPACK Working Note \#111).
+
+\bibitem{bjorck3}
+{\sc {\AA}.~Bj\"{o}rck}, {\em Numerical Methods for Least Squares Problem},
+  {SIAM}, 1996.
+
+\bibitem{slug}
+{\sc L.~S. Blackford, J.~Choi, A.~Cleary, E.~D'Azevedo, J.~Demmel, I.~Dhillon,
+  J.~Dongarra, S.~Hammarling, G.~Henry, A.~Petitet, K.~Stanley, D.~Walker, and
+  R.~C. Whaley}, {\em {ScaLAPACK} Users' Guide}, Society for Industrial and
+  Applied Mathematics, Philadelphia, PA, 1997.
+
+\bibitem{coxhigham}
+{\sc A.~J. Cox and N.~J. Higham}, {\em Backward error bounds for constrained
+  least squares problems}, BIT, 39 (1999), pp.~210--227.
+
+\bibitem{crawford}
+{\sc C.~R. Crawford}, {\em Reduction of a band-symmetric generalized eigenvalue
+  problem}, Comm. {ACM}, 16 (1973), pp.~41--44.
+
+\bibitem{cuppen}
+{\sc J.~J.~M. Cuppen}, {\em A divide and conquer method for the symmetric
+  tridiagonal eigenproblem}, Numerische Math., 36 (1981), pp.~177--195.
+
+\bibitem{dayde94a}
+{\sc M.~Dayde, I.~Duff, and A.~Petitet}, {\em {A Parallel Block Implementation
+  of Level 3 BLAS for MIMD Vector Processors}}, ACM Trans. Math. Softw., 20
+  (1994), pp.~178--193.
+
+\bibitem{demoorvandooren92}
+{\sc B.~De~Moor and P.~Van~Dooren}, {\em Generalization of the singular value
+  and {QR} decompositions}, {SIAM} J. Matrix Anal. Appl., 13 (1992),
+  pp.~993--1014.
+
+\bibitem{deiftdemmellitomei}
+{\sc P.~Deift, J.~W. Demmel, L.-C. Li, and C.~Tomei}, {\em The bidiagonal
+  singular values decomposition and {H}amiltonian mechanics}, {SIAM} J. Numer.
+  Anal., 28 (1991), pp.~1463--1516.
+\newblock (LAPACK Working Note \#11).
+
+\bibitem{demmel84}
+{\sc J.~Demmel}, {\em Underflow and the reliability of numerical software},
+  {SIAM} J. Sci. Stat. Comput., 5 (1984), pp.~887--919.
+
+\bibitem{demmelMA221}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Applied Numerical
+  Linear Algebra}, SIAM, Philadelphia, PA, 1997.
+
+\bibitem{demmel83}
+{\sc J.~W. Demmel}, {\em The condition number of equivalence transformations
+  that block diagonalize matrix pencils}, {SIAM} J. Numer. Anal., 20 (1983),
+  pp.~599--610.
+
+\bibitem{Demmel-Higham-Wnote22}
+{\sc J.~W. Demmel and N.~J. Higham}, {\em Stability of block algorithms with
+  fast level 3 {BLAS}}, {ACM} Trans. Math. Softw., 18 (1992), pp.~274--291.
+\newblock (Also LAPACK Working Note \#22).
+
+\bibitem{demmelhigham1}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Improved error
+  bounds for underdetermined systems solvers}, {SIAM} J. Matrix Anal. Appl., 14
+  (1993), pp.~1--14.
+\newblock (Also LAPACK Working Note \#23).
+
+\bibitem{demmelkagstrom87}
+{\sc J.~W. Demmel and B.~K{\aa}gstr\"{o}m}, {\em Computing stable
+  eigendecompositions of matrix pencils}, Lin. Alg. Appl., 88/89 (1987),
+  pp.~139--186.
+
+\bibitem{demmelkagstrom93a}
+{\sc J.~W. Demmel and B.~K{\aa}gstr\"{o}m}, {\em The generalized {S}chur
+  decomposition of an arbitrary pencil {$A - \lambda B$}: robust software with
+  error bounds and applications, part {I}: Theory and algorithms}, {ACM} Trans.
+  Math. Softw., 19 (1993), pp.~160--174.
+
+\bibitem{demmelkagstrom93b}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em The generalized
+  {S}chur decomposition of an arbitrary pencil {$A - \lambda B$}: robust
+  software with error bounds and applications, part {II}: Software and
+  applications}, {ACM} Trans. Math. Softw., 19 (1993), pp.~175--201.
+
+\bibitem{demmelkahan}
+{\sc J.~W. Demmel and W.~Kahan}, {\em Accurate singular values of bidiagonal
+  matrices}, {SIAM} J. Sci. Stat. Comput., 11 (1990), pp.~873--912.
+\newblock (Also LAPACK Working Note \#3).
+
+\bibitem{demmelli93}
+{\sc J.~W. Demmel and X.~Li}, {\em Faster numerical algorithms via exception
+  handling}, {IEEE} Trans. Comp., 43 (1994), pp.~983--992.
+\newblock (Also LAPACK Working Note \#59).
+
+\bibitem{demmelveselic}
+{\sc J.~W. Demmel and K.~Veseli\'{c}}, {\em Jacobi's method is more accurate
+  than {QR}}, {SIAM} J. Matrix Anal. Appl., 13 (1992), pp.~1204--1246.
+\newblock (Also LAPACK Working Note \#15).
+
+\bibitem{holygrail}
+{\sc I.~Dhillon}, {\em A new ${O}(n^2)$ algorithm for the symmetric tridiagonal
+  eigenvalue/eigenvector problem}, {C}omputer {S}cience {D}ivision {T}echnical
+  {R}eport no. {UCB/CSD}-97-971, University of California, Berkeley, CA, May
+  1997.
+
+\bibitem{dhillonparlett99b}
+{\sc I.~S. Dhillon and B.~N. Parlett}, {\em Orthogonal eigenvectors and
+  relative gaps}, June 1999.
+\newblock to appear.
+
+\bibitem{lawn81}
+{\sc J.~Dongarra and S.~Ostrouchov}, {\em Quick installation guide for {LAPACK}
+  on unix systems}, {C}omputer {S}cience {D}ept. {T}echnical {R}eport
+  {CS}-94-249, University of Tennessee, Knoxville, TN, September 1994.
+\newblock (LAPACK Working Note \#81).
+
+\bibitem{dongarra79}
+{\sc J.~J. Dongarra, J.~R. Bunch, C.~B. Moler, and G.~W. Stewart}, {\em LINPACK
+  Users' Guide}, Society for Industrial and Applied Mathematics, Philadelphia,
+  PA, 1979.
+
+\bibitem{blas3alg}
+{\sc J.~J. Dongarra, J.~Du~Croz, I.~S. Duff, and S.~Hammarling}, {\em Algorithm
+  679: A set of {L}evel 3 {B}asic {L}inear {A}lgebra {S}ubprograms}, {ACM}
+  Trans. Math. Soft., 16 (1990), pp.~18--28.
+
+\bibitem{blas3}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em A set of {L}evel 3
+  {B}asic {L}inear {A}lgebra {S}ubprograms}, {ACM} Trans. Math. Soft., 16
+  (1990), pp.~1--17.
+
+\bibitem{blas2alg}
+{\sc J.~J. Dongarra, J.~Du~Croz, S.~Hammarling, and R.~J. Hanson}, {\em
+  Algorithm 656: An extended set of {FORTRAN} {B}asic {L}inear {A}lgebra
+  {S}ubroutines}, {ACM} Trans. Math. Soft., 14 (1988), pp.~18--32.
+
+\bibitem{blas2}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em An extended set of
+  {FORTRAN} basic linear algebra subroutines}, {ACM} Trans. Math. Soft., 14
+  (1988), pp.~1--17.
+
+\bibitem{dongarraetal2}
+{\sc J.~J. Dongarra, I.~S. Duff, D.~C. Sorensen, and H.~A. Van~der Vorst}, {\em
+  Numerical Linear Algebra for High-Performance Computers}, Society for
+  Industrial and Applied Mathematics, Philadelphia, PA, 1998.
+
+\bibitem{Dongarra87e}
+{\sc J.~J. Dongarra and E.~Grosse}, {\em Distribution of mathematical software
+  via electronic mail}, Communications of the {ACM}, 30 (1987), pp.~403--407.
+
+\bibitem{Dongarra84a}
+{\sc J.~J. Dongarra, F.~G. Gustafson, and A.~Karp}, {\em Implementing linear
+  algebra algorithms for dense matrices on a vector pipeline machine}, {SIAM}
+  Review, 26 (1984), pp.~91--112.
+
+\bibitem{lapwn2}
+{\sc J.~J. Dongarra, S.~Hammarling, and D.~C. Sorensen}, {\em Block reduction
+  of matrices to condensed forms for eigenvalue computations}, {JCAM}, 27
+  (1989), pp.~215--227.
+\newblock (LAPACK Working Note \#2).
+
+\bibitem{lapwn27}
+{\sc J.~Du~Croz and N.~J. Higham}, {\em Stability of methods for matrix
+  inversion}, {IMA} J. Numer. Anal., 12 (1992), pp.~1--19.
+\newblock (Also LAPACK Working Note \#27).
+
+\bibitem{lapwn21}
+{\sc J.~Du~Croz, P.~J.~D. Mayes, and G.~Radicati~di Brozolo}, {\em
+  Factorizations of band matrices using {L}evel 3 {BLAS}}, {C}omputer {S}cience
+  {D}ept. {T}echnical {R}eport {CS}-90-109, University of Tennessee, Knoxville,
+  TN, 1990.
+\newblock (LAPACK Working Note \#21).
+
+\bibitem{dubrulle}
+{\sc A.~Dubrulle}, {\em The multishift {QR} algorithm: is it worth the
+  trouble?}, Palo Alto Scientific Center Report G320-3558x, {IBM} Corp., 1530
+  Page Mill Road, Palo Alto, CA 94304, 1991.
+
+\bibitem{elden}
+{\sc L.~Eld\'{e}n}, {\em Perturbation theory for the least squares problem with
+  linear equality constraints}, {SIAM} J. Numer. Anal., 17 (1980),
+  pp.~338--350.
+
+\bibitem{fernandoparlett}
+{\sc V.~Fernando and B.~Parlett}, {\em Accurate singular values and
+  differential qd algorithms}, Numerisch Math., 67 (1994), pp.~191--229.
+
+\bibitem{gallivanetal}
+{\sc K.~A. Gallivan, R.~J. Plemmons, and A.~H. Sameh}, {\em Parallel algorithms
+  for dense linear algebra computations}, {SIAM} Review, 32 (1990),
+  pp.~54--135.
+
+\bibitem{gantmacher}
+{\sc F.~Gantmacher}, {\em The {T}heory of {M}atrices, vol. {II} (transl.)},
+  Chelsea, New York, 1959.
+
+\bibitem{Garbow77}
+{\sc B.~S. Garbow, J.~M. Boyle, J.~J. Dongarra, and C.~B. Moler}, {\em Matrix
+  Eigensystem Routines -- {EISPACK} Guide Extension}, vol.~51 of Lecture Notes
+  in Computer Science, Springer-Verlag, Berlin, 1977.
+
+\bibitem{GVL2}
+{\sc G.~Golub and C.~F. Van~Loan}, {\em Matrix Computations}, Johns Hopkins
+  University Press, Baltimore, MD, third~ed., 1996.
+
+\bibitem{greenbaumdongarra}
+{\sc A.~Greenbaum and J.~J. Dongarra}, {\em Experiments with {QL/QR} methods
+  for the symmetric tridiagonal eigenproblem}, {C}omputer {S}cience {D}ept.
+  {T}echnical {R}eport {CS}-89-92, University of Tennessee, Knoxville,TN, 1989.
+\newblock (LAPACK Working Note \#17).
+
+\bibitem{gueisenstat}
+{\sc M.~Gu and S.~Eisenstat}, {\em A stable algorithm for the rank-1
+  modification of the symmetric eigenproblem}, Computer Science Department
+  Report YALEU/DCS/RR-916, Yale University, New Haven, CT, 1992.
+
+\bibitem{gueisenstat3}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em A divide-and-conquer
+  algorithm for the bidiagonal {SVD}}, {SIAM} J. Mat. Anal. Appl., 16 (1995),
+  pp.~79--92.
+
+\bibitem{hager84}
+{\sc W.~W. Hager}, {\em Condition estimators}, {SIAM} J. Sci. Stat. Comput., 5
+  (1984), pp.~311--316.
+
+\bibitem{hammarling86}
+{\sc S.~Hammarling}, {\em The numerical solution of the general
+  {G}auss-{M}arkov linear model}, in Mathematics in Signal Processing,
+  T.~S.~{\em et al.}. Durani, ed., Clarendon Press, Oxford, UK, 1986.
+
+\bibitem{higham3}
+{\sc N.~J. Higham}, {\em Efficient algorithms for computing the condition
+  number of a tridiagonal matrix}, {SIAM} J. Sci. Stat. Comput., 7 (1986),
+  pp.~150--165.
+
+\bibitem{higham1}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em A survey of
+  condition number estimation for triangular matrices}, {SIAM} Review, 29
+  (1987), pp.~575--596.
+
+\bibitem{nick2}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em {FORTRAN} codes for
+  estimating the one-norm of a real or complex matrix, with applications to
+  condition estimation}, {ACM} Trans. Math. Softw., 14 (1988), pp.~381--396.
+
+\bibitem{higham89}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Algorithm 674:
+  {FORTRAN} codes for estimating the one-norm of a real or complex matrix, with
+  applications to condition estimation}, {ACM} Trans. Math. Softw., 15 (1989),
+  p.~168.
+
+\bibitem{higham90}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Experience with a
+  matrix norm estimator}, {SIAM} J. Sci. Stat. Comput., 11 (1990),
+  pp.~804--809.
+
+\bibitem{higham93}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Perturbation theory
+  and backward error for {$AX-XB=C$}}, {BIT}, 33 (1993), pp.~124--136.
+
+\bibitem{higham96}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Accuracy and
+  {S}tability of {N}umerical {A}lgorithms}, {SIAM}, Philadelphia, PA, 1996.
+
+\bibitem{hussledermantsaozhang93}
+{\sc S.~Huss-Lederman, A.~Tsao, and G.~Zhang}, {\em A parallel implementation
+  of the invariant subspace decomposition algorithm for dense symmetric
+  matrices}, in Proceedings of the Sixth SIAM Conference on Parallel Processing
+  for Scientific Computing, Society for Industrial and Applied Mathematics,
+  1993, pp.~367--374.
+
+\bibitem{jessupsorensen}
+{\sc E.~Jessup and D.~Sorensen}, {\em A parallel algorithm for computing the
+  singular value decomposition of a matrix}, Mathematics and Computer Science
+  Division Report ANL/MCS-TM-102, Argonne National Laboratory, Argonne, IL,
+  December 1987.
+
+\bibitem{kagstrom93}
+{\sc B.~K{\aa}gstr{\"{o}}m}, {\em A direct method for reordering eigenvalues in
+  the generalized real {S}chur form of a regular matrix pair (a,b)}, in Linear
+  Algebra for Large Scale and Real-Time Applications, Kluwer Academic
+  Publishers, 1993, pp.~195--218.
+
+\bibitem{kagstrom94}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em A perturbation
+  analysis of the generalized sylvester equation}, {SIAM} J. Matrix Anal.
+  Appl., 15 (1994), pp.~1045--1060.
+
+\bibitem{kagstrom95b}
+{\sc B.~K{\aa}gstr\"{o}m, P.~Ling, and C.~V. Loan}, {\em {GEMM}-based level 3
+  {BLAS}: High-performance model implementations and performance evaluation
+  benchmark}, Tech. Rep. UMINF 95-18, Department of Computing Science, Ume{\aa}
+  University, 1995.
+\newblock Submitted to ACM Trans. Math. Softw.
+
+\bibitem{kagstromporomaa94a}
+{\sc B.~K{\aa}gstr\"{o}m and P.~Poromaa}, {\em Computing eigenspaces with
+  specified eigenvalues of a regular matrix pair $({A},{B})$ and condition
+  estimation: Theory, algorithms and software}, Tech. Rep. UMINF 94.04,
+  Department of Computing Science, Ume{\aa} University, 1994.
+
+\bibitem{kagstromporomaa93a}
+{\sc B.~K{\aa}gstr{\"{o}}m and P.~Poromaa}, {\em {LAPACK}-style algorithms and
+  software for solving the generalized {S}ylvester equation and estimating the
+  separation between regular matrix pairs}, {ACM} Trans. Math. Softw., 22
+  (1996), pp.~78--103.
+
+\bibitem{kagstromwestin89}
+{\sc B.~K{\aa}gstr{\"{o}}m and L.~Westin}, {\em Generalized schur methods with
+  condition estimators for solving the generalized {S}ylvester equation},
+  {IEEE} Trans. Autom. Contr., 34 (1989), pp.~745--751.
+
+\bibitem{kato}
+{\sc T.~Kato}, {\em Perturbation Theory for Linear Operators}, Springer-Verlag,
+  Berlin, 2~ed., 1980.
+
+\bibitem{vbandr}
+{\sc L.~Kaufman}, {\em Banded eigenvalue solvers on vector machines}, {ACM}
+  Trans. Math. Softw., 10 (1984), pp.~73--86.
+
+\bibitem{blas1}
+{\sc C.~L. Lawson, R.~J. Hanson, D.~Kincaid, and F.~T. Krogh}, {\em Basic
+  linear algebra subprograms for {F}ortran usage}, {ACM} Trans. Math. Soft., 5
+  (1979), pp.~308--323.
+
+\bibitem{lawn72}
+{\sc R.~Lehoucq}, {\em The computation of elementary unitary matrices},
+  {C}omputer {S}cience {D}ept. {T}echnical {R}eport {CS}-94-233, University of
+  Tennessee, Knoxville, TN, 1994.
+\newblock (Also LAPACK Working Note 72).
+
+\bibitem{paige79b}
+{\sc C.~Paige}, {\em Computer solution and perturbation analysis of generalized
+  linear least squares problems}, Math. of Comput., 33 (1979), pp.~171--183.
+
+\bibitem{paige79}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Fast numerically
+  stable computations for generalized linear least squares problems
+  controllability}, {SIAM} J. Num. Anal., 16 (1979), pp.~165--179.
+
+\bibitem{paige84}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em A note on a result
+  of sun ji-guang: sensitivity of the cs and gsv decomposition}, SIAM J. Num.
+  Anal., 21 (1984), pp.~186--191.
+
+\bibitem{paige86a}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Computing the
+  generalized singular value decomposition}, SIAM J. Sci. Stat., 7 (1986),
+  pp.~1126--1146.
+
+\bibitem{paige90}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Some aspects of
+  generalized {QR} factorization}, in Reliable Numerical Computations, M.~Cox
+  and S.~Hammarling, eds., Clarendon Press, 1990.
+
+\bibitem{parlett}
+{\sc B.~Parlett}, {\em The Symmetric Eigenvalue Problem}, Prentice-Hall,
+  Englewood Cliffs, NJ, 1980.
+
+\bibitem{parlettdhillon99a}
+{\sc B.~N. Parlett and I.~S. Dhillon}, {\em Relatively robust representation of
+  symmetric tridiagonals}, June 1999.
+\newblock to appear.
+
+\bibitem{parlettmarques99}
+{\sc B.~N. Parlett and O.~A. Marques}, {\em An implementation of the dqds
+  algorithm (positive case)}, June 1999.
+\newblock to appear.
+
+\bibitem{Toolpack}
+{\sc e.~Pollicini, A.~A.}, {\em Using Toolpack Software Tools}, 1989.
+
+\bibitem{rutter}
+{\sc J.~Rutter}, {\em A serial implementation of cuppen's divide and conquer
+  algorithm for the symmetric tridiagonal eigenproblem}, Computer Science
+  Division Report UCB/CSD 94/799, University of California, Berkeley, Berkeley,
+  CA, 1994.
+\newblock (Also LAPACK Working Note 69).
+
+\bibitem{Schreiber87a}
+{\sc R.~Schreiber and C.~F. Van~Loan}, {\em A storage efficient {WY}
+  representation for products of {H}ouseholder transformations}, {SIAM} J. Sci.
+  Stat. Comput., 10 (1989), pp.~53--57.
+
+\bibitem{slapnicar1}
+{\sc I.~Slapni\v{c}ar}, {\em Accurate symmetric eigenreduction by a Jacobi
+  method}, PhD thesis, Fernuniversit\"{a}t - Hagen, Hagen, Germany, 1992.
+
+\bibitem{Smith76}
+{\sc B.~T. Smith, J.~M. Boyle, J.~J. Dongarra, B.~S. Garbow, Y.~Ikebe, V.~C.
+  Klema, and C.~B. Moler}, {\em Matrix Eigensystem Routines -- {EISPACK}
+  Guide}, vol.~6 of Lecture Notes in Computer Science, Springer-Verlag, Berlin,
+  1976.
+
+\bibitem{stewart72}
+{\sc G.~W. Stewart}, {\em On the sensitivity of the eigenvalue problem {$Ax=
+  \lambda Bx$}}, {SIAM} J. Num. Anal., 9 (1972), pp.~669--686.
+
+\bibitem{stewart73}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Error and
+  perturbation bounds for subspaces associated with certain eigenvalue
+  problems}, {SIAM} Review, 15 (1973), pp.~727--764.
+
+\bibitem{stewartsun90}
+{\sc G.~W. Stewart and J.-G. Sun}, {\em Matrix Perturbation Theory}, Academic
+  Press, New York, 1990.
+
+\bibitem{sun83}
+{\sc J.~G. Sun}, {\em Perturbation analysis for the generalized singular value
+  problem}, SIAM J. Num. Anal., 20 (1983), pp.~611--625.
+
+\bibitem{vandooren79}
+{\sc P.~Van~Dooren}, {\em The computation of {K}ronecker's canonical form of a
+  singular pencil}, Lin. Alg. Appl., 27 (1979), pp.~103--141.
+
+\bibitem{varah}
+{\sc J.~Varah}, {\em On the separation of two matrices}, {SIAM} J. Numer.
+  Anal., 16 (1979), pp.~216--222.
+
+\bibitem{veselicslapnicar}
+{\sc K.~Veseli\'{c} and I.~Slapni\v{c}ar}, {\em Floating-point perturbations of
+  {Hermitian} matrices}, Linear Algebra and Appl., 195 (1993), pp.~81--116.
+
+\bibitem{ward81}
+{\sc R.~C. Ward}, {\em Balancing the generalized eigenvalue problem}, {SIAM} J.
+  Sci. Stat. Comput., 2 (1981), pp.~141--152.
+
+\bibitem{watkinselsner}
+{\sc D.~Watkins and L.~Elsner}, {\em Convergence of algorithms of decomposition
+  type for the eigenvalue problem}, Linear Algebra Appl., 143 (1991),
+  pp.~19--47.
+
+\bibitem{atlas_sc98}
+{\sc R.~C. Whaley and J.~Dongarra}, {\em {Automatically Tuned Linear Algebra
+  Software}}.
+\newblock
+  http://www.supercomp.org/sc98/TechPapers/sc98\_FullAbstracts/Whaley814/INDEX%
+.HTM, 1998.
+\newblock Winner, best paper in the systems category, SC98: High Performance
+  Networking and Computing.
+
+\bibitem{wilkinson1}
+{\sc J.~H. Wilkinson}, {\em The Algebraic Eigenvalue Problem}, Oxford
+  University Press, Oxford, UK, 1965.
+
+\bibitem{wilkinsona}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Some recent advances
+  in numerical linear algebra}, in The State of the Art in Numerical Analysis,
+  D.~A.~H. Jacobs, ed., Academic Press, New York, 1977.
+
+\bibitem{wilkinson79}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Kronecker's
+  canonical form and the {QZ} algorithm}, Lin. Alg. Appl., 28 (1979),
+  pp.~285--303.
+
+\bibitem{wilkinson3}
+{\sc J.~H. Wilkinson and C.~Reinsch}, eds., {\em Handbook for {A}utomatic
+  {C}omputation, vol 2.: {L}inear {A}lgebra}, Springer-Verlag, Heidelberg,
+  1971.
+
+\end{thebibliography}

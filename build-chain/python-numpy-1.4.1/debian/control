@@ -1,0 +1,63 @@
+Source: python-numpy
+Section: python
+Priority: optional
+Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Alexandre Fayolle <afayolle@debian.org>, Matthias Klose <doko@debian.org>, Ondrej Certik <ondrej@certik.cz>, David Cournapeau <cournape@gmail.com>, Sandro Tosi <morph@debian.org>
+Build-Depends: python-all-dev, python-all-dbg, python-support (>= 1), gfortran (>= 4:4.2), libblas-dev [!arm !m68k], liblapack-dev [!arm !m68k], debhelper (>= 7.0.50~), patchutils, python-docutils, quilt, python-sphinx, libatlas-dev, libatlas3gf-base, libatlas-base-dev
+XS-Python-Version: >= 2.4
+Standards-Version: 3.9.0
+Vcs-Svn: svn://svn.debian.org/python-modules/packages/numpy/trunk
+Vcs-Browser: http://svn.debian.org/viewsvn/python-modules/packages/numpy/trunk/
+XS-DM-Upload-Allowed: yes
+Homepage: http://numpy.scipy.org/
+
+Package: python-numpy
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Suggests: python-numpy-doc, python-numpy-dbg, python-nose (>= 0.10.1), python-dev, gfortran
+XB-Python-Version: ${python:Versions}
+Provides: ${python:Provides}, python-numpy-dev, python-f2py
+Description: Numerical Python adds a fast array facility to the Python language
+ Numpy contains a powerful N-dimensional array object, sophisticated
+ (broadcasting) functions, tools for integrating C/C++ and Fortran
+ code, and useful linear algebra, Fourier transform, and random number
+ capabilities.
+ .
+ Numpy replaces the python-numeric and python-numarray modules which are
+ now deprecated and shouldn't be used except to support older
+ software.
+
+Package: python-numpy-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python-numpy (= ${binary:Version}), python-dbg, ${shlibs:Depends}, ${misc:Depends}
+Replaces: python-numpy (<< 1:1.3.0-4)
+XB-Python-Version: ${python:Versions}
+Description: Fast array facility to the Python language (debug extension)
+ Numpy contains a powerful N-dimensional array object, sophisticated
+ (broadcasting) functions, tools for integrating C/C++ and Fortran
+ code, and useful linear algebra, Fourier transform, and random number
+ capabilities.
+ .
+ Numpy replaces the python-numeric and python-numarray modules which
+ are now deprecated and shouldn't be used except to support older
+ software.
+ .
+ This package contains the extension built for the Python debug interpreter.
+
+Package: python-numpy-doc
+Depends: ${misc:Depends}, libjs-jquery
+Section: doc
+Architecture: all
+Description: NumPy documentation
+ Numpy contains a powerful N-dimensional array object, sophisticated
+ (broadcasting) functions, tools for integrating C/C++ and Fortran
+ code, and useful linear algebra, Fourier transform, and random number
+ capabilities.
+ .
+ Numpy replaces the python-numeric and python-numarray modules which
+ are now deprecated and shouldn't be used except to support older
+ software.
+ .
+ This package contains documentation for Numpy and f2py.

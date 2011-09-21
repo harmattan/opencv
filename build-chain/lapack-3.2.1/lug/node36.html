@@ -1,0 +1,790 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Generalized Singular Value Decomposition (GSVD)</TITLE>
+<META NAME="description" CONTENT="Generalized Singular Value Decomposition (GSVD)">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node35.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node37.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4629"
+ HREF="node37.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4623"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4619"
+ HREF="node35.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4625"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4627"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4630"
+ HREF="node37.html">Computational Routines</A>
+<B> Up:</B> <A NAME="tex2html4624"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4620"
+ HREF="node35.html">Generalized Nonsymmetric Eigenproblems (GNEP)</A>
+ &nbsp <B>  <A NAME="tex2html4626"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4628"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03235300000000000000"></A><A NAME="sectionGSVDdriver"></A>
+<BR>
+Generalized Singular Value Decomposition (GSVD)
+</H3>
+
+<P>
+<A NAME="1812"></A><A NAME="1813"></A>
+<A NAME="1814"></A>
+<A NAME="1815"></A>
+<A NAME="1816"></A>
+The <B>generalized (or quotient) singular value decomposition</B>
+of an <I>m</I>-by-<I>n</I> matrix <I>A</I> and a
+<I>p</I>-by-<I>n</I> matrix <I>B</I> is given by the pair of factorizations
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = U \Sigma_1 [0,\; R ] Q^T
+\;\;\; {\rm and} \;\;\;
+B = V \Sigma_2 [0, \; R ] Q^T \;.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="345" HEIGHT="31" BORDER="0"
+ SRC="img65.gif"
+ ALT="\begin{displaymath}
+A = U \Sigma_1 [0,\; R ] Q^T
+\;\;\; {\rm and} \;\;\;
+B = V \Sigma_2 [0, \; R ] Q^T \;.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The matrices in these factorizations have the following properties:
+
+<UL><LI><I>U</I> is <I>m</I>-by-<I>m</I>, V is <I>p</I>-by-<I>p</I>, <I>Q</I> is <I>n</I>-by-<I>n</I>, and
+all three matrices are orthogonal. If <I>A</I> and
+<I>B</I> are complex, these matrices are unitary instead of
+orthogonal, and <I>Q</I><SUP><I>T</I></SUP> should be
+replaced by <I>Q</I><SUP><I>H</I></SUP> in the pair of factorizations.
+
+<LI><I>R</I> is <I>r</I>-by-<I>r</I>, upper triangular and nonsingular.
+[0,<I>R</I>] is <I>r</I>-by-<I>n</I> (in other words, the 0 is an <I>r</I>-by-<I>n</I>-<I>r</I>
+zero matrix).
+The integer <I>r</I> is the rank of
+
+<!-- MATH
+ $\left( \begin{array}{c} A \\B \end{array} \right)$
+ -->
+<IMG
+ WIDTH="60" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.gif"
+ ALT="$ \left( \begin{array}{c}
+A \\
+B
+\end{array} \right) $">,
+and satisfies <IMG
+ WIDTH="46" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.gif"
+ ALT="$r \leq n$">.
+
+<LI><IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.gif"
+ ALT="$\Sigma_1$">
+is <I>m</I>-by-<I>r</I>,
+<IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.gif"
+ ALT="$\Sigma_2$">
+is <I>p</I>-by-<I>r</I>, both are real, nonnegative  and diagonal, and
+
+<!-- MATH
+ $\Sigma_1^T \Sigma_1 + \Sigma_2^T \Sigma_2 = I$
+ -->
+<IMG
+ WIDTH="145" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img69.gif"
+ ALT="$\Sigma_1^T \Sigma_1 + \Sigma_2^T \Sigma_2 = I$">.
+Write
+
+<!-- MATH
+ $\Sigma_1^T \Sigma_1 = {\rm diag} ( \alpha_1^2 , \ldots , \alpha_r^2 )$
+ -->
+<IMG
+ WIDTH="193" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img70.gif"
+ ALT="$\Sigma_1^T \Sigma_1 = {\rm diag} ( \alpha_1^2 , \ldots , \alpha_r^2 )$">
+and
+
+<!-- MATH
+ $\Sigma_2^T \Sigma_2 = {\rm diag} ( \beta_1^2 , \ldots , \beta_r^2 )$
+ -->
+<IMG
+ WIDTH="192" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img71.gif"
+ ALT="$\Sigma_2^T \Sigma_2 = {\rm diag} ( \beta_1^2 , \ldots , \beta_r^2 )$">,
+where <IMG
+ WIDTH="21" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.gif"
+ ALT="$\alpha_i$">
+and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.gif"
+ ALT="$\beta_i$">
+lie in the interval from 0 to 1.
+The ratios
+
+<!-- MATH
+ $\alpha_1 / \beta_1 , \ldots ,  \alpha_r / \beta_r$
+ -->
+<IMG
+ WIDTH="132" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img74.gif"
+ ALT="$\alpha_1 / \beta_1 , \ldots , \alpha_r / \beta_r$">
+are called the <B>generalized singular values</B> of the pair <I>A</I>, <I>B</I>.
+If <IMG
+ WIDTH="52" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img75.gif"
+ ALT="$\beta_i = 0$">,
+then the generalized singular value
+<A NAME="1824"></A>
+<A NAME="1825"></A>
+
+<!-- MATH
+ $\alpha_i / \beta_i$
+ -->
+<IMG
+ WIDTH="45" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.gif"
+ ALT="$\alpha_i / \beta_i$">
+is <B>infinite</B>.
+
+</UL>
+
+<P>
+<IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.gif"
+ ALT="$\Sigma_1$">
+and <IMG
+ WIDTH="25" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.gif"
+ ALT="$\Sigma_2$">
+have the following detailed
+structures, depending on whether <IMG
+ WIDTH="81" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img77.gif"
+ ALT="$m-r \geq 0$">
+or
+<I>m</I>-<I>r</I> &lt; 0. In the first case, <IMG
+ WIDTH="81" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img77.gif"
+ ALT="$m-r \geq 0$">,
+then
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\Sigma_1 = \bordermatrix{ & k & l \cr
+                 \hfill k & I & 0 \cr
+                 \hfill l & 0 & C \cr
+                    m-k-l & 0 & 0 }
+                 \; \; \; {\rm and} \; \; \;
+\Sigma_2 = \bordermatrix{ & k & l \cr
+                 \hfill l & 0 & S \cr
+                      p-l & 0 & 0 } \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="421" HEIGHT="98" BORDER="0"
+ SRC="img78.gif"
+ ALT="\begin{displaymath}
+\Sigma_1 = \bordermatrix{ &amp; k &amp; l \cr
+\hfill k &amp; I &amp; 0 \cr
+...
+...rmatrix{ &amp; k &amp; l \cr
+\hfill l &amp; 0 &amp; S \cr
+p-l &amp; 0 &amp; 0 } \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Here <I>l</I> is the rank of <I>B</I>, <I>k</I>=<I>r</I>-<I>l</I>, <I>C</I> and <I>S</I> are diagonal
+matrices satisfying 
+<!-- MATH
+ $C^2  + S^2 = I$
+ -->
+<I>C</I><SUP>2</SUP>  + <I>S</I><SUP>2</SUP> = <I>I</I>, and <I>S</I> is nonsingular.
+We may also identify
+
+<!-- MATH
+ $\alpha_1 = \cdots = \alpha_k = 1$
+ -->
+<IMG
+ WIDTH="141" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img79.gif"
+ ALT="$\alpha_1 = \cdots = \alpha_k = 1$">,
+
+<!-- MATH
+ $\alpha_{k+i} = c_{ii}$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img80.gif"
+ ALT="$\alpha_{k+i} = c_{ii}$">
+for 
+<!-- MATH
+ $i=1, \ldots , l$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img81.gif"
+ ALT="$i=1, \ldots , l$">,
+
+<!-- MATH
+ $\beta_1 = \cdots = \beta_k = 0$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.gif"
+ ALT="$\beta_1 = \cdots = \beta_k = 0$">,
+and
+
+<!-- MATH
+ $\beta_{k+i} = s_{ii}$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img83.gif"
+ ALT="$\beta_{k+i} = s_{ii}$">
+for 
+<!-- MATH
+ $i=1, \ldots , l$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img81.gif"
+ ALT="$i=1, \ldots , l$">.
+Thus, the first <I>k</I> generalized singular values
+
+<!-- MATH
+ $\alpha_1 / \beta_1 , \ldots , \alpha_k / \beta_k$
+ -->
+<IMG
+ WIDTH="134" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img84.gif"
+ ALT="$\alpha_1 / \beta_1 , \ldots , \alpha_k / \beta_k$">
+are infinite, and the remaining <I>l</I> generalized singular values
+are finite.
+
+<P>
+In the second case, when <I>m</I>-<I>r</I> &lt; 0,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\Sigma_1 = \bordermatrix{ & k & m-k & k+l-m \cr
+                 \hfill k & I &  0  &   0   \cr
+                      m-k & 0 &  C  &   0   }
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="288" HEIGHT="79" BORDER="0"
+ SRC="img85.gif"
+ ALT="\begin{displaymath}
+\Sigma_1 = \bordermatrix{ &amp; k &amp; m-k &amp; k+l-m \cr
+\hfill k &amp; I &amp; 0 &amp; 0 \cr
+m-k &amp; 0 &amp; C &amp; 0 }
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\Sigma_2 = \bordermatrix{ & k & m-k & k+l-m \cr
+               \hfill m-k & 0 &  S  &   0   \cr
+                    k+l-m & 0 &  0  &   I   \cr
+               \hfill p-l & 0 &  0  &   0   } \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="329" HEIGHT="98" BORDER="0"
+ SRC="img86.gif"
+ ALT="\begin{displaymath}
+\Sigma_2 = \bordermatrix{ &amp; k &amp; m-k &amp; k+l-m \cr
+\hfill m-k ...
+... &amp; 0 \cr
+k+l-m &amp; 0 &amp; 0 &amp; I \cr
+\hfill p-l &amp; 0 &amp; 0 &amp; 0 } \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Again, <I>l</I> is the rank of <I>B</I>, <I>k</I>=<I>r</I>-<I>l</I>, <I>C</I> and <I>S</I> are diagonal
+matrices satisfying <I>C</I><SUP>2</SUP> + <I>S</I><SUP>2</SUP> = <I>I</I>, <I>S</I> is nonsingular,
+and we may identify
+
+<!-- MATH
+ $\alpha_1 = \cdots = \alpha_k = 1$
+ -->
+<IMG
+ WIDTH="141" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img79.gif"
+ ALT="$\alpha_1 = \cdots = \alpha_k = 1$">,
+
+<!-- MATH
+ $\alpha_{k+i} = c_{ii}$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img80.gif"
+ ALT="$\alpha_{k+i} = c_{ii}$">
+for 
+<!-- MATH
+ $i=1, \ldots , m-k$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img87.gif"
+ ALT="$i=1, \ldots , m-k$">,
+
+<!-- MATH
+ $\alpha_{m+1} = \cdots = \alpha_r = 0$
+ -->
+<IMG
+ WIDTH="163" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img88.gif"
+ ALT="$\alpha_{m+1} = \cdots = \alpha_r = 0$">,
+
+<!-- MATH
+ $\beta_1 = \cdots = \beta_k = 0$
+ -->
+<IMG
+ WIDTH="139" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.gif"
+ ALT="$\beta_1 = \cdots = \beta_k = 0$">,
+
+<!-- MATH
+ $\beta_{k+i} = s_{ii}$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img83.gif"
+ ALT="$\beta_{k+i} = s_{ii}$">
+for 
+<!-- MATH
+ $i=1, \ldots , m-k$
+ -->
+<IMG
+ WIDTH="127" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img87.gif"
+ ALT="$i=1, \ldots , m-k$">,
+and
+
+<!-- MATH
+ $\beta_{m+1} = \cdots = \beta_r = 1$
+ -->
+<IMG
+ WIDTH="160" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.gif"
+ ALT="$\beta_{m+1} = \cdots = \beta_r = 1$">.
+Thus, the first <I>k</I> generalized singular values
+
+<!-- MATH
+ $\alpha_1 / \beta_1 , \ldots , \alpha_k / \beta_k$
+ -->
+<IMG
+ WIDTH="134" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img84.gif"
+ ALT="$\alpha_1 / \beta_1 , \ldots , \alpha_k / \beta_k$">
+are infinite, and the remaining <I>l</I> generalized singular values
+are finite.
+
+<P>
+Here are some important special cases of the generalized singular value
+decomposition.
+<A NAME="1843"></A>
+<A NAME="1844"></A>
+First, if <I>B</I> is square and nonsingular, then <I>r</I>=<I>n</I> and the
+generalized singular value decomposition of <I>A</I> and <I>B</I> is equivalent
+to the singular value decomposition of <I>AB</I><SUP>-1</SUP>, where the singular
+values of <I>AB</I><SUP>-1</SUP> are equal to the generalized singular values of the
+pair <I>A</I>, <I>B</I>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+AB^{-1} = (U \Sigma_1 R Q^T)(V \Sigma_2 R Q^T)^{-1} =
+U ( \Sigma_1 \Sigma_2^{-1} ) V^T \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="397" HEIGHT="31" BORDER="0"
+ SRC="img90.gif"
+ ALT="\begin{displaymath}
+AB^{-1} = (U \Sigma_1 R Q^T)(V \Sigma_2 R Q^T)^{-1} =
+U ( \Sigma_1 \Sigma_2^{-1} ) V^T \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Second, if
+the columns of 
+<!-- MATH
+ $(A^T \; B^T)^T$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img91.gif"
+ ALT="$(A^T \; B^T)^T$">
+are orthonormal, then <I>r</I>=<I>n</I>, <I>R</I>=<I>I</I> and the
+generalized
+singular value decomposition of <I>A</I> and <I>B</I> is equivalent to the CS
+(Cosine-Sine) decomposition of 
+<!-- MATH
+ $(A^T \; B^T)^T$
+ -->
+<IMG
+ WIDTH="82" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img91.gif"
+ ALT="$(A^T \; B^T)^T$">
+[<A
+ HREF="node151.html#GVL2">55</A>]:
+<A NAME="1851"></A>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{c} A \\B \end{array} \right) = \left( \begin{array}{cc} U & 0 \\0 & V \end{array} \right) 
+\left( \begin{array}{c} \Sigma_1 \\\Sigma_2 \end{array} \right) Q^T \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="265" HEIGHT="54" BORDER="0"
+ SRC="img92.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{c} A \\ B \end{array} \right) = \left( ...
+...array}{c} \Sigma_1 \\ \Sigma_2 \end{array} \right) Q^T \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Third, the generalized eigenvalues and eigenvectors of 
+<!-- MATH
+ $A^TA - \lambda B^TB$
+ -->
+<IMG
+ WIDTH="111" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img93.gif"
+ ALT="$A^TA - \lambda B^TB$">
+can be expressed in terms of the generalized singular value decomposition:
+Let
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+X = Q \left( \begin{array}{cc} I & 0 \\0 & R^{-1} \end{array} \right) \; \; .
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="170" HEIGHT="54" BORDER="0"
+ SRC="img94.gif"
+ ALT="\begin{displaymath}
+X = Q \left( \begin{array}{cc} I &amp; 0 \\ 0 &amp; R^{-1} \end{array} \right) \; \; .
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Then
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+X^T A^T A X = \left( \begin{array}{cc}
+                       0 & 0   \\
+                       0 & \Sigma^T_1 \Sigma_1
+                       \end{array} \right) \;\; {\rm and} \;\;
+X^T B^T B X = \left( \begin{array}{cc}
+                       0 & 0   \\
+                       0 & \Sigma^T_2 \Sigma_2
+                       \end{array} \right).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="482" HEIGHT="54" BORDER="0"
+ SRC="img95.gif"
+ ALT="\begin{displaymath}
+X^T A^T A X = \left( \begin{array}{cc}
+0 &amp; 0 \\
+0 &amp; \Sigm...
+...{cc}
+0 &amp; 0 \\
+0 &amp; \Sigma^T_2 \Sigma_2
+\end{array} \right).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Therefore, the columns of <I>X</I> are the eigenvectors of
+
+<!-- MATH
+ $A^T A - \lambda  B^T B$
+ -->
+<IMG
+ WIDTH="111" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img93.gif"
+ ALT="$A^TA - \lambda B^TB$">,
+and the ``nontrivial'' eigenvalues are the
+squares of the generalized singular values (see also section&nbsp;<A HREF="node34.html#secGSEP">2.3.5.1</A>).
+``Trivial'' eigenvalues
+are those corresponding to the leading <I>n</I>-<I>r</I> columns of <I>X</I>,
+which span the common null space of <I>A</I><SUP><I>T</I></SUP> <I>A</I> and <I>B</I><SUP><I>T</I></SUP> <I>B</I>.
+<A NAME="1865"></A>
+<A NAME="1866"></A>
+The ``trivial eigenvalues'' are not well defined<A NAME="tex2html383"
+ HREF="footnode.html#foot3925"><SUP>2.1</SUP></A>.
+
+<P>
+A single driver routine xGGSVD<A NAME="1868"></A><A NAME="1869"></A><A NAME="1870"></A><A NAME="1871"></A> computes the generalized
+singular value decomposition<A NAME="1872"></A><A NAME="1873"></A> of <I>A</I> and <I>B</I> (see Table&nbsp;<A HREF="node36.html#tabdrivegeig">2.6</A>).
+The method is based on the method described in
+[<A
+ HREF="node151.html#paige86a">83</A>,<A
+ HREF="node151.html#baidemmel92b">10</A>,<A
+ HREF="node151.html#baizha93">8</A>].
+
+<P>
+<BR>
+<DIV ALIGN="CENTER">
+
+<A NAME="tabdrivegeig"></A>
+<DIV ALIGN="CENTER">
+<A NAME="1877"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 2.6:</STRONG>
+Driver routines for generalized eigenvalue and singular value problems</CAPTION>
+<TR><TD ALIGN="CENTER">Type of</TD>
+<TD ALIGN="LEFT">Function and storage scheme</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Single precision</TD>
+<TD ALIGN="CENTER" COLSPAN=2>Double precision</TD>
+</TR>
+<TR><TD ALIGN="CENTER">problem</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">complex</TD>
+</TR>
+<TR><TD ALIGN="CENTER">GSEP</TD>
+<TD ALIGN="LEFT">simple driver</TD>
+<TD ALIGN="LEFT">SSYGV<A NAME="1889"></A></TD>
+<TD ALIGN="LEFT">CHEGV<A NAME="1890"></A></TD>
+<TD ALIGN="LEFT">DSYGV<A NAME="1891"></A></TD>
+<TD ALIGN="LEFT">ZHEGV
+<A NAME="1892"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSYGVD<A NAME="1893"></A></TD>
+<TD ALIGN="LEFT">CHEGVD<A NAME="1894"></A></TD>
+<TD ALIGN="LEFT">DSYGVD<A NAME="1895"></A></TD>
+<TD ALIGN="LEFT">ZHEGVD
+<A NAME="1896"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SSYGVX<A NAME="1897"></A></TD>
+<TD ALIGN="LEFT">CHEGVX<A NAME="1898"></A></TD>
+<TD ALIGN="LEFT">DSYGVX<A NAME="1899"></A></TD>
+<TD ALIGN="LEFT">ZHEGVX
+<A NAME="1900"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver (packed storage)</TD>
+<TD ALIGN="LEFT">SSPGV<A NAME="1902"></A></TD>
+<TD ALIGN="LEFT">CHPGV<A NAME="1903"></A></TD>
+<TD ALIGN="LEFT">DSPGV<A NAME="1904"></A></TD>
+<TD ALIGN="LEFT">ZHPGV
+<A NAME="1905"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSPGVD<A NAME="1906"></A></TD>
+<TD ALIGN="LEFT">CHPGVD<A NAME="1907"></A></TD>
+<TD ALIGN="LEFT">DSPGVD<A NAME="1908"></A></TD>
+<TD ALIGN="LEFT">ZHPGVD
+<A NAME="1909"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SSPGVX<A NAME="1910"></A></TD>
+<TD ALIGN="LEFT">CHPGVX<A NAME="1911"></A></TD>
+<TD ALIGN="LEFT">DSPGVX<A NAME="1912"></A></TD>
+<TD ALIGN="LEFT">ZHPGVX
+<A NAME="1913"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver (band matrices)</TD>
+<TD ALIGN="LEFT">SSBGV<A NAME="1915"></A></TD>
+<TD ALIGN="LEFT">CHBGV<A NAME="1916"></A></TD>
+<TD ALIGN="LEFT">DSBGV<A NAME="1917"></A></TD>
+<TD ALIGN="LEFT">ZHBGV
+<A NAME="1918"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">divide and conquer driver</TD>
+<TD ALIGN="LEFT">SSBGVD<A NAME="1919"></A></TD>
+<TD ALIGN="LEFT">CHBGVD<A NAME="1920"></A></TD>
+<TD ALIGN="LEFT">DSBGV<A NAME="1921"></A></TD>
+<TD ALIGN="LEFT">ZHBGVD
+<A NAME="1922"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver</TD>
+<TD ALIGN="LEFT">SSBGVX<A NAME="1923"></A></TD>
+<TD ALIGN="LEFT">CHBGVX<A NAME="1924"></A></TD>
+<TD ALIGN="LEFT">DSBGVX<A NAME="1925"></A></TD>
+<TD ALIGN="LEFT">ZHBGVX
+<A NAME="1926"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">GNEP</TD>
+<TD ALIGN="LEFT">simple driver for Schur factorization</TD>
+<TD ALIGN="LEFT">SGGES<A NAME="1928"></A></TD>
+<TD ALIGN="LEFT">CGGES<A NAME="1929"></A></TD>
+<TD ALIGN="LEFT">DGGES<A NAME="1930"></A></TD>
+<TD ALIGN="LEFT">ZGGES
+<A NAME="1931"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver for Schur factorization</TD>
+<TD ALIGN="LEFT">SGGESX<A NAME="1932"></A></TD>
+<TD ALIGN="LEFT">CGGESX<A NAME="1933"></A></TD>
+<TD ALIGN="LEFT">DGGESX<A NAME="1934"></A></TD>
+<TD ALIGN="LEFT">ZGGESX
+<A NAME="1935"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">simple driver for eigenvalues/vectors</TD>
+<TD ALIGN="LEFT">SGGEV<A NAME="1936"></A></TD>
+<TD ALIGN="LEFT">CGGEV<A NAME="1937"></A></TD>
+<TD ALIGN="LEFT">DGGEV<A NAME="1938"></A></TD>
+<TD ALIGN="LEFT">ZGGEV
+<A NAME="1939"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">expert driver for eigenvalues/vectors</TD>
+<TD ALIGN="LEFT">SGGEVX<A NAME="1940"></A></TD>
+<TD ALIGN="LEFT">CGGEVX<A NAME="1941"></A></TD>
+<TD ALIGN="LEFT">DGGEVX<A NAME="1942"></A></TD>
+<TD ALIGN="LEFT">ZGGEVX
+<A NAME="1943"></A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">GSVD</TD>
+<TD ALIGN="LEFT">singular values/vectors</TD>
+<TD ALIGN="LEFT">SGGSVD<A NAME="1944"></A></TD>
+<TD ALIGN="LEFT">CGGSVD<A NAME="1945"></A></TD>
+<TD ALIGN="LEFT">DGGSVD<A NAME="1946"></A></TD>
+<TD ALIGN="LEFT">ZGGSVD
+<A NAME="1947"></A></TD>
+</TR>
+</TABLE>
+</DIV>
+</DIV>
+<BR>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4629"
+ HREF="node37.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4623"
+ HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4619"
+ HREF="node35.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4625"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4627"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4630"
+ HREF="node37.html">Computational Routines</A>
+<B> Up:</B> <A NAME="tex2html4624"
+ HREF="node33.html">Generalized Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4620"
+ HREF="node35.html">Generalized Nonsymmetric Eigenproblems (GNEP)</A>
+ &nbsp <B>  <A NAME="tex2html4626"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4628"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

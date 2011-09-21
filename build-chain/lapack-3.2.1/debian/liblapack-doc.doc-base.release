@@ -1,0 +1,12 @@
+Document: liblapack-doc.release
+Title: Lapack Release Notes
+Author: J. Dongarra, et. al.
+Abstract: Version 20000531
+Section: Programming
+
+Format: text
+Files: /usr/share/doc/liblapack-doc/errata.lug.gz /usr/share/doc/liblapack-doc/installation.hints.gz
+
+Format: HTML
+Index: /usr/share/doc/liblapack-doc/release_notes.html
+Files: /usr/share/doc/liblapack-doc/release_notes.html

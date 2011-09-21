@@ -1,0 +1,70 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_support_nonstandard_aiffc.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add support for reading nonstandard uncompressed AIFF-C files created
+## DP: by Mac OS X.
+## DP: Pulled from upstream BK repo (csets 1.164 and 1.165).
+## DP: Removed Changelog entries to avoid clashes.
+
+@DPATCH@
+# This is a BitKeeper generated diff -Nru style patch.
+#
+# ChangeSet
+#   2004/11/14 23:23:47-08:00 michael@weather.68k.org 
+#   Add support for reading more nonstandard uncompressed two's complement
+#   AIFF-C files created by Mac OS X.
+# 
+# ChangeLog
+#   2004/11/14 23:22:54-08:00 michael@weather.68k.org +5 -0
+#   Add support for reading more nonstandard uncompressed two's complement
+#   AIFF-C files created by Mac OS X.
+# 
+# libaudiofile/aiff.c
+#   2004/11/14 23:23:16-08:00 michael@weather.68k.org +10 -0
+#   Add support for reading more nonstandard uncompressed two's complement
+#   AIFF-C files created by Mac OS X.
+# 
+# This is a BitKeeper generated diff -Nru style patch.
+#
+# ChangeSet
+#   2004/09/15 01:08:35-05:00 michael@andromeda.68k.org 
+#   Add support for reading nonstandard uncompressed AIFF-C files created
+#   by Mac OS X.
+# 
+# ChangeLog
+#   2004/09/15 01:04:18-05:00 michael@andromeda.68k.org +5 -0
+#   Add support for reading nonstandard uncompressed AIFF-C files created
+#   by Mac OS X.
+# 
+# libaudiofile/aiff.c
+#   2004/09/15 01:03:22-05:00 michael@andromeda.68k.org +4 -1
+#   Add support for reading nonstandard uncompressed AIFF-C files created
+#   by Mac OS X.
+# 
+diff -urNad audiofile/libaudiofile/aiff.c /tmp/dpep.Zl4KHc/audiofile/libaudiofile/aiff.c
+--- audiofile/libaudiofile/aiff.c	2004-03-09 12:49:52.000000000 +0100
++++ /tmp/dpep.Zl4KHc/audiofile/libaudiofile/aiff.c	2004-11-27 22:05:05.000000000 +0100
+@@ -386,8 +386,21 @@
+ 		af_fread(compressionName, compressionNameLength, 1, fh);
+ 		compressionName[compressionNameLength] = '\0';
+ 
+-		if (!memcmp(compressionID, "NONE", 4))
++		if (!memcmp(compressionID, "NONE", 4) ||
++			!memcmp(compressionID, "twos", 4))
++		{
++			track->f.compressionType = AF_COMPRESSION_NONE;
++		}
++		else if (!memcmp(compressionID, "in24", 4))
++		{
+ 			track->f.compressionType = AF_COMPRESSION_NONE;
++			track->f.sampleWidth = 24;
++		}
++		else if (!memcmp(compressionID, "in32", 4))
++		{
++			track->f.compressionType = AF_COMPRESSION_NONE;
++			track->f.sampleWidth = 32;
++		}
+ 		else if (!memcmp(compressionID, "ACE2", 4) ||
+ 			!memcmp(compressionID, "ACE8", 4) ||
+ 			!memcmp(compressionID, "MAC3", 4) ||

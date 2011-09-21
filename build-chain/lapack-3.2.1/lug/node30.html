@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Symmetric Eigenproblems (SEP)</TITLE>
+<META NAME="description" CONTENT="Symmetric Eigenproblems (SEP)">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node31.html">
+<LINK REL="previous" HREF="node29.html">
+<LINK REL="up" HREF="node29.html">
+<LINK REL="next" HREF="node31.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4548"
+ HREF="node31.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4542"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4536"
+ HREF="node29.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4544"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4546"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4549"
+ HREF="node31.html">Nonsymmetric Eigenproblems (NEP)</A>
+<B> Up:</B> <A NAME="tex2html4543"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4537"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+ &nbsp <B>  <A NAME="tex2html4545"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4547"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03234100000000000000"></A><A NAME="subsecdriveeigSEP"></A>
+<BR>
+Symmetric Eigenproblems (SEP)
+</H3>
+
+<P>
+The <B>symmetric eigenvalue problem</B> is to find the <B>eigenvalues</B><A NAME="1511"></A><A NAME="1512"></A>,
+<IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">,
+and corresponding <B>eigenvectors</B><A NAME="1514"></A>, <IMG
+ WIDTH="45" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.gif"
+ ALT="$z \ne 0$">,
+such that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Az = \lambda z, \quad A = A^T, \mbox{  where } A \mbox{ is real}.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="282" HEIGHT="30" BORDER="0"
+ SRC="img25.gif"
+ ALT="\begin{displaymath}
+Az = \lambda z, \quad A = A^T, \mbox{ where } A \mbox{ is real}.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+For the <B>Hermitian eigenvalue problem</B> we have
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+Az = \lambda z, \quad A = A^H.
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="156" HEIGHT="30" BORDER="0"
+ SRC="img26.gif"
+ ALT="\begin{displaymath}
+Az = \lambda z, \quad A = A^H.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+For both problems the eigenvalues <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+are real.
+
+<P>
+When all eigenvalues and eigenvectors have been computed, we write:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+A = Z \Lambda Z^T
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="85" HEIGHT="27" BORDER="0"
+ SRC="img27.gif"
+ ALT="\begin{displaymath}
+A = Z \Lambda Z^T
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.gif"
+ ALT="$\Lambda$">
+is a diagonal matrix whose diagonal elements are the
+eigenvalues<A NAME="1518"></A>, and <I>Z</I> is an orthogonal (or unitary) matrix whose columns
+are the eigenvectors.  This is the classical <B>spectral factorization</B>
+<A NAME="1520"></A> of <I>A</I>.
+
+<P>
+There are four types of driver routines for symmetric and Hermitian eigenproblems.
+Originally LAPACK had just the simple and expert drivers described below, and
+the other two were added after improved algorithms were discovered. Ultimately
+we expect the algorithm in the most recent driver (called RRR below) to supersede
+all the others, but in LAPACK 3.0 the other drivers may still be faster on some
+problems, so we retain them.
+
+<P>
+
+<UL><LI>A <B>simple</B> driver (name ending -EV) computes all the eigenvalues and
+      (optionally) eigenvectors.
+
+<P>
+
+<LI>An <B>expert</B> driver (name ending -EVX) computes all or a selected subset
+      of the eigenvalues and (optionally) eigenvectors. If few enough
+      eigenvalues or eigenvectors are desired, the expert driver is faster
+      than the simple driver.
+
+<P>
+
+<LI>A <B>divide-and-conquer</B> driver (name ending -EVD) solves the same problem
+      as the simple driver.  It is much faster than the simple driver
+      for large matrices, but uses more workspace. The name divide-and-conquer
+      refers to the underlying algorithm (see sections <A HREF="node48.html#subseccompsep">2.4.4</A>
+      and <A HREF="node70.html#subsecblockeig">3.4.3</A>).
+
+<P>
+
+<LI>A <B>relatively robust representation</B> (RRR) driver (name ending -EVR) computes
+      all or (in a later release) a subset of the eigenvalues, and (optionally)
+      eigenvectors. It is the fastest algorithm of all (except for a few cases),
+      and uses the least workspace. The name RRR refers to the underlying
+      algorithm (see sections <A HREF="node48.html#subseccompsep">2.4.4</A> and <A HREF="node70.html#subsecblockeig">3.4.3</A>).
+
+<P>
+
+</UL>
+
+<P>
+Different driver routines are provided to take advantage of special
+structure or storage of the matrix <I>A</I>, as shown in
+Table&nbsp;<A HREF="node32.html#tabdriveseig">2.5</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4548"
+ HREF="node31.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4542"
+ HREF="node29.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4536"
+ HREF="node29.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4544"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4546"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4549"
+ HREF="node31.html">Nonsymmetric Eigenproblems (NEP)</A>
+<B> Up:</B> <A NAME="tex2html4543"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+<B> Previous:</B> <A NAME="tex2html4537"
+ HREF="node29.html">Standard Eigenvalue and Singular</A>
+ &nbsp <B>  <A NAME="tex2html4545"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4547"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

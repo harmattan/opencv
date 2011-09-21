@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_include_audiofile_in_af_vfs.dpatch by Daniel Kobras <kobras@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: af_vfs.h relies on audiofile.h being included already, so force it
+## DP: this way.
+
+@DPATCH@
+diff -urNad audiofile/libaudiofile/af_vfs.h /tmp/dpep.wB3ZRh/audiofile/libaudiofile/af_vfs.h
+--- audiofile/libaudiofile/af_vfs.h	2005-03-19 19:41:28.000000000 +0100
++++ /tmp/dpep.wB3ZRh/audiofile/libaudiofile/af_vfs.h	2005-03-19 19:42:07.000000000 +0100
+@@ -28,6 +28,7 @@
+ #define AUDIOFILE_VFS_H 1
+ 
+ #include <stdio.h>
++#include <audiofile.h>
+ 
+ struct _AFvirtualfile
+ {

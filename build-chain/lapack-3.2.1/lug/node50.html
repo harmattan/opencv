@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Eigenvalues, Eigenvectors and Schur Factorization</TITLE>
+<META NAME="description" CONTENT="Eigenvalues, Eigenvectors and Schur Factorization">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node51.html">
+<LINK REL="previous" HREF="node49.html">
+<LINK REL="up" HREF="node49.html">
+<LINK REL="next" HREF="node51.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html4851"
+ HREF="node51.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4845"
+ HREF="node49.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4839"
+ HREF="node49.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4847"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4849"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4852"
+ HREF="node51.html">Balancing</A>
+<B> Up:</B> <A NAME="tex2html4846"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4840"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html4848"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4850"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION03245100000000000000"></A>
+<A NAME="3198"></A>
+<BR>
+Eigenvalues, Eigenvectors and Schur Factorization
+</H3>
+Let <B><I>A</I></B> be a square <B><I>n</I></B>-by-<B><I>n</I></B> matrix. A scalar <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+is called
+an <B>eigenvalue</B><A NAME="3200"></A> and a non-zero column vector <B><I>v</I></B> the corresponding
+<B>right eigenvector</B><A NAME="3202"></A> if 
+<!-- MATH
+ $Av = \lambda v$
+ -->
+<IMG
+ WIDTH="69" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img150.gif"
+ ALT="$Av = \lambda v$">.
+A nonzero column vector <B><I>u</I></B>
+satisfying 
+<!-- MATH
+ $u^H A = \lambda u^H$
+ -->
+<IMG
+ WIDTH="97" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img151.gif"
+ ALT="$u^H A = \lambda u^H$">
+is called the <B>left eigenvector</B><A NAME="3204"></A>.
+The first basic task
+of the routines described in this section
+is to compute, for a given matrix <B><I>A</I></B>,  all <B><I>n</I></B> values of <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.gif"
+ ALT="$\lambda$">
+and,
+if desired, their associated right eigenvectors <B><I>v</I></B> and/or
+left eigenvectors <B><I>u</I></B>.
+
+<P>
+A second basic task is to compute the <B>Schur factorization</B> of a matrix <B><I>A</I></B>.
+<A NAME="3206"></A>
+If <B><I>A</I></B> is complex, then its Schur factorization is <B><I>A</I>=<I>ZTZ</I><SUP><I>H</I></SUP></B>, where
+<B><I>Z</I></B> is unitary and <B><I>T</I></B> is upper triangular. If <B><I>A</I></B> is real, its
+Schur factorization is <B><I>A</I>=<I>ZTZ</I><SUP><I>T</I></SUP></B>, where <B><I>Z</I></B> is orthogonal.
+and <B><I>T</I></B> is upper quasi-triangular (<B>1</B>-by-<B>1</B> and <B>2</B>-by-<B>2</B> blocks on
+its diagonal).
+The columns of <B><I>Z</I></B> are called the <B>Schur vectors </B> of <B><I>A</I></B>.
+<A NAME="3208"></A>
+The eigenvalues of <B><I>A</I></B> appear on the diagonal of <B><I>T</I></B>; complex conjugate
+eigenvalues of a real <B><I>A</I></B> correspond to <B>2</B>-by-<B>2</B> blocks on the diagonal of <B><I>T</I></B>.
+
+<P>
+These two basic tasks can be performed in the following stages:
+
+<P>
+<DL COMPACT>
+<DT>1.
+<DD>A general matrix <B><I>A</I></B> is reduced to <B>upper Hessenberg form</B><A NAME="3211"></A> <B><I>H</I></B>
+<A NAME="3212"></A>
+<A NAME="3213"></A>
+which is zero below the first subdiagonal. The reduction may be written
+<B><I>A</I>=<I>QHQ</I><SUP><I>T</I></SUP></B> with <B><I>Q</I></B> orthogonal if <B><I>A</I></B> is real, or
+<B><I>A</I>=<I>QHQ</I><SUP><I>H</I></SUP></B> with <B><I>Q</I></B> unitary if <B><I>A</I></B> is complex.
+The reduction is performed by subroutine xGEHRD, which
+represents
+<A NAME="3214"></A><A NAME="3215"></A><A NAME="3216"></A><A NAME="3217"></A>
+<B><I>Q</I></B> in a factored form, as described in section&nbsp;<A HREF="node128.html#secorthog">5.4</A>.
+The routine xORGHR (or in the complex case xUNGHR) is provided to
+form <B><I>Q</I></B> explicitly.
+<A NAME="3219"></A><A NAME="3220"></A><A NAME="3221"></A><A NAME="3222"></A>
+The routine xORMHR<A NAME="3223"></A><A NAME="3224"></A> (or in the complex case xUNMHR) is provided to
+<A NAME="3225"></A><A NAME="3226"></A>
+multiply another matrix by <B><I>Q</I></B> without forming <B><I>Q</I></B> explicitly.
+<P>
+<DT>2.
+<DD>The upper Hessenberg matrix <B><I>H</I></B> is reduced to Schur form <B><I>T</I></B>,
+<A NAME="3227"></A>
+giving the Schur factorization <B><I>H</I>=<I>STS</I><SUP><I>T</I></SUP></B>
+(for <B><I>H</I></B> real) or <B><I>H</I>=<I>STS</I><SUP><I>H</I></SUP></B> (for <B><I>H</I></B> complex). The matrix <B><I>S</I></B> (the Schur vectors
+of <B><I>H</I></B>) may
+optionally be computed as well. Alternatively <B><I>S</I></B> may be postmultiplied
+into the matrix <B><I>Q</I></B> determined in stage 1, to give the matrix <B><I>Z</I> = <I>Q S</I></B>, the
+Schur vectors of <B><I>A</I></B>. The eigenvalues<A NAME="3228"></A> are obtained from the
+diagonal of <B><I>T</I></B>. All this is done by subroutine xHSEQR.
+<A NAME="3229"></A><A NAME="3230"></A><A NAME="3231"></A><A NAME="3232"></A>
+
+<P>
+<DT>3.
+<DD>Given the eigenvalues, the eigenvectors  may be computed in
+two different ways. xHSEIN performs inverse iteration<A NAME="3233"></A> on <B><I>H</I></B> to compute
+<A NAME="3234"></A><A NAME="3235"></A><A NAME="3236"></A><A NAME="3237"></A>
+the eigenvectors of <B><I>H</I></B>;
+xORMHR<A NAME="3238"></A><A NAME="3239"></A> can then be used to multiply the eigenvectors by the matrix <B><I>Q</I></B>
+in order to transform them to eigenvectors of <B><I>A</I></B>.
+xTREVC<A NAME="3240"></A><A NAME="3241"></A><A NAME="3242"></A><A NAME="3243"></A> computes the eigenvectors of <B><I>T</I></B>, and optionally transforms them
+to those of <B><I>H</I></B> or <B><I>A</I></B> if the matrix <B><I>S</I></B> or <B><I>Z</I></B> is supplied.
+Both xHSEIN and xTREVC allow selected left and/or right eigenvectors
+to be computed.
+
+<P>
+</DL>
+
+<P>
+Other subsidiary tasks may be performed before or after those just described.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4851"
+ HREF="node51.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html4845"
+ HREF="node49.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html4839"
+ HREF="node49.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html4847"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html4849"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4852"
+ HREF="node51.html">Balancing</A>
+<B> Up:</B> <A NAME="tex2html4846"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+<B> Previous:</B> <A NAME="tex2html4840"
+ HREF="node49.html">Nonsymmetric Eigenproblems</A>
+ &nbsp <B>  <A NAME="tex2html4848"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html4850"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

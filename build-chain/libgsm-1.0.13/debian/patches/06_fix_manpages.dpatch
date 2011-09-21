@@ -1,0 +1,146 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 06_fix_manpages.dpatch by  <jochen@scram.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad libgsm-1.0.13~/man/gsm.3 libgsm-1.0.13/man/gsm.3
+--- libgsm-1.0.13~/man/gsm.3	2009-10-14 11:17:29.000000000 +0200
++++ libgsm-1.0.13/man/gsm.3	2009-10-14 12:10:49.000000000 +0200
+@@ -3,7 +3,6 @@
+ .\" Universitaet Berlin.  See the accompanying file "COPYRIGHT" for
+ .\" details.  THERE IS ABSOLUTELY NO WARRANTY FOR THIS SOFTWARE.
+ .\"
+-.PU
+ .TH GSM 3 
+ .SH NAME
+ gsm_create, gsm_destroy, gsm_encode, gsm_decode \(em GSM\ 06.10 lossy sound compression
+diff -urNad libgsm-1.0.13~/man/gsm_explode.3 libgsm-1.0.13/man/gsm_explode.3
+--- libgsm-1.0.13~/man/gsm_explode.3	2009-10-14 11:17:29.000000000 +0200
++++ libgsm-1.0.13/man/gsm_explode.3	2009-10-14 12:10:49.000000000 +0200
+@@ -3,7 +3,6 @@
+ .\" Universitaet Berlin.  See the accompanying file "COPYRIGHT" for
+ .\" details.  THERE IS ABSOLUTELY NO WARRANTY FOR THIS SOFTWARE.
+ .\"
+-.PU
+ .TH GSM_EXPLODE 3 
+ .SH NAME
+ gsm_explode, gsm_implode \(em GSM\ 06.10 supplementary
+diff -urNad libgsm-1.0.13~/man/gsm_option.3 libgsm-1.0.13/man/gsm_option.3
+--- libgsm-1.0.13~/man/gsm_option.3	2009-10-14 11:17:29.000000000 +0200
++++ libgsm-1.0.13/man/gsm_option.3	2009-10-14 12:13:14.000000000 +0200
+@@ -3,7 +3,6 @@
+ .\" Universitaet Berlin.  See the accompanying file "COPYRIGHT" for
+ .\" details.  THERE IS ABSOLUTELY NO WARRANTY FOR THIS SOFTWARE.
+ .\"
+-.PU
+ .TH GSM_OPTION 3 
+ .SH NAME
+ gsm_option \(em customizing the GSM 06.10 implementation
+@@ -39,19 +38,19 @@
+ .I GSM_OPT_VERBOSE
+ Verbosity level.
+ .br
+-.in+5
++.RS
+ This option is only supported if the library was compiled
+ with debugging turned on, and may be used by developers of
+ compression algorithms to aid debugging.
+ .br
+ The verbosity level can be changed at any time during encoding or decoding.
+-.in-5
++.RE
+ .sp
+ .PP
+ .I GSM_OPT_FAST
+ Faster compression algorithm.
+ .br
+-.in+5
++.RS
+ This implementation offers a not strictly standard-compliant, but
+ faster compression algorithm that is compatible with the regular
+ method and does not noticably degrade audio quality.
+@@ -70,14 +69,13 @@
+ to set or query it.
+ .br
+ This option can be set any time during encoding or decoding.
+-.in-5
+-.ne 5
++.RE
+ .sp
+ .PP
+ .I GSM_OPT_LTP_CUT
+ Enable, disable, or query the LTP cut-off optimization.
+ .br
+-.in+5
++.RS
+ During encoding, the search for the long-term correlation
+ lag forms the bottleneck of the algorithm. 
+ The ltp-cut option enables an approximation that disregards most
+@@ -95,12 +93,13 @@
+ This option can be set any time during encoding
+ or decoding; it will only affect the encoding pass, not
+ the decoding.
++.RE
+ .sp
+ .PP
+ .I GSM_OPT_WAV49
+ WAV-style byte ordering.
+ .br
+-.in+5
++.RS
+ A WAV file of type #49 contains GSM 06.10-encoded frames.
+ Unfortunately, the framing and code ordering of the WAV version
+ are incompatible with the native ones of this GSM 06.10 library.
+@@ -131,12 +130,13 @@
+ .br
+ Thanks to Jeff Chilton for the detective work and first free
+ implementation of this version of the GSM 06.10 encoding.
++.RE
+ .sp
+ .PP
+ .I GSM_OPT_FRAME_CHAIN
+ Query or set the chaining byte.
+ .br
+-.in+5
++.RS
+ Between the two frames of a WAV-style encoding, the GSM 06.10 library
+ must keep track of one half-byte that is technically part of the first
+ frame, but will be written as the first four bits of the second.
+@@ -148,13 +148,14 @@
+ .fi
+ .br 
+ This option can be queried and set at any time.
++.RE
+ .sp
+ .PP
+ .I GSM_OPT_FRAME_INDEX
+ Query or set the current frame's index in a format's
+ alternating list of frames.
+ .br
+-.in+5
++.RS
+ The WAV #49 framing uses two alternating types of frames.
+ Which type the next GSM-coded frame belongs to can be queried, or,
+ when decoding, announced, using
+@@ -173,7 +174,7 @@
+ option, it can be used to position on arbitrary GSM frames
+ within a format like WAV #49 (not accounting for the lost
+ internal GSM state).
+-.in-5
++.RE
+ .SH "RETURN VALUE"
+ gsm_option() returns -1 if an option is not supported, the
+ previous value of the option otherwise.
+diff -urNad libgsm-1.0.13~/man/gsm_print.3 libgsm-1.0.13/man/gsm_print.3
+--- libgsm-1.0.13~/man/gsm_print.3	2009-10-14 11:17:29.000000000 +0200
++++ libgsm-1.0.13/man/gsm_print.3	2009-10-14 12:10:49.000000000 +0200
+@@ -3,7 +3,6 @@
+ .\" Universitaet Berlin.  See the accompanying file "COPYRIGHT" for
+ .\" details.  THERE IS ABSOLUTELY NO WARRANTY FOR THIS SOFTWARE.
+ .\"
+-.PU
+ .TH GSM_PRINT 3 
+ .SH NAME
+ gsm_print \(em GSM\ 06.10 supplementary function for debugging

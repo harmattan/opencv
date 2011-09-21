@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Error Bounds for Fast Level 3 BLAS</TITLE>
+<META NAME="description" CONTENT="Error Bounds for Fast Level 3 BLAS">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="previous" HREF="node106.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node109.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5705"
+ HREF="node109.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5699"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5695"
+ HREF="node107.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5701"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5703"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5706"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Up:</B> <A NAME="tex2html5700"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5696"
+ HREF="node107.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5702"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5704"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION034130000000000000000"></A><A NAME="secfastblas"></A>
+<BR>
+Error Bounds for Fast Level 3 BLAS
+</H1>
+
+<P>
+The Level 3 BLAS specifications [<A
+ HREF="node151.html#blas3">40</A>] specify the input, output
+and calling sequence for each routine, but allow freedom of
+implementation, subject to the requirement that the routines be
+numerically stable<A NAME="13071"></A>.
+Level 3 BLAS implementations can therefore be
+built using matrix multiplication algorithms that achieve a more
+favorable operation count (for suitable dimensions) than the standard
+multiplication technique, provided that these ``fast''  algorithms are
+numerically stable.  The simplest fast matrix multiplication
+technique is Strassen's
+method<A NAME="13072"></A><A NAME="13073"></A>, which can
+multiply two <B><I>n</I></B>-by-<B><I>n</I></B>
+matrices in fewer than 
+<!-- MATH
+ $4.7 n^{\log_2 7}$
+ -->
+<IMG
+ WIDTH="71" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img908.gif"
+ ALT="$4.7 n^{\log_2 7}$">
+operations, where
+
+<!-- MATH
+ $\log_2 7 \approx 2.807$
+ -->
+<IMG
+ WIDTH="109" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img909.gif"
+ ALT="$\log_2 7 \approx 2.807$">.
+
+<P>
+The effect on the results in this chapter of using a fast Level&nbsp;3 BLAS
+implementation can be explained as follows. In general, reasonably
+implemented fast Level&nbsp;3 BLAS preserve all the bounds presented here
+(except those at the end of subsection <A HREF="node98.html#secgendef">4.10</A>), but the constant
+<B><I>p</I>(<I>n</I>)</B> may increase somewhat. Also, the iterative refinement
+routine<A NAME="13076"></A>
+xyyRFS may take more steps to converge.
+
+<P>
+This is what we mean by reasonably implemented fast Level&nbsp;3 BLAS.
+Here, <B><I>c</I><SUB><I>i</I></SUB></B> denotes a constant depending on the specified matrix dimensions.
+
+<P>
+(1) If <B><I>A</I></B> is <B><I>m</I></B>-by-<B><I>n</I></B>, <B><I>B</I></B> is <B><I>n</I></B>-by-<B><I>p</I></B> and <IMG
+ WIDTH="18" HEIGHT="21" ALIGN="BOTTOM" BORDER="0"
+ SRC="img910.gif"
+ ALT="$\widehat C$">
+is the computed
+approximation to <B><I>C</I>=<I>AB</I></B>, then
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\| \widehat C- AB \|_{\infty} \le c_1(m,n,p) \epsilon \|A\|_{\infty}\|B\|_{\infty} + O(\epsilon ^2).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="359" HEIGHT="31" BORDER="0"
+ SRC="img911.gif"
+ ALT="\begin{displaymath}
+\Vert \widehat C- AB \Vert _{\infty} \le c_1(m,n,p) \epsilon \Vert A\Vert _{\infty}\Vert B\Vert _{\infty} + O(\epsilon ^2).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+(2)
+The computed solution <IMG
+ WIDTH="20" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img797.gif"
+ ALT="$\widehat{X}$">
+to the triangular systems <B><I>TX</I>=<I>B</I></B>,
+where <B><I>T</I></B> is <B><I>m</I></B>-by-<B><I>m</I></B> and <B><I>B</I></B> is <B><I>m</I></B>-by-<B><I>p</I></B>, satisfies
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\| T \widehat X- B \|_{\infty} \le c_2(m,p) \epsilon \|T\|_{\infty} \|\widehat X\|_{\infty}
+        + O(\epsilon ^2).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="344" HEIGHT="31" BORDER="0"
+ SRC="img912.gif"
+ ALT="\begin{displaymath}
+\Vert T \widehat X- B \Vert _{\infty} \le c_2(m,p) \epsilon...
+...rt _{\infty} \Vert\widehat X\Vert _{\infty}
++ O(\epsilon ^2).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+For conventional Level&nbsp;3 BLAS implementations these conditions
+hold with 
+<!-- MATH
+ $c_1(m,n,p) = n^2$
+ -->
+<B><I>c</I><SUB>1</SUB>(<I>m</I>,<I>n</I>,<I>p</I>) = <I>n</I><SUP>2</SUP></B> and 
+<!-- MATH
+ $c_2(m,p)= m(m+1)$
+ -->
+<B><I>c</I><SUB>2</SUB>(<I>m</I>,<I>p</I>)= <I>m</I>(<I>m</I>+1)</B>.
+Strassen's method<A NAME="13083"></A> satisfies these
+bounds for slightly larger <B><I>c</I><SUB>1</SUB></B> and <B><I>c</I><SUB>2</SUB></B>.
+
+<P>
+For further details, and references to fast multiplication techniques,
+see&nbsp;[<A
+ HREF="node151.html#Demmel-Higham-Wnote22">27</A>].
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5705"
+ HREF="node109.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5699"
+ HREF="node72.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5695"
+ HREF="node107.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5701"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5703"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5706"
+ HREF="node109.html">Documentation and Software Conventions</A>
+<B> Up:</B> <A NAME="tex2html5700"
+ HREF="node72.html">Accuracy and Stability</A>
+<B> Previous:</B> <A NAME="tex2html5696"
+ HREF="node107.html">Further Details: Error Bounds</A>
+ &nbsp <B>  <A NAME="tex2html5702"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5704"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

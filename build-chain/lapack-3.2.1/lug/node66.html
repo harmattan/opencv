@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Block Algorithms and their
+Derivation</TITLE>
+<META NAME="description" CONTENT="Block Algorithms and their
+Derivation">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node67.html">
+<LINK REL="previous" HREF="node65.html">
+<LINK REL="up" HREF="node60.html">
+<LINK REL="next" HREF="node67.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5084"
+ HREF="node67.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5078"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5072"
+ HREF="node65.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5080"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5082"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5085"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Up:</B> <A NAME="tex2html5079"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5073"
+ HREF="node65.html">The BLAS as the</A>
+ &nbsp <B>  <A NAME="tex2html5081"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5083"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03330000000000000000"></A><A NAME="secblockalg"></A><A NAME="7631"></A>
+<BR>
+Block Algorithms and their
+Derivation
+</H1>
+
+<P>
+It is comparatively straightforward to recode many of the algorithms in
+LINPACK and EISPACK so that they call Level 2 BLAS<A NAME="7632"></A>.
+Indeed, in the simplest
+cases the same floating-point operations are performed, possibly even in
+the same order: it is just a matter of reorganizing the software. To
+illustrate
+this point we derive the Cholesky factorization algorithm that is used in
+the
+LINPACK<A NAME="7633"></A> routine SPOFA<A NAME="7634"></A>, which
+factorizes a symmetric positive definite matrix
+as <B><I>A</I> = <I>U</I><SUP><I>T</I></SUP> <I>U</I></B>. Writing these equations as:
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{ccc}
+A_{11}   & a_j     & A_{13}       \\
+.        & a_{jj}  & \alpha_{j}^T \\
+.        & .       & A_{33}       \\
+\end{array} \right) =
+\left( \begin{array}{ccc}
+U_{11}^T & 0       & 0            \\
+u_{j}^T  & u_{jj}  & 0            \\
+U_{13}^T & \mu_j   & U_{33}^T     \\
+\end{array} \right)
+\left( \begin{array}{ccc}
+U_{11}   & u_j     & U_{13}       \\
+0        & u_{jj}  & \mu_{j}^T    \\
+0        & 0       & U_{33}   \\
+\end{array} \right)
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="473" HEIGHT="73" BORDER="0"
+ SRC="img214.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{ccc}
+A_{11} &amp; a_j &amp; A_{13} \\
+. &amp; a_{j...
+... u_{jj} &amp; \mu_{j}^T \\
+0 &amp; 0 &amp; U_{33} \\
+\end{array} \right)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+and equating coefficients of the <B><I>j</I><SUP><I>th</I></SUP></B> column, we obtain:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="154" HEIGHT="60" BORDER="0"
+ SRC="img215.gif"
+ ALT="\begin{eqnarray*}
+a_j &amp; = &amp; U_{11}^T u_j \\
+a_{jj} &amp; = &amp; u_{j}^T u_j + u_{jj}^2.
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+
+<P>
+Hence, if <B><I>U</I><SUB>11</SUB></B> has already been computed, we can compute <B><I>u</I><SUB><I>j</I></SUB></B> and
+<B><I>u</I><SUB><I>jj</I></SUB></B>
+from the equations:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="173" HEIGHT="60" BORDER="0"
+ SRC="img216.gif"
+ ALT="\begin{eqnarray*}
+U_{11}^T u_j &amp; = &amp; a_j \\
+u_{jj}^2 &amp; = &amp; a_{jj} - u_{j}^T u_j.
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+
+<P>
+Here is the body of the code of the LINPACK routine SPOFA<A NAME="7674"></A>,
+which implements the above method:
+
+<P>
+<PRE>
+         DO 30 J = 1, N
+            INFO = J
+            S = 0.0E0
+            JM1 = J - 1
+            IF (JM1 .LT. 1) GO TO 20
+            DO 10 K = 1, JM1
+               T = A(K,J) - SDOT(K-1,A(1,K),1,A(1,J),1)
+               T = T/A(K,K)
+               A(K,J) = T
+               S = S + T*T
+   10       CONTINUE
+   20       CONTINUE
+            S = A(J,J) - S
+C     ......EXIT
+            IF (S .LE. 0.0E0) GO TO 40
+            A(J,J) = SQRT(S)
+   30    CONTINUE
+</PRE>
+
+<P>
+And here is the same computation recoded in ``LAPACK-style''
+to use the Level 2 BLAS<A NAME="7677"></A> routine
+STRSV (which solves a triangular system of equations). The call to STRSV
+has replaced the loop over K which made several calls to the
+Level 1 BLAS routine SDOT. (For reasons given below, this is not the actual
+code used in LAPACK -- hence the term ``LAPACK-style''.)
+
+<P>
+<PRE>
+      DO 10 J = 1, N
+         CALL STRSV( 'Upper', 'Transpose', 'Non-unit', J-1, A, LDA,
+     $               A(1,J), 1 )
+         S = A(J,J) - SDOT( J-1, A(1,J), 1, A(1,J), 1 )
+         IF( S.LE.ZERO ) GO TO 20
+         A(J,J) = SQRT( S )
+   10 CONTINUE
+</PRE>
+
+<P>
+This change by itself is sufficient to make big gains in performance
+on machines like the CRAY C-90.
+
+<P>
+But on many machines such as an IBM RISC Sys/6000-550 (using double
+precision)
+there is virtually no difference in performance between
+the LINPACK-style and the LAPACK Level 2 BLAS style code.
+Both styles run at a megaflop rate far below its peak performance for
+matrix-matrix multiplication.
+To exploit the faster speed of Level 3 BLAS<A NAME="7680"></A>, the
+algorithms must undergo a deeper level of restructuring, and be re-cast as a
+<B>block algorithm</B> -- that is, an algorithm that operates on <B>blocks</B>
+or submatrices of the original matrix.
+
+<P>
+To derive a block form of Cholesky
+factorization<A NAME="7683"></A>, we write the
+defining equation in partitioned form thus:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH
+ \begin{displaymath}
+\left( \begin{array}{ccc}
+A_{11} & A_{12} & A_{13}\\
+.      & A_{22} & A_{23}\\
+.      & .      & A_{33}\\
+\end{array} \right) =
+\left( \begin{array}{ccc}
+U_{11}^T & 0 & 0\\
+U_{12}^T & U_{22}^T & 0\\
+U_{13}^T & U_{23}^T & U_{33}^T\\
+\end{array} \right)
+\left( \begin{array}{ccc}
+U_{11} & U_{12} & U_{13}\\
+0 & U_{22} & U_{23}\\
+0 & 0 & U_{33}\\
+\end{array} \right).
+\end{displaymath}
+ -->
+
+
+<IMG
+ WIDTH="495" HEIGHT="73" BORDER="0"
+ SRC="img217.gif"
+ ALT="\begin{displaymath}
+\left( \begin{array}{ccc}
+A_{11} &amp; A_{12} &amp; A_{13}\\
+. &amp; A_...
+...
+0 &amp; U_{22} &amp; U_{23}\\
+0 &amp; 0 &amp; U_{33}\\
+\end{array} \right).
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Equating submatrices in the second block of columns, we obtain:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="203" HEIGHT="58" BORDER="0"
+ SRC="img218.gif"
+ ALT="\begin{eqnarray*}
+A_{12} &amp; = &amp; U_{11}^T U_{12} \\
+A_{22} &amp; = &amp; U_{12}^T U_{12} + U_{22}^T U_{22}.
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+
+<P>
+Hence, if <B><I>U</I><SUB>11</SUB></B> has already been computed, we can compute <B><I>U</I><SUB>12</SUB></B> as
+the solution to the equation
+<B>
+<I>U</I><SUB>11</SUB><SUP><I>T</I></SUP> <I>U</I><SUB>12</SUB> = <I>A</I><SUB>12</SUB>
+</B>
+<BR CLEAR="ALL"><P></P>
+by a call to the Level 3 BLAS routine STRSM; and then we can compute
+<B><I>U</I><SUB>22</SUB></B>
+from
+<B>
+<I>U</I><SUB>22</SUB><SUP><I>T</I></SUP> <I>U</I><SUB>22</SUB> = <I>A</I><SUB>22</SUB> - <I>U</I><SUB>12</SUB><SUP><I>T</I></SUP> <I>U</I><SUB>12</SUB>.
+</B>
+<BR CLEAR="ALL"><P></P>
+This involves first updating the symmetric submatrix <B><I>A</I><SUB>22</SUB></B> by a call to
+the
+Level 3 BLAS routine SSYRK, and then computing its Cholesky factorization.
+Since Fortran does not allow recursion, a separate routine must be called
+(using Level 2 BLAS rather than Level 3), named SPOTF2 in the code below.
+In this way successive blocks of columns of <B><I>U</I></B> are computed.
+Here is LAPACK-style code for the block algorithm. In this code-fragment
+<TT>NB</TT> denotes the width<A NAME="7738"></A> of the blocks.
+
+<P>
+<PRE>
+      DO 10 J = 1, N, NB
+         JB = MIN( NB, N-J+1 )
+         CALL STRSM( 'Left', 'Upper', 'Transpose', 'Non-unit', J-1, JB,
+     $               ONE, A, LDA, A( 1, J ), LDA )
+         CALL SSYRK( 'Upper', 'Transpose', JB, J-1, -ONE, A( 1, J ), LDA,
+     $               ONE, A( J, J ), LDA )
+         CALL SPOTF2( 'Upper', JB, A( J, J ), LDA, INFO )
+         IF( INFO.NE.0 ) GO TO 20
+   10 CONTINUE
+</PRE>
+
+<P>
+But that is not the end of the story, and the code given above is
+not the code that is actually used in the LAPACK routine
+SPOTRF<A NAME="7741"></A>.
+We mentioned in subsection&nbsp;<A HREF="node62.html#subsecvectorize">3.1.1</A> that for many
+linear algebra computations there
+are several vectorizable variants, often referred to as <B><I>i</I></B>-, <B><I>j</I></B>- and
+<B><I>k</I></B>-variants, according to a convention introduced in [<A
+ HREF="node151.html#Dongarra84a">45</A>]
+and used
+in [<A
+ HREF="node151.html#GVL2">55</A>]. The same is true of the corresponding block algorithms.
+
+<P>
+It turns out that the <B><I>j</I></B>-variant
+that was chosen for LINPACK, and used in the above
+examples, is not the fastest on many machines, because it is based on
+solving triangular
+systems of equations, which can be significantly slower than matrix-matrix
+multiplication.
+The variant actually used in LAPACK is the <B><I>i</I></B>-variant, which does
+rely on matrix-matrix multiplication.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5084"
+ HREF="node67.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5078"
+ HREF="node60.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5072"
+ HREF="node65.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5080"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5082"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5085"
+ HREF="node67.html">Examples of Block Algorithms</A>
+<B> Up:</B> <A NAME="tex2html5079"
+ HREF="node60.html">Performance of LAPACK</A>
+<B> Previous:</B> <A NAME="tex2html5073"
+ HREF="node65.html">The BLAS as the</A>
+ &nbsp <B>  <A NAME="tex2html5081"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5083"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

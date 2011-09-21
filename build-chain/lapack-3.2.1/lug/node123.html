@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Packed Storage</TITLE>
+<META NAME="description" CONTENT="Packed Storage">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node124.html">
+<LINK REL="previous" HREF="node122.html">
+<LINK REL="up" HREF="node121.html">
+<LINK REL="next" HREF="node124.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html5947"
+ HREF="node124.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5941"
+ HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5935"
+ HREF="node122.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5943"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5945"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5948"
+ HREF="node124.html">Band Storage</A>
+<B> Up:</B> <A NAME="tex2html5942"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Previous:</B> <A NAME="tex2html5936"
+ HREF="node122.html">Conventional Storage</A>
+ &nbsp <B>  <A NAME="tex2html5944"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5946"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION03532000000000000000"></A><A NAME="subsecpacked"></A>
+<BR>
+Packed Storage
+</H2>
+
+<P>
+Symmetric, Hermitian or triangular matrices may be stored more
+compactly<A NAME="19766"></A>, if the relevant 
+triangle (again as specified by UPLO) is packed
+<B>by columns</B> in a one-dimensional array. In LAPACK, arrays that hold
+matrices in packed storage, have names ending in `P'. So:
+
+<P>
+
+<UL><LI>if UPLO = `U', <B><I>a</I><SUB><I>ij</I></SUB></B> is stored in AP(<B><I>i</I>+<I>j</I>(<I>j</I>-1)/2</B>) for <IMG
+ WIDTH="42" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img924.gif"
+ ALT="$i \leq j$">;
+
+<P>
+
+<LI>if UPLO = `L', <B><I>a</I><SUB><I>ij</I></SUB></B> is stored in AP(
+<!-- MATH
+ $i+(2n-j)(j-1)/2$
+ -->
+<B><I>i</I>+(2<I>n</I>-<I>j</I>)(<I>j</I>-1)/2</B>) for 
+<IMG
+ WIDTH="42" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img925.gif"
+ ALT="$j \leq i$">.
+
+<P>
+
+</UL>
+
+<P>
+For example:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">UPLO</TD>
+<TD ALIGN="CENTER">Triangular matrix <B><I>A</I></B></TD>
+<TD ALIGN="CENTER">Packed storage in array AP</TD>
+</TR>
+<TR><TD ALIGN="CENTER">`U'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{cccc}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+       & a_{22} & a_{23} & a_{24} \\
+       &        & a_{33} & a_{34} \\
+       &        &        & a_{44}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img918.gif"
+ ALT="$
+\left( \begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+&amp; a_{22} &amp; a_{23} &amp; a_{24} \\
+&amp; &amp; a_{33} &amp; a_{34} \\
+&amp; &amp; &amp; a_{44}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $a_{11} \; \underbrace{a_{12} \: a_{22}} \;
+\underbrace{a_{13} \: a_{23} \: a_{33}} \;
+\underbrace{a_{14} \: a_{24} \: a_{34} \: a_{44}}$
+ -->
+<IMG
+ WIDTH="286" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img926.gif"
+ ALT="$
+a_{11} \; \underbrace{a_{12} \: a_{22}} \;
+\underbrace{a_{13} \: a_{23} \: a_{33}} \;
+\underbrace{a_{14} \: a_{24} \: a_{34} \: a_{44}}
+$"></TD>
+</TR>
+<TR><TD ALIGN="CENTER">`L'</TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\left( \begin{array}{cccc}
+a_{11} &        &        &        \\
+a_{21} & a_{22} &        &        \\
+a_{31} & a_{32} & a_{33} &        \\
+a_{41} & a_{42} & a_{43} & a_{44}
+\end{array} \right)$
+ -->
+<IMG
+ WIDTH="190" HEIGHT="103" ALIGN="MIDDLE" BORDER="0"
+ SRC="img920.gif"
+ ALT="$
+\left( \begin{array}{cccc}
+a_{11} &amp; &amp; &amp; \\
+a_{21} &amp; a_{22} &amp; &amp; \\
+a_{31} &amp; a_{32} &amp; a_{33} &amp; \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44}
+\end{array} \right)
+$"></TD>
+<TD ALIGN="CENTER">
+<!-- MATH
+ $\underbrace{a_{11} \: a_{21} \: a_{31} \: a_{41}} \;
+\underbrace{a_{22} \: a_{32} \: a_{42}} \;
+\underbrace{a_{33} \: a_{43}} \; a_{44}$
+ -->
+<IMG
+ WIDTH="286" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img927.gif"
+ ALT="$
+\underbrace{a_{11} \: a_{21} \: a_{31} \: a_{41}} \;
+\underbrace{a_{22} \: a_{32} \: a_{42}} \;
+\underbrace{a_{33} \: a_{43}} \; a_{44}
+$"></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+Note that for real or complex symmetric matrices, 
+packing the upper triangle
+by columns is equivalent to packing the lower triangle by rows;
+packing the lower triangle by columns is equivalent to packing
+the upper triangle by rows. 
+For complex Hermitian matrices,
+packing the upper triangle
+by columns is equivalent to packing the conjugate of the lower triangle by rows;
+packing the lower triangle by columns is equivalent to packing
+the conjugate of the upper triangle by rows. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html5947"
+ HREF="node124.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html5941"
+ HREF="node121.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html5935"
+ HREF="node122.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html5943"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html5945"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html5948"
+ HREF="node124.html">Band Storage</A>
+<B> Up:</B> <A NAME="tex2html5942"
+ HREF="node121.html">Matrix Storage Schemes</A>
+<B> Previous:</B> <A NAME="tex2html5936"
+ HREF="node122.html">Conventional Storage</A>
+ &nbsp <B>  <A NAME="tex2html5944"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html5946"
+ HREF="node152.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>

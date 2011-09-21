@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.2 beta6 (August 14th, 1998)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Installation Debugging Hints</TITLE>
+<META NAME="description" CONTENT="Installation Debugging Hints">
+<META NAME="keywords" CONTENT="lug_l2h">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="lug_l2h.css">
+<LINK REL="next" HREF="node135.html">
+<LINK REL="previous" HREF="node133.html">
+<LINK REL="up" HREF="node132.html">
+<LINK REL="next" HREF="node135.html">
+</HEAD>
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html6105"
+ HREF="node135.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html6099"
+ HREF="node132.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html6093"
+ HREF="node133.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A> 
+<A NAME="tex2html6101"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents_motif.gif"></A> 
+<A NAME="tex2html6103"
+ HREF="node152.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="index_motif.gif"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html6106"
+ HREF="node135.html">Common Errors in Calling</A>
+<B> Up:</B> <A NAME="tex2html6100"
+ HREF="node132.html">Troubleshooting</A>
+<B> Previous:</B> <A NAME="tex2html6094"
+ HREF="node133.html">Bug Report Checklist</A>
+ &nbsp <B>  <A NAME="tex2html6102"
+ HREF="node1.html">Contents</A></B> 
+ &nbsp <B>  <A NAME="tex2html6104"
+ HREF="node152.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION03720000000000000000"></A>
+<A NAME="21073"></A>
+<BR>
+Installation Debugging Hints
+</H1>
+ 
+If the user encounters difficulty in the installation process, we
+suggest the following:
+
+<UL><LI>Obtain prebuilt LAPACK library on <EM>netlib</EM>
+       for a variety of architectures.
+       <BLOCKQUOTE>
+       <TT>http://www.netlib.org/lapack/archives/</TT>
+       
+</BLOCKQUOTE>
+
+<LI>Obtain sample <TT>make.inc</TT> files for a variety of architectures
+       in the <TT>LAPACK/INSTALL</TT> directory in the lapack
+       distribution tar file.
+
+<LI>Consult the LAPACK FAQ list on <EM>netlib</EM>.
+
+<LI>Consult the <TT>release_notes</TT> file in the <EM>lapack</EM> directory
+       on <EM>netlib</EM>.  This file contains a list of known difficulties
+       that have been diagnosed and corrected (or will be
+       corrected in the next release), or reported to the vendor as in the case
+       of optimized BLAS<A NAME="21085"></A>.
+
+<LI>Always run the BLAS test suite to ensure that
+       this library has been properly installed.  If a problem
+       is detected in the BLAS library, try linking to the reference
+       implementation in the <EM>blas</EM> directory on <EM>netlib</EM>.
+
+</UL>
+<BR><HR>
+<ADDRESS>
+<I>Susan Blackford</I>
+<BR><I>1999-10-01</I>
+</ADDRESS>
+</BODY>
+</HTML>
