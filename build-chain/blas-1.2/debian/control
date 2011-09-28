@@ -3,8 +3,7 @@ Priority: optional
 Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Sylvestre Ledru <sylvestre@debian.org>
 Standards-Version: 3.8.4
-Build-Depends: gfortran, debhelper ( >= 5 ), 
- texlive-latex-recommended
+Build-Depends: gfortran, debhelper ( >= 5 )
 Section: libs
 Homepage: http://www.netlib.org/blas/
 Vcs-Svn: svn://svn.debian.org/svn/debian-science/packages/blas/trunk/

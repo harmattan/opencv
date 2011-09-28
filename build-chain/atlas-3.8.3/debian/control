@@ -5,7 +5,7 @@ Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.
 Uploaders: Sylvestre Ledru <sylvestre@debian.org>
 Standards-Version: 3.9.1
 Build-Depends: debhelper (>= 7), patch, gfortran, libblas-dev, 
- liblapack-dev, liblapack-pic, libblas-test, cdbs, texlive-latex-base, 
+ liblapack-dev, liblapack-pic, libblas-test, cdbs,
  ghostscript, cpufrequtils
 Homepage: http://math-atlas.sourceforge.net/
 Vcs-Svn: svn://svn.debian.org/svn/debian-science/packages/atlas/

@@ -1,6 +1,7 @@
 dirac (1.0.2-3harmattan1) unstable; urgency=low
 
   * Package for Meego/Harmattan 1.2
+  * Remove dependency on texlive-base-bin and texlive-latex-base
 
  -- Oliver Hookins <ohookins@gmail.com>  Mon, 12 Sep 2011 15:48:53 +0200
 

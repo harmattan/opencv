@@ -88,7 +88,12 @@ endif
 # TODO: alpha hppa sparc (they have specific accelerations)
 
 #GFORTRAN_LIB_PATH=`gcc -print-search-dirs|grep ^install:|awk '{print $$2}'`
+ifeq ($(DEB_HOST_ARCH_CPU),i386)
 GFORTRAN_LIB_PATH=/usr/lib/gcc/i486-linux-gnu/4.4/
+endif
+ifeq ($(DEB_HOST_ARCH_CPU),arm)
+GFORTRAN_LIB_PATH=/usr/lib/gcc/arm-linux-gnueabi/4.4/
+endif
 
 COMMON_CONFIG_PARAMS := --prefix="$(DEB_DESTDIR)" 	\
 	--incdir="$(DEB_DESTDIR)/usr/include/"			\

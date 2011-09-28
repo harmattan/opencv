@@ -2,6 +2,7 @@ gcc-4.4 (4.4.1-0maemo14+0m6) unstable; urgency=low
 
   * This entry has been added by BIFH queue processor
     version has been changed to 4.4.1-0maemo14+0m6
+  * Removed dependency on texlive-latex-base
 
  -- BIFH Bot <sysint@maemo.research.nokia.com>  Mon, 14 Mar 2011 13:04:03 +0200
 

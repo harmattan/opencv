@@ -5,7 +5,7 @@ Maintainer: Debian multimedia packages maintainers <pkg-multimedia-maintainers@l
 Uploaders: Andres Mejia <mcitadel@gmail.com>
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7), quilt (>= 0.46-7), autoconf
-Build-Depends-Indep: doxygen, graphviz, texlive-base-bin, texlive-latex-base
+Build-Depends-Indep: doxygen, graphviz
 Standards-Version: 3.8.4
 Homepage: http://diracvideo.org/
 Vcs-Git: git://git.debian.org/git/pkg-multimedia/dirac.git

@@ -2,7 +2,8 @@ atlas (3.8.3-27harmattan1) unstable; urgency=low
 
   * Package for Meego/Harmattan 1.2
   * Fix gfortran lib path
-  * Increased nflop factor by 5
+  * Munged nflop factor until it worked.
+  * Removed dependency on texlive-latex-base
 
  -- Oliver Hookins <ohookins@gmail.com>  Sun, 18 Sep 2011 14:37:03 +0200
 
