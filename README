@@ -18,6 +18,15 @@ was gcc, which would have required other more intrusive changes to append this
 string.
 
 OpenCV 2.3.1 - from Debian Experimental
+ * Disabled GTK, enabled QT
+ * Removed dependency on libraw1394-dev
+ * Removed dependency on libdc1394-22-dev
+ * Disabled LaTeX documentation building
+ * Removed dependency on libjasper-dev
+ * Removed dependency on liblapack-dev
+ * Removed dependency on libopenexr-dev
+ * Removed dependency on libv4l-dev
+ * Converted fabsl->fabs for ARM
 Atlas 3.8.3
  * Fix gfortran lib path
  * Munged nflop factor until it worked.

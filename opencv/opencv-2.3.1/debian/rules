@@ -18,6 +18,14 @@ else
 CMAKE_ARCH_FLAGS = -DENABLE_SSE2=OFF
 endif
 
+# setup architecture-specific patches
+ifeq ($(DEB_HOST_ARCH),armel)
+QUILT_SERIES = series-armel
+else
+QUILT_SERIES = series-all
+endif
+export QUILT_SERIES
+
 CMAKE_FLAGS = \
 	-DCMAKE_INSTALL_PREFIX=/usr \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \

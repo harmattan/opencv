@@ -9,6 +9,7 @@ opencv (2.3.1-0harmattan1) stable; urgency=low
   * Removed dependency on liblapack-dev
   * Removed dependency on libopenexr-dev
   * Removed dependency on libv4l-dev
+  * Converted fabsl->fabs for ARM
 
  -- Oliver Hookins <ohookins@gmail.com>  Tue, 20 Sep 2011 22:33:03 +0200
 

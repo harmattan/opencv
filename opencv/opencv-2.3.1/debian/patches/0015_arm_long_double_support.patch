@@ -1,0 +1,19 @@
+diff -ruN opencv-2.3.1-orig/modules/flann/include/opencv2/flann/dist.h opencv-2.3.1/modules/flann/include/opencv2/flann/dist.h
+--- opencv-2.3.1-orig/modules/flann/include/opencv2/flann/dist.h	2011-08-02 14:48:40.000000000 +0200
++++ opencv-2.3.1/modules/flann/include/opencv2/flann/dist.h	2011-09-29 20:19:48.278027940 +0200
+@@ -59,8 +59,14 @@
+ template<>
+ inline double abs<double>(double x) { return fabs(x); }
+ 
++/**
++ * Previously this returned the value of fabsl(x) but as long double support
++ * seems to be lacking on ARM, we just return the result of a double.
++ *
++ * See: http://lists.freebsd.org/pipermail/freebsd-arm/2010-March/002323.html
++ */
+ template<>
+-inline long double abs<long double>(long double x) { return fabsl(x); }
++inline long double abs<long double>(long double x) { return fabs(x); }
+ 
+ 
+ template<typename T>
