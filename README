@@ -6,6 +6,19 @@ order to build OpenCV I have had to fill out the build chain somewhat. Hence,
 this repository includes a lot of packages which are needed for OpenCV but
 unfortunately not yet available from a "standard" source.
 
+
+Installing
+----------
+
+Until there is an official community repository, these files are hosted on the
+project site. Please add the following to your APT sources.list file:
+
+deb http://projects.developer.nokia.com/opencv/files ./
+
+Then run 'apt-get update' and 'apt-get install' for any of the desired packages
+within the OpenCV framework, e.g. 'python-opencv' or 'libopencv-core2.3'.
+
+
 Packages included
 -----------------
 
@@ -64,11 +77,13 @@ Yasm 0.8.0
 Unnecessary extensions which would have complicated the build chain have been
 disabled where possible.
 
+
 External packages required
 --------------------------
 
 All other packages required for the build change that have not been explicitly
 mentioned above, come from the stardard Harmattan SDK sources.
+
 
 Dependency Tree Notes
 ---------------------
