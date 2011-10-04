@@ -57,7 +57,7 @@ CMAKE_FLAGS = \
 	-DWITH_TBB=OFF	\
 	-DWITH_UNICAP=OFF	\
 	-DWITH_XINE=OFF	\
-	-DBUILD_TESTS=OFF \
+	-DBUILD_TESTS=ON \
 	-DCMAKE_SKIP_RPATH=ON
 
 %:
@@ -78,4 +78,11 @@ override_dh_install:
 	chmod --verbose +x debian/tmp/usr/share/opencv/samples/c/build_all.sh
 	for f in $$(ls obj-*/lib/libopencv_*_s.a); do \
 		cp --verbose --preserve=mode $$f debian/tmp/usr/lib/$$(basename $$f _s.a).a; done
+	mkdir -p debian/tmp/tests
+	for f in $$(ls obj-*/bin/opencv_test_*); do \
+		cp --verbose --preserve=mode $$f debian/tmp/tests/$$(basename $$f); done
 	dh_install -O--buildsystem=cmake --list-missing
+
+override_dh_compress:
+	dh_compress -Xopencv_test
+

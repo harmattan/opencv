@@ -31,45 +31,18 @@ was gcc, which would have required other more intrusive changes to append this
 string.
 
 OpenCV 2.3.1 - from Debian Experimental
- * Disabled GTK, enabled QT
- * Removed dependency on libraw1394-dev
- * Removed dependency on libdc1394-22-dev
- * Disabled LaTeX documentation building
- * Removed dependency on libjasper-dev
- * Removed dependency on liblapack-dev
- * Removed dependency on libopenexr-dev
- * Removed dependency on libv4l-dev
- * Converted fabsl->fabs for ARM
 Atlas 3.8.3
- * Fix gfortran lib path
- * Munged nflop factor until it worked.
- * Removed dependency on texlive-latex-base
 Blas 1.2
- * Remove dependency on texlive-latex-recommended
 Lapack 3.2.1
- * Remove dh_shlibdeps generation of lib dependencies which broke due to
-   libblas' use of update-alternatives in /usr/lib
 Python-numpy 1.4.1
 Cpufrequtils 007
 Gcc 4.4
- * It was only necessary to build gcc for gfortran-4.4, which is not available
-   in the standard Harmattan SDK repositories, despite other packages from the
-   same source package being available.
- * Removed dependency on texlive-latex-base
 Gcc-defaults 1.92
 Audiofile 0.2.6
 Dirac 1.0.2
- * Remove dependency on texlive-base-bin and texlive-latex-base
 Faad2 2.7
 Ffmpeg 0.5.4
- * Removed requirement for libdc1394-22-dev
- * Removed requirement for libschroedinger-dev
- * Removed requirement for libsdl1.2-dev
- * Removed requirement for libtheora-dev
- * Removed requirement for libvorbis-dev
- * Removed requirement for libxvmc-dev
 Imlib2 1.4.2
- * Removed requirement for libid3tag0-dev
 Libgsm 1.0.13
 Openjpeg 1.3
 Yasm 0.8.0

@@ -1,3 +1,10 @@
+python-numpy (1:1.4.1-6harmattan1) unstable; urgency=low
+
+  * Bumped release number to take precedence over python-numpy in
+    downloads.maemo.nokia.com repo which is broken.
+
+ -- Oliver Hookins <ohookins@gmail.com>  Mon, 03 Oct 2011 19:56:28 +0200
+
 python-numpy (1:1.4.1-5harmattan1) unstable; urgency=low
 
   * Package for Meego/Harmattan 1.2

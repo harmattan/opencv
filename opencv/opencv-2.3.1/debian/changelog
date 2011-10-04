@@ -1,3 +1,10 @@
+opencv (2.3.1-0harmattan2) stable; urgency=low
+
+  * Fixed some package dependencies
+  * Include test programs in opencv-doc package
+
+ -- Oliver Hookins <ohookins@gmail.com>  Mon, 03 Oct 2011 19:55:27 +0200
+
 opencv (2.3.1-0harmattan1) stable; urgency=low
 
   * Package for Meego/Harmattan 1.2
