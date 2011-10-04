@@ -13,7 +13,7 @@ Homepage: http://numpy.scipy.org/
 
 Package: python-numpy
 Architecture: any
-Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}, liblapack3gf, libatlas3gf-base
 Suggests: python-numpy-doc, python-numpy-dbg, python-nose (>= 0.10.1), python-dev, gfortran
 XB-Python-Version: ${python:Versions}
 Provides: ${python:Provides}, python-numpy-dev, python-f2py
