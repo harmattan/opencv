@@ -1,3 +1,10 @@
+opencv (2.3.1-0harmattan3) stable; urgency=low
+
+  * Made some disabled dependencies explicit in the call to cmake
+  * Re-enabled V4L support
+
+ -- Oliver Hookins <ohookins@gmail.com>  Thu, 06 Oct 2011 19:40:56 +0200
+
 opencv (2.3.1-0harmattan2) stable; urgency=low
 
   * Fixed some package dependencies
