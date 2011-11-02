@@ -1,3 +1,9 @@
+opencv (2.3.1-0harmattan4) stable; urgency=low
+
+  * Moved test programs and their libraries into their own package.
+
+ -- Oliver Hookins <ohookins@gmail.com>  Wed, 02 Nov 2011 18:17:26 +0100
+
 opencv (2.3.1-0harmattan3) stable; urgency=low
 
   * Made some disabled dependencies explicit in the call to cmake
