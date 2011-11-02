@@ -87,3 +87,5 @@ override_dh_install:
 	for f in $$(ls obj-*/bin/opencv_test_*); do \
 		cp --verbose --preserve=mode $$f debian/tmp/tests/$$(basename $$f); done
 	dh_install -O--buildsystem=cmake --list-missing
+
+aegis-deb-add -control debian/libopencv-ts2.3/DEBIAN/control debian/libopencv-ts2.3.aegis=_aegis

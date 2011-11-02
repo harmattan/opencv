@@ -1,0 +1,14 @@
+<aegis>
+   <request>
+      <credential name="GRP::video" />
+      <for path="/usr/bin/opencv_test_objdetect" />
+      <for path="/usr/bin/opencv_test_features2d" />
+      <for path="/usr/bin/opencv_test_gpu" />
+      <for path="/usr/bin/opencv_test_highgui" />
+      <for path="/usr/bin/opencv_test_core" />
+      <for path="/usr/bin/opencv_test_imgproc" />
+      <for path="/usr/bin/opencv_test_ml" />
+      <for path="/usr/bin/opencv_test_calib3d" />
+      <for path="/usr/bin/opencv_test_video" />
+   </request>
+</aegis>

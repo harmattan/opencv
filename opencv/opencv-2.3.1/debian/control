@@ -15,7 +15,8 @@ Build-Depends: debhelper (>= 8),
  python-dev, swig,
  python-support (>= 0.4.1),
  python-numpy,
- libv4l-dev
+ libv4l-dev,
+ aegis-builder (>= 1.4)
 Standards-Version: 3.9.2
 Vcs-Svn: svn://svn.debian.org/svn/debian-science/packages/opencv/trunk/
 Vcs-Browser: http://svn.debian.org/viewsvn/debian-science/packages/opencv/trunk/
