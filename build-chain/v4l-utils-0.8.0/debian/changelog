@@ -1,3 +1,9 @@
+v4l-utils (0.8.0-1harmattan2) unstable; urgency=low
+
+  * Add Aegis privileges for utils
+
+ -- Oliver Hookins <ohookins@gmail.com>  Sat, 12 Nov 2011 16:32:13 +0100
+
 v4l-utils (0.8.0-1harmattan1) unstable; urgency=low
 
   * Package for Meego/Harmattan 1.2

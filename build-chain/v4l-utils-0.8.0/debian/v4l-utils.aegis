@@ -1,0 +1,12 @@
+<aegis>
+   <request>
+      <credential name="GRP::video" />
+      <for path="/usr/bin/cx18-ctl" />
+      <for path="/usr/bin/decode_tm6000" />
+      <for path="/usr/bin/ivtv-ctl" />
+      <for path="/usr/bin/v4l2-compliance" />
+      <for path="/usr/bin/v4l2-ctl" />
+      <for path="/usr/bin/v4l2-sysfs-path" />
+      <for path="/usr/sbin/v4l2-dbg" />
+   </request>
+</aegis>

@@ -66,3 +66,5 @@ binary-arch: build
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary
+
+aegis-deb-add -control debian/v4l-utils/DEBIAN/control debian/v4l-utils.aegis=_aegis
